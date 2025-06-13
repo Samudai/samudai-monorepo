@@ -1,22 +1,50 @@
 # Samudai
 
-Samudai is a monorepo for a collaborative platform designed to empower DAOs, projects, and contributors. It includes a dashboard, backend services, and supporting documentation for seamless community and project management.
+Samudai is a monorepo for a collaborative platform designed to empower DAOs, projects, and contributors. It includes a dashboard, backend services, bots, and supporting documentation for seamless community and project management.
 
 ## Monorepo Structure
 
 ```
 samudai-monorepo/
+  bots/                # Bot applications (Discord, Telegram)
   dashboard/           # Frontend web application
-  services/            # Backend microservices (gateway, analytics, dao, etc.)
+  services/            # Backend microservices
   deploy/              # Deployment configurations (Kubernetes, etc.)
   docs/                # Documentation and database migration files
 ```
+
+### Services Overview
+
+The platform is built using a microservices architecture with the following key services:
+
+- **gateway-consumer-node** - Main API gateway for client requests
+- **gateway-external** - External API gateway for third-party integrations
+- **service-dao** - DAO management and member operations
+- **service-project** - Project lifecycle and task management
+- **service-member** - User profile and member management
+- **service-job** - Job posting and application handling
+- **service-discovery** - Content discovery and recommendation
+- **service-discussion** - Forum and discussion management
+- **service-dashboard** - Dashboard analytics and metrics
+- **service-discord** - Discord bot integration
+- **service-plugin** - Third-party plugin management (GitHub, Notion, etc.)
+- **service-point** - Reward and point system
+- **service-analytics** - Data analytics and reporting
+- **service-activity** - Activity tracking and notifications
+- **service-twitter/service-x** - Twitter/X social media integration
+- **service-web3** - Blockchain and Web3 functionality
+- **service-forms** - Form management and processing
+
+### Bots
+
+- **samudai-bot** - Discord bot for community engagement
+- **telegram-bot** - Telegram bot for notifications and interactions
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (for dashboard)
+- Node.js (for dashboard and some services)
 - Go (for backend services)
 - Docker & Kubernetes (for deployment, optional)
 - Postgres 17
@@ -27,30 +55,38 @@ samudai-monorepo/
 
 ### Run the backend services
 
-- update .github/workflows with the correct values for databases and other secrets
+- Update `.github/workflows` with the correct values for databases and other secrets
 
-- deploy/kubernetes/apply.sh will deploy the databases and other services (MongoDB, PostgreSQL, Redis, RabbitMQ)
-- deploy/kubernetes/applyssl.sh will deploy the ingress and cert-manager
-- run elasticsearch and apm server
+- Deploy databases and other services (MongoDB, PostgreSQL, Redis, RabbitMQ):
 
 ```bash
 ./deploy/kubernetes/apply.sh
-./deploy/kubernetes/applyssl.sh
-./deploy/elastic-agent-managed-kubernetes.yaml
 ```
 
-- update the database configs and run the migrations
+- Deploy ingress and cert-manager:
+
+```bash
+./deploy/kubernetes/applyssl.sh
+```
+
+- Run Elasticsearch and APM server:
+
+```bash
+kubectl apply -f ./deploy/kubernetes/elastic.yml
+```
+
+- Update the database configs and run the migrations:
 
 ```bash
 go run cmd/migrations/main.go
 ```
 
-- Run the Discord Bot - [Samudai Discord Bot](github.com/Samudai/samudai-bot)
-- Run the Telegram Bot - [Samudai Telegram Bot](github.com/Samudai/telegram-bot)
+- Run the Discord Bot - [Samudai Discord Bot](bots/samudai-bot)
+- Run the Telegram Bot - [Samudai Telegram Bot](bots/telegram-bot)
 
 ### Run the dashboard
 
-- update the .production.env at dashboard/dashboard-samudai/.production.env and build the docker image
+- Update the `.production.env` at `dashboard/dashboard-samudai/.production.env` and build the docker image
 
 #### Using Docker
 
@@ -58,7 +94,7 @@ go run cmd/migrations/main.go
 docker build -t samudai/dashboard-samudai:latest . --build-arg NODE_ENV=prod
 ```
 
-- run the docker image
+- Run the docker image:
 
 ```bash
 docker run -d -p 3000:3000 samudai/dashboard-samudai:latest
@@ -67,6 +103,8 @@ docker run -d -p 3000:3000 samudai/dashboard-samudai:latest
 #### Running Locally
 
 ```bash
+cd dashboard/dashboard-samudai
+npm install
 npm run dev
 ```
 
