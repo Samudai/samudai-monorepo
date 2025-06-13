@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e 
+
+export PORT=3004
+
+export MONGO_URL=$MONGO_URL_LOCAL_ACTIVITY
+
+npm run start:dev
