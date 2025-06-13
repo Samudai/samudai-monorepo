@@ -9,3 +9,120 @@ data:
   mq-ip: rabbitmq-service.default.svc.cluster.local
   mq-username: $(RABBITMQ_DEFAULT_USER)
   mq-password: $(RABBITMQ_DEFAULT_PASS)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-external
+  labels:
+    app: gateway-external
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: gateway-external
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-external
+spec:
+  selector:
+    matchLabels:
+      app: gateway-external
+  revisionHistoryLimit: 2
+  replicas: 5
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: gateway-external
+    spec:
+      containers:
+        - name: gateway-external
+          image: ghcr.io/samudai/gateway-external:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 100m
+          env:
+            - name: GIN_MODE
+              value: release
+            - name: SERVICE_NAME
+              value: gateway-external
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: SERVICE_PROJECT
+              value: http://service-project
+            - name: SERVICE_DISCORD
+              value: http://service-discord
+            - name: SERVICE_MEMBER
+              value: http://service-member
+            - name: SERVICE_DAO
+              value: http://service-dao
+            - name: SERVICE_PLUGIN
+              value: http://service-plugin
+            - name: SERVICE_POINT
+              value: http://service-point
+            - name: TELEGRAM_BOT
+              value: http://telegram-bot
+            - name: GITHUB_WEBHOOK_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: gateway-external
+                  key: github-webhook-secret
+            - name: MQ_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: gateway-external
+                  key: mq-ip
+            - name: MQ_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: gateway-external
+                  key: mq-username
+            - name: MQ_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: gateway-external
+                  key: mq-password
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: gateway-external
+            - name: ELASTIC_APM_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-server-url
+            - name: ELASTIC_APM_SECRET_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-sercret-token
+            - name: ELASTIC_APM_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-env

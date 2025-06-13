@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=gateway_external
+export PORT="4000"
+
+export SERVICE_DISCORD=$SERVICE_DISCORD
+export SERVICE_PROJECT=$SERVICE_PROJECT
+export SERVICE_MEMBER=$SERVICE_MEMBER
+export SERVICE_DAO=$SERVICE_DAO
+export TELEGRAM_BOT=$TELEGRAM_BOT
+
+export MQ_USERNAME=$MQ_USERNAME
+export MQ_PASSWORD=$MQ_PASSWORD
+export MQ_IP=$MQ_IP
+
+go test ./...
+go build -tags=jsoniter -o build/gateway-external
+./build/gateway-external

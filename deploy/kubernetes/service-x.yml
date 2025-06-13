@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
         - name: service-x
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-x:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
