@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: samudai-bot
-          image: <IMAGE>
+          image: ghcr.io/samudai/samudai-bot:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
