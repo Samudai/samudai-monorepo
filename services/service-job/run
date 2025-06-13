@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+export PORT="4005"
+export DATABASE_URL=$DATABASE_URL_LOCAL_JOB
+
+go test ./...
+go build -tags=jsoniter -o build/service-job
+./build/service-job
