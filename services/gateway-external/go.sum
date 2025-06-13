@@ -1,15 +1,5 @@
-github.com/Samudai/samudai-pkg v0.0.3 h1:HfgQk0L3cJQdCXlQvw3MWYBtueva5OxyMwAUlRvvMsA=
-github.com/Samudai/samudai-pkg v0.0.3/go.mod h1:kfLkOnDDIhL01NvJ1lT4XUINB35fPaJPA98z00ap80k=
-github.com/Samudai/service-dao v1.0.1-dev h1:fEMrEyp6TYT1pxNmQrN3Yjfs++tpRKbqByd8lx4okug=
-github.com/Samudai/service-dao v1.0.1-dev/go.mod h1:+Ny4c03N+9543jaxmgLeJItKVme4uST0sPBfUU7vyqE=
-github.com/Samudai/service-discord v1.0.3-dev h1:6TtTuyarDsUVINEwMp2Ng/sE7LgMghJTHY7ehkn2F2E=
-github.com/Samudai/service-discord v1.0.3-dev/go.mod h1:9nmfySnhSLrnC6yty5VqxKbc/LQouookY0+lEpNWL6Y=
-github.com/Samudai/service-member v1.0.3-dev h1:NAxU2H3owvCxV8f5A7hnN4PCHAMjqSJu2HPxfzTqwGA=
-github.com/Samudai/service-member v1.0.3-dev/go.mod h1:imN5Fsi4MNDp1R7ebcEyAe9btmIF4H2/P7Y+IFPJLIQ=
-github.com/Samudai/service-point v1.0.3-dev h1:mPq/fIBNMWltpm9xBCvpIcGhtsg1Or5elCUfDDcMwBs=
-github.com/Samudai/service-point v1.0.3-dev/go.mod h1:49jZ+B7Ui49vKhc2MNqH6s7shYJfXcACnK+A4c4YhmA=
-github.com/Samudai/service-project v1.0.1-dev h1:mHa+gd/DYFALTKk4jWF7wd8p+YEUiI8xnVZ18zw22/8=
-github.com/Samudai/service-project v1.0.1-dev/go.mod h1:NG1acKLfN0g3CzndySgiD+iFRhnEQIYOqrdV3f6Kz+Q=
+github.com/Samudai/samudai-pkg v0.0.5 h1:tGH8UpR8YmhbWwnFr2sHdSRmsQ8iZc9V0iquAX4B93Q=
+github.com/Samudai/samudai-pkg v0.0.5/go.mod h1:VoJJ7Cfw1QXdlj2UJswZrunPaxGdBU4x3i3faVzTJEU=
 github.com/armon/go-radix v1.0.0 h1:F4z6KzEeeQIMeLFa97iZU6vupzoecKdU5TX24SNppXI=
 github.com/armon/go-radix v1.0.0/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=

@@ -1,16 +1,20 @@
 FROM golang:1.18-alpine AS builder
 
+RUN apk add --no-cache git
+
 WORKDIR /go/src/app
 
 ENV GO111MODULE=on
 
-COPY services/gateway-external/ /go/src/app/
-COPY services/service-discord/ /go/src/app/../service-discord/
-COPY services/service-project/ /go/src/app/../service-project/
-COPY services/service-dao/ /go/src/app/../service-dao/
-COPY services/service-member/ /go/src/app/../service-member/
+# Copy service directories with their go.mod files
+COPY services/gateway-external/ services/gateway-external/
+COPY services/service-discord/ services/service-discord/
+COPY services/service-project/ services/service-project/
+COPY services/service-dao/ services/service-dao/
+COPY services/service-member/ services/service-member/
+COPY services/service-point/ services/service-point/
 
-WORKDIR /go/src/app
+WORKDIR /go/src/app/services/gateway-external
 
 RUN go build -o ./gateway-external .
 
@@ -18,9 +22,9 @@ FROM golang:1.18-alpine
 
 WORKDIR /go/src/app
 
-ENV PORT 8080
+ENV PORT=8080
 EXPOSE 8080
 
-COPY --from=builder /go/src/app/gateway-external .
+COPY --from=builder /go/src/app/services/gateway-external/gateway-external .
 
 CMD ["./gateway-external"]

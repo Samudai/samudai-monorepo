@@ -3,7 +3,7 @@ module github.com/Samudai/gateway-external
 go 1.18
 
 require (
-	github.com/Samudai/samudai-pkg v0.0.3
+	github.com/Samudai/samudai-pkg v0.0.5
 	github.com/Samudai/service-dao v1.0.1-dev
 	github.com/Samudai/service-discord v1.0.3-dev
 	github.com/Samudai/service-member v1.0.3-dev
@@ -55,12 +55,14 @@ require (
 	howett.net/plist v0.0.0-20181124034731-591f970eefbb // indirect
 )
 
-// replace github.com/Samudai/service-discord => ../service-discord
+replace github.com/Samudai/service-discord => ../service-discord
 
-// replace github.com/Samudai/service-project => ../service-project
+replace github.com/Samudai/service-project => ../service-project
 
-// replace github.com/Samudai/service-dao => ../service-dao
+replace github.com/Samudai/service-dao => ../service-dao
 
-// replace github.com/Samudai/service-member => ../service-member
+replace github.com/Samudai/service-member => ../service-member
+
+replace github.com/Samudai/service-point => ../service-point
 
 // replace github.com/Samudai/samudai-pkg => ../samudai-pkg
