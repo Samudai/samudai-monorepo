@@ -3,7 +3,7 @@ on:
     branches:
       - master
     paths:
-      - services/service-activity/**
+      - services/service-analytics/**
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/samudai/service-activity
+          images: ghcr.io/samudai/service-analytics
           tags: |
             type=sha,format=long
             type=ref,event=branch
@@ -40,12 +40,12 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: services/service-activity
-          file: services/service-activity/Dockerfile
+          context: services/service-analytics
+          file: services/service-analytics/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ghcr.io/samudai/service-activity:${{ github.sha }}
-            ghcr.io/samudai/service-activity:latest
+            ghcr.io/samudai/service-analytics:${{ github.sha }}
+            ghcr.io/samudai/service-analytics:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
