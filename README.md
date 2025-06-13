@@ -45,6 +45,9 @@ samudai-monorepo/
 go run cmd/migrations/main.go
 ```
 
+- Run the Discord Bot - [Samudai Discord Bot](github.com/Samudai/samudai-bot)
+- Run the Telegram Bot - [Samudai Telegram Bot](github.com/Samudai/telegram-bot)
+
 ### Run the dashboard
 
 - update the .production.env at dashboard/dashboard-samudai/.production.env and build the docker image

@@ -70,7 +70,7 @@ func AddPointMembers(pointID string, members []discord.PointMember) error {
 		pointMember := point.PointMember{
 			MemberID:  Member.MemberID,
 			PointID:   pointID,
-			Points:    discordMember.PointsNum,
+			Points:    float64(discordMember.PointsNum),
 			CreatedAt: discordMember.JoinedAt,
 		}
 		pointMembers = append(pointMembers, pointMember)
@@ -112,7 +112,7 @@ func AddPointMemberDiscord(discordMember discord.PointMember) error {
 	pointMember := point.PointMember{
 		MemberID:  Member.MemberID,
 		PointID:   Point.PointID,
-		Points:    discordMember.PointsNum,
+		Points:    float64(discordMember.PointsNum),
 		CreatedAt: discordMember.JoinedAt,
 	}
 
