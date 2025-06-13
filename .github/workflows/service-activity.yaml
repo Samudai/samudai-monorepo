@@ -1,26 +1,9 @@
 on:
-  workflow_dispatch:
-    inputs:
-      NODE_ENV:
-        description: "Environment"
-        required: true
-        default: "prod"
-        type: choice
-        options:
-          - prod
-          - staging
-          - development
-      NPM_TOKEN:
-        description: "NPM Token"
-        required: true
-        type: string
-        default: ${{ secrets.NPM_TOKEN }}
-
-  # push:
-  #   branches:
-  #     - master
-  #   paths:
-  #     - dashboard/dashboard-samudai/**
+  push:
+    branches:
+      - master
+    paths:
+      - services/service-activity/**
 
 jobs:
   build:
@@ -45,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/samudai/dashboard-samudai
+          images: ghcr.io/samudai/service-activity
           tags: |
             type=sha,format=long
             type=ref,event=branch
@@ -65,6 +48,4 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            NODE_ENV=prod
-            NPM_TOKEN=${{ secrets.NPM_TOKEN }}
-            PACKAGE_NAME=@samudai/samudai-dashboard
+            PACKAGE_NAME=@samudai/service-activity

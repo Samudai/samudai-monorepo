@@ -1,73 +1,117 @@
-# Getting Started with Create React App
+# Samudai Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React-based web application for managing DAO interactions, projects, and collaborations.
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Redux Toolkit for state management
+- Web3 Integration (Wagmi, RainbowKit)
+- Ceramic Network for decentralized data
+- SendBird for chat functionality
+- Lit Protocol for encryption
+- SASS for styling
+- Nginx for production serving
+
+## Prerequisites
+
+- Node.js 18 or later
+- npm or yarn
+- Docker (for containerized deployment)
+
+## Development Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Samudai/dashboard-samudai.git
+cd dashboard-samudai
+```
+
+2. Install dependencies:
+
+```bash
+npm install --force  # force flag is required due to dependency conflicts
+```
+
+3. Set up environment variables:
+
+- Copy the appropriate environment file:
+
+  ```bash
+  cp .development.env .env  # for development
+  # or
+  cp .staging.env .env      # for staging
+  # or
+  cp .production.env .env   # for production
+  ```
+
+4. Start the development server:
+
+```bash
+npm start
+```
+
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run build:development` - Builds for development environment
+- `npm run build:staging` - Builds for staging environment
+- `npm run build:prod` - Builds for production environment
+- `npm run lint` - Runs ESLint
+- `npm run format` - Formats code using Prettier
+- `npm run analyze` - Analyzes bundle size
 
-### `npm start`
+## Docker Build Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To build and run the application using Docker, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Docker installed on your system
+- Node.js 18 or later (for local development)
+- NPM token (if required for private packages)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Build the Docker Image
 
-### `npm run build`
+The application uses a multi-stage build process with Node.js for building and Nginx for serving the application. You can build the image using:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Build for a specific environment (e.g., development)
+docker build \
+  --build-arg NODE_ENV=development \
+  --build-arg NPM_TOKEN=your_npm_token \
+  -t dashboard-samudai .
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Or for production
+docker build \
+  --build-arg NODE_ENV=production \
+  --build-arg NPM_TOKEN=your_npm_token \
+  -t dashboard-samudai .
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Run the Container
 
-### `npm run eject`
+```bash
+# Run the container
+docker run -p 3000:80 dashboard-samudai
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The application will be available at [http://localhost:3000](http://localhost:3000). Note that the container runs Nginx on port 80 internally.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Notes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- The build process uses a multi-stage Dockerfile that:
+  1. First builds the React application using Node.js
+  2. Then serves it using Nginx
+- Custom Nginx configurations are copied from the `nginx/` directory
+- The build process requires the `--force` flag with npm install due to potential dependency conflicts
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contributing
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-<https://accounts.google.com/signin/oauth/error/v2?authError=ChVyZWRpcmVjdF91cmlfbWlzbWF0Y2gSsAEKWW91IGNhbid0IHNpZ24gaW4gdG8gdGhpcyBhcHAgYmVjYXVzZSBpdCBkb2Vzbid0IGNvbXBseSB3aXRoIEdvb2dsZSdzIE9BdXRoIDIuMCBwb2xpY3kuCgpJZiB5b3UncmUgdGhlIGFwcCBkZXZlbG9wZXIsIHJlZ2lzdGVyIHRoZSByZWRpcmVjdCBVUkkgaW4gdGhlIEdvb2dsZSBDbG91ZCBDb25zb2xlLgogIBptaHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vaWRlbnRpdHkvcHJvdG9jb2xzL29hdXRoMi93ZWItc2VydmVyI2F1dGhvcml6YXRpb24tZXJyb3JzLXJlZGlyZWN0LXVyaS1taXNtYXRjaCCQAyovCgxyZWRpcmVjdF91cmkSH2h0dHBzOi8vYXBwLnNhbXVkYWkueHl6L2djYWxkYW8ypAIIARKwAQpZb3UgY2FuJ3Qgc2lnbiBpbiB0byB0aGlzIGFwcCBiZWNhdXNlIGl0IGRvZXNuJ3QgY29tcGx5IHdpdGggR29vZ2xlJ3MgT0F1dGggMi4wIHBvbGljeS4KCklmIHlvdSdyZSB0aGUgYXBwIGRldmVsb3BlciwgcmVnaXN0ZXIgdGhlIHJlZGlyZWN0IFVSSSBpbiB0aGUgR29vZ2xlIENsb3VkIENvbnNvbGUuCiAgGm1odHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pZGVudGl0eS9wcm90b2NvbHMvb2F1dGgyL3dlYi1zZXJ2ZXIjYXV0aG9yaXphdGlvbi1lcnJvcnMtcmVkaXJlY3QtdXJpLW1pc21hdGNo&client_id=150265665199-9dhe6mkkttq65b0tdjl8ukeclfvp5e8c.apps.googleusercontent.com>
+Please read our contributing guidelines before submitting pull requests.
