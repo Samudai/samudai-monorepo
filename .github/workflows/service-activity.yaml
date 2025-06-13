@@ -2,8 +2,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - services/service-activity/**
+    # paths:
+      # - services/service-activity/**
 
 jobs:
   build:
