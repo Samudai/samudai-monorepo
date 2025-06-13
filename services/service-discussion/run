@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-discussion
+export PORT=4008
+export DATABASE_URL=$DATABASE_URL_LOCAL_DISCUSSION
+
+go test ./...
+go build -tags=jsoniter -o build/service-discussion
+./build/service-discussion
