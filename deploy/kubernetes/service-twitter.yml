@@ -9,3 +9,98 @@ data:
   bearer-token: <bearer-token>
   redis-database-url: redis://:$(REDIS_PASSWORD)@redis-service.default.svc.cluster.local:6379
   mongo-database-url: mongodb://$(MONGO_INITDB_ROOT_USERNAME):$(MONGO_INITDB_ROOT_PASSWORD)@mongodb-service.default.svc.cluster.local:27017/twitter?authSource=admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-twitter
+  labels:
+    app: service-twitter
+  annotations:
+    prometheus.io/probe: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: service-twitter
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-twitter
+spec:
+  selector:
+    matchLabels:
+      app: service-twitter
+  revisionHistoryLimit: 2
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 4
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: service-twitter
+    spec:
+      containers:
+        - name: service-twitter
+          image: <IMAGE>
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 50m
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: BEARER_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: service-twitter
+                  key: bearer-token
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: service-twitter
+                  key: redis-database-url
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: service-twitter
+                  key: mongo-database-url
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: service-twitter
+            - name: ELASTIC_APM_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-server-url
+            - name: ELASTIC_APM_SECRET_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-sercret-token
+            - name: ELASTIC_APM_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-env

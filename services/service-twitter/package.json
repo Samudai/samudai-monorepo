@@ -1,0 +1,38 @@
+{
+	"name": "service-twitter",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start:dev": "ts-node-dev src/index.ts",
+		"start": "node dist/index.js",
+		"build": "tsc -p ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.27.2",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"elastic-apm-node": "^3.38.0",
+		"eth-sig-util": "^3.0.1",
+		"ethers": "^5.6.9",
+		"express": "^4.18.1",
+		"ioredis": "^5.2.3",
+		"mongoose": "^6.6.3",
+		"morgan": "^1.10.0",
+		"ts-node-dev": "^2.0.0",
+		"twitter-api-sdk": "^1.1.0",
+		"typescript": "^4.7.4"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/morgan": "^1.9.3",
+		"@types/node": "^18.7.14",
+		"i": "^0.3.7",
+		"npm": "^8.15.1"
+	}
+}

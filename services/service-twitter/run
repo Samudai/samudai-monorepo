@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e 
+
+export PORT=3003
+
+export BEARER_TOKEN=$TWITTER_LOCAL_BEARER_TOKEN
+export REDIS_URL=$REDIS_URL_LOCAL
+export MONGO_URL=$MONGO_URL_LOCAL_TWITTER
+
+npm run start:dev
