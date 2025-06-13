@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	github.com/Samudai/go-notion v0.8.0
-	github.com/Samudai/samudai-pkg v0.0.3
-	github.com/Samudai/service-discord v1.0.0-dev
+	github.com/Samudai/samudai-pkg v0.0.5
+	github.com/Samudai/service-discord v1.0.3-dev
 	github.com/bradleyfalzon/ghinstallation/v2 v2.1.0
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.8.1
@@ -20,6 +20,8 @@ require (
 require (
 	cloud.google.com/go v0.65.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/elastic/go-licenser v0.3.1 // indirect
 	github.com/elastic/go-sysinfo v1.1.1 // indirect
 	github.com/elastic/go-windows v1.0.0 // indirect
@@ -49,6 +51,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/procfs v0.0.0-20190425082905-87a4384529e0 // indirect
+	github.com/redis/go-redis/v9 v9.5.3 // indirect
 	github.com/santhosh-tekuri/jsonschema v1.2.4 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
@@ -74,6 +77,4 @@ require (
 	howett.net/plist v0.0.0-20181124034731-591f970eefbb // indirect
 )
 
-// replace github.com/Samudai/samudai-pkg => ../samudai-pkg
-
-// replace github.com/Samudai/go-notion => ../go-notion
+replace github.com/Samudai/service-discord => ../service-discord

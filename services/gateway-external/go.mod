@@ -64,5 +64,3 @@ replace github.com/Samudai/service-dao => ../service-dao
 replace github.com/Samudai/service-member => ../service-member
 
 replace github.com/Samudai/service-point => ../service-point
-
-// replace github.com/Samudai/samudai-pkg => ../samudai-pkg

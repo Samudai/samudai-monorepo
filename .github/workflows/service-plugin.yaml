@@ -40,7 +40,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: services/service-plugin
+          context: .
           file: services/service-plugin/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
