@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e 
+
+
+export PORT=3006
+
+export SERVICE_DISCOVERY=$SERVICE_DISCOVERY
+export MONGO_URL=$MONGO_URL_LOCAL_WEB3
+npm run start:dev
