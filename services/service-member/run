@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-member
+export PORT="4001"
+export DATABASE_URL=$DATABASE_URL_LOCAL_MEMBER
+
+go test ./...
+go build -tags=jsoniter -o build/service-member
+./build/service-member
