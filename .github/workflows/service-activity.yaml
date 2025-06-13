@@ -44,7 +44,7 @@ jobs:
           file: services/service-activity/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
-          tags:
+          tags: |
             ghcr.io/samudai/service-activity:${{ github.sha }}
             ghcr.io/samudai/service-activity:latest
           cache-from: type=gha
