@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-dao
+export PORT="4006"
+export DATABASE_URL=$DATABASE_URL_LOCAL_DAO
+
+go test ./...
+go build -tags=jsoniter -o build/service-dao
+./build/service-dao
