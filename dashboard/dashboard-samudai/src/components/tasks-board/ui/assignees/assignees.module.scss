@@ -1,0 +1,105 @@
+.assignees {
+    padding: 38px 40px;
+}
+.assignees_title {
+    font: $font24;
+    color: $clr-white;
+}
+.assignees_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.assignees_empty {
+    margin: 40px 0;
+    color: $clr-gray-dark;
+}
+.assignees_list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 0;
+    max-height: 407px;
+    overflow: auto;
+
+    &Scrollbar {
+        padding-right: 8px;
+    }
+}
+.assignees_item {
+    border-radius: 12px;
+    padding: 14px 24px;
+    background: $clr-black-main;
+    display: flex;
+    align-items: center;
+    transition: background .1s ease-in-out;;
+
+    cursor: pointer;
+
+    + .assignees_item {
+        margin-top: 12px;
+    }
+
+    &:hover {
+        background-color: darken($clr-black-main, 1%);
+    }
+}
+.assignees_user {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding-right: 10px;
+
+    &_img {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        border-radius: 50%;
+    }
+    &_content {
+        padding-left: 16px;
+    }
+    &_name {
+        font: $font16;
+        color: $clr-white;
+    }
+    &_position {
+        font: $fontSmall;
+        color: $clr-gray-dark;
+    }
+}
+.assignees_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+.assignees_info_date {
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+}
+.assignees_info_msg {
+    margin-top: 10px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: $clr-black;
+
+    font: 700 12px/1 $lato;
+    color: $clr-white;
+
+    display: flex;
+    align-items: center;
+
+    &Active {
+        &::after {
+            margin-left: 4px;
+            content: "";
+            display: block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: $clr-orange;
+        }
+    }
+}

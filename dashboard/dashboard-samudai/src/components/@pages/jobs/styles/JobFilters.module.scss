@@ -1,0 +1,19 @@
+.root {
+  padding-top: 23px;
+  max-width: 735px;
+}
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -8px -8px 0;
+}
+.item {
+  margin-top: 8px;
+  padding: 0 8px;
+}
+.clearAllBtn {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-orange;
+}

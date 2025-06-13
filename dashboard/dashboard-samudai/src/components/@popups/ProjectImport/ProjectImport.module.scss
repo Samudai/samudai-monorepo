@@ -1,0 +1,42 @@
+
+
+
+.root {
+  padding: 35px 30px 30px;
+}
+.bullets {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+.bullet {
+  margin: 0 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  background: $clr-black;
+  transition: $app-transition;
+  transition-property: background, width;
+
+  &[data-active='true'] {
+    width: 20px;
+    background-color: $clr-gray-dark;
+  }
+}
+
+.btn {
+  margin-top: 30px;
+  margin-left: auto;
+  min-width: 129px;
+  padding: 14px;
+}
+
+.body {
+  padding-top: 25px;
+}
+
+@media (max-width: $tablet_small){
+  .root {
+    padding-inline: 20px;
+  }
+}

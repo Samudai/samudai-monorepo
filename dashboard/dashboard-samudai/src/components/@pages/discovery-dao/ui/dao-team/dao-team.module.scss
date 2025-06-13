@@ -1,0 +1,46 @@
+.list {
+    display: flex;
+}
+.list_item {
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+
+    + .list_item {
+        margin-left: 12px;
+    }
+
+    &_hide {
+        border: 1px dashed $clr-orange;
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            font: 400 10px/1.2 $lato;
+            color: $clr-orange;
+        }
+    }
+}
+.dao_hint,
+.dao_wrapper {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    background: #060709;
+    border-radius: 50%;
+    border: 1px solid $clr-black-main;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: $font16;
+    color: $clr-white;
+
+    span {
+        text-transform: uppercase;
+    }
+}

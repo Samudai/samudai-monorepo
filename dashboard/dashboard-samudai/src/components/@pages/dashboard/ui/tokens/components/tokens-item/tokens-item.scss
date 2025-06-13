@@ -1,0 +1,53 @@
+// Item
+.tokens-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+
+    &_title {
+        position: sticky;
+        left: 0;
+        top: 0;
+        background: $clr-black-main;
+        padding-bottom: 18px;
+
+        .tokens-item__col span {
+            color: $clr-gray-dark;
+        }
+    }
+}
+
+.tokens-item__col {
+    width: (100% / 3);
+    align-content: left;
+
+    span {
+        font: $fontMedium;
+        color: $clr-white;
+    }
+
+    + .tokens-item__col {
+        padding-left: 10px;
+    }
+
+    &_price {
+    }
+
+    &_amount {
+        text-align: center;
+    }
+
+    &_total {
+        text-align: right;
+    }
+
+    &[data-title='true'] {
+        color: $clr-gray-dark;
+    }
+}
+
+.tokens-item.active {
+    .tokens-item__col span {
+        color: $clr-green;
+    }
+}

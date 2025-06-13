@@ -1,0 +1,131 @@
+.projects_heading {
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.projects_left,
+.projects_right {
+    display: flex;
+    align-items: center;
+}
+
+.projects_right {
+    button + button {
+        margin-left: 24px;
+    }
+}
+
+.projects_title {
+    font: 600 18px/1.2 $lato;
+    color: $clr-white;
+}
+
+.projects_total {
+    margin-left: 24px;
+    padding: 4px 8px;
+    background: $clr-black-main;
+    border-radius: 15px;
+
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+
+.projects_allBtn {
+    display: flex;
+    align-items: center;
+
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+
+    white-space: nowrap;
+
+    svg {
+        margin-left: 8px;
+        width: 20px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    &All {
+        svg {
+            transform: scaleY(-1);
+        }
+    }
+}
+
+.projects_viewBtn {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        height: 100%;
+
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+    }
+
+    + .projects_viewBtn {
+        margin-left: 16px;
+    }
+
+    &Active {
+        svg [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+}
+
+.projects_filterBtn {
+    margin-left: 40px !important;
+    display: flex;
+    align-items: center;
+
+    white-space: nowrap;
+
+    svg {
+        width: 24px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+    }
+}
+
+.projects_list {
+    margin: -10px -10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    max-height: 430px;
+}
+
+.projects_item {
+    padding: 10px;
+    flex-shrink: 0;
+    width: calc(100% / 3);
+}
+
+.projects_row {
+    .projects_item {
+        width: 100%;
+    }
+}

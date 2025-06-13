@@ -1,0 +1,41 @@
+.root {
+  display: flex;
+  position: relative;
+}
+.header {
+  display: none;
+}
+.sidebar {
+  max-width: 320px;
+  [data-role='user-profile'] {
+    position: sticky;
+    left: 0;
+    top: 0;
+  }
+}
+.content {
+  flex-grow: 1;
+  max-width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: $laptop_small) {
+  .root {
+    flex-direction: column;
+  }
+  .header {
+    display: flex;
+  }
+  .sidebar {
+    max-width: calc(100% - 50px);
+    margin: 45px 25px 0;
+  }
+}
+@media (max-width: $tablet_small) {
+  .sidebar {
+    max-width: calc(100% - 20px);
+    margin-inline: 20px;
+  }
+}

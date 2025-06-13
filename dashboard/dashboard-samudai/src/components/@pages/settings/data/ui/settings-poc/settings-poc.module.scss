@@ -1,0 +1,84 @@
+.root {
+    position: relative;
+}
+
+.input {
+    [data-role='field'] {
+        align-items: center;
+    }
+
+    [data-role='input'] {
+        padding-left: 15px;
+    }
+
+    &_icon {
+        width: 20px;
+        height: 20px;
+
+        stroke: $clr-gray-dark;
+    }
+}
+
+.dropdown {
+    padding: 7px 0px;
+    margin-top: 12px;
+    max-height: 160px;
+    overflow: auto;
+    background: $clr-black-main;
+    box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+    border-radius: 16px;
+
+    &Scrollbar {
+        padding-left: 10px;
+    }
+
+    &_item {
+        padding: 8px 14px;
+        
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background 0.1s ease-in-out;
+    
+        &:hover {
+            background: darken($clr-black, 4%);
+        }
+    }
+
+    &_picture {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 50%;
+    }
+
+    &_name {
+        padding-left: 16px;
+        font: $fontMedium;
+        color: $clr-gray-dark;
+
+        span {
+            color: $clr-white;
+        }
+    }
+}
+
+.item_downIcon {
+    margin-left: 26px;
+    width: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease-in-out;
+
+    [data-stroke] {
+        stroke: #cbcbcb;
+    }
+}
+
+.item_downIcon_active {
+    transform: scaleY(-1);
+}
+
+.dropdown_item_Member {
+    background: $clr-black  ;
+}

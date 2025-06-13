@@ -1,0 +1,44 @@
+.members {
+  padding: 8.5px 0;
+  display: flex;
+  align-items: center;
+}
+.members__list {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.members__item {
+  width: 2.25em;
+  height: 2.25em;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:not(.members__more) {
+    border: 2px solid #161819;
+  }
+
+  img {
+    @include imgCover;
+    @include imgQuality;
+  }
+  + .members__item {
+    margin-left: -10px;
+  }
+}
+.members__more {
+  font-size: inherit;
+  margin-left: 1.5em;
+  border-radius: 50%;
+  border: 0.0625em dashed $clr-orange;
+  transition: background $app-transition;
+
+  span {
+    font-size: 600 0.875em/1.43 $lato;
+    color: $clr-orange;
+  }
+
+  &:hover {
+    background: rgba($clr-orange, 0.05);
+  }
+}

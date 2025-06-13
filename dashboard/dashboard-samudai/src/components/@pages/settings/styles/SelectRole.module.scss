@@ -1,0 +1,25 @@
+.root {
+  :global(.rs__multi-value__label) {
+    [data-select-label] {
+      color: $clr-white;
+      font-size: 14px;
+    }
+  }
+}
+.suptitle {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+  margin-bottom: 16px;
+}
+.label {
+  font: $font16;
+  color: $clr-gray-dark;
+  text-transform: capitalize;
+
+  span {
+    color: $clr-white;
+  }
+}
+
+.selectRole {
+}

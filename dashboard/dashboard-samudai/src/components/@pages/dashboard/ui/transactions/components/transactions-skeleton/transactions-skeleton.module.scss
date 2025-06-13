@@ -1,0 +1,17 @@
+.title {
+    max-width: 180px;
+
+    + .title {
+        max-width: 105px;
+        margin-top: 5px;
+    }
+}
+
+.info {
+    max-width: 120px;
+}
+
+.button {
+    max-width: 84px;
+    height: 30px;
+}

@@ -1,0 +1,105 @@
+.centerItem {
+    align-items: center;
+}
+.shareBtn {
+    padding: 10px;
+    min-width: 81px;
+    margin-right: auto;
+}
+.integrations {
+    display: flex;
+    align-items: center;
+}
+.integrationsItem {
+    flex: 0 0 (100% / 3);
+}
+.membersItem {
+}
+.users {
+    max-height: 320px;
+    overflow: hidden auto;
+    padding-right: 22px;
+}
+.usersItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+
+    + .membersItem {
+        margin-top: 12px;
+    }
+}
+.usersLeft {
+}
+.usersRight {
+    padding-left: 10px;
+    text-align: right;
+}
+.usersTaskCount {
+    font: 600 18px/1.22 $lato;
+    color: #f0f0f0;
+}
+.usersTaskTitle {
+    margin-top: 4px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+.integrationsBtn {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    span {
+        margin-left: 8px;
+        font: $fontMedium;
+        color: $clr-white;
+    }
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.controls {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: $tablet_big) {
+    .centerItem {
+        align-items: flex-start;
+    }
+
+    .buttons,
+    .controls {
+        flex-direction: column;
+    }
+}
+@media (max-width: $tablet) {
+    .integrationsBtn,
+    .shareBtn,
+    .shareSave {
+        max-width: 100%;
+        width: 100%;
+    }
+    .shareBtn {
+        + .shareBtn {
+            margin-top: 14px;
+        }
+    }
+    .controls {
+        margin-top: 25px;
+    }
+}

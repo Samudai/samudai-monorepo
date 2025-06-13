@@ -1,0 +1,134 @@
+.root {
+  background: #292b2f;
+  border-radius: 17px;
+  padding: 0 14px;
+
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  flex-grow: 1;
+  padding: 23px 0;
+  height: 16px;
+  max-height: 200px;
+  vertical-align: middle;
+  color: $clr-white;
+}
+.control {
+  padding: 14px 10px;
+  // padding-left: 10px;
+  padding-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.controlItem {
+  width: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    [data-fill] {
+      fill: $clr-gray-dark;
+    }
+
+    [data-stroke] {
+      stroke: $clr-gray-dark;
+    }
+  }
+
+  + .controlItem {
+    padding-top: 3px;
+    margin-left: 10px;
+  }
+  + .controlItemSend {
+    margin-left: 15px;
+  }
+}
+.controlItemSend {
+  width: 36px;
+  height: 36px;
+  background: $clr-green;
+  border-radius: 16.3333px;
+  flex-shrink: 0;
+
+  img {
+    max-width: 40%;
+  }
+}
+@media (max-width: $tablet){
+  .root {
+    border-radius: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .control {
+    padding-left: 0;
+    padding-top: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .controlItemSend {
+    margin-left: auto !important;
+  }
+}
+
+.input_box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.reply_box {
+  border-left: 2px solid #B2FFC3;
+  padding: 12px 14px;
+  margin-top: 17px;
+  background: #1f2123;
+  display: flex;
+  flex-direction: column;
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    justify-content: flex-end;
+
+    [data-fill] {
+      fill: $clr-gray-dark;
+    }
+
+    [data-stroke] {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+
+.msgText {
+  font: $fontMedium;
+  color: $clr-white;
+  white-space: pre-line;
+  background: transparent;
+  border: none;
+
+  +.attachments {
+    margin-top: 15px;
+  }
+}

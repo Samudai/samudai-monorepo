@@ -1,0 +1,290 @@
+.root[data-role='popup'] {
+  max-width: 634px !important;
+  padding: 40px 47px 55px 55px;
+}
+/* General */
+.name {
+  font: $font16;
+  color: $clr-white;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 20px;
+    flex-shrink: 0;
+    [data-stroke] {
+      stroke: $clr-white;
+    }
+    [data-fill] {
+      fill: $clr-white;
+    }
+  }
+
+  svg + span {
+    margin-left: 8px;
+  }
+
+  &[data-dark] {
+    color: $clr-gray-dark;
+  }
+}
+.text {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.item {
+  margin-top: 48px;
+}
+.row {
+  @for $i from 2 through 4 {
+    &-#{$i} {
+      display: flex;
+      .col {
+        flex: 0 0 (100% / $i);
+      }
+    }
+  }
+}
+/* Head */
+.head {
+}
+.headUp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.headCompany {
+  display: flex;
+  align-items: center;
+}
+.headCompanyIcon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.headCompanyName {
+  font: $font16;
+  color: $clr-white;
+  text-transform: uppercase;
+  margin-left: 16px;
+}
+.headCreated {
+  margin-top: 15px;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.headArchive {
+  width: 16px;
+  flex-shrink: 0;
+
+  [data-full] {
+    stroke: $clr-orange;
+    fill: $clr-orange;
+  }
+}
+/* Title */
+.title {
+  margin-top: 26px;
+  font: $font24;
+  color: $clr-white;
+}
+/* Description  */
+.description {
+  margin-top: 30px;
+}
+/* Contact & Department */
+.contacts {
+  margin-top: 17.5px;
+}
+.department {
+  margin-top: 32px;
+}
+/* Payout & Min People & Winners  */
+.payout {
+  margin-top: 16px;
+  color: $clr-white;
+
+  max-width: 94px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.minPeople,
+.winners {
+  margin-top: 16px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+/* Deadlines  */
+.date {
+  margin-top: 16px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+/* Github */
+.github {
+  display: flex;
+  align-items: center;
+}
+.githubLogo {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #d9d9d9;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.githubLink {
+  margin-left: 25px;
+  font: $font16;
+  color: $clr-lavender;
+}
+.githubIcon {
+  margin-left: 8px;
+  width: 16px;
+  flex-shrink: 0;
+
+  [data-stroke] {
+    stroke: $clr-lavender;
+  }
+}
+/* Attachments */
+.nameAttachments {
+  strong {
+    margin-left: 8px;
+    color: $clr-lavender;
+  }
+}
+.attachmentsList {
+  margin-top: 1px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.attachmentsItem {
+  margin-top: 23px;
+  flex: 0 0 50%;
+
+  [data-class="icon"] {
+    width: 80px;
+    height: 60px;
+  }
+}
+/* Open To */
+.openToList {
+  display: flex;
+  margin: 24px -12px 0;
+}
+.openToItem {
+  margin: 0 12px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 14px;
+    [data-fill] {
+      strokewidth: 1px;
+      stroke: $clr-green;
+      fill: $clr-green;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    white-space: nowrap;
+    font: $fontMedium;
+    color: $clr-white;
+  }
+}
+/* Associated To */
+.associatedTo {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 20px;
+    flex-shrink: 0;
+    [data-fill] {
+      fill: $clr-green;
+    }
+  }
+  span {
+    margin-left: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+  }
+}
+/* Skills & Tags */
+.skills {
+  margin-top: 24px;
+}
+.tags {
+  margin: 8px -8px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tagsItem {
+  margin: 16px 4px 0;
+  background: $clr-black;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font: 400 14px/1 $lato;
+  color: $clr-white;
+}
+/* Footer */
+.foot {
+  margin-top: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+.footApplyBtn {
+  padding: 14px 51.5px;
+  border-radius: 12px;
+
+  svg {
+    max-width: 20px;
+  }
+}
+.footMsgBtn {
+  margin-left: 23px;
+  padding: 14.5px 15.5px;
+  border-radius: 12px;
+
+  svg {
+    max-width: 24px;
+    margin-right: 0;
+    [data-stroke] {
+      stroke: $clr-green;
+    }
+  }
+}
+@media (max-width: $mobile_big) {
+  .root[data-role='popup'] {
+    padding-inline: 20px;
+  }
+  .footApplyBtn {
+    flex-grow: 1;
+  }
+}
+@media (max-width: $mobile) {
+  .description {
+    margin-top: 16px;
+  }
+  .item {
+    margin-top: 36px;
+  }
+  .attachmentsList {
+    flex-direction: column;
+  }
+  .attachmentsItem {
+    flex-basis: 100%;
+  }
+    .foot {
+      margin-top: 51px;
+    }
+}

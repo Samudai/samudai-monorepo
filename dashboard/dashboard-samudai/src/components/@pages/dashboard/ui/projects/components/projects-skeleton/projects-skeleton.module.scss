@@ -1,0 +1,23 @@
+
+
+
+.title {
+  margin-left: 16px;
+  flex-grow: 1;
+}
+.name {
+  max-width: 80%;
+  + .name {
+    margin-top: 5px;
+    max-width: 40%;
+  }
+}
+.time {
+  max-width: 80px;
+}
+.value {
+  max-width: 25px;
+}
+.line {
+  margin-left: 6px;
+}

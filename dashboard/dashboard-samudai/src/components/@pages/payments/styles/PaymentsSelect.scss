@@ -1,0 +1,44 @@
+.payments-select__content {
+  display: flex;
+  align-items: center;
+  
+  font: $fontMedium;
+  color: $clr-white;
+}
+.payments-select__img {
+  flex-shrink: 0;
+
+  &:is(div) {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+
+    background: $clr-black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 54%;
+      max-height: 54%;
+      width: 100%;
+    }
+  }
+
+  &:is(img) {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  + .payments-select__text {
+    margin-left: 12px;
+  }
+}
+.payments-select__text {
+  text-transform: capitalize;
+  font: $fontMedium;
+  color: $clr-white;
+}

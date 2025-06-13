@@ -1,0 +1,53 @@
+.root {
+    padding: 40px 80px;
+    width: 500px;
+}
+
+.connect_message {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #2b2e31;
+    border-radius: 7px;
+    padding: 8px 16px;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        margin-right: 16px;
+
+        [data-full],
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+
+        [data-fill] {
+            fill: $clr-white;
+        }
+    }
+
+    span {
+        font: 400 14px/1.5 $lato;
+        color: $clr-white;
+    }
+}
+
+.connect {
+    &_title {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 27px;
+        text-align: center;
+        letter-spacing: 0.07em;
+        color: #f9f9f9;
+    }
+
+    &_subtitle {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 27px;
+        text-align: center;
+        color: #52585e;
+        margin-top: 10px;
+    }
+}

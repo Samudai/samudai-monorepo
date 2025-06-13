@@ -1,0 +1,130 @@
+.root {
+    display: flex;
+}
+
+.profile_picture {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.tags {
+    margin-top: 16px;
+
+    &_list {
+        margin: -8px -4px 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &_item {
+        margin: 8px 4px 0;
+        padding: 4px 10px;
+
+        font: 700 10px/1.2 $lato;
+        text-transform: uppercase;
+        border-radius: 64px;
+
+        $backgrounds: #e4acff,
+        #ffb5b5,
+        #fff7ac,
+        #c7ffac,
+        #ccfbd9,
+        #ffbf87,
+        #9cdbff,
+        #fff1ce,
+        #d1b5ff;
+        $colors: #c855ff,
+        #a50000,
+        #a19100,
+        #48ad5e,
+        #48ad5e,
+        #e06a03,
+        #00a3ff,
+        #e7a600,
+        #9757ff;
+
+        $length: length($backgrounds);
+
+        @for $i from 1 through $length {
+            &:nth-child(#{$length}n + #{$i}) {
+                background: nth($backgrounds, $i);
+                border: 1px solid nth($colors, $i);
+                color: nth($colors, $i);
+            }
+        }
+    }
+}
+
+.content {
+    padding-left: 16px;
+}
+
+.title {
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.info {
+    margin-top: 8px;
+    font: 400 12px/1.5 $lato;
+    color: $clr-gray-dark;
+
+    span+span::before {
+        content: ' • ';
+    }
+}
+
+.text {
+    margin-top: 16px;
+
+    padding: 13px;
+    border-radius: 6px;
+
+    background: $clr-black;
+
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.controls {
+    margin-top: 12px;
+    display: flex;
+
+    &_btn {
+        padding: 4px;
+        min-width: 72px;
+
+        border: 1px solid $clr-green;
+        border-radius: 5px;
+
+        font: 600 14px/1.25 $lato;
+        color: $clr-green;
+
+        &:last-child {
+            margin-left: 12px;
+            background: $clr-green;
+
+            color: $clr-black-main;
+        }
+    }
+}
+
+.accept_btn {
+    width: 91px;
+    height: 36px;
+    border-radius: var(--numerics-radius-xl, 24px);
+    background: var(--button-colours-green, #B2FFC3);
+}
+
+.reject_btn {
+    width: 16px;
+    height: 16px;
+    margin: 10px;
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-gray-dark;
+    }
+}

@@ -1,0 +1,53 @@
+.meeting-calendar {
+  border-radius: none;
+  background: none;
+}
+.meeting-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.meeting-calendar__body {
+  margin-top: 30px;
+  max-width: 100%;
+  max-height: 240px;
+  overflow: auto;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.meeting-calendar__row {
+  min-width: 100%;
+  display: flex;
+  // position: relative;
+  // z-index: 5;
+}
+.meeting-calendar__cell {
+  flex: 0 0 (100% / 7);
+  // min-width: 115px;
+}
+@media (min-width: 992px) {
+  .meeting-calendar.small {
+    .meeting-calendar__cell {
+      min-width: 38px;
+    }
+
+    .meeting-calendar__body {
+      max-height: unset;
+    }
+
+    .meeting-calendar__title {
+      justify-content: center;
+    }
+
+    .meeting-calendar__row {
+      justify-content: space-between;
+
+      + .meeting-calendar__row {
+        margin-top: 9px;
+      }
+    }
+  }
+}

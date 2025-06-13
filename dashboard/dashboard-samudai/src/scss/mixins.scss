@@ -1,0 +1,66 @@
+@mixin fontCreate($name, $weight, $url, $ttf: true, $style: normal) {
+    @font-face {
+        font-family: $name;
+        font-weight: $weight;
+        font-style: $style;
+        @if $ttf {
+            src: url('#{$url}.woff2') format('woff2'), url('#{$url}.woff') format('woff'),
+                url('#{$url}.ttf') format('truetype'),
+                url('#{$url}.eot') format('embedded-opentype');
+        } @else {
+            src: url('#{$url}.woff2') format('woff2'), url('#{$url}.woff') format('woff'),
+                url('#{$url}.otf') format('opentype'),
+                url('#{$url}.eot') format('embedded-opentype');
+        }
+    }
+}
+
+@mixin imgQuality {
+    image-rendering: -moz-crisp-edges; /* Firefox        */
+    image-rendering: -o-crisp-edges; /* Opera          */
+    image-rendering: -webkit-optimize-contrast; /* Safari         */
+    image-rendering: optimize-contrast; /* CSS3 Proposed  */
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+@mixin imgCover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+}
+
+@mixin textOverflowVertical($lines: 1) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+}
+@mixin textOverflowLine() {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@function calcSize($size, $per) {
+    @return $size * ($per / 100);
+}
+
+@function fullwidth($containerW: 1305px, $paddingW: 40px) {
+    @return calc(100% + (((100vw - 103px) - $containerW) / 2) + $paddingW);
+}
+
+@mixin strokeGradient($background: #fff, $stroke) {
+    border: 2px solid transparent;
+    background: $background, $stroke;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+@function columnWidth($size, $maxSize) {
+    @return ($size / $maxSize) * 100%;
+}

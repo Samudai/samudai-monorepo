@@ -1,0 +1,51 @@
+.bounty {
+    padding: 8px 16px;
+    border-radius: 12px;
+    background: $clr-black;
+}
+
+.bounty_title {
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+    margin-bottom: 8px;
+
+    &[data-margin-top] {
+        margin-top: 8px;
+    }
+}
+
+.winners {
+    max-width: 127px;
+
+    [data-role='field'] {
+        background: #34383c;
+        border-radius: 12px;
+        padding-inline: 14px;
+    }
+    
+    [data-role="input"] {
+        min-height: 40px;
+        padding-inline: 0;
+    }
+}
+
+.bounty_pos {
+    margin-top: 8px;
+    font: 400 12px/1 $lato;
+    color: $clr-white;
+
+    text-transform: capitalize;
+
+    span {
+        color: $clr-green;
+    }
+}
+.transactions {
+    margin-top: 8px;
+}
+.transactions_item + .transactions_item {
+    margin-top: 8px;
+}
+.transactions_add {
+    margin-top: 8px;
+}

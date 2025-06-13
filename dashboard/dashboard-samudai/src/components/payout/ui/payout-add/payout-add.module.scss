@@ -1,0 +1,26 @@
+.addBtn {
+    display: flex;
+    align-items: center;
+    padding: 13px 14px;
+    border-radius: 12px;
+    background: #34383c;
+    width: 100%;
+
+    white-space: nowrap;
+
+    svg {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        padding-left: 8px;
+        font: 400 12px/1.2 $lato;
+        color: $clr-orange;
+        transform: translateY(.1em);
+    }
+}

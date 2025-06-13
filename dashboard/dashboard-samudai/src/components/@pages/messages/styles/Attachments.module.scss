@@ -1,0 +1,288 @@
+.hat {
+  [data-role='inner'] {
+    min-height: 82px;
+  }
+}
+.hatRight {
+  display: flex;
+  align-items: center;
+}
+.hatSettings {
+  margin-left: 31px;
+}
+.workspace {
+  padding-top: 41px;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.input {
+  max-width: 388px;
+  flex: 1 1;
+
+  svg {
+    max-width: 20px;
+  }
+
+  [data-role='field'] {
+    border-radius: 25px;
+    padding: 0 22px;
+  }
+
+  [data-role='input'] {
+    padding-left: 16px;
+    border-radius: 25px;
+    min-height: 43px;
+    font-size: 14px;
+  }
+}
+.uploadBtn {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  svg {
+    width: 20px;
+    flex-shrink: 0;
+  }
+  span {
+    margin-left: 4px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+
+// Slider
+.images {
+  margin-top: 38px;
+  max-width: 100%;
+  width: 100%;
+}
+.imagesWrapper {
+  margin: 0 -12px;
+  display: flex;
+  align-items: center;
+}
+.swiper {
+}
+.swiperSlide {
+  padding: 0 12px;
+}
+.imagesNext {
+  margin-left: 41px;
+}
+
+// Files
+.files {
+  margin-top: 40px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+.filesList {
+}
+.filesItem {
+  display: flex;
+  align-items: center;
+
+  &:not(.filesItemTitle) {
+    background: $clr-black-main;
+    border-radius: 15px;
+    padding: 10px;
+
+    + .filesItem {
+      margin-top: 16px;
+    }
+  }
+
+  &.filesItemTitle {
+    padding: 0 10px;
+    margin-bottom: 16px;
+  }
+}
+.filesCol {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+
+  &.filesColCheckbox {
+    width: 20px;
+  }
+  &.filesColTitle {
+    // width: 42.4242%;
+    flex-grow: 1;
+    padding-left: 16px;
+    padding-right: 10px;
+  }
+  &.filesColSize {
+    width: 15.1515%;
+  }
+  &.filesColDate {
+    width: 35%;
+  }
+  &.filesColControls {
+    width: 63px;
+  }
+}
+.filesCheckbox {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: $clr-black;
+}
+.filesIcon {
+  width: 30px;
+  flex-shrink: 0;
+}
+.filesTitle {
+  margin-left: 8px;
+  font: $fontSmall;
+  color: #fff;
+}
+.filesText {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+
+  &.filesTextWhite {
+    color: $clr-white;
+  }
+}
+.controlsBtn {
+  width: 20px;
+  flex-shrink: 0;
+
+  svg,
+  img {
+    width: 100%;
+  }
+
+  &.controlsBtnDownload {
+  }
+
+  &.controlsBtnRemove {
+    margin-left: 24px;
+
+    :global(.svg-fill) {
+      fill: $clr-gray-dark;
+      transition: fill $app-transition;
+    }
+
+    &:hover :global(.svg-fill) {
+      fill: $clr-orange;
+    }
+  }
+}
+.filesPaginate {
+  margin-top: 32px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  > :global(.previous) {
+    margin-right: 16px;
+  }
+
+  > :global(.next) {
+    margin-left: 16px;
+  }
+}
+.filesPaginatePage {
+  width: 24px;
+  height: 16px;
+  text-align: center;
+
+  > a {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+  }
+
+  &.filesPaginatePageActive {
+    > a {
+      color: $clr-orange;
+    }
+  }
+
+  &:not(.filesPaginatePageActive) {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: $laptop_small) {
+  .filesItem {
+    flex-wrap: wrap;
+
+    &Title {
+      display: none;
+    }
+  }
+
+  .filesCol {
+    &.filesColCheckbox {
+      order: 1;
+    }
+
+    &.filesColTitle {
+      order: 2;
+      width: calc(100% - 83px);
+    }
+
+    &.filesColSize {
+      margin-top: 16px;
+      width: 35%;
+      order: 4;
+    }
+
+    &.filesColDate {
+      margin-top: 16px;
+      width: 65%;
+      order: 5;
+      justify-content: flex-end;
+    }
+
+    &.filesColControls {
+      order: 3;
+    }
+  }
+}
+
+@media (max-width: $tablet_big) {
+  .workspace {
+    padding-inline: 20px;
+  }
+}
+
+@media (max-width: $tablet) {
+  .workspace {
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: $mobile) {
+  .imagesNext {
+    margin-left: 16px;
+  }
+  .filesTitle {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: $mobile_small) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .uploadBtn {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+  .filesTitle {
+    max-width: 85px;
+  }
+  .imagesNext {
+    margin-left: 4px;
+  }
+}

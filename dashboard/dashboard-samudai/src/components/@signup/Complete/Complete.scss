@@ -1,0 +1,79 @@
+
+
+
+.modal-complete {
+  min-height: 619px;
+  display: flex;
+  flex-direction: column;
+}
+.modal-complete__slider {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+
+  span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $clr-black;
+
+    &.--active {
+      background-color: $clr-gray-dark;
+      width: 20px;
+      border-radius: 10px;
+    }
+
+    + span {
+      margin-left: 8px;
+    }
+  }
+}
+.modal-complete__content {
+  margin-top: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-complete__mark {
+  width: 57px;
+  height: 57px;
+  padding: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: $clr-green;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 30px;
+    width: 100%;
+    .svg-fill {
+      fill: $clr-black-main;
+      strokeWidth: 1px;
+      stroke: $clr-black-main;
+    }
+  }
+}
+.modal-complete__congratulations {
+  margin-top: 16px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.modal-complete__controls {
+  padding-top: 25px;
+  margin-top: auto;
+}
+@media (max-width: $laptop){
+  .modal-complete {
+    min-height: auto;
+  }
+  .modal-complete__controls {
+    margin-top: 40px;
+  }
+  .cmplbtn {
+    width: 100%;
+  }
+}

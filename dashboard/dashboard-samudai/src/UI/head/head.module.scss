@@ -1,0 +1,17 @@
+.head {
+    padding-top: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid $clr-black;
+}
+.head_breadcrumbs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head_content {
+    padding-top: 35px;
+}
+.head_title {
+    font: 700 33px/1.1 $lato;
+    color: #dedede;
+}

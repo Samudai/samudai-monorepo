@@ -1,0 +1,29 @@
+.root {
+  max-width: 675px;
+  padding-left: 85px;
+}
+@media (max-width: $tablet){
+  .root {
+    max-width: 100%;
+    padding-left: 0;
+  }
+}
+
+.notification {
+  border-top: 1px solid rgb(82, 88, 94);
+  margin-top: 30px;
+}
+
+.heading {
+  margin: 40px auto 16px;
+
+  font: 700 16px $lato;
+  color: $clr-white;
+}
+
+.text {
+  margin: 16px auto 24px;
+
+  font: 400 14px $lato;
+  color: $clr-gray-dark;
+}

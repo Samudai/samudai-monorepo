@@ -1,0 +1,266 @@
+$kTagsColors: $clr-orange, $clr-blue, $clr-lavender, $clr-yellow;
+
+.post {
+    padding: 20px 32px;
+    border-radius: 20px;
+    background: $clr-black-main;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.post_short {
+    flex: 1 1;
+}
+.post_tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -4px -4px 0;
+
+    @for $i from 1 through 4 {
+        $color: nth($kTagsColors, $i);
+        .post_tags_item:nth-child(4n + #{$i}):not(.post_new) {
+            color: $color;
+            background: rgba($color, 0.1);
+        }
+    }
+}
+.post_tags_item,
+.post_new {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font: 400 12px/1 $lato;
+}
+.post_tags_item {
+    margin: 4px 4px 0;
+}
+.post_new {
+    display: inline-block;
+    color: $clr-green;
+    background: rgba(178, 255, 195, 0.3);
+    border: 1px solid $clr-green;
+    border-radius: 20px;
+}
+.post_title {
+    margin-top: 12px;
+    font: $fontMedium;
+    color: $clr-white;
+    @include textOverflowVertical(2);
+
+    span {
+        display: none;
+    }
+}
+
+.post_author {
+    padding-left: 10px;
+    width: 15.5%;
+
+    display: flex;
+    align-items: center;
+
+    strong {
+        display: none;
+        margin-right: 8px;
+        font: 500 12px/1 $lato;
+        color: $clr-gray-dark;
+    }
+
+    img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    span {
+        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 8px;
+        font: $font16;
+        color: $clr-white;
+    }
+}
+
+.post_date {
+    width: 10%;
+    padding-left: 10px;
+    font: $fontSmall;
+    color: $clr-gray-dark;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post_members {
+    padding-left: 10px;
+    min-width: 130px;
+    width: 15%;
+
+    display: flex;
+    align-items: center;
+
+    img,
+    span {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border-radius: 50%;
+    }
+
+    img {
+        object-fit: cover;
+        object-position: center;
+        border: 2px solid #161819;
+
+        + img {
+            margin-left: -15px;
+        }
+    }
+
+    span {
+        border: 2px dashed $clr-orange;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+        margin-left: -15px;
+        background: $clr-black-main;
+
+        user-select: none;
+    }
+}
+
+.post_info {
+    width: 14%;
+    padding-left: 10px;
+
+    display: flex;
+    align-items: center;
+}
+.post_info_item {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 16px;
+        height: 16px;
+
+        [data-full],
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+        [data-fill] {
+            fill: $clr-gray-dark;
+        }
+    }
+
+    span {
+        font: $fontSmall;
+        color: $clr-white;
+        margin-left: 4px;
+        transform: translateY(0.1em);
+    }
+
+    + .post_info_item {
+        margin-left: 16px;
+    }
+}
+
+.post_controls {
+    padding-right: 30px;
+    width: 11.3%;
+}
+.post_controlsContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.post_controlsBtn {
+    padding: 12px 22px;
+}
+.post_closed {
+    font: 400 14px/1 $lato;
+    color: $clr-gray-dark;
+}
+
+.post_archiveBtn {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        [data-full] {
+            stroke: $clr-gray-dark;
+        }
+    }
+
+    &Achived svg [data-full] {
+        fill: $clr-gray-dark;
+    }
+}
+
+@mixin forumPostSmallDesign {
+    .post_tags,
+    .post_date,
+    .post_members,
+    .post_archiveBtn,
+    .post_controls {
+        display: none;
+    }
+
+    height: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 24px;
+
+    .post_short {
+        flex: 1 0 100%;
+        margin-bottom: auto;
+        padding-bottom: 24px;
+    }
+    .post_title {
+        margin-top: 0;
+
+        span {
+            display: inline-block;
+        }
+    }
+    .post_author {
+        padding-left: 0;
+        width: auto;
+        flex: 1 1;
+
+        strong {
+            display: block;
+        }
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+
+        span {
+            font-size: 12px;
+        }
+    }
+    .post_info {
+        width: 90px;
+        justify-content: flex-end;
+    }
+    .post_info_item + .post_info_item {
+        margin-left: 8px;
+    }
+}
+
+.postSmall {
+    @include forumPostSmallDesign;
+}

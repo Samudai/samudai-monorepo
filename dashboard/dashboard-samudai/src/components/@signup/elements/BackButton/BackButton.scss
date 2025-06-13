@@ -1,0 +1,35 @@
+
+
+
+.modal-back-btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+.modal-back-btn__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  border: 2px solid $clr-orange;
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    transform: translateX(-5%);
+    max-width: 50%;
+    max-height: 50%;
+    .svg-stroke {
+      strokeWidth: 3px;
+      stroke: $clr-orange;
+    }
+  }
+}
+.modal-back-btn__title {
+  margin-left: 4px;
+  font: 600 14px/1 $lato;
+  color: $clr-orange;
+}

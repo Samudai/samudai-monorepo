@@ -1,0 +1,128 @@
+.root {
+    padding: 24px 24px 0;
+    border-radius: 25px;
+    height: 473px;
+}
+.root_open {
+    margin-left: auto;
+}
+.root_link {
+    margin-left: 10px;
+}
+.main {
+    padding-bottom: 12px;
+}
+.suptitle {
+    margin-top: 40px;
+    font: 600 16px/1.25 $lato;
+    color: $clr-white;
+}
+.info {
+    margin-top: 11px;
+    padding-bottom: 19.5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &::after {
+        content: '';
+        display: block;
+        width: calc(100% + 10px);
+        height: 1px;
+        background: $clr-black;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+    }
+}
+.infoAverage,
+.infoVotes {
+    font: $fontMedium;
+}
+.infoAverage {
+    color: $clr-green;
+}
+.infoRating {
+    margin-left: 14px;
+    :global(.rating__star.filled) {
+        .svg-fill {
+            fill: $clr-green;
+        }
+    }
+}
+.infoVotes {
+    margin-left: 14px;
+    color: $clr-gray-dark;
+}
+
+.list {
+    margin-top: 7px;
+}
+
+.scrollable {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.skeleton {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+// Item
+
+.preview {
+    margin: auto;
+    padding-bottom: 20px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-grow: 1;
+}
+
+.preview_content {
+    margin: auto;
+}
+
+.preview_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.preview_rating {
+    margin-top: 17px;
+    text-align: center;
+    font: 400 92px/0.9 $lato;
+    color: $clr-black;
+}
+
+.preview_stars {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.preview_text {
+    margin: 26px auto 0;
+    text-align: center;
+    max-width: 260px;
+
+    font: 400 16px/1.5 $lato;
+    color: $clr-gray-dark;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.preview_addBtn {
+    padding: 14px 38px;
+    margin: 22px auto 0;
+}

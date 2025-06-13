@@ -1,0 +1,16 @@
+.root {
+  padding: 8px 14px;
+  background: $clr-black;
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+}
+.name {
+  font: 400 14px/1 $lato;
+  color: $clr-white;
+}
+.removeBtn {
+  margin-left: 8px;
+  width: 11px;
+}

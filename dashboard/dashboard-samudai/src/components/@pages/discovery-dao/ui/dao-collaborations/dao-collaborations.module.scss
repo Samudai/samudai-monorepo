@@ -1,0 +1,132 @@
+.clb {
+    padding: 16px 24px;
+    border-radius: 25px;
+    background: $clr-black-main;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_title {
+        font: $font24;
+        color: $clr-gray;
+    }
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+
+    &_btn {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border: 1px solid $clr-gray-dark;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 66%;
+            height: 66%;
+            stroke: $clr-white
+        }
+    }
+
+    &_btn + &_btn {
+        margin-left: 16px;
+    }
+}
+
+.content {
+    padding-top: 24px;
+}
+
+// Empty
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_img {
+        width: 140px;
+        height: 140px;
+    }
+
+    &_right {
+        max-width: 166px;
+    }
+
+    &_text {
+        text-align: center;
+        font: 400 16px/1.5 $lato;
+        color: $clr-gray-dark;
+    }
+
+    &_btn {
+        margin-top: 22px;
+        min-width: 100%;
+        padding: 14px;
+    }
+}
+
+.collaborations {
+}
+
+.swiper {
+    margin-inline: -4px;
+
+    &_slide {
+        padding-inline: 4px;
+    }
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 16px;
+
+    background: $clr-black;
+
+    &_img {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        position: relative;
+
+        span {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: #060709;
+    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            font: 700 24px/1.1 $lato;
+            color: $clr-white;
+            text-transform: uppercase;
+        }
+    }
+
+    &_name {
+        margin-top: 10px;
+        font: 400 12px/1 $lato;
+        color: $clr-gray-dark;
+        text-transform: uppercase;
+        text-align: center;
+    }
+}

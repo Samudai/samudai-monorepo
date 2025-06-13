@@ -1,0 +1,90 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  display: flex;
+  align-items: center;
+
+  &:not(.colTitle) {
+    padding-left: 14px;
+  }
+
+  &.colTitle {
+    // width: 30.4%;
+    flex-grow: 1;
+  }
+  &.colType {
+    width: 18%;
+  }
+  &.colExp {
+    width: 18%;
+  }
+  &.colPosted {
+    width: 15%;
+  }
+  &.colControl {
+  }
+}
+.title {
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+.controlBtn {
+  padding: 11px;
+  min-width: 124px;
+
+  &.controlBtnCancel {
+    color: $clr-white;
+  }
+  &.controlBtnAccept {
+    margin-left: 16px;
+  }
+}
+.name,
+.value {
+  font: $fontMedium;
+  color: $clr-white;
+}
+.value {
+  margin-left: 8px;
+  color: $clr-gray-dark;
+}
+
+@media (max-width: $laptop_small) {
+  .root {
+    flex-wrap: wrap;
+  }
+  .col {
+    display: flex;
+    align-items: center;
+
+    &:not(.colTitle) {
+      padding-left: 0;
+    }
+
+    &.colTitle {
+      width: 100%;
+    }
+
+    &.colType,
+    &.colExp {
+      width: 50%;
+      margin-top: 16px;
+    }
+
+    &.colPosted,
+    &.colControl {
+      margin-top: 16px;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $tablet){
+  .colControl {
+    button {
+      width: calc(100% - 8px);
+    }
+  }
+}

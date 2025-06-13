@@ -1,0 +1,35 @@
+.block.upcoming-events {
+  background: transparent;
+  border: none;
+}
+.upcoming-events__content {
+  margin-top: 24px;
+}
+
+@media (max-width: $tablet_small) {
+  .profile-expected-events.block {
+    background: transparent;
+    .upcoming-events__content {
+      overflow: auto;
+      margin-inline: -30px;
+      padding-inline: 30px;
+      max-width: unset;
+    }
+    .expected-events__list {
+      display: flex;
+      margin-inline: -10px;
+    }
+    .expected-events-item {
+      margin-inline: 10px;
+      + .expected-events-item {
+        margin-top: 0;
+      }
+    }
+    .expected-events__header {
+      padding-left: 0;
+    }
+    .expected-events__list {
+      margin-top: 0;
+    }
+  }
+}

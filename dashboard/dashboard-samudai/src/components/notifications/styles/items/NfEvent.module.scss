@@ -1,0 +1,111 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &.colTitle {
+    // width: 28.5%;
+    flex-grow: 1;
+  }
+  &.colLocation {
+    width: 16.5%;
+    padding-left: 14px;
+  }
+  &.colDate {
+    width: 18%;
+    padding-left: 14px;
+  }
+  &.colTime {
+    width: 17.5%;
+    padding-left: 14px;
+  }
+  &.colFromNow {
+    width: 8.5%;
+    text-align: center;
+  }
+  &.colControl {
+  }
+}
+.event {
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 46px;
+    background: $clr-lavender;
+  }
+}
+.text {
+  margin-left: 24px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+.item {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 24px;
+    flex-shrink: 0;
+    :global(.svg-stroke) {
+      stroke: $clr-gray-dark;
+    }
+  }
+  p {
+    margin-left: 8px;
+  }
+}
+.viewBtn {
+  padding: 11px;
+  min-width: 124px;
+}
+
+@media (max-width: $tablet) {
+  .root {
+    flex-wrap: wrap;
+  }
+
+  .col {
+    &.colTitle {
+      width: 58%;
+      order: 1;
+    }
+
+    &.colLocation {
+      width: 42%;
+      order: 2;
+    }
+
+    &.colDate {
+      margin-top: 16px;
+      width: 50%;
+      padding-left: 0;
+      order: 3;
+    }
+
+    &.colTime {
+      padding-left: 0;
+      width: 50%;
+      order: 5;
+    }
+
+    &.colFromNow {
+      display: none;
+    }
+
+    &.colControl {
+      padding-left: 16px;
+      margin-top: 16px;
+      width: 50%;
+      order: 4;
+
+      button {
+        min-width: auto;
+        width: 100%;
+      }
+    }
+  }
+}

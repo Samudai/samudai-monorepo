@@ -1,0 +1,253 @@
+.proposals {
+    padding: 20px 32px;
+    height: 392px;
+}
+
+.ul {
+    max-height: 70vh;
+    overflow: hidden auto;
+    padding-right: 10px;
+}
+
+.proposals__header {
+    margin-bottom: 10px;
+}
+.proposals__header-right {
+    display: flex;
+    align-items: center;
+}
+.proposals__header-link {
+    position: relative;
+    z-index: 2;
+}
+.proposals__header-btn {
+    svg .svg-stroke {
+        stroke: #1f2123;
+    }
+}
+.proposals__list {
+    margin-top: 11px;
+}
+.proposals__header-link {
+    margin-left: 21.5px;
+}
+
+// Item
+.proposals-item {
+    display: flex;
+    align-items: center;
+    padding: 24px 0 20px;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $clr-black;
+    }
+}
+.proposals-item__col {
+    padding: 0 7.5px;
+    display: flex;
+    align-items: center;
+
+    &-info {
+        padding-left: 0;
+        flex-grow: 1;
+    }
+    // &-progress {
+    //   width: 42%;
+
+    //   align-items: stretch;
+    //   justify-content: space-around;
+    // }
+    &-status {
+        // width: -20%;
+        // justify-content: center;
+
+        // padding-right: 0;
+        // justify-content: flex-end;
+        width: 90px;
+        padding-right: 0;
+
+        justify-content: flex-start;
+    }
+    &-controls {
+        width: 90px;
+        padding-left: 16px;
+        padding-right: 0;
+
+        justify-content: flex-end;
+    }
+}
+.proposals-item__view {
+    padding: 8px 22px;
+
+    svg {
+        display: none;
+    }
+}
+.proposals-item__action {
+    font: 400 14px/1.29 $lato;
+    color: $clr-gray;
+}
+.proposals-item__progress {
+    max-width: 120px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    p {
+        margin-top: 8px;
+        font: 400 14px/1.12 $lato;
+        color: #52585e;
+
+        strong {
+            color: $clr-white;
+        }
+    }
+
+    + .proposals-item__progress {
+        margin-left: 10px;
+    }
+
+    &_for {
+        [data-role='progress-line'] {
+            background-color: $clr-green;
+        }
+    }
+
+    &_against {
+        [data-role='progress-line'] {
+            background-color: $clr-orange;
+        }
+    }
+}
+.proposals-item__status {
+    user-select: none;
+    min-width: 83px;
+    min-height: 30px;
+    background: #2b2e31;
+    border-radius: 20px;
+    padding: 8px 10px;
+    text-align: center;
+    text-transform: capitalize;
+
+    font: 400 14px/1 $lato;
+
+    &.active {
+        color: $clr-green;
+    }
+    &.pending {
+        color: $clr-blue;
+    }
+}
+.proposals-item__btn {
+    width: 32px;
+    height: 32px;
+    padding: 3px;
+    background: $clr-black;
+    border-radius: 8px;
+
+    svg {
+        max-width: 24px;
+        width: 100%;
+
+        .svg-stroke {
+            stroke: $clr-orange;
+        }
+    }
+
+    + .proposals-item__btn {
+        margin-left: 15px;
+
+        svg {
+            transform: scaleY(-1);
+            .svg-stroke {
+                stroke: $clr-green;
+            }
+        }
+    }
+}
+
+.prop-empty {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prop-empty__img {
+    width: 114px;
+    height: 114px;
+}
+
+.prop-empty__text {
+    max-width: 255px;
+    width: 100%;
+    text-align: center;
+
+    font: 400 16px/1.5 $lato;
+    color: $clr-gray-dark;
+
+    span {
+        display: block;
+    }
+}
+
+.prop-empty__connectBtn {
+    margin-top: 22px;
+    padding: 14px 25.5px;
+}
+
+@media (max-width: $tablet_small) {
+    .block.proposals {
+        border-radius: 20px;
+        padding: 20px;
+    }
+    .proposals-item {
+        padding: 16px 0 12px;
+    }
+    .proposals-item__col-controls {
+        width: 48px;
+    }
+    .proposals-item__view {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            display: none;
+        }
+
+        svg {
+            margin: 0;
+            display: block;
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            transform: scaleX(-1) translateX(-1px);
+
+            [data-stroke] {
+                stroke: $clr-black;
+                stroke-width: 2px;
+            }
+        }
+    }
+}
+
+.addBtn {
+    svg {
+        width: 16px;
+        height: 16px;
+        stroke: $clr-orange;
+    }
+
+    span {
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+    }
+}

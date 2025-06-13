@@ -1,0 +1,183 @@
+.root {
+  padding: 35px 30px 30px;
+
+  :global(.popup-title__title) strong {
+    color: $clr-green;
+  }
+}
+
+.headerTabs {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tabs {
+  margin-block: 22px 30px;
+  display: flex;
+}
+
+.inputTitle {
+  margin-top: 20px;
+}
+
+.mainTitle {
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 36px;
+}
+
+.type {
+  margin-top: 6px;
+}
+
+.typeItem {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+
+  &:not(.typeItemActive) {
+    cursor: pointer;
+  }
+
+  &.typeItemActive {
+    pointer-events: none;
+  }
+
+  &:nth-child(2) {
+    .typeName {
+      color: $clr-orange;
+    }
+
+    [data-checked='true'] span {
+      background-color: $clr-orange;
+    }
+  }
+
+  &:nth-child(3) {
+    .typeName {
+      color: $clr-green;
+    }
+
+    [data-checked='true'] span {
+      background-color: $clr-green;
+    }
+  }
+}
+
+.typeRadio {
+  &[data-checked='true'] span {
+    background-color: $clr-lavender;
+  }
+}
+
+.typeName {
+  margin-left: 8px;
+  font: $font16;
+  color: $clr-lavender;
+}
+
+.addWallet {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.addBtn {
+  margin-top: 20px;
+}
+
+.removeBtn {
+  height: 100%;
+  margin: 0 10px;
+}
+
+.submit {
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+  margin-top: 36px;
+}
+
+@media (max-width: $tablet_small) {
+  .submit {
+    width: 100%;
+  }
+}
+
+.textArea {
+  margin-top: 14px;
+  padding: 16px 20px;
+  background: $clr-black-main;
+  border-radius: 15px;
+  min-height: 103px;
+  max-height: 103px;
+}
+
+.switchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0 5px 0 10px;
+}
+
+.isAdmin {
+  font-size: smaller;
+}
+
+.switch {
+  font-size: smaller;
+}
+
+.searchContainer {
+  margin: 0 !important;
+  width: 100%;
+}
+
+.setup__select {
+  position: absolute;
+  left: 0;
+  z-index: 50;
+  top: calC(100% + 11px);
+  padding: 10px 0px 10px 5px !important;
+}
+
+.profile_setup {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background $app-transition;
+
+  &:hover {
+    background: rgba($clr-gray-dark, 0.1);
+  }
+}
+
+.selectItemImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.img_cover {
+  @include imgCover;
+}
+
+.selectItemName {
+  padding-left: 16px;
+  white-space: nowrap;
+  font: 500 16px/1.25 $lato;
+  color: $clr-gray-dark;
+
+  span {
+    color: $clr-white;
+  }
+}
+

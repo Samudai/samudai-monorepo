@@ -1,0 +1,74 @@
+/* 
+  SCSS Variables 
+*/
+$app-transition: 0.25s ease-in-out;
+$popup-duration: 0.35s;
+
+$container: 1305px;
+
+// Colors
+$clr-black-main: #1f2123;
+
+$clr-yellow: #ffe78c;
+$clr-orange: #fdc087;
+$clr-green: #b2ffc3;
+$clr-lavender: #ddc3f5;
+$clr-blue: #aed4ff;
+$clr-gray: #dedede;
+$clr-gray-dark: #52585e;
+$clr-black: #2b2e31;
+$clr-white: #f9f9f9;
+$clr-red: #e3625a;
+$clr-light-gray: #a0a0a0e0;
+$clr-gradient: linear-gradient(90deg, #6CFFB1 -0.05%, #FFC266 99.99%);
+
+/* 
+  Fonts 
+*/
+@mixin lato($weight: 400) {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  @content;
+}
+
+@mixin nunito($weight: 400) {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  @content;
+}
+
+$lato: 'Lato', sans-serif;
+$nunito: 'Nunito', sans-serif;
+$satoshi: 'Satoshi', sans-serif;
+
+$listStatus: (
+  'notStarted': $clr-orange,
+  'inWork': $clr-lavender,
+  'review': $clr-blue,
+  'done': $clr-green,
+);
+
+// Group
+$fontSmall: 400 14px/1.14 $lato;
+$fontMedium: 400 14px/1.25 $lato;
+$fontBold: 700 28px/1.29 $lato;
+$font24: 600 24px/1.12 $lato;
+$font16: 500 16px/1.25 $lato;
+
+// Media breakpoints
+$laptop_big: 1600px;
+$laptop: 1366px;
+$laptop_small: 1124px;
+$tablet_big: 991px;
+$tablet: 768px;
+$tablet_small: 656px;
+$mobile_big: 565px;
+$mobile: 465px;
+$mobile_small: 376px;
+
+/* 
+  CSS Variables
+*/
+:root {
+  --index: calc(1vw + 1vh);
+}

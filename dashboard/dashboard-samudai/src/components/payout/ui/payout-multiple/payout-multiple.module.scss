@@ -1,0 +1,23 @@
+.multiple_addBtn {
+    margin-top: 16px;
+}
+.stats {
+    margin-top: 16px;
+}
+.stats_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+
+    &:last-child {
+        color: $clr-green;
+    }
+
+    + .stats_item {
+        margin-top: 11px;
+    }
+}

@@ -1,0 +1,134 @@
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &Empty {
+        padding-bottom: 16px;
+        border-bottom: 1px solid $clr-black;
+    }
+}
+
+.head_title {
+    font: $font24;
+    color: $clr-white;
+}
+
+.head_btn_container {
+    display: flex;
+    align-items: center;
+}
+
+.head_btn {
+    margin-right: 10px;
+}
+
+.head_link {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-gray-dark;
+    }
+}
+
+.content {
+    padding-top: 24px;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid $clr-black;
+
+    font: $fontMedium;
+
+    &_title {
+        color: $clr-gray-dark;
+        font: $fontMedium;
+    }
+
+    &_rating {
+        margin-left: 24px;
+        color: $clr-green;
+    }
+
+    &_stars {
+        margin-left: 14px;
+        transform: translateY(-2px);
+    }
+
+    &_votes {
+        margin-left: 14px;
+        color: $clr-white;
+    }
+}
+
+.list {
+    &,
+    &_item + &_item {
+        margin-top: 24px;
+    }
+}
+
+// Empty
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &_right {
+        max-width: 200px;
+    }
+
+    &_rating {
+        border-radius: 7.5px;
+        padding: 10px;
+
+        font: 400 92px/0.9 $lato;
+        color: $clr-black;
+
+        background: $clr-black-main;
+    }
+
+    &_stars {
+        margin-top: 5px;
+    }
+
+    &_text {
+        padding-inline: 8.5px;
+        font: 400 16px/1.5 $lato;
+        color: $clr-gray-dark;
+        text-align: center;
+    }
+
+    &_btn {
+        margin-top: 22px;
+        padding: 14px;
+        min-width: 100%;
+    }
+}
+
+.popup_root {
+    padding: 45px 30px 30px;
+}
+
+.popup_title {
+    margin-bottom: 20px;
+}
+
+.popup_list {
+    overflow: auto;
+    max-height: 500px;
+}

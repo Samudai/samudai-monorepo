@@ -1,0 +1,78 @@
+.select {
+    display: inline-block;
+    width: 100%;
+    max-width: 273px;
+    transform: translateY(-5px);
+    position: relative;
+
+    font-size: 16px;
+
+    margin: auto auto 6px;
+
+    &Empty {
+        .select_btn {
+            span {
+                color: $clr-gray-dark;
+            }
+        }
+    }
+
+    &Active {
+        .select_btn {
+            svg {
+                transform: scaleY(-1);
+            }
+        }
+    }
+
+    &_btn {
+        font: 400 20px/1.2 $lato;
+        color: $clr-green;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed $clr-gray-dark;
+
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            margin-left: 22px;
+
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            stroke: $clr-white;
+        }
+    }
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px;
+    max-width: 200px;
+    width: 100%;
+    border-radius: 8px;
+    background: $clr-black;
+
+    &_item {    
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background .1s ease-in-out;
+
+        &:hover {
+            background: darken($clr-black, 2%);
+            color: $clr-green;
+        }
+
+        &Active,
+        &Active:hover {
+            color: $clr-gray-dark;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+.popup {
+  margin: auto;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 25px;
+  background: #17191a;
+  border: 1px solid $clr-black;
+  display: flex;
+  flex-direction: column;
+}
+.popup__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+}
+.popup__close {
+  margin-left: auto;
+}
+.popup__body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: $tablet_small) {
+  .popup {
+    max-width: 100%;
+    min-height: 100vh;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+.resize {
+  margin-top: auto;
+  height: 4px;
+  width: 100%;
+  cursor: ns-resize;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 28px;
+}

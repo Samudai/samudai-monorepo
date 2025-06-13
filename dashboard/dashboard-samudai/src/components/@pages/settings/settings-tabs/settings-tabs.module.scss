@@ -1,0 +1,44 @@
+.root {
+}
+
+.item {
+    + .item {
+        margin-top: 16px;
+    }
+}
+
+.item_tab {
+    padding: 19px 22px;
+    background: $clr-black-main;
+    box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+    border-radius: 17px;
+
+    font: 600 18px/1.15 $lato;
+    color: $clr-white;
+    text-transform: capitalize;
+
+    &:global(.active) {
+        background: $clr-orange;
+        color: $clr-black;
+    }
+}
+
+
+.anchors {
+    margin-block: 24px 36px;
+    padding-left: 24px;
+
+    &_item {
+        font: 400 16px/1.4 $lato;
+        color: $clr-gray-dark;
+
+        &Active {
+            font-weight: 700;
+            color: $clr-orange;
+        }
+    }
+
+    &_item + &_item {
+        margin-top: 24px;
+    }
+}

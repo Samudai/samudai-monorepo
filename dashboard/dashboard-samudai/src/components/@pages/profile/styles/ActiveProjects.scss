@@ -1,0 +1,18 @@
+
+
+
+.active-projects {
+  border-radius: 0;
+  background: none;
+}
+.active-projects__scrollable {
+  margin-top: 24px;
+  padding: 0;
+  overflow: visible;
+}
+@media (max-width: $tablet_small){
+  .active-projects__projects {
+    margin-inline: -20px;
+    padding-inline: 20px;
+  }
+}

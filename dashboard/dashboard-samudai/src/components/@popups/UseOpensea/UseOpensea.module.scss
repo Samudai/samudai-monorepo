@@ -1,0 +1,63 @@
+.root {
+  padding: 35px 30px 40px;
+}
+.useBtn {
+  margin-top: 30px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+.nfts {
+  margin-top: 32px;
+  padding: 30px 20px 30px 35px;
+  background: $clr-black-main;
+  border-radius: 25px;
+}
+.nftsList {
+  padding-right: 15px;
+  margin: -14px -7px 0;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 190px;
+  overflow: hidden auto;
+
+  display: flex;
+  justify-content: center;
+
+  &::-webkit-scrollbar-track {
+    margin-top: 14px;
+  }
+}
+.nftsItem {
+  flex: 0 0 (100% / 6);
+  padding: 14px 7px 10px;
+
+  &[data-active='true'] {
+    .nftsImg {
+      outline-color: $clr-orange;
+    }
+  }
+
+  &:not([data-active='true']) {
+    cursor: pointer;
+  }
+}
+.nftsWrapper {
+  max-width: 50px;
+  width: 100%;
+}
+.nftsImg {
+  padding-bottom: 100%;
+  border-radius: 50%;
+  width: 100%;
+  position: relative;
+  outline: 4px solid transparent;
+  transition: outline 0.1s ease-out;
+
+  img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
+  }
+}

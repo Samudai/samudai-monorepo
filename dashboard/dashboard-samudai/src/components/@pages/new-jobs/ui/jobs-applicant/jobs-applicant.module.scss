@@ -1,0 +1,64 @@
+.applicant {
+    padding: 22px 20px;
+    border-radius: 15px;
+    background: $clr-black-main;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+.user_image {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+.user_content {
+    padding-left: 24px;
+}
+.user_name {
+    font: $font16;
+    color: $clr-green;
+}
+.user_position,
+.user_location {
+    margin-top: 4px;
+    font: 400 12px/1.2 $lato;
+    color: $clr-gray-dark;
+}
+
+.tags {
+    padding-inline: 15px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.controls_viewProfileBtn {
+    padding: 15px;
+    min-width: 152px;
+    border-radius: 20px;
+}
+
+.controls_chatBtn {
+    padding: 7.5px 25.5px;
+    border: 1px solid $clr-green;
+    border-radius: 8px;
+
+    svg {
+        width: 18px;
+        height: 18px;
+        transform: translateY(1px);
+    }
+}
+
+.controls_chatBtn {
+    margin-left: 16px;
+}

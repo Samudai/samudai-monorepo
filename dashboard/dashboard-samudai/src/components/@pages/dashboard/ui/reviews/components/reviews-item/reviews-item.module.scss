@@ -1,0 +1,61 @@
+.reviewsItem {
+    padding: 12px;
+    display: flex;
+}
+
+.reviewsItemUser {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.reviewsItemUserImg {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+.reviewsItemContent {
+    padding-left: 16px;
+    flex-grow: 1;
+}
+
+.reviewsItemName {
+    font: 600 16px/1.25 $lato;
+    color: $clr-white;
+}
+
+.reviewsItemRating {
+    margin-top: 6px;
+}
+
+.reviewsItemMessage {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    background: $clr-black;
+
+    p {
+        font: $fontMedium;
+        color: 'white';
+    }
+}
+
+.reviewsItem {
+    $colors: $clr-lavender, $clr-yellow, $clr-blue, $clr-green, $clr-orange;
+
+    @for $i from 1 through length($colors) {
+        &:nth-child(#{$i}) {
+            .reviewsItemRating :global(svg.filled .svg-fill) {
+                fill: nth($colors, $i);
+            }
+        }
+    }
+}
+@media (max-width: $tablet_small) {
+    .reviewsItem {
+        padding-inline: 0;
+    }
+}

@@ -1,0 +1,52 @@
+.root {
+  padding-bottom: 18px;
+  border-bottom: 1px solid $clr-black;;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headTitle {
+  font: $font16;
+  color: $clr-white;
+}
+.headArchive {
+  margin-left: 15px;
+  width: 20px;
+  flex-shrink: 0;
+  [data-full] {
+    fill: $clr-orange;
+    stroke: $clr-orange;
+  }
+}
+.skillsList {
+  margin-top: 16px;
+}
+.info {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.infoCol {
+
+}
+.infoColRight {
+  padding-left: 15px;
+  .infoItem {
+    white-space: nowrap;
+  }
+}
+.infoItem {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+
+  strong {
+    margin-left: 4px;
+    color: $clr-white;
+  }
+
+  + .infoItem {
+    margin-top: 24px;
+  }
+}

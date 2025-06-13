@@ -1,0 +1,130 @@
+.root {
+    padding-bottom: 80px;
+}
+.breadcrumbs {
+    position: sticky;
+    top: 0;
+    background: #161819;
+    z-index: 100;
+}
+.container {
+    // padding-top: 45px;
+}
+.root_head {
+    display: flex;
+    justify-content: flex-start;
+}
+.pages {
+    display: inline-block;
+    // max-width: 350px;
+    // width: 100%;
+
+    &Item {
+        flex: 0 0 50%;
+        overflow: hidden;
+        display: flex;
+
+        span {
+            width: 100%;
+            max-width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+}
+.title {
+    // margin-top: 40px;
+    font: 700 28px/1.29 $lato;
+    color: $clr-gray;
+}
+.layout {
+    padding-top: 30px;
+    display: flex;
+}
+.tabs_wrapper {
+    max-width: 323px;
+    flex-grow: 1;
+    border-right: 1px solid $clr-black;
+}
+.tabs {
+    position: sticky;
+    top: 100px;
+}
+.tabsList {
+    margin-top: 30px;
+    max-width: 262px;
+    flex-grow: 1;
+}
+.tabsItem {
+    + .tabsItem {
+        margin-top: 16px;
+    }
+}
+.tabsLink {
+    flex-grow: 1;
+    padding: 19px 21px;
+    border-radius: 17px;
+    background: $clr-black-main;
+
+    font: 600 18px/1.22 $lato;
+    color: $clr-white;
+    text-transform: capitalize;
+
+    &:global(.active) {
+        background-color: $clr-orange;
+        color: $clr-black;
+    }
+}
+.content {
+    max-width: calc(100% - 323px);
+    flex-grow: 1;
+}
+
+@media (max-width: $tablet_big) {
+    .tabs {
+        max-width: 280px;
+    }
+    .content {
+        max-width: calc(100% - 280px);
+    }
+}
+
+@media (max-width: $tablet) {
+    .layout {
+        padding-top: 24px;
+        flex-direction: column;
+    }
+    .title {
+        margin-top: 32px;
+        font-size: 18px;
+    }
+    .tabs,
+    .tabsList,
+    .content {
+        max-width: 100%;
+    }
+    .tabs {
+        padding-bottom: 32px;
+        border-bottom: 1px solid $clr-black;
+        border-right: none;
+    }
+    .content {
+        margin-top: 32px;
+        [data-role='row'] {
+            max-width: 280px;
+            justify-content: space-between;
+        }
+    }
+    .tabsItem {
+        text-align: center;
+    }
+}
+
+@media (max-width: $mobile) {
+    .tabsLink {
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+}

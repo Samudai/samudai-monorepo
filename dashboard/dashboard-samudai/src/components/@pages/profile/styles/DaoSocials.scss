@@ -1,0 +1,24 @@
+.block.social-portfolio {
+  border: none;
+  background: none;
+}
+.social-portfolio__content {
+  border-radius: 20px;
+  background: $clr-black-main;
+  padding: 30px 33px;
+}
+
+.dashboard-skills__edit {
+  svg {
+    max-width: 24px;
+    width: 100%;
+    transition: filter $app-transition;
+
+    .svg-stroke {
+      stroke: #66657a;
+    }
+  }
+  &:hover svg {
+    filter: brightness(1.1);
+  }
+}

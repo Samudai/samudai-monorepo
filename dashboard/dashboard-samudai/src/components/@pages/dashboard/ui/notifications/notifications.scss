@@ -1,0 +1,46 @@
+.notifications {
+    padding: 31px 36.5px 55px;
+    border-radius: 25px;
+}
+
+.notifications__content {
+    margin-top: 32px;
+    display: flex;
+}
+
+.notifications__col {
+    width: 50%;
+}
+
+.notifications__title {
+    font: 600 18px/1.22 $lato;
+    color: $clr-white;
+}
+
+// Request Item
+
+// Transaction Item
+
+// Modifiers
+.notifications__col {
+    &_requests {
+        padding-right: 21.5px;
+
+        .notifications__list {
+            margin-top: 18.5px;
+        }
+    }
+
+    &_payments {
+        border-left: 1px solid $clr-black;
+        padding-left: 21.5px;
+
+        .notifications__title {
+            padding-left: 16px;
+        }
+
+        .notifications__list {
+            margin-top: 19px;
+        }
+    }
+}

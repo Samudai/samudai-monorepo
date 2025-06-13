@@ -1,0 +1,116 @@
+.activity {
+    padding: 30px 27px 0;
+    border-radius: 25px;
+    height: 411px;
+}
+
+.activity__list {
+    margin-top: 18px;
+    max-height: 314px;
+}
+
+// Empty
+.act-empty {
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(
+            to Bottom,
+            $clr-gray-dark 0,
+            $clr-gray-dark 50%,
+            transparent 50%,
+            transparent
+        );
+        background-size: 1px 8px;
+        position: absolute;
+        left: 6px;
+        top: 0;
+        transform: translateX(-50%);
+    }
+}
+
+.act-empty__item {
+    margin-top: 36px;
+    padding-bottom: 36px;
+    display: flex;
+    position: relative;
+    width: 100%;
+
+    + .act-empty__item {
+        margin-top: 0;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: $clr-black;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+.act-empty__circle {
+    margin-left: 36px;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: $clr-black;
+}
+
+.act-empty__content {
+    padding-left: 16px;
+    flex-grow: 1;
+}
+
+.act-empty__line {
+    display: block;
+    background: $clr-black;
+    border-radius: 6px;
+    height: 21px;
+
+    + .act-empty__line {
+        margin-top: 8px;
+        max-width: 117px;
+    }
+}
+
+.act-empty__text {
+    padding-left: 12px;
+    margin: 0 auto;
+    max-width: 198px;
+    font: 400 16px/1.5 $lato;
+    color: $clr-gray-dark;
+    text-align: center;
+}
+
+.act-empty__addBtn {
+    margin: 0 auto;
+}
+
+@media (max-width: $tablet_big) {
+    .reviewsActivity {
+        .popup-box__scrollable {
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: $tablet_small) {
+    .activity {
+        border-radius: 20px;
+        padding: 20px 15px 0;
+    }
+
+    .activity__list {
+        margin-top: 0;
+    }
+}

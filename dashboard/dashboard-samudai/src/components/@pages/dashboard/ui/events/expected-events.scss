@@ -1,0 +1,115 @@
+.expected-events {
+    padding: 24px;
+    height: 355px;
+}
+
+.expected-events__list {
+    margin-top: 27px;
+}
+
+.eventCreate {
+    .popup-box__scrollable {
+        padding-block: 5px !important;
+    }
+}
+
+.events-empty {
+    margin-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__img {
+        width: 114px;
+        height: 114px;
+    }
+
+    &__text {
+        margin: 13px auto 0;
+        max-width: 244px;
+        width: 100%;
+
+        text-align: center;
+        font: 400 16px/1.5 $lato;
+        color: $clr-gray-dark;
+    }
+
+    &__addBtn {
+        margin: 22px auto 0;
+
+        padding: 14px 26.5px;
+    }
+}
+
+@media (min-width: 992px) {
+    .expected-events.small {
+        padding: 24px;
+        border-radius: 25px;
+    }
+}
+
+@media (max-width: $tablet_big) {
+    .eventCreate {
+        .popup-box__scrollable {
+            padding: 0;
+        }
+
+        .popup {
+            border-radius: 0;
+            border: none;
+            min-height: 100vh;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .block.expected-events {
+        border-radius: 20px;
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: $tablet_small) {
+    .expected-events-item__btn-book {
+        background: transparent;
+        padding: 0;
+
+        span {
+            display: none;
+        }
+
+        svg {
+            display: block;
+            width: 24px;
+            flex-shrink: 0;
+
+            [data-stroke] {
+                stroke: $clr-green;
+            }
+        }
+    }
+
+    .expected-events-item__event {
+        margin-left: 0;
+    }
+
+    .expected-events-item__content {
+        align-items: flex-start;
+        flex-direction: column;
+        position: relative;
+        padding-left: 16px;
+
+        &::before {
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .expected-events-item__dates {
+        margin-top: 8px;
+    }
+}

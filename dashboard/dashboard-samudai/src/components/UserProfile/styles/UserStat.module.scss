@@ -1,0 +1,162 @@
+.root {
+}
+/* 
+  Blocks
+*/
+.blocks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $clr-lavender;
+
+  font: 500 16px/1 $lato;
+  color: $clr-black;
+}
+
+.blocksItem {
+  max-width: calc(50% - 4px);
+  width: 100%;
+  padding: 10px;
+  background: $clr-black;
+  border-radius: 15px;
+}
+.blocksHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blocksTitle {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.blocksIcon {
+  width: 18px;
+  flex-shrink: 0;
+
+  &[data-lavender] [data-stroke] {
+    stroke: $clr-lavender;
+  }
+
+  &[data-green] [data-stroke] {
+    stroke: $clr-green;
+  }
+}
+.blocksData {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blocksValue {
+  font: 600 24px/1 $lato;
+  color: $clr-white;
+}
+.blocksPercentage {
+  padding: 2px 10px;
+  background: #3a3e42;
+  border-radius: 15px;
+
+  text-align: center;
+
+  font: $fontMedium;
+
+  &[data-lavender] {
+    color: $clr-lavender;
+  }
+
+  &[data-green] {
+    color: $clr-green;
+  }
+}
+/* 
+  DAOs
+*/
+.daos {
+  margin-top: 52px;
+}
+.daosTitle {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+  text-transform: uppercase;
+}
+.daosGroup {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.daosList {
+  display: flex;
+}
+.daosMore,
+.daosItem {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.daosItem {
+  border: 2px solid $clr-black-main;
+  background: #ddc3f5;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  + .daosItem {
+    margin-left: -10px;
+  }
+}
+.sidebar-dao__btn-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $clr-orange;
+
+  font: 500 16px/1 $lato;
+  color: $clr-black;
+}
+.daoBtnName {
+  display: block;
+}
+.daosMore {
+  border: 1px dashed $clr-orange;
+
+  font: 600 14px/1.43 $lato;
+  color: $clr-orange;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-height: 828px) {
+  .daos {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: $laptop_small){
+  .root {
+    max-width: 382px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}

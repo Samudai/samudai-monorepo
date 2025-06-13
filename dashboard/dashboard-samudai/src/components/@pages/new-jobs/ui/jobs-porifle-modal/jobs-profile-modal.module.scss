@@ -1,0 +1,239 @@
+.profile {
+    padding: 35px 40px 40px;
+    overflow: hidden;
+}
+
+.profile_title {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+    margin-bottom: 8px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head_title {
+    font: $font16;
+    color: $clr-gray-dark;
+    padding-right: 10px;
+}
+
+.user {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.user_img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user_content {
+    padding-left: 20px;
+}
+
+.user_name {
+    font: 600 36px/1 $lato;
+    color: $clr-white;
+    cursor: pointer;
+}
+
+.user_position {
+    margin-top: 12px;
+    font: $fontMedium;
+    color: $clr-lavender;
+}
+
+.user_messageBtn {
+    margin-left: auto;
+    padding: 9px 24px 6px;
+    border: 1px solid $clr-green;
+    border-radius: 8px;
+
+    svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-green;
+        }
+    }
+}
+
+.skills {
+    margin-top: 32px;
+}
+
+.portfolio {
+    margin-top: 32px;
+}
+
+.portfolio_list {
+    display: flex;
+}
+
+.portfolio_item {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #35383b;
+    position: relative;
+
+    svg {
+        width: 60%;
+        height: 60%;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        [data-stroke] {
+            stroke: $clr-green !important;
+        }
+
+        [data-fill] {
+            fill: $clr-green !important;
+        }
+    }
+
+    + .portfolio_item {
+        margin-left: 30px;
+    }
+}
+
+.message {
+    margin-top: 32px;
+}
+
+.message_input {
+    padding: 11px;
+    border-radius: 15px;
+    background: $clr-black-main;
+    min-height: 127px;
+    max-height: 127px;
+}
+
+.worked {
+    margin-top: 32px;
+}
+
+.worked_list {
+    display: flex;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.worked_item {
+    padding: 15px 19px;
+    display: flex;
+    align-items: center;
+    background: $clr-black-main;
+
+    border-radius: 25px;
+    flex-shrink: 0;
+
+    + .worked_item {
+        margin-left: 20px;
+    }
+}
+
+.worked_image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.worked_name {
+    padding-left: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.controls {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.controls_rejectBtn {
+    padding: 14px;
+    max-width: 173px;
+    width: 100%;
+    background: $clr-black;
+
+    span {
+        color: $clr-white;
+    }
+}
+
+.controls_btn {
+    padding: 14px;
+    max-width: 173px;
+    width: 100%;
+}
+
+.apply_status {
+    &_controls {
+        margin-top: auto;
+        padding-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    padding: 15px;
+    max-width: 173px;
+    background: $clr-black;
+    width: 100%;
+
+    border: 1px solid #f9f9f9;
+    border-radius: 20px;
+
+    text-align: center;
+
+    font: 600 14px/1 $lato;
+    color: #f9f9f9;
+    text-transform: capitalize;
+    cursor: default;
+
+    &[data-status='applied'] {}
+
+    &[data-status='accepted'] {
+        color: $clr-green;
+        border-color: $clr-green;
+    }
+
+    &[data-status='rejected'] {
+        color: $clr-red;
+        border-color: $clr-red;
+    }
+}
+
+.socials {
+    margin-top: 32px;
+}
+
+.subtitle {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+
+    margin-bottom: 16px;
+}
+
+.empty {
+    font: $fontMedium;
+    color: $clr-lavender;
+}

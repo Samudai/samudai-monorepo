@@ -1,0 +1,31 @@
+
+
+
+.img {
+  width: 34px;
+  height: 34px;
+  max-width: 34px;
+}
+.title-container {
+  flex-grow: 1;
+  padding-left: 16px;
+}
+.title {
+  max-width: 160px;
+
+  + .title {
+    margin-top: 5px;
+    max-width: 100px;
+  }
+}
+.line {
+  max-width: 120px;
+}
+.text {
+  max-width: 100px;
+  margin-top: 8px;
+}
+.status {
+  max-width: 90px;
+  height: 30px;
+}

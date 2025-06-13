@@ -1,0 +1,16 @@
+.root {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.list {
+    margin-top: 23px;
+    display: flex;
+}
+
+.list_item {
+    flex-shrink: 0;
+    + .list_item {
+        margin-left: 23px;
+    }
+}

@@ -1,0 +1,56 @@
+.create {
+    padding: 30px;
+}
+.create_form {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.create_input_title {
+    font: $font16;
+    color: $clr-gray-dark;
+}
+.create_input_editor {
+    margin-top: 14px;
+    width: 100%;
+    min-height: 127px;
+}
+.create_submitBtn {
+    margin-top: 40px;
+    margin-left: auto;
+    padding: 14px;
+    min-width: 129px;
+}
+.create_participants_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.create_participants_title {
+    font: $font16;
+    color: $clr-gray-dark;
+}
+.create_participants_list {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+.create_participants_item {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid $clr-black;
+
+    + .create_participants_item {
+        margin-left: -16px;
+    }
+}
+.create_input {
+    + .create_input {
+        margin-top: 36px;
+    }
+}

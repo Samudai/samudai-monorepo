@@ -1,0 +1,158 @@
+.root {
+  padding: 34px 30px 30px;
+
+  :global(.popup-title__title) strong {
+    color: $clr-green;
+  }
+}
+.inputTitle {
+  margin-top: 40px;
+}
+.mainTitle {
+  text-align: center;
+}
+.subtitle {
+  margin-top: 36px;
+}
+.row {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.rowDates {
+  margin-top: 36px;
+}
+.subtitleCol {
+  margin-bottom: 14px;
+}
+.colLeft {
+  max-width: 230px;
+  padding-right: 20px;
+  width: 100%;
+}
+.colRight {
+  max-width: 202px;
+  width: 100%;
+}
+.colOpen {
+  max-width: 200px;
+  width: 100%;
+}
+.inputCalendar {
+  width: 24px;
+  flex-shrink: 0;
+
+  :global(.svg-stroke) {
+    stroke: $clr-gray-dark;
+  }
+}
+textarea.textarea {
+  max-height: 105px;
+  margin-top: 14px;
+  padding: 16px 20px;
+  border-radius: 15px;
+  height: 1em;
+  background: $clr-black-main;
+}
+.github {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+}
+.githubIcon {
+  width: 21px;
+  height: 21px;
+
+  img {
+    width: 100%;
+    max-height: 100%;
+  }
+}
+.githubText {
+  margin-left: 6px;
+  font: $fontSmall;
+  color: $clr-white;
+}
+.checkbox {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+  padding: 22px 0;
+}
+.checkboxBlock {
+  width: 20px;
+  height: 20px;
+  background: $clr-black;
+  border: none;
+}
+.label {
+  margin-top: 2px;
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+  user-select: none;
+}
+.submit {
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+
+.addToken {
+  margin-top: 24px;
+  margin-left: auto;
+}
+
+@media (max-width: $tablet_small) {
+  .root {
+    padding-inline: 20px;
+  }
+  .row {
+    flex-direction: column;
+
+    .subtitle {
+      margin-top: 0;
+    }
+  }
+  .colLeft,
+  .colRight {
+    max-width: 100%;
+    padding: 0;
+  }
+  .colRight {
+    margin-top: 36px;
+  }
+  .addToken,
+  .submit {
+    width: 100%;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.upgrade {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &_text {
+    font: 600 14px/20px $lato;
+    color: $clr-gray-dark;
+  }
+
+  &_text2 {
+    color: $clr-red;
+  }
+
+  &_btn {
+    font: 600 14px/20px $lato;
+    color: $clr-green;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,60 @@
+@import './vars.scss';
+@import './reset.scss';
+@import './mixins.scss';
+@import './fonts.scss';
+@import './components.scss';
+@import './app.scss';
+@import './boot.scss';
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  @include lato(400);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #161819;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(#616161, 0.8);
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #111111;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #616161;
+  }
+}
+
+.container {
+  max-width: 1305px;
+  width: 100%;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.img-cover {
+  @include imgCover;
+}
+
+@media (max-width: 1180px){
+  .container {
+    padding: 0 25px;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 0 15px;
+  }
+}

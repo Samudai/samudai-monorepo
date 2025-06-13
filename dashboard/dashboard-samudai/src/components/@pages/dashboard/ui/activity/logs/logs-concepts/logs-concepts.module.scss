@@ -1,0 +1,27 @@
+.concepts {
+  margin-top: 16px;
+  padding: 30px;
+  border-radius: 17px;
+  background: $clr-black-main;
+}
+.conceptsList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px -8px 0;
+}
+.conceptItem {
+  margin-top: 15px;
+  padding: 0 8px;
+  flex: 0 0 calc(100% / 3);
+}
+.conceptWrapper {
+  padding-bottom: 71.21%;
+  position: relative;
+  border-radius: 15px;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

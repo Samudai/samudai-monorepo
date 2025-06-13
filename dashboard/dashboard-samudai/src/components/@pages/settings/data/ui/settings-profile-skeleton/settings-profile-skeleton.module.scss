@@ -1,0 +1,43 @@
+.root {
+    display: flex;
+    padding-left: 60px;
+    flex-grow: 1;
+}
+
+.links {
+    max-width: 155px;
+    width: 100%;
+}
+
+.content {
+    padding-left: 80px;
+    flex-grow: 1;
+}
+
+.linkList {
+    margin-top: 24px;
+
+    &_item {
+        display: flex;
+        align-items: center;
+    }
+
+    &_item + &_item {
+        margin-top: 16px;
+    }
+}
+
+.margin {
+    width: 100%;
+    max-width: 505px;
+}
+
+.skills {
+    margin: 0 -4px 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    &_item {
+        margin: 16px 4px 0;
+    }
+}

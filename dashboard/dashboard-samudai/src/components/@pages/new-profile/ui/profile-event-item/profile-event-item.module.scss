@@ -1,0 +1,49 @@
+.root {
+    width: 158px;
+    padding: 12px 9px 9px;
+    border-radius: 12px;
+    background: $clr-black;
+    cursor: pointer;
+}
+
+.title {
+    font: $font16;
+    color: $clr-white;
+}
+
+.location {
+    margin-top: 8px;
+    font: 400 12px/1 $lato;
+    color: #cbcbcb;
+}
+
+.date {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: $clr-green;
+}
+
+.row {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.members {
+    [data-class='item'] {
+        background: $clr-black;
+        span {
+            font-size: 10px;
+        }
+
+        + [data-class='item'] {
+            margin-left: -8px;
+        }
+    }
+}
+
+.attending {
+    margin-left: 3px;
+    font: 400 12px/1 $lato;
+    color: #cbcbcb;
+}

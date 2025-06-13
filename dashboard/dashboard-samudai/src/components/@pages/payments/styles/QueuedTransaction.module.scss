@@ -1,0 +1,201 @@
+.root {
+    padding: 30px;
+    width: 1000px;
+}
+
+.header {
+
+    &_title {
+        color: $clr-white;
+        font: 600 24px/1.2 $lato;
+    }
+    
+    &_action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 24px;
+
+        &__status {
+            display: flex;
+            padding: 8px 14px;
+            align-items: center;
+            gap: 4px;
+            border-radius: 20px;
+            background: $clr-black;
+            font: 400 14px/1.2 $lato;
+        }
+
+        &__discussion {
+            color: $clr-orange;
+            font: 600 14px/1 $lato;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            svg {
+                width: 20px;
+                height: 20px;
+                stroke: $clr-orange;
+            }
+            &:disabled {
+                opacity: 0.5;
+                filter: grayscale(0.1);
+                cursor: default;
+            }
+        }
+    }
+}
+
+.body {
+    &_details {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        margin-top: 48px;
+
+        &_item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            &__btn {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                }
+            }
+
+            &__title {
+                color: $clr-gray-dark;
+                font: 400 14px/1.2 $lato;
+            }
+        
+            &__info {
+                color: $clr-white;
+                font: 400 14px/1.2 $lato;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+
+                img {
+                    width: 24px;
+                }
+            }
+        }
+    }
+    
+    &_list {
+        margin-top: 32px;
+        width: 100%;
+        overflow: auto;
+        height: 13rem;
+
+        &_item {
+            padding: 16px 0px;
+            border-bottom: 1px solid $clr-black;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__title {
+            color: $clr-gray-dark;
+            font: 400 14px/1.2 $lato;
+            width: 25%;
+            display: inline-block;
+
+            &:first-child {
+                width: 35%;
+            }
+
+        }
+
+        &__info {
+            display: inline-block;
+            color: $clr-white;
+            font: 400 14px/1.2 $lato;
+            width: 25%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            &:first-child {
+                    width: 35%;
+                }
+        }
+    }
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+    
+    &_title {
+        font: 400 14px/1.2 $lato;
+        color: $clr-white;
+        width: 30%;
+    }
+
+    &_body {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: 70%;
+    }
+
+    &_bar {
+        width: 50%;
+        display: flex;
+        gap: 8px;
+        flex-direction: column;
+
+        &_green {
+            [data-role='progress-line'] {
+                background-color: $clr-green;
+            }
+        }
+
+        &_yellow {
+            [data-role='progress-line'] {
+                background-color: #FFF7AC;
+            }
+        }
+
+        &_red {
+            [data-role='progress-line'] {
+                background-color: #FF9292;
+            }
+        }
+    }
+
+    &_text {
+        font: 400 14px/1.2 $lato;
+        color: $clr-gray-dark;
+
+        strong {
+            color: $clr-white;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+
+    &_button {
+        padding: 12px 14px;
+        gap: 4px;
+        font: 600 14px/1 $lato;
+        width: 11rem;
+    }
+}

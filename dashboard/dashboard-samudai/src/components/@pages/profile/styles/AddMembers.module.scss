@@ -1,0 +1,62 @@
+
+
+
+.root {}
+.popup {
+  padding: 30px;
+  padding-top: 45px;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.headMembers {
+}
+.headTitle {
+  margin-top: 8px;
+  font: 500 22px/1.25 $lato;
+  color: $clr-white;
+}
+.form {
+  margin-top: 38px;
+  display: flex;
+  flex-direction: column;
+}
+
+.copy {
+  margin-top: 36px;
+}
+.copyTitle {
+  font-size: 14px;
+}
+.copyInput {
+  margin-top: 16px;
+}
+.copyBtn {
+  width: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+
+    :global(.svg-stroke) {
+      stroke: $clr-lavender;
+    }
+  }
+}
+
+.submit {
+  margin-top: 32px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+  justify-content: center;
+
+  @media (max-width: $tablet){
+    width: 100%;
+  }
+}

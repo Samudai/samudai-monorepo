@@ -1,0 +1,97 @@
+$colors: $clr-green, $clr-yellow, $clr-blue, $clr-orange, $clr-green, $clr-lavender,
+  $clr-blue;
+
+.meeting-calendar__row_title {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: inherit;
+  width: fit-content;
+  background: $clr-black-main;
+
+  .meeting-calendar__cell {
+    padding: 0 9px;
+    padding-bottom: 18.5px;
+    border-bottom: 1px solid $clr-black;
+  }
+}
+.meeting-calendar__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.meeting-calendar__title-day {
+  padding: 4px 16px;
+  padding-left: 0;
+  border-radius: 16px;
+  font: 400 16px/1.09 $lato;
+  color: $clr-gray-dark;
+}
+.meeting-calendar__title-circle {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+// Modificators
+.meeting-calendar__row_title {
+  $length: length($colors);
+  @for $i from 1 through $length {
+    $color: nth($colors, $i);
+    .meeting-calendar__cell:nth-child(#{$length}n + #{$i}) {
+      .meeting-calendar__title.today {
+        .meeting-calendar__title-day {
+          background-color: $color;
+        }
+      }
+      .meeting-calendar__title.active {
+        .meeting-calendar__title-circle {
+          background-color: $color;
+        }
+      }
+    }
+  }
+  .meeting-calendar__title.today {
+    .meeting-calendar__title-day {
+      padding-left: 16px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  // Small
+  .meeting-calendar.small {
+    .meeting-calendar__row_title {
+      justify-content: space-between;
+    }
+
+    .meeting-calendar__title {
+      &,
+      &.today {
+        .meeting-calendar__title-day {
+          padding: 0;
+        }
+      }
+    }
+
+    .meeting-calendar__cell:nth-child(1n) {
+      .meeting-calendar__title.today {
+        .meeting-calendar__title-day {
+          background: none;
+        }
+      }
+    }
+
+    .meeting-calendar__cell {
+      padding: 0 8px;
+      border-bottom: none;
+    }
+
+    .meeting-calendar__title-circle {
+      display: none;
+    }
+  }
+}

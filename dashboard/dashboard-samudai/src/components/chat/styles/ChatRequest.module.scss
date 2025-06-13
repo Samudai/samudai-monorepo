@@ -1,0 +1,34 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.header1 {
+  font: 700 16px/1.5 $lato;
+  color: $clr-white;
+
+  span {
+    color: $clr-orange !important;
+  }
+}
+
+.header2 {
+  font: 400 16px/1.5 $lato;
+  color: $clr-gray-dark;
+  width: 380px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.btn_container {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+}
+
+.button {
+  width: 129px;
+  height: 42px;
+}

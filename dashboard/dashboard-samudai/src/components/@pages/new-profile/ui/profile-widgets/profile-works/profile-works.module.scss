@@ -1,0 +1,143 @@
+.works {
+    max-width: 352px;
+}
+
+.title {
+    font: $font24;
+    color: $clr-white;
+}
+
+.content {
+    margin-top: 24px;
+    padding: 25px 25px;
+    border-radius: 20px;
+    background: $clr-black-main;
+    box-shadow: 0px 36px 50px #131516;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -8px -4px 0;
+}
+
+.list_item {
+    margin: 8px 4px 0;
+
+    &:nth-child(4n + 1) {
+        [data-role='icon'] {
+            background: #944700 !important;
+    
+            span {
+                color: #fdc087;
+            }
+        }
+        [data-role='us-container'] {
+            background: #fdc087;
+
+            p {
+                color: #944700;
+            }
+        }
+    }
+
+    &:nth-child(4n + 2) {
+        [data-role='icon'] {
+            background: #00a925 !important;
+    
+            span {
+                color: #b2ffc3;
+            }
+        }
+        [data-role='us-container'] {
+            background: #b2ffc3;
+
+            p {
+                color: #00a925;
+            }
+        }
+    }
+
+    &:nth-child(4n + 3) {
+        [data-role='icon'] {
+            background: #aa52ff !important;
+    
+            span {
+                color: #ddc3f5;
+            }
+        }
+        [data-role='us-container'] {
+            background: #ddc3f5;
+
+            p {
+                color: #aa52ff;
+            }
+        }
+    }
+
+    &:nth-child(4n + 4) {
+        [data-role='icon'] {
+            background: #0aa7ff !important;
+    
+            span {
+                color: #9cdbff;
+            }
+        }
+        [data-role='us-container'] {
+            background: #9cdbff;
+
+            p {
+                color: #0aa7ff;
+            }
+        }
+    }
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        stroke: $clr-orange;
+    }
+
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+        transform: translateY(0.1em);
+    }
+}
+
+.skel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.skel_list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -16px -4px 0;
+}
+
+.skel_item {
+    margin: 16px 4px 0;
+}
+
+.skel_text {
+    margin-top: 10px;
+
+    text-align: center;
+    font: 400 16px/1.25 $lato;
+    color: $clr-gray-dark;
+}
+
+.skel_btn {
+    margin-top: 20px;
+    align-self: center;
+}

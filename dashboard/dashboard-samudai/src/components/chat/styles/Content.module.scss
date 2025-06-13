@@ -1,0 +1,39 @@
+.root {
+  width: 100%;
+  max-width: calc(100% - 445px);
+  display: flex;
+  flex-direction: column;
+}
+.inner {
+  background: #111212;
+  background: #111212;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media (max-width: 1397px) {
+  .inner {
+    min-width: calc(100% + 40px);
+  }
+}
+
+@media (max-width: $laptop) {
+  .root {
+    max-width: calc(100% - 360px);
+  }
+  .inner {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: $tablet) {
+  .root {
+    max-width: 100%;
+  }
+  .inner {
+    background-color: transparent;
+  }
+}

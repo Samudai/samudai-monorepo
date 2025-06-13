@@ -1,0 +1,22 @@
+.connectWalletBtn {
+    width: 100%;
+    padding: 8px 14px;
+    background: $clr-black;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        stroke: $clr-orange;
+    }
+
+    span {
+        padding-left: 8px;
+        font: 400 12px/1.1 $lato;
+        color: $clr-orange;
+    }
+}

@@ -1,0 +1,241 @@
+.root {
+    padding: 28px 28px 0 32px;
+    flex-grow: 1;
+    max-width: calc(100% - 252px);
+    width: 100%;
+    overflow: hidden;
+}
+.title {
+    font: $font16;
+    color: $clr-gray;
+}
+/* 
+ Chart
+*/
+.tasks {
+    display: flex;
+}
+.tasksCol {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: space-between;
+}
+.taskValue {
+    white-space: nowrap;
+    h3 {
+        font: $font24;
+        color: #f0f0f0;
+    }
+    p {
+        margin: 4px;
+        font: $fontSmall;
+        color: $clr-gray-dark;
+    }
+}
+.taskChart {
+    margin-left: 17px;
+    max-width: 88px;
+    max-height: 58px;
+}
+/* 
+  Projects
+*/
+.projects {
+    margin-top: 35px;
+    max-width: 100%;
+    overflow: hidden;
+}
+.projectsSlider {
+    margin-top: 16px;
+}
+.projectControls {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.projectPrev,
+.projectNext {
+    min-width: 1px;
+}
+.projectPag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 11px;
+}
+.projectPagItem {
+    margin: 0 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    background: $clr-black;
+    transition: 0.1s ease-out;
+    transition-property: width, background;
+
+    &Active {
+        width: 17px;
+        background-color: $clr-gray-dark;
+    }
+}
+.departments {
+    margin-bottom: 40px;
+    font: $fontSmall;
+    color: $clr-gray-dark;
+
+    span {
+        padding-left: 8px;
+        color: $clr-white;
+    }
+}
+/* 
+  Block
+*/
+.block {
+    padding: 16px 24px;
+    border-radius: 16px;
+
+    @include strokeGradient(
+        linear-gradient($clr-black, $clr-black),
+        linear-gradient(
+            115.31deg,
+            rgba(255, 255, 255, 0.3) -2.4%,
+            rgba(255, 255, 255, 0.3) -2.39%,
+            rgba(255, 255, 255, 0) 51.07%,
+            rgba(255, 255, 255, 0.3) 105.66%
+        )
+    );
+
+    stroke-width: 1px;
+
+    &_title {
+        font: 700 14px/1.1 $lato;
+        color: $clr-white;
+    }
+
+    &_value {
+        margin-top: 4px;
+        font: 700 24px/1.5 $lato;
+        color: #f0f0f0;
+    }
+
+    + .block {
+        margin-left: 30px;
+    }
+}
+/* Chart */
+.chart {
+    display: flex;
+    align-items: flex-end;
+
+    &_col {
+    }
+
+    &_value {
+        font: $font24;
+        color: $clr-white;
+    }
+
+    &_title {
+        margin-top: 4px;
+        font: $fontSmall;
+        color: $clr-gray-dark;
+        white-space: nowrap;
+    }
+
+    &_graph {
+        margin-left: 17px;
+        max-width: 90px;
+    }
+
+    + .chart {
+      margin-left: 50px;
+    }
+}
+
+/* 
+  Skills
+*/
+.skills {
+    margin-top: 21px;
+}
+.skillsList {
+    margin-top: 24px;
+}
+/* 
+  Bounty
+*/
+.bounty {
+    margin-top: 36px;
+}
+.titleBounty {
+    [data-orange] {
+        color: $clr-orange;
+    }
+}
+/* 
+  Updates
+*/
+.updates {
+    margin-top: 47px;
+}
+.updatesList {
+    margin-top: 32px;
+    padding-bottom: 30px;
+    min-height: 200px;
+    max-height: 424px;
+    overflow: hidden auto;
+    position: relative;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // &::before {
+    //   content: '';
+    //   display: block;
+    //   width: 1px;
+    //   position: absolute;
+    //   top: 0;
+    //   bottom: 30px;
+    //   background: linear-gradient(
+    //     to Bottom,
+    //     $clr-gray-dark,
+    //     $clr-gray-dark 50%,
+    //     transparent 50%,
+    //     transparent
+    //   );
+    //   background-size: 100% 10px;
+    //   left: 6px;
+    // }
+}
+
+.noInfo {
+    margin-top: 14px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+
+.tasksColBlocks {
+    max-width: 350px;
+    flex: 0 0 auto;
+    width: 100%;
+    justify-content: space-between;
+}
+.blocksItem {
+    max-width: 155px;
+
+    + .blocksItem {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: $tablet) {
+    .root {
+        padding: 24px 0;
+        max-width: 100%;
+    }
+    .updatesList {
+        min-height: auto;
+    }
+}

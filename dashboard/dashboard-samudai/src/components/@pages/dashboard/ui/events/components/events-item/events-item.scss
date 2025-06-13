@@ -1,0 +1,223 @@
+.expected-events-item {
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: $clr-black;
+
+    display: flex;
+    align-items: center;
+
+    + .expected-events-item {
+        margin-top: 17px;
+    }
+}
+
+.expected-events-item__time {
+    display: none;
+    font: $fontMedium;
+    color: #6a7177;
+}
+
+.expected-events-item__content {
+    flex-grow: 1;
+
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 4px;
+        height: 45px;
+        background: $clr-lavender;
+        flex-shrink: 0;
+    }
+}
+
+.expected-events-item__name {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    flex-grow: 1;
+}
+
+.expected-events-item__event {
+    margin-left: 16px;
+    font: 500 16px/1.25 $lato;
+    color: #f0f0f0;
+}
+
+.expected-events-item__dates {
+    display: flex;
+    align-items: center;
+
+    svg {
+        max-width: 20px;
+        width: 100%;
+        flex-shrink: 0;
+
+        .svg-stroke {
+            stroke: $clr-gray-dark;
+        }
+    }
+}
+
+.expected-events-item__dates-item {
+    width: 125px;
+    display: flex;
+    align-items: center;
+}
+
+.expected-events-item__date {
+    margin-left: 8px;
+    font: 400 14px/1.36 $nunito;
+    color: $clr-white;
+
+    strong {
+        color: $clr-gray-dark;
+    }
+}
+
+.expected-events-item__controls {
+    padding: 0 10.5px;
+}
+
+.expected-events-item__btn-book {
+    white-space: nowrap;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font: 600 14px/1.43 $lato;
+    background: $clr-green;
+    color: $clr-black;
+    transition: background $app-transition;
+
+    &:hover {
+        background: darken($clr-green, 5%);
+    }
+
+    svg {
+        display: none;
+    }
+}
+
+.block.small,
+.ev-small {
+    .expected-events-item__content {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 0;
+        padding-left: 20px;
+        flex-grow: 0;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .expected-events-item__event {
+        margin-left: 0;
+    }
+
+    .expected-events-item__dates {
+        margin-top: 8px;
+    }
+
+    .expected-events-item__dates-item {
+        width: auto;
+        white-space: nowrap;
+
+        + .expected-events-item__dates-item {
+            margin-left: 16px;
+        }
+    }
+
+    .expected-events-item__controls {
+        margin-left: auto;
+        padding: 0 9px;
+    }
+
+    .expected-events-item__btn-book {
+        background: none;
+        padding: 0;
+
+        span {
+            display: none;
+        }
+
+        svg {
+            display: block;
+            width: 24px;
+            height: 24px;
+
+            .svg-stroke {
+                stroke: $clr-green;
+            }
+        }
+    }
+
+    .expected-events-item {
+        $colors: $clr-lavender, $clr-yellow, $clr-green, $clr-orange, $clr-blue;
+
+        @for $i from 1 through length($colors) {
+            &:nth-child(5n + #{$i}) {
+                .expected-events-item__content::before {
+                    background-color: nth($colors, $i);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $tablet_small) {
+    .expected-events-item.expected-events-item_blocks {
+        padding-block: 24px;
+        flex-shrink: 0;
+
+        .expected-events-item__content {
+            padding-left: 0;
+            flex-direction: column;
+            align-items: flex-start;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        .expected-events-item__time {
+            display: block;
+        }
+
+        .expected-events-item__name {
+            margin-top: 28px;
+            padding-left: 20px;
+            position: relative;
+
+            &::before {
+                content: '';
+                display: block;
+                width: 4px;
+                height: 100%;
+                background: $clr-green;
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+            }
+        }
+
+        .expected-events-item__dates {
+            margin-top: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+
+        .expected-events-item__dates-item + .expected-events-item__dates-item {
+            margin-left: 0;
+            margin-top: 8px;
+        }
+    }
+}

@@ -1,0 +1,69 @@
+.creator {
+    position: relative;
+
+    &Active {
+        .creator_dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+.creator_button {
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: $clr-black;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        padding-left: 8px;
+        font: 400 12px/1 $lato;
+        color: $clr-orange;
+    }
+}
+.creator_dropdown {
+    padding:  12px;
+    border-radius: 12px;
+    background: $clr-black;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease-in-out;
+    transition-property: visibility, opacity;
+}
+.creator_item {
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: background 0.15s ease-in-out;
+    cursor: pointer;
+
+    &_img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 50%;
+    }
+    
+    &_name {
+        padding-left: 16px;
+        font: $fontMedium;
+        color: $clr-white;
+    }
+
+    &:hover {
+        background-color: darken($clr-black, 1%);
+    }
+}

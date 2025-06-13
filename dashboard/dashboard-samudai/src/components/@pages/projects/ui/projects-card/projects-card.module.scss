@@ -1,0 +1,166 @@
+.card {
+    padding: 24px;
+    background: $clr-black-main;
+    box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+    border-radius: 25px;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.card_header {
+    display: flex;
+    align-items: center;
+}
+.card_header_bookIcon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    [data-fill] {
+        fill: $clr-green;
+    }
+}
+.card_header_title {
+    flex-grow: 1;
+    padding-left: 8px;
+    font: 600 18px/1.2 $lato;
+    color: $clr-white;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translateY(0.1em);
+}
+.card_header_controls {
+    display: flex;
+    align-items: center;
+}
+.card_header_controls_btn {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        height: 100%;
+
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+
+        [data-full] {
+            fill: $clr-light-gray;
+        }
+    }
+
+    &[data-button='archive'] {
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    + .card_header_controls_btn {
+        margin-left: 12px;
+    }
+
+    &Active {
+        svg {
+            [data-full] {
+                fill: $clr-orange;
+            }
+        }
+    }
+}
+.card_info {
+    padding-top: 48px;
+    margin-top: auto;
+    display: flex;
+}
+.card_info_item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:nth-child(1) {
+        flex: 1 0 auto;
+    }
+    &:nth-child(2) {
+        flex: 0 0 32%;
+    }
+    &:nth-child(3) {
+        flex: 0 0 25%;
+    }
+}
+.card_info_title {
+    font: 400 12px/1 $lato;
+    color: $clr-white;
+}
+.card_info_value {
+    margin-top: auto;
+    padding-top: 16px;
+}
+.card_jobs {
+    display: inline-block;
+    font: 900 24px/0.9 $lato;
+    color: $clr-white;
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: $clr-orange;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(85%, -85%);
+    }
+}
+
+.card_row {
+    padding: 26px 24px;
+    border-radius: 17px;
+    flex-direction: row;
+    align-items: center;
+
+    .card_list {
+        display: flex;
+        align-items: center;
+        width: 65%;
+    }
+    .card_list_item {
+        display: flex;
+        align-items: center;
+
+        + .card_list_item {
+            margin-left: 100px;
+        }
+    }
+    .card_list_title {
+        font: $fontSmall;
+        color: $clr-white;
+        &[data-gray] {
+            color: $clr-gray-dark;
+        }
+    }
+    .card_list_members {
+        margin-left: 12px;
+    }
+    .card_list_value {
+        margin-left: 8px;
+        min-width: 50px;
+    }
+}

@@ -1,0 +1,40 @@
+.root {
+  max-width: 100%;
+  width: 100%;
+}
+.title {
+  font: $font16;
+  color: $clr-white;
+}
+.input {
+  margin-top: 16px;
+  z-index: 1;
+}
+.titleSkill {
+  margin-top: 35px;
+}
+.option {
+  [data-role="us-container"] {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+  [data-role="name"] {
+    margin-left: 10px;
+  }
+}
+.skills {
+  margin: 0 -4px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.skillItem {
+  margin: 16px 4px 0;
+}
+.skillItemBtn {
+  margin-left: 4px;
+}
+.skillOption {
+  font: $fontMedium;
+  color: $clr-white;
+}

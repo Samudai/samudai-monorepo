@@ -1,0 +1,89 @@
+.skills_title {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+}
+.field_wrapper {
+    position: relative;
+    display: inline-block;
+}
+.field {
+    // margin-top: 16px;
+    max-width: 210px;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: $clr-black;
+
+    display: flex;
+    align-items: center;
+}
+.field_input {
+    background: none;
+    outline: none;
+    border: none;
+
+    font: $fontSmall;
+    color: $clr-white;
+
+    padding-right: 10px;
+    max-width: 100%;
+    overflow: hidden;
+}
+.field_addBtn {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.field_dropdown {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    width: 100%;
+    padding: 10px;
+    background: $clr-black;
+    border-radius: 15px;
+    z-index: 1;
+    overflow: auto;
+    max-height: 175px;
+}
+
+.field_hint {
+    padding: 10px;
+    border-radius: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+    cursor: pointer;
+
+    &:hover {
+        background: $clr-black-main;
+    }
+}
+
+.values {
+    margin: 8px -4px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.values_item {
+    margin: 8px 4px 0;
+    padding: 8px 14px;
+    background: $clr-black;
+    border-radius: 20px;
+
+    font: 400 14px/1 $lato;
+    color: $clr-white;
+
+    display: flex;
+    align-items: center;
+
+    > span + * {
+        margin-left: 8px;
+    }
+}

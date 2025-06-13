@@ -1,0 +1,32 @@
+.root {
+    padding-left: 55px;
+    max-width: 629px;
+    padding-bottom: 44px;
+}
+.controls {
+    margin-top: 36px;
+    display: flex;
+    justify-content: flex-end;
+}
+.saveBtn {
+    padding: 14px;
+    min-width: 129px;
+}
+.item {
+    + .item {
+        margin-top: 12px;
+    }
+}
+@media (max-width: $tablet) {
+    .root {
+        max-width: 100%;
+        padding-left: 0;
+    }
+    .saveBtn {
+        width: 100%;
+    }
+    .irow + .controls,
+    .controls + .irow {
+        margin-top: 36px;
+    }
+}

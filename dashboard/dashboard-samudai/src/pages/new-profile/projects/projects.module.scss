@@ -1,0 +1,60 @@
+.root {
+    padding-bottom: 50px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+
+    &_inviteBtn {
+        display: flex;
+        align-items: center;
+
+        svg {
+            width: 22px;
+            height: 22px;
+            stroke: $clr-green;
+        }
+
+        span {
+            font: 600 14px/1 $lato;
+            color: $clr-green;
+        }
+    }
+
+    &_customizeBtn {
+        margin-left: 24px;
+
+        svg {
+            width: 14px;
+            height: 14px;
+            max-width: 14px;
+
+            stroke: #292D32;
+
+            margin-right: 4px;
+        }
+    }
+}
+
+.content {
+    padding-top: 60px;
+}
+
+.stat {
+    max-width: 830px;
+    display: flex;
+    justify-content: space-between;
+
+    &_item {
+        width: min(140px, 140px);
+    }
+
+    &_item + &_item {
+        margin-left: 10px;
+    }
+}
+
+.tabs {
+    margin-top: 32px;
+}

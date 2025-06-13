@@ -1,0 +1,41 @@
+.complete_icon {
+  margin: 65px auto 0;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  background: $clr-green;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 50%;
+    height: 50%;
+    [data-fill] {
+      stroke-width: 3px;
+      stroke: $clr-black-main;
+      fill: $clr-black-main;
+    }
+  }
+}
+.complete_text {
+  margin-top: 16px;
+  text-align: center;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.complete_btn {
+  margin-top: 150px;
+  margin-left: auto;
+  max-width: 129px;
+  width: 100%;
+  padding: 14px;
+}
+
+@media (max-width: $tablet){
+  .complete_btn {
+    margin-top: 40px;
+    max-width: 100%;
+  }
+}

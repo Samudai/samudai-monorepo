@@ -1,0 +1,137 @@
+.container {
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.header {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.back {
+  margin-right: auto;
+  margin-left: 38px;
+}
+.nav {
+}
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navName {
+  margin: 0 12px;
+}
+.navLabel,
+.navCount {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+}
+.navCount {
+  background: $clr-green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.1s ease-in-out;
+  transition-duration: background, color;
+
+  font: 900 12px/1.3 $lato;
+  color: #1e1e2c;
+}
+.navButton {
+  &:global(.active) {
+    .navCount {
+      background: $clr-black-main;
+      color: $clr-orange;
+    }
+  }
+}
+.list {
+  width: 100%;
+  margin-top: 47px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -30px -30px 0;
+}
+.card {
+  margin-top: 30px;
+  padding: 0 30px;
+  flex: 0 0 (100% / 2);
+
+  [data-role='head']:hover {
+    .controls {
+      opacity: 1;
+    }
+  }
+}
+.noConnections {
+  font: $font16;
+  text-align: center;
+  color: $clr-white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 50vh;
+}
+.controls {
+  opacity: 0;
+  transition: opacity $app-transition;
+}
+.controlsButton {
+  padding: 8px 14px;
+  max-width: 100px;
+  width: 100%;
+  justify-content: center;
+
+  &:hover {
+    filter: none;
+  }
+  + .controlsButton {
+    margin-top: 11px;
+  }
+}
+
+.hideButton {
+  filter: none;
+  transition: opacity $app-transition;
+  &:hover {
+    display: inline-block;
+  }
+}
+
+@media (max-width: $laptop_small) {
+  .header {
+    display: none;
+  }
+  .container {
+    padding-inline: 20px;
+  }
+  .cards {
+    margin-inline: -10px;
+    [data-class='card'] {
+      flex-basis: 50%;
+    }
+  }
+}
+@media (max-width: $tablet_small) {
+  .cards {
+    [data-class='card'] {
+      flex-basis: 100%;
+    }
+  }
+  .navButton {
+    flex-basis: 50%;
+  }
+  .hideButton {
+    display: none;
+  }
+}

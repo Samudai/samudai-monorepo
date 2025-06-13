@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  position: relative;
+
+  &.rootSidebar {
+    padding-left: 95px;
+
+    .content {
+      max-width: 100%;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 20;
+  flex-grow: 1;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: $tablet_big){
+  .root.rootSidebar {
+    padding-left: 0;
+  }
+}

@@ -1,0 +1,47 @@
+
+
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin: 0 24px;
+  max-width: 90px;
+}
+.header {
+  margin-top: 35px;
+}
+.body {
+  margin-top: 35px;
+  max-height: 135px;
+  overflow: hidden;
+}
+.cell {
+  flex: 0 0 (100% / 7);
+  display: flex;
+  justify-content: center;
+  padding: 0 5px;
+}
+.cell-title {
+  max-width: 100px;
+}
+.row {
+  display: flex;
+  + .row {
+    margin-top: 10px;
+  }
+}
+.day {
+  max-height: 76px;
+  padding-bottom: 60%;
+}
+:global(.meeting-calendar.small) {
+  .body {
+    max-height: unset;
+  }
+  .day {
+    border-radius: 5px;
+  }
+}

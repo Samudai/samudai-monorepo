@@ -1,0 +1,42 @@
+
+
+
+.root {
+}
+.imageContainer {
+  padding-bottom: 72%;
+  position: relative;
+  border-radius: 15px;
+
+  img {
+    position: absolute;
+    border-radius: inherit;
+  }
+}
+.imageName {
+  margin-top: 8px;
+  font: $fontSmall;
+  color: $clr-white;
+
+  strong {
+    color: $clr-gray-dark;
+  }
+}
+.imageText {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: $clr-black-main;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    font: 600 20px/1.25 $lato;
+    color: $clr-orange;
+  }
+}

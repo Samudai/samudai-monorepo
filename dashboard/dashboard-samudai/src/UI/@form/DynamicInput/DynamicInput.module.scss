@@ -1,0 +1,58 @@
+
+
+
+.root {}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  padding-right: 15px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-gray-dark;
+}
+.addBtn {
+  margin-left: auto;
+}
+.list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  display: flex;
+  // align-items: center;
+  background: $clr-black-main;
+  border-radius: 15px;
+  padding-right: 15px;
+
+  + .item {
+    margin-top: 14px;
+  }
+
+  &:hover .removeBtn {
+    opacity: 1;
+  }
+}
+.itemIndex {
+  min-width: 35px;
+  text-align: right;
+  font: 500 16px/1.25 $lato;
+  color: $clr-green;
+  height: 53px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.itemInput {
+  padding: 17.5px 16px;
+  height: 1em;
+}
+.removeBtn {
+  width: 10px;
+  opacity: 0;
+  transition: opacity $app-transition;
+  height: 53px;
+}

@@ -1,0 +1,158 @@
+.root {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel {
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    background: $clr-black;
+
+    @include strokeGradient(
+        linear-gradient($clr-black-main, $clr-black-main),
+        linear-gradient(rgba(255, 255, 255, 0.5), transparent)
+    );
+
+    border-width: 1px;
+    
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        flex-grow: 1;
+    }
+}
+
+.controls {
+    margin-top: 16px;
+
+    display: flex;
+    justify-content: space-between;
+
+    &_prevBtn,
+    &_nextBtn {
+        flex-shrink: 0;
+
+        &,
+        & svg {
+            width: 24px;
+            height: 24px;
+            stroke: $clr-white;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+}
+
+.bullets {
+    display: flex;
+    align-items: center;
+
+    &_item {
+        width: 10px;
+        height: 10px;
+        flex-shrink: 0;
+        border-radius: 50%;
+
+        background: $clr-black;
+
+        // cursor: pointer;
+
+        &Active {
+            background: $clr-green;
+            // pointer-events: none;
+        }
+    }
+
+    &_item + &_item {
+        margin-left: 8px;
+    }
+}
+
+// Animation
+
+.enter {
+    [data-animation='label'],
+    [data-animation='title'],
+    [data-animation='text'] {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    [data-animation='screen'] {
+        opacity: 0;
+        transform: translateY(110%);
+    }
+}
+
+.enterActive {
+    [data-animation='label'] {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 0.4s ease-in-out;
+        transition-property: opacity, transform;
+    }
+
+    [data-animation='title'] {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 0.35s ease-in-out .05s;
+        transition-property: opacity, transform;
+    }
+
+    [data-animation='text'] {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 0.3s ease-in-out .1s;
+        transition-property: opacity, transform;
+    }
+
+    [data-animation='screen'] {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.4s ease-in-out;
+    }
+}
+
+.exit {
+    [data-animation='label'],
+    [data-animation='title'],
+    [data-animation='text'],
+    [data-animation='screen'] {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.exitActive {
+    [data-animation='label'] {
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: 0.4s ease-in-out;
+        transition-property: opacity, transform;
+    }
+
+    [data-animation='title'] {
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: 0.35s ease-in-out 0.05s;
+        transition-property: opacity, transform;
+    }
+
+    [data-animation='text'] {
+        transform: translateX(-100%);
+        opacity: 0;
+        transition: 0.3s ease-in-out 0.1s;
+        transition-property: opacity, transform;
+    }
+
+    [data-animation='screen'] {
+        transform: translateY(110%);
+        transition: transform 0.4s ease-in-out;
+    }
+}

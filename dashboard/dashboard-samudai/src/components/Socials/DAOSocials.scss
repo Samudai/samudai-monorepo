@@ -1,0 +1,60 @@
+.socials {
+}
+.socials__list {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -5px;
+}
+.socials__item {
+  margin: 0 5px;
+
+  a,
+  div {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #35383c;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      max-width: 55.555%;
+    }
+
+    // Mod
+    &.icon-twitter svg {
+      max-width: 48.5%;
+    }
+    &.icon-discord svg {
+      max-width: 52.777%;
+    }
+    &.icon-mirror1 svg {
+      max-width: 52.777%;
+    }
+    &.icon-mirror svg {
+      max-width: 52.777%;
+      opacity: 0.2;
+    }
+    &.icon-mirror2 svg {
+      max-width: 52.777%;
+      opacity: 0.5;
+    }
+    &.icon-github svg {
+      max-width: 80%;
+      align-self: flex-end;
+    }
+
+    svg {
+      width: 100%;
+      .svg-fill {
+        fill: $clr-gray-dark;
+      }
+    }
+  }
+  a svg .svg-fill {
+    fill: $clr-orange;
+  }
+}

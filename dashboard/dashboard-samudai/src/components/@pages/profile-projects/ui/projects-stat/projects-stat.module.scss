@@ -1,0 +1,36 @@
+.stat {
+    padding: 16px 13px 22px;
+    border-radius: 25px;
+    background: $clr-black;
+
+    &_icon,
+    &_icon svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+    }
+
+    &_row {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    &_value {
+        font: 900 24px/1 $lato;
+        color: $clr-white;
+    }
+
+    &_title {
+        padding-left: 16px;
+        font: $fontMedium;
+        color: $clr-white;
+        
+        display: flex;
+        flex-direction: column;
+
+        span {
+            white-space: nowrap;
+        }
+    }
+}

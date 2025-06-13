@@ -1,0 +1,109 @@
+.mountly-plan {
+    padding: 24px 36px 49px 27px;
+    border-radius: 25px;
+}
+
+.mountly-plan__content {
+    margin-top: 21px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.mountly-plan__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.mountly-plan__status {
+    font: 600 16px/1.25 $lato;
+    color: $clr-gray;
+    white-space: nowrap;
+}
+
+.mountly-plan__values {
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mountly-plan__value {
+    font: 500 16px/1.25 $lato;
+    color: $clr-gray-dark;
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-right: 8px;
+    }
+
+    span {
+        flex-grow: 1;
+    }
+
+    strong {
+        margin-left: 10px;
+        color: $clr-gray;
+    }
+
+    + .mountly-plan__value {
+        margin-top: 12px;
+    }
+
+    &.orange {
+        &::before {
+            background-color: $clr-orange;
+        }
+    }
+
+    &.green {
+        &::before {
+            background-color: $clr-green;
+        }
+    }
+}
+
+.mountly-plan__progress {
+    max-width: 152px;
+    width: 100%;
+    margin-left: 15px;
+}
+
+.mountly-plan__progress-box {
+    padding-bottom: 100%;
+    position: relative;
+}
+
+.mountly-plan__chart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    &_small {
+        max-width: 72.4%;
+        max-height: 72.4%;
+    }
+}
+
+.mountly-pan__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font: 500 14px/1.25 $lato;
+    color: $clr-white;
+    max-width: 53px;
+}

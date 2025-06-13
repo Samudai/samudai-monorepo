@@ -1,0 +1,54 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &.colPd {
+    padding-left: 24px;
+  }
+
+  &.colId {
+    width: 24%;
+  }
+  &.colDate {
+    width: 23%;
+  }
+  &.colSender {
+    width: 19%;
+  }
+  &.colRecipient {
+    width: 20%;
+  }
+  &.colAmount {
+    flex-grow: 1;
+  }
+}
+.time {
+  margin-top: 8px;
+}
+.person {
+  color: $clr-gray-dark;
+  margin-bottom: 4px;
+}
+.amount {
+  text-align: center;
+}
+
+@media (max-width: $mobile_big) {
+  .col {
+    &.colId {
+      flex-grow: 1;
+    }
+    &.colDate {
+      padding-left: 8px;
+      width: 35%;
+    }
+    &.colSender {
+      width: 25%;
+    }
+    &.colRecipient,
+    &.colAmount {
+      display: none;
+    }
+  }
+}

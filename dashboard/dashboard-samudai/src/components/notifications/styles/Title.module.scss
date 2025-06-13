@@ -1,0 +1,19 @@
+
+
+
+.root {
+  padding-top: 3px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+
+@media (max-width: $tablet){
+  .root {
+    margin-left: 38px;
+  }
+}
+@media (max-width: $mobile_big){
+  .root {
+    margin-left: 32px;
+  }
+}

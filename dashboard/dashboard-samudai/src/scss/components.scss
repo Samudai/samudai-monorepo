@@ -1,0 +1,74 @@
+
+
+
+/* 
+  Pagination 
+*/
+.pagination {
+  display: flex;
+  align-items: center;
+
+  .swiper-pagination-bullet {
+    margin: 0 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $clr-black;
+
+    transition: $app-transition;
+    transition-property: width, border-radius, background, transform;
+
+    &-active {
+      width: 17px;
+      border-radius: 10px;
+      background-color: $clr-gray-dark;
+      cursor: initial;
+    }
+
+    &:not(.swiper-pagination-bullet-active):hover {
+      transition-duration: 0.4s;
+      transform: scale(1.5);
+    }
+  }
+}
+/* 
+   Scrollbar 
+*/
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(#616161, 0.8);
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #111111;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #616161;
+  }
+}
+.no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.orange-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $clr-orange;
+    border-radius: 16px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $clr-black;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-corner {
+    display: none;
+    opacity: 0;
+  }
+}

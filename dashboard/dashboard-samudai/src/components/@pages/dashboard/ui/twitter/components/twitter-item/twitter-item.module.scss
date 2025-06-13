@@ -1,0 +1,190 @@
+.item {
+    height: auto;
+    display: flex;
+    flex: 0 0 calc(50% - 12px);
+}
+
+.itemWrapper {
+    width: 100%;
+    height: auto;
+    padding: 34.5px 18.5px;
+    background: $clr-black;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.itemHeader {
+    display: flex;
+}
+
+.itemImg {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.itemUser {
+    padding-left: 16px;
+    flex-grow: 1;
+}
+
+.itemName {
+    font: 600 16px/1.25 $nunito;
+    color: $clr-white;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+        margin-left: 8.3px;
+        max-width: 16px;
+        width: 100%;
+    }
+}
+
+.itemId {
+    margin-top: 4px;
+    font: 400 14px/1.36 $nunito;
+    color: $clr-gray-dark;
+}
+
+.itemSocials {
+    display: flex;
+    align-items: flex-start;
+    margin-left: auto;
+}
+
+.itemSocialsBtn {
+    width: 20px;
+
+    svg {
+        max-width: 100%;
+        width: 100%;
+
+        [data-fill] {
+            fill: $clr-blue;
+        }
+    }
+
+    + .itemSocialsBtn {
+        margin-left: 10px;
+    }
+}
+
+.itemContent {
+    margin: 16px 0;
+
+    > * {
+        display: inline;
+        font: $fontMedium;
+        word-break: break-all;
+    }
+}
+
+.itemText {
+    color: $clr-white;
+}
+
+.itemLink {
+    color: $clr-orange;
+}
+
+.itemTag {
+    color: $clr-orange;
+}
+
+.itemDate {
+    margin-top: auto;
+    text-align: center;
+    font: 400 14px/1.36 $nunito;
+    color: $clr-gray-dark;
+}
+
+.itemInfo {
+    margin-top: 8px;
+    // margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itemInfoItem {
+    display: flex;
+    align-items: center;
+    font: $fontSmall;
+    color: #fff;
+
+    + .itemInfoItem {
+        margin-left: 10px;
+    }
+
+    svg {
+        max-width: 16px;
+        width: 100%;
+        margin-right: 5.3px;
+
+        [data-stroke],
+        [data-full] {
+            stroke: $clr-gray-dark;
+            transition: $app-transition;
+            transition-property: fill, stroke;
+        }
+    }
+
+    // &:hover {
+    //   [data-stroke],
+    //   [data-full] {
+    //     stroke: #fff;
+    //   }
+    // }
+}
+
+.comments {
+    svg {
+        [data-stroke],
+        [data-full] {
+            stroke: #1f9bf0;
+        }
+    }
+}
+
+.shared {
+    svg {
+        [data-stroke],
+        [data-full] {
+            stroke: #04ba7c;
+        }
+    }
+}
+
+.heart {
+    svg {
+        [data-stroke],
+        [data-full] {
+            stroke: #f91780;
+        }
+    }
+}
+
+.item {
+    $colors: $clr-lavender, $clr-green, $clr-yellow, $clr-blue, $clr-orange;
+
+    @for $i from 1 through length($colors) {
+        &:nth-child(#{$i}) {
+            .itemName {
+                $color: nth($colors, $i);
+
+                span {
+                    color: $color;
+                }
+
+                [data-stroke] {
+                    stroke: $color;
+                }
+            }
+        }
+    }
+}

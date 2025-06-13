@@ -1,0 +1,1 @@
+export { getFeedData } from './feedSoonData';

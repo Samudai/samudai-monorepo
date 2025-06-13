@@ -1,0 +1,19 @@
+.jobs {
+  padding-top: 40px;
+}
+.jobs_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.jobs_title {
+  font: $font24;
+  color: $clr-white;
+}
+.jobs_all {
+  font: 600 14px/1 $lato;
+  color: $clr-orange;
+}
+.jobs_list {
+  padding-top: 19px;
+}

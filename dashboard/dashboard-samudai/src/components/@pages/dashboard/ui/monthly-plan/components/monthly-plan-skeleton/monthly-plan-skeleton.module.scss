@@ -1,0 +1,32 @@
+.status {
+    max-width: 110px;
+}
+
+.point {
+    &::before {
+        display: none !important;
+    }
+}
+
+.marker {
+    max-width: 12px;
+    border-radius: 50%;
+}
+
+.title {
+    margin-left: 5px;
+    max-width: 44px;
+}
+
+.value {
+    margin-left: 5px;
+    max-width: 25px;
+}
+
+.progressbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    height: 100%;
+}

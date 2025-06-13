@@ -1,0 +1,47 @@
+
+
+
+.skeleton-title,
+.skeleton-text,
+.skeleton-button,
+.skeleton-avatar,
+.skeleton-block {
+  border-radius: 10px;
+  display: block !important;
+  width: 100%;
+  animation: skeleton-loading 2s linear infinite;
+  background-image: linear-gradient(
+    to Right,
+    #333333 0%,
+    #666666 20%,
+    #333333 40%
+  );
+  background-size: 200% 100%;
+}
+.skeleton-title {
+  height: 16px;
+}
+.skeleton-text {
+  height: 12px;
+}
+.skeleton-button {
+  max-width: 105px;
+  height: 34px;
+  border-radius: 20px;
+}
+.skeleton-avatar {
+  height: 44px;
+  max-width: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100%;
+  }
+  50%,
+  100% {
+    background-position: -100%;
+  }
+}

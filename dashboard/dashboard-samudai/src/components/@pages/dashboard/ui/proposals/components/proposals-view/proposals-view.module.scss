@@ -1,0 +1,60 @@
+.root {
+    max-width: 710px;
+    display: flex;
+    align-items: center;
+    padding-block: 24px 10px;
+
+    &:not(:last-of-type) {
+        border-bottom: 1px solid $clr-black;
+    }
+}
+
+.col {
+    &Title {
+        @include textOverflowVertical(2);
+        flex: 1 1 auto;
+    }
+
+    &Status {
+        padding-left: 14px;
+        max-width: 102px;
+        width: 100%;
+    }
+
+    &Btn {
+        padding-left: 46px;
+    }
+}
+
+.title {
+    font: $fontMedium;
+    color: $clr-gray;
+}
+
+.status {
+    max-width: 88px;
+    padding: 8px;
+    background: $clr-black;
+    border-radius: 20px;
+    text-align: center;
+
+    font: 400 14px/1 $lato;
+    color: $clr-lavender;
+
+    &[data-status='pending'] {
+        color: $clr-lavender;
+    }
+
+    &[data-status='active'] {
+        color: $clr-green;
+    }
+
+    &[data-status='closed'] {
+        color: $clr-orange;
+    }
+}
+
+.viewBtn {
+    padding: 8px;
+    min-width: 105px;
+}

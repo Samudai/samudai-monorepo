@@ -1,0 +1,237 @@
+.block.dao-discussions {
+    padding: 24px 24px 1px;
+    border-radius: 25px;
+    height: 727px;
+}
+
+.dao-discussions__content {
+    padding-bottom: 25px;
+}
+
+.dao-discussions__list {
+    margin-top: 22px;
+    max-height: 700px;
+}
+
+// Discussion Item
+.dao-discussions-item {
+    padding: 12px 0;
+}
+
+.dao-discussions-item__wrapper {
+    border-radius: 15px;
+    background: $clr-black;
+}
+
+.dao-discussions-item__btn {
+    width: 100%;
+    padding: 22px 22px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.dao-discussions-item__btn-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dao-discussions-item__btn-topic {
+    margin-left: 8px;
+    font: 500 16px/1.25 $lato;
+    color: $clr-white;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.dao-discussions-item__btn-arrow {
+    margin-left: auto;
+    width: 18px;
+    height: 18px;
+
+    transition: transform $app-transition;
+    transition-duration: 0.3s;
+
+    svg {
+        max-width: 100%;
+        max-height: 100%;
+        flex-shrink: 0;
+        transform: rotate(-90deg) translateY(-8px);
+
+        .svg-stroke {
+            stroke: $clr-orange;
+        }
+    }
+}
+
+.dao-discussions-item__messages {
+    transition: $app-transition;
+    transition-duration: 0.3s;
+    transition-property: height, opacity;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}
+
+.dao-discussions-item__messages-list {
+    padding: 12px 22px 4px;
+}
+
+.dao-discussions-item {
+    $colors: $clr-blue, $clr-orange, $clr-green, $clr-lavender, $clr-yellow;
+
+    @for $i from 1 through length($colors) {
+        &:nth-child(5n + #{$i}) {
+            .dao-discussions-item__btn-circle {
+                background-color: nth($colors, $i);
+            }
+        }
+    }
+}
+
+// Discussion Item Message
+.dao-discussions-message {
+    padding: 6px 0;
+}
+
+.dao-discussions-message__timestamp,
+.dao-discussions-message__user-name {
+    font: 600 16px/1.25 $nunito;
+}
+
+.dao-discussions-message__user-name {
+}
+
+.dao-discussions-message__text {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.dao-discussions-message__timestamp {
+    margin-top: 8px;
+    color: $clr-gray-dark;
+    display: none;
+}
+
+.dao-discussions-item.active {
+    .dao-discussions-item__messages {
+        opacity: 1;
+    }
+
+    .dao-discussions-item__btn-arrow {
+        transform: scaleY(-1);
+    }
+}
+
+.dao-discussions-message {
+    &:nth-child(2n + 1) {
+        .dao-discussions-message__user-name {
+            color: $clr-green;
+        }
+    }
+
+    &:nth-child(2n + 2) {
+        .dao-discussions-message__user-name {
+            color: $clr-lavender;
+        }
+    }
+}
+
+.dao-discussions__empty {
+    color: $clr-orange;
+}
+
+// Empty
+.forum-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forum-empty__item {
+    width: 100%;
+
+    + .forum-empty__item {
+        margin-top: 32px;
+    }
+}
+
+.forum-empty__head {
+    display: flex;
+    align-items: center;
+}
+
+.forum-empty__circle {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    background: $clr-black;
+}
+
+.forum-empty__content {
+    padding-left: 16px;
+    flex-grow: 1;
+}
+
+.forum-empty__title {
+    display: block;
+    height: 17px;
+    border-radius: 5px;
+    background: $clr-black;
+
+    max-width: 166px;
+
+    + .forum-empty__title {
+        margin-top: 8px;
+        max-width: 128px;
+    }
+}
+
+.forum-empty__block {
+    display: block;
+    margin-top: 16px;
+    height: 36px;
+    border-radius: 5px;
+    background: $clr-black;
+}
+
+.forum-empty__text {
+    margin-top: 32px;
+    max-width: 162px;
+    text-align: center;
+    font: 400 16px/1.5 $lato;
+    color: $clr-gray-dark;
+}
+
+.forum-empty__visitBtn {
+    margin-top: 22px;
+    padding: 14px 43px;
+}
+
+@media (max-width: $tablet_small) {
+    .block.dao-discussions {
+        padding: 20px 11px;
+        border-radius: 20px;
+    }
+
+    .dao-discussions__list {
+        margin-top: 11px;
+    }
+
+    .dao-discussions-item {
+        padding-block: 9px;
+    }
+
+    .dao-discussions-message__timestamp {
+        display: block;
+        font: $fontMedium;
+    }
+
+    .dao-discussions-message__user-name-time {
+        display: none;
+    }
+}

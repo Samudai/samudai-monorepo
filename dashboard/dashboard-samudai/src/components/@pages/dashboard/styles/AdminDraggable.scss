@@ -1,0 +1,25 @@
+
+
+
+.admin-draggable {
+  position: relative;
+
+  + .admin-draggable {
+    margin-top: 35px;
+    @media (max-width: $laptop){
+      margin-top: 25px;
+    }
+  }
+
+  & > .block.over {
+    background-color: lighten($clr-black-main, 10%);
+  }
+  &.draggable > .block {
+    outline: 2px dashed $clr-lavender;
+    cursor: grab;
+
+    &::after {
+      display: block;
+    }
+  }
+}

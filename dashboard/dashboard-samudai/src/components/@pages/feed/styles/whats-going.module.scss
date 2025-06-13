@@ -1,0 +1,23 @@
+.wg {
+  width: 100%;
+}
+.wg_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wg_title {
+  font: 600 18px/1.22 $lato;
+  color: $clr-white;
+}
+.wg_list {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.wg_no_tweets {
+  font: $font16;
+  color: $clr-gray-dark;
+}

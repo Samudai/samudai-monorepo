@@ -1,0 +1,71 @@
+.total-balance {
+    padding: 22.5px 24px;
+    border-radius: 20px;
+    height: 158px;
+}
+
+.total-balance__content {
+    margin-top: 21px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.total-balance__sum {
+    flex-grow: 1;
+}
+
+.total-balance__sum-token {
+    font: 700 36px/0.97 $lato;
+    color: $clr-white;
+}
+
+.total-balance__sum-dollar {
+    margin-top: 16px;
+    font: 500 16px/1.25 $lato;
+    color: $clr-gray;
+}
+
+.total-balance__token {
+    margin-left: 10px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    min-width: 83px;
+    font: 400 14px/1 $lato;
+    color: $clr-green;
+    text-align: center;
+    background: $clr-black;
+}
+
+// Empty
+
+.total-empty {
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 304px;
+}
+
+.total-empty__content {
+}
+
+.total-empty__text {
+    max-width: 105px;
+    font: 400 12px/1.25 $lato;
+    color: $clr-gray-dark;
+}
+
+.total-empty__connectBtn {
+    margin-top: 14px;
+    padding: 9px 21px;
+
+    span {
+        font-size: 9px;
+    }
+}
+
+.total-empty__img {
+    width: 100px;
+    height: 100px;
+}

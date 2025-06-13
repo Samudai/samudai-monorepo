@@ -1,0 +1,101 @@
+
+
+
+.root {
+  margin-top: 35px;
+  display: flex;
+}
+.cards {
+  display: flex;
+  max-width: 368px;
+  width: 100%;
+}
+.info {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+.invite {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+// Cards
+.card {
+  max-width: 170px;
+  width: 100%;
+  padding: 34px 0 26px 24px;
+  border-radius: 25px;
+  box-shadow: 0px 36px 36px #0f1011;
+
+  background: $clr-black-main;
+
+  display: flex;
+  align-items: center;
+
+  + .card {
+    margin-left: 28px;
+  }
+}
+.cardInner {
+  max-width: 95px;
+}
+.cardIcon {
+  width: 24px;
+  flex-shrink: 0;
+
+  &.cardIconProgress {
+    :global(.svg-stroke) {
+      stroke: $clr-lavender;
+    }
+  }
+  &.cardIconComplete {
+    :global(.svg-stroke) {
+      stroke: $clr-green;
+    }
+  }
+}
+.cardValue {
+  margin-top: 16px;
+  font: 900 24px/.83 $lato;
+  color: $clr-white;
+}
+.cardName {
+  margin-top: 16px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-gray;
+}
+
+// Info
+.infoInner {
+  max-width: 200px;
+}
+.infoTitle {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+}
+.members {
+  margin-top: 17.5px;
+  + .infoTitle {
+    margin-top: 39.5px;
+  }
+}
+.progress {
+  margin-top: 16px;
+  [data-role="progress-line"] {
+    background: $clr-green;
+  }
+}
+
+// Invite
+.addBtn {
+  margin-bottom: 44px;
+}
+.hours {
+  margin-top: 14px;
+  font: 900 24px/.83 $lato;
+  color: $clr-white;
+}

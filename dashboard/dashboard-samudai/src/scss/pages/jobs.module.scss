@@ -1,0 +1,87 @@
+.root {
+  padding-bottom: 108px;
+}
+.root_breadcrumbs {
+  margin-top: 32px;
+}
+.container {
+}
+.head {
+  padding-top: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headRight {
+  display: none;
+  align-items: center;
+
+  button + button {
+    margin-left: 14px;
+  }
+}
+.title {
+  font: $font24;
+  color: $clr-white;
+}
+.controlsBtn {
+  margin-top: 46px;
+  display: none;
+  align-items: center;
+  white-space: nowrap;
+
+  svg {
+    width: 16px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+
+    [data-full] {
+      stroke: $clr-orange;
+    }
+
+    &.controlsBtnSvgFill [data-full] {
+      fill: $clr-orange;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+/* 
+  Jobs
+*/
+.jobs {
+  padding-top: 55px;
+}
+
+@media (max-width: $tablet) {
+  .controlsBtn {
+    display: flex;
+  }
+  .jobs {
+    padding-top: 22px;
+  }
+  .headRight {
+    display: flex;
+  }
+}
+@media (max-width: $mobile_small) {
+  .headRight button:last-child {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    svg {
+      margin-right: 0;
+      width: 14px;
+    }
+    span {
+      display: none;
+    }
+  }
+}

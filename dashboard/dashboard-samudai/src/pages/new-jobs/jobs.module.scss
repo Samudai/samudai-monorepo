@@ -1,0 +1,12 @@
+.jobs {
+    padding-bottom: 50px;
+}
+.jobs_list {
+    padding-top: 24px;
+}
+.jobs_item {
+
+    + .jobs_item {
+        margin-top: 24px;
+    }
+}

@@ -1,0 +1,85 @@
+@function getMarginLeft($isScrollbar: false) {
+  $offsetLeft: 95px;
+  @if ($isScrollbar == true) {
+    $offsetLeft: 103px;
+  }
+  @return calc(((100vw - $offsetLeft) / 2 - (1305px / 2) + 40px) * -1);
+}
+.root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @media (min-width: 1400px) {
+    &.rootScrollbar .sidebar {
+      margin-left: getMarginLeft(true);
+    }
+  }
+}
+.headerMain {
+  &::after {
+    width: 100%;
+  }
+}
+.container {
+  flex-grow: 1;
+  display: flex;
+}
+.sidebar {
+  margin-left: getMarginLeft();
+  background-color: $clr-black-main;
+
+  @media (max-width: 1399px) {
+    margin-left: -40px;
+  }
+}
+.content {
+  padding: 30px 0 120px 60px;
+  flex-grow: 1;
+  max-width: 100%;
+  overflow: hidden;
+}
+.teamInfo {
+  background: $clr-black-main;
+  border-radius: 25px;
+  min-height: 800px;
+  width: 100%;
+  display: flex;
+}
+.loader {
+  max-width: 400px;
+  margin: auto;
+}
+@media (max-width: $laptop) {
+  .content {
+    padding-left: 20px;
+  }
+}
+@media (max-width: $laptop_small) {
+  .sidebar {
+    margin-inline: -25px;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .content {
+    padding-inline: 0;
+  }
+}
+@media (max-width: $tablet_big){
+  .sidebar {
+    margin-inline: -15px;
+  }
+}
+@media (max-width: $tablet){
+  .teamInfo {
+    flex-direction: column;
+    min-height: auto;
+    background: none;
+    border-radius: 0;
+  }
+  .content {
+    padding-inline: 0;
+    padding-bottom: 0;
+  }
+}

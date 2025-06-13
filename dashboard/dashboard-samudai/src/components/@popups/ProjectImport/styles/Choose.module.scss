@@ -1,0 +1,47 @@
+
+
+
+.root {}
+
+.select {
+}
+.selectBtn {
+  .selectName {
+    color: $clr-white;
+  }
+}
+.selectList {
+}
+.selectItem {
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: background $app-transition;
+
+  &:hover {
+    background: rgba($clr-black, .5);
+  }
+}
+.selectContent {
+  display: flex;
+  align-items: center;
+}
+.selectIcon {
+  width: 21px;
+  height: 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+  }
+}
+.selectName {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-gray;
+}
+.input {
+  margin-top: 36px;
+}

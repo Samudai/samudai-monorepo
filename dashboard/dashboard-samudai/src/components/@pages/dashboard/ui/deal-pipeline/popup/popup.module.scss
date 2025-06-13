@@ -1,0 +1,58 @@
+.root {
+    padding: 45px 30px 30px;
+    width: 500px;
+}
+
+.title {
+    color: $clr-white;
+    font: 600 29px/1.25 $lato;
+    align-self: center;
+    margin-bottom: 30px;
+}
+
+.wrapper {
+    border: 1px solid $clr-gray-dark;
+    border-radius: 8px;
+    margin-top: 30px;
+    pointer-events: none;
+    cursor: default;
+}
+
+.button_container {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 50px 0;
+}
+
+.button {
+    font: 500 16px/1.2 $lato;
+    padding: 10px 20px;
+    width: 150px;
+}
+
+.shareModal {
+    padding: 30px;
+
+    &_body {
+        width: 98%;
+        margin-top: 20px;
+        background: #1f2123;
+        height: 60px;
+        line-height: 2.4;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            color: #52585e;
+            padding: 15px;
+        }
+    }
+
+    &_btn {
+        margin-top: 30px;
+        min-width: 30px;
+        align-self: center;
+    }
+}

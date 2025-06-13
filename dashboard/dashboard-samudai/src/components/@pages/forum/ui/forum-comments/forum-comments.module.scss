@@ -1,0 +1,27 @@
+.comments {
+}
+.comments_content {
+    padding-inline: 32px;
+}
+.comments_title {
+    font: 600 18px/1.2 $lato;
+    color: $clr-gray;
+}
+.comments_list {
+    margin-top: -5px;
+}
+// .comments_panel {
+//     margin-top: 30px;
+// }
+.comments_nocomments {
+    margin-top: 24px;
+    font: $font16;
+    color: $clr-gray-dark;
+}
+.post_comments_panel {
+    margin-top: 30px;
+    position: sticky;
+    bottom: 0;
+    padding: 10px 0;
+    background: #161819;
+}

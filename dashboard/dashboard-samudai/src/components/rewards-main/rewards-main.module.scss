@@ -1,0 +1,259 @@
+.rewards {
+  &_container {
+    margin-top: 40px;
+  }
+  &_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &_row + &_row {
+    margin-top: 24px;
+  }
+  &_title {
+    font: 700 28px/1.29 $lato;
+    color: $clr-gray;
+  }
+  &_roleBtn {
+    margin-inline: auto 28px;
+    display: flex;
+    align-items: center;
+    &_icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px dashed $clr-orange;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 14px;
+        [data-stroke] {
+          stroke: $clr-orange;
+        }
+      }
+    }
+    &_name {
+      margin-left: 16px;
+      font: $font16;
+      color: $clr-orange;
+    }
+  }
+  &_configBtn {
+  }
+  &_filterBtn {
+  }
+  &_sort {
+    font: $font16;
+    color: $clr-gray-dark;
+    display: flex;
+    align-items: center;
+  }
+  &_select {
+    margin-left: 8px;
+    &_btn {
+      padding: 0;
+      min-height: auto;
+      background: transparent;
+      font: $font16;
+      color: $clr-orange;
+      [data-class='arrow'] {
+        margin-left: 8px;
+        svg [data-stroke] {
+          stroke: $clr-orange;
+        }
+      }
+    }
+    [data-class='list-main'] {
+      padding: 5px 10px;
+      min-width: 120px;
+      top: calc(100% + 5px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 12px;
+    }
+    &_list {
+    }
+    &_item {
+      white-space: nowrap;
+      padding-block: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+  &_box {
+    margin-top: 40px;
+    overflow: auto;
+  }
+
+  &_roles {
+    display: flex;
+    $colors: $clr-orange, $clr-lavender, $clr-green, $clr-blue;
+    $length: length($colors);
+
+    &_item {
+      border-top: 4px solid;
+      padding-top: 24px;
+      width: 370px;
+      flex-shrink: 0;
+
+      @for $i from 1 through $length {
+        $clr: nth($colors, $i);
+
+        &:nth-child(#{$length}n + #{$i}) {
+          border-top-color: $clr;
+
+          .rewards_roles_roleAdd {
+            border-color: $clr;
+
+            svg [data-stroke] {
+              stroke: $clr;
+            }
+          }
+
+          .rewards_roles_selectBtn {
+            strong {
+              border-color: $clr;
+
+              svg [data-stroke] {
+                stroke: $clr;
+              }
+            }
+
+            span {
+              color: $clr;
+            }
+          }
+
+          [data-color] {
+            color: $clr;
+          }
+        }
+      }
+    }
+
+    &_item + &_item {
+      margin-left: 60px;
+    }
+
+    &_head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &_title {
+      font: $font24;
+      color: $clr-white;
+    }
+
+    &_roleAdd {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border: 1px dashed $clr-orange;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 14px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+          stroke: $clr-orange;
+        }
+      }
+    }
+
+    &_selectBtn {
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+
+      strong {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border: 1px dashed $clr-orange;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 14px;
+          flex-shrink: 0;
+
+          [data-stroke] {
+            stroke: $clr-orange;
+          }
+        }
+      }
+
+      span {
+        margin-left: 16px;
+        font: $font16;
+        color: $clr-orange;
+      }
+
+      &_addReward:not(:first-child:last-child) {
+        margin-top: 36px;
+      }
+    }
+
+    &_data {
+      margin-top: 36px;
+      padding-bottom: 80px;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .rewards {
+    &_container {
+      margin-top: 20px;
+    }
+    &_roles {
+      &_item {
+        width: 255px;
+      }
+      &_item + &_item {
+        margin-left: 30px;
+      }
+    }
+    &_roleBtn {
+      margin-right: 0;
+      &_name {
+        display: none;
+      }
+    }
+    &_configBtn {
+      display: none;
+    }
+    &_row + &_row {
+      margin-top: 21px;
+    }
+    &_sort {
+      font-size: 14px;
+    }
+    &_select {
+      &_btn {
+        font-size: 14px;
+      }
+      &_list:is([data-class="list-main"]) {
+        left: auto;
+        right: 0;
+        transform: translateX(0);
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+.calendar {
+    padding: 20px 34.5px 23px;
+    border-radius: 25px;
+    background: $clr-black-main;
+    position: absolute;
+    top: calc(100% - 15px);
+
+    &_left {
+        left: 0;
+    }
+
+    &_right {
+        right: 0;
+    }
+
+    &_center {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+.calendarHead {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calendarDate {
+    margin: 0 24px;
+    white-space: nowrap;
+    font: 400 20px/0.88 $lato;
+    color: $clr-gray-dark;
+
+    strong {
+        color: $clr-white;
+    }
+}
+.calendarBody {
+    margin-top: 14px;
+}
+.calendarRow {
+    margin: 0 -7px;
+    display: flex;
+
+    + .calendarRow {
+        margin-top: 14px;
+    }
+
+    &[data-role='title'] {
+        .calendarCell {
+            background-color: transparent;
+            height: 22px;
+            cursor: default;
+        }
+    }
+}
+.calendarCell {
+    cursor: pointer;
+    display: block;
+
+    margin: 0 7px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: $clr-black;
+
+    font: 400 17px/1.29 $lato;
+    text-align: center;
+    letter-spacing: -0.408px;
+    color: $clr-gray-dark;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &[data-active='true'] {
+        background: #b2ffc3 !important;
+    }
+}
+.controls {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+.removeBtn,
+.doneBtn {
+    padding: 14px;
+    max-width: 135px;
+    width: 100%;
+}
+.removeBtn {
+    margin-right: 7.5px;
+}
+
+.doneBtn {
+    margin-left: 7.5px;
+}

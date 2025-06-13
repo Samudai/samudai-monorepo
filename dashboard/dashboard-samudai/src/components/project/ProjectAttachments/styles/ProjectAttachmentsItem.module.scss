@@ -1,0 +1,89 @@
+.attch {
+  + .attch {
+    margin-top: 16px;
+  }
+}
+.attch_wrapper {
+  padding: 10px 30px;
+  background: $clr-black-main;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+}
+.attch_topdate {
+  display: none;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+  margin-bottom: 8px;
+}
+.checkboxCol {
+}
+.fileCol {
+  flex-grow: 1;
+  padding-left: 24px;
+}
+.sizeCol {
+  width: 12.05%;
+  padding-left: 14px;
+}
+.dateCol {
+  width: 24.35%;
+  padding-left: 14px;
+}
+.controlsCol {
+  min-width: 65px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: $clr-black;
+}
+.file {
+  align-items: center;
+  [data-role='size'] {
+    display: none;
+  }
+}
+.text {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.downloadBtn,
+.removeBtn {
+  width: 20px;
+  flex-shrink: 0;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.downloadBtn {
+  [data-stroke] {
+    stroke: $clr-lavender;
+  }
+}
+.removeBtn {
+  margin-left: 24px;
+  [data-fill] {
+    fill: $clr-gray-dark;
+  }
+}
+
+@media (max-width: $tablet){
+  .dateCol {
+    display: none;
+  }
+  .attch_topdate {
+    display: block;
+  }
+  .attch_wrapper {
+    padding: 10px 20px
+  }
+  .fileCol {
+    padding-left: 0;
+  }
+}

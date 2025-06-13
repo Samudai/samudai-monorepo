@@ -1,0 +1,52 @@
+.font {
+    padding: 4px 8px;
+    background: #35383c;
+    border-radius: 6px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.font_size {
+    font: 500 10px/1 $lato;
+    color: $clr-white;
+    user-select: none;
+}
+
+.font_button {
+    padding-left: 2px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.font_buttons_up {
+    transform: scaleY(-1);
+}
+.font_buttons_up,
+.font_buttons_down {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        height: 100%;
+
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+
+    &:disabled {
+        cursor: default;
+        opacity: .4;
+    }
+}
+
+

@@ -1,0 +1,55 @@
+.ui-checkbox {
+    font-size: 16px;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 5px;
+    border: 1px solid #35383c;
+    flex-shrink: 0;
+    transition: background 0.025s ease-in;
+    cursor: pointer;
+    padding: 4px 5px 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    &.--mark {
+        svg {
+            opacity: 1;
+            .svg-fill {
+                fill: $clr-gray-dark !important;
+            }
+        }
+    }
+}
+.ui-checkbox svg {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0;
+    transition: opacity $app-transition;
+
+    .svg-fill {
+        fill: $clr-green;
+    }
+}
+.ui-checkbox.filled {
+    svg .svg-fill {
+        fill: $clr-black;
+    }
+    &.--checked {
+        background: $clr-green;
+    }
+}
+.ui-checkbox.--checked {
+    svg {
+        opacity: 1;
+    }
+}
+.ui-checkbox.--disabled {
+    cursor: default;
+    background: rgba(82, 88, 94, 0.1);
+}

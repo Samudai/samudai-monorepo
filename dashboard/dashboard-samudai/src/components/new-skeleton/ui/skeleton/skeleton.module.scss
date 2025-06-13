@@ -1,0 +1,21 @@
+.skeleton {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(110deg, $clr-black 8%, lighten($clr-black, 5%) 18%, $clr-black 33%);
+    background-size: 200% 100%;
+    animation: shine 1.5s linear infinite;
+
+    &_static {
+        background: $clr-black !important;
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: -200%;
+    }
+}

@@ -1,0 +1,26 @@
+.stat {
+    max-width: 830px;
+    display: flex;
+    justify-content: space-between;
+
+    &_item {
+        width: min(140px, 140px);
+    }
+
+    &_item + &_item {
+        margin-left: 10px;
+    }
+}
+
+.tabs {
+    display: flex;
+    margin-top: 32px;
+}
+
+.list {
+    margin-top: 32px;
+
+    &_item + &_item {
+        margin-top: 32px;
+    } 
+}

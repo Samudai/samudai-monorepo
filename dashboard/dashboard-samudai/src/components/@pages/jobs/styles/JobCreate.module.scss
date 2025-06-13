@@ -1,0 +1,364 @@
+.root {
+  &[data-role='popup'] {
+    max-width: 634px !important;
+    padding: 68px 58.5px 43px;
+    background: $clr-black-main !important;
+    position: relative;
+
+    @media (max-height: 828px) {
+      padding-top: 45px;
+    }
+  }
+  &Submitted::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(#000, .5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20;
+  }
+}
+.head {
+  display: flex;
+  align-items: center;
+}
+.titleMain {
+  font: $font16;
+  color: $clr-white;
+}
+.tabs {
+  margin-top: 46px;
+  max-width: 497px;
+
+  [data-role='button'] {
+    min-width: auto;
+    flex-grow: 1;
+  }
+}
+.form {
+  margin-top: 57px;
+}
+.item {
+  + .item {
+    margin-top: 36px;
+  }
+}
+.title {
+  font: $font16;
+  color: $clr-white;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+
+  [data-icon-info] {
+    width: 24px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    [data-stroke] {
+      fill: $clr-green;
+    }
+  }
+
+  span {
+    text-transform: capitalize;
+    margin-left: 0.3em;
+  }
+}
+.input {
+  [data-role='title'] {
+    color: $clr-white;
+  }
+  [data-role='field'] {
+    background-color: $clr-black;
+  }
+}
+/* Description */
+.descriptionArea {
+  padding: 18px 20px;
+  border-radius: 15px;
+  background: $clr-black;
+  max-height: 131px;
+  min-height: 131px;
+}
+/* Department */
+.select_department_value {
+  font: $fontMedium;
+  color: $clr-white;
+}
+:global(.rs__option:hover) {
+  .select_department_value {
+    color: $clr-green;
+  }
+}
+/* Point of contact (contacts) */
+.contacts {
+  position: relative;
+}
+.contacts_icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  z-index: 6;
+}
+.contacts_select {
+  position: relative;
+  z-index: 5;
+}
+.contacts_u {
+  display: flex;
+  align-items: center;
+
+  &_photo {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    position: relative;
+  }
+  &_name {
+    margin-left: 16px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+
+    span {
+      color: $clr-white;
+    }
+  }
+}
+/* Payout */
+.payout {
+  display: flex;
+}
+.payout_input {
+  max-width: 241px;
+  [data-role='field'] {
+    background-color: $clr-black;
+  }
+}
+.payout_select {
+  width: 123px;
+  flex-shrink: 0;
+  margin-left: 30px;
+}
+/* Captain */
+.captain {
+}
+.captainList {
+  margin-top: 12px;
+}
+.captainItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  + .captainItem {
+    margin-top: 16px;
+  }
+
+  &[data-active='true'] {
+    &,
+    > button {
+      cursor: default;
+    }
+  }
+}
+.captainItemRadio {
+}
+.captainItemValue {
+  margin-left: 16px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+/* Min People */
+.peopleInput {
+  max-width: 241px;
+}
+/* Deadlines */
+.deadlines {
+  display: flex;
+  justify-content: space-between;
+}
+.deadlinesCol {
+  flex: 0 0 calc(50% - 15.5px);
+
+  &:last-child [data-role='calendar'] {
+    transform: translateX(0);
+    right: 0;
+    left: auto;
+  }
+}
+.deadlinesDatePicker {
+  [data-role='calendar-button'] {
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+  [data-role='field'] {
+    background-color: $clr-black;
+  }
+  [data-role='input'] {
+    color: $clr-white;
+  }
+}
+/* Github */
+.githubIcon {
+  margin-block: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: $clr-gray;
+
+  svg {
+    margin-top: -1px;
+    width: 100%;
+    height: calc(100% + 1px);
+  }
+
+  [data-fill] {
+    fill: $clr-black-main;
+  }
+}
+.githubInput {
+  [data-role='field'] {
+    background-color: $clr-black;
+  }
+  [data-role='input'] {
+    padding-left: 15px;
+    color: $clr-lavender;
+  }
+}
+/* Attachments */
+/* Add Task */
+.addTask {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .title {
+    margin-bottom: 0;
+  }
+}
+.addTaskBtn {
+  display: flex;
+  align-items: center;
+}
+.addTaskBtnIcon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid $clr-orange;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 39%;
+    max-height: 39%;
+    width: 100%;
+
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+}
+.task_list {
+  margin-top: 36px;
+}
+.addTaskBtnText {
+  margin-left: 16px;
+  font: $font16;
+  color: $clr-orange;
+}
+/* Associated */
+
+/* Open to */
+.openToList {
+  margin-top: 24px;
+}
+.openToItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  + .openToItem {
+    margin-top: 12px;
+  }
+}
+.openToCheckbox {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: $clr-black;
+}
+.openToName {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.skills {
+  margin-top: 14px;
+}
+.tags {
+  margin-top: 14px;
+}
+/* Foot */
+.foot {
+  margin-top: 68px;
+  display: flex;
+  justify-content: flex-end;
+}
+.footCancelBtn,
+.footSaveBtn {
+  padding: 14px 63px;
+}
+.footCancelBtn {
+  color: $clr-orange;
+}
+.footSaveBtn {
+  margin-left: 16px;
+}
+@media (max-width: $mobile_big) {
+  .root[data-role='popup'] {
+    padding-inline: 20px;
+  }
+  .title {
+    font-size: 14px;
+  }
+  .tabs {
+    margin-top: 36px;
+  }
+  .item {
+    + .item {
+      margin-top: 24px;
+    }
+  }
+  .payout_select {
+    margin-left: 10px;
+  }
+  .deadlinesCol {
+    flex: 0 0 calc(50% - 5px);
+  }
+  .footCancelBtn,
+  .footSaveBtn {
+    padding: 14px;
+    flex-grow: 1;
+  }
+}
+@media (max-width: $mobile_small) {
+  .addTaskBtn {
+    > div {
+      margin-right: 0;
+    }
+    > p {
+      display: none;
+    }
+  }
+}

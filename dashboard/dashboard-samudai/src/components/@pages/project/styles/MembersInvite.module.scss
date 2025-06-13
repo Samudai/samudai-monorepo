@@ -1,0 +1,62 @@
+.root {
+  padding: 30px;
+  padding-bottom: 45px;
+}
+.doneBtn {
+  margin-top: 32px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+.subtitle {
+  margin-top: 25px;
+  color: $clr-white;
+}
+.select {
+  margin-top: 25px;
+}
+.selectIcon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.selectName {
+  margin-left: 16px;
+  font: $font16;
+  color: $clr-gray-dark;
+
+  span {
+    color: $clr-white;
+  }
+}
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 6px -4px 0
+}
+.membersItem {
+  display: flex;
+  margin: 8px 4px 0;
+  padding: 6px 12px;
+  border-radius: 25px;
+
+  display: flex;
+  align-items: center;
+  background-color: $clr-black;
+}
+.membersImg {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.membersName {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.membersRemoveBtn {
+  margin-left: 8px;
+  width: 13px;
+}

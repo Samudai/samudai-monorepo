@@ -1,0 +1,159 @@
+.sidebar {
+    padding: 20px 16px 50px;
+    background: $clr-black-main;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar_label {
+    padding: 4px 8px;
+    border: 1px solid #e06a03;
+    border-radius: 28px;
+    background: $clr-orange;
+
+    font: 700 10px/1.2 $lato;
+    // color: $clr-black-main;
+    color: #e06a03;
+}
+
+.avatar {
+    margin-top: 16px;
+
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.name {
+    margin-top: 20px;
+    font: 600 26px/0.85 $lato;
+    color: $clr-white;
+    text-align: center;
+}
+
+.position {
+    margin-top: 24px;
+
+    font: $fontMedium;
+    color: $clr-lavender;
+
+    text-align: center;
+}
+
+.about {
+    margin-top: 24px;
+
+    font: $fontMedium;
+    color: $clr-white;
+    max-width: 275px;
+    // align-self: flex-start;
+}
+
+.location {
+    margin-top: 24px;
+
+    font: $font16;
+    color: $clr-white;
+}
+
+.socials {
+    margin-top: 37px;
+}
+
+.connect_btn {
+    margin-top: 37px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dao {
+    margin-top: 22px;
+
+    width: 100%;
+    padding-inline: 16.5px;
+
+    &_list {
+        margin-top: 16px;
+    }
+
+    &_title {
+        font: $fontMedium;
+        color: $clr-gray-dark;
+    }
+}
+
+.block {
+    margin-top: 32px;
+    padding: 15px 22px;
+    width: 100%;
+    background: $clr-black;
+    border-radius: 16px;
+
+    &_row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &_text {
+        font: $fontMedium;
+        color: $clr-gray;
+    }
+
+    &_value {
+        font: $font16;
+        color: $clr-gray;
+    }
+
+    &_members {
+        li:last-child {
+            background: $clr-black;
+        }
+    }
+
+    &_divider {
+        margin-block: 16px;
+    
+        display: block;
+        height: 1px;
+        width: 100%;
+    
+        background: $clr-gray-dark;
+    }
+
+    &_btn {
+        max-width: 170px;
+        padding: 13px;
+        width: 100%;
+        margin-inline: auto;
+        white-space: nowrap;
+
+        span > {
+            font: 400 14px/1 $lato;
+        }
+    }
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        stroke: $clr-orange;
+    }
+
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+        transform: translateY(0.1em);
+    }
+}

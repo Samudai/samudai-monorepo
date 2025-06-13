@@ -1,0 +1,60 @@
+.app {
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.rs__control--is-focused.rs__control--menu-is-open {
+  z-index: 50;
+  + div {
+    z-index: 9999;
+  }
+
+  .rs__indicator {
+    transform: scaleY(-1);
+  }
+}
+.rs__control {
+  .rs__placeholder {
+    width: 0;
+    white-space: nowrap;
+  }
+  .rs__input-container {
+    margin: 0;
+  }
+}
+.rs__menu-list {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $clr-blue;
+    width: 8px;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $clr-black;
+    border-radius: 8px;
+  }
+}
+em-emoji-picker {
+  // --em-rgb-background: $clr-black-main !important;
+  --em-rgb-background: red !important;
+}
+
+.capitalization {
+  text-transform: capitalize;
+}
+.payments-select__content {
+  display: flex;
+  align-items: center;
+  align-items: center;
+
+  font: $fontMedium;
+  color: $clr-white;
+
+  p {
+    padding-left: 10px;
+    text-transform: capitalize;
+  }
+}

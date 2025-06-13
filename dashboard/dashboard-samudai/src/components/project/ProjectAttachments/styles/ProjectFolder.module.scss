@@ -1,0 +1,44 @@
+.root {
+  padding: 15px 11px 16px 17px;
+  border-radius: 20px;
+  background: $clr-black-main;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.folder {
+  width: 40px;
+  flex-shrink: 0;
+}
+.settings {}
+.name {
+  margin-top: 32px;
+  font: $font16;
+  color: $clr-white;
+  flex: 1 1 auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.files {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 16px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-gray-dark;
+    }
+  }
+
+  p {
+    margin-left: 8px;
+    font: $fontMedium;
+    color: #FFF;
+  }
+}

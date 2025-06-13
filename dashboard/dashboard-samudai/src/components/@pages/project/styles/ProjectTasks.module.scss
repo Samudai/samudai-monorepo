@@ -1,0 +1,42 @@
+
+
+
+.root {
+  padding: 45px;
+  border-radius: 35px;
+  margin-top: 50px;
+  background-color: $clr-black-main;
+}
+.title {
+  font: 600 24px/1.12 $lato;
+  color: $clr-white;
+}
+.calendar {
+  margin-top: -35px;
+}
+.link {
+  margin-right: 20px;
+}
+.linkArrow {
+  margin-left: 6px;
+  width: 16.7px;
+  height: 16.7px;
+  border-radius: 5px;
+  border: 1.5px solid $clr-black-main;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkIcon {
+  transform: scaleX(-1);
+  max-width: 50%;
+  max-height: 50%;
+  width: 100%;
+
+  :global(.svg-stroke) {
+    stroke: $clr-black-main;
+    strokeWidth: 3px;
+  }
+}

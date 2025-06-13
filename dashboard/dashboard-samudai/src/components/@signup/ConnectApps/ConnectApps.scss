@@ -1,0 +1,16 @@
+.connect-apps__list {
+  margin-top: 39px;
+  .connect-list-item {
+    svg .svg-fill {
+      fill: #fff;
+      transition: fill $app-transition;
+    }
+
+    // &:hover svg .svg-fill {
+    //   fill: #5c6bc0;
+    // }
+  }
+}
+.connect-apps__controls {
+  margin-top: 36px;
+}

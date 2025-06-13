@@ -1,0 +1,62 @@
+.root {
+  padding: 45px 30px 30px;
+
+  >div {
+    width: 100%;
+  }
+}
+
+.title {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    &:first-child {
+      font: 600 32px/0.9 $lato;
+    }
+
+    &:last-child {
+      margin-top: 16px;
+      font: $font24;
+      color: $clr-white;
+    }
+  }
+}
+
+.text {
+  margin: 16px auto 0;
+
+  font: 400 16px/1.5 $lato;
+  color: $clr-white;
+
+  max-width: 278px;
+  text-align: center;
+}
+
+.button {
+  max-width: 188px;
+  margin: 16px auto 0;
+
+  padding: 17px 28px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+
+  font: 700 16px/1.2 $lato;
+  color: #161819;
+}
+
+.screen_image {
+  margin-top: 16px;
+  align-self: center;
+  width: 220px;
+}
+
+.screen_message {
+  max-width: 270px;
+  font: 400 14px/1.25 $lato;
+  color: $clr-gray-dark;
+  align-self: center;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,77 @@
+
+
+
+.root {}
+.popup {
+  padding: 30px;
+  padding-top: 40px;
+}
+.form {
+  margin-top: 38px;
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  margin-bottom: 36px;
+  [data-role="title"] {
+    margin-bottom: 14px;
+  }
+}
+.createBtn {
+  margin-top: 48px;
+  margin-left: auto;
+  padding: 14px;
+  justify-content: center;
+  min-width: 129px;
+}
+
+// Complete
+.complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.completeMark {
+  margin-top: 75px;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  background: $clr-green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 50%;
+    max-height: 50%;
+    :global(.svg-fill) {
+      fill: $clr-black-main;
+      stroke: $clr-black-main;
+      strokeWidth: 2px;
+    }
+  }
+}
+.completeThanks {
+  text-align: center;
+  margin-top: 17px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font: $fontMedium;
+  color: $clr-white;
+}
+.completeCopy {
+  margin-top: 22px;
+  max-width: 304px;
+  width: 100%;
+}
+.completeBtn {
+  margin-top: 88px;
+  margin-left: auto;
+
+  padding: 14px;
+  min-width: 129px;
+  justify-content: center;
+}

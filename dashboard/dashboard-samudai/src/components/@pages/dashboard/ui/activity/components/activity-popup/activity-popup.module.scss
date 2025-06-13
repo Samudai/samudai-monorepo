@@ -1,0 +1,160 @@
+.root[data-role='popup'] {
+    max-width: 1013px;
+    padding: 32px 60px 24px;
+}
+
+.head {
+    padding-bottom: 23px;
+    border-bottom: 1px solid $clr-black;
+}
+
+.headTitle {
+    font: $font24;
+    color: $clr-gray;
+}
+
+.wrapper {
+    padding-top: 30px;
+    display: flex;
+}
+
+.sidebar {
+    max-width: 268px;
+    width: 100%;
+}
+
+.sidebarTitle {
+    font: $font16;
+    color: $clr-white;
+}
+
+.sidebarList {
+    margin-top: 27px;
+}
+
+.sidebarItem {
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.1s ease-out;
+
+    + .sidebarItem {
+        margin-top: 8px;
+    }
+
+    &.sidebarItemActive {
+        background-color: $clr-black-main;
+        pointer-events: none;
+    }
+
+    $colors: $clr-green, $clr-orange, $clr-orange, $clr-lavender;
+    $len: length($colors);
+
+    @for $i from 1 through $len {
+        &:nth-child(#{$len}n + #{$i}) {
+            .sidebarItemIcon {
+                [data-fill] {
+                    fill: nth($colors, $i);
+                }
+            }
+        }
+    }
+}
+
+.sidebarItemIcon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.sidebarItemName {
+    margin-left: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.content {
+    flex-grow: 1;
+    padding-right: 45px;
+}
+
+.info {
+    display: flex;
+}
+
+.infoCard {
+    max-width: 267px;
+    width: 100%;
+
+    [data-role='info-progress'] {
+        display: none;
+    }
+
+    div[data-role='wrapper'] {
+        padding: 21.5px 19px !important;
+    }
+
+    [data-role='info'] {
+        margin-top: 34px;
+
+        h5 {
+            color: $clr-gray-dark;
+        }
+    }
+}
+
+.infoBlock {
+    padding-top: 8.5px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.infoBlockInner {
+    max-width: 235px;
+    width: 100%;
+}
+
+.suptitle {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+
+.members {
+    margin: 7.5px 0;
+}
+
+.progress {
+    margin-top: 12px;
+
+    [data-role='progress-line'] {
+        background-color: $clr-green;
+    }
+}
+
+@media (max-width: $tablet_big) {
+    .root[data-role='popup'] {
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+        padding-inline: 40px;
+    }
+}
+
+@media (max-width: $tablet) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        order: -1;
+        max-width: 100%;
+    }
+
+    .content {
+        margin-top: 54px;
+    }
+}

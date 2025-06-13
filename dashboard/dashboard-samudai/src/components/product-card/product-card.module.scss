@@ -1,0 +1,257 @@
+.product {
+  width: 100%;
+  border-radius: 25px;
+  background: $clr-black-main;
+}
+.product_banner {
+  height: 215px;
+  border-radius: 25px 25px 0 0;
+}
+.product_logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: absolute;
+  left: 70px;
+  top: 0;
+  transform: translateY(-32px);
+}
+.product_content {
+  position: relative;
+  padding: 23px 55px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.product_created {
+  text-align: right;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.product_head {
+  padding-top: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product_title {
+  font: $font24;
+  color: $clr-white;
+}
+.product_saveBtn {
+  width: 20px;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+
+    [data-full] {
+      stroke: $clr-orange;
+    }
+  }
+
+  &_saved [data-full] {
+    fill: $clr-orange;
+  }
+}
+.product_company {
+  margin-top: 18px;
+  font: $font16;
+  color: $clr-white;
+  text-transform: uppercase;
+}
+/* Apply */
+.product_apply {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_block {
+    padding: 12px 24px;
+    border-radius: 12px;
+    background: $clr-black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font: $fontMedium;
+    color: $clr-white;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      flex-shrink: 0;
+
+      [data-stroke] {
+        stroke: $clr-gray-dark;
+      }
+    }
+  }
+  &_left {
+  }
+  &_right {
+    margin-left: 55px;
+  }
+
+  &_match {
+    display: flex;
+    align-items: center;
+    font: $fontMedium;
+  }
+  &_level {
+    color: $clr-gray-dark;
+  }
+  &_label {
+    margin-left: 12px;
+    color: $clr-green;
+    padding: 4px 11px;
+    background: #3a3e42;
+    border-radius: 15px;
+  }
+}
+/* Info */
+.product_info {
+  display: flex;
+  margin-top: 48px;
+
+  &_item {
+    display: flex;
+    flex: 0 0;
+    font: $fontMedium;
+    color: $clr-white;
+
+    &:first-child {
+      flex-basis: 25.4%;
+    }
+    &:nth-child(2) {
+      flex-basis: 41%;
+      border-inline: 1.5px solid $clr-black;
+    }
+    &:last-child {
+      flex-grow: 1;
+    }
+
+    &:not(:first-child) {
+      justify-content: center;
+    }
+  }
+  &_title {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+  }
+  &_value {
+    margin-top: 8px;
+    span {
+      color: $clr-gray-dark;
+    }
+  }
+}
+/* Qualification */
+.product_qual {
+  padding-top: 48px;
+}
+.product_qual_title {
+  font: $font16;
+  color: $clr-white;
+}
+.product_qual_list {
+  margin-top: 24px;
+}
+.product_qual_item {
+  display: flex;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 9px;
+    height: 9px;
+    background: $clr-green;
+    border-radius: 50%;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+
+  font: $fontMedium;
+  color: $clr-gray-dark;
+
+  + .product_qual_item {
+    margin-top: 16px;
+  }
+}
+/* Controls */
+.product_controls {
+  margin-top: 72px;
+  display: flex;
+  justify-content: flex-end;
+}
+.product_applyBtn {
+  border-radius: 12px;
+  padding: 14px;
+  max-width: 168px;
+  width: 100%;
+
+  svg {
+    max-width: 20px;
+    width: 20px;
+  }
+}
+.product_mainBtn {
+  margin-left: 16px;
+  margin-right: -21px;
+  border-radius: 12px;
+
+  svg {
+    margin-right: 0;
+    width: 24px;
+    max-width: 24px;
+    [data-stroke] {
+      stroke: $clr-green;
+    }
+  }
+}
+@media (max-width: $tablet_big) {
+  .product_content {
+    padding-inline: 30px;
+  }
+  .product_apply {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &_match {
+      margin-top: 20px;
+    }
+  }
+  .product_mainBtn {
+    margin-right: 0;
+  }
+}
+@media (max-width: $mobile) {
+  .product {
+    border-radius: 15px;
+  }
+  .product_logo {
+    left: 35px;
+    width: 70px;
+    height: 70px;
+  }
+  .product_content {
+    padding-inline: 15px;
+  }
+  .product_head {
+    padding-top: 30px;
+  }
+  .product_apply {
+    margin-top: 24px;
+    &_block {
+      width: 100%;
+    }
+  }
+  .product_info {
+    margin-top: 24px;
+  }
+  .product_controls {
+    margin-top: 40px;
+  }
+}

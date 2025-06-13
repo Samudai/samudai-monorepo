@@ -1,0 +1,55 @@
+.panel {
+    background: $clr-black-main;
+    border-radius: 15px;
+    padding: 16px;
+    display: flex;
+}
+.panel_input {
+    flex-grow: 1;
+    align-self: center;
+    height: 1em;
+    padding-right: 10px;
+}
+.panel_controls {
+    display: flex;
+    align-items: center;
+}
+.panel_gifBtn,
+.panel_smileBtn {
+    margin-left: 14px;
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        [data-fill] {
+            fill: $clr-gray-dark;
+        }
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+    }
+}
+.panel_gifBtn {
+    margin-left: 0;
+}
+.panel_submitBtn {
+    margin-left: 14px;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    position: relative;
+    background: $clr-green;
+    border-radius: 16px;
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-55%, -50%);
+        width: 60%;
+        [data-stroke] {
+            fill: #000;
+            stroke: $clr-green;
+        }
+    }
+}

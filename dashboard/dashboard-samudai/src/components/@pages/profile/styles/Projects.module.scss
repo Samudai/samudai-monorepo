@@ -1,0 +1,130 @@
+.projects {
+  margin-top: 58px;
+}
+.projectsInfo {
+  display: flex;
+}
+.projectsInfoLeft {
+  flex-grow: 1;
+}
+.projectsInfoRight {
+  max-width: 365px;
+  width: 100%;
+}
+.projectsContent {
+  margin-top: 75px;
+}
+.projectsList {
+}
+.projectsListItem {
+  + .projectsListItem {
+    margin-top: 14px;
+  }
+}
+
+.view {
+  margin-top: 66px;
+  padding: 30px 0 43px;
+  border-radius: 35px;
+
+  :global(.project-board) {
+    margin-left: -29.5px;
+  }
+}
+.view.calendar {
+  padding: 30px 38px 43px;
+  background: $clr-black-main;
+}
+.header {
+}
+.select {
+  margin-right: auto;
+  margin-left: 30px;
+}
+.selectBtn {
+  padding: 5px 10px;
+  background: none;
+
+  :global(.ui-select-button__arrow) {
+    margin-left: 8px;
+    max-width: 15px;
+  }
+}
+.selectList {
+  padding: 0;
+  :global(.ui-select-item) {
+    padding: 8px 7px;
+    .selectContent {
+      width: 100%;
+      svg {
+      }
+    }
+    &:not(:global(.--disabled)):hover {
+      background-color: lighten($clr-black-main, 5%);
+      cursor: pointer;
+    }
+  }
+}
+.selectContent {
+  width: 24px;
+  display: flex;
+  justify-content: center;
+
+  svg {
+    max-width: 24px;
+    width: 100%;
+
+    :global(.svg-stroke) {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+.newTask {
+}
+.calendars {
+  overflow: auto;
+  padding: 0 40px;
+  margin: 0 -40px;
+}
+.taskCalendar {
+  margin-top: -55px;
+}
+.personal {
+  margin-top: 0 !important;
+  width: 150px;
+  margin-right: 10px;
+}
+.rightPart {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: $tablet_big) {
+  .projectsInfoRight {
+    max-width: 35%;
+  }
+}
+@media (max-width: $tablet) {
+  .view {
+    margin-top: 0;
+    padding-top: 26px;
+  }
+  .projectsInfo {
+    flex-direction: column;
+  }
+  .projectsInfoRight {
+    margin-top: 48px;
+    max-width: 100%;
+  }
+}
+@media (max-width: $tablet_small){
+  .header {
+    flex-wrap: wrap;
+  }
+  .rightPart {
+    margin-top: 10px;
+    flex: 0 0 100%;
+  }
+  .calendars {
+    margin-top: 34px;
+  }
+}

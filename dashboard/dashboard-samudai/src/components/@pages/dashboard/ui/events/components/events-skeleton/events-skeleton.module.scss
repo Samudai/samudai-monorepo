@@ -1,0 +1,7 @@
+.block {
+  height: 72px;
+  border-radius: 12px;
+  + .block {
+    margin-top: 16px;
+  }
+}

@@ -1,0 +1,26 @@
+.portfolio-item {
+    padding: 0 11px;
+    width: (100% / 6);
+}
+
+.portfolio-item__wrapper {
+    padding: 11.5px 12.5px;
+    border-radius: 25px;
+    background: $clr-black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.portfolio-item__icon {
+    max-width: 48px;
+    width: 100%;
+}
+
+.portfolio-item__title {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: rgba(#fff, 0.64);
+    text-align: center;
+    text-transform: uppercase;
+}

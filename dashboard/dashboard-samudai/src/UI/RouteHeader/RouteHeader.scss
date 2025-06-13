@@ -1,0 +1,22 @@
+
+
+
+.route-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.route-header__title {
+  font: 700 28px/1.29 $lato;
+  color: $clr-gray;
+}
+
+@media (max-width: $laptop_small){
+  .route-header {
+    padding-bottom: 10px;
+  }
+  .route-header__title {
+    font-size: 24px;
+  }
+}

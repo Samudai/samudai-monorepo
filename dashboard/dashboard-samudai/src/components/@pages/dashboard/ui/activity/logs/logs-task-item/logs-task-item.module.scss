@@ -1,0 +1,74 @@
+.root {
+    padding: 15px 20px;
+    border-radius: 17px;
+    background: $clr-black-main;
+
+    display: flex;
+    align-items: center;
+
+    + .root {
+        margin-top: 20px;
+    }
+}
+.colInfo {
+    flex-grow: 1;
+    width: 100%;
+}
+.colMembers {
+    padding-left: 15px;
+    flex: 0 0 33%;
+}
+.colLink {
+    margin-left: auto;
+    padding-left: 15px;
+}
+.colInfoUp {
+    max-width: 143px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.department {
+    font: $fontMedium;
+    color: $clr-orange;
+}
+.status {
+    font: $fontMedium;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+
+    $len: length($listStatus);
+
+    @each $status, $color in $listStatus {
+        &[data-status='#{$status}'] {
+            color: $color;
+            &::before {
+                background-color: $color;
+            }
+        }
+    }
+}
+.text {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+    width: 100%;
+    white-space: nowrap;
+}
+.members {
+    [data-role='list'] {
+        font-size: 13.4px;
+    }
+}
+.link {
+    font: $fontMedium;
+    color: $clr-orange;
+}

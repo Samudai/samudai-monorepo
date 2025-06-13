@@ -1,0 +1,229 @@
+.root {
+  margin: 0;
+  border-radius: 0;
+  background: none;
+  border: none;
+  max-width: 533px;
+}
+.main {
+  padding: 29px 58px 45px;
+  border-left: 1px solid $clr-black;
+  min-height: 100vh;
+  background: #17191a;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headTitle {
+  font: $font24;
+  color: $clr-white;
+}
+.headBtn {
+  padding: 8px;
+
+  svg {
+    width: 24px;
+    flex-shrink: 0;
+
+    :global(.svg-stroke) {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+.name {
+  margin-top: 30px;
+  font: $font16;
+}
+
+.subtitle {
+  margin-top: 40px;
+  font: $font16;
+  color: $clr-white;
+
+  &.gray {
+    color: $clr-gray-dark;
+  }
+}
+.description {
+  margin-top: 27px;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+// Comments
+.comments {
+  margin-top: 40px;
+}
+.commentsHead {
+  display: flex;
+  justify-content: space-between;
+  .subtitle {
+    margin-top: 0;
+  }
+}
+.commentsAllBtn {
+  margin-left: 10px;
+  font: 600 14px/1 $lato;
+  color: $clr-orange;
+}
+// Labels
+.labels {
+  margin-top: 27px;
+}
+.labelsList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -14px -7px 0;
+}
+.labelsItem,
+.labelsAdd {
+  margin: 14px 7px 0;
+}
+.labelsAdd {
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    width: 14px;
+    flex-shrink: 0;
+
+    :global(.svg-stroke) {
+      stroke: $clr-orange;
+    }
+  }
+  span {
+    margin-left: 8px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+// Contributors
+.contributors {
+  margin-top: 17.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.contributorsList {
+}
+.contributorsBtn {
+  margin-left: 15px;
+}
+// Manager
+.manager {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.managerInfo {
+}
+.managerBtn {
+  margin-left: 15px;
+
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  img {
+    width: 16px;
+    flex-shrink: 0;
+  }
+
+  span {
+    margin-left: 8px;
+    font: $fontMedium;
+    color: $clr-orange;
+  }
+}
+// Subtasks
+.task {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+
+  .subtitle {
+    margin-top: 0;
+  }
+}
+.taskCount {
+  margin-left: 8px;
+  font: $font16;
+  color: $clr-green;
+}
+.taskCheckbox {
+  margin-left: 8px;
+  width: 20px;
+  height: 20px;
+}
+// Attachments
+.attachmentsTitle {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+
+  > svg {
+    transform: translateY(-2px);
+    width: 18px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-white;
+    }
+  }
+
+  .subtitle {
+    margin-left: 8px;
+    margin-top: 0;
+  }
+
+  > strong {
+    margin-left: 8px;
+    font: $font16;
+    color: $clr-lavender;
+  }
+}
+.addContributor {
+  z-index: 200;
+}
+.userProfile {
+  z-index: 300;
+}
+
+// Modificators
+$list: (
+  'notStarted': $clr-orange,
+  'inWork': $clr-lavender,
+  'review': $clr-blue,
+  'done': $clr-green,
+);
+.main {
+  @each $class, $color in $list {
+    &.#{$class} {
+      .name {
+        color: $color;
+      }
+      [data-task='status'] {
+        color: $color;
+        &::before {
+          background: $color;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet_small){
+  .root {
+    max-width: 100%;
+    border: none;
+  }
+}
+
+@media (max-width: $mobile_big){
+  .main {
+    padding-inline: 20px;
+  }
+}

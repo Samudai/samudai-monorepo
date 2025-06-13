@@ -1,0 +1,134 @@
+.root {
+    // width: 468px;
+    max-height: 502px;
+    height: 502px;
+    padding: 16px 18.5px;
+    // overflow: auto;
+    overflow: hidden;
+    border-bottom: 3px solid $clr-black;
+    border-radius: 16px;
+
+    background: $clr-black-main;
+    box-shadow: 0px 7px 68px rgba(0, 0, 0, 0.35);
+
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    z-index: 200;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.head {
+    padding-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid $clr-black;
+}
+
+.head_title {
+    font: 600 18px/1.15 $lato;
+    color: $clr-white;
+}
+
+.head_controls {
+    display: flex;
+}
+
+.head_btn {
+    width: 16px;
+    height: 16px;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-gray-dark;
+    }
+
+    + .head_btn {
+        margin-left: 16px;
+    }
+}
+
+.row {
+    padding-top: 12px;
+    border-bottom: 1px solid $clr-black;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tabs {
+    li {
+        padding-bottom: 14px;
+
+        span {
+            font: $fontMedium;
+            white-space: nowrap;
+        }
+    }
+
+    [data-active='true'] {
+        border-bottom-color: $clr-orange;
+
+        span {
+            color: $clr-orange;
+        }
+    }
+
+    [data-class='count'] {
+        border-radius: 4px;
+        padding: 2px 8px;
+        color: $clr-black-main !important;
+    }
+}
+
+.settingsBtn {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-gray-dark;
+    }
+}
+
+.list {
+    flex: 1 1 auto;
+    height: 0px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &_item {
+        padding-block: 16px;
+    }
+
+    &_item + &_item {
+        border-top: 0.5px solid $clr-black;
+    }
+}
+
+.subhead {
+    &_box {
+        padding: 5px 0;
+    }
+
+    &_text {
+        padding: 1px 0;
+        margin: 22px auto 0;
+        max-width: 181px;
+        text-align: center;
+
+        font: 400 12px/1.5 $lato;
+        color: $clr-gray-dark;
+    }
+}

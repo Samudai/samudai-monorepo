@@ -1,0 +1,28 @@
+[
+  {
+    "idx": "alenawilliams01",
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-1.png",
+    "text": "Free Embedded Tweets for Sketch!",
+    "links": ["https://gum.co/tweets-sketch"],
+    "hashTags": ["#sketch", "#free", "#freebies", "#download"],
+    "date": "5:54 pm - May 10, 2022",
+    "verified": true,
+    "comments": 54,
+    "shared": 15,
+    "likes": 120
+  },
+  {
+    "idx": "alenawilliams02",
+    "name": "Phyllis Hall",
+    "img": "/mockup/img/user-2.png",
+    "text": "I live in any area that drives experience — whether it’s some other text",
+    "links": ["https://gum.co/tweets-sketch"],
+    "hashTags": ["#sketch", "#free", "#freebies", "#download"],
+    "date": "5:54 pm - May 10, 2022",
+    "verified": true,
+    "comments": 54,
+    "shared": 15,
+    "likes": 120
+  }
+]

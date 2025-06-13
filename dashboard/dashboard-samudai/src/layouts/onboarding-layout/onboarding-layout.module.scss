@@ -1,0 +1,72 @@
+:global(.app),
+.root,
+.wrapper {
+    position: absolute;
+    inset: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.content {
+    margin: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home_link {
+    position: absolute;
+    top: 56px;
+    left: 64px;
+
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 39px;
+        height: 39px;
+    }
+
+    svg {
+        margin-left: 12px;
+        max-width: 91px;
+        height: 15px;
+        width: 100%;
+
+        fill: #fff;
+    }
+}
+
+.logos {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    img {
+        width: 567px;
+    }
+}
+
+
+.progress {
+    height: 22px;
+    background: $clr-black;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &_line {
+        display: block;
+        border-radius: 72px;
+        height: 22px;
+        background: linear-gradient(to right, #6CFFB1, #FFC266);
+    }
+}

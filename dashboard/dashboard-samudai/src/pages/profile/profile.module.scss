@@ -1,0 +1,46 @@
+.container {
+    // padding-bottom: 71px;
+}
+.head {
+    &:not(.headDefault) :global(.container) {
+        padding-inline: 85px;
+    }
+}
+.header {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.withSidebar {
+    .container,
+    [data-role='header-container'] {
+        padding-inline: 85px;
+        @media (max-width: $laptop) {
+            padding-inline: 30px;
+        }
+        @media (max-width: $tablet_small) {
+            padding-inline: 20px;
+        }
+    }
+}
+@media (max-width: $laptop_small) {
+    .header {
+        margin-top: 60px;
+    }
+    .header_main {
+        display: none;
+    }
+}
+@media (max-width: $tablet_small) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .credentialsBtn {
+        margin-top: 32px;
+    }
+    .createClanBtn {
+        display: none;
+    }
+}

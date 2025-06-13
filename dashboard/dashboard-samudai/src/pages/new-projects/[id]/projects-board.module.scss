@@ -1,0 +1,126 @@
+.board {
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.lastUpdated {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+
+    span {
+        color: $clr-white;
+    }
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $clr-orange;
+        margin-right: 8px;
+    }
+}
+.board_headComponent {
+    padding-bottom: 0;
+}
+.board_head {
+}
+.board_head_up {
+    display: flex;
+    align-items: center;
+}
+.board_head_panel {
+    margin-left: auto;
+    padding-left: 20px;
+
+    display: flex;
+    align-items: center;
+}
+.board_head_title {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+}
+.board_head_reviewer {
+    margin-left: 16px;
+}
+.board_addColumnBtn {
+    margin-left: 32px;
+    svg {
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+    span {
+        color: $clr-orange;
+    }
+}
+.board_addNewJob {
+    margin-left: 32px;
+    
+    &Active {
+        opacity: 0.6;
+    }
+}
+.board_payoutBtn {
+    margin-left: 8px;
+
+    &Active {
+        opacity: 0.6;
+    }
+}
+.board_iconBtn {
+    margin-left: 32px;
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        height: 100%;
+
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+
+    + .board_iconBtn {
+        margin-left: 24px;
+    }
+}
+.board_group {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    margin-bottom: -1px;
+}
+.board_group_btn {
+    padding-bottom: 10px;
+    white-space: nowrap;
+    font: $font16;
+    color: $clr-white;
+    border-bottom: 2px solid transparent;
+
+    + .board_group_btn {
+        margin-left: 48px;
+    }
+
+    &Active {
+        color: $clr-green;
+        border-color: $clr-green;
+    }
+}
+.board_tasks {
+    padding-top: 26px;
+
+    &,
+    :global(.container) {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+}

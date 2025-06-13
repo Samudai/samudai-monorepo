@@ -1,0 +1,10 @@
+@include fontCreate("Lato", 400, "../assets/fonts/Lato-Regular");
+@include fontCreate("Lato", 500, "../assets/fonts/Lato-Medium");
+@include fontCreate("Lato", 600, "../assets/fonts/Lato-Semibold");
+@include fontCreate("Lato", 700, "../assets/fonts/Lato-Bold");
+@include fontCreate("Lato", 900, "../assets/fonts/Lato-Black");
+@include fontCreate("Nunito", 400, "../assets/fonts/Nunito-Regular");
+@include fontCreate("Nunito", 600, "../assets/fonts/Nunito-SemiBold");
+
+@include fontCreate('Satoshi', 400, '../assets/fonts/Lato-Regular');
+@include fontCreate('Satoshi', 700, '../assets/fonts/Lato-Bold');

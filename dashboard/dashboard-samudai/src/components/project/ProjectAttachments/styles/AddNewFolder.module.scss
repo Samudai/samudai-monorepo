@@ -1,0 +1,72 @@
+.root {
+    padding: 45px 30px 30px;
+}
+.input {
+    margin-top: 40px;
+}
+.attachments {
+    padding-top: 58px;
+}
+.attachmentsHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.attachmentsTitle {
+    font: $font16;
+    color: $clr-white;
+
+    svg {
+        width: 18px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+
+    span {
+        margin-left: 8px;
+    }
+
+    strong {
+        margin-left: 8px;
+        color: $clr-lavender;
+    }
+}
+.attachmentsBtn {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 18px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+    }
+}
+.attachmentsList {
+    padding-top: 36px;
+}
+.attachmentsItem {
+    + .attachmentsItem {
+        margin-top: 25px;
+    }
+}
+.createBtn {
+    margin-top: 40px;
+    margin-left: auto;
+    padding: 14px;
+    min-width: 129px;
+}
+@media (max-width: $tablet_small) {
+    .root {
+        padding-inline: 20px;
+    }
+}

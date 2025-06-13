@@ -1,0 +1,39 @@
+
+
+
+.tab {
+  height: 66px;
+  border-radius: 12px;
+  min-width: 190px;
+  + .tab {
+    margin-top: 6px;
+  }
+}
+.status {
+  max-width: 72px;
+  width: 100%;
+  height: 26px;
+  border-radius: 15px;
+}
+.period {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  + .period {
+    margin-left: 8px;
+  }
+}
+.type {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  + .type {
+    margin-left: 8px;
+  }
+}
+.chart {
+  height: 260px;
+  width: 100%;
+  border-radius: 0;
+  clip-path: url(#line-clippy);
+}

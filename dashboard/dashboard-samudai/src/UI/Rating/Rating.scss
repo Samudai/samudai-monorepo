@@ -1,0 +1,21 @@
+
+
+
+.rating {
+  display: flex;
+  align-items: center;
+  transform: translateY(-2px);
+}
+.rating__star {
+  max-width: 14px;
+  width: 100%;
+  flex-shrink: 0;
+
+  .svg-fill {
+    fill: $clr-gray-dark;
+  }
+  
+  + .rating__star {
+    margin-left: 1px;
+  }
+}

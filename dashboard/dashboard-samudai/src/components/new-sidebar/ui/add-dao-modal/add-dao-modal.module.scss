@@ -1,0 +1,63 @@
+.root {
+    padding: 34px 30px 30px;
+
+    :global(.popup-title__title) strong {
+        color: $clr-green;
+    }
+}
+
+.input {
+    margin-top: 40px;
+
+    &_title {
+        font: 400 16px/1 $lato;
+        color: $clr-gray-dark;
+        margin-bottom: 18px;
+    }
+
+    &_item:not(:last-child) {
+        margin-bottom: 30px;
+    }
+}
+
+.mainTitle {
+    text-align: center;
+}
+
+.submit {
+    margin-top: 40px;
+    margin-left: auto;
+    padding: 14px;
+    min-width: 129px;
+}
+
+.questions {
+    width: 100%;
+
+    &_list:not(:last-child) {
+        margin-bottom: 30px;
+    }
+
+    &_title {
+        font: 400 21px/1 $lato;
+        color: $clr-gray-dark;
+        margin-bottom: 18px;
+    }
+
+    &_input {
+        width: 100%;
+        font: 400 21px/1 $lato;
+        color: $clr-white;
+        display: flex;
+        width: 100%;
+        border-radius: 19px;
+        background: $clr-black-main;
+        border: none;
+        padding: 5px;
+
+        ::placeholder {
+            color: $clr-gray-dark;
+            font: 400 18px/1 $lato;
+        }
+    }
+}

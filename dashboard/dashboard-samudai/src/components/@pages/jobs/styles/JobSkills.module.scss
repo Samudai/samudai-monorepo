@@ -1,0 +1,19 @@
+.skills {
+  // padding: 16px 18px;
+  // border-radius: 15px;
+  // background: $clr-black;
+  // min-height: 131px;
+
+  :global(.rs__multi-value) {
+    background: $clr-gray-dark;
+    padding: 4px 6px;
+    border-radius: 8px;
+  }
+  :global(.rs__value-container) {
+    max-width: 100%;
+  }
+}
+.skills_val {
+  font: $fontMedium;
+  color: $clr-white;
+}

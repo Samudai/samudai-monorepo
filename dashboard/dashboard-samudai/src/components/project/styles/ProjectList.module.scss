@@ -1,0 +1,43 @@
+
+
+
+.list {
+  margin-top: -12px;
+}
+.list {
+  max-height: 440px;
+  overflow: hidden auto;
+  padding-right: 42px;
+
+  &::-webkit-scrollbar-track {
+    margin-top: 13px;
+    margin-bottom: 13px;
+  }
+}
+.listItem {
+  padding: 12px 0;
+}
+
+@media (max-width: $laptop){
+  .list {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: $tablet_small){
+  .list {
+    padding-right: 0;
+    max-height: unset;
+    display: flex;
+    margin-inline: -8px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .listItem {
+    flex-shrink: 0;
+    padding: 0 8px;
+  }
+}

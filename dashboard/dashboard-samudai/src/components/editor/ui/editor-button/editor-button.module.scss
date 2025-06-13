@@ -1,0 +1,50 @@
+.button {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background: transparent;
+    border-radius: 4px;
+
+    transition: background 0.2s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    + .button {
+        margin-left: 4px;
+
+        path {
+            transition: 0.2s ease-in-out;
+            transition-property: fill, stroke;
+        }
+    }
+
+    svg {
+        width: 70%;
+        height: 70%;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+
+        [data-fill] {
+            fill: $clr-gray-dark;
+        }
+    }
+
+    &Active {
+        background: #35383c;
+
+        svg {
+            [data-stroke] {
+                stroke: $clr-green;
+            }
+
+            [data-fill] {
+                fill: $clr-green;
+            }
+        }
+    }
+}

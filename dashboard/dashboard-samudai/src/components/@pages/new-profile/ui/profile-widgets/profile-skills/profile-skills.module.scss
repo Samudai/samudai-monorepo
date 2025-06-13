@@ -1,0 +1,69 @@
+.block {
+    max-width: 352px;
+}
+.title {
+    font: $font24;
+    color: $clr-white;
+}
+.content {
+    margin-top: 24px;
+    padding: 25px 25px;
+    border-radius: 20px;
+    background: $clr-black-main;
+    box-shadow: 0px 36px 50px #131516;
+}
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -8px -4px 0;
+}
+.skills_item {
+    margin: 8px 4px 0;
+}
+.addBtn {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        stroke: $clr-orange;
+    }
+
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+        transform: translateY(0.1em);
+    }
+}
+.skel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.skel_list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -16px -4px 0;
+}
+
+.skel_item {
+    margin: 16px 4px 0;
+}
+
+.skel_text {
+    margin-top: 10px;
+
+    text-align: center;
+    font: 400 16px/1.25 $lato;
+    color: $clr-gray-dark;
+}
+
+.skel_btn {
+    margin-top: 20px;
+    align-self: center;
+}

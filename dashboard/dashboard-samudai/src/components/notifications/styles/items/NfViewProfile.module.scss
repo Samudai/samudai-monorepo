@@ -1,0 +1,61 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &.colPerson {
+    width: 26%;
+  }
+  &.colAction {
+    padding-left: 16px;
+    width: 37.2%;
+  }
+  &.colTime {
+    width: 10.4%;
+    text-align: center;
+  }
+  &.colControl {
+    padding-left: 16px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.controlBtn {
+  min-width: 124px;
+  padding: 11px;
+
+  color: $clr-green;
+}
+
+@media (max-width: $tablet) {
+  .col {
+    &.colAction,
+    &.colTime {
+      display: none;
+    }
+    &.colPerson {
+      flex-grow: 1;
+    }
+    &.colControl {
+      max-width: 145px;
+    }
+  }
+  .controlBtn {
+    max-width: 145px;
+    width: 100%;
+    color: $clr-white;
+  }
+}
+
+@media (max-width: $mobile_small) {
+  .col {
+    &.colControl {
+      max-width: 45%;
+
+      button {
+        min-width: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+
+
+
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 23px 17px;
+  border-radius: 20px;
+  background: $clr-black-main;
+  cursor: pointer;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headName {
+  font: 600 18px/1 $lato;
+  color: $clr-white;
+}
+.headSettings {
+  max-width: 24px;
+  width: 100%;
+
+  svg {
+    width: 100%;
+    [data-stroke] {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+.members {
+  margin-top: 19.5px;
+  :global(.members__list) {
+    font-size: 13.33333px;
+  }
+}
+.info {
+  margin-top: 17.5px;
+  display: flex;
+  align-items: center;
+}
+.infoItem {
+  display: flex;
+  align-items: center;
+
+  &.infoItemFiles {
+    .infoIcon {
+      max-width: 20px;
+    }
+  }
+
+  &.infoItemComments {
+    .infoIcon {
+      max-width: 16px;
+    }
+  }
+
+  + .infoItem {
+    margin-left: 16px;
+  }
+}
+.infoIcon {
+  width: 100%;
+  [data-stroke] {
+    stroke: $clr-gray-dark;
+  }
+  [data-full] {
+    stroke: $clr-gray-dark;
+  }
+}
+.infoValue {
+  margin-left: 4px;
+  font: 400 14px/1 $lato;
+  color: #FFF;
+  span {
+    color: $clr-gray-dark;
+  }
+}

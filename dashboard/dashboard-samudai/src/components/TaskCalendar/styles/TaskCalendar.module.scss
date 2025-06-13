@@ -1,0 +1,156 @@
+
+
+
+$hatColors: $clr-green, $clr-lavender, $clr-orange;
+$length: length($hatColors);
+
+.root {
+}
+.head {
+  display: flex;
+  align-items: center;
+}
+.headCol {
+}
+.left,
+.controls {
+  max-width: 50%;
+  width: 100%;
+}
+.left {
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+.controls {
+  display: flex;
+  justify-content: flex-end;
+}
+.date {
+  margin: 0 24px;
+  font: 400 20px/0.83 $lato;
+  color: $clr-gray-dark;
+  white-space: nowrap;
+
+  strong {
+    color: $clr-white;
+  }
+}
+.body {
+  margin-top: 50px;
+}
+.grid {
+  max-width: 100%;
+  max-height: 700px;
+  overflow: auto;
+
+  &::-webkit-scrollbar-track {
+    margin-top: 95px;
+  }
+}
+.row {
+  display: flex;
+  width: fit-content;
+  overflow: hidden;
+
+  &:first-child + .row {
+    margin-top: 27px;
+  }
+
+  @for $i from 1 through $length {
+    $color: nth($hatColors, $i);
+    &:nth-child(#{$length}n + #{$i}) {
+      [data-role='card']::before {
+        background-color: $color;
+      }
+    }
+  }
+}
+.rowTitle {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: $clr-black-main;
+}
+.cell {
+  width: 122px;
+  flex-shrink: 0;
+  position: relative;
+
+  &:not(.cellTitle) {
+    border-left: 2px solid $clr-black;
+    border-top: 2px dashed $clr-black;
+    height: 100px;
+
+    &.today {
+      border-left-color: $clr-orange;
+    }
+  }
+
+  &:first-child {
+    border-left: 0;
+  }
+
+  &:first-child,
+  &:last-child {
+    width: (122px / 4);
+  }
+}
+.cellTitle {
+  display: flex;
+
+  &.today .day {
+    background: $clr-orange;
+    color: $clr-black;
+
+    strong,
+    span {
+      color: inherit;
+    }
+  }
+
+  .day {
+    padding: 8px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-50%);
+
+    strong {
+      font: 700 20px/1 $lato;
+      color: $clr-white;
+    }
+    span {
+      margin-top: 16px;
+      font: 400 16px/1.09 $lato;
+      color: $clr-gray-dark;
+    }
+  }
+}
+.headBtn:global(.button) {
+  border: 1px solid $clr-gray-dark;
+  padding: 7.5px 16px;
+
+  &:hover {
+    filter: none;
+  }
+
+  &:global(.orange) {
+    background-color: transparent;
+  }
+
+  span {
+    color: $clr-orange;
+  }
+
+  svg {
+    margin-left: 8px;
+    margin-right: 0;
+    max-width: 20px;
+    :global(.svg-stroke) {
+      stroke: $clr-orange;
+    }
+  }
+}

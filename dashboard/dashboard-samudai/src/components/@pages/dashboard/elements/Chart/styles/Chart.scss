@@ -1,0 +1,256 @@
+.block.chart {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    background: transparent;
+}
+.chart__tabs {
+    margin-right: 24px;
+    max-width: 203px;
+    flex-shrink: 0;
+}
+
+// Tab
+.chart-tab {
+    &:not(:first-child) {
+        border-top: 1px solid $clr-black;
+    }
+    &:last-child {
+        // border-bottom: 1px solid $clr-black;
+        border-bottom: none;
+    }
+    transition: border $app-transition;
+}
+.chart-tab__btn {
+    width: 100%;
+    padding: 11px 20px;
+    border-radius: 12px;
+    display: flex;
+    transition: background $app-transition;
+}
+.chart-tab__ai {
+    flex-shrink: 0;
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+.chart-tab__content {
+    text-align: left;
+    padding-left: 16px;
+}
+.chart-tab__name {
+    font: $fontMedium;
+    color: $clr-white;
+    // white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.chart-tab__value {
+    margin-top: 4px;
+    font: 600 16px/1.38 $lato;
+    color: $clr-gray-dark;
+}
+
+.chart-tab.active {
+    &,
+    & + .chart-tab {
+        border-color: transparent;
+        &:last-child {
+            border-bottom-color: $clr-black;
+        }
+    }
+    &:last-child {
+        border-color: transparent;
+    }
+
+    .chart-tab__btn {
+        pointer-events: none;
+        background: $clr-black;
+    }
+}
+
+// Chart tooltip
+.chart-tooltip {
+    display: flex;
+    align-items: center;
+    padding: 4px 8.5px;
+    border-radius: 15px;
+    background: $clr-black;
+    user-select: none;
+
+    svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+    }
+    span {
+        margin-left: 4px;
+        font: $fontMedium;
+    }
+}
+
+// Content
+.chart__content {
+    height: auto;
+    flex-grow: 1;
+    border-radius: 25px;
+    max-width: 100%;
+    overflow: hidden;
+}
+.chart__box {
+    flex-grow: 1;
+    border-radius: inherit;
+    padding: 24px 18px 0;
+    position: relative;
+}
+.chart__header {
+    width: 100%;
+}
+.chart__header-status {
+}
+.chart__controls,
+.chart__controls-period,
+.chart__controls-type {
+    display: flex;
+    align-items: center;
+}
+.chart__controls {
+}
+.chart__controls-period {
+    margin-right: 90px;
+}
+.chart__controls-period-btn {
+    padding: 6px 4px;
+    border-radius: 8px;
+    background: $clr-black;
+    min-width: 30px;
+    text-align: center;
+
+    + .chart__controls-period-btn {
+        margin-left: 8px;
+    }
+
+    span {
+        font: $fontMedium;
+        color: $clr-gray-dark;
+        transition: color $app-transition;
+    }
+}
+.chart__controls-type {
+}
+.chart__controls-type-btn {
+    svg {
+        width: 24px;
+        height: 24px;
+
+        .svg-stroke {
+            stroke: $clr-gray-dark;
+            transition: stroke $app-transition;
+        }
+    }
+
+    + .chart__controls-type-btn {
+        margin-left: 14px;
+    }
+}
+.chart__container {
+    margin-top: 24px;
+    flex-grow: 1;
+    max-width: 100%;
+    overflow: auto hidden;
+
+    canvas {
+        max-width: 100%;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+.chart__container_line {
+    width: 535px;
+}
+
+// Active
+$modifiers: (
+    chart-users: $clr-blue,
+    chart-applicants: $clr-orange,
+    chart-proposals: $clr-lavender,
+    chart-project-tasks: $clr-yellow,
+    chart-forums: $clr-green,
+);
+.chart__header {
+    @each $mod, $color in $modifiers {
+        &.#{$mod} {
+            .chart-tooltip {
+                svg .svg-stroke {
+                    stroke: $color;
+                }
+                span {
+                    color: $color;
+                }
+            }
+            .chart__controls-period-btn.active {
+                span {
+                    color: $color;
+                }
+            }
+            .chart__controls-type-btn.active {
+                svg .svg-stroke {
+                    stroke: $color;
+                }
+            }
+        }
+    }
+}
+.chart__tabs {
+    $len: length($modifiers);
+    @each $name, $color in $modifiers {
+        $i: index($modifiers, $name $color);
+        .chart-tab:nth-child(#{$len}n + #{$i}) {
+            .svg-stroke {
+                stroke: $color;
+            }
+        }
+    }
+}
+@media (max-width: $tablet_small) {
+    .block.chart {
+        flex-direction: column;
+    }
+    .chart__tabs {
+        max-width: unset;
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 0;
+        margin: -10px -5px 0;
+    }
+    .chart-tab {
+        flex: 0 0 calc(50% - 10px);
+        margin: 10px 5px 0;
+        border: 1px solid $clr-black !important;
+        border-radius: 12px;
+
+        &.active {
+            button {
+                background: $clr-black-main !important;
+            }
+        }
+
+        button {
+            padding: 11px 13px;
+        }
+    }
+    .chart__content {
+        margin-top: 27px;
+    }
+    .chart__controls-period {
+        margin-right: 21px;
+    }
+}
+@media (max-width: $mobile_small) {
+    .chart-tab {
+        flex-basis: calc(100% - 10px);
+    }
+}

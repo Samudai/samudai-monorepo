@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+  :hover {
+    cursor: pointer;
+  }
+
+  &.rootActive {
+    z-index: 300;
+  }
+}
+.input {
+}
+.inputBtn {
+  width: 24px;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+}

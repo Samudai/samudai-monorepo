@@ -1,0 +1,24 @@
+
+
+
+.profile-setup {
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+  position: relative;
+}
+.profile-setup__header {
+  position: relative;
+  z-index: 5;
+  button {
+    margin: -20px 0;
+  }
+}
+.profile-setup__controls {
+  margin-top: auto;
+  padding-top: 29px;
+}
+.profile-setup__title {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}

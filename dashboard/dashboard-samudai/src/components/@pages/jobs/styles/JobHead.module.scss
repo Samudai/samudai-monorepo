@@ -1,0 +1,21 @@
+.head {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headControls {
+  padding-left: 15px;
+  display: flex;
+}
+.headViewBtn {
+}
+.headPostBtn {
+  margin-left: 22px;
+}
+
+@media (max-width: $tablet){
+  .headControls {
+    display: none;
+  }
+}

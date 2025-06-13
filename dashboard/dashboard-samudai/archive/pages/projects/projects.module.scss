@@ -1,0 +1,51 @@
+.root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  // padding-top: 23px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.container {
+  flex-grow: 1;
+  padding-bottom: 177px;
+}
+.rate {
+  display: flex;
+  align-items: center;
+}
+.rateName,
+.rateValue,
+.rateStats span {
+  font: $fontMedium;
+}
+.rateName {
+  color: $clr-gray-dark;
+}
+.rateValue {
+  margin-left: 22px;
+  color: $clr-white;
+}
+.rateStats {
+  margin-left: 13px;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 15px;
+  background: $clr-black-main;
+
+  svg {
+    max-width: 13.33px;
+    width: 100%;
+    :global(.svg-stroke) {
+      stroke: $clr-green;
+    }
+  }
+  span {
+    margin-left: 4px;
+    color: $clr-green;
+  }
+}
