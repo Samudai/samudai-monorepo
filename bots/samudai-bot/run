@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e 
+
+export BOT_TOKEN=$BOT_TOKEN
+export APP_ID=$DISCORD_CLIENT_ID
+export GATEWAY_EXTERNAL=$GATEWAY_EXTERNAL
+export GATEWAY_CONSUMER=$GATEWAY_CONSUMER
+# export GATEWAY_EXTERNAL=https://dev-ge.samudai.xyz
+# export GATEWAY_CONSUMER=https://dev-gc.samudai.xyz
+
+export PORT=8080
+
+npm run dev

@@ -1,5 +1,5 @@
-kind: ConfigMap 
-apiVersion: v1 
+kind: ConfigMap
+apiVersion: v1
 metadata:
   name: samudai-bot
   labels:
@@ -7,3 +7,98 @@ metadata:
 data:
   app-id: <app-id>
   bot-token: <bot-token>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: samudai-bot
+  labels:
+    app: samudai-bot
+  annotations:
+    prometheus.io/probe: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: samudai-bot
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samudai-bot
+spec:
+  selector:
+    matchLabels:
+      app: samudai-bot
+  revisionHistoryLimit: 2
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: samudai-bot
+    spec:
+      containers:
+        - name: samudai-bot
+          image: <IMAGE>
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 150m
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: GATEWAY_EXTERNAL
+              value: http://gateway-external
+            - name: GATEWAY_CONSUMER
+              value: http://gateway-consumer-node
+            - name: APP_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: samudai-bot
+                  key: app-id
+            - name: BOT_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: samudai-bot
+                  key: bot-token
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: samudai-bot
+            - name: ELASTIC_APM_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-server-url
+            - name: ELASTIC_APM_SECRET_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-sercret-token
+            - name: ELASTIC_APM_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-env
