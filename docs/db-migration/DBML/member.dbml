@@ -1,0 +1,209 @@
+Table clan_invites{
+  id bigint [pk, default:`nextval('clan_invites_seq'::regclass)`]
+  clan_id uuid [ ref: > clans.clan_id]
+  sender_id uuid [ ref: > members.member_id]
+  invite_code text [unique, note: "must be unique"]
+  receiver_id uuid [ ref: > members.member_id]
+  
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp
+  
+  Indexes{
+    id
+    invite_code
+  }
+  
+}
+
+Table clan_members{
+  id bigint [pk, default:`nextval('clan_member_seq'::regclass)`]
+  clan_id uuid [ref: > clans.clan_id]
+  member_id uuid [ref: > members.member_id]
+  role text
+  notificatiton boolean [default:`true`]
+  created_at timestamp [not null, default: `now()`]
+  
+    Indexes{
+    id
+  }
+  
+}
+
+Table clans{
+  id bigint [pk, default:`nextval('clan_seq'::regclass)`]
+  clan_id uuid [unique, default: `uuid_generate_v4()`]
+  name text [unique, note: "must be unique"]
+  visibility text
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp 
+  avatar text 
+  created_by uuid [ ref: > members.member_id]
+  
+    Indexes{
+    id
+    clan_id
+    name
+  }
+  
+}
+
+Table connection_request{
+  id bigint [pk, default:`nextval('connections_seq'::regclass)`]
+  sender_id uuid [ ref: > members.member_id]
+  receiver_id uuid [ ref: > members.member_id]
+  status invitestatus
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp 
+  
+  Indexes{
+    id
+  }
+  
+}
+
+
+Table discord {
+  id bigint [pk, default:`nextval('discord_seq'::regclass)`]
+  member_id uuid [default: `uuid_generate_v4()`, ref: > members.member_id]
+  discord_user_id text [unique, not null, note: "must be unique"]
+  username text
+  avatar text 
+  discriminator text
+  public_flags integer
+  flags integer
+  banner text
+  banner_color text
+  accent_color integer
+  locale text
+  mfa_enabled boolean
+  verified boolean
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp
+  email text [unique]
+  
+  
+  Indexes{
+    id
+    discord_user_id
+    email
+  }
+  
+}
+
+Table member_wallet{
+  id bigint [pk, default:`nextval('member_wallet_seq'::regclass)`]
+  member_id uuid [default: `uuid_generate_v4()`, ref: > members.member_id]
+  wallet_address text [not null, unique]
+  default boolean [default: `false`]
+  chain_id bigint [not null]
+  Indexes{
+    id
+    wallet_address
+  }
+}
+
+
+Table members{
+  id bigint [pk, default:`nextval('members_seq'::regclass)`]
+  member_id uuid [unique, default: `uuid_generate_v4()`]
+  name text
+  phone text
+  email text [unique]
+  about text
+  skills text[] [not null,default:`{}`]
+  profile_picture text
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp
+  did text [not null]
+  username text [ unique]
+  captain boolean [default: `false`]
+  open_for_opportunity boolean [default:`true`]
+  ceramic_stream text
+  subdomain text
+  invite_code text [unique, default:`substr(md5(random():text),0,8)`]
+  
+  Indexes{
+    id
+    member_id
+    email
+    username
+    invite_code
+  }
+}
+
+Table onboarding{
+  id bigint [pk, default:`nextval('onboarding_seq'::regclass)`]
+  member_id uuid [ref: > members.member_id]
+  admin boolean
+  contributor boolean
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp
+  invite_code text
+  
+  Indexes{
+    id
+    invite_code
+  }
+}
+
+
+Table reviews{
+  id bigint [pk, default:`reviews_id`]
+  member_id uuid [ref: > members.member_id]
+  reviewer_id uuid [not null, ref: > members.member_id]
+  content text
+  created_at timestamp [not null, default: `now()`]
+  rating integer
+   Indexes{
+    id
+  }
+}
+
+Table rewards_earned{
+  id bigint [pk, default:`nextval('rewards_earned_seq'::regclass)`]
+  member_id uuid [not null, ref: > members.member_id]
+  dao_id uuid [not null]
+  amount numeric [not null,default:`0.0`]
+  currency text [not null]
+  link_id uuid [not null]
+  type text [not null]
+  created_at timestamp [not null, default: `now()`]
+  
+   Indexes{
+    id
+  }
+}
+
+
+Table social{
+  id bigint [pk, default:`nextval('social_seq'::regclass)`]
+  member_id uuid [ref: > members.member_id]
+  type text
+  url text
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp
+  
+   Indexes{
+    id
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

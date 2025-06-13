@@ -1,0 +1,223 @@
+Table access{
+  id bigint [pk, default:`nextval('access_seq'::regclass)`]
+  project_id uuid [ref: > project.project_id]
+  access accesstype
+  members uuid[] [default:`{}`]
+  roles uuid[] [default:`{}`]
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  invite_link text [unique, default:`substr(md5(random()::text),0,10)`]
+
+  Indexes {
+    id
+    invite_link
+  }
+  
+}
+
+
+Table comments{
+  id bigint [pk, default:`nextval('comments_seq'::regclass)`]
+  link_id uuid [ref: > task.task_id]
+  body text 
+  author uuid
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  type commenttype [not null]
+  tagged_members uuid[] [default:`{}`]
+  
+  Indexes {
+    id
+  }
+  
+}
+
+Table folder{
+  id bigint [pk, default:`nextval('project_folder_seq'::regclass)`]
+  folder_id uuid [unique, default:`uuid_generate_v4()`]
+  name text 
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  project_id uuid [ref: > project.project_id]
+  description text
+  created_by uuid
+  updated_by uuid
+  
+  Indexes {
+    id
+    folder_id
+  }
+  
+}
+
+Table form_response{
+  id bigint [pk, default:`form_response_id`]
+  response_id uuid [unique, default:`uuid_generate_v4()`]
+  response_type text
+  mongo_object text
+  title text
+  col integer [default:`1`]
+  position "double precision"
+  assignee_member uuid[] [default:`{}`]
+  assignee_clan uuid[] [default:`{}`]
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  updated_by uuid
+  discussion_id uuid
+  
+  Indexes {
+    id
+    response_id
+  }
+  
+}
+
+Table project{
+  id bigint [pk, default:`nextval('project_seq'::regclass)`]
+  project_id uuid [unique, default:`uuid_generate_v4()`]
+  description text
+  title text
+  visibility visibilitytype [not null, default:`public`]
+  poc_member_id uuid
+  created_by uuid
+  discord_channel text
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  link_id uuid
+  updated_by uuid 
+  default boolean [default:`false`]
+  github_repos text[] [default:`{}`]
+  start_date timestamp
+  end_date timestamp
+  
+  type linktype [not null, default:`dao`]
+  captain uuid
+  department uuid 
+  notion_database text
+  columns text [default:`[]`]
+  budget_amount numeric
+  
+  budget_currency text 
+  completed boolean [default:`false`]
+  project_type projecttype [default:`default`]
+  total_col integer
+  pinned boolean [default:`false`]
+  
+  Indexes {
+    id
+    project_id
+  }
+  
+}
+
+Table project_files{
+  id bigint [pk, default:`nextval('project_file_seq'::regclass)`]
+  project_file_id uuid [unique, default:`uuid_generate_v4()`]
+  name text
+  url text
+  metadata json [not null, default:`{}`]
+  created_at timestamp [not null, default:`now()`]
+  folder_id uuid [ref: > folder.folder_id]
+  
+  Indexes {
+    id
+    project_file_id
+  }
+}
+
+Table subtask{
+  id bigint [pk, default:`nextval('subtask_seq'::regclass)`]
+  subtask_id uuid [unique, default:`uuid_generate_v4()`]
+ 
+  task_id uuid [ref: > task.task_id]
+  title text [not null]
+  completed boolean [default:`false`]
+ 
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  Indexes {
+    id
+    subtask_id
+  }
+}
+
+Table tasks_files{
+  id bigint [pk, default:`nextval('task_file_seq'::regclass)`]
+  task_file_id uuid [unique, default:`uuid_generate_v4()`]
+ 
+  task_id uuid [ref: > task.task_id]
+  name text 
+  url text
+  metadata json [default: `{}`]
+ 
+  created_at timestamp [not null, default:`now()`]
+Indexes {
+    id
+  }
+}
+
+Table task{
+  id bigint [pk, default:`nextval('task_seq'::regclass)`]
+  task_id uuid [unique, default:`uuid_generate_v4()`]
+ 
+  title text
+  description text
+  poc_member_id uuid
+  deadline timestamp
+  created_by uuid
+  
+  updated_by uuid
+  assignee_member uuid[] [default:`{}`]
+  project_id uuid [ref: > project.project_id]
+  tags text[] [default:`{}`]
+  feedback text
+  assignee_clan uuid[] [default:`{}`]
+  github_issue integer [default:`{}`]
+  position "double precision" [not null]
+  notion_page text
+  notion_property text
+  col integer [not null]
+  payout text [default:`[]`]
+  vc_claim boolean [default:`false`]
+  payment_created boolean [default:`false`]
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+Indexes {
+    id
+    task_id
+  }
+}
+
+Enum accesstype{
+  hidden
+  view
+  create_task
+  manage_project
+}
+
+Enum commenttype{
+  project
+  task
+}
+
+Enum visibilitytype{
+  public
+  private
+}
+
+Enum linktype{
+  dao
+  member
+  clan
+}
+
+Enum projecttype{
+  default
+  internal
+  investment
+}

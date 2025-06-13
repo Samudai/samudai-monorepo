@@ -1,0 +1,2 @@
+drop dao_events
+drop member_events

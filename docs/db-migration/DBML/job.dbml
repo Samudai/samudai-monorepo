@@ -1,0 +1,174 @@
+Table applicants{
+  id bigint [pk,default:`nextval('applicants_seq'::regclass)`]
+  applicant_id uuid [default:`uuid_generate_v4()`]
+  job_id uuid [ref: > opportunity.job_id]
+  member_id uuid 
+  answers json [default:`{}`]
+  status applicantstatustype [default:`applied`]
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  application text
+  clan_id uuid
+  
+  Indexes{
+    id
+  }
+}
+
+Enum applicantstatustype{
+  applied
+  accepted
+  rejected
+}
+
+Table bounty{
+  id bigint [pk,default:`nextval('bounty_seq'::regclass)`]
+  bounty_id uuid [unique,default:`uuid_generate_v4()`]
+  dao_id uuid [not null]
+  title text
+  description text
+  payout_amount integer [default:`0`]
+  payout_currency text
+  winner_count integer
+  
+  start_date timestamp
+  end_date timestamp
+  poc_member_id uuid
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  tags text[] [default:`{}`]
+  skills text[] [default:`{}`]
+  
+  visibility visibilitytype [default:`public`]
+  req_people_count integer [default:`1`]
+  status statustype [default:`draft`]
+  project_id uuid [not null]
+  
+  Indexes{
+    id
+    bounty_id
+  }
+}
+
+Enum visibilitytype{
+  public
+  private
+}
+
+Enum statustype{
+  open
+  draft
+  closed
+}
+
+Table bounty_files{
+  id bigint [pk,default:`nextval('bounty_files_seq'::regclass)`]
+  bounty_file_id uuid [unique,default:`uuid_generate_v4()`]
+  bounty_id uuid [ref: > bounty.bounty_id]
+  name text
+  url text
+  metadata json [not null, default:`{}`]
+  
+  
+  created_at timestamp [not null, default:`now()`]
+  
+  Indexes{
+    id
+    bounty_file_id
+  }
+}
+
+Table favourite_job{
+  id bigint [pk,default:`nextval('favourite_seq'::regclass)`]
+  bounty_id uuid [ref: > opportunity.job_id]
+  member_id uuid
+  created_at timestamp [not null, default:`now()`]
+  
+  Indexes{
+    id
+  }
+}
+
+Table job_files{
+  id bigint [pk,default:`nextval('job_files_seq'::regclass)`]
+  job_file_id uuid [unique,default:`uuid_generate_v4()`]
+  job_id uuid [ref: > opportunity.job_id]
+  name text
+  url text
+  metadata json [not null, default:`{}`]
+  
+  
+  created_at timestamp [not null, default:`now()`]
+  
+  Indexes{
+    id
+    job_file_id
+  }
+}
+
+Table opportunity{
+  id bigint [pk,default:`nextval('opportunity_seq'::regclass)`]
+  job_id uuid [unique,default:`uuid_generate_v4()`]
+  type jobtype
+  title text 
+  description text 
+  payout_amount integer [default:`0`]
+  payout_currency text
+  req_people_count integer [default:`1`]
+  start_date timestamp
+  end_date timestamp
+  github text
+  dao_id uuid [not null]
+  poc_member_id uuid
+  task_id uuid
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  tags text[] [default:`{}`]
+  skills text[] [default:`{}`]
+  
+  
+  questions json [default:`{}`]
+  status statustype [default:`draft`]
+  created_by uuid
+  visibility visibilitytype [default:`public`]
+  captain boolean [default:`false`]
+  project_id uuid
+   
+  Indexes{
+    id
+    job_id
+  }
+}
+
+Enum jobtype{
+  project
+  task
+}
+
+Table submission{
+  id bigint [pk,default:`nextval('submission_seq'::regclass)`]
+  bounty_id uuid [ref: > bounty.bounty_id ]
+  member_id uuid
+  submission text
+  file text 
+  
+  status applicantstatustype [default:`applied`]
+  rank integer
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  feedback text
+  submission_id uuid [unique,default:`uuid_generate_v4()`]
+  
+  clan_id uuid
+  
+  Indexes{
+    id
+    submission_id
+  }
+}

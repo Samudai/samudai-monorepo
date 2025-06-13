@@ -1,0 +1,2 @@
+drop dashboard_widget
+drop dashboard

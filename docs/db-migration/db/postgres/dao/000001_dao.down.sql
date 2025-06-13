@@ -1,0 +1,17 @@
+drop analytics
+drop access
+drop blogs
+drop collaboration
+drop dao_invites
+drop department
+drop favourite
+drop member_roles
+drop roles
+drop member
+drop partner_social
+drop dao_partner
+drop provider
+drop reviews
+drop social
+drop token
+drop dao

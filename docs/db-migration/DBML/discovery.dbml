@@ -1,0 +1,27 @@
+Table dao_events{
+  id bigint [pk, default:`nextval('events_seq'::regclass)`]
+  dao_id uuid
+  event_context text
+  event_type text
+  
+  created_at timestamp [not null, default: `now()`]
+  
+  Indexes{
+    id
+  }
+  
+}
+
+Table member_events{
+  id bigint [pk, default:`nextval('member_events_seq'::regclass)`]
+  member_id uuid [not null]
+  event_context text
+  event_type text
+  
+  created_at timestamp [not null, default: `now()`]
+  
+  Indexes{
+    id
+  }
+  
+}

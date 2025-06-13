@@ -1,0 +1,42 @@
+Table dashboard as Dash{
+  id bigint [pk, default:`nextval('dashboard_seq'::regclass)`]
+  dashboard_id uuid [unique, default:`uuid_generate_v4()`]
+  dao_id uuid
+  dashboard_name text
+  description text
+  default boolean 
+  visibility visibilitytype
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp
+
+  Indexes{
+    id
+    dashboard_id
+  }
+  
+}
+
+Enum visibilitytype{
+  public
+  private
+}
+
+Table dashboard_widget{
+  dashboard_widget_id bigint [pk, default:`nextval('dashboard_widget_seq'::regclass)`]
+  dashboard_id uuid [ref: > Dash.dashboard_id]
+  active boolean
+  row_id integer
+  col_id integer
+  order integer
+  draggable boolean
+  popup_id integer
+  id integer [not null]
+  name text
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp 
+
+Indexes{
+  dashboard_widget_id
+  }
+  
+}

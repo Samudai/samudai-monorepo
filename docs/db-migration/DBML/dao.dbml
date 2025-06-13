@@ -1,0 +1,307 @@
+Table access{
+  id bigint [pk,default:`nextval('access_seq'::regclass)`]
+  dao_id uuid [ref: > dao.dao_id]
+  access accesstype
+  
+  roles uuid[] [default:`{}`]
+  members uuid[] [default:`{}`]
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  
+  Indexes{
+    id
+  }
+}
+
+Enum accesstype{
+  hidden
+  view
+  create_task
+  manage_project
+  manage_dao
+}
+
+Table analytics{
+  id bigint [pk,default:`nextval('analytics_seq'::regclass)`]
+  dao_id uuid 
+  member_id uuid
+  
+  time timestamp [not null, default:`now()`]
+  visitor_ip text
+  
+  Indexes{
+    id
+  }
+}
+
+Table blogs{
+  id bigint [pk,default:`nextval('blogs_seq'::regclass)`]
+  dao_id uuid [ref: > dao.dao_id]
+  link text
+  
+  created_at timestamp [not null, default:`now()`]
+  
+  Indexes{
+    id
+  }
+}
+
+Table collaboration{
+  id bigint [pk,default:`nextval('collaboration_seq'::regclass)`]
+  collaboration_id uuid [unique, default:`uuid_generate_v4()`]
+  applying_member_id uuid [not null]
+  from_dao_id uuid [ref: > dao.dao_id]
+  to_dao_id uuid [ref: > dao.dao_id]
+  status text
+  title text
+  department uuid [ref: > department.department_id]
+  description text
+  requirements json [default:`{}`]
+  benefits text
+  attachment text
+  replying_member_id uuid [not null]
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  Indexes{
+    id
+    collaboration_id
+  }
+}
+
+Table dao{
+  id bigint [pk,default:`nextval('dao_id_seq'::regclass)`]
+  dao_id uuid [unique, default:`uuid_generate_v4()`]
+  
+  name text
+  guild_id text [unique]
+  about text 
+  profile_picture text
+  contract_address text
+  snapshot text
+  owner_id uuid [default:`uuid_nil()`]
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  onboarding boolean [default:`false`]
+  dao_type text [default:`general`]
+  token_gating boolean [default:`false`]
+  
+  Indexes{
+    id
+    dao_id
+    guild_id
+  }
+}
+
+Table dao_invites{
+  id bigint [pk,default:`nextval('dao_invites_seq'::regclass)`]
+  dao_id uuid [ref: > dao.dao_id]
+  
+  sender_id uuid
+  invite_code text [unique]
+  receiver_id uuid
+  status invitestatus
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  Indexes{
+    id
+    invite_code
+  }
+}
+
+Enum invitestatus{
+  pending
+  accepted
+  rejected
+}
+
+
+Table dao_partner{
+  id bigint [pk,default:`nextval('dao_partner_seq'::regclass)`]
+  
+  dao_partner_id uuid [unique, default:`uuid_generate_v4()`]
+  name text
+  logo text
+  website text
+  email text
+  phone text
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  dao_id uuid [ref: > dao.dao_id]
+  
+  Indexes{
+    id
+    dao_partner_id
+  }
+}
+
+
+Table department{
+  id bigint [pk,default:`nextval('department_seq'::regclass)`]
+  
+  department_id uuid [unique, default:`uuid_generate_v4()`]
+  
+  name text
+  
+  created_at timestamp [not null, default:`now()`]
+  updated_at timestamp
+  
+  dao_id uuid [ref: > dao.dao_id]
+  
+  Indexes{
+    id
+    department_id
+  }
+}
+
+Table favourite{
+  id bigint [pk,default:`nextval('favourite_seq'::regclass)`]
+  member_id uuid
+  
+  created_at timestamp [not null, default:`now()`]
+  dao_id uuid [ref: > dao.dao_id]
+  
+  Indexes{
+    id
+  }
+}
+
+Table member_roles{
+  id bigint [pk,default:`nextval('member_role_seq'::regclass)`]
+  
+  member_id uuid
+  
+  created_at timestamp [not null, default:`now()`]
+  role_id uuid [ref: > roles.role_id]
+  
+  dao_id uuid [ref: > dao.dao_id]
+  
+  Indexes{
+    id
+  }
+}
+
+Table member{
+  id bigint [pk,default:`nextval('dao_member_seq'::regclass)`]
+  
+  member_id uuid
+  
+  created_at timestamp [not null, default:`now()`]
+  
+  
+  dao_id uuid [ref: > dao.dao_id]
+  
+  Indexes{
+    id
+  }
+}
+
+Table partner_social{
+  id bigint [pk,default:`nextval('partner_social_seq'::regclass)`]
+  
+  type text
+  url text 
+  created_at timestamp [not null, default:`now()`]
+  dao_partner_id uuid [ref: > dao_partner.dao_partner_id]
+  updated_at timestamp
+  
+  Indexes{
+    id
+  }
+}
+
+Table provider{
+  id bigint [pk,default:`nextval('provider_seq'::regclass)`]
+ 
+  provider_type text [note: "enum - gnosis, wallet, parcel"]
+  address text
+  created_by uuid
+  chain_id integer
+  
+  is_default boolean
+  name text
+  
+  created_at timestamp [not null, default:`now()`]
+  dao_id uuid [ref: > dao.dao_id]
+  updated_at timestamp
+  
+  Indexes{
+    id
+  }
+}
+
+
+Table reviews{
+  id bigint [pk,default:`nextval('reviews_seq'::regclass)`]
+ 
+  member_id uuid [not null]
+  
+  content text
+  rating integer
+  
+  created_at timestamp [not null, default:`now()`]
+  dao_id uuid [ref: > dao.dao_id]
+  
+  Indexes{
+    id
+  }
+}
+
+Table roles{
+  id bigint [pk,default:`nextval('dao_role_seq'::regclass)`]
+  role_id uuid [unique, default:`uuid_generate_v4()`]
+  name text
+  
+  discord_role_id text
+
+  
+  created_at timestamp [not null, default:`now()`]
+  dao_id uuid [ref: > dao.dao_id]
+  updated_at timestamp
+  
+  Indexes{
+    id
+    role_id
+  }
+}
+
+Table social{
+  id bigint [pk,default:`nextval('social_seq'::regclass)`]
+  type text
+  url text
+
+  
+  created_at timestamp [not null, default:`now()`]
+  dao_id uuid [ref: > dao.dao_id]
+  updated_at timestamp
+  
+  Indexes{
+    id
+  }
+}
+
+Table token{
+  id bigint [pk,default:`nextval('token_seq'::regclass)`]
+  ticker text
+  contract_address text
+  average_time_held text
+  holders integer
+  
+  created_at timestamp [not null, default:`now()`]
+  dao_id uuid [ref: > dao.dao_id]
+  updated_at timestamp
+  
+  Indexes{
+    id
+  }
+}
+
