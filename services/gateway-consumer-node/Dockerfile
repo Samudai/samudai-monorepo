@@ -3,8 +3,6 @@ RUN apk update && apk add bash git && rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
-ARG NPM_TOKEN
-
 COPY . .
 
 # install dependencies

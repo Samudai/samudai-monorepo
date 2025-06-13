@@ -85,13 +85,11 @@ The application uses a multi-stage build process with Node.js for building and N
 # Build for a specific environment (e.g., development)
 docker build \
   --build-arg NODE_ENV=development \
-  --build-arg NPM_TOKEN=your_npm_token \
   -t dashboard-samudai .
 
 # Or for production
 docker build \
   --build-arg NODE_ENV=production \
-  --build-arg NPM_TOKEN=your_npm_token \
   -t dashboard-samudai .
 ```
 

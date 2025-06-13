@@ -10,11 +10,6 @@ on:
           - prod
           - staging
           - development
-      NPM_TOKEN:
-        description: "NPM Token"
-        required: true
-        type: string
-        default: ${{ secrets.NPM_TOKEN }}
 
   # push:
   #   branches:
@@ -68,4 +63,3 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             NODE_ENV=${{ inputs.NODE_ENV }}
-            NPM_TOKEN=${{ inputs.NPM_TOKEN }}

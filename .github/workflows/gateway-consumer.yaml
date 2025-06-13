@@ -49,5 +49,4 @@ jobs:
             ghcr.io/samudai/gateway-consumer-node:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          build-args: |
-            NPM_TOKEN=${{ inputs.NPM_TOKEN }}
+
