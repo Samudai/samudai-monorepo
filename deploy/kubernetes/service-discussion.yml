@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: service-discussion
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-discussion:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:

@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
         - name: service-discord
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-discord:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:

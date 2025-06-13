@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: service-forms
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-forms:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:

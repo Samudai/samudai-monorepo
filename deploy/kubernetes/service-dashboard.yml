@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
         - name: service-dashboard
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-dashboard:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:

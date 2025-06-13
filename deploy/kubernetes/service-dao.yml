@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: service-dao
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-dao:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:

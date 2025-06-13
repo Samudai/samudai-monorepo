@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: service-job
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-job:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:

@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
         - name: service-plugin
-          image: <IMAGE>
+          image: ghcr.io/samudai/service-plugin:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
