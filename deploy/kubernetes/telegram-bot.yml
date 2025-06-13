@@ -9,3 +9,110 @@ data:
   mq-ip: rabbitmq-service.default.svc.cluster.local
   mq-username: $(RABBITMQ_DEFAULT_USER)
   mq-password: $(RABBITMQ_DEFAULT_PASS)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: telegram-bot
+  labels:
+    app: telegram-bot
+  annotations:
+    prometheus.io/probe: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: telegram-bot
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegram-bot
+spec:
+  selector:
+    matchLabels:
+      app: telegram-bot
+  revisionHistoryLimit: 2
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: telegram-bot
+    spec:
+      containers:
+        - name: telegram-bot
+          image: ghcr.io/samudai/telegram-bot:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 150m
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: GATEWAY_EXTERNAL
+              value: http://gateway-external
+            - name: GATEWAY_CONSUMER
+              value: http://gateway-consumer-node
+            - name: TELEGRAM_USERNAME
+              value: samudai_bot
+            - name: BOT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: telegram-bot
+                  key: bot-id
+            - name: MQ_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: telegram-bot
+                  key: mq-ip
+            - name: MQ_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: telegram-bot
+                  key: mq-username
+            - name: MQ_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: telegram-bot
+                  key: mq-password
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: telegram-bot
+            - name: ELASTIC_APM_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-server-url
+            - name: ELASTIC_APM_SECRET_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-sercret-token
+            - name: ELASTIC_APM_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-env
