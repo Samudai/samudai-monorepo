@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-discovery
+export PORT=4010
+export DATABASE_URL=$DATABASE_URL_LOCAL_DISCOVERY
+
+go test ./...
+go build -tags=jsoniter -o build/service-discovery
+./build/service-discovery
