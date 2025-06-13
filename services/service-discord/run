@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-discord
+export PORT="4002"
+export MONGO_URL=$MONGO_URL_LOCAL_DISCORD
+export REDIS_URL=$REDIS_URL_LOCAL
+
+export MQ_USERNAME=$MQ_USERNAME
+export MQ_PASSWORD=$MQ_PASSWORD
+export MQ_IP=$MQ_IP
+
+export DISCORD_CLIENT_ID=$DISCORD_CLIENT_ID
+export DISCORD_CLIENT_SECRET=$DISCORD_CLIENT_SECRET
+
+go test ./...
+go build -tags=jsoniter -o build/service-discord
+./build/service-discord
