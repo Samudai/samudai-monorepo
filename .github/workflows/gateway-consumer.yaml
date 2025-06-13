@@ -44,7 +44,7 @@ jobs:
           file: services/gateway-consumer-node/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
-          tags:
+          tags: |
             ghcr.io/samudai/gateway-consumer-node:${{ github.sha }}
             ghcr.io/samudai/gateway-consumer-node:latest
           cache-from: type=gha

@@ -56,7 +56,7 @@ jobs:
           file: dashboard/dashboard-samudai/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
-          tags:
+          tags: |
             ghcr.io/samudai/dashboard-samudai:${{ github.sha }}
             ghcr.io/samudai/dashboard-samudai:latest
           cache-from: type=gha
