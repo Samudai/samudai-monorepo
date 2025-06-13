@@ -18,3 +18,153 @@ data:
   gcal-client-id: <gcal-client-id>
   gcal-client-secret: <gcal-client-secret>
   gcal-project-id: <gcal-project-id>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-plugin
+  labels:
+    app: service-plugin
+  annotations:
+    prometheus.io/probe: "true"
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app: service-plugin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-plugin
+spec:
+  selector:
+    matchLabels:
+      app: service-plugin
+  revisionHistoryLimit: 2
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 4
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: service-plugin
+    spec:
+      containers:
+        - name: service-plugin
+          image: <IMAGE>
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 5
+          ports:
+            - containerPort: 8080
+              name: service-plugin
+          resources:
+            limits:
+              cpu: 50m
+          env:
+            - name: SERVICE_NAME
+              value: service-plugin
+            - name: GIN_MODE
+              value: release
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: NOTION_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: notion-client-id
+            - name: NOTION_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: notion-client-secret
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: mongo-database-url
+            - name: GITHUB_APP_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: github-app-id
+            - name: GITHUB_APP_WEBHOOK_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: github-app-webhook-secret
+            - name: GITHUB_APP_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: github-app-client-id
+            - name: GITHUB_APP_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: github-app-client-secret
+            - name: GITHUB_APP_PRIVATE_KEY
+              value: "github-prod.pem"
+            - name: GITHUB_OAUTH_APP_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: github-oauth-app-client-id
+            - name: GITHUB_OAUTH_APP_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: github-oauth-app-client-secret
+            - name: GCAL_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: gcal-client-id
+            - name: GCAL_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: gcal-client-secret
+            - name: GCAL_PROJECT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: service-plugin
+                  key: gcal-project-id
+            - name: GCAL_JAVASCRIPT_ORIGIN
+              value: '"https://app.samudai.xyz"'
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: service-plugin
+            - name: ELASTIC_APM_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-server-url
+            - name: ELASTIC_APM_SECRET_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-sercret-token
+            - name: ELASTIC_APM_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: elastic
+                  key: elastic-apm-env
