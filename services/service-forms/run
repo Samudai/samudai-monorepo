@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-forms
+export PORT=4009
+export MONGO_URL=$MONGO_URL_LOCAL_PLUGIN
+
+go test ./...
+go build -tags=jsoniter -o build/service-forms
+./build/service-forms
