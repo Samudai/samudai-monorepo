@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-point
+export PORT="4011"
+export DATABASE_URL=$DATABASE_URL_LOCAL_POINT
+export REDIS_URL=$REDIS_URL_LOCAL
+
+export MQ_USERNAME=$MQ_USERNAME
+export MQ_PASSWORD=$MQ_PASSWORD
+export MQ_IP=$MQ_IP
+
+export ENCRYPTION_KEY=$ENCRYPTION_KEY
+
+go test ./...
+go build -tags=jsoniter -o build/service-point
+./build/service-point
