@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+export SERVICE_NAME=service-dashboard
+export PORT=4007
+export DATABASE_URL=$DATABASE_URL_LOCAL_DASHBOARD
+
+# # Set the service name. Allowed characters: # a-z, A-Z, 0-9, -, _, and space.
+# # If ELASTIC_APM_SERVICE_NAME is not specified, the executable name will be used.
+# export ELASTIC_APM_SERVICE_NAME=service-dashboard
+# # Set custom APM Server URL (default: http://localhost:8200)
+# export ELASTIC_APM_SERVER_URL=https://a03be7947d4a400e9f108f579a07b15c.apm.ap-south-1.aws.elastic-cloud.com:443
+# # Use if APM Server requires a secret token
+# export ELASTIC_APM_SECRET_TOKEN=j2qpEsRJq06jtaZa0O
+# # Set the service environment
+# export ELASTIC_APM_ENVIRONMENT=develop
+
+go test ./...
+go build -tags=jsoniter -o build/service-dashboard
+./build/service-dashboard
