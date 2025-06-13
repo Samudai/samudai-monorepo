@@ -62,7 +62,7 @@ func AddPointMembers(pointID string, members []discord.PointMember) error {
 	var pointMembers []point.PointMember
 	var pointMemberRoleDiscords []point.MemberRoleDiscord
 	for _, discordMember := range members {
-		Member, err := GetByDiscordUserID(discordMember.UserID)
+		Member, err := GetByDiscordUserID(*discordMember.UserID)
 		if err != nil {
 			logger.LogMessage("error", "member not found: %v", err)
 			continue
@@ -97,12 +97,12 @@ func AddPointMembers(pointID string, members []discord.PointMember) error {
 }
 
 func AddPointMemberDiscord(discordMember discord.PointMember) error {
-	Point, err := GetPointByGuildID(discordMember.GuildID)
+	Point, err := GetPointByGuildID(*discordMember.GuildID)
 	if err != nil {
 		return err
 	}
 
-	Member, err := GetByDiscordUserID(discordMember.UserID)
+	Member, err := GetByDiscordUserID(*discordMember.UserID)
 	if err != nil {
 		if err.Error() == "member not found" || err.Error() == "internal server error" {
 			return nil
@@ -167,11 +167,11 @@ func DeleteMemberPointDiscord(guildID, userID string) error {
 }
 
 func UpdatePointMemberRoles(discordMember discord.PointMember, oldRoles, newRoles []string) error {
-	Point, err := GetPointByGuildID(discordMember.GuildID)
+	Point, err := GetPointByGuildID(*discordMember.GuildID)
 	if err != nil {
 		return err
 	}
-	Member, err := GetByDiscordUserID(discordMember.UserID)
+	Member, err := GetByDiscordUserID(*discordMember.UserID)
 	if err != nil {
 		return errors.New("member not found")
 	}

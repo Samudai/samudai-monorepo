@@ -673,7 +673,7 @@ func AddPointMembers(c *gin.Context) {
 	}
 	var discordIds []string
 	for i := 0; i < len(params.Members); i++ {
-		discordIds = append(discordIds, params.Members[i].UserID)
+		discordIds = append(discordIds, *params.Members[i].UserID)
 	}
 
 	MemberIds, err := point.GetByDiscordUserIDArray(discordIds)
@@ -708,7 +708,7 @@ func AddPointMember(c *gin.Context) {
 		return
 	}
 	var MemberId string
-	Member, err := point.GetByDiscordUserID(params.Member.UserID)
+	Member, err := point.GetByDiscordUserID(*params.Member.UserID)
 	if err != nil {
 		if err.Error() == "member not found" || err.Error() == "internal server error" {
 			MemberId = ""

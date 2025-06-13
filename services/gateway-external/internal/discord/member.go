@@ -95,7 +95,7 @@ func AddDiscordMembersPoint(point_id string, members []discord.PointMember, memb
 }
 
 func AddMemberPoint(member discord.PointMember, memberId string) error {
-	Point, err := point.GetPointByGuildID(member.GuildID)
+	Point, err := point.GetPointByGuildID(*member.GuildID)
 	if err != nil {
 		return err
 	}
