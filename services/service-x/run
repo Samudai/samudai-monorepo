@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e 
+
+export PORT=3007
+
+export MONGO_URL=$MONGO_URL_LOCAL_TWITTER 
+
+export MQ_USERNAME=$MQ_USERNAME
+export MQ_PASSWORD=$MQ_PASSWORD
+export MQ_IP=$MQ_IP
+
+npm run start:dev
