@@ -1,0 +1,13 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: service-point
+  labels:
+    app: service-point
+data:
+  # Configuration values can be set as key-value properties
+  pg-database-url: postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres-service:5432/point?sslmode=disable
+  mongo-database-url: mongodb://$(MONGO_INITDB_ROOT_USERNAME):$(MONGO_INITDB_ROOT_PASSWORD)@mongodb-service.default.svc.cluster.local:27017/default?authSource=admin
+  mq-ip: rabbitmq-service.default.svc.cluster.local
+  mq-username: $(RABBITMQ_DEFAULT_USER)
+  mq-password: $(RABBITMQ_DEFAULT_PASS)

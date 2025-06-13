@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: gateway-consumer
+  labels:
+    app: gateway-consumer
+data:
+  jwt-key: <jwt-key>
+  aws-access-key-id: <aws-access-key-id>
+  aws-secret-access-key: <aws-secret-access-key>
+  spaces-endpoint: <spaces-endpoint> # we were using digitalocean spaces
+  spaces-cdn: <spaces-cdn>
+  spaces-region: <spaces-region>
+  parcel-app-token: <parcel-app-token>
+  redis-database-url: redis://:$(REDIS_PASSWORD)@redis-service.default.svc.cluster.local:6379

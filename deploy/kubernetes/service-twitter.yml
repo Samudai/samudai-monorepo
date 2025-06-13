@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: service-twitter
+  labels:
+    app: service-twitter
+data:
+  # Configuration values can be set as key-value properties
+  bearer-token: <bearer-token>
+  redis-database-url: redis://:$(REDIS_PASSWORD)@redis-service.default.svc.cluster.local:6379
+  mongo-database-url: mongodb://$(MONGO_INITDB_ROOT_USERNAME):$(MONGO_INITDB_ROOT_PASSWORD)@mongodb-service.default.svc.cluster.local:27017/twitter?authSource=admin

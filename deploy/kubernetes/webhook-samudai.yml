@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: webhook-samudai
+  labels:
+    app: webhook-samudai
+data:
+  redis-database-url: redis://:$(REDIS_PASSWORD)@redis-service.default.svc.cluster.local:6379
+  mq-ip: rabbitmq-service.default.svc.cluster.local
+  mq-username: $(RABBITMQ_DEFAULT_USER)
+  mq-password: $(RABBITMQ_DEFAULT_PASS)

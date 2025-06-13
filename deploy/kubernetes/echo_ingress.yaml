@@ -1,0 +1,79 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    # TODO: add all the hosts here
+    - gcn.samudai.xyz
+    - webhook.samudai.xyz
+    - ge.samudai.xyz
+    - app.samudai.xyz
+    - points.samudai.xyz
+    - try.samudai.xyz
+    secretName: production-tls
+  rules:
+    - host: gcn.samudai.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: gateway-consumer-node
+                port:
+                  number: 80
+    - host: webhook.samudai.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: webhook-samudai
+                port:
+                  number: 80
+    - host: ge.samudai.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: gateway-external
+                port:
+                  number: 80
+    - host: app.samudai.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: webapp
+                port:
+                  number: 80
+    - host: points.samudai.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: points-webapp
+                port:
+                  number: 80
+    - host: try.samudai.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: tryapp
+                port:
+                  number: 80

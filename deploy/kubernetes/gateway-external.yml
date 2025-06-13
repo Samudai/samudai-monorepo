@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: gateway-external
+  labels:
+    app: gateway-external
+data:
+  github-webhook-secret: secretproduction
+  mq-ip: rabbitmq-service.default.svc.cluster.local
+  mq-username: $(RABBITMQ_DEFAULT_USER)
+  mq-password: $(RABBITMQ_DEFAULT_PASS)

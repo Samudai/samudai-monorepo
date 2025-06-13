@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cron-service
+  labels:
+    app: cron-service
+data:
+  redis-database-url: redis://:$(REDIS_PASSWORD)@redis-service.default.svc.cluster.local:6379

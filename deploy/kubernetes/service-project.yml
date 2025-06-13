@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: service-project
+  labels:
+    app: service-project
+data:
+  # Configuration values can be set as key-value properties
+  pg-database-url: postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres-service:5432/project?sslmode=disable

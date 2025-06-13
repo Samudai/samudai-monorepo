@@ -1,0 +1,10 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: elastic
+  labels:
+    app: elastic
+data:
+  elastic-apm-server-url: <elastic-apm-server-url>
+  elastic-apm-sercret-token: <elastic-apm-sercret-token>
+  elastic-apm-env: production
