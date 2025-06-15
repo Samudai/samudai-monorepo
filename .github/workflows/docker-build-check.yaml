@@ -1,16 +1,23 @@
 name: Docker Build Check
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     paths:
+      - 'services/**'
+      - 'bots/**'
+      - 'dashboard/**'
       - '**/Dockerfile'
       - '**/Dockerfile.*'
   push:
     branches:
       - master
-      - main
-      - develop
     paths:
+      - 'services/**'
+      - 'bots/**'
+      - 'dashboard/**'
       - '**/Dockerfile'
       - '**/Dockerfile.*'
 
@@ -25,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get changed Dockerfiles
+      - name: Get affected services with Dockerfiles
         id: changes
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -43,33 +50,57 @@ jobs:
             fi
           fi
           
-          # Filter for Dockerfiles and extract their directories
-          DOCKERFILES=$(echo "$CHANGED_FILES" | grep -E '(^|/)Dockerfile(\.|$)' | head -20 || true)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
           
-          if [ -z "$DOCKERFILES" ]; then
+          # Find all directories that have changes and contain Dockerfiles
+          AFFECTED_DIRS=""
+          
+          # Get unique directories from changed files
+          CHANGED_DIRS=$(echo "$CHANGED_FILES" | xargs -I {} dirname {} | sort -u)
+          
+          # Check each changed directory and its parent directories for Dockerfiles
+          for dir in $CHANGED_DIRS; do
+            # Check current directory and walk up the tree
+            current_dir="$dir"
+            while [ "$current_dir" != "." ] && [ "$current_dir" != "/" ]; do
+              if [ -f "$current_dir/Dockerfile" ]; then
+                AFFECTED_DIRS="$AFFECTED_DIRS $current_dir"
+                break
+              fi
+              current_dir=$(dirname "$current_dir")
+            done
+          done
+          
+          # Remove duplicates and limit to 20 services
+          AFFECTED_DIRS=$(echo "$AFFECTED_DIRS" | tr ' ' '\n' | sort -u | head -20)
+          
+          if [ -z "$AFFECTED_DIRS" ]; then
             echo "dockerfiles=[]" >> $GITHUB_OUTPUT
-            echo "No Dockerfiles changed"
+            echo "No services with Dockerfiles affected"
           else
-            echo "Changed Dockerfiles:"
-            echo "$DOCKERFILES"
+            echo "Affected services with Dockerfiles:"
+            echo "$AFFECTED_DIRS"
             
             # Convert to JSON array with context information
             DOCKERFILE_ARRAY="["
             FIRST=true
-            for dockerfile in $DOCKERFILES; do
-              if [ "$FIRST" = false ]; then
-                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY,"
-              fi
-              FIRST=false
-              
-              # Extract directory and create context info
-              DIR=$(dirname "$dockerfile")
-              SERVICE_NAME=$(basename "$DIR")
-              
-              if [ "$SERVICE_NAME" = "service-plugin" ] || [ "$SERVICE_NAME" = "gateway-external" ]; then
-                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$dockerfile\",\"context\":\".\",\"service\":\"$SERVICE_NAME\"}"
-              else
-                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$dockerfile\",\"context\":\"$DIR\",\"service\":\"$SERVICE_NAME\"}"
+            for dir in $AFFECTED_DIRS; do
+              if [ -f "$dir/Dockerfile" ]; then
+                if [ "$FIRST" = false ]; then
+                  DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY,"
+                fi
+                FIRST=false
+                
+                # Extract service name and determine context
+                SERVICE_NAME=$(basename "$dir")
+                DOCKERFILE_PATH="$dir/Dockerfile"
+                
+                if [ "$SERVICE_NAME" = "service-plugin" ] || [ "$SERVICE_NAME" = "gateway-external" ]; then
+                  DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\".\",\"service\":\"$SERVICE_NAME\"}"
+                else
+                  DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\"$dir\",\"service\":\"$SERVICE_NAME\"}"
+                fi
               fi
             done
             DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY]"
@@ -77,7 +108,7 @@ jobs:
             echo "dockerfiles=$DOCKERFILE_ARRAY" >> $GITHUB_OUTPUT
           fi
 
-  build-changed-dockerfiles:
+  build-affected-services:
     needs: detect-changes
     if: needs.detect-changes.outputs.dockerfiles != '[]'
     runs-on: ubuntu-latest
@@ -110,21 +141,21 @@ jobs:
           echo "🐳 Dockerfile: ${{ matrix.dockerfile.path }}"
 
   build-summary:
-    needs: [detect-changes, build-changed-dockerfiles]
+    needs: [detect-changes, build-affected-services]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Build Summary
         run: |
           if [ "${{ needs.detect-changes.outputs.dockerfiles }}" = "[]" ]; then
-            echo "ℹ️ No Dockerfiles were changed in this commit."
-          elif [ "${{ needs.build-changed-dockerfiles.result }}" = "success" ]; then
+            echo "ℹ️ No services with Dockerfiles were affected in this commit."
+          elif [ "${{ needs.build-affected-services.result }}" = "success" ]; then
             echo "✅ All Docker builds completed successfully!"
-          elif [ "${{ needs.build-changed-dockerfiles.result }}" = "failure" ]; then
+          elif [ "${{ needs.build-affected-services.result }}" = "failure" ]; then
             echo "❌ Some Docker builds failed. Please check the logs above."
             exit 1
-          elif [ "${{ needs.build-changed-dockerfiles.result }}" = "skipped" ]; then
+          elif [ "${{ needs.build-affected-services.result }}" = "skipped" ]; then
             echo "⏭️ Docker builds were skipped."
           else
-            echo "⚠️ Docker builds completed with status: ${{ needs.build-changed-dockerfiles.result }}"
+            echo "⚠️ Docker builds completed with status: ${{ needs.build-affected-services.result }}"
           fi 
