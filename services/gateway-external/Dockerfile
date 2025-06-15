@@ -1,4 +1,4 @@
-FROM golang:1.18-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 RUN apk add --no-cache git
 
@@ -18,7 +18,7 @@ WORKDIR /go/src/app/services/gateway-external
 
 RUN go build -o ./gateway-external .
 
-FROM golang:1.18-alpine
+FROM golang:1.24-alpine
 
 WORKDIR /go/src/app
 
