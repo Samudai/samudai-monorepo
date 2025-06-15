@@ -1,0 +1,126 @@
+name: Docker Build Check
+
+on:
+  pull_request:
+    paths:
+      - '**/Dockerfile'
+      - '**/Dockerfile.*'
+  push:
+    branches:
+      - master
+      - main
+      - develop
+    paths:
+      - '**/Dockerfile'
+      - '**/Dockerfile.*'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      dockerfiles: ${{ steps.changes.outputs.dockerfiles }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed Dockerfiles
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # For pull requests, compare against the base branch
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+            CHANGED_FILES=$(git diff --name-only $BASE_SHA..$HEAD_SHA)
+          else
+            # For pushes, compare against the previous commit
+            if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+              # New branch, compare against HEAD~1
+              CHANGED_FILES=$(git diff --name-only HEAD~1)
+            else
+              CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})
+            fi
+          fi
+          
+          # Filter for Dockerfiles and extract their directories
+          DOCKERFILES=$(echo "$CHANGED_FILES" | grep -E '(^|/)Dockerfile(\.|$)' | head -20 || true)
+          
+          if [ -z "$DOCKERFILES" ]; then
+            echo "dockerfiles=[]" >> $GITHUB_OUTPUT
+            echo "No Dockerfiles changed"
+          else
+            echo "Changed Dockerfiles:"
+            echo "$DOCKERFILES"
+            
+            # Convert to JSON array with context information
+            DOCKERFILE_ARRAY="["
+            FIRST=true
+            for dockerfile in $DOCKERFILES; do
+              if [ "$FIRST" = false ]; then
+                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY,"
+              fi
+              FIRST=false
+              
+              # Extract directory and create context info
+              DIR=$(dirname "$dockerfile")
+              SERVICE_NAME=$(basename "$DIR")
+              
+              DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$dockerfile\",\"context\":\"$DIR\",\"service\":\"$SERVICE_NAME\"}"
+            done
+            DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY]"
+            
+            echo "dockerfiles=$DOCKERFILE_ARRAY" >> $GITHUB_OUTPUT
+          fi
+
+  build-changed-dockerfiles:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.dockerfiles != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dockerfile: ${{ fromJson(needs.detect-changes.outputs.dockerfiles) }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image for ${{ matrix.dockerfile.service }}
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.dockerfile.context }}
+          file: ${{ matrix.dockerfile.path }}
+          push: false
+          tags: test-build:${{ matrix.dockerfile.service }}
+          cache-from: type=gha,scope=${{ matrix.dockerfile.service }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.dockerfile.service }}
+
+      - name: Verify build success for ${{ matrix.dockerfile.service }}
+        run: |
+          echo "✅ Docker build successful for ${{ matrix.dockerfile.service }}"
+          echo "📁 Context: ${{ matrix.dockerfile.context }}"
+          echo "🐳 Dockerfile: ${{ matrix.dockerfile.path }}"
+
+  build-summary:
+    needs: [detect-changes, build-changed-dockerfiles]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Summary
+        run: |
+          if [ "${{ needs.detect-changes.outputs.dockerfiles }}" = "[]" ]; then
+            echo "ℹ️ No Dockerfiles were changed in this commit."
+          elif [ "${{ needs.build-changed-dockerfiles.result }}" = "success" ]; then
+            echo "✅ All Docker builds completed successfully!"
+          elif [ "${{ needs.build-changed-dockerfiles.result }}" = "failure" ]; then
+            echo "❌ Some Docker builds failed. Please check the logs above."
+            exit 1
+          elif [ "${{ needs.build-changed-dockerfiles.result }}" = "skipped" ]; then
+            echo "⏭️ Docker builds were skipped."
+          else
+            echo "⚠️ Docker builds completed with status: ${{ needs.build-changed-dockerfiles.result }}"
+          fi 
