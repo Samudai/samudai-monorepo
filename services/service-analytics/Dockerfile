@@ -1,4 +1,4 @@
-FROM golang:1.18-alpine as builder
+FROM golang:1.24-alpine as builder
 
 WORKDIR /go/src/app
 
@@ -11,7 +11,7 @@ COPY . .
 
 RUN go build -o ./service-analytics .
 
-FROM golang:1.18-alpine
+FROM golang:1.24-alpine
 
 WORKDIR /go/src/app
 
