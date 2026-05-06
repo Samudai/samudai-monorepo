@@ -17,7 +17,7 @@
         "@samudai_xyz/gateway-consumer-types": "^0.8.96",
         "@samudai_xyz/web3-sdk": "^0.0.53",
         "aws-sdk": "^2.1183.0",
-        "axios": "^0.27.2",
+        "axios": "^0.31.1",
         "bs58": "^5.0.0",
         "connect-timeout": "^1.9.0",
         "cookie-parser": "^1.4.6",
