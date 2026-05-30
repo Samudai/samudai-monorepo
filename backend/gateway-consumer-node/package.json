@@ -1,6 +1,9 @@
 {
     "name": "gateway-consumer-node",
     "version": "1.0.0",
+    "engines": {
+        "node": ">=22"
+    },
     "description": "Client gateway for all the services",
     "main": "index.js",
     "scripts": {

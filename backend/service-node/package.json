@@ -1,6 +1,9 @@
 {
   "name": "service-node",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
   "description": "Merged Node service: activity, twitter, web3, and x mounted under per-service prefixes.",
   "main": "dist/index.js",
   "scripts": {

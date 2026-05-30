@@ -1,0 +1,6 @@
+DROP VIEW IF EXISTS member_points_view;
+DROP TABLE IF EXISTS member_points;
+DROP TABLE IF EXISTS points;
+DROP TABLE IF EXISTS discord;
+DROP TABLE IF EXISTS members;
+DROP EXTENSION IF EXISTS "uuid-ossp"; 

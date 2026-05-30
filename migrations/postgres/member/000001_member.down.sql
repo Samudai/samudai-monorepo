@@ -1,0 +1,11 @@
+drop clan_invites
+drop clan_members
+drop clans
+drop connection_request
+drop discord
+drop member_wallet
+drop onboarding
+drop reviews
+drop rewards_earned
+drop social
+drop members

@@ -19,6 +19,11 @@
 .env.test.local
 .env.production.local
 
+# build-time env files (contain secrets — never commit)
+.development.env
+.staging.env
+.production.env
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

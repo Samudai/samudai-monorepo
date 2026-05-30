@@ -1,4 +1,4 @@
-FROM node:18 AS BUILD_IMAGE
+FROM node:22 AS BUILD_IMAGE
 
 WORKDIR /app
 
@@ -8,7 +8,6 @@ COPY ./ .
 
 # install dependencies
 RUN npm install --force
-RUN rm -f .npmrc
 
 RUN npm run build:$NODE_ENV
 

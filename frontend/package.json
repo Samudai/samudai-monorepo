@@ -1,6 +1,9 @@
 {
   "name": "samudai",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=22"
+  },
   "private": true,
   "dependencies": {
     "@ceramicnetwork/http-client": "^2.4.0",

@@ -1,4 +1,4 @@
-FROM node:16-alpine AS BUILD_IMAGE
+FROM node:22-alpine AS BUILD_IMAGE
 RUN apk update && apk add bash git && rm -rf /var/cache/apk/*
 
 WORKDIR /app
@@ -9,9 +9,7 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-RUN rm -f .npmrc
-
-FROM node:16-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 

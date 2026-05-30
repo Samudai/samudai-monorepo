@@ -12,10 +12,11 @@ Polyglot monorepo with four top-level areas:
   - `backend/gateway-consumer-node/` — the Node/TS client API gateway (Express + socket.io).
 - `frontend/` — React 18 + CRA app (react-app-rewired + Craco). Flattened from the old `dashboard/dashboard-samudai/`.
 - `bots/` — Node/TypeScript bots (`samudai-bot` for Discord, `telegram-bot`).
-- `deploy/kubernetes/` — k8s manifests (`backend.yml`, `service-node.yml`, gateway/bot/dashboard, stateful deps) plus `deploy-*.sh` / `cleanup-*.sh` helpers and ingress/SSL bootstrap (`apply.sh`, `applyssl.sh`).
-- `deploy/local/postgres-init/` — first-boot script that creates the per-module `*_local` Postgres databases for the local compose stack.
-- `docker-compose.yml` (root) — brings up the whole stack locally (stateful deps + all apps). `.env.example` documents the variables.
-- `docs/db-migration/` — interactive Go migration tool + Makefile for all Postgres modules (note: `docs` is git-ignored).
+- `deploy/local/postgres-init/` — first-boot script that creates the per-module `*_local` Postgres databases for the compose stack.
+- `deploy/caddy/Caddyfile` — reverse proxy + automatic-HTTPS config used by the production compose overlay.
+- `migrations/postgres/<module>/` — committed golang-migrate migrations (the runtime source of truth), applied automatically by the `migrate` compose service.
+- `docker-compose.yml` (root) — the single containerization story. Brings up the whole stack locally; `docker-compose.prod.yml` overlays it for a single-VM production deploy. `.env.example` / `.env.prod.example` document the variables.
+- `docs/db-migration/` — interactive Go migration-authoring tool + Makefile + DBML/sqlc dumps (note: `docs` is git-ignored; the committed runtime copy of the SQL lives in `migrations/`).
 
 ## Backend Go monolith (`backend/core`)
 
@@ -71,12 +72,12 @@ npm run build:prod           # uses .production.env (used by Docker image)
 
 ```bash
 cp .env.example .env
-docker compose up -d postgres mongo redis rabbitmq    # stateful deps (postgres auto-creates the 8 *_local DBs)
-(cd docs/db-migration && make migrateupall)           # apply SQL schema (one-time)
-docker compose up -d                                  # build + run backend, service-node, gateway, frontend, bots
+docker compose up -d --build                          # build + run everything
 ```
 
-Gateway → `localhost:4000`, frontend → `localhost:3000`, backend → `localhost:8081`, service-node → `localhost:8082`. Smoke: `curl localhost:8081/health`, `curl localhost:8081/dao/...`.
+Postgres auto-creates the 8 `*_local` DBs on first boot (`deploy/local/postgres-init`), then the one-shot `migrate` service applies the schema (`migrations/postgres/<module>`) before `backend` starts — no manual migration step.
+
+Gateway → `localhost:4000`, frontend → `localhost:3000`, backend → `localhost:8081`, service-node → `localhost:8082`, RabbitMQ UI → `localhost:15672`. Smoke: `curl localhost:8081/health`, `curl localhost:8081/dao/...`.
 
 ### Run the Go backend locally (without Docker)
 
@@ -95,27 +96,30 @@ npm run start:dev              # ts-node-dev src/index.ts   (gateway/bots use `n
 npm run build && npm start     # tsc -> node dist/index.js
 ```
 
-### Database migrations
+### Database migrations (unified on golang-migrate)
 
-All Postgres migrations live under `docs/db-migration/`. Postgres modules: `dao dashboard discovery discussion job member project point`. Mongo modules (not migrated via this tool): `plugin twitter activity web3 discord`.
+Runtime migrations live in `migrations/postgres/<module>/NNNNNN_*.{up,down}.sql` and are applied automatically by the one-shot `migrate` compose service (official `migrate/migrate` image) before `backend` starts. golang-migrate tracks `schema_migrations` per database, so re-runs are idempotent. To add a migration, drop the next sequential pair into the module's directory.
+
+Migration ownership:
+
+| Datastore | Owner | Managed by |
+| --- | --- | --- |
+| 8 Postgres DBs (`dao dashboard discovery discussion job member project point`) | Go backend `backend/core` | **golang-migrate** (`migrations/postgres/`) |
+| Mongo: `discord`, `pointdiscord`, `plugin` | Go backend | golang-migrate-eligible; `migrations/mongo/` reserved, authoring is a follow-up |
+| Mongo: `twitter`, `activity`, `web3`, `x` | Node `service-node` | **Mongoose** `autoIndex` (in code, not migrated) |
+
+Node apps hold no SQL connections — Postgres is owned entirely by the Go backend. The interactive authoring tool / Makefile / DBML / sqlc dumps remain under git-ignored `docs/db-migration` (defaults `POSTGRES_USER=piyushhbhutoria`, suffix `_local` match compose); the committed `migrations/` copy is what actually runs.
+
+### Production deploy (single VM)
+
+docker-compose is the only containerization story; production is the same stack with an overlay that uses the prebuilt `ghcr.io/samudai/*` images, adds restart policies, hides the data-store ports, and fronts the apps with Caddy (automatic HTTPS).
 
 ```bash
-cd docs/db-migration
-make postgres            # starts the postgres17 docker container
-make createall           # create all <module>_local databases
-make migrateupall        # run all migrations up
-make migrateup<module>   # single module, e.g. migrateupdao
-make sqlc                # regenerate sqlc code
+cp .env.prod.example .env   # real secrets
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --pull always
 ```
 
-Defaults baked into the Makefile (`POSTGRES_USER=piyushhbhutoria`, `POSTGRES_PASSWORD=password`, suffix `_local`) match the compose stack so migrations run unedited.
-
-### Kubernetes / infra bootstrap
-
-```bash
-./deploy/kubernetes/apply.sh        # stateful deps + backend + service-node + gateway/bots
-./deploy/kubernetes/applyssl.sh     # ingress + cert-manager
-```
+Routing/TLS for `app.samudai.xyz` (frontend) and `gcn.samudai.xyz` (gateway) is in `deploy/caddy/Caddyfile`; point DNS at the VM.
 
 ## CI / Docker builds
 

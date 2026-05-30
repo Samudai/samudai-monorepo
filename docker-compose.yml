@@ -1,9 +1,14 @@
 # Full local stack for the simplified monorepo.
 #
 #   cp .env.example .env
-#   docker compose up -d postgres mongo redis rabbitmq   # bring up data stores
-#   (cd docs/db-migration && make migrateupall)          # apply SQL schema (one-time)
-#   docker compose up -d                                 # build + run everything
+#   docker compose up -d --build       # build + run everything
+#
+# Schema is applied automatically: the one-shot `migrate` service runs the
+# golang-migrate Postgres migrations (migrations/postgres/<module>) before
+# `backend` starts. No manual migration step.
+#
+# Production (single VM) layers an override + Caddy on top:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --pull always
 #
 # Backends are consolidated: `backend` is the Go modular monolith (all former Go
 # services + gateway-external, mounted under per-service path prefixes) and
@@ -72,6 +77,28 @@ services:
       timeout: 10s
       retries: 10
 
+  # ----------------------------------------------------------------- migrations
+  # One-shot golang-migrate run: applies each module's Postgres schema (up) into
+  # its own <module>_local database, then exits. backend waits for this to
+  # complete. Idempotent — re-runs report "no change" via schema_migrations.
+  migrate:
+    image: migrate/migrate:v4.17.1
+    volumes:
+      - ./migrations:/migrations:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -e
+        for m in dao dashboard discovery discussion job member project point; do
+          echo "migrating $$m ..."
+          migrate -path "/migrations/postgres/$$m" \
+            -database "postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/$${m}_local?sslmode=disable" up
+        done
+        echo "all postgres migrations applied"
+    depends_on:
+      postgres: { condition: service_healthy }
+    restart: "no"
+
   # ------------------------------------------------------------------- backends
   backend:
     build:
@@ -107,6 +134,7 @@ services:
       - "${BACKEND_PORT:-8081}:8080"
     depends_on:
       postgres: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
       mongo: { condition: service_healthy }
       redis: { condition: service_healthy }
       rabbitmq: { condition: service_healthy }
@@ -134,8 +162,6 @@ services:
   gateway-consumer-node:
     build:
       context: ./backend/gateway-consumer-node
-      args:
-        NPM_TOKEN: ${NPM_TOKEN:-}
     environment:
       PORT: "8080"
       ENVIRONMENT: ${ENVIRONMENT:-local}
@@ -183,7 +209,6 @@ services:
       context: ./frontend
       args:
         NODE_ENV: development
-        NPM_TOKEN: ${NPM_TOKEN:-}
     ports:
       - "${FRONTEND_PORT:-3000}:80"
     depends_on:
