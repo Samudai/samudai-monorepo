@@ -107,3 +107,6 @@ bin/
 coverage/
 *.cover
 profile.out 
+
+.claude/
+docs

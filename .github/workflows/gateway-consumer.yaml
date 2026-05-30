@@ -3,7 +3,7 @@ on:
     branches:
       - master
     paths:
-      - services/gateway-consumer-node/**
+      - backend/gateway-consumer-node/**
 
 jobs:
   build:
@@ -40,8 +40,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: services/gateway-consumer-node
-          file: services/gateway-consumer-node/Dockerfile
+          context: backend/gateway-consumer-node
+          file: backend/gateway-consumer-node/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: |

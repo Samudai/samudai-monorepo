@@ -25,19 +25,14 @@ kubectl wait --for=condition=available deployment/postgres --timeout=300s
 kubectl wait --for=condition=available deployment/redis --timeout=300s
 kubectl wait --for=condition=available deployment/rabbitmq --timeout=300s
 
-# Deploy all services
-echo "Deploying services..."
-
-dbs=("activity" "dao" "dashboard" "discord" "discovery" "discussion" "forms" "job" "member" "plugin" "project" "twitter" "web3")
-for db in "${dbs[@]}"
-do
-    echo "Creating $db"
-    kubectl apply -f service-$db.yml
-done
+# Deploy consolidated backends
+echo "Deploying backend (Go modular monolith) and service-node (merged Node)..."
+kubectl apply -f backend.yml
+kubectl apply -f service-node.yml
 
 # Deploy infrastructure
 echo "Deploying infrastructure..."
-dbs=("gateway-consumer" "gateway-external" "samudai-bot" "elastic" "telegram-bot")
+dbs=("gateway-consumer" "samudai-bot" "elastic" "telegram-bot")
 for db in "${dbs[@]}"
 do
     echo "Creating $db"

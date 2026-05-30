@@ -6,18 +6,18 @@ permissions:
 on:
   pull_request:
     paths:
-      - 'services/**'
+      - 'backend/**'
       - 'bots/**'
-      - 'dashboard/**'
+      - 'frontend/**'
       - '**/Dockerfile'
       - '**/Dockerfile.*'
   push:
     branches:
       - master
     paths:
-      - 'services/**'
+      - 'backend/**'
       - 'bots/**'
-      - 'dashboard/**'
+      - 'frontend/**'
       - '**/Dockerfile'
       - '**/Dockerfile.*'
 
@@ -92,15 +92,14 @@ jobs:
                 fi
                 FIRST=false
                 
-                # Extract service name and determine context
+                # Extract service name and determine context.
+                # Every image now builds with its own directory as context
+                # (the old service-plugin / gateway-external root-context hack
+                # is gone — those services are folded into the backend monolith).
                 SERVICE_NAME=$(basename "$dir")
                 DOCKERFILE_PATH="$dir/Dockerfile"
-                
-                if [ "$SERVICE_NAME" = "service-plugin" ] || [ "$SERVICE_NAME" = "gateway-external" ]; then
-                  DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\".\",\"service\":\"$SERVICE_NAME\"}"
-                else
-                  DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\"$dir\",\"service\":\"$SERVICE_NAME\"}"
-                fi
+
+                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\"$dir\",\"service\":\"$SERVICE_NAME\"}"
               fi
             done
             DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY]"

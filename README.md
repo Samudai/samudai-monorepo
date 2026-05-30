@@ -6,34 +6,21 @@ Samudai is a monorepo for a collaborative platform designed to empower DAOs, pro
 
 ```
 samudai-monorepo/
+  backend/             # Backend code (Go monolith, merged Node service, API gateway)
+  frontend/            # Frontend web application (React)
   bots/                # Bot applications (Discord, Telegram)
-  dashboard/           # Frontend web application
-  services/            # Backend microservices
-  deploy/              # Deployment configurations (Kubernetes, etc.)
+  deploy/              # Deployment configurations (Kubernetes, docker-compose)
   docs/                # Documentation and database migration files
+  docker-compose.yml   # Full local stack
 ```
 
-### Services Overview
+### Backend Overview
 
-The platform is built using a microservices architecture with the following key services:
+The backend is consolidated into a few deployables:
 
-- **gateway-consumer-node** - Main API gateway for client requests
-- **gateway-external** - External API gateway for third-party integrations
-- **service-dao** - DAO management and member operations
-- **service-project** - Project lifecycle and task management
-- **service-member** - User profile and member management
-- **service-job** - Job posting and application handling
-- **service-discovery** - Content discovery and recommendation
-- **service-discussion** - Forum and discussion management
-- **service-dashboard** - Dashboard analytics and metrics
-- **service-discord** - Discord bot integration
-- **service-plugin** - Third-party plugin management (GitHub, Notion, etc.)
-- **service-point** - Reward and point system
-- **service-analytics** - Data analytics and reporting
-- **service-activity** - Activity tracking and notifications
-- **service-twitter/service-x** - Twitter/X social media integration
-- **service-web3** - Blockchain and Web3 functionality
-- **service-forms** - Form management and processing
+- **backend/core** - Go modular monolith (one binary, one Gin engine). Hosts every domain module — dao, member, project, job, discovery, discussion, dashboard, discord, plugin, point, analytics, forms — plus third-party integrations (`external`, formerly `gateway-external`), each mounted under a per-service path prefix (`/dao`, `/member`, …).
+- **backend/service-node** - Merged Node/Express service hosting the former activity, twitter, web3, and x services under per-service prefixes.
+- **backend/gateway-consumer-node** - Main API gateway for client requests (Express + socket.io).
 
 ### Bots
 
@@ -86,7 +73,7 @@ go run cmd/migrations/main.go
 
 ### Run the dashboard
 
-- Update the `.production.env` at `dashboard/dashboard-samudai/.production.env` and build the docker image
+- Update the `.production.env` at `frontend/.production.env` and build the docker image
 
 #### Using Docker
 
@@ -103,9 +90,9 @@ docker run -d -p 3000:3000 samudai/dashboard-samudai:latest
 #### Running Locally
 
 ```bash
-cd dashboard/dashboard-samudai
+cd frontend
 npm install
-npm run dev
+npm start
 ```
 
 ## Contributing

@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: ghcr.io/samudai/samudai-dashboard:latest
+          image: ghcr.io/samudai/dashboard-samudai:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

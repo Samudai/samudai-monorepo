@@ -18,18 +18,14 @@ echo "Cleaning up Redis..."
 echo "Cleaning up RabbitMQ..."
 ./cleanup-rabbitmq.sh
 
-# Cleanup all services
-echo "Cleaning up all services..."  
-dbs=("activity" "dao" "dashboard" "discord" "discovery" "discussion" "forms" "job" "member" "plugin" "project" "twitter" "web3")
-for db in "${dbs[@]}"
-do
-    echo "Deleting $db"
-    kubectl delete -f service-$db.yml
-done
+# Cleanup consolidated backends
+echo "Cleaning up backend and service-node..."
+kubectl delete -f backend.yml
+kubectl delete -f service-node.yml
 
 # Cleanup all infrastructure
 echo "Cleaning up all infrastructure..."
-dbs=("gateway-consumer" "gateway-external" "samudai-bot" "elastic" "telegram-bot")
+dbs=("gateway-consumer" "samudai-bot" "elastic" "telegram-bot")
 for db in "${dbs[@]}"
 do
     echo "Deleting $db"
