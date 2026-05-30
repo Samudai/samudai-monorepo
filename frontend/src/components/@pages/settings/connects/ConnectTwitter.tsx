@@ -65,7 +65,7 @@ const ConnectTwitter: React.FC<ConnectTwitterProps> = ({
     };
 
     const handleVerify = async () => {
-        const signer = providerEth?.getSigner();
+        const signer = await providerEth?.getSigner();
         const address = await signer?.getAddress();
         const payload = {
             address: address!,

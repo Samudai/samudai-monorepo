@@ -2,7 +2,7 @@ import abi from './transfer.json';
 import { ethers } from 'ethers';
 
 export const tokenTransaction = async (
-    provider: ethers.providers.Web3Provider,
+    provider: ethers.BrowserProvider,
     value: string,
     to: string,
     token_address: string
@@ -10,16 +10,16 @@ export const tokenTransaction = async (
     console.log(value);
     try {
         if (token_address !== '') {
-            const signer = provider.getSigner();
+            const signer = await provider.getSigner();
             const contract = new ethers.Contract(token_address, abi, signer);
-            const tx = await contract.transfer(to, ethers.utils.parseEther(value));
+            const tx = await contract.transfer(to, ethers.parseEther(value));
             return tx?.hash;
         } else {
             const tx = {
                 to: to,
-                value: ethers.utils.parseEther(value),
+                value: ethers.parseEther(value),
             };
-            const signer = provider.getSigner();
+            const signer = await provider.getSigner();
             const res = await signer?.sendTransaction(tx);
             const hash = res?.hash || '';
 

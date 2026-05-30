@@ -6,7 +6,7 @@ const toastCreate = (message: string) => {
 };
 
 export const validateUsername = (username: string): void => {
-    const unameBytes = ethers.utils.toUtf8Bytes(username);
+    const unameBytes = ethers.toUtf8Bytes(username);
     if (unameBytes.length > 16) {
         toastCreate('username cannot be greater than 16 characters');
     }

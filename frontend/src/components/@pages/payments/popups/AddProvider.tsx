@@ -75,10 +75,10 @@ const AddProvider: React.FC<AddProviderProps> = ({ onClose }) => {
             if (currentChainId === '0x1') {
                 const chainId: number = await providerEth!
                     .getNetwork()
-                    .then((network) => network.chainId);
+                    .then((network) => Number(network.chainId));
                 setChainId(chainId);
                 const sdk = new Gnosis(providerEth!, chainId);
-                const signer = providerEth?.getSigner();
+                const signer = await providerEth?.getSigner();
                 const address = await signer?.getAddress();
                 const res = (await sdk?.connectGnosis(address!)) as GnosisTypes.UserSafe[];
                 setSafes(
@@ -96,7 +96,7 @@ const AddProvider: React.FC<AddProviderProps> = ({ onClose }) => {
             } else {
                 await window.ethereum!.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: ethers.utils.hexValue(1) }],
+                    params: [{ chainId: ethers.toQuantity(1) }],
                 });
                 return;
             }

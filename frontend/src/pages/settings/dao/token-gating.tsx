@@ -112,7 +112,7 @@ const TokenGating: React.FC<TokenGatingProps> = () => {
             activeDao,
             formData.contractAddress,
             '',
-            ethers.utils.parseEther('' + formData.minValue).toString()
+            ethers.parseEther('' + formData.minValue).toString()
         );
         console.log(res);
     };

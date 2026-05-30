@@ -1,12 +1,12 @@
 import { Outlet, useParams } from 'react-router-dom';
-import { Web3Provider } from '@ethersproject/providers';
+import { BrowserProvider } from 'ethers';
 import '@samudai_xyz/gateway-consumer-types';
 import { selectProvider } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';
 import Login from 'pages/onboarding/ConnectWallet';
 import { IRoute } from './types';
 
-const useAuth = (providerEth: Web3Provider | null) => {
+const useAuth = (providerEth: BrowserProvider | null) => {
     const jwt = localStorage.getItem('jwt');
     const localData = localStorage.getItem('signUp');
     const parsedData = !!localData && JSON.parse(localData);
@@ -25,7 +25,7 @@ const handleRouteEnter = (route: IRoute, daoid: string) => {
 };
 
 const ProtectedRoutes = () => {
-    const providerEth: Web3Provider | null = useTypedSelector(selectProvider);
+    const providerEth: BrowserProvider | null = useTypedSelector(selectProvider);
     const isAuth = useAuth(providerEth);
     return isAuth ? <Outlet /> : <Login />;
 };

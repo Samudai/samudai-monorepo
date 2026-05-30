@@ -74,10 +74,10 @@ export const ClaimSubdomainModal: React.FC<ClaimSubdomainModalProps> = ({ type, 
         const funGnosis = async () => {
             const chainId: number = await providerEth!
                 .getNetwork()
-                .then((network) => network.chainId);
+                .then((network) => Number(network.chainId));
             setChainId(chainId);
             const sdk = new Gnosis(providerEth!, chainId);
-            const signer = providerEth?.getSigner();
+            const signer = await providerEth?.getSigner();
             const address = await signer?.getAddress();
             const res = (await sdk?.connectGnosis(address!)) as GnosisTypes.UserSafe[];
             setSafes(

@@ -7,7 +7,7 @@ import { paymentsSelectStyles } from '../utils/selectStyles';
 import { IMember, Member } from '@samudai_xyz/gateway-consumer-types';
 import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
 import clsx from 'clsx';
-import { BigNumber, ethers } from 'ethers';
+import { ethers } from 'ethers';
 import { selectAccount, selectProvider } from 'store/features/common/slice';
 import { useLazySearchMemberQuery } from 'store/services/Search/Search';
 import { useGetParcelBalanceMutation } from 'store/services/payments/payments';
@@ -136,11 +136,8 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                     ? 'ETH'
                                     : 'MATIC',
                                 balance: item.token
-                                    ? ethers.utils.formatUnits(
-                                          BigNumber.from(item.balance),
-                                          item.token.decimals
-                                      )
-                                    : ethers.utils.formatEther(item.balance),
+                                    ? ethers.formatUnits(item.balance, item.token.decimals)
+                                    : ethers.formatEther(item.balance),
                                 token_address: item.tokenAddress,
                                 name: item.token
                                     ? item.token.name
@@ -295,7 +292,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
         }
         if (provider.name === 'gnosis') {
             if (providerEth) {
-                const connectedWallet = await providerEth.getSigner().getAddress();
+                const connectedWallet = await (await providerEth.getSigner()).getAddress();
                 if (!safeOwners.includes(connectedWallet)) {
                     toast(
                         'Failure',
@@ -310,7 +307,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
         try {
             const chainId: number = await providerEth!
                 .getNetwork()
-                .then((network: any) => network.chainId);
+                .then((network) => Number(network.chainId));
             let transaction_hash: GnosisTypes.SafeTransactionResponse | GnosisTypes.ErrorResponse =
                 {} as GnosisTypes.SafeTransactionResponse;
 
@@ -350,7 +347,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                     } else {
                         await window.ethereum!.request({
                             method: 'wallet_switchEthereumChain',
-                            params: [{ chainId: ethers.utils.hexValue(safeGnosisData.chain_id!) }],
+                            params: [{ chainId: ethers.toQuantity(safeGnosisData.chain_id!) }],
                         });
                         return;
                     }

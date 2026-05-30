@@ -23,8 +23,8 @@ export const samudaiLogin = () => {
     const loginUtil = async (
         accounts: string,
         chainId: number,
-        provider: ethers.providers.Web3Provider,
-        signer: ethers.providers.JsonRpcSigner,
+        provider: ethers.BrowserProvider,
+        signer: ethers.JsonRpcSigner,
         isPrivy?: boolean,
         signedTextRes?: string,
         privyUserDetails?: any,

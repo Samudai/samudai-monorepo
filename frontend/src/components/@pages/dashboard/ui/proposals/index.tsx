@@ -37,7 +37,9 @@ export const Proposals: React.FC = () => {
 
     const fetchData = async function () {
         setLoading1(true);
-        const chainId: number = await providerEth!.getNetwork().then((network) => network.chainId);
+        const chainId: number = await providerEth!
+            .getNetwork()
+            .then((network) => Number(network.chainId));
 
         // const localData = localStorage.getItem('signUp');
         // const parsedData = !!localData && JSON.parse(localData);

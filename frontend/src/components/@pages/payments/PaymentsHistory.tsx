@@ -170,7 +170,7 @@ const PaymentsHistory: React.FC = () => {
     const handleBatchTxInitiate = async () => {
         if (!selectedTxn || !providerEth) return;
 
-        const connectedWallet = await providerEth.getSigner().getAddress();
+        const connectedWallet = await (await providerEth.getSigner()).getAddress();
         const sdk = new Gnosis(providerEth, selectedTxn[0].provider.chain_id);
         const owners = await sdk?.getSafeOwners(selectedTxn[0].provider.address);
         if (owners && !owners.includes(connectedWallet)) {
@@ -253,7 +253,7 @@ const PaymentsHistory: React.FC = () => {
             } else {
                 await window.ethereum!.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: ethers.utils.hexValue(selectedTxn[0].provider.chain_id!) }],
+                    params: [{ chainId: ethers.toQuantity(selectedTxn[0].provider.chain_id!) }],
                 });
                 return;
             }

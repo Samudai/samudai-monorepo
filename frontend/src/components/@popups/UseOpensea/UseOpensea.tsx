@@ -35,7 +35,9 @@ const UseOpensea: React.FC<UseOpenseaProps> = ({ handleNFT, onClose }) => {
     };
 
     const sdkInitialize = async () => {
-        const chainId: number = await provider!.getNetwork().then((network) => network.chainId);
+        const chainId: number = await provider!
+            .getNetwork()
+            .then((network) => Number(network.chainId));
         const sdk = new NFTProfile(chainId);
         const res: any = await sdk?.getNFTProfilePPs(account!);
         const output = res.ownedNfts.map((val: any) => {

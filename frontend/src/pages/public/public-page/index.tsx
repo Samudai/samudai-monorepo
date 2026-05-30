@@ -47,10 +47,10 @@ const PublicPage: React.FC<PublicPageProps> = ({ component: Component }) => {
 
     const [login] = useLoginMutation();
 
-    const ConnectWalletHandler = async (provider: ethers.providers.Web3Provider) => {
+    const ConnectWalletHandler = async (provider: ethers.BrowserProvider) => {
         localStorage.removeItem('discord bot');
         try {
-            const signer = provider.getSigner();
+            const signer = await provider.getSigner();
             const ceramic = await ceramicInit(signer);
             if (ceramic !== null) {
                 const did = ceramic?.did?.id;

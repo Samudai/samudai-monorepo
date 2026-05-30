@@ -75,7 +75,7 @@ const PaymentsTableItem: React.FC<ownProps> = ({
 
     const handleInitiate = async () => {
         if (!awaitingData || !providerEth) return;
-        const connectedWallet = await providerEth.getSigner().getAddress();
+        const connectedWallet = await (await providerEth.getSigner()).getAddress();
         const sdk = new Gnosis(providerEth, awaitingData.provider.chain_id);
         const owners = await sdk?.getSafeOwners(awaitingData.provider.address);
         if (owners && !owners.includes(connectedWallet)) {
@@ -157,7 +157,7 @@ const PaymentsTableItem: React.FC<ownProps> = ({
             } else if (awaitingData?.provider?.chain_id) {
                 await window.ethereum!.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: ethers.utils.hexValue(awaitingData.provider.chain_id) }],
+                    params: [{ chainId: ethers.toQuantity(awaitingData.provider.chain_id) }],
                 });
                 return;
             }

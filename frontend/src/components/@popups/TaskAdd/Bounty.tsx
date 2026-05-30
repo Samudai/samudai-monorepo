@@ -131,7 +131,7 @@ const Bounty: React.FC<props> = ({ personal, contributors, providerList, setProv
             gnosis.getSafeBalance().then((res) => {
                 const balance = res as GnosisTypes.SafeBalanceUsdResponse[];
                 setBalance(
-                    ethers.utils
+                    ethers
                         .formatEther(balance?.[0]?.balance)
                         .toString()
                         .slice(0, 6)

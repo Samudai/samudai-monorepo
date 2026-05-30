@@ -89,9 +89,9 @@ const ConnectWalletComp: React.FC = () => {
         }
     };
 
-    const connectWalletUtil = async (provider: ethers.providers.Web3Provider) => {
+    const connectWalletUtil = async (provider: ethers.BrowserProvider) => {
         try {
-            const signer = provider.getSigner();
+            const signer = await provider.getSigner();
             const account = await signer.getAddress();
             store.dispatch(changeProvider({ provider: provider }));
             store.dispatch(changeAccount({ account: account }));

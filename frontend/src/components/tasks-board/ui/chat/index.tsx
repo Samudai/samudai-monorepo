@@ -33,7 +33,6 @@ export const Chat: React.FC<ChatProps> = ({ data, account, pgpDecryptedPvtKey, o
     const bottomRef = useRef<HTMLDivElement>(null);
     const [getMemberDetails] = useGetMemberByIdMutation();
     const provider = store.getState().commonReducer.provider;
-    const _signer = provider?.getSigner();
 
     const fetchMemberDetails = async (memberId: string) => {
         return await getMemberDetails({
@@ -68,11 +67,12 @@ export const Chat: React.FC<ChatProps> = ({ data, account, pgpDecryptedPvtKey, o
     const sendMessage = (walletAddress: string) => {
         return async (content: string, type: 'Text' | 'Image' | 'File' | 'GIF') => {
             try {
+                const _signer = await provider?.getSigner();
                 const response = await PushAPI.chat.send({
                     messageContent: content,
                     messageType: type, // can be "Text" | "Image" | "File" | "GIF"
                     receiverAddress: walletAddress,
-                    signer: _signer,
+                    signer: _signer as any,
                     pgpPrivateKey: pgpDecryptedPvtKey,
                 });
                 response.messageContent = content;

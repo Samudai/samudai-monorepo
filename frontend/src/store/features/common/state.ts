@@ -12,7 +12,7 @@ export interface CommonSliceState {
     projectDao: string;
     activeDaoName: string;
     daoList: DAOType[];
-    provider: ethers.providers.Web3Provider | null;
+    provider: ethers.BrowserProvider | null;
     wallet: ethers.Wallet | null;
     socket: any | null;
     pushSDKSocket: any | null;

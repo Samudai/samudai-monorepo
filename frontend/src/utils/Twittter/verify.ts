@@ -39,11 +39,11 @@ export const getTweetMessage = (
 
 export const generateTweetSignature = async (
     username: string,
-    provider: ethers.providers.Web3Provider,
+    provider: ethers.BrowserProvider,
     dao?: string
 ) => {
     try {
-        const signer = provider.getSigner();
+        const signer = await provider.getSigner();
         const address = await signer.getAddress();
         const message = generateMessageEntropy(username);
         const signature = await signer.signMessage(message);

@@ -37,8 +37,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
         try {
             const web3Provider = await web3modal.connect();
             dispatch(changeWeb3ModalProvider({ web3ModalProvider: web3Provider }));
-            const provider = new ethers.providers.Web3Provider(web3Provider);
-            const signer = provider.getSigner();
+            const provider = new ethers.BrowserProvider(web3Provider);
+            const signer = await provider.getSigner();
             const ceramic = await ceramicInit(signer);
             // web3Provider.on('accountsChanged', async (accounts: string[]) => {
             //   localStorage.clear();

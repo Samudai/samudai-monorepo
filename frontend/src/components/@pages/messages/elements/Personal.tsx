@@ -85,7 +85,6 @@ const Personal: React.FC = (props) => {
 
     // const chatEnv = process.env.REACT_APP_ENV !== 'production' ? ENV.STAGING : ENV.PROD;
     const chatEnv = ENV?.PROD;
-    const _signer = provider?.getSigner();
 
     const messageCreate = usePopup();
     const openMessagePopup = useTypedSelector(messagePopup);
@@ -118,9 +117,10 @@ const Personal: React.FC = (props) => {
     };
 
     const decryptKey = async (user: PushAPI.IUser): Promise<string> => {
+        const _signer = await provider?.getSigner();
         const decryptedPvtKey = await PushAPI.chat.decryptPGPKey({
             encryptedPGPPrivateKey: user.encryptedPrivateKey,
-            signer: _signer,
+            signer: _signer as any,
         });
         // console.log(decryptedPvtKey);
         dispatch(changeChatKey({ chatKey: decryptedPvtKey }));
@@ -229,6 +229,7 @@ const Personal: React.FC = (props) => {
 
     const sendMessage = (walletAddress: string) => {
         return async (content: string, type: 'Text' | 'Image' | 'File' | 'GIF') => {
+            const _signer = await provider?.getSigner();
             const memberDetails = allMembersDetail.find((member) => {
                 return member.wallets.find(
                     (wallet) => wallet.wallet_address === walletAddress.slice(7)
@@ -239,7 +240,7 @@ const Personal: React.FC = (props) => {
                     status: 'Approved',
                     account: account || '',
                     senderAddress: walletAddress,
-                    signer: _signer,
+                    signer: _signer as any,
                 }).then(() => {
                     if (memberDetails) {
                         sendNotification({
@@ -263,7 +264,7 @@ const Personal: React.FC = (props) => {
                         messageContent: content,
                         messageType: type, // can be "Text" | "Image" | "File" | "GIF"
                         receiverAddress: walletAddress,
-                        signer: _signer,
+                        signer: _signer as any,
                         pgpPrivateKey: chatKey,
                     })
                     .then((res) => {

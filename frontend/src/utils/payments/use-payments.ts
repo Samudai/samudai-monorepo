@@ -313,7 +313,7 @@ export const usePayments = () => {
 
     const handleExecute = async (queuedData: QueuedTxnObject, payment?: Payment) => {
         if (providerEth) {
-            const connectedWallet = await providerEth.getSigner().getAddress();
+            const connectedWallet = await (await providerEth.getSigner()).getAddress();
             const sdk = new Gnosis(providerEth, queuedData.provider.chain_id);
             const owners = await sdk?.getSafeOwners(queuedData.provider.address);
             if (owners && !owners.includes(connectedWallet)) {
@@ -386,7 +386,7 @@ export const usePayments = () => {
             } else {
                 await window.ethereum!.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: ethers.utils.hexValue(queuedData.provider.chain_id) }],
+                    params: [{ chainId: ethers.toQuantity(queuedData.provider.chain_id) }],
                 });
                 return;
             }
@@ -395,7 +395,7 @@ export const usePayments = () => {
 
     const handleApprove = async (queuedData: QueuedTxnObject, payment?: Payment) => {
         if (providerEth) {
-            const connectedWallet = await providerEth.getSigner().getAddress();
+            const connectedWallet = await (await providerEth.getSigner()).getAddress();
             const sdk = new Gnosis(providerEth, queuedData.provider.chain_id);
             const owners = await sdk?.getSafeOwners(queuedData.provider.address);
             if (owners && !owners.includes(connectedWallet)) {
@@ -436,7 +436,7 @@ export const usePayments = () => {
             } else {
                 await window.ethereum!.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: ethers.utils.hexValue(queuedData.provider.chain_id) }],
+                    params: [{ chainId: ethers.toQuantity(queuedData.provider.chain_id) }],
                 });
                 return;
             }
@@ -445,7 +445,7 @@ export const usePayments = () => {
 
     const handleReject = async (queuedData: QueuedTxnObject) => {
         if (providerEth && account) {
-            const connectedWallet = await providerEth.getSigner().getAddress();
+            const connectedWallet = await (await providerEth.getSigner()).getAddress();
             const sdk = new Gnosis(providerEth, queuedData.provider.chain_id);
             const owners = await sdk?.getSafeOwners(queuedData.provider.address);
             if (owners && !owners.includes(connectedWallet)) {
@@ -474,7 +474,7 @@ export const usePayments = () => {
             } else {
                 await window.ethereum!.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: ethers.utils.hexValue(queuedData.provider.chain_id) }],
+                    params: [{ chainId: ethers.toQuantity(queuedData.provider.chain_id) }],
                 });
                 return;
             }

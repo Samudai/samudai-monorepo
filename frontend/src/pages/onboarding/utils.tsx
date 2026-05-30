@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { trackCustomWallet } from '@intract/attribution';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { ethers, providers } from 'ethers';
+import { ethers } from 'ethers';
 import { useAccount, useConnect } from 'wagmi';
 import { type WalletClient } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
@@ -16,9 +16,8 @@ export function walletClientToSigner(walletClient: WalletClient) {
     const network = {
         chainId: chain.id,
         name: chain.name,
-        ensAddress: chain.contracts?.ensRegistry?.address,
     };
-    const provider = new providers.Web3Provider(transport, network);
+    const provider = new ethers.BrowserProvider(transport, network);
     trackCustomWallet(account.address);
     return provider;
 }
@@ -33,7 +32,7 @@ export const PrivyLogin = () => {
 
     const signMessageUtil = async (
         message: string,
-        signer: ethers.providers.JsonRpcSigner
+        signer: ethers.JsonRpcSigner
     ): Promise<string> => {
         const res = await signMessage(message);
         return res;
@@ -75,13 +74,16 @@ export const PrivyLogin = () => {
                     if (authenticated) {
                         const userAddr = await signer?.getAddress();
                         const message = generateMessageForEntropy(userAddr!);
-                        signedTextRes = await signMessageUtil(message, signer!);
+                        signedTextRes = await signMessageUtil(
+                            message,
+                            signer as unknown as ethers.JsonRpcSigner
+                        );
                     }
                     await loginUtil(
                         accounts!,
                         10,
-                        provider!,
-                        signer!,
+                        provider as unknown as ethers.BrowserProvider,
+                        signer as unknown as ethers.JsonRpcSigner,
                         true,
                         signedTextRes,
                         privyUserDetails,
@@ -91,8 +93,8 @@ export const PrivyLogin = () => {
                     await loginUtil(
                         accounts!,
                         10,
-                        provider!,
-                        signer!,
+                        provider as unknown as ethers.BrowserProvider,
+                        signer as unknown as ethers.JsonRpcSigner,
                         undefined,
                         undefined,
                         undefined,

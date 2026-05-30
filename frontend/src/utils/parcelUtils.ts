@@ -1,9 +1,9 @@
 import { Auth } from '@samudai_xyz/gateway-consumer-types';
 import { ethers } from 'ethers';
 
-export const parcelSign = async (provider: ethers.providers.Web3Provider): Promise<Auth> => {
+export const parcelSign = async (provider: ethers.BrowserProvider): Promise<Auth> => {
     console.log(provider);
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     const message = `Allow third party app to access your data on Parcel ${Date.now()}`;
     const signature = await signer.signMessage(message);
     const address = await signer.getAddress();

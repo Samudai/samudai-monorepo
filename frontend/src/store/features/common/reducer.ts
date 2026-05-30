@@ -28,7 +28,7 @@ const reducers = {
     },
     changeProvider: (
         state: CommonSliceState,
-        { payload }: PayloadAction<{ provider: ethers.providers.Web3Provider }>
+        { payload }: PayloadAction<{ provider: ethers.BrowserProvider }>
     ) => {
         state.provider = payload.provider;
     },
