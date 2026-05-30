@@ -39,7 +39,7 @@ Key facts:
 - **Per-module SQL connections**: each former SQL service owned its own Postgres database, so `shared/sqldb` opens one `*sql.DB` per module from `DATABASE_URL_DAO`, `DATABASE_URL_MEMBER`, … (`sqldb.Dao()`, `sqldb.Member()`, …) instead of the single global `db.GetSQL()` from samudai-pkg. The 8 databases (dao, dashboard, discovery, discussion, job, member, project, point) are preserved.
 - **Mongo & Redis are shared singletons** (`db.InitMongo()` / `db.InitRedis()` from samudai-pkg). Mongo modules pick their own database by name in code (`GetMongo().Database(discord.DatabaseDiscord)`).
 - **RabbitMQ**: discord, point, and external each expose `StartRMQ()` (each blocks on `select{}`), launched as goroutines in `app.Run`.
-- Depends on `github.com/Samudai/samudai-pkg` for `db`, `logger`, APM. Go `1.24`; Dockerfile pins `golang:1.24-alpine` and builds with `backend/core` as its own context (no sibling COPY).
+- Depends on `github.com/Samudai/samudai-pkg` for `db`, `logger`, APM. Go `1.26`; Dockerfile pins `golang:1.26-alpine` and builds with `backend/core` as its own context (no sibling COPY).
 - Verify with `cd backend/core && go build ./... && go vet ./...`. `internal/app` has a test that builds the engine and asserts no duplicate-route panic.
 
 ## Merged Node service (`backend/service-node`)
@@ -49,7 +49,7 @@ One Express app hosting four former services under prefixes: `/activity-svc`, `/
 ## Gateways
 
 - `backend/gateway-consumer-node` (Node/TS, Express + socket.io) — main client API gateway; calls the monolith and `service-node` via `SERVICE_*` env URLs.
-- The old `gateway-external` (Go) is now the `external` module inside `backend/core`, mounted at `/external`.
+- The old `gateway-external` (Go) is now the `external` module inside `backend/core`, mounted at `/external`. Internal callers reach it via `GATEWAY_EXTERNAL=http://backend:8080/external`; third-party inbound webhooks reach it publicly through Caddy at `ge.samudai.xyz`, which rewrites `/<path>` → `/external/<path>` (preserving the original webhook URLs).
 
 ## Frontend (`frontend/`)
 
@@ -119,7 +119,7 @@ cp .env.prod.example .env   # real secrets
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --pull always
 ```
 
-Routing/TLS for `app.samudai.xyz` (frontend) and `gcn.samudai.xyz` (gateway) is in `deploy/caddy/Caddyfile`; point DNS at the VM.
+Routing/TLS for `app.samudai.xyz` (frontend), `gcn.samudai.xyz` (gateway), and `ge.samudai.xyz` (backend's `/external` module — third-party webhooks) is in `deploy/caddy/Caddyfile`; point DNS at the VM.
 
 ## CI / Docker builds
 

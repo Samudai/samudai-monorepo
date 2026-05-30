@@ -38,7 +38,7 @@ whole stack (data stores, backend, service-node, gateway, frontend, bots).
   to run the stack.
 - Only for developing an individual service outside Docker: **Node.js 22**
   (all Node apps — `frontend`, `service-node`, `gateway-consumer-node`, and both
-  bots; `frontend/.nvmrc` pins it) and **Go 1.24** (the `backend/core` monolith).
+  bots; `frontend/.nvmrc` pins it) and **Go 1.26** (the `backend/core` monolith).
 
 ### Run the full stack locally
 
@@ -61,6 +61,72 @@ in `migrations/postgres/<module>` before `backend` starts — no manual step.
 
 Bots (`samudai-bot`, `telegram-bot`) start too but need valid Discord/Telegram
 tokens in `.env` to do anything useful.
+
+## Development
+
+For day-to-day work it's usually fastest to run the data stores in Docker and
+the service you're editing on the host (live reload, debugger, faster restarts).
+
+```bash
+# bring up just the dependencies the apps need
+docker compose up -d postgres mongo redis rabbitmq migrate
+```
+
+Each app reads its config from a local `.env` (or shell environment). Point the
+`SERVICE_*` / `DATABASE_URL_*` / `MONGO_URL` / `REDIS_URL` / `MQ_*` URLs at the
+containers above (`localhost` ports as listed in the table) when running on the
+host.
+
+### Backend — Go monolith (`backend/core`)
+
+```bash
+cd backend/core
+go run ./cmd/server                       # serves on $PORT (8080 by default)
+go build ./... && go vet ./...            # compile + lint
+go test ./internal/app/                   # asserts the engine mounts with no route collisions
+```
+
+Add a new capability as a module under `backend/core/services/<name>/` mounted in
+`internal/app/app.go` — don't spin up a new microservice.
+
+### Backend — Node services (`service-node`, `gateway-consumer-node`)
+
+```bash
+cd backend/service-node                   # or backend/gateway-consumer-node
+npm install
+npm run start:dev                         # ts-node-dev live reload (gateway uses: npm run dev)
+npm run build && npm start                # tsc -> node dist/index.js
+```
+
+### Frontend (`frontend/`)
+
+React 18 (CRA via react-app-rewired + Craco). Node 22 (`frontend/.nvmrc`). Talks
+to the backend through `REACT_APP_GATEWAY` (the gateway base URL, baked in at
+build time).
+
+```bash
+cd frontend
+nvm use                                   # picks up Node 22 from .nvmrc
+npm install
+npm start                                 # dev server on http://localhost:3000
+
+# production-style builds (each needs the matching .<env>.env file)
+npm run build:development                 # uses .development.env
+npm run build:staging                     # uses .staging.env
+npm run build:prod                        # uses .production.env (used by the Docker image)
+```
+
+### Bots (`bots/samudai-bot`, `bots/telegram-bot`)
+
+Node 22 + TypeScript. Each needs its platform token (`DISCORD_*` / `TELEGRAM_*`)
+and the `SERVICE_*` URLs in its `.env` to reach the backend.
+
+```bash
+cd bots/samudai-bot                       # or bots/telegram-bot
+npm install
+npm run dev                               # ts-node-dev live reload
+npm run build && npm start                # tsc -> node dist/index.js
+```
 
 ### Deploy to production (single VM)
 

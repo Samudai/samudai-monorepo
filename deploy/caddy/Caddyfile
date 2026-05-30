@@ -5,6 +5,7 @@
 # Routing mirrors the consolidated stack:
 #   app.samudai.xyz -> frontend (static dashboard, nginx :80)
 #   gcn.samudai.xyz -> gateway-consumer-node (client API gateway :8080)
+#   ge.samudai.xyz  -> backend monolith's /external module (third-party webhooks)
 #
 # Set an email for ACME notifications (optional but recommended).
 {
@@ -23,7 +24,17 @@ gcn.samudai.xyz {
 	reverse_proxy gateway-consumer-node:8080
 }
 
-# Legacy hosts retired by the monorepo consolidation are intentionally NOT mapped:
-#   ge.samudai.xyz       -> gateway-external is now backend/external (reach via the gateway)
+# External integrations gateway — third-party inbound webhooks (GitHub App,
+# Snapshot, Telegram) plus the Discord bot's server-side calls. The former
+# standalone gateway-external is now the monolith's `external` module, so we
+# prepend /external here. This preserves the original public webhook URLs
+# (root paths) — no need to reconfigure GitHub/Snapshot/Telegram.
+ge.samudai.xyz {
+	encode gzip
+	rewrite * /external{uri}
+	reverse_proxy backend:8080
+}
+
+# Other legacy hosts retired by the monorepo consolidation are intentionally NOT mapped:
 #   webhook/points/try.samudai.xyz -> those standalone services no longer exist
 # Add a block here (host { reverse_proxy <service>:<port> }) if any is revived.

@@ -96,8 +96,8 @@
     "lint": "eslint .",
     "lint:fix": "eslin --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "build:development": "GENERATE_SOURCEMAP=false env-cmd -f ./.development.env react-app-rewired build",
-    "build:staging": "GENERATE_SOURCEMAP=false env-cmd -f ./.staging.env react-app-rewired build",
+    "build:development": "env-cmd -f ./.development.env react-app-rewired build",
+    "build:staging": "env-cmd -f ./.staging.env react-app-rewired build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f ./.production.env react-app-rewired build"
   },
   "eslintConfig": {

@@ -204,45 +204,45 @@ services:
       service-node: { condition: service_started }
       redis: { condition: service_healthy }
 
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        NODE_ENV: development
-    ports:
-      - "${FRONTEND_PORT:-3000}:80"
-    depends_on:
-      gateway-consumer-node: { condition: service_started }
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     args:
+  #       NODE_ENV: development
+  #   ports:
+  #     - "${FRONTEND_PORT:-3000}:80"
+  #   depends_on:
+  #     gateway-consumer-node: { condition: service_started }
 
-  samudai-bot:
-    build:
-      context: ./bots/samudai-bot
-    environment:
-      PORT: "8080"
-      GATEWAY_EXTERNAL: http://backend:8080/external
-      GATEWAY_CONSUMER: http://gateway-consumer-node:8080
-      BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
-      BOT_ID: ${DISCORD_APP_ID:-}
-    depends_on:
-      backend: { condition: service_started }
-      gateway-consumer-node: { condition: service_started }
+  # samudai-bot:
+  #   build:
+  #     context: ./bots/samudai-bot
+  #   environment:
+  #     PORT: "8080"
+  #     GATEWAY_EXTERNAL: http://backend:8080/external
+  #     GATEWAY_CONSUMER: http://gateway-consumer-node:8080
+  #     BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+  #     BOT_ID: ${DISCORD_APP_ID:-}
+  #   depends_on:
+  #     backend: { condition: service_started }
+  #     gateway-consumer-node: { condition: service_started }
 
-  telegram-bot:
-    build:
-      context: ./bots/telegram-bot
-    environment:
-      PORT: "8080"
-      GATEWAY_EXTERNAL: http://backend:8080/external
-      GATEWAY_CONSUMER: http://gateway-consumer-node:8080
-      TELEGRAM_USERNAME: ${TELEGRAM_USERNAME:-samudai_bot}
-      BOT_ID: ${TELEGRAM_BOT_ID:-}
-      MQ_IP: rabbitmq
-      MQ_USERNAME: ${RABBITMQ_USER:-rabbitmq}
-      MQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
-    depends_on:
-      backend: { condition: service_started }
-      gateway-consumer-node: { condition: service_started }
-      rabbitmq: { condition: service_healthy }
+  # telegram-bot:
+  #   build:
+  #     context: ./bots/telegram-bot
+  #   environment:
+  #     PORT: "8080"
+  #     GATEWAY_EXTERNAL: http://backend:8080/external
+  #     GATEWAY_CONSUMER: http://gateway-consumer-node:8080
+  #     TELEGRAM_USERNAME: ${TELEGRAM_USERNAME:-samudai_bot}
+  #     BOT_ID: ${TELEGRAM_BOT_ID:-}
+  #     MQ_IP: rabbitmq
+  #     MQ_USERNAME: ${RABBITMQ_USER:-rabbitmq}
+  #     MQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
+  #   depends_on:
+  #     backend: { condition: service_started }
+  #     gateway-consumer-node: { condition: service_started }
+  #     rabbitmq: { condition: service_healthy }
 
 volumes:
   pgdata:

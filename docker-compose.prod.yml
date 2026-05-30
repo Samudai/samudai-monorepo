@@ -75,6 +75,7 @@ services:
       - caddydata:/data
       - caddyconfig:/config
     depends_on:
+      backend: { condition: service_started }
       frontend: { condition: service_started }
       gateway-consumer-node: { condition: service_started }
 
