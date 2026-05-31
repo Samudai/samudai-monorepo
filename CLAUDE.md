@@ -10,7 +10,7 @@ Polyglot monorepo with four top-level areas:
   - `backend/core/` — the **Go modular monolith** (one Go module `github.com/Samudai/backend`, one binary, one Gin engine). Absorbs every former Go microservice (dao, member, discord, project, point, plugin, dashboard, discovery, discussion, forms, job, analytics) **and** the old `gateway-external`.
   - `backend/service-node/` — the **merged Node/Express service** (former `service-activity`, `service-twitter`, `service-web3`, `service-x` mounted under per-service prefixes).
   - `backend/gateway-consumer-node/` — the Node/TS client API gateway (Express + socket.io).
-- `frontend/` — React 18 + CRA app (react-app-rewired + Craco). Flattened from the old `dashboard/dashboard-samudai/`.
+- `frontend/` — React 19 app built with **Vite** (`vite.config.ts` + `@vitejs/plugin-react`). Flattened from the old `dashboard/dashboard-samudai/`. (Migrated off the deprecated CRA / react-app-rewired / Craco stack.)
 - `bots/` — Node/TypeScript bots (`samudai-bot` for Discord, `telegram-bot`).
 - `deploy/local/postgres-init/` — first-boot script that creates the per-module `*_local` Postgres databases for the compose stack.
 - `deploy/caddy/Caddyfile` — reverse proxy + automatic-HTTPS config used by the production compose overlay.
@@ -53,18 +53,18 @@ One Express app hosting four former services under prefixes: `/activity-svc`, `/
 
 ## Frontend (`frontend/`)
 
-React app launched via `react-app-rewired` with `config-overrides.js` + Craco. Reaches the backend through `REACT_APP_GATEWAY` (gateway base URL, baked at build time).
+React 19 app built with **Vite** (`vite.config.ts`). Reaches the backend through `REACT_APP_GATEWAY` (gateway base URL, baked at build time). `REACT_APP_*` env vars are still used unchanged — Vite exposes them via `envPrefix: 'REACT_APP_'` plus a `define` map that keeps existing `process.env.REACT_APP_*` reads working; SCSS globals (`vars.scss`/`mixins.scss`) are injected via `css.preprocessorOptions.scss.additionalData`; node polyfills come from `vite-plugin-node-polyfills`; path aliases from `vite-tsconfig-paths` (reads `tsconfig.paths.json`). Build output is `build/` (`build.outDir`).
 
 ```bash
 cd frontend
-npm install
-npm start                    # dev
-npm run build:development    # uses .development.env
+npm install                  # clean install, no --force
+npm start                    # vite dev server (port 3000)
+npm run build:development    # env-cmd -f .development.env vite build
 npm run build:staging        # uses .staging.env
 npm run build:prod           # uses .production.env (used by Docker image)
 ```
 
-`build:*` targets require the matching `.{env}.env` file; Docker builds pass `--build-arg NODE_ENV=<env>`.
+`build:*` targets require the matching `.{env}.env` file; Docker builds pass `--build-arg NODE_ENV=<env>`. Large `tsc`/build runs may need `NODE_OPTIONS=--max-old-space-size=4096` for heap headroom.
 
 ## Common commands
 
