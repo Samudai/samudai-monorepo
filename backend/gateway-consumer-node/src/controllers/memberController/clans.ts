@@ -70,7 +70,7 @@ export class ClansController {
 
     getClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanId = req.params.clanId;
+            const clanId = (req.params.clanId as string);
 
             //Initializers
             let clanAdmin: ClanMemberInfo;
@@ -149,7 +149,7 @@ export class ClansController {
 
     deleteClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanId = req.params.clanId;
+            const clanId = (req.params.clanId as string);
 
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/clan/${clanId}`);
             new DeleteSuccess(res, 'CLAN', result);
@@ -160,8 +160,8 @@ export class ClansController {
 
     removeClanMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = req.params.memberId;
-            const clan_id: string = req.params.clanId;
+            const member_id: string = (req.params.memberId as string);
+            const clan_id: string = (req.params.clanId as string);
 
             const result = await axios.delete(
                 `${process.env.SERVICE_MEMBER}/clan/removemember/${clan_id}/${member_id}`
@@ -174,7 +174,7 @@ export class ClansController {
 
     getClansByMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/clan/bymember/${memberId}`);
 
@@ -201,7 +201,7 @@ export class ClansController {
 
     getClanInvite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanId = req.params.clanId;
+            const clanId = (req.params.clanId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/claninvite/list/${clanId}`);
             new FetchSuccess(res, 'CLAN INVITE', result);
@@ -225,7 +225,7 @@ export class ClansController {
 
     getClanInviteForReceiver = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const receiverId = req.params.receiverId;
+            const receiverId = (req.params.receiverId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/claninvite/byreceiverid/${receiverId}`);
             new FetchSuccess(res, 'CLAN INVITE', result);
@@ -236,7 +236,7 @@ export class ClansController {
 
     deleteClanInvite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanInviteId = req.params.clanInviteId;
+            const clanInviteId = (req.params.clanInviteId as string);
 
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/claninvite/delete/${clanInviteId}`);
 

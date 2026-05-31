@@ -16,7 +16,7 @@ export class DiscoveryController {
     discoverDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
             // to get ismember for Dao members
-            var member_id = req.params.memberId;
+            var member_id = (req.params.memberId as string);
             if (member_id === ':memberId') {
                 member_id = null!;
             }
@@ -93,7 +93,7 @@ export class DiscoveryController {
     discoverMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
             // to get isconnect for connections
-            var member_id = req.params.memberId;
+            var member_id = (req.params.memberId as string);
             if (member_id === ':memberId') {
                 member_id = null!;
             }
@@ -182,7 +182,7 @@ export class DiscoveryController {
 
     fetchTags = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const daoResult1 = await axios.get(`${process.env.SERVICE_ACTIVITY}/engagement/mostactive/dao`);
             const mostActiveDAO: MostActiveResponse = daoResult1.data.data;

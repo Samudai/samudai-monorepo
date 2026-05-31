@@ -69,7 +69,7 @@ export class MobileController {
 
     GetLinkedStatusForMobile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/mobile/get/linkedstaus/${member_id}`);
 
@@ -81,7 +81,7 @@ export class MobileController {
 
     DeleteMobileForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
 
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/mobile/delete/${memberId}`);
             new DeleteSuccess(res, 'Mobile', result);
@@ -136,7 +136,7 @@ export class MobileController {
 
     getIDAOForMobile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/idao/bymemberid/${memberId}`);
             
             return res.status(200).send({

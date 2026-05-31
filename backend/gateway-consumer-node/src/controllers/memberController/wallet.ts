@@ -53,8 +53,8 @@ export class MemberWalletController {
 
     deleteWalletForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
-            const wallet_add = req.params.walletAddress;
+            const memberId = (req.params.memberId as string);
+            const wallet_add = (req.params.walletAddress as string);
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/wallet/delete/${memberId}/${wallet_add}`);
             new DeleteSuccess(res, 'WALLET', result);
         } catch (err: any) {
@@ -64,7 +64,7 @@ export class MemberWalletController {
 
     getDefaultWallet = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/wallet/default/${memberId}`);
             new FetchSuccess(res, 'WALLET', result);
         } catch (err: any) {

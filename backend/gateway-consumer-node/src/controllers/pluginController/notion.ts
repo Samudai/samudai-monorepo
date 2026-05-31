@@ -193,7 +193,7 @@ export class NotionController {
 
     isExists = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = req.params.memberId;
+            const member_id: string = (req.params.memberId as string);
             const result = await axios.get(`${this.serviceNotion}/exists/${member_id}`);
             return res.status(200).send({
                 message: 'Check if notion account exists successful',
@@ -216,7 +216,7 @@ export class NotionController {
 
     deleteNotion = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = req.params.memberId;
+            const member_id: string = (req.params.memberId as string);
             const result = await axios.delete(`${this.serviceNotion}/${member_id}`);
             return res.status(200).send({
                 message: 'Delete notion account successful',

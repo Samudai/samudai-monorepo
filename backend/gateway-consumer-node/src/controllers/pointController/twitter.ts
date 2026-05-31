@@ -104,7 +104,7 @@ export class PointTwitterController {
 
     getTwitterByPointId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = req.params.pointId;
+            const pointId = (req.params.pointId as string);
             const result = await axios.get(`${process.env.SERVICE_POINT}/twitter/getbypointid/${pointId}`);
             new FetchSuccess(res, 'Fetch Twitter', result);
         } catch (err: any) {

@@ -21,7 +21,7 @@ export class SubmissionController {
 
     getSubmissionById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/${req.params.submissionId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/${(req.params.submissionId as string)}`);
             new FetchSuccess(res, 'SUBMISSIONS', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving submissions'));
@@ -30,7 +30,7 @@ export class SubmissionController {
 
     getSubmissionsByBounty = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/list/${req.params.bountyId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/list/${(req.params.bountyId as string)}`);
             var i = 0;
             for (var member of result.data.submissions.clans) {
                 try {
@@ -52,7 +52,7 @@ export class SubmissionController {
 
     getSubmissionsByMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/bymember/${req.params.memberId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/bymember/${(req.params.memberId as string)}`);
             var j = 0;
             for (var bounty of result.data.submissions) {
                 try {
@@ -71,7 +71,7 @@ export class SubmissionController {
 
     getSubmissionsByClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/byclan/${req.params.clanId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/byclan/${(req.params.clanId as string)}`);
             new FetchSuccess(res, 'SUBMISSIONS', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving submissions'));
@@ -120,7 +120,7 @@ export class SubmissionController {
     deleteSubmission = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_JOB}/submission/delete/${req.params.submissionId}`
+                `${process.env.SERVICE_JOB}/submission/delete/${(req.params.submissionId as string)}`
             );
             new DeleteSuccess(res, 'SUBMISSION', result);
         } catch (err: any) {

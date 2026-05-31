@@ -42,7 +42,7 @@ export class TagController {
 
     // deleteTag = async (req: Request, res: Response, next: NextFunction) => {
     //   try {
-    //     const result = await axios.delete(`${process.env.SERVICE_JOB}/tag/delete/${req.params.tagId}`);
+    //     const result = await axios.delete(`${process.env.SERVICE_JOB}/tag/delete/${(req.params.tagId as string)}`);
     //     res.status(200).send({ message: 'Tag Deleted Successfully', data: result.data });
     //   } catch (err: any) {
     //     if (err.response) {

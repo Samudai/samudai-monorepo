@@ -121,7 +121,7 @@ export class SignupController {
 
     listAdminGuilds = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_DISCORD}/discord/guildadmin/${memberId}`);
             new FetchSuccess(res, 'ADMIN GUILDS', result);
         } catch (err: any) {

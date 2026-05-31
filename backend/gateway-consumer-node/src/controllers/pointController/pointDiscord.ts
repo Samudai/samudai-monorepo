@@ -7,7 +7,7 @@ import { getPointGuilds } from '../../lib/guilds';
 export class PointDiscordController {
     getMemberGuildsForOnboarding = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const { memberGuilds } = await getPointGuilds(member_id);
 

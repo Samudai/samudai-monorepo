@@ -58,7 +58,7 @@ export class PaymentController {
 
     getPlatformPaymentsForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/${daoId}`);
 
             new FetchSuccess(res, 'Payments for DAO', response);
@@ -69,7 +69,7 @@ export class PaymentController {
 
     getPlatformPaymentsForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/member/${memberId}`);
             new FetchSuccess(res, 'Payments for Member', response);
         } catch (err: any) {
@@ -79,7 +79,7 @@ export class PaymentController {
 
     getPaymentForTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const taskId = req.params.taskId;
+            const taskId = (req.params.taskId as string);
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/task/${taskId}`);
             new FetchSuccess(res, 'Payment for task', response);
         } catch (err: any) {
@@ -89,7 +89,7 @@ export class PaymentController {
 
     getPayment = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const paymentId = req.params.paymentId;
+            const paymentId = (req.params.paymentId as string);
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/payment/${paymentId}`);
             new FetchSuccess(res, 'Payment', response);
         } catch (err: any) {
@@ -115,14 +115,14 @@ export class PaymentController {
     getUninitiatedByDAOId = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const resultProject = await axios.get(
-                `${process.env.SERVICE_PROJECT}/payout/getfordao/${req.params.daoId}`
+                `${process.env.SERVICE_PROJECT}/payout/getfordao/${(req.params.daoId as string)}`
             );
             let updatedResultProject = resultProject.data?.map((payout: any) => ({
                 ...payout,
                 type: 'Project',
             }));
 
-            const resultJob = await axios.get(`${process.env.SERVICE_JOB}/payout/get/uninitiated/${req.params.daoId}`);
+            const resultJob = await axios.get(`${process.env.SERVICE_JOB}/payout/get/uninitiated/${(req.params.daoId as string)}`);
             let updatedResultJob = resultJob.data?.map((payout: any) => ({
                 ...payout,
                 type: 'Job',

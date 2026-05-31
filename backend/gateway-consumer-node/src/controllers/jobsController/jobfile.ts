@@ -19,7 +19,7 @@ export class JobFileController {
 
     getJobFiles = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/jobfile/list/${req.params.jobId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/jobfile/list/${(req.params.jobId as string)}`);
             new FetchSuccess(res, 'Job Files', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving job files'));
@@ -28,7 +28,7 @@ export class JobFileController {
 
     deleteFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/jobfile/${req.params.fileId}`);
+            const result = await axios.delete(`${process.env.SERVICE_JOB}/jobfile/${(req.params.fileId as string)}`);
             new DeleteSuccess(res, 'Job File', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting a job file'));

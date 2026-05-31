@@ -125,7 +125,7 @@ export class MemberController {
 
     deleteMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/member/${memberId}`);
             new DeleteSuccess(res, 'MEMBER', result);
         } catch (err: any) {
@@ -147,7 +147,7 @@ export class MemberController {
 
     getMemberbyDiscord = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const discordId = req.params.discordId;
+            const discordId = (req.params.discordId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/bydiscorduserid/${discordId}/`);
             new FetchSuccess(res, 'MEMBER', result);
         } catch (err: any) {
@@ -157,7 +157,7 @@ export class MemberController {
 
     getMemberWorkProgress = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/workprogress/${member_id}`);
             new FetchSuccess(res, 'MEMBER Work Progress', result);
         } catch (err: any) {
@@ -178,7 +178,7 @@ export class MemberController {
     };
     checkUserName = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const username = req.params.username;
+            const username = (req.params.username as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/username/exist/${username}`);
             new FetchSuccess(res, 'MEMBER', result);
         } catch (err: any) {
@@ -294,7 +294,7 @@ export class MemberController {
 
     isEmailUpdated = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.member_id;
+            const member_id = (req.params.member_id as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/is/emailupdated/${member_id}`);
             new FetchSuccess(res, 'MEMBER IsEmailUpdated', result);
         } catch (err: any) {
@@ -381,7 +381,7 @@ export class MemberController {
 
     getInviteCountForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/invitecount/${memberId}`);
             new FetchSuccess(res, 'MEMBER INVITE COUNT', result);
         } catch (err: any) {

@@ -24,7 +24,7 @@ export class VerifiableCredController {
 
     getVerifiableCred = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = req.params.memberId;
+            const member_id: string = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_WEB3}/web3/verifiablecred/get/${member_id}`);
             //console.log(result.data.data);
             if (result.data.data) {

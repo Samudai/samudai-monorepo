@@ -20,7 +20,7 @@ export class DAOReviewController {
 
     listReviewForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/reviews/list/${daoId}`);
 
             let reviewResponse: ReviewResponse[] = [];
@@ -60,7 +60,7 @@ export class DAOReviewController {
 
     deleteReview = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const reviewId = req.params.reviewId;
+            const reviewId = (req.params.reviewId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/reviews/delete/${reviewId}`);
             new DeleteSuccess(res, 'REVIEW', result);
         } catch (err: any) {

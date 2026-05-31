@@ -27,7 +27,7 @@ export class TaskFormResponseController {
 
     getAllResponseForProject = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const projectId = req.params.projectId;
+            const projectId = (req.params.projectId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/response/allresponse/${projectId}`);
             let taskFormResponses: TaskResponse[] = [];
 
@@ -42,7 +42,7 @@ export class TaskFormResponseController {
 
     getTaskFormResponse = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const responseId = req.params.responseId;
+            const responseId = (req.params.responseId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/response/${responseId}`);
             let taskFormResponse: Task = mapTaskFormResponseToTask(result.data);
             console.log(taskFormResponse);
@@ -54,7 +54,7 @@ export class TaskFormResponseController {
 
     deleteTaskFormResponse = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const responseId = req.params.responseId;
+            const responseId = (req.params.responseId as string);
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/response/${responseId}`);
             new DeleteSuccess(res, 'TASK FORM RESPONSE', result);
         } catch (err: any) {
@@ -133,7 +133,7 @@ export class TaskFormResponseController {
 
     getTaskFormResponsebyFormResponseId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_response_id = req.params.formResponseId;
+            const form_response_id = (req.params.formResponseId as string);
             const result = await axios.get(
                 `${process.env.SERVICE_PROJECT}/response/byformresponse/${form_response_id}`
             );

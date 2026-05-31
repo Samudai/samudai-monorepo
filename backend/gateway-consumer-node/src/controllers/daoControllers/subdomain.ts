@@ -27,8 +27,8 @@ export class DAOSubdomainController {
 
     getSubdomainForDao = async (req: Request, res: Response) => {
         try{ 
-            const daoId = req.params.dao_id;
-            const subdomain = req.params.subdomain;
+            const daoId = (req.params.dao_id as string);
+            const subdomain = (req.params.subdomain as string);
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/subdomain/get/${daoId}/${subdomain}`);
 
@@ -49,7 +49,7 @@ export class DAOSubdomainController {
 
     checkSubdomainCreateForDao = async (req: Request, res: Response) => {
         try{ 
-            const daoId = req.params.dao_id;
+            const daoId = (req.params.dao_id as string);
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/subdomain/checksubdomaincreate/${daoId}`);
 

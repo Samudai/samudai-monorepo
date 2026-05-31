@@ -19,7 +19,7 @@ export class DAOTokenController {
 
     getToken = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_DAO}/token/bydaoid/${req.params.daoId}`);
+            const result = await axios.get(`${process.env.SERVICE_DAO}/token/bydaoid/${(req.params.daoId as string)}`);
             new FetchSuccess(res, 'TOKEN', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving a Token'));
@@ -40,7 +40,7 @@ export class DAOTokenController {
 
     delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_DAO}/token/delete/${req.params.tokenId}`);
+            const result = await axios.delete(`${process.env.SERVICE_DAO}/token/delete/${(req.params.tokenId as string)}`);
             new DeleteSuccess(res, 'TOKEN', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting token'));

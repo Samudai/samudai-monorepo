@@ -51,7 +51,7 @@ export class PointTelegramController {
 
     GetTelegramForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/telegram/getformember/${member_id}`);
 
@@ -63,7 +63,7 @@ export class PointTelegramController {
 
     GetTelegramForPoint = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = req.params.pointId;
+            const point_id = (req.params.pointId as string);
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/telegram/getforpoint/${point_id}`);
 
@@ -99,7 +99,7 @@ export class PointTelegramController {
 
     GetTelegramEventsForPoint = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = req.params.pointId;
+            const point_id = (req.params.pointId as string);
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/telegram/getevents/${point_id}`);
 

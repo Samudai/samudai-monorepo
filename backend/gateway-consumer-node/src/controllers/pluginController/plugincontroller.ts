@@ -6,7 +6,7 @@ import { Plugin, PluginsEnums } from '@samudai_xyz/gateway-consumer-types';
 export class PluginController {
     getPluginListForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const link_id = req.params.linkId;
+            const link_id = (req.params.linkId as string);
             const pluginList: Plugin[] = [];
 
             //notion
@@ -111,7 +111,7 @@ export class PluginController {
 
     getPluginListForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
             const pluginList: Plugin[] = [];
 
             //notion

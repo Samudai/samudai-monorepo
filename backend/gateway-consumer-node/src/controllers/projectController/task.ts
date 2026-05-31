@@ -134,9 +134,9 @@ export class TaskController {
 
     getTaskForProject = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result: any = await axios.get(`${process.env.SERVICE_PROJECT}/task/alltask/${req.params.projectId}`);
+            const result: any = await axios.get(`${process.env.SERVICE_PROJECT}/task/alltask/${(req.params.projectId as string)}`);
 
-            const contributors = await getTaskContributors(req.params.projectId);
+            const contributors = await getTaskContributors((req.params.projectId as string));
 
             if (result.data?.tasks?.length > 0) {
                 result.data.tasks = await Promise.all(
@@ -194,7 +194,7 @@ export class TaskController {
 
     getTaskById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/${req.params.taskId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/${(req.params.taskId as string)}`);
 
             let task: Task = result.data;
             task = await updatePayout(task);
@@ -323,7 +323,7 @@ export class TaskController {
 
     deleteTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const taskId: string = req.params.taskId;
+            const taskId: string = (req.params.taskId as string);
             // const member_id = res.locals.member_id;
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/task/${taskId}`);
 
@@ -412,7 +412,7 @@ export class TaskController {
 
     getMemberPersonalTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/personaltask/${req.params.memberId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/personaltask/${(req.params.memberId as string)}`);
 
             if (result.data?.tasks?.length > 0) {
                 const updatedData = result.data?.tasks.map(async (data: any) => {
@@ -430,7 +430,7 @@ export class TaskController {
 
     getMemberAssignedTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/assignedtask/${req.params.memberId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/assignedtask/${(req.params.memberId as string)}`);
 
             if (result.data?.tasks?.length > 0) {
                 const updatedData = result.data?.tasks.map(async (data: any) => {
@@ -570,10 +570,10 @@ export class TaskController {
     getArchivedTaskForProject = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result: any = await axios.get(
-                `${process.env.SERVICE_PROJECT}/task/allarchivetask/${req.params.projectId}`
+                `${process.env.SERVICE_PROJECT}/task/allarchivetask/${(req.params.projectId as string)}`
             );
 
-            const contributors = await getTaskContributors(req.params.projectId);
+            const contributors = await getTaskContributors((req.params.projectId as string));
 
             if (result.data?.tasks?.length > 0) {
                 result.data.tasks = await Promise.all(

@@ -13,7 +13,7 @@ import {
 export class WaitlistController {
     createEntry = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const email: CreateWaitlistEntry['email'] = req.params.email;
+            const email: CreateWaitlistEntry['email'] = (req.params.email as string);
             const result = await axios.post(`${process.env.SERVICE_MEMBER}/waitlist/create`, {
                 email: email,
             });

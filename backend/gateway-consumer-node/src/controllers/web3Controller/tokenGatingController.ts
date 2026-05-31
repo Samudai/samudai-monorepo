@@ -29,7 +29,7 @@ export class TokenGatingController {
 
     getTokenGating = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id: string = req.params.daoId;
+            const dao_id: string = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_WEB3}/web3/tokengating/get/${dao_id}`);
             new FetchSuccess(res, 'TOKEN GATING', result);
         } catch (err: any) {
@@ -39,7 +39,7 @@ export class TokenGatingController {
 
     deleteTokenGating = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id: string = req.params.daoId;
+            const dao_id: string = (req.params.daoId as string);
             const result = await axios.delete(`${process.env.SERVICE_WEB3}/web3/tokengating/delete/${dao_id}`);
             new DeleteSuccess(res, 'TOKEN GATING', result);
         } catch (err: any) {

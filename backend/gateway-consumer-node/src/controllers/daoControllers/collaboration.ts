@@ -19,7 +19,7 @@ export class DAOCollaborationController {
 
     listForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/collaboration/list/${daoId}`);
             new FetchSuccess(res, 'DAO Collaboration List', result);
         } catch (err: any) {
@@ -46,7 +46,7 @@ export class DAOCollaborationController {
 
     deleteCollaboration = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const collaborationId = req.params.collaborationId;
+            const collaborationId = (req.params.collaborationId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/collaboration/delete/${collaborationId}`);
             new DeleteSuccess(res, 'DAO Collaboration', result);
         } catch (err: any) {

@@ -106,7 +106,7 @@ export class stripeController {
 
     getPaymentLinkForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/stripe/getcustomerid/${daoId}`);
 
             let session;
@@ -239,7 +239,7 @@ export class stripeController {
 
     getUsedLimitsForDao = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
 
             const userCount = await axios.get(`${process.env.SERVICE_DAO}/member/licensed/getcount/${daoId}`);
 

@@ -20,7 +20,7 @@ export class DAORoleController {
 
     getDAORole = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/role/list/${daoId}`);
             new FetchSuccess(res, 'DAO', result);
         } catch (err: any) {
@@ -43,8 +43,8 @@ export class DAORoleController {
 
     deleteRole = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
-            const roleId = req.params.roleId;
+            const daoId = (req.params.daoId as string);
+            const roleId = (req.params.roleId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/role/delete/${daoId}/${roleId}`);
             new DeleteSuccess(res, 'DAO', result);
         } catch (err: any) {
@@ -83,8 +83,8 @@ export class DAORoleController {
 
     getMemberRole = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
-            const memberId = req.params.memberId;
+            const daoId = (req.params.daoId as string);
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/role/listbymemberid/${daoId}/${memberId}`);
             new FetchSuccess(res, 'MEMBER ROLES for a DAO', result);
         } catch (err: any) {

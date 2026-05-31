@@ -19,7 +19,7 @@ export class FileController {
 
     getProjectFolderById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/folder/${req.params.folderId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/folder/${(req.params.folderId as string)}`);
             new FetchSuccess(res, 'Project Folder', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving project folder'));
@@ -28,7 +28,7 @@ export class FileController {
 
     getProjectFileFolders = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/folder/byproject/${req.params.projectId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/folder/byproject/${(req.params.projectId as string)}`);
             new FetchSuccess(res, 'Project Folder', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving project folders'));
@@ -49,7 +49,7 @@ export class FileController {
 
     deleteProjectFolder = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_PROJECT}/folder/delete/${req.params.folderId}`);
+            const result = await axios.delete(`${process.env.SERVICE_PROJECT}/folder/delete/${(req.params.folderId as string)}`);
             new DeleteSuccess(res, 'Project Folder', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting project folder'));
@@ -70,7 +70,7 @@ export class FileController {
 
     getProjectFilesForFolder = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const folder_id: string = req.params.projectId;
+            const folder_id: string = (req.params.projectId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/projectfile/list/${folder_id}`);
             new FetchSuccess(res, 'Project Files', result);
         } catch (err: any) {
@@ -80,7 +80,7 @@ export class FileController {
 
     deleteProjectFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const project_file_id: string = req.params.projectFileId;
+            const project_file_id: string = (req.params.projectFileId as string);
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/projectfile/${project_file_id}`);
             new DeleteSuccess(res, 'Project File', result);
         } catch (err: any) {
@@ -102,7 +102,7 @@ export class FileController {
 
     getTaskFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const task_id: string = req.params.taskId;
+            const task_id: string = (req.params.taskId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/taskfile/${task_id}`);
             new FetchSuccess(res, 'Task File', result);
         } catch (err: any) {
@@ -112,7 +112,7 @@ export class FileController {
 
     deleteTaskFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const task_file_id: string = req.params.taskFileId;
+            const task_file_id: string = (req.params.taskFileId as string);
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/taskfile/${task_file_id}`);
             new DeleteSuccess(res, 'Task File', result);
         } catch (err: any) {

@@ -5,8 +5,9 @@ WORKDIR /app
 
 COPY . .
 
-# install dependencies
-RUN npm install
+# install dependencies (--ignore-scripts: a transitive dep of @samudai_xyz/web3-sdk
+# ships a broken husky prepare script; no first-party dep needs install scripts)
+RUN npm install --ignore-scripts
 RUN npm run build
 
 FROM node:22-alpine

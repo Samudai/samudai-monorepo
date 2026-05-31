@@ -30,7 +30,7 @@ export class PointContractController {
     deleteContract = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_POINT}/contract/delete/${req.params.pointId}/${req.params.contract_address}/${req.params.topic}`
+                `${process.env.SERVICE_POINT}/contract/delete/${(req.params.pointId as string)}/${(req.params.contract_address as string)}/${(req.params.topic as string)}`
             );
             new DeleteSuccess(res, 'Contract', result);
         } catch (err: any) {

@@ -2,3 +2,7 @@ node_modules
 .env
 dist
 run
+
+# yalc local linking (do not commit) — matches frontend/.gitignore
+.yalc
+yalc.lock

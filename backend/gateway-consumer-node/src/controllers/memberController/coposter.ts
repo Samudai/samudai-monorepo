@@ -15,7 +15,7 @@ interface Cast {
 export class CoposterController {
     neynarOauth = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
 
             res.render(`farcasterOauth.ejs`, {
                 memberId,
@@ -51,7 +51,7 @@ export class CoposterController {
 
     getFarcasterUserDetails = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const coposter_user_id = req.params.coposterUserId;
+            const coposter_user_id = (req.params.coposterUserId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/coposter/getuser/byId/${coposter_user_id}`);
             const fid = result.data.coposterUser.fid;
             console.log('FID', fid);

@@ -94,7 +94,7 @@ export class PointMemberController {
 
     getPointMembers = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = req.params.pointId;
+            const pointId = (req.params.pointId as string);
             const query = req.query.query;
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
@@ -160,7 +160,7 @@ export class PointMemberController {
     };
     GetPointForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.member_id;
+            const memberId = (req.params.member_id as string);
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/point/bymemberid/${memberId}`, {});
 
@@ -171,9 +171,9 @@ export class PointMemberController {
     };
     GetActivity = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = req.params.point_id;
-            const page_number = req.params.page_number;
-            const limit = req.params.limit;
+            const point_id = (req.params.point_id as string);
+            const page_number = (req.params.page_number as string);
+            const limit = (req.params.limit as string);
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/event/getRecentActivity/${point_id}/${page_number}/${limit}`,
                 {}
@@ -186,9 +186,9 @@ export class PointMemberController {
     };
     GetMemberActivity = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId: string = req.params.member_id;
-            const page_number = req.params.page_number;
-            const limit = req.params.limit;
+            const memberId: string = (req.params.member_id as string);
+            const page_number = (req.params.page_number as string);
+            const limit = (req.params.limit as string);
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/event/getMemberActivity/${memberId}/${page_number}/${limit}`,
                 {}
@@ -202,9 +202,9 @@ export class PointMemberController {
 
     GetLeaderBoard = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = req.params.point_id;
-            const page_number = req.params.page_number;
-            const limit = req.params.limit;
+            const point_id = (req.params.point_id as string);
+            const page_number = (req.params.page_number as string);
+            const limit = (req.params.limit as string);
 
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/event/getLeaderBoard/${point_id}/${page_number}/${limit}`,
@@ -219,7 +219,7 @@ export class PointMemberController {
 
     GetDiscordForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId: string = req.params.member_id;
+            const memberId: string = (req.params.member_id as string);
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/member/fetchdiscord/${memberId}`);
 
@@ -230,8 +230,8 @@ export class PointMemberController {
     };
     GetMetricsData = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = req.params.point_id;
-            const days = req.params.days;
+            const point_id = (req.params.point_id as string);
+            const days = (req.params.days as string);
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/discord/getMetric/${point_id}/${days}`,
                 {}

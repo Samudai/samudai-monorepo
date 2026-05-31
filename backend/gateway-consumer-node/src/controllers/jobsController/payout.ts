@@ -65,7 +65,7 @@ export class JobPayoutController {
 
     completePayout = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.post(`${process.env.SERVICE_JOB}/payout/complete/${req.params.payoutId}`);
+            const result = await axios.post(`${process.env.SERVICE_JOB}/payout/complete/${(req.params.payoutId as string)}`);
 
             res.status(201).send({ message: 'Payout Updated PaymentStatus Successfully', data: result.data });
         } catch (err: any) {
@@ -81,7 +81,7 @@ export class JobPayoutController {
 
     deletePayout = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/payout/delete/${req.params.payoutId}`);
+            const result = await axios.delete(`${process.env.SERVICE_JOB}/payout/delete/${(req.params.payoutId as string)}`);
 
             res.status(201).send({ message: 'Payout deleted successfully', data: result.data });
         } catch (err: any) {
@@ -97,7 +97,7 @@ export class JobPayoutController {
 
     getPayoutById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/payout/get/${req.params.payoutId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/payout/get/${(req.params.payoutId as string)}`);
 
             res.status(201).send({ message: 'Payout fetched successfully', data: result.data });
         } catch (err: any) {

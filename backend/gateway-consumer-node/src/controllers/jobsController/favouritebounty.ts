@@ -30,7 +30,7 @@ export class FavouriteBountyController {
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
             const result = await axios.post(
-                `${process.env.SERVICE_JOB}/favouritebounty/bymember/${req.params.memberId}`,
+                `${process.env.SERVICE_JOB}/favouritebounty/bymember/${(req.params.memberId as string)}`,
                 {
                     limit: limit,
                     offset: offset,
@@ -45,7 +45,7 @@ export class FavouriteBountyController {
     deleteFavourite = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_JOB}/favouritebounty/delete/${req.params.bountyId}/${req.params.memberId}`
+                `${process.env.SERVICE_JOB}/favouritebounty/delete/${(req.params.bountyId as string)}/${(req.params.memberId as string)}`
             );
             new DeleteSuccess(res, 'Favourite', result);
         } catch (err: any) {
@@ -56,7 +56,7 @@ export class FavouriteBountyController {
     getCountForBounty = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.get(
-                `${process.env.SERVICE_JOB}/favouritebounty/countbybounty/${req.params.bountyId}`
+                `${process.env.SERVICE_JOB}/favouritebounty/countbybounty/${(req.params.bountyId as string)}`
             );
             new FetchSuccess(res, 'Favourite count', result);
         } catch (err: any) {

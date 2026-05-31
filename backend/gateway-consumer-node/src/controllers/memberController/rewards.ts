@@ -19,7 +19,7 @@ export class MemberRewardController {
 
     getRewardsForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
             const dao_id = req.query.dao_id ? req.query.dao_id : undefined;
             const type = req.query.type ? req.query.type : undefined;
             const result = await axios.post(`${process.env.SERVICE_MEMBER}/reward/formember`, {

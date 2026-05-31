@@ -20,7 +20,7 @@ export class ProjectAccessController {
 
     getProjectAccessForProjectId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const projectId = req.params.projectId;
+            const projectId = (req.params.projectId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/access/listbyprojectid/${projectId}`);
             let projectAccessResponse: ProjectAccessResponse[] = [];
             const projectAccess: ProjectAccess[] = result.data;
@@ -68,7 +68,7 @@ export class ProjectAccessController {
 
     deleteProjectAccess = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const projectId = req.params.projectId;
+            const projectId = (req.params.projectId as string);
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/access/delete/${projectId}`);
             new DeleteSuccess(res, 'Project Access', result);
         } catch (err: any) {

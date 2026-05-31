@@ -25,7 +25,7 @@ export class SubdomainController {
 
     checkSubdomainForMember = async (req: Request, res: Response) => {
         try {
-            const subdomain = req.params.subdomain;
+            const subdomain = (req.params.subdomain as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/onboarding/checksubdomain/${subdomain}`);
 
@@ -46,7 +46,7 @@ export class SubdomainController {
 
     fetchSubdomainByMemberId = async (req: Request, res: Response) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const result = await axios.get(
                 `${process.env.SERVICE_MEMBER}/onboarding/fetchsubdomainformember/${member_id}`
@@ -69,8 +69,8 @@ export class SubdomainController {
 
     getCID = async (req: Request, res: Response) => {
         try {
-            const memberId = req.params.memberId;
-            const subdomain = req.params.subdomain;
+            const memberId = (req.params.memberId as string);
+            const subdomain = (req.params.subdomain as string);
 
             const inputFilePath = path.join(__dirname, '../../input.html');
             const outputFilePath = path.join(__dirname, `../../${memberId}.html`);
@@ -135,8 +135,8 @@ export class SubdomainController {
 
     getSubdomainForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = req.params.member_id;
-            const subdomain = req.params.subdomain;
+            const memberId = (req.params.member_id as string);
+            const subdomain = (req.params.subdomain as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/subdomain/get/${memberId}/${subdomain}`);
 
@@ -157,7 +157,7 @@ export class SubdomainController {
 
     checkSubdomainCreateForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = req.params.member_id;
+            const memberId = (req.params.member_id as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/subdomain/checksubdomaincreate/${memberId}`);
 

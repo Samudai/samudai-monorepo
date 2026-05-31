@@ -19,7 +19,7 @@ export class DAOSocialController {
 
     getSocial = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/social/list/${daoId}`);
             new FetchSuccess(res, 'DAO SOCIAL', result);
         } catch (err: any) {
@@ -41,8 +41,8 @@ export class DAOSocialController {
 
     deleteSocial = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
-            const socialId = req.params.socialId;
+            const daoId = (req.params.daoId as string);
+            const socialId = (req.params.socialId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/social/delete/${daoId}/${socialId}`);
             new DeleteSuccess(res, 'DAO SOCIAL', result);
         } catch (err: any) {

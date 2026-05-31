@@ -26,7 +26,7 @@ export class DAOFavouriteController {
 
     getFavourite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
@@ -42,7 +42,7 @@ export class DAOFavouriteController {
 
     deleteFavourite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const favouriteId = req.params.favouriteId;
+            const favouriteId = (req.params.favouriteId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/favourite/delete/${favouriteId}`);
             new DeleteSuccess(res, 'Favourite', result);
         } catch (err: any) {
@@ -52,7 +52,7 @@ export class DAOFavouriteController {
 
     countFavouriteForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/favourite/countbydao/${daoId}`);
             new FetchSuccess(res, 'Favourite Count', result);
         } catch (err: any) {

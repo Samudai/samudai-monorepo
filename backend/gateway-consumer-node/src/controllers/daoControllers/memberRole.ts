@@ -19,7 +19,7 @@ export class MemberRoleController {
 
     delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_role_id = req.params.memberRoleId;
+            const member_role_id = (req.params.memberRoleId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/memberrole/delete/${member_role_id}`);
             new DeleteSuccess(res, 'Member Role', result);
         } catch (err: any) {

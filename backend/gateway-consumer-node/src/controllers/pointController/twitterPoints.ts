@@ -30,7 +30,7 @@ export class PointTwitterPointsController {
 
     getTwitterPointsById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = req.params.pointId;
+            const pointId = (req.params.pointId as string);
             const result = await axios.get(`${process.env.SERVICE_POINT}/twitterpoints/getbyid/${pointId}`);
             new FetchSuccess(res, 'Fetch Twitter points', result);
         } catch (err: any) {

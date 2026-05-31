@@ -6,7 +6,7 @@ import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../..
 export class PointRoleController {
     getDAORole = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = req.params.pointId;
+            const pointId = (req.params.pointId as string);
             const result = await axios.get(`${process.env.SERVICE_POINT}/role/list/${pointId}`);
             new FetchSuccess(res, 'POINT', result);
         } catch (err: any) {

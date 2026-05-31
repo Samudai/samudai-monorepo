@@ -94,7 +94,7 @@ export class GcalController {
 
     getCalAccessForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const link_id = req.params.linkId;
+            const link_id = (req.params.linkId as string);
             const response = await axios.get(`${this.serviceGcal}/access/${link_id}`);
             return res.status(200).send({
                 message: 'Gcal Auth successful',
@@ -117,7 +117,7 @@ export class GcalController {
 
     deleteGcalAccessForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const link_id = req.params.linkId;
+            const link_id = (req.params.linkId as string);
             const response = await axios.delete(`${this.serviceGcal}/${link_id}`);
             return res.status(200).send({
                 message: 'Gcal Auth successful',
@@ -140,7 +140,7 @@ export class GcalController {
 
     linkExists = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const link_id = req.params.linkId;
+            const link_id = (req.params.linkId as string);
             const response = await axios.get(`${this.serviceGcal}/exists/${link_id}`);
             return res.status(200).send({
                 message: 'Gcal Auth successful',

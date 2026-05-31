@@ -28,7 +28,7 @@ export class MemberConnectionController {
 
     listbySender = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/connection/listbysender/${memberId}`);
             new FetchSuccess(res, 'connection', result);
         } catch (err: any) {
@@ -38,7 +38,7 @@ export class MemberConnectionController {
 
     listbyReceiver = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/connection/listbyreceiver/${memberId}`);
             new FetchSuccess(res, 'connection', result);
         } catch (err: any) {
@@ -48,7 +48,7 @@ export class MemberConnectionController {
 
     getConnectionsByMemberId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/connection/list/${memberId}`);
             new FetchSuccess(res, 'connection', result);
         } catch (err: any) {
@@ -58,7 +58,7 @@ export class MemberConnectionController {
 
     getAllConnectionsByMemberId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/connection/listall/${memberId}`);
             new FetchSuccess(res, 'connection', result);
         } catch (err: any) {
@@ -80,8 +80,8 @@ export class MemberConnectionController {
 
     deleteConnection = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const senderId = req.params.senderId;
-            const receiverId = req.params.receiverId;
+            const senderId = (req.params.senderId as string);
+            const receiverId = (req.params.receiverId as string);
             const result = await axios.delete(
                 `${process.env.SERVICE_MEMBER}/connection/delete/${senderId}/${receiverId}`
             );
@@ -93,8 +93,8 @@ export class MemberConnectionController {
 
     getConnectionStatus = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const viewerId = req.params.viewerId;
-            const memberId = req.params.memberId;
+            const viewerId = (req.params.viewerId as string);
+            const memberId = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/connection/status/${viewerId}/${memberId}`);
             new FetchSuccess(res, 'CONNECTION STATUS', result);

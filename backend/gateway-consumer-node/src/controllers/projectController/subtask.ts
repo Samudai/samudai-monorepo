@@ -68,7 +68,7 @@ export class SubTaskController {
 
     getAllSubtasks = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/allsubtask/${req.params.projectId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/allsubtask/${(req.params.projectId as string)}`);
 
             if (result.data?.subtasks?.length > 0) {
                 result.data.subtasks = await Promise.all(
@@ -126,7 +126,7 @@ export class SubTaskController {
 
     getSubtask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/${req.params.subtaskId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/${(req.params.subtaskId as string)}`);
 
             let subtask: SubTask = result.data;
 
@@ -172,7 +172,7 @@ export class SubTaskController {
 
     deleteSubtask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_PROJECT}/subtask/${req.params.subtaskId}`);
+            const result = await axios.delete(`${process.env.SERVICE_PROJECT}/subtask/${(req.params.subtaskId as string)}`);
 
             res.status(201).send({ message: 'Subtask deleted successfully', data: result.data });
         } catch (err: any) {
@@ -315,7 +315,7 @@ export class SubTaskController {
     getAllArchivedSubtask = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.get(
-                `${process.env.SERVICE_PROJECT}/subtask/getall/archived/${req.params.projectId}`
+                `${process.env.SERVICE_PROJECT}/subtask/getall/archived/${(req.params.projectId as string)}`
             );
 
             if (result.data?.subtasks?.length > 0) {

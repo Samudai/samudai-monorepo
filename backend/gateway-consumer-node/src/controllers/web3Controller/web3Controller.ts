@@ -6,7 +6,7 @@ import { FetchSuccess } from '../../lib/helper/Responsehandler';
 export class Web3Controller {
     getTokenFromContract = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const contractAddress = req.params.address;
+            const contractAddress = (req.params.address as string);
 
             const data = JSON.stringify({
                 query: `{

@@ -32,7 +32,7 @@ export class ProgressBarController {
 
     getProgressForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId: string = req.params.daoId;
+            const daoId: string = (req.params.daoId as string);
 
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/progressbar/dao/${daoId}`);
 
@@ -59,7 +59,7 @@ export class ProgressBarController {
 
     getProgressForContributor = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = req.params.memberId;
+            const member_id: string = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/progressbar/contributor/${member_id}`);
 

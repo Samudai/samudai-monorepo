@@ -59,7 +59,7 @@ export class TwitterController {
 
     getFeaturedTweet = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_TWITTER}/twitter/get/featured/${req.params.linkId}`);
+            const result = await axios.get(`${process.env.SERVICE_TWITTER}/twitter/get/featured/${(req.params.linkId as string)}`);
 
             const tweetsData = result.data;
 
@@ -135,7 +135,7 @@ export class TwitterController {
 
     deleteTweet = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const linkId = req.params.linkId;
+            const linkId = (req.params.linkId as string);
             const result = await axios.delete(`${process.env.SERVICE_TWITTER}/twitter/delete/${linkId}`);
             new DeleteSuccess(res, 'TWEET', result);
         } catch (err: any) {

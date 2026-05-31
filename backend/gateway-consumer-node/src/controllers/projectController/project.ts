@@ -150,9 +150,9 @@ export class ProjectController {
 
     getProjectById = async (req: Request, res: Response) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/${req.params.projectId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/${(req.params.projectId as string)}`);
             const projectAccess = await axios.get(
-                `${process.env.SERVICE_PROJECT}/access/listbyprojectid/${req.params.projectId}`
+                `${process.env.SERVICE_PROJECT}/access/listbyprojectid/${(req.params.projectId as string)}`
             );
             const memberAccess = res.locals.projectAccess;
             let projectResponse: ProjectResponse = { ...result.data };
@@ -354,7 +354,7 @@ export class ProjectController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_PROJECT}/project/bylinkid/${req.params.linkId}`, {
+            const result = await axios.post(`${process.env.SERVICE_PROJECT}/project/bylinkid/${(req.params.linkId as string)}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -385,7 +385,7 @@ export class ProjectController {
 
     deleteProject = async (req: Request, res: Response) => {
         try {
-            const projectId: string = req.params.projectId;
+            const projectId: string = (req.params.projectId as string);
             const daoId: string = req.headers.daoid as string;
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/project/${projectId}`);
 
@@ -451,7 +451,7 @@ export class ProjectController {
                 [key: string]: number;
             }
             const result = await axios.get(
-                `${process.env.SERVICE_PROJECT}/project/contributor/${req.params.projectId}`
+                `${process.env.SERVICE_PROJECT}/project/contributor/${(req.params.projectId as string)}`
             );
 
             const taskCount: IContributor = result.data;
@@ -564,7 +564,7 @@ export class ProjectController {
 
     getWorkprogressForDAO = async (req: Request, res: Response) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/workprogress/${req.params.daoId}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/workprogress/${(req.params.daoId as string)}`);
             res.status(200).send({ message: 'Work progress fetched successfully', data: result.data });
         } catch (err: any) {
             if (err.response) {
@@ -580,8 +580,8 @@ export class ProjectController {
 
     addInviteForProject = async (req: Request, res: Response) => {
         try {
-            const invite_code = req.params.inviteCode;
-            const member_id = req.params.memberId;
+            const invite_code = (req.params.inviteCode as string);
+            const member_id = (req.params.memberId as string);
 
             const result = await axios.post(`${process.env.SERVICE_PROJECT}/access/byinvite`, {
                 invite_code: invite_code,
@@ -603,7 +603,7 @@ export class ProjectController {
 
     getInvestmentProjectForDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/investment/${daoId}`);
             res.status(200).send({ message: 'Investment project fetched successfully', data: result.data });
         } catch (err: any) {

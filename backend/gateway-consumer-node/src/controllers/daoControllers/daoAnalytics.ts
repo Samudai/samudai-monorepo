@@ -25,7 +25,7 @@ export class DAOAnalyticsController {
 
     getAnalyticsForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/analytics/${daoId}`);
             new FetchSuccess(res, 'DAO Analytics', result);
         } catch (err: any) {
@@ -35,7 +35,7 @@ export class DAOAnalyticsController {
 
     getApplicantCountforday = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_JOB}/applicant/get/applicantcount/${daoId}`);
             new FetchSuccess(res, 'Applicant Count Analytics', result);
         } catch (err: any) {
@@ -45,7 +45,7 @@ export class DAOAnalyticsController {
 
     getActiveTaskCountforday = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/getopentasks/${daoId}`);
             new FetchSuccess(res, 'Task Count Analytics', result);
         } catch (err: any) {
@@ -55,7 +55,7 @@ export class DAOAnalyticsController {
 
     getActiveForumCountforday = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DISCUSSION}/discussion/getactiveforum/${daoId}`);
             new FetchSuccess(res, 'Forum Count Analytics', result);
         } catch (err: any) {
@@ -65,7 +65,7 @@ export class DAOAnalyticsController {
 
     getActiveProposalCountforday = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/proposal/get/activeproposal/${daoId}`);
             new FetchSuccess(res, 'Pending Proposal Count Analytics', result);
         } catch (err: any) {

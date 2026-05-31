@@ -38,7 +38,7 @@ export class DAOProfileController {
 
     getDAOProfile = async (req: Request, res: Response) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/${daoId}`);
             return res.status(200).send({
                 message: 'DAO fetched successfully',
@@ -57,7 +57,7 @@ export class DAOProfileController {
 
     getDAObyGuildId = async (req: Request, res: Response) => {
         try {
-            const guildId = req.params.guildId;
+            const guildId = (req.params.guildId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/byguildid/${guildId}`);
             if (result.data.dao) {
                 return res.status(200).send({
@@ -83,7 +83,7 @@ export class DAOProfileController {
 
     getDAOForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await getDAOForMember(memberId);
             return res.status(200).send({
                 message: 'DAO fetched successfully',
@@ -142,7 +142,7 @@ export class DAOProfileController {
 
     deleteDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.delete(`${process.env.SERVICE_DAO}/dao/delete/${daoId}`);
             return res.status(200).send({
                 message: 'DAO deleted successfully',
@@ -161,8 +161,8 @@ export class DAOProfileController {
 
     getMembersByAccess = async (req: Request, res: Response) => {
         try {
-            const daoId = req.params.daoId;
-            const access = req.params.access;
+            const daoId = (req.params.daoId as string);
+            const access = (req.params.access as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/members/${daoId}/${access}`);
             return res.status(200).send({
                 message: 'DAO admins fetched successfully',
@@ -204,7 +204,7 @@ export class DAOProfileController {
 
     getLatestDAOForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/bymemberid/${memberId}`);
             const daos: MemberDAOView[] = result.data.dao;
 
@@ -477,7 +477,7 @@ export class DAOProfileController {
 
     checkSubdomainForDAO = async (req: Request, res: Response) => {
         try {
-            const subdomain = req.params.subdomain;
+            const subdomain = (req.params.subdomain as string);
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/checksubdomain/${subdomain}`);
 
@@ -521,8 +521,8 @@ export class DAOProfileController {
 
     linkdiscordbotForDAO = async (req: Request, res: Response) => {
         try {
-            const dao_id: string = req.params.dao_id;
-            const guild_id: string = req.params.guild_id;
+            const dao_id: string = (req.params.dao_id as string);
+            const guild_id: string = (req.params.guild_id as string);
             const result = await axios.post(`${process.env.SAMUDAI_BOT}/linkdiscord/dao/${dao_id}/${guild_id}`);
             return res.status(201).send({
                 message: 'Dao Info successfully fetched',
@@ -541,7 +541,7 @@ export class DAOProfileController {
 
     fetchSubdomainByDAOId = async (req: Request, res: Response) => {
         try {
-            const dao_id = req.params.daoId;
+            const dao_id = (req.params.daoId as string);
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/fetchsubdomainfordao/${dao_id}`);
 
@@ -562,7 +562,7 @@ export class DAOProfileController {
 
     getSubscriptionForDAO = async (req: Request, res: Response) => {
         try {
-            const dao_id = req.params.daoId;
+            const dao_id = (req.params.daoId as string);
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/getsubscription/fordao/${dao_id}`);
 

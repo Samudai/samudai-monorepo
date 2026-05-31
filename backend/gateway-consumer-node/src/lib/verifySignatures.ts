@@ -11,8 +11,11 @@ export const verifySignature = async (
 ): Promise<string | null> => {
     if (walletType === PaymentEnums.WalletType.ETH) {
         let siweMessage = new SiweMessage(message);
-        const fields = await siweMessage.validate(signature as string);
-        return fields.nonce;
+        const { success, data, error } = await siweMessage.verify({ signature });
+        if (!success || !data) {
+            throw error ?? new Error('SIWE signature verification failed');
+        }
+        return data.nonce;
     } else {
         let nonce;
         let encodedMessage = new TextEncoder().encode(message);

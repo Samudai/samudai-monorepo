@@ -30,7 +30,7 @@ export class PointCustomEventsController {
     deleteProductEvents = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_POINT}/productevent/delete/${req.params.pointId}/${req.params.productId}/${req.params.eventName}`
+                `${process.env.SERVICE_POINT}/productevent/delete/${(req.params.pointId as string)}/${(req.params.productId as string)}/${(req.params.eventName as string)}`
             );
             new DeleteSuccess(res, 'product event', result);
         } catch (err: any) {

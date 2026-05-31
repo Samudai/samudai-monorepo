@@ -36,7 +36,7 @@ export const uploadFileToSpaces = async (file: any) => {
         Bucket: process.env.SPACES_BUCKET,
         Key: fileId + '.' + file.name.split('.')[1],
         Body: file.data,
-        ACL: 'public-read',
+        ACL: 'public-read' as const,
         ContentType: file.mimetype,
     };
 

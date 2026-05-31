@@ -28,7 +28,7 @@ export class SearchController {
 
     daoSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            let query = decodeURIComponent(req.params.query);
+            let query = decodeURIComponent((req.params.query as string));
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
@@ -74,7 +74,7 @@ export class SearchController {
 
     projectSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const query = decodeURIComponent(req.params.query);
+            const query = decodeURIComponent((req.params.query as string));
             //console.log(query);
             const dao_id = (req.query.daoId as string) ? (req.query.daoId as string) : null;
 
@@ -97,7 +97,7 @@ export class SearchController {
 
     universalSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const query = decodeURIComponent(req.params.query);
+            const query = decodeURIComponent((req.params.query as string));
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 5;
             const offset = (parseInt(page) - 1) * limit;

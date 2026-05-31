@@ -77,7 +77,7 @@ export class BountyController {
 
     getBountyById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/bounty/${req.params.bountyId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/bounty/${(req.params.bountyId as string)}`);
 
             // if (result.data.bounty) {
             //     result.data.bounty = await getAttachmentBounty(result.data.bounty);
@@ -94,7 +94,7 @@ export class BountyController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/list/${req.params.daoId}`, {
+            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/list/${(req.params.daoId as string)}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -162,7 +162,7 @@ export class BountyController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/createdby/${req.params.memberId}`, {
+            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/createdby/${(req.params.memberId as string)}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -226,7 +226,7 @@ export class BountyController {
 
     deleteBounty = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/bounty/delete/${req.params.bountyId}`);
+            const result = await axios.delete(`${process.env.SERVICE_JOB}/bounty/delete/${(req.params.bountyId as string)}`);
             new DeleteSuccess(res, 'BOUNTY', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting a bounty'));
@@ -248,7 +248,7 @@ export class BountyController {
 
     getBountyFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/bountyfile/list/${req.params.bountyId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/bountyfile/list/${(req.params.bountyId as string)}`);
             new FetchSuccess(res, 'BOUNTY FILE', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while fetching a bounty file'));
@@ -257,7 +257,7 @@ export class BountyController {
 
     deleteBountyFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/bountyfile/${req.params.bountyFileId}`);
+            const result = await axios.delete(`${process.env.SERVICE_JOB}/bountyfile/${(req.params.bountyFileId as string)}`);
             new DeleteSuccess(res, 'BOUNTY FILE', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting a bountyfile'));

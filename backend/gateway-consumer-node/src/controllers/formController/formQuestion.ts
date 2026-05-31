@@ -31,7 +31,7 @@ export class FormController {
 
     getForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id = req.params.daoId;
+            const dao_id = (req.params.daoId as string);
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/${dao_id}`);
             new FetchSuccess(res, 'Form', response);
         } catch (err: any) {
@@ -41,7 +41,7 @@ export class FormController {
 
     deleteForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_id = req.params.formId;
+            const form_id = (req.params.formId as string);
             const response = await axios.delete(`${process.env.SERVICE_FORMS}/deal/questions/${form_id}`);
             new DeleteSuccess(res, 'Form', response);
         } catch (err: any) {

@@ -107,7 +107,7 @@ export class DiscussionController {
 
     updateView = async (req: Request, res: Response) => {
         try {
-            const discussion_id: string = req.params.discussionId;
+            const discussion_id: string = (req.params.discussionId as string);
             const response = await axios.get(
                 `${process.env.SERVICE_DISCUSSION}/discussion/updateview/${discussion_id}`
             );
@@ -161,7 +161,7 @@ export class DiscussionController {
 
     getDiscussionById = async (req: Request, res: Response) => {
         try {
-            const discussion_id: string = req.params.discussionId;
+            const discussion_id: string = (req.params.discussionId as string);
             const response = await axios.get(`${process.env.SERVICE_DISCUSSION}/discussion/${discussion_id}`);
 
             return res.status(200).send({
@@ -185,7 +185,7 @@ export class DiscussionController {
 
     getTagsForDAO = async (req: Request, res: Response) => {
         try {
-            const dao_id: string = req.params.daoId;
+            const dao_id: string = (req.params.daoId as string);
             const response = await axios.get(`${process.env.SERVICE_DISCUSSION}/discussion/gettags/${dao_id}`);
 
             return res.status(200).send({
@@ -209,7 +209,7 @@ export class DiscussionController {
 
     getDiscussionByDAO = async (req: Request, res: Response) => {
         try {
-            const daoId: string = req.params.daoId;
+            const daoId: string = (req.params.daoId as string);
             const empty: boolean = req.query.empty?.toString() === 'true';
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
@@ -241,7 +241,7 @@ export class DiscussionController {
 
     getDiscussionByProposal = async (req: Request, res: Response) => {
         try {
-            const proposalId: string = req.params.proposalId;
+            const proposalId: string = (req.params.proposalId as string);
             const discussionResult = await axios.get(
                 `${process.env.SERVICE_DISCUSSION}/discussion/byproposal/${proposalId}`
             );
@@ -267,8 +267,8 @@ export class DiscussionController {
 
     getDiscussionForMember = async (req: Request, res: Response) => {
         try {
-            const memberId: string = req.params.memberId;
-            const daoId: string = req.params.daoId ? req.params.daoId : '';
+            const memberId: string = (req.params.memberId as string);
+            const daoId: string = (req.params.daoId as string) ? (req.params.daoId as string) : '';
             // const page: string = req.query.page ? (req.query.page as string) : '1';
             // const limit = 10;
             // const offset = (parseInt(page) - 1) * limit;
@@ -351,7 +351,7 @@ export class DiscussionController {
 
     deleteMessageContent = async (req: Request, res: Response) => {
         try {
-            const message_id: string = req.params.messageId;
+            const message_id: string = (req.params.messageId as string);
             const result = await axios.delete(`${process.env.SERVICE_DISCUSSION}/message/delete/${message_id}`);
 
             return res.status(200).send({
@@ -457,8 +457,8 @@ export class DiscussionController {
 
     isParticipant = async (req: Request, res: Response) => {
         try {
-            const discussionId: string = req.params.discussionId;
-            const memberId: string = req.params.memberId;
+            const discussionId: string = (req.params.discussionId as string);
+            const memberId: string = (req.params.memberId as string);
             const response = await axios.get(
                 `${process.env.SERVICE_DISCUSSION}/participant/isparticipant/${discussionId}/${memberId}`
             );
@@ -489,7 +489,7 @@ export class DiscussionController {
 
             let messageResponse: MessageResponse[] = [];
 
-            const response = await axios.post(`${process.env.SERVICE_DISCUSSION}/message/${req.params.discussionId}`, {
+            const response = await axios.post(`${process.env.SERVICE_DISCUSSION}/message/${(req.params.discussionId as string)}`, {
                 offset,
                 limit,
             });
@@ -516,7 +516,7 @@ export class DiscussionController {
     getParticipants = async (req: Request, res: Response) => {
         try {
             const response = await axios.get(
-                `${process.env.SERVICE_DISCUSSION}/participant/${req.params.discussionId}`
+                `${process.env.SERVICE_DISCUSSION}/participant/${(req.params.discussionId as string)}`
             );
             return res.status(200).send({
                 message: 'Participants fetched successfully',

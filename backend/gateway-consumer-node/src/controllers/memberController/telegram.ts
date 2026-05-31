@@ -47,7 +47,7 @@ export class TelegramController {
 
     CheckIfTelegramExists = async (req: Request, res: Response, next: NextFunction) => {
         try { 
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/telegram/exist/${member_id}`);
             
@@ -59,7 +59,7 @@ export class TelegramController {
 
     GetTelegramForMember = async (req: Request, res: Response, next: NextFunction) => {
         try { 
-            const member_id = req.params.memberId;
+            const member_id = (req.params.memberId as string);
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/telegram/get/${member_id}`);
             
@@ -71,7 +71,7 @@ export class TelegramController {
 
     DeleteTelegramForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = req.params.memberId;
+            const memberId = (req.params.memberId as string);
 
             const telegram_info = await axios.get(`${process.env.SERVICE_MEMBER}/telegram/get/${memberId}`);
 

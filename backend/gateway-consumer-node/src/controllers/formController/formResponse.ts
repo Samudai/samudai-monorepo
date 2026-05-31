@@ -71,7 +71,7 @@ export class FormResponseController {
 
     getFormResponse = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/response/${req.params.responseId}`);
+            const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/response/${(req.params.responseId as string)}`);
             new FetchSuccess(res, 'RESPONSE', response);
         } catch (err: any) {
             next(new ErrorException(err, 'Response fetch failed'));
@@ -80,7 +80,7 @@ export class FormResponseController {
 
     getFormResponseForForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_id = req.params.formId;
+            const form_id = (req.params.formId as string);
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/response/byform/${form_id}`);
 
             new FetchSuccess(res, 'RESPONSE', response);
@@ -91,7 +91,7 @@ export class FormResponseController {
 
     getResponseByDAOId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
 
             const formResult = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/bydao/${daoId}`);
             const form_id = formResult.data.form.form_id;
@@ -106,7 +106,7 @@ export class FormResponseController {
 
     deleteResponse = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const response_id = req.params.responseId;
+            const response_id = (req.params.responseId as string);
             const response = await axios.delete(`${process.env.SERVICE_FORMS}/deal/response/${response_id}`);
             new DeleteSuccess(res, 'RESPONSE', response);
         } catch (err: any) {

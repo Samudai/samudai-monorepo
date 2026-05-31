@@ -20,7 +20,7 @@ export class AccessController {
 
     getAccessForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = req.params.daoId;
+            const daoId = (req.params.daoId as string);
             const result = await axios.get(`${process.env.SERVICE_DAO}/access/listbydaoid/${daoId}`);
             let daoAccessResponse: DAOAccessResponse[] = [];
             const daoAccess = result.data;
@@ -47,7 +47,7 @@ export class AccessController {
 
     // getAccessForMember = async (req: Request, res: Response, next:NextFunction) => {
     //   try {
-    //     const accessRoleId = req.params.roleId;
+    //     const accessRoleId = (req.params.roleId as string);
     //     const result = await axios.get(`${process.env.SERVICE_ACCESS}/access/${accessRoleId}`);
     //     return res.status(200).send({
     //       message: 'Access role fetched successfully',
@@ -90,7 +90,7 @@ export class AccessController {
 
     deleteAccess = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_DAO}/access/delete/${req.params.daoId}`);
+            const result = await axios.delete(`${process.env.SERVICE_DAO}/access/delete/${(req.params.daoId as string)}`);
             new DeleteSuccess(res, 'Access Role', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting an Access Role'));
@@ -99,8 +99,8 @@ export class AccessController {
 
     getAccessForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id = req.params.daoId;
-            const member_id = req.params.memberId;
+            const dao_id = (req.params.daoId as string);
+            const member_id = (req.params.memberId as string);
             const result = await axios.post(`${process.env.SERVICE_DAO}/access/formember`, {
                 dao_id,
                 member_id,

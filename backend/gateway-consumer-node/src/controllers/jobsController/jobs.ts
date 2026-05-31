@@ -106,7 +106,7 @@ export class JobsController {
 
     getJob = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/job/${req.params.jobId}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/job/${(req.params.jobId as string)}`);
             // if(result.data.opportunity){
             //     result.data.opportunity = await getAttachmentJob(result.data.opportunity);
             // }
@@ -122,7 +122,7 @@ export class JobsController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/job/createdby/${req.params.memberId}`, {
+            const result = await axios.post(`${process.env.SERVICE_JOB}/job/createdby/${(req.params.memberId as string)}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -142,7 +142,7 @@ export class JobsController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/job/list/${req.params.daoId}`, {
+            const result = await axios.post(`${process.env.SERVICE_JOB}/job/list/${(req.params.daoId as string)}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -212,7 +212,7 @@ export class JobsController {
 
     deleteJob = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/job/delete/${req.params.jobId}`);
+            const result = await axios.delete(`${process.env.SERVICE_JOB}/job/delete/${(req.params.jobId as string)}`);
             new DeleteSuccess(res, 'OPPORTUNITY', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting an opportunity'));

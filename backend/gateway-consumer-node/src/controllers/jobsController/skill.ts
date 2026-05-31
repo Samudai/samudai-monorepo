@@ -42,7 +42,7 @@ export class SkillConroller {
 
     // deleteSkill = async (req: Request, res: Response, next: NextFunction) => {
     //   try {
-    //     const result = await axios.delete(`${process.env.SERVICE_JOB}/skill/delete/${req.params.skillId}`);
+    //     const result = await axios.delete(`${process.env.SERVICE_JOB}/skill/delete/${(req.params.skillId as string)}`);
     //     res.status(200).send({ message: 'Skill Deleted Successfully', data: result.data });
     //   } catch (err: any) {
     //     if (err.response) {
