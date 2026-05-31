@@ -4,14 +4,14 @@ import EyeIcon from 'ui/SVG/EyeIcon';
 import { IconsList } from 'components/@pages/new-discovery';
 
 const profiles = [
-    'img/profiles/pp1.jpeg',
-    'img/profiles/pp2.jpeg',
-    'https://cdn.samudai.xyz/images/Frame%201321315308.png',
-    'https://cdn.samudai.xyz/images/Frame%201321315309.png',
-    'img/profiles/pp3.png',
-    'img/profiles/pp4.jpeg',
-    'https://cdn.samudai.xyz/images/Frame%201321315311.png',
-    'img/profiles/pp5.jpeg',
+    '/img/profiles/pp1.jpeg',
+    '/img/profiles/pp2.jpeg',
+    '/img/icons/user-1.png',
+    '/img/icons/user-2.png',
+    '/img/profiles/pp3.png',
+    '/img/profiles/pp4.jpeg',
+    '/img/icons/user-3.png',
+    '/img/profiles/pp5.jpeg',
 ];
 
 const ConnectWalletComp: React.FC = () => {

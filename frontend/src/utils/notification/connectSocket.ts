@@ -5,11 +5,10 @@ import { createSocketConnection } from '@pushprotocol/socket';
 import { ENV } from '@pushprotocol/socket/src/lib/constants';
 
 const connectSocket = async (memberId: string) => {
+    if (!socket) return false;
     socket.auth = { memberId };
     socket.connect();
     store.dispatch(setNotificationSocket({ socket }));
-    // store.dispatch({ type: 'socket/connect' });
-    // const res = await axios.post('http://localhost:3001/login', { userId });
     return true;
 };
 

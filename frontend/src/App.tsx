@@ -42,7 +42,7 @@ const wagmiConfig = getDefaultConfig({
     chains: [mainnet],
     transports: {
         [mainnet.id]: http(
-            `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_ETHEREUM!}`
+            `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_API_KEY!}`
         ),
     },
     ssr: false,

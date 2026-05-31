@@ -1,27 +1,30 @@
 import { Alchemy, Network } from 'alchemy-sdk';
 
+// Alchemy apps are multichain by default: one API key serves every network.
+const apiKey = process.env.REACT_APP_ALCHEMY_API_KEY;
+
 const configEth = {
-    apiKey: `${process.env.REACT_APP_ALCHEMY_ETHEREUM}`,
+    apiKey,
     network: Network.ETH_MAINNET,
 };
 
 const configPolygon = {
-    apiKey: `${process.env.REACT_APP_ALCHEMY_POLYGON}`,
-    network: Network.ETH_MAINNET,
+    apiKey,
+    network: Network.MATIC_MAINNET,
 };
 
 const configOptimism = {
-    apiKey: `${process.env.REACT_APP_ALCHEMY_OPTIMISM}`,
-    network: Network.ETH_MAINNET,
+    apiKey,
+    network: Network.OPT_MAINNET,
 };
 
 const configArbitrum = {
-    apiKey: `${process.env.REACT_APP_ALCHEMY_ARBITRUM}`,
-    network: Network.ETH_MAINNET,
+    apiKey,
+    network: Network.ARB_MAINNET,
 };
 
 export const alchemy = (chain_id: number) => {
-    const chainId = chain_id || '1';
+    const chainId = chain_id || 1;
     const config = () => {
         switch (chainId) {
             case 1:

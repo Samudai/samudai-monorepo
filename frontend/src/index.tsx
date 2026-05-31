@@ -32,7 +32,7 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
     <PrivyProvider
-        appId={'clo49k9hm01vlmb0fdq21b1k6'}
+        appId={process.env.REACT_APP_PRIVY_APP_ID!}
         config={{
             loginMethods: ['email', 'github', 'google', 'wallet'],
             appearance: {

@@ -48,11 +48,11 @@ const chains: IChainList[] = [
     {
         id: 17,
         network: 'EVM',
-        name: 'Goerli',
-        chain_id: 5,
+        name: 'Sepolia',
+        chain_id: 11155111,
         type: 'testnet',
-        currency: 'GOR',
-        value: 'goerli',
+        currency: 'SEP',
+        value: 'sepolia',
     },
 ];
 

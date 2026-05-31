@@ -1,15 +1,15 @@
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
-// const socket = io('https://service-notification-ncw6y.ondigitalocean.app', {
-//   autoConnect: false,
-// });
+const notificationsUrl = process.env.REACT_APP_NOTIFICATIONS_URL;
 
-const socket = io(`${process.env.REACT_APP_NOTIFICATIONS_URL}`, {
-    autoConnect: false,
-});
+const socket: Socket | null = notificationsUrl
+    ? io(notificationsUrl, { autoConnect: false })
+    : null;
 
-socket.onAny((event, ...args) => {
-    console.log(event, args);
-});
+if (socket) {
+    socket.onAny((event, ...args) => {
+        console.log(event, args);
+    });
+}
 
 export default socket;

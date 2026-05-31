@@ -1,25 +1,28 @@
 import { Alchemy, Network, TokenMetadataResponse } from 'alchemy-sdk';
 
+// Alchemy apps are multichain by default: one API key serves every network.
+const apiKey = process.env.REACT_APP_ALCHEMY_API_KEY;
+
 const settingsConfig = [
     {
         name: 'ethereum',
         settings: {
-            apiKey: '93abA8Tod5wqSRnXxJvYnD3_gAyMSBX3',
+            apiKey,
             network: Network.ETH_MAINNET,
         },
     },
     {
         name: 'polygon',
         settings: {
-            apiKey: '93abA8Tod5wqSRnXxJvYnD3_gAyMSBX3',
+            apiKey,
             network: Network.MATIC_MAINNET,
         },
     },
     {
-        name: 'goerli',
+        name: 'sepolia',
         settings: {
-            apiKey: '93abA8Tod5wqSRnXxJvYnD3_gAyMSBX3',
-            network: Network.ETH_GOERLI,
+            apiKey,
+            network: Network.ETH_SEPOLIA,
         },
     },
 ];
@@ -29,7 +32,10 @@ export const getTokenDetails = async (
     network: string
 ): Promise<TokenMetadataResponse> => {
     const networkSetting = settingsConfig.find((setting) => setting.name === network);
-    const alchemy = new Alchemy(networkSetting?.settings);
+    if (!networkSetting) {
+        throw new Error(`Unsupported network: ${network}`);
+    }
+    const alchemy = new Alchemy(networkSetting.settings);
     const token = await alchemy.core.getTokenMetadata(tokenAddress);
     return token;
 };
