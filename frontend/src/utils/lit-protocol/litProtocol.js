@@ -53,7 +53,7 @@ export const initLit = async (
 
         if (jwt) {
             const result = await axios.post(
-                `${process.env.REACT_APP_GATEWAY}api/web3/tokengating/add`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/web3/tokengating/add`,
                 {
                     daoId: daoId,
                     resourceId: resourceId,
@@ -80,7 +80,7 @@ export const verifyLitAccess = async (daoId) => {
         await litNodeClient.connect();
 
         const result = await axios.get(
-            `${process.env.REACT_APP_GATEWAY}api/web3/tokengating/get/${daoId}`,
+            `${import.meta.env.REACT_APP_GATEWAY}api/web3/tokengating/get/${daoId}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`,

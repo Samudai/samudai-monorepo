@@ -83,7 +83,7 @@ const Personal: React.FC = (props) => {
     const [fetchMember] = useGetMemberByIdMutation();
     const { daoid } = useParams();
 
-    // const chatEnv = process.env.REACT_APP_ENV !== 'production' ? ENV.STAGING : ENV.PROD;
+    // const chatEnv = import.meta.env.REACT_APP_ENV !== 'production' ? ENV.STAGING : ENV.PROD;
     const chatEnv = ENV?.PROD;
 
     const messageCreate = usePopup();

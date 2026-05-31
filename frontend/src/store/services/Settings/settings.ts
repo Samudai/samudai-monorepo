@@ -19,7 +19,7 @@ import { discordRequest } from '../Login/model';
 export const settingsApi = createApi({
     reducerPath: 'settingsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_GATEWAY,
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
         prepareHeaders: (headers, { getState }) => {
             headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
             headers.set('daoid', store.getState().commonReducer.activeDao);

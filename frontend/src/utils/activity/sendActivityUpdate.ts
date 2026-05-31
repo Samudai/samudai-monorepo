@@ -11,7 +11,7 @@ export enum RequestType {
 }
 
 export const sendActivityUpdate = async (activityData: Activity) => {
-    const url = `${process.env.REACT_APP_GATEWAY}api/activity/add`;
+    const url = `${import.meta.env.REACT_APP_GATEWAY}api/activity/add`;
 
     const res = await axios.post(
         url,

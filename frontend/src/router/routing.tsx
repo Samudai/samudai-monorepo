@@ -91,7 +91,6 @@ const Routing = () => {
         };
 
         const query = searchParams.get('query');
-        console.log(query);
         if (path[1].includes('login') && query === 'samudaiXCaster') {
             localStorage.setItem('samudaiXCaster', 'true');
         }

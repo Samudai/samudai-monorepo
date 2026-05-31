@@ -1,6 +1,6 @@
 import { CeramicClient } from '@ceramicnetwork/http-client';
 import { DID } from 'dids';
-import { JsonRpcSigner, Wallet, keccak256 } from 'ethers';
+import { JsonRpcSigner, Wallet, getBytes, keccak256 } from 'ethers';
 import { Ed25519Provider } from 'key-did-provider-ed25519';
 import { getResolver } from 'key-did-resolver';
 
@@ -30,12 +30,7 @@ const generateSignature = async (
             signedText = await signer.signMessage(message);
         }
         const hash: any = keccak256(signedText);
-        const seed: any = hash
-            // @ts-ignore
-            .replace('0x', '')
-            // @ts-ignore
-            .match(/.{2}/g)
-            .map((hexNoPrefix: any) => Number('0x' + hexNoPrefix));
+        const seed = getBytes(hash);
         return seed;
     } catch (err) {
         console.error(err);

@@ -51,7 +51,7 @@ export const PrivyLogin = () => {
 
     const { login } = useLogin({
         onComplete: async () => {
-            console.log('User logged in successfullyyyy!');
+            // console.log('User logged in successfullyyyy!');
             setPrivyModal(true);
         },
         onError: (error) => {

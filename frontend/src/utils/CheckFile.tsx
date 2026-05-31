@@ -69,7 +69,7 @@ const ConnectWalletComp: React.FC = () => {
         //   //http://localhost:3000/invite/project/b066a76ee
 
         //   const { data } = await axios.get(
-        //     `${process.env.REACT_APP_API_URL}/app/project/invite/${
+        //     `${import.meta.env.REACT_APP_API_URL}/app/project/invite/${
         //       path[path.length - 1] || path[path.length - 2]
         //     }/${getMemberId()}`,
         //     {
@@ -99,7 +99,7 @@ const ConnectWalletComp: React.FC = () => {
             const activeDAO = store.getState().commonReducer.activeDao;
             window.location.pathname !== '/gcaluser' &&
                 axios
-                    .post(`${process.env.REACT_APP_GATEWAY}api/member/login`, {
+                    .post(`${import.meta.env.REACT_APP_GATEWAY}api/member/login`, {
                         walletAddress: account,
                         chainId: 10,
                         member: {

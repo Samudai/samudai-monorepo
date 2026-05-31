@@ -45,7 +45,7 @@ import { useCreateDiscussionMutation } from 'store/services/Discussion/discussio
 import { useDiscussionCreate } from 'components/@pages/forum';
 import { serialize } from 'components/editor';
 import { updateActivity } from 'utils/activity/updateActivity';
-import mixpanel from 'mixpanel-browser';
+import mixpanel from 'utils/mixpanel/mixpanelInit';
 import store from 'store/store';
 import { ethers } from 'ethers';
 import { QueuedTxnObject } from 'components/@pages/payments/PaymentsHistory';

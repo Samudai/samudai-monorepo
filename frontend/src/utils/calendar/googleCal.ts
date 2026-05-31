@@ -17,7 +17,7 @@ const headers = {
 //     gapi.load('client:auth2', () => {
 //       gapi.client
 //         .init({
-//           clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+//           clientId: import.meta.env.REACT_APP_GOOGLE_CLIENT_ID,
 //           scope: SCOPES,
 //         })
 //         .then(() => {
@@ -26,13 +26,13 @@ const headers = {
 
 //       gapi.auth
 //         .authorize({
-//           client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+//           client_id: import.meta.env.REACT_APP_GOOGLE_CLIENT_ID,
 //           scope: SCOPES,
 //         })
 //         .then((res: any) => {
 //           console.log('Auth success');
 //           localStorage.setItem('googleToken', res.access_token);
-//           axios.post(`${process.env.REACT_APP_GATEWAY}api/plugin/gcal/auth`, {
+//           axios.post(`${import.meta.env.REACT_APP_GATEWAY}api/plugin/gcal/auth`, {
 //             linkId: memberId,
 //             access_token: res.access_token,
 //           });
@@ -51,12 +51,12 @@ const headers = {
 export const gcalGetEvents = async (member_id: string, start_date?: string, end_date?: string) => {
     try {
         const result = await axios.get(
-            `${process.env.REACT_APP_GATEWAY}api/plugin/gcal/get/access/${member_id}`
+            `${import.meta.env.REACT_APP_GATEWAY}api/plugin/gcal/get/access/${member_id}`
         );
         if (result.data.data.access_token.refresh_token) {
             const request = await axios.post(`https://www.googleapis.com/oauth2/v4/token`, {
-                client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-                client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
+                client_id: import.meta.env.REACT_APP_GOOGLE_CLIENT_ID,
+                client_secret: import.meta.env.REACT_APP_GOOGLE_CLIENT_SECRET,
                 refresh_token: result.data.data.access_token.refresh_token,
                 grant_type: 'refresh_token',
             });
@@ -64,7 +64,7 @@ export const gcalGetEvents = async (member_id: string, start_date?: string, end_
             const events = await cachedAxios.get(
                 `https://www.googleapis.com/calendar/v3/calendars/${
                     result.data.data.email
-                }/events?key=${process.env
+                }/events?key=${import.meta.env
                     .REACT_APP_GOOGLE_API_KEY!}&timeMin=${start_date}&timeMax=${end_date}&singleEvents=true`,
                 {
                     headers: {
@@ -162,12 +162,12 @@ export const gcalCreateEvent = async (
 ) => {
     try {
         const result = await axios.get(
-            `${process.env.REACT_APP_GATEWAY}api/plugin/gcal/get/access/${member_id}`
+            `${import.meta.env.REACT_APP_GATEWAY}api/plugin/gcal/get/access/${member_id}`
         );
         if (result.data.data.access_token.refresh_token) {
             const request = await axios.post(`https://www.googleapis.com/oauth2/v4/token`, {
-                client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-                client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
+                client_id: import.meta.env.REACT_APP_GOOGLE_CLIENT_ID,
+                client_secret: import.meta.env.REACT_APP_GOOGLE_CLIENT_SECRET,
                 refresh_token: result.data.data.access_token.refresh_token,
                 grant_type: 'refresh_token',
             });
@@ -204,7 +204,7 @@ export const gcalCreateEvent = async (
                 const eventResult = await axios.post(
                     `https://www.googleapis.com/calendar/v3/calendars/${
                         result.data.data.email
-                    }/events?key=${process.env.REACT_APP_GOOGLE_API_KEY!}&conferenceDataVersion=1`,
+                    }/events?key=${import.meta.env.REACT_APP_GOOGLE_API_KEY!}&conferenceDataVersion=1`,
                     event,
                     {
                         headers: {
@@ -234,7 +234,7 @@ export const gcalCreateEvent = async (
                 const eventResult = await axios.post(
                     `https://www.googleapis.com/calendar/v3/calendars/${
                         result.data.data.email
-                    }/events?key=${process.env.REACT_APP_GOOGLE_API_KEY!}`,
+                    }/events?key=${import.meta.env.REACT_APP_GOOGLE_API_KEY!}`,
                     event,
                     {
                         headers: {

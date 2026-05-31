@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -53,12 +54,16 @@ func FetchMember(c *gin.Context) {
 		return
 	}
 
-	member, err := member.FetchMember(params)
+	m, err := member.FetchMember(params)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		if errors.Is(err, member.ErrNotFound) {
+			c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+		} else {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		}
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"member": member})
+	c.JSON(http.StatusOK, gin.H{"member": m})
 }
 
 func FetchIMember(c *gin.Context) {

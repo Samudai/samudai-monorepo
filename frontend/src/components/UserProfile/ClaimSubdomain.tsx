@@ -31,7 +31,7 @@ const ClaimSubdomain: React.FC<IProps> = ({ onClose, setNewDomain, count }) => {
     const handleClaim = async () => {
         try {
             setLoad(true);
-            const sdk = new Subdomain(process.env.REACT_APP_ENV!);
+            const sdk = new Subdomain(import.meta.env.REACT_APP_ENV!);
             const res = await sdk.claimSubdomain(link, provider!);
             if (res === true) {
                 // const update = await updateSubDomain({

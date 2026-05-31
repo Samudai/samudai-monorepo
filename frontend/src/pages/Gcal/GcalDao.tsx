@@ -25,7 +25,7 @@ function GCal() {
         localStorage.setItem('jwt', jwt!);
 
         axios
-            .post(`${process.env.REACT_APP_GATEWAY}api/plugin/gcal/auth`, {
+            .post(`${import.meta.env.REACT_APP_GATEWAY}api/plugin/gcal/auth`, {
                 linkId: localStorage.getItem('daoId')!,
                 code: code,
                 redirectUri: window.location.origin + '/gcaldao',

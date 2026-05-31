@@ -33,7 +33,7 @@ export const claimVC = async (
 
             const streamIdResult: string = result.id.toString();
             const addVC = await axios.post(
-                `${process.env.REACT_APP_GATEWAY}api/web3/verifiablecred/add`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/web3/verifiablecred/add`,
                 {
                     memberId: memberId,
                     did: ceramic.did!.id,
@@ -47,7 +47,7 @@ export const claimVC = async (
                 }
             );
             const addCeramicStream = await axios.post(
-                `${process.env.REACT_APP_GATEWAY}api/member/update/ceramic`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/member/update/ceramic`,
                 {
                     memberId,
                     streamId: streamIdResult,
@@ -61,7 +61,7 @@ export const claimVC = async (
 
             if (addCeramicStream.status === 200) {
                 await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/task/update/vcstatus`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/task/update/vcstatus`,
                     {
                         member_id: memberId,
                         task_id: taskId,
@@ -95,7 +95,7 @@ export const claimVC = async (
             );
 
             const addVC = await axios.post(
-                `${process.env.REACT_APP_GATEWAY}api/web3/verifiablecred/add`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/web3/verifiablecred/add`,
                 {
                     memberId: memberId,
                     did: ceramic.did!.id,
@@ -113,7 +113,7 @@ export const claimVC = async (
             console.log(verifiable.content.verifiableCredentials);
 
             await axios.post(
-                `${process.env.REACT_APP_GATEWAY}api/task/update/vcstatus`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/task/update/vcstatus`,
                 {
                     member_id: memberId,
                     task_id: taskId,
@@ -150,10 +150,10 @@ export const claimVC = async (
 export const getVerifiableCredentials = async (memberId: string) => {
     try {
         const result = await axios.get(
-            `${process.env.REACT_APP_GATEWAY}api/web3/verifiablecred/get/${memberId}`,
+            `${import.meta.env.REACT_APP_GATEWAY}api/web3/verifiablecred/get/${memberId}`,
             {
                 headers: {
-                    authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+                    authorization: `Bearer ${import.meta.env.REACT_APP_AUTH_TOKEN}`,
                 },
             }
         );

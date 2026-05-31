@@ -137,7 +137,7 @@ const store = configureStore({
             gifApi.middleware,
             sendbirdApi.middleware,
         ]),
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: import.meta.env.DEV,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

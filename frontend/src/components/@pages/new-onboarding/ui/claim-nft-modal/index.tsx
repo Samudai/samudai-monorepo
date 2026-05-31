@@ -32,7 +32,7 @@ export const ClaimNFTModal: React.FC<ClaimNFTModalProps> = ({ onClose }) => {
 
     const handleClaim = async () => {
         try {
-            // const sdk = new NFTClaim(process.env.REACT_APP_ENV!);
+            // const sdk = new NFTClaim(import.meta.env.REACT_APP_ENV!);
             // provider and phase of mint (0,1,2,3 ...)
             // const res = await sdk.claimNFT(provider!, 0);
 

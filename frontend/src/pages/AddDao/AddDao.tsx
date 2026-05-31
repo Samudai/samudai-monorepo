@@ -67,7 +67,7 @@ const AddDao: React.FC = () => {
                     })
                 );
                 axios
-                    .get(`${process.env.REACT_APP_GATEWAY}api/discord/get/guilds/${getMemberId()}`)
+                    .get(`${import.meta.env.REACT_APP_GATEWAY}api/discord/get/guilds/${getMemberId()}`)
                     .then((res) => {
                         console.log(res?.data?.data);
                         localStorage.setItem('discordGuilds', JSON.stringify(res?.data?.data));

@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
@@ -6,24 +6,15 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 const root = __dirname;
 
 export default defineConfig(({ mode }) => {
-    // Load REACT_APP_* vars from .env files (env-cmd also injects them into
-    // process.env for the build:* scripts). Build a define map so the existing
-    // `process.env.REACT_APP_*` and `process.env.NODE_ENV` reads across the
-    // codebase keep working untouched.
-    const fileEnv = loadEnv(mode, process.cwd(), 'REACT_APP_');
-    const merged: Record<string, string | undefined> = {
-        ...fileEnv,
-        ...process.env,
-    };
-
+    // App config is read through `import.meta.env.REACT_APP_*` (statically
+    // replaced by Vite via `envPrefix` below), so no `define` is needed for it.
+    // We only define `process.env.NODE_ENV` for the few dependencies that read
+    // it at runtime — vite-plugin-node-polyfills' `process` shim ships an empty
+    // `env`, and the `process` global it injects defeats per-key `define`
+    // replacement anyway, so this is the one value worth providing.
     const define: Record<string, string> = {
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || mode),
     };
-    for (const [key, value] of Object.entries(merged)) {
-        if (key.startsWith('REACT_APP_')) {
-            define[`process.env.${key}`] = JSON.stringify(value);
-        }
-    }
 
     return {
         plugins: [

@@ -1,7 +1,7 @@
 import { Alchemy, Network } from 'alchemy-sdk';
 
 // Alchemy apps are multichain by default: one API key serves every network.
-const apiKey = process.env.REACT_APP_ALCHEMY_API_KEY;
+const apiKey = import.meta.env.REACT_APP_ALCHEMY_API_KEY;
 
 const configEth = {
     apiKey,

@@ -110,3 +110,5 @@ profile.out
 
 .claude/
 docs
+
+.playwright-mcp

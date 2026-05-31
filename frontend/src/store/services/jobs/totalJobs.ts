@@ -43,7 +43,7 @@ export const jobsApi = createApi({
         'FavouriteBounty',
     ],
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_GATEWAY,
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
         prepareHeaders: (headers) => {
             headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
             headers.set('daoId', store.getState().commonReducer.activeDao);

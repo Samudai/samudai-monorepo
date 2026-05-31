@@ -322,7 +322,7 @@ export const useSendBirdChat = (userId: string) => {
 
     const initializeChats = async () => {
         const sb = SendbirdChat.init({
-            appId: `${process.env.REACT_APP_SEND_BIRD_APP_ID}`,
+            appId: `${import.meta.env.REACT_APP_SEND_BIRD_APP_ID}`,
             modules: [new GroupChannelModule()],
             localCacheEnabled: true,
         });

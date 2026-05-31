@@ -26,7 +26,7 @@ function GCal() {
         localStorage.setItem('signUp', JSON.stringify(storedData));
         localStorage.setItem('jwt', jwt!);
         axios
-            .post(`${process.env.REACT_APP_GATEWAY}api/plugin/gcal/auth`, {
+            .post(`${import.meta.env.REACT_APP_GATEWAY}api/plugin/gcal/auth`, {
                 linkId: member_id,
                 code: code,
                 redirectUri: window.location.origin + '/gcaluser',

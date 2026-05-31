@@ -43,7 +43,7 @@ export const uploadFile = async (
                     metadata: {},
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/file/upload/project`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/file/upload/project`,
                     {
                         projectFile,
                     },
@@ -67,7 +67,7 @@ export const uploadFile = async (
                     url: url,
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/file/upload/task`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/file/upload/task`,
                     {
                         taskFile,
                     },
@@ -94,7 +94,7 @@ export const uploadFile = async (
                     sender_id: getMemberId()!,
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/discussion/message/create`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/discussion/message/create`,
                     {
                         message: dicussionFile,
                     },
@@ -118,7 +118,7 @@ export const uploadFile = async (
                     url: url,
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/jobsFile/create`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/jobsFile/create`,
                     {
                         jobFile,
                     },
@@ -144,7 +144,7 @@ export const uploadFile = async (
                     metadata: {},
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/bountyFile/create`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/bountyFile/create`,
                     {
                         bountyFile,
                     },
@@ -170,7 +170,7 @@ export const uploadFile = async (
             let url = '';
 
             const fileUploadResult = await axios.post(
-                `${process.env.REACT_APP_GATEWAY}api/upload/spaces`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/upload/spaces`,
                 fileData,
                 {
                     headers: {
@@ -191,7 +191,7 @@ export const uploadFile = async (
                     metadata: {},
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/file/upload/project`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/file/upload/project`,
                     {
                         projectFile,
                     },
@@ -215,7 +215,7 @@ export const uploadFile = async (
                     url: url,
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/file/upload/task`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/file/upload/task`,
                     {
                         taskFile,
                     },
@@ -242,7 +242,7 @@ export const uploadFile = async (
                     sender_id: getMemberId()!,
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/discussion/message/create`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/discussion/message/create`,
                     {
                         message: dicussionFile,
                     },
@@ -266,7 +266,7 @@ export const uploadFile = async (
                     url: url,
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/jobsFile/create`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/jobsFile/create`,
                     {
                         jobFile,
                     },
@@ -292,7 +292,7 @@ export const uploadFile = async (
                     metadata: {},
                 };
                 const fileUploadResult = await axios.post(
-                    `${process.env.REACT_APP_GATEWAY}api/bountyFile/create`,
+                    `${import.meta.env.REACT_APP_GATEWAY}api/bountyFile/create`,
                     {
                         bountyFile,
                     },

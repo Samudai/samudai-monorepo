@@ -30,7 +30,7 @@ import { NewContributorItems } from '@samudai_xyz/gateway-consumer-types/dist/ty
 export const userProfileApi = createApi({
     reducerPath: 'userProfileApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_GATEWAY,
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
         prepareHeaders: (headers) => {
             if (!headers.has('authorization')) {
                 headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
@@ -46,7 +46,7 @@ export const userProfileApi = createApi({
                 url: `/api/member/connection/receiver/${id}`,
                 method: 'GET',
                 headers: {
-                    authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+                    authorization: `Bearer ${import.meta.env.REACT_APP_AUTH_TOKEN}`,
                 },
             }),
             providesTags: ['Connections'],
@@ -56,7 +56,7 @@ export const userProfileApi = createApi({
                 url: `/api/member/connection/list/${id}`,
                 method: 'GET',
                 headers: {
-                    authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+                    authorization: `Bearer ${import.meta.env.REACT_APP_AUTH_TOKEN}`,
                 },
             }),
             providesTags: ['Connections'],
@@ -120,7 +120,7 @@ export const userProfileApi = createApi({
                 method: 'POST',
                 body,
                 headers: {
-                    authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+                    authorization: `Bearer ${import.meta.env.REACT_APP_AUTH_TOKEN}`,
                 },
             }),
             invalidatesTags: ['Member'],

@@ -11,7 +11,7 @@ export const getMemberId = () => {
 
 export const getMemberfromAddress = async (walletAddress: string) => {
     const res = await axios.post(
-        `${process.env.REACT_APP_GATEWAY}api/member/fetch`,
+        `${import.meta.env.REACT_APP_GATEWAY}api/member/fetch`,
         {
             member: {
                 type: 'wallet_address',
@@ -136,9 +136,9 @@ export const getQueryParam = (obj: Record<string, any>): string => {
 };
 
 export const getTrailDaoId = () => {
-    if (process.env.REACT_APP_ENV === 'production') {
+    if (import.meta.env.REACT_APP_ENV === 'production') {
         return 'e27c7209-b5ba-4f5f-856f-dd2cb05453c0';
-    } else if (process.env.REACT_APP_ENV === 'staging') {
+    } else if (import.meta.env.REACT_APP_ENV === 'staging') {
         return '178534e4-ec05-4405-9791-7558555bb793';
     } else {
         return 'dd304ed6-f758-4dec-8413-3d972eb08a39';

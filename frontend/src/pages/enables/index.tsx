@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Enables: React.FC = () => {
     const type = localStorage.getItem('enablesType');
-    const trialDao = process.env.REACT_APP_TRIAL_DAO_ID!;
+    const trialDao = import.meta.env.REACT_APP_TRIAL_DAO_ID!;
     const navigate = useNavigate();
 
     useEffect(() => {

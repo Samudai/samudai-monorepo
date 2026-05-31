@@ -62,9 +62,7 @@ const TelegramIntegration: React.FC<IntegrationsConnectItemProps> = ({
     const [deleteTelegram] = useDeleteTelegramMutation();
     const [getTelegramExists] = useLazyGetTelegramExistsQuery();
 
-    const telegram_link = process.env.REACT_APP_TELEGRAM_BOT_LINK || '';
-
-    console.log(process.env.REACT_APP_TELEGRAM_BOT_LINK);
+    const telegram_link = import.meta.env.REACT_APP_TELEGRAM_BOT_LINK || '';
 
     useEffect(() => {
         setIsConnectedState(!!isConnected);

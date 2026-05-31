@@ -19,7 +19,7 @@ import {
 } from 'store/features/common/slice';
 import usePopup from 'hooks/usePopup';
 import { ethers } from 'ethers';
-import mixpanel from 'mixpanel-browser';
+import mixpanel from 'utils/mixpanel/mixpanelInit';
 import { useNavigate } from 'react-router-dom';
 import { changeDiscordData, changeGoTo } from 'store/features/Onboarding/slice';
 import { useLoginMutation } from 'store/services/Login/login';

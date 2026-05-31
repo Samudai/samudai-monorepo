@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (process.env.REACT_APP_ENV === 'local') {
+        if (import.meta.env.REACT_APP_ENV === 'local') {
             dispatch(fetchUser());
             localStorage.setItem('access_token', Date.now().toString());
             navigate('/signup');

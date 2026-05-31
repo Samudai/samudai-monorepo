@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { FetchSuccess } from '../../lib/helper/Responsehandler';
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY ? require('stripe')(process.env.STRIPE_SECRET_KEY) : null;
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
 
@@ -241,13 +241,12 @@ export class stripeController {
         try {
             const daoId = (req.params.daoId as string);
 
-            const userCount = await axios.get(`${process.env.SERVICE_DAO}/member/licensed/getcount/${daoId}`);
-
-            const projectCount = await axios.get(`${process.env.SERVICE_PROJECT}/project/get/projectcount/${daoId}`);
-
-            const formCount = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/count/${daoId}`);
-
-            const discussionCount = await axios.get(`${process.env.SERVICE_DISCUSSION}/discussion/countbydao/${daoId}`);
+            const [userCount, projectCount, formCount, discussionCount] = await Promise.all([
+                axios.get(`${process.env.SERVICE_DAO}/member/licensed/getcount/${daoId}`),
+                axios.get(`${process.env.SERVICE_PROJECT}/project/get/projectcount/${daoId}`),
+                axios.get(`${process.env.SERVICE_FORMS}/deal/questions/count/${daoId}`),
+                axios.get(`${process.env.SERVICE_DISCUSSION}/discussion/countbydao/${daoId}`),
+            ]);
 
             const result = {
                 userCount: userCount.data.count,

@@ -19,7 +19,7 @@ function convertWordArrayToUint8Array(wordArray) {
 
 export const encrypt = (fileArray) => {
     try {
-        const key = process.env.REACT_APP_ENC_KEY;
+        const key = import.meta.env.REACT_APP_ENC_KEY;
 
         if (key) {
             const wordArray = CryptoJS.lib.WordArray.create(fileArray);
@@ -36,7 +36,7 @@ export const encrypt = (fileArray) => {
 export const decrypt = (encryptedFile) => {
     const reader = new FileReader();
     reader.onload = () => {
-        const key = process.env.REACT_APP_ENC_KEY;
+        const key = import.meta.env.REACT_APP_ENC_KEY;
         const encryptedData = reader.result;
         const decryptedData = CryptoJS.AES.decrypt(encryptedData, key);
         const typedArray = convertWordArrayToUint8Array(decryptedData);
@@ -60,7 +60,7 @@ export const decryptForView = (encryptedFile) => {
 
     return new Promise((res, rej) => {
         reader.onload = () => {
-            const key = process.env.REACT_APP_ENC_KEY;
+            const key = import.meta.env.REACT_APP_ENC_KEY;
             const encryptedData = reader.result;
             const decryptedData = CryptoJS.AES.decrypt(encryptedData, key);
             const typedArray = convertWordArrayToUint8Array(decryptedData);

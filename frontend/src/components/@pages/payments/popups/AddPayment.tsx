@@ -364,7 +364,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                     //         daoId: daoid!,
                     //     };
                     //     const res = await axios.post(
-                    //         `${process.env.REACT_APP_GATEWAY}api/parcel/create`,
+                    //         `${import.meta.env.REACT_APP_GATEWAY}api/parcel/create`,
                     //         {
                     //             auth,
                     //             chainId: safeParcelData.chain_id,

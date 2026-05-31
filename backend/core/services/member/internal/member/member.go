@@ -3,6 +3,7 @@ package member
 import (
 	"database/sql"
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/Samudai/samudai-pkg/logger"
@@ -11,6 +12,9 @@ import (
 	"github.com/Samudai/backend/services/member/pkg/member"
 	"github.com/Samudai/backend/shared/sqldb"
 )
+
+// ErrNotFound is returned by Fetch* functions when the requested member does not exist.
+var ErrNotFound = errors.New("member not found")
 
 // Create a new member
 func Create(params member.CreateMemberParam) (string, error) {
@@ -53,16 +57,18 @@ func FetchMember(params member.FetchMemberParams) (member.MemberView, error) {
 	db := sqldb.Member()
 	var Member member.MemberView
 	var walletJSON, discordJSON, defaultWalletJSON, daoWorkedJSON, featuredProjectJSON *json.RawMessage
-	fields := `mv.member_id, mv.name, mv.username, mv.phone, mv.email, 
+	fields := `mv.member_id, mv.name, mv.username, mv.phone, mv.email,
 		mv.about, mv.open_for_opportunity, mv.featured_projects, mv.skills, mv.wallets, mv.discord,
 		mv.present_role,
 		mv.domain_tags_for_work,
 		mv.currency,
 		mv.hourly_rate,
-		mv.captain, mv.did, mv.created_at, mv.updated_at, mv.profile_picture,
+		COALESCE(mv.captain, false) as captain, mv.did, mv.created_at, mv.updated_at, mv.profile_picture,
 		mv.ceramic_stream, mv.subdomain, mv.default_wallet, mv.default_wallet_address, mv.invite_code,
 		COALESCE(mv.invite_count, 0) as invite_count, tags, dao_worked_with,
-		mv.overdue_tasks, mv.ongoing_tasks, mv.total_tasks_taken, mv.pending_admin_reviews, mv.closed_task
+		COALESCE(mv.overdue_tasks, 0) as overdue_tasks, COALESCE(mv.ongoing_tasks, 0) as ongoing_tasks,
+		COALESCE(mv.total_tasks_taken, 0) as total_tasks_taken, COALESCE(mv.pending_admin_reviews, 0) as pending_admin_reviews,
+		COALESCE(mv.closed_task, 0) as closed_task
 		FROM member_view mv`
 	var query string
 	var row *sql.Row
@@ -88,7 +94,7 @@ func FetchMember(params member.FetchMemberParams) (member.MemberView, error) {
 		&Member.OverDueTasksCount, &Member.OngoingTasksCount, &Member.TotalTasksTaken, &Member.TasksUnderReview, &Member.ClosedTask)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return Member, fmt.Errorf("member not found")
+			return Member, ErrNotFound
 		}
 		return Member, fmt.Errorf("error getting member: %w", err)
 	}
@@ -153,7 +159,7 @@ func FetchIMember(params member.FetchMemberParams) (member.IMember, error) {
 	err := row.Scan(&Member.MemberID, &Member.Name, &Member.Username, &Member.Email, &Member.ProfilePicture)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return Member, fmt.Errorf("member not found")
+			return Member, ErrNotFound
 		}
 		return Member, fmt.Errorf("error getting member: %w", err)
 	}

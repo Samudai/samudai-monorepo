@@ -102,7 +102,7 @@ export class LoginController {
                     onboardingStatus = false;
                 }
             } catch (err: any) {
-                if (err.response) {
+                if (err.response && err.response.status === 404) {
                     newMember = await axios.post(`${process.env.SERVICE_MEMBER}/member/create`, {
                         member: member,
                         chain_id: chainId,

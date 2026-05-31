@@ -42,7 +42,7 @@ const wagmiConfig = getDefaultConfig({
     chains: [mainnet],
     transports: {
         [mainnet.id]: http(
-            `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_API_KEY!}`
+            `https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.REACT_APP_ALCHEMY_API_KEY!}`
         ),
     },
     ssr: false,
@@ -82,7 +82,7 @@ const App = () => {
         const memberId = getMemberId();
         const fn = async () => {
             const sb = SendbirdChat.init({
-                appId: `${process.env.REACT_APP_SEND_BIRD_APP_ID}`,
+                appId: `${import.meta.env.REACT_APP_SEND_BIRD_APP_ID}`,
                 modules: [new GroupChannelModule()],
                 localCacheEnabled: true,
             });
@@ -159,9 +159,13 @@ const App = () => {
     // }, []);
 
     useEffect(() => {
-        IntractAttribution(process.env.REACT_APP_INTRACT_PROJECT_ID!, {
-            configAllowCookie: true,
-        });
+        // Skip when no project id is configured — calling with an empty id
+        // logs "Intract: Invalid appId" to the console.
+        if (import.meta.env.REACT_APP_INTRACT_PROJECT_ID) {
+            IntractAttribution(import.meta.env.REACT_APP_INTRACT_PROJECT_ID, {
+                configAllowCookie: true,
+            });
+        }
     }, []);
 
     return (

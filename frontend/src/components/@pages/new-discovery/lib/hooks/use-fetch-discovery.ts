@@ -60,7 +60,7 @@ export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () =
     const [getDiscoveryTags] = useLazyGetDiscoveryTagsQuery();
     const [getBulkDiscoveryDaos] = useGetBulkDiscoveryDaoMutation();
     const memberId = getMemberId();
-    const samudaiDaoId = process.env.REACT_APP_TRIAL_DAO_ID!;
+    const samudaiDaoId = import.meta.env.REACT_APP_TRIAL_DAO_ID!;
 
     const getDaoQueryParam = (filter: DiscoveryFilterInputs, pageNo: number) => {
         return getQueryParam({

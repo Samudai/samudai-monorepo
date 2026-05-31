@@ -87,7 +87,7 @@ const PaymentsTable: React.FC<PaymentsTableProps> = ({
             };
 
             const payments = await axios.get(
-                `${process.env.REACT_APP_GATEWAY}api/payment/get/dao/${daoid}`,
+                `${import.meta.env.REACT_APP_GATEWAY}api/payment/get/dao/${daoid}`,
                 {
                     headers,
                 }

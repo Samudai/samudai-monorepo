@@ -56,7 +56,7 @@ const ControlsBox: React.FC<ControlsBoxProps> = ({ noTutorial }) => {
             </NavLink>
             <NavLink
                 className={css.controls_help_item}
-                to={`/${process.env.REACT_APP_FORM_ID}/form`}
+                to={`/${import.meta.env.REACT_APP_FORM_ID}/form`}
                 data-analytics-click="report_a_bug"
             >
                 Report a Bug

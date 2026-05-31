@@ -18,7 +18,7 @@ const Invite = () => {
         const fun = async () => {
             try {
                 const { data } = await axios.get(
-                    `${process.env.REACT_APP_GATEWAY}api/project/invite/access/${
+                    `${import.meta.env.REACT_APP_GATEWAY}api/project/invite/access/${
                         path[path.length - 1] || path[path.length - 2]
                     }/${getMemberId()}`,
                     {

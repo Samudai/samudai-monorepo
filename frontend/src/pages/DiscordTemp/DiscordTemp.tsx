@@ -51,7 +51,7 @@ function DiscordTemp() {
                         axios
                             .get(
                                 `${
-                                    process.env.REACT_APP_GATEWAY
+                                    import.meta.env.REACT_APP_GATEWAY
                                 }api/discord/get/guilds/${getMemberId()}`
                             )
                             .then((res) => {

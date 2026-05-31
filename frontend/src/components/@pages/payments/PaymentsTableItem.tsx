@@ -178,7 +178,7 @@ const PaymentsTableItem: React.FC<ownProps> = ({
             //             daoId: daoid!,
             //         };
             //         const res = await axios.post(
-            //             `${process.env.REACT_APP_GATEWAY}api/parcel/create`,
+            //             `${import.meta.env.REACT_APP_GATEWAY}api/parcel/create`,
             //             {
             //                 auth,
             //                 chainId: awaitingData.provider.chain_id,

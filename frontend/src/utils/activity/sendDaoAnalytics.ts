@@ -7,7 +7,7 @@ export type AnalyticsRequest = {
 };
 
 export const sendDaoAnalytics = async (data: AnalyticsRequest, type?: string, extras?: any) => {
-    const url = `${process.env.REACT_APP_GATEWAY}api/dao/analytics/dao/add`;
+    const url = `${import.meta.env.REACT_APP_GATEWAY}api/dao/analytics/dao/add`;
 
     const res = await axios.post(
         url,

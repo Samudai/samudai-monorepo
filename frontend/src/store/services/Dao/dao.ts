@@ -22,7 +22,7 @@ import { checkSubdomainAccessResponse } from '../userProfile/model';
 export const daoApi = createApi({
     reducerPath: 'daoApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_GATEWAY,
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
         prepareHeaders: (headers) => {
             if (!headers.has('authorization')) {
                 headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
@@ -38,7 +38,7 @@ export const daoApi = createApi({
                 url: `/api/dao/getformember/${memberId}`,
                 method: 'GET',
                 headers: {
-                    authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+                    authorization: `Bearer ${import.meta.env.REACT_APP_AUTH_TOKEN}`,
                 },
             }),
             providesTags: ['dao'],

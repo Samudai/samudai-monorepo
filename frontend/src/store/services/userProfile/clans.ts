@@ -11,7 +11,7 @@ import {
 export const userClansProfileApi = createApi({
     reducerPath: 'userClansProfileApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_GATEWAY,
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
         prepareHeaders: (headers) => {
             headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
             return headers;

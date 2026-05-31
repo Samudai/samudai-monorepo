@@ -4,7 +4,7 @@ import { notificationResponse } from './model';
 export const notificationsApi = createApi({
     reducerPath: 'notificationsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_NOTIFICATIONS_URL,
+        baseUrl: import.meta.env.REACT_APP_NOTIFICATIONS_URL,
     }),
     endpoints: (builder) => ({
         fetchNotifications: builder.query<notificationResponse, string>({

@@ -15,7 +15,7 @@ export const tasksApi = createApi({
     reducerPath: 'tasksApi',
     tagTypes: ['Task', 'Project', 'Subtask'],
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_GATEWAY,
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
         prepareHeaders: (headers) => {
             const taskid = localStorage.getItem('_taskid') || store.getState().commonReducer.taskid;
             const projectid =
