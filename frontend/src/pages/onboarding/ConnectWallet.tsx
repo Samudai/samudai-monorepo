@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import Sprite from 'components/sprite';
 import css from './onboarding.module.scss';
 import ConnectWalletComp from './ConnectWalletComp';
@@ -11,7 +12,7 @@ const ConnectWallet: React.FC = () => {
                 </div>
 
                 <a className={css.home_link} href="/" target="_blank">
-                    <img src={require('images/logo.png')} alt="logo" />
+                    <img src={logoAsset} alt="logo" />
 
                     <Sprite url="/img/sprite.svg#samudai" />
                 </a>

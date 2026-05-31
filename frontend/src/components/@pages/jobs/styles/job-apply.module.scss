@@ -15,7 +15,7 @@
     color: $clr-white;
   }
 
-  + & {
+  & + & {
     margin-top: 36px;
   }
 }

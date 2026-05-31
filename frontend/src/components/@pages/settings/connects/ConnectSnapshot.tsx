@@ -1,3 +1,4 @@
+import snapshotIcon from 'components/@signup/icons/Snapshot.jpeg';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from '../../../../utils/toast';
@@ -95,7 +96,7 @@ const ConnectSnapshot: React.FC<ConnectSnapshotProps> = ({
     return (
         <React.Fragment>
             <PopupTitle
-                icon={require('components/@signup/icons/Snapshot.jpeg')}
+                icon={snapshotIcon}
                 title="Connecting Snapshot"
             />
             <Input

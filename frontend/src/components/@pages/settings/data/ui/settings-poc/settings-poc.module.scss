@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .root {
     position: relative;
 }
@@ -42,7 +44,7 @@
         transition: background 0.1s ease-in-out;
     
         &:hover {
-            background: darken($clr-black, 4%);
+            background: color.adjust($clr-black, $lightness: -4%, $space: hsl);
         }
     }
 

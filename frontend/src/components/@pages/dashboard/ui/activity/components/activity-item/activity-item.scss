@@ -1,3 +1,4 @@
+@use "sass:list";
 .recent-activity-item {
     display: flex;
     position: relative;
@@ -81,10 +82,10 @@
 .recent-activity-item {
     $colors: $clr-lavender, $clr-yellow, $clr-green, $clr-orange, $clr-blue;
 
-    @for $i from 1 through length($colors) {
+    @for $i from 1 through list.length($colors) {
         &:nth-child(5n + #{$i}) {
             .recent-activity-item__action strong {
-                color: nth($colors, $i);
+                color: list.nth($colors, $i);
             }
         }
     }

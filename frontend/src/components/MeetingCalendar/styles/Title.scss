@@ -1,3 +1,4 @@
+@use "sass:list";
 $colors: $clr-green, $clr-yellow, $clr-blue, $clr-orange, $clr-green, $clr-lavender,
   $clr-blue;
 
@@ -38,9 +39,9 @@ $colors: $clr-green, $clr-yellow, $clr-blue, $clr-orange, $clr-green, $clr-laven
 
 // Modificators
 .meeting-calendar__row_title {
-  $length: length($colors);
+  $length: list.length($colors);
   @for $i from 1 through $length {
-    $color: nth($colors, $i);
+    $color: list.nth($colors, $i);
     .meeting-calendar__cell:nth-child(#{$length}n + #{$i}) {
       .meeting-calendar__title.today {
         .meeting-calendar__title-day {

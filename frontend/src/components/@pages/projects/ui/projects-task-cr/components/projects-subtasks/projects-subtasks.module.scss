@@ -1,3 +1,4 @@
+@use "sass:list";
 .subtasks_item {
     padding: 12px 16px;
     background: $clr-black-main;
@@ -146,7 +147,7 @@
 
     @for $i from 2 through 4 {
         &_#{$i} {
-            $size: nth($sizes, $i - 1);
+            $size: list.nth($sizes, $i - 1);
             width: columnWidth($size, 1115);
         }
     }

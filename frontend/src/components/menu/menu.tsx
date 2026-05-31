@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { selectMenu, toggleMenu } from 'store/features/app/slice';
@@ -16,7 +17,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             <div className={styles.menu}>
                 <header className={styles.menu_head}>
                     <div className={styles.menu_logo}>
-                        <img src={require('images/logo.png')} alt="logo" />
+                        <img src={logoAsset} alt="logo" />
                         <span>Menu</span>
                     </div>
                     <button

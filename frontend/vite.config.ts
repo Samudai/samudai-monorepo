@@ -41,10 +41,13 @@ export default defineConfig(({ mode }) => {
             preprocessorOptions: {
                 scss: {
                     api: 'modern-compiler',
-                    // loadPaths lets the relative-looking imports below resolve
-                    // from the project root regardless of the importing file.
+                    // loadPaths lets the `@use "src/scss/..."` below resolve from
+                    // the project root regardless of the importing file.
                     loadPaths: [root],
-                    additionalData: `@import "src/scss/vars.scss"; @import "src/scss/mixins.scss";`,
+                    // `@use ... as *` makes the global vars/mixins available in
+                    // every stylesheet (the module-system replacement for the old
+                    // `@import`, which Dart Sass deprecated / removes in 3.0).
+                    additionalData: `@use "src/scss/globals" as *;`,
                 },
             },
         },
@@ -59,6 +62,17 @@ export default defineConfig(({ mode }) => {
         },
         server: {
             port: 3000,
+        },
+        resolve: {
+            alias: {
+                // alchemy-sdk's ESM build (the default browser entry) inlines
+                // ethers v5's @ethersproject/hash as a circular cluster that
+                // esbuild's dev dep pre-bundler mis-orders ("init_namehash is not
+                // defined"), crashing the dev app. Its CJS build bundles cleanly
+                // (normal require interop, no esbuild `init_*` wrappers), so point
+                // Vite at it. Dev + prod both resolve fine through this alias.
+                'alchemy-sdk': path.resolve(root, 'node_modules/alchemy-sdk/dist/cjs/index.js'),
+            },
         },
     };
 });

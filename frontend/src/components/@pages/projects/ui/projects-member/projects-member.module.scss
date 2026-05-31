@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .members {
     position: relative;
 
@@ -123,7 +125,7 @@
     transition: background 0.1s ease-in-out;
 
     &:hover {
-        background: darken($clr-black-main, 4%);
+        background: color.adjust($clr-black-main, $lightness: -4%, $space: hsl);
     }
 }
 .members_dropdown_img {

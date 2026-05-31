@@ -1,4 +1,6 @@
 // Item
+@use "sass:math";
+
 .tokens-item {
     display: flex;
     justify-content: space-between;
@@ -18,7 +20,7 @@
 }
 
 .tokens-item__col {
-    width: (100% / 3);
+    width: math.div(100%, 3);
     align-content: left;
 
     span {

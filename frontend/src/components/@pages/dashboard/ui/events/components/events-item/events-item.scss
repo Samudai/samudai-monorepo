@@ -1,3 +1,6 @@
+@use "sass:list";
+@use "sass:color";
+
 .expected-events-item {
     padding: 12px 16px;
     border-radius: 12px;
@@ -91,7 +94,7 @@
     transition: background $app-transition;
 
     &:hover {
-        background: darken($clr-green, 5%);
+        background: color.adjust($clr-green, $lightness: -5%, $space: hsl);
     }
 
     svg {
@@ -161,10 +164,10 @@
     .expected-events-item {
         $colors: $clr-lavender, $clr-yellow, $clr-green, $clr-orange, $clr-blue;
 
-        @for $i from 1 through length($colors) {
+        @for $i from 1 through list.length($colors) {
             &:nth-child(5n + #{$i}) {
                 .expected-events-item__content::before {
-                    background-color: nth($colors, $i);
+                    background-color: list.nth($colors, $i);
                 }
             }
         }

@@ -1,3 +1,4 @@
+@use "sass:list";
 .projects {
     padding: 24px 32px;
     height: 487px;
@@ -142,11 +143,11 @@
 .projects-item {
     $colors: $clr-lavender, $clr-green, $clr-blue, $clr-yellow, $clr-orange;
     $angles: 180deg, -90deg, -90deg, 0, 180deg;
-    $len: length($colors);
+    $len: list.length($colors);
 
     @for $i from 1 through $len {
-        $color: nth($colors, $i);
-        $angle: nth($angles, $i);
+        $color: list.nth($colors, $i);
+        $angle: list.nth($angles, $i);
         &:nth-child(#{$len}n + #{$i + 1}) {
             .projects-item__icon span {
                 border-left-color: $color;

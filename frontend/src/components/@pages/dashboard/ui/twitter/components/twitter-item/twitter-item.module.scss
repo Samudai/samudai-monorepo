@@ -1,3 +1,4 @@
+@use "sass:list";
 .item {
     height: auto;
     display: flex;
@@ -172,10 +173,10 @@
 .item {
     $colors: $clr-lavender, $clr-green, $clr-yellow, $clr-blue, $clr-orange;
 
-    @for $i from 1 through length($colors) {
+    @for $i from 1 through list.length($colors) {
         &:nth-child(#{$i}) {
             .itemName {
-                $color: nth($colors, $i);
+                $color: list.nth($colors, $i);
 
                 span {
                     color: $color;

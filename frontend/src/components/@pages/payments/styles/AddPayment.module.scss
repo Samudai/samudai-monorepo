@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .root {
     padding: 45px 30px 30px;
 }
@@ -30,7 +32,7 @@
     transition: background 0.1s ease-in;
 
     &:hover {
-        background: lighten($clr-black-main, 2%);
+        background: color.adjust($clr-black-main, $lightness: 2%, $space: hsl);
     }
 }
 .providerContent {

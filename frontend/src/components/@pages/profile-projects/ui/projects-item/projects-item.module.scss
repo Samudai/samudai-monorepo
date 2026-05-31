@@ -1,3 +1,4 @@
+@use "sass:list";
 .root {
     padding: 16px;
     padding-left: 42px;
@@ -35,7 +36,7 @@
 
     @for $i from 2 through 4 {
         &_#{$i} {
-            $size: nth($sizes, $i - 1);
+            $size: list.nth($sizes, $i - 1);
             width: columnWidth($size, 1115);
         }
     }

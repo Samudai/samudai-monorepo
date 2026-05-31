@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import React, { useState } from 'react';
 import { SidebarControls } from './ui/sidebar-controls';
 import clsx from 'clsx';
@@ -29,7 +30,7 @@ const Sidebar: React.FC = () => {
                         onClick={() => dispatch(openLoginModal({ open: true }))}
                         data-analytics-click="samudai_button"
                     >
-                        <img src={require('images/logo.png')} alt="logo" />
+                        <img src={logoAsset} alt="logo" />
                     </button>
                     <button
                         className={css.sidebar_menuCloseBtn}

@@ -1,3 +1,4 @@
+@use 'globals' as *;
 @include fontCreate("Lato", 400, "../assets/fonts/Lato-Regular");
 @include fontCreate("Lato", 500, "../assets/fonts/Lato-Medium");
 @include fontCreate("Lato", 600, "../assets/fonts/Lato-Semibold");

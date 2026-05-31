@@ -1,8 +1,10 @@
+@use "sass:color";
+
 .skeleton {
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    background: linear-gradient(110deg, $clr-black 8%, lighten($clr-black, 5%) 18%, $clr-black 33%);
+    background: linear-gradient(110deg, $clr-black 8%, color.adjust($clr-black, $lightness: 5%, $space: hsl) 18%, $clr-black 33%);
     background-size: 200% 100%;
     animation: shine 1.5s linear infinite;
 

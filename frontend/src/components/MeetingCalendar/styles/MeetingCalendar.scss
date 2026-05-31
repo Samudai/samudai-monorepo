@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .meeting-calendar {
   border-radius: none;
   background: none;
@@ -25,7 +27,7 @@
   // z-index: 5;
 }
 .meeting-calendar__cell {
-  flex: 0 0 (100% / 7);
+  flex: 0 0 math.div(100%, 7);
   // min-width: 115px;
 }
 @media (min-width: 992px) {

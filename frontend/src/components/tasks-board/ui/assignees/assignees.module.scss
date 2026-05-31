@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .assignees {
     padding: 38px 40px;
 }
@@ -42,7 +44,7 @@
     }
 
     &:hover {
-        background-color: darken($clr-black-main, 1%);
+        background-color: color.adjust($clr-black-main, $lightness: -1%, $space: hsl);
     }
 }
 .assignees_user {

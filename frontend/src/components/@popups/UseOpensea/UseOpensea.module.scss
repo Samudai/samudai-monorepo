@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .root {
   padding: 35px 30px 40px;
 }
@@ -29,7 +31,7 @@
   }
 }
 .nftsItem {
-  flex: 0 0 (100% / 6);
+  flex: 0 0 math.div(100%, 6);
   padding: 14px 7px 10px;
 
   &[data-active='true'] {

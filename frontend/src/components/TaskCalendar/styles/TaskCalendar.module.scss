@@ -1,8 +1,9 @@
+@use "sass:list";
 
 
 
 $hatColors: $clr-green, $clr-lavender, $clr-orange;
-$length: length($hatColors);
+$length: list.length($hatColors);
 
 .root {
 }
@@ -59,7 +60,7 @@ $length: length($hatColors);
   }
 
   @for $i from 1 through $length {
-    $color: nth($hatColors, $i);
+    $color: list.nth($hatColors, $i);
     &:nth-child(#{$length}n + #{$i}) {
       [data-role='card']::before {
         background-color: $color;
@@ -94,7 +95,7 @@ $length: length($hatColors);
 
   &:first-child,
   &:last-child {
-    width: (122px / 4);
+    width: (122px * 0.25);
   }
 }
 .cellTitle {

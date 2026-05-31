@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import Sprite from 'components/sprite';
 import React, { useState, useEffect } from 'react';
 import css from './onboarding-layout.module.scss';
@@ -37,7 +38,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({ progress, ch
                 </div>
 
                 <a className={css.home_link} href="/" target="_blank">
-                    <img src={require('images/logo.png')} alt="logo" />
+                    <img src={logoAsset} alt="logo" />
 
                     <Sprite url="/img/sprite.svg#samudai" />
                 </a>

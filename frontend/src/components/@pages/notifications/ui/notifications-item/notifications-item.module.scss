@@ -1,3 +1,4 @@
+@use "sass:list";
 .root {
     padding: 16px 20px;
     border-radius: 16px;
@@ -46,13 +47,13 @@
         #e7a600,
         #9757ff;
     
-        $length: length($backgrounds);
+        $length: list.length($backgrounds);
 
         @for $i from 1 through $length {
             &:nth-child(#{$length}n + #{$i}) {
-                background: nth($backgrounds, $i);
-                border: 1px solid nth($colors, $i);
-                color: nth($colors, $i);
+                background: list.nth($backgrounds, $i);
+                border: 1px solid list.nth($colors, $i);
+                color: list.nth($colors, $i);
             }
         }
     }

@@ -1,3 +1,4 @@
+@use "sass:list";
 .root {
     padding: 15px 20px;
     border-radius: 17px;
@@ -45,7 +46,7 @@
         margin-right: 8px;
     }
 
-    $len: length($listStatus);
+    $len: list.length($listStatus);
 
     @each $status, $color in $listStatus {
         &[data-status='#{$status}'] {

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .projects {
   margin-top: 58px;
 }
@@ -60,7 +62,7 @@
       }
     }
     &:not(:global(.--disabled)):hover {
-      background-color: lighten($clr-black-main, 5%);
+      background-color: color.adjust($clr-black-main, $lightness: 5%, $space: hsl);
       cursor: pointer;
     }
   }

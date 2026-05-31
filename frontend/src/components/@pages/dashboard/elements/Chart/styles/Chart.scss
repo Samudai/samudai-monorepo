@@ -1,3 +1,4 @@
+@use "sass:list";
 .block.chart {
     display: flex;
     flex-direction: row;
@@ -205,9 +206,9 @@ $modifiers: (
     }
 }
 .chart__tabs {
-    $len: length($modifiers);
+    $len: list.length($modifiers);
     @each $name, $color in $modifiers {
-        $i: index($modifiers, $name $color);
+        $i: list.index($modifiers, $name $color);
         .chart-tab:nth-child(#{$len}n + #{$i}) {
             .svg-stroke {
                 stroke: $color;

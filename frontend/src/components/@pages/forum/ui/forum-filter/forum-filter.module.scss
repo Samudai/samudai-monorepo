@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .filter {
     position: relative;
 }
@@ -77,7 +79,7 @@
 }
 .filter_item_checkbox {
     border: none;
-    background: darken($clr-black, 4%);
+    background: color.adjust($clr-black, $lightness: -4%, $space: hsl);
     width: 20px;
     height: 20px;
 }

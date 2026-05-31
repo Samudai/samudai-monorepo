@@ -1,3 +1,4 @@
+@use "sass:list";
 $kTagsColors: $clr-orange, $clr-blue, $clr-lavender, $clr-yellow;
 
 .post {
@@ -20,7 +21,7 @@ $kTagsColors: $clr-orange, $clr-blue, $clr-lavender, $clr-yellow;
     margin: -4px -4px 0;
 
     @for $i from 1 through 4 {
-        $color: nth($kTagsColors, $i);
+        $color: list.nth($kTagsColors, $i);
         .post_tags_item:nth-child(4n + #{$i}):not(.post_new) {
             color: $color;
             background: rgba($color, 0.1);

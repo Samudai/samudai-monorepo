@@ -1,10 +1,10 @@
-@import './vars.scss';
-@import './reset.scss';
-@import './mixins.scss';
-@import './fonts.scss';
-@import './components.scss';
-@import './app.scss';
-@import './boot.scss';
+// vars + mixins are injected globally via vite.config.ts `additionalData`
+// (`@use "src/scss/globals" as *`), so this entry only loads the CSS partials.
+@use './reset';
+@use './fonts';
+@use './components';
+@use './app';
+@use './boot';
 
 *,
 *::after,

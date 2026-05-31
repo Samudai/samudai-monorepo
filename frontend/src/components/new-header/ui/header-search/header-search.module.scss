@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .search {
     width: 100%;
     position: relative;
@@ -46,7 +48,7 @@
     transition: background .125s ease-in-out;
 
     &:hover {
-        background-color: lighten($clr-black-main, 3%);
+        background-color: color.adjust($clr-black-main, $lightness: 3%, $space: hsl);
     }
 }
 .search_results_picture {

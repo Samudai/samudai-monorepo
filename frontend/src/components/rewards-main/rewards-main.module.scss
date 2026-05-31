@@ -1,3 +1,4 @@
+@use "sass:list";
 .rewards {
   &_container {
     margin-top: 40px;
@@ -92,7 +93,7 @@
   &_roles {
     display: flex;
     $colors: $clr-orange, $clr-lavender, $clr-green, $clr-blue;
-    $length: length($colors);
+    $length: list.length($colors);
 
     &_item {
       border-top: 4px solid;
@@ -101,7 +102,7 @@
       flex-shrink: 0;
 
       @for $i from 1 through $length {
-        $clr: nth($colors, $i);
+        $clr: list.nth($colors, $i);
 
         &:nth-child(#{$length}n + #{$i}) {
           border-top-color: $clr;

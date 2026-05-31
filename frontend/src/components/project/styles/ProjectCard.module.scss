@@ -1,3 +1,4 @@
+@use "sass:list";
 .root {
   height: auto;
 
@@ -290,7 +291,7 @@
 
 // Colors
 $colors: $clr-green, $clr-lavender, $clr-orange;
-$length: length($colors);
+$length: list.length($colors);
 
 .root {
   @for $i from 1 through $length {

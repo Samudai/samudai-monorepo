@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .creator {
     position: relative;
 
@@ -64,6 +66,6 @@
     }
 
     &:hover {
-        background-color: darken($clr-black, 1%);
+        background-color: color.adjust($clr-black, $lightness: -1%, $space: hsl);
     }
 }

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .block.transactions {
     padding: 24px;
     border-radius: 25px;
@@ -62,7 +64,7 @@
     justify-content: center;
 
     svg {
-        max-width: ((24 / 54) * 100%);
+        max-width: (math.div(24, 54) * 100%);
         width: 100%;
     }
 }

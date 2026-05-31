@@ -1,5 +1,6 @@
+@use "sass:list";
 $colors: $clr-green, $clr-orange, $clr-lavender;
-$length: length($colors);
+$length: list.length($colors);
 
 // General
 .widget {
@@ -62,7 +63,7 @@ $length: length($colors);
     &:nth-child(#{$length}n + #{$i}) {
       .projectBook {
         :global(.svg-fill) {
-          fill: nth($colors, $i);
+          fill: list.nth($colors, $i);
         }
       }
     }

@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
@@ -69,7 +70,7 @@ const PipelineFormPage: React.FC<PipelineFormProps> = (props) => {
                 <div className="container" data-analytics-parent="pipeline_form_parent">
                     <header className={styles.head}>
                         <img
-                            src={require('images/logo.png')}
+                            src={logoAsset}
                             alt="logo"
                             style={{ cursor: 'pointer' }}
                             onClick={() => navigate(`/dashboard/1`)}

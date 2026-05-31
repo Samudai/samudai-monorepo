@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import { memo, useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import clsx from 'clsx';
@@ -86,7 +87,7 @@ const Header: React.FC<HeaderProps> = memo(({ title, className, hello }) => {
                         : title}
                 </h2>
                 <a href="https://samudai.xyz" className={styles.logo}>
-                    <img src={require('images/logo.png')} alt="logo" />
+                    <img src={logoAsset} alt="logo" />
                 </a>
                 <div className={styles.bar}>
                     <div className={styles.control}>

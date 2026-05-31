@@ -1,3 +1,4 @@
+@use "sass:list";
 .block.dao-discussions {
     padding: 24px 24px 1px;
     border-radius: 25px;
@@ -81,10 +82,10 @@
 .dao-discussions-item {
     $colors: $clr-blue, $clr-orange, $clr-green, $clr-lavender, $clr-yellow;
 
-    @for $i from 1 through length($colors) {
+    @for $i from 1 through list.length($colors) {
         &:nth-child(5n + #{$i}) {
             .dao-discussions-item__btn-circle {
-                background-color: nth($colors, $i);
+                background-color: list.nth($colors, $i);
             }
         }
     }

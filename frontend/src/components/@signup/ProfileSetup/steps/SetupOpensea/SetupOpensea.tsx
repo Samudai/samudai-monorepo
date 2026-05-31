@@ -1,3 +1,4 @@
+import openseaIcon from 'components/@signup/icons/Opensea.png';
 import { useEffect, useState } from 'react';
 // import data from './data';
 import { NFTProfile } from '@samudai_xyz/web3-sdk';
@@ -100,7 +101,7 @@ const SetupOpensea: React.FC<SetupOpenseaProps> = ({ state, active, onClose, set
                 <BackButton className="setup-opensea__back" onClick={onClose} />
             </div>
             <ModalTitle
-                icon={require('components/@signup/icons/Opensea.png')}
+                icon={openseaIcon}
                 suptitle=""
                 title="Use NFT OpenSea"
             />

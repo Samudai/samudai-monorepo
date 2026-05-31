@@ -1,3 +1,5 @@
+@use "sass:color";
+
 
 
 
@@ -12,7 +14,7 @@
   }
 
   & > .block.over {
-    background-color: lighten($clr-black-main, 10%);
+    background-color: color.adjust($clr-black-main, $lightness: 10%, $space: hsl);
   }
   &.draggable > .block {
     outline: 2px dashed $clr-lavender;

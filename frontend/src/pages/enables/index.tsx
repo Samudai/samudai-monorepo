@@ -1,3 +1,4 @@
+import logoAsset from 'images/logo.png';
 import { Marquee } from 'components/marquee-highlight';
 import React, { useEffect } from 'react';
 import { OnboardingLayout } from 'root/layouts/onboarding-layout';
@@ -34,7 +35,7 @@ const Enables: React.FC = () => {
             <OnboardingLayout progress={5}>
                 <div className={css.content}>
                     <div className={css.left}>
-                        <img className={css.logo} src={require('images/logo.png')} alt="" />
+                        <img className={css.logo} src={logoAsset} alt="" />
 
                         {type === 'trial' ? (
                             <h2 className={css.title}>

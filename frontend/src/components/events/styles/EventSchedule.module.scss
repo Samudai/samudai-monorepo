@@ -1,6 +1,9 @@
+@use "sass:list";
+@use "sass:math";
+
 $colors: $clr-green, $clr-orange, $clr-blue, $clr-lavender, $clr-yellow, $clr-lavender,
   $clr-lavender;
-$len: length($colors);
+$len: list.length($colors);
 $border: 1px solid $clr-black;
 
 .root {
@@ -30,7 +33,7 @@ $border: 1px solid $clr-black;
   }
 }
 .week {
-  width: (100% / 7);
+  width: math.div(100%, 7);
 
   display: flex;
   align-items: center;
@@ -62,7 +65,7 @@ $border: 1px solid $clr-black;
   }
 }
 .cell {
-  width: (100% / 7);
+  width: math.div(100%, 7);
   height: 103px;
   border-left: $border;
 
@@ -137,7 +140,7 @@ $border: 1px solid $clr-black;
   &.weekActive:not(.weekToday) {
     @for $i from 1 through $len {
       &:nth-child(#{$len}n + #{$i}):after {
-        background-color: nth($colors, $i);
+        background-color: list.nth($colors, $i);
       }
     }
   }
