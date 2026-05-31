@@ -4,6 +4,8 @@ import {
   Events,
   GatewayIntentBits,
   Guild,
+  REST,
+  Routes,
   ShardEvents,
   SlashCommandBuilder,
   User
@@ -87,7 +89,7 @@ client.once('ready', async () => {
 });
 
 client.on('interactionCreate', async (interaction) => {
-  if (!interaction.isCommand()) return;
+  if (!interaction.isChatInputCommand()) return;
 
   const { commandName, options } = interaction;
 
@@ -284,7 +286,7 @@ const getUser = async (userId: string): Promise<User> => {
 
 export const getGuildEvents = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const guildId = req.params.guildId;
+    const guildId = String(req.params.guildId);
     const guild: Guild = await getGuild(guildId);
     const events = await guild!.scheduledEvents.fetch();
     for (const [id, event] of events) {
@@ -313,8 +315,8 @@ export const getMemberEvents = async (
   next: NextFunction
 ) => {
   try {
-    const memberId = req.params.memberId;
-    const guildId = req.params.guildId;
+    const memberId = String(req.params.memberId);
+    const guildId = String(req.params.guildId);
     const guild = await getGuild(guildId);
     const member = await getUser(memberId);
     const events = await guild.scheduledEvents.fetch();
@@ -351,8 +353,8 @@ export const linkDiscordToDAO = async (
   next: NextFunction
 ) => {
   try {
-    const daoId = req.params.dao_id;
-    const guildId = req.params.guild_id;
+    const daoId = String(req.params.dao_id);
+    const guildId = String(req.params.guild_id);
     const guild = await getGuild(guildId);
 
     const response = await linkDiscordToDao(guild, daoId);
@@ -376,8 +378,8 @@ export const linkDiscordToPOINT = async (
   next: NextFunction
 ) => {
   try {
-    const pointId = req.params.point_id;
-    const guildId = req.params.guild_id;
+    const pointId = String(req.params.point_id);
+    const guildId = String(req.params.guild_id);
     const guild = await getGuild(guildId);
 
     const response = await linkDiscordToPoint(guild, pointId);
@@ -398,7 +400,7 @@ export const linkDiscordToPOINT = async (
 export const getOwner = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // const memberId = req.params.memberId;
-    const guildId = req.params.guildId;
+    const guildId = String(req.params.guildId);
     console.log(guildId);
     const guild = await getGuild(guildId);
     const owner = await guild.fetchOwner();

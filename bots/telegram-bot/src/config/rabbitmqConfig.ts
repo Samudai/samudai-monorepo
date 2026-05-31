@@ -1,4 +1,4 @@
-import client, { Connection, Channel, ConsumeMessage } from 'amqplib';
+import client, { ChannelModel, Channel, ConsumeMessage } from 'amqplib';
 
 
 const rmqUser = process.env.MQ_USERNAME;
@@ -6,7 +6,7 @@ const rmqPass = process.env.MQ_PASSWORD;
 const rmqhost = process.env.MQ_IP;
 
 class RabbitMQConnection {
-    connection!: Connection;
+    connection!: ChannelModel;
     channel!: Channel;
     private connected!: Boolean;
 

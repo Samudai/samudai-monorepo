@@ -30,7 +30,7 @@ export class Routes {
 
     this.app.get('/health', healthCheck);
 
-    this.app.get('*', (req, res) => {
+    this.app.get('/{*splat}', (req, res) => {
       throw new NotFoundError();
     });
   };
