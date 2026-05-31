@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React from 'react';
+import lottie from 'lottie-web';
+import React, { useEffect, useRef } from 'react';
 import css from './point-animation.module.scss';
 
 interface PointAnimationProps {
@@ -7,11 +8,23 @@ interface PointAnimationProps {
 }
 
 export const PointAnimation: React.FC<PointAnimationProps> = ({ className }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const animation = lottie.loadAnimation({
+            container: containerRef.current,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/img/ripple.json',
+        });
+        return () => animation.destroy();
+    }, []);
+
     return (
         <div className={clsx(css.root, className)}>
-            <div className={css.point}>
-                <lottie-player autoplay loop src="/img/ripple.json" style={{ fill: '#FFB800' }} />
-            </div>
+            <div className={css.point} ref={containerRef} />
         </div>
     );
 };

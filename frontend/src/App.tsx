@@ -8,7 +8,6 @@ import {
 } from './store/features/common/slice';
 import connectSocket, { connectPushSDKSocket } from './utils/notification/connectSocket';
 import IntractAttribution from '@intract/attribution';
-import '@lottiefiles/lottie-player';
 import {
     DisclaimerComponent,
     RainbowKitProvider,

@@ -29,7 +29,7 @@ const Prompt = () => {
     const { userData } = useProfile();
     const trial_dashboard = useTypedSelector(selectTrialDashboard);
     const [completeTrial] = useCompleteTrialDashboardMutation();
-    const { data } = useGetEmailQuery(memberId);
+    const { data } = useGetEmailQuery(memberId, { skip: !memberId });
 
     const handleInviteModal = useCallback(() => {
         if (memberType === 'contributor') {

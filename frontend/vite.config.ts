@@ -64,6 +64,11 @@ export default defineConfig(({ mode }) => {
             port: 3000,
         },
         resolve: {
+            // The web3 stack (privy/reown/wagmi/phosphor) pulls many separate copies
+            // of the Lit family; force the bundler (dev pre-bundle + prod build) to a
+            // single physical copy so Lit's dev-mode "Multiple versions of Lit loaded"
+            // check sees one instance. Pairs with the `lit*` npm `overrides`.
+            dedupe: ['lit', 'lit-html', 'lit-element', '@lit/reactive-element'],
             alias: {
                 // alchemy-sdk's ESM build (the default browser entry) inlines
                 // ethers v5's @ethersproject/hash as a circular cluster that

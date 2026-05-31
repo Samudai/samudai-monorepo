@@ -23,17 +23,6 @@ declare module 'react' {
                 skin?: 1 | 2 | 3 | 4 | 5 | 6;
                 fallback?: string;
             };
-            'lottie-player': {
-                className?: string;
-                autoplay?: boolean;
-                controls?: boolean;
-                loop?: boolean;
-                src?: string;
-                direction?: '1' | '-1';
-                speed?: number;
-                debug?: boolean;
-                style?: React.CSSProperties;
-            };
         }
     }
 }
