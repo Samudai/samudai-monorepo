@@ -7,7 +7,7 @@ import { MessageResponse } from '@samudai_xyz/gateway-consumer-types';
 import { CloseIcon } from '../icons/close-icon';
 import { getMemberId } from 'utils/utils';
 import clsx from 'clsx';
-import { MentionsInput, Mention } from 'react-mentions';
+import { MentionsInput, Mention, MentionsInputStyle } from 'react-mentions';
 import { useTypedSelector } from 'hooks/useStore';
 import { discussions } from 'store/features/discussion/slice';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
@@ -173,7 +173,7 @@ export const ForumCommentsPanel: React.FC<ForumCommentsPanelProps> = ({
                         className={clsx(css.mention_input, 'orange-scrollbar')}
                         value={input}
                         onChange={(ev) => handleInputChange(ev.target.value)}
-                        style={mentionsInputStyle}
+                        style={mentionsInputStyle as unknown as MentionsInputStyle}
                         onKeyDown={handleKeyDown}
                         placeholder="Add your comment"
                         data-analytics-click="input_comment"

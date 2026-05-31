@@ -1,7 +1,7 @@
 import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
 import { useTypedDispatch } from 'hooks/useStore';
 import { useEffect, useState } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { changeProjectid } from 'store/features/common/slice';
 import { updateItem } from 'store/features/jobs/slice';
 import {

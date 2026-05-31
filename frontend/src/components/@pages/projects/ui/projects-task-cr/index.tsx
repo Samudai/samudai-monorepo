@@ -263,7 +263,7 @@ export const ProjectsTaskDetails: React.FC<ProjectsTaskDetailsProps> = ({
                     project_id: project.project_id,
                     task_id: taskData.task_id,
                     action_type: ActivityEnums.ActionType.TASK_UPDATED,
-                    visibility: project.visibility!,
+                    visibility: project.visibility as unknown as ActivityEnums.Visibility,
                     member: {
                         username: store.getState().commonReducer?.member?.data.username || '',
                         profile_picture:

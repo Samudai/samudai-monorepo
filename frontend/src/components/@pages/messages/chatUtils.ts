@@ -4,9 +4,10 @@ import { changeChatKey, changeChatUser, setChats } from 'store/features/chats/sl
 import store from 'store/store';
 import { ChatCreateGroupType } from '@pushprotocol/restapi/src/lib/chat';
 import { DiscussionEnums, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import type { BrowserProvider } from 'ethers';
 
 export const sendMessage = async (content: string, activeChat: PushAPI.IFeeds, chatKey: string) => {
-    const provider = store.getState().commonReducer.provider;
+    const provider = store.getState().commonReducer.provider as BrowserProvider | null;
     const _signer = await provider?.getSigner();
     const response = await PushAPI.chat.send({
         messageContent: content,
@@ -20,7 +21,7 @@ export const sendMessage = async (content: string, activeChat: PushAPI.IFeeds, c
 };
 
 export const decryptKey = async (user: PushAPI.IUser, dispatch: any): Promise<string> => {
-    const provider = store.getState().commonReducer.provider;
+    const provider = store.getState().commonReducer.provider as BrowserProvider | null;
     const _signer = await provider?.getSigner();
     const decryptedPvtKey = await PushAPI.chat.decryptPGPKey({
         encryptedPGPPrivateKey: user.encryptedPrivateKey,

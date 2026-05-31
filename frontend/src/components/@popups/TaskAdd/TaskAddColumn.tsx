@@ -186,7 +186,7 @@ const TaskAddColumn: React.FC<ColumnAddProps> = ({
                     member_id: getMemberId(),
                     project_id: projectData.project_id!,
                     action_type: ActivityEnums.ActionType.PROJECT_UPDATED,
-                    visibility: projectData.visibility!,
+                    visibility: projectData.visibility as unknown as ActivityEnums.Visibility,
                     member: {
                         username: store.getState().commonReducer?.member?.data.username || '',
                         profile_picture:

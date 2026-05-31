@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import css from './task-accordeon.module.scss';
 
 interface TaskAccordeonProps {
-    button: React.ReactElement;
+    button: React.ReactElement<any>;
     children: React.ReactNode;
     disabled?: boolean;
 }

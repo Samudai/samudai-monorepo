@@ -29,7 +29,7 @@ import TextArea from 'ui/@form/TextArea/TextArea';
 import Switch from 'ui/Switch/Switch';
 import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
-import css from 'scss/pages/settings-profile.module.scss';
+import css from 'styles/pages/settings-profile.module.scss';
 import {
     useGetContributorDomainTagsQuery,
     useGetContributorSkillsQuery,

@@ -1,10 +1,9 @@
-import { setupCache } from 'axios-cache-adapter';
 import axios from 'axios';
+import { setupCache } from 'axios-cache-interceptor';
 
-export const cache = setupCache({
-    maxAge: 15 * 60 * 1000,
-});
-
-export const cachedAxios = axios.create({
-    adapter: cache.adapter,
+// 15-minute response cache. Migrated from the unmaintained `axios-cache-adapter`
+// (which pinned axios ~0.21) to `axios-cache-interceptor`, which is axios 1.x
+// compatible. By default GET requests are cached; `ttl` is in milliseconds.
+export const cachedAxios = setupCache(axios.create(), {
+    ttl: 15 * 60 * 1000,
 });

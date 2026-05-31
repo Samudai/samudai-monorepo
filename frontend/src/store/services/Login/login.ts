@@ -20,7 +20,6 @@ import {
     setUpProfileReq,
 } from './model';
 
-require('dotenv').config();
 
 export const loginApi = createApi({
     reducerPath: 'loginApi',

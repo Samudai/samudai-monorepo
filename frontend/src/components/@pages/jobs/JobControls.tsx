@@ -35,7 +35,7 @@ const JobControls: React.FC<JobControlsProps> = ({
                     <span>Filter</span>
                 </button>
                 <button className={styles.controlsBtn} data-class="filter" onClick={onSaved}>
-                    <ArchiveIcon className={savedActive ? styles.controlsBtnSvgFill : null} />
+                    <ArchiveIcon className={savedActive ? styles.controlsBtnSvgFill : undefined} />
                     <span>Saved Jobs</span>
                 </button>
             </div>

@@ -56,7 +56,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <div className={styles.product_head}>
                     <h3 className={styles.product_title}>{title}</h3>
                     <button className={styles.product_saveBtn}>
-                        <ArchiveIcon className={isSaved && styles.product_saveBtn_saved} />
+                        <ArchiveIcon
+                            className={(isSaved && styles.product_saveBtn_saved) || undefined}
+                        />
                     </button>
                 </div>
                 {/* Company */}

@@ -8,7 +8,6 @@ import { changeBillingTerm, changeBillingTier, changeUrl } from 'store/features/
 import { useLogout, usePrivy } from '@privy-io/react-auth';
 import { fetchUser } from 'store/features/user/async';
 
-require('dotenv').config();
 
 function BillingTemp() {
     const [searchParams, setSearchParams] = useSearchParams();

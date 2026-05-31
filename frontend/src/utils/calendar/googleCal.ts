@@ -1,11 +1,10 @@
 import { cachedAxios } from '../axios-cache/axiosCache';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { randomBytes } from 'ethers/lib/utils';
+import { randomBytes } from 'ethers';
 import store from 'store/store';
 import { textLengthFormatter } from '../utils';
 
-require('dotenv').config();
 const headers = {
     authorization: 'Bearer ' + store.getState().commonReducer.jwt,
 };

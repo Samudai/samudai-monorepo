@@ -22,7 +22,7 @@ export const DaoSocials: React.FC<DaoSocialsProps> = ({ socials }) => {
                 key={website?.id}
             >
                 <Sprite
-                    className={!website?.url && css.socials_link_disabled}
+                    className={(!website?.url && css.socials_link_disabled) || undefined}
                     style={{ fill: '#B2FFC3' }}
                     url="/img/sprite.svg#site"
                 />
@@ -36,7 +36,7 @@ export const DaoSocials: React.FC<DaoSocialsProps> = ({ socials }) => {
                 key={twitter?.id}
             >
                 <Sprite
-                    className={!twitter?.url && css.socials_link_disabled}
+                    className={(!twitter?.url && css.socials_link_disabled) || undefined}
                     style={{ fill: '#AED4FF' }}
                     url="/img/sprite.svg#twitter"
                 />
@@ -50,7 +50,7 @@ export const DaoSocials: React.FC<DaoSocialsProps> = ({ socials }) => {
                 key={discord?.id}
             >
                 <Sprite
-                    className={!discord?.url && css.socials_link_disabled}
+                    className={(!discord?.url && css.socials_link_disabled) || undefined}
                     style={{ fill: '#DDC3F5' }}
                     url="/img/sprite.svg#discord"
                 />

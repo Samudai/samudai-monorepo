@@ -1,4 +1,4 @@
-import * as Socials from 'UI/SVG/socials';
+import * as Socials from 'ui/SVG/socials';
 import clsx from 'clsx';
 import PorfolioLinksItem from './PorfolioLinksItem';
 import styles from '../styles/PorfolioLinks.module.scss';

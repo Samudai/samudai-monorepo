@@ -163,7 +163,7 @@ const AddWallet: React.FC<AddWalletProps> = ({ onSubmit, onClose }) => {
                             options={ChainValues.filter((item) => item.id !== chain.id)}
                             classNamePrefix="rs"
                             styles={paymentsSelectStyles}
-                            formatOptionLabel={PaymentsCustomControl}
+                            formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
                             isSearchable={false}
                             onChange={(value) => setChain(value as IChainList)}
                         />

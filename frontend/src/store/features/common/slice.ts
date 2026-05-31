@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ethers } from 'ethers';
 import { RootState } from 'store/store';
 import reducers from './reducer';
 import { initialState } from './state';
@@ -12,8 +13,10 @@ export const commonSlice = createSlice({
 export const selectActiveDao = (state: RootState) => state.commonReducer.activeDao;
 export const selectActiveDaoName = (state: RootState) => state.commonReducer.activeDaoName;
 export const selectDaoList = (state: RootState) => state.commonReducer.daoList;
-export const selectProvider = (state: RootState) => state.commonReducer.provider;
-export const selectWallet = (state: RootState) => state.commonReducer.provider;
+export const selectProvider = (state: RootState) =>
+    state.commonReducer.provider as ethers.BrowserProvider | null;
+export const selectWallet = (state: RootState) =>
+    state.commonReducer.provider as ethers.BrowserProvider | null;
 export const selectAccount = (state: RootState) => state.commonReducer.account;
 export const selectJwt = (state: RootState) => state.commonReducer.jwt;
 export const selectRoles = (state: RootState) => state.commonReducer.roles;

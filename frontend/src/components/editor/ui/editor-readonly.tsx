@@ -15,7 +15,7 @@ export const EditorReadonly: React.FC<ReadonlyEditorProps> = ({ value, className
     editor.children = value;
 
     return (
-        <Slate editor={editor as ReactEditor} value={value}>
+        <Slate editor={editor as ReactEditor} initialValue={value}>
             <Editable
                 autoFocus={false}
                 readOnly={true}

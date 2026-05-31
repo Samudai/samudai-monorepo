@@ -21,13 +21,10 @@ import { getMemberId } from './utils';
 import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { ethers } from 'ethers';
 
-require('dotenv').config();
 
 const ConnectWalletComp: React.FC = () => {
     const { connector: activeConnector, isConnected } = useAccount();
-    const { connect, connectors, error, isLoading, pendingConnector } = useConnect({
-        chainId: 1,
-    });
+    const { connect, connectors, error, isPending } = useConnect();
     const {
         data: walletClient,
         isError,
@@ -100,14 +97,7 @@ const ConnectWalletComp: React.FC = () => {
             const parsedData = JSON.parse(localData!);
             const discord = parsedData.discord;
             const activeDAO = store.getState().commonReducer.activeDao;
-            window.location.pathname !==
-                ('/gcaluser' ||
-                    '/gcaldao' ||
-                    '/githubuser' ||
-                    '/githuborg' ||
-                    '/notion' ||
-                    '/discordtemp' ||
-                    '/botstemp') &&
+            window.location.pathname !== '/gcaluser' &&
                 axios
                     .post(`${process.env.REACT_APP_GATEWAY}api/member/login`, {
                         walletAddress: account,
@@ -197,9 +187,7 @@ const ConnectWalletComp: React.FC = () => {
                             store.dispatch(changeProvider({ provider: provider }));
                             store.dispatch(changeAccount({ account: account }));
                             if (loadUrl) {
-                                loadUrl !== ('/check' || '/' || '/signup' || '/jobs' || '/login')
-                                    ? navigate(loadUrl)
-                                    : navigate('/dashboard/1');
+                                loadUrl !== '/check' ? navigate(loadUrl) : navigate('/dashboard/1');
                             }
                             // !!loadUrl ? loadUrl!=='/check' ? navigate(loadUrl) : navigate('/dashboard/1');
                         } else {
@@ -235,8 +223,9 @@ const ConnectWalletComp: React.FC = () => {
         try {
             const embeddedWallet = wallets[0];
             const embeddedWalletAddress = embeddedWallet?.address;
-            const provider = await embeddedWallet?.getEthersProvider();
-            if (!provider) return;
+            const eip1193Provider = await embeddedWallet?.getEthereumProvider();
+            if (!eip1193Provider) return;
+            const provider = new ethers.BrowserProvider(eip1193Provider);
             connectWalletUtil(provider);
             SetLoginCheck(true);
         } catch (err) {

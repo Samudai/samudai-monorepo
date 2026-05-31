@@ -27,7 +27,6 @@ import { ceramicInit } from 'utils/ceramic/ceramic';
 import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
 import { useAccount, useWalletClient } from 'wagmi';
-import Web3Modal from 'web3modal';
 
 interface PublicPageProps {
     component: IRoute['component'];
@@ -41,7 +40,6 @@ const PublicPage: React.FC<PublicPageProps> = ({ component: Component }) => {
 
     const { connector: activeConnector, isConnected } = useAccount();
     const { data: walletClient, isError, isLoading } = useWalletClient({ chainId: 1 });
-    const web3modal = new Web3Modal({ cacheProvider: true });
     const navigate = useNavigate();
     const inviteCode = localStorage.getItem('inviteCode');
 

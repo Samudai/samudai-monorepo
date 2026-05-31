@@ -10,7 +10,6 @@ import './Login.scss';
 const log = 'SamudaiFren';
 const pass = 'JAISAMUDAI';
 
-require('dotenv').config();
 
 const Login: React.FC = () => {
     const [login, setLogin] = useState<string>('');

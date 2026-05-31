@@ -69,7 +69,7 @@ const SelectList: React.FC<SelectListProps> = ({
     let after: ReactChildType | null = null;
 
     const items = React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return null;
+        if (!React.isValidElement<any>(child)) return null;
 
         if (child.type === Before) {
             before = child;
@@ -83,7 +83,10 @@ const SelectList: React.FC<SelectListProps> = ({
 
         if (child.type === Item) {
             return React.cloneElement(child as ReactElement<any>, {
-                onClick: handleClickButton(child.props.onClick, child.props.disabled),
+                onClick: handleClickButton(
+                    (child.props as { onClick?: onClickItemType; disabled?: boolean }).onClick,
+                    (child.props as { onClick?: onClickItemType; disabled?: boolean }).disabled
+                ),
             });
         }
 

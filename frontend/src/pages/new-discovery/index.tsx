@@ -52,7 +52,8 @@ const Discovery: React.FC = () => {
 
     useEffect(() => {
         if (role !== 'dao' && role !== 'contributor') {
-            return navigate(`/${daoid}/discovery/dao`);
+            navigate(`/${daoid}/discovery/dao`);
+            return;
         }
     }, [role, daoid]);
 

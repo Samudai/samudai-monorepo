@@ -29,7 +29,6 @@ import {
 } from './model';
 import { getAllTagsResponse } from '../Discovery/model';
 
-require('dotenv').config();
 
 export const jobsApi = createApi({
     reducerPath: 'jobsApi',

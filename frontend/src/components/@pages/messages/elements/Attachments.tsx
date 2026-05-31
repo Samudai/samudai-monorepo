@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { Navigation } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import { HatButton, HatTitle } from 'components/chat/elements/Components';
 import Hat from 'components/chat/elements/Hat';

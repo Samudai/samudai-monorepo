@@ -1,7 +1,7 @@
 import { Dispatch, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
-import * as Socials from 'UI/SVG/socials';
+import * as Socials from 'ui/SVG/socials';
 import { selectAccess } from 'store/features/common/slice';
 import { useUpdateDaoSocialsMutation } from 'store/services/Dashboard/dashboard';
 import { useTypedSelector } from 'hooks/useStore';

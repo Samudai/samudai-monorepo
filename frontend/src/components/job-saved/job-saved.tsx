@@ -19,7 +19,7 @@ const JobSaved: React.FC<JobSavedProps> = ({ bounty, experience, id, isSaved, ti
             <header className={styles.job_head}>
                 <h4 className={styles.job_title}>{title}</h4>
                 <button className={styles.job_saveBtn}>
-                    <ArchiveIcon className={isSaved && styles.job_saveBtn_saved} />
+                    <ArchiveIcon className={(isSaved && styles.job_saveBtn_saved) || undefined} />
                 </button>
             </header>
             {/* <SkillList skills={[]} className={styles.job_skills} /> */}

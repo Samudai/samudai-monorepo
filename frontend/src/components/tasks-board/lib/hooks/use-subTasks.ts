@@ -10,7 +10,7 @@ import {
 import { toast } from 'utils/toast';
 import { useParams } from 'react-router-dom';
 import { getMemberId } from 'utils/utils';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { useFetchProject } from 'components/@pages/projects/lib/hooks/use-fetch-project';
 import { updateActivity } from 'utils/activity/updateActivity';
 import store from 'store/store';
@@ -68,7 +68,8 @@ export const useSubTasks = (taskId: string, project_id?: string) => {
                             subtask_id: res.data?.subtask_id,
                             action_type: ActivityEnums.ActionType.SUBTASK_CREATED,
                             // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-                            visibility: projectData?.project?.visibility!,
+                            visibility: projectData?.project
+                                ?.visibility as unknown as ActivityEnums.Visibility,
                             member: {
                                 username:
                                     store.getState().commonReducer?.member?.data.username || '',

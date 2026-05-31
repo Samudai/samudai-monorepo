@@ -9,7 +9,6 @@ import {
     bulkLicenseUpdateRequest,
 } from './model';
 
-require('dotenv').config();
 
 export const billingApi = createApi({
     reducerPath: 'billingApi',

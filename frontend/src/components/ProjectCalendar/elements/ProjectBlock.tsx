@@ -52,7 +52,7 @@ const ProjectBlock: React.FC<ProjectBlockProps> = ({
             }, 100);
         } else if (
             project.project_type === ProjectEnums.ProjectType.INTERNAL ||
-            ProjectEnums.ProjectType.DEFAULT
+            project.project_type === ProjectEnums.ProjectType.DEFAULT
         ) {
             dispatch(changeProjectid({ projectid: project.project_id! }));
             setTimeout(() => {

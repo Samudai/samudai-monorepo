@@ -23,7 +23,9 @@ export const useFetchProject = (project_id?: string) => {
         localStorage.removeItem('_projectid');
     });
 
-    const access = projectData?.data.project.access === ('manage_project' || 'create_task');
+    const access =
+        projectData?.data.project.access === 'manage_project' ||
+        projectData?.data.project.access === 'create_task';
 
     return {
         projectData: projectData?.data,

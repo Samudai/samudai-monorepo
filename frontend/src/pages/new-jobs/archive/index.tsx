@@ -107,7 +107,8 @@ const Archive: React.FC<ArchiveProps> = () => {
 
     useEffect(() => {
         if (type !== 'bounty' && type !== 'tasks') {
-            return navigate('/jobs/tasks');
+            navigate('/jobs/tasks');
+            return;
         }
     }, [jobType]);
 

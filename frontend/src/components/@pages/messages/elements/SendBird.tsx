@@ -93,7 +93,7 @@ const SendBird: React.FC = () => {
     const stateRef = useRef<State>(state);
     stateRef.current = state;
 
-    const channelRef = useRef<any>();
+    const channelRef = useRef<any>(null);
 
     const messageCreate = usePopup();
     const dispatch = useTypedDispatch();

@@ -57,7 +57,7 @@ export const useProject = (data: ProjectResponse, board = false) => {
             }, 100);
         } else if (
             data.project_type === ProjectEnums.ProjectType.INTERNAL ||
-            ProjectEnums.ProjectType.DEFAULT
+            data.project_type === ProjectEnums.ProjectType.DEFAULT
         ) {
             dispatch(changeProjectid({ projectid: data.project_id! }));
             setTimeout(() => {

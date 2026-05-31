@@ -37,7 +37,6 @@ import { ConnectList, ControlButton, ModalTitle } from '../elements';
 import { ConnectAppsProps } from '../types';
 import './ConnectApps.scss';
 
-require('dotenv').config();
 
 interface dropdown {
     value: string;

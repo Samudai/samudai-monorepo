@@ -1,4 +1,4 @@
-import { Navigation } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { SwiperProps } from 'swiper/react';
 import NavButton from 'ui/@buttons/NavButton/NavButton';
 import AttachmentIcon from 'ui/SVG/AttachmentIcon';

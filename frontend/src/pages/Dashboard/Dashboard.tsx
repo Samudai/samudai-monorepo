@@ -4,7 +4,7 @@ import { selectActiveViewId } from '../../store/features/dao/slice';
 import { sendDaoAnalytics } from '../../utils/activity/sendDaoAnalytics';
 import { getMemberId } from '../../utils/utils';
 import DaoHead from './Dao_Components/DaoHead/DaoHead';
-import { createLayout, replaceWidgets } from 'data/view/utils';
+import { createLayout, replaceWidgets } from 'root/data/view/utils';
 import {
     changeTokenGating,
     changeTokenVal,

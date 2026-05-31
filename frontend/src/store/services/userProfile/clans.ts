@@ -7,7 +7,6 @@ import {
     getClanByMemberIdResponse,
 } from './model';
 
-require('dotenv').config();
 
 export const userClansProfileApi = createApi({
     reducerPath: 'userClansProfileApi',

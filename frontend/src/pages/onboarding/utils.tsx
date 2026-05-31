@@ -3,8 +3,7 @@ import { trackCustomWallet } from '@intract/attribution';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ethers } from 'ethers';
 import { useAccount, useConnect } from 'wagmi';
-import { type WalletClient } from 'wagmi';
-import { mainnet } from 'wagmi/chains';
+import { type WalletClient } from 'viem';
 import css from './onboarding.module.scss';
 import { usePrivy, useWallets, useLogin } from '@privy-io/react-auth';
 import { useNavigate } from 'react-router-dom';
@@ -13,12 +12,14 @@ import { generateMessageForEntropy } from 'utils/ceramic/ceramic';
 
 export function walletClientToSigner(walletClient: WalletClient) {
     const { account, chain, transport } = walletClient;
-    const network = {
-        chainId: chain.id,
-        name: chain.name,
-    };
+    const network = chain
+        ? {
+              chainId: chain.id,
+              name: chain.name,
+          }
+        : undefined;
     const provider = new ethers.BrowserProvider(transport, network);
-    trackCustomWallet(account.address);
+    if (account) trackCustomWallet(account.address);
     return provider;
 }
 
@@ -34,8 +35,8 @@ export const PrivyLogin = () => {
         message: string,
         signer: ethers.JsonRpcSigner
     ): Promise<string> => {
-        const res = await signMessage(message);
-        return res;
+        const res = await signMessage({ message });
+        return res.signature;
     };
 
     const getUserDetails = () => {
@@ -62,7 +63,10 @@ export const PrivyLogin = () => {
         try {
             const wallet = wallets[0];
             const isPrivy = wallet.walletClientType === 'privy';
-            const provider = await wallet?.getEthersProvider();
+            const eip1193Provider = await wallet?.getEthereumProvider();
+            const provider = eip1193Provider
+                ? new ethers.BrowserProvider(eip1193Provider)
+                : undefined;
             const signer = await provider?.getSigner();
             const accounts = await signer?.getAddress();
             const semail = localStorage.getItem('semail') as string | undefined;
@@ -132,9 +136,7 @@ export const PrivyLogin = () => {
 
 export const LoginComp = () => {
     const { connector: activeConnector, isConnected } = useAccount();
-    const { connect, connectors, error, isLoading, pendingConnector } = useConnect({
-        chainId: mainnet.id,
-    });
+    const { connect, connectors, error, isPending } = useConnect();
 
     // useEffect(() => {
     //     console.log('activeConnector', activeConnector);

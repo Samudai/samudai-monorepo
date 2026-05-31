@@ -19,7 +19,6 @@ import {
     updateFormReq,
 } from './model';
 
-require('dotenv').config();
 
 export const dashboardApi = createApi({
     reducerPath: 'dashboardApi',

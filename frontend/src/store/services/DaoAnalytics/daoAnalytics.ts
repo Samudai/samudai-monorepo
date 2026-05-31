@@ -8,7 +8,6 @@ import {
     GetPendingProposalsResponse,
 } from './model';
 
-require('dotenv').config();
 
 export const daoAnalyticsApi = createApi({
     reducerPath: 'daoAnalytics',

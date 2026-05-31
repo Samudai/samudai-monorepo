@@ -12,9 +12,7 @@ declare module 'react' {
         jsx?: boolean;
         global?: boolean;
     }
-}
 
-declare global {
     namespace JSX {
         interface IntrinsicElements {
             'em-emoji': {
@@ -33,10 +31,25 @@ declare global {
                 src?: string;
                 direction?: '1' | '-1';
                 speed?: number;
-                speed?: number;
                 debug?: boolean;
                 style?: React.CSSProperties;
             };
         }
+    }
+}
+
+// Provide a global `JSX` namespace alias so legacy `JSX.Element` / `JSX.IntrinsicElements`
+// references keep working under React 19 (which moved JSX to `React.JSX`).
+declare global {
+    namespace JSX {
+        type Element = React.JSX.Element;
+        type ElementType = React.JSX.ElementType;
+        type ElementClass = React.JSX.ElementClass;
+        type ElementAttributesProperty = React.JSX.ElementAttributesProperty;
+        type ElementChildrenAttribute = React.JSX.ElementChildrenAttribute;
+        type LibraryManagedAttributes<C, P> = React.JSX.LibraryManagedAttributes<C, P>;
+        type IntrinsicAttributes = React.JSX.IntrinsicAttributes;
+        type IntrinsicClassAttributes<T> = React.JSX.IntrinsicClassAttributes<T>;
+        interface IntrinsicElements extends React.JSX.IntrinsicElements {}
     }
 }

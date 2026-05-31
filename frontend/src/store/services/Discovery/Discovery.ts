@@ -17,7 +17,6 @@ import {
     getAllDomainTagsResponse,
 } from './model';
 
-require('dotenv').config();
 
 export const discoveryApi = createApi({
     reducerPath: 'discoveryApi',

@@ -1,7 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import { ethers } from 'ethers';
-import Web3Modal from 'web3modal';
+import { useConfig, useConnect } from 'wagmi';
+import { getAccount } from 'wagmi/actions';
+import { injected } from 'wagmi/connectors';
 import { changeDiscordData } from 'store/features/Onboarding/slice';
 import {
     changeAccount,
@@ -26,7 +28,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
     // const [domain, setDomain] = useState<string>(window.location.host);
     // const [cookies, setCookie] = useCookies(['walletSignature']);
     const [login] = useLoginMutation();
-    const web3modal = new Web3Modal({ cacheProvider: true });
+    const { connectAsync } = useConnect();
+    const config = useConfig();
     const navigate = useNavigate();
     const search = useLocation().search;
     const inviteCode = localStorage.getItem('inviteCode');
@@ -35,7 +38,10 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
     const ConnectWalletHandler = async () => {
         localStorage.removeItem('discord bot');
         try {
-            const web3Provider = await web3modal.connect();
+            await connectAsync({ connector: injected() });
+            const web3Provider = (await getAccount(
+                config
+            ).connector?.getProvider()) as ethers.Eip1193Provider;
             dispatch(changeWeb3ModalProvider({ web3ModalProvider: web3Provider }));
             const provider = new ethers.BrowserProvider(web3Provider);
             const signer = await provider.getSigner();

@@ -153,7 +153,7 @@ const ChangeAddress: React.FC<ChangeAddressProps> = ({ selectedProvider, onClose
                             ).filter((i) => i.id !== chain.id)}
                             classNamePrefix="rs"
                             styles={paymentsSelectStyles}
-                            formatOptionLabel={PaymentsCustomControl}
+                            formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
                             isSearchable={false}
                             defaultValue={getSelectedProviderChain()}
                             onChange={(value) => setChain(value as IChainList)}

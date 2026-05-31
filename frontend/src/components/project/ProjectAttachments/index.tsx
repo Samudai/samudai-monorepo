@@ -3,7 +3,8 @@ import ReactPaginate from 'react-paginate';
 import { ProjectFile, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import SwiperCore, { Navigation } from 'swiper';
+import { Swiper as SwiperCore } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import { folderRes } from 'store/services/projects/model';
 import {

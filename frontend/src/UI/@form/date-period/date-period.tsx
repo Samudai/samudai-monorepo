@@ -19,12 +19,10 @@ export interface DatePeriodProps {
 const weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
 const DatePeriod: React.FC<DatePeriodProps> = ({ period, onClose, onPeriodChange }) => {
-    const [periodValue, setPeriodValue] = useState<DatePeriodPeriod>(
-        {
-            start: null,
-            end: null,
-        } || period
-    );
+    const [periodValue, setPeriodValue] = useState<DatePeriodPeriod>({
+        start: null,
+        end: null,
+    });
     const [month, setMonth] = useState(periodValue.start || dayjs());
     const isCurrentMonth = dayjs().isSame(month, 'M');
 

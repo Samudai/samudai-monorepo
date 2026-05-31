@@ -154,7 +154,7 @@ export const useDAO = (callback?: () => void) => {
                             loadUrl === '/login'
                         )
                             navigate(`/${dao![0].id}/dashboard/1`);
-                        loadUrl !== ('/check' || '/' || '/signup' || '/jobs' || '/login')
+                        loadUrl !== '/check'
                             ? navigate(loadUrl)
                             : navigate(`/${dao![0].id}/dashboard/1`);
                     }

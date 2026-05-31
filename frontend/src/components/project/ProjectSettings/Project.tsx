@@ -119,7 +119,7 @@ const ProjectSettingsProject: React.FC<ProjectProps> = ({ project, onClose, user
                         payment_id: '',
                         bounty_id: '',
                         action_type: ActivityEnums.ActionType.PROJECT_UPDATED,
-                        visibility: payload.visibility!,
+                        visibility: payload.visibility as unknown as ActivityEnums.Visibility,
                         member: {
                             username: store.getState().commonReducer?.member?.data.username || '',
                             profile_picture:

@@ -19,7 +19,6 @@ import {
     updateProviderRequest,
 } from './model';
 
-require('dotenv').config();
 
 export const paymentsApi = createApi({
     reducerPath: 'paymentsApi',

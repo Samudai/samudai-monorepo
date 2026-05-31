@@ -99,7 +99,8 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
                     subtask_id: subTaskData.subtask_id!,
                     action_type: ActivityEnums.ActionType.SUBTASK_UPDATED,
                     // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-                    visibility: projectData?.project?.visibility!,
+                    visibility: projectData?.project
+                        ?.visibility as unknown as ActivityEnums.Visibility,
                     member: {
                         username: store.getState().commonReducer?.member?.data.username || '',
                         profile_picture:

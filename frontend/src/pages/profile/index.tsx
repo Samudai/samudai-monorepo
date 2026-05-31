@@ -63,7 +63,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (type !== undefined && type !== 'profile' && type !== 'projects' && type !== 'clans') {
-            return navigate(`/${memberid}/profile`);
+            navigate(`/${memberid}/profile`);
         }
     }, [type]);
 
@@ -101,7 +101,7 @@ const Profile = () => {
         <Loader />
     ) : (
         <ContributorLayout
-            className={isProfile && styles.withSidebar}
+            className={(isProfile && styles.withSidebar) || undefined}
             hideSidebar={isProfile}
             data-analytics-page="contributor_profile_page"
         >

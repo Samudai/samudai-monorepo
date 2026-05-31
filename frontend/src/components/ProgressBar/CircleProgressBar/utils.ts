@@ -28,7 +28,7 @@ export const getLines = (
             word = words[i];
             width = ctx.measureText(currentLine + ' ' + word).width;
 
-            if (width < maxWidth) {
+            if (width < Number(maxWidth)) {
                 currentLine += ` ${word}`;
             } else {
                 lines.push(currentLine);

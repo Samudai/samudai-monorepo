@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import clsx from 'clsx';
-import { getPopupLayoutWidgets } from 'data/view/utils';
+import { getPopupLayoutWidgets } from 'root/data/view/utils';
 import { selectDaoViewActive, toggleActiveWidget } from 'store/features/dao/slice';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import Switch from 'ui/Switch/Switch';

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
@@ -59,7 +59,10 @@ export const Twitter: React.FC = () => {
                 >
                     {data.length > 0 ? (
                         <ul className={styles.list}>
-                            {data.length > 0 && data?.slice(0, 2).map(TwitterItem)}
+                            {
+                                (data.length > 0 &&
+                                    data?.slice(0, 2).map(TwitterItem)) as React.ReactNode
+                            }
                         </ul>
                     ) : (
                         <div className={styles.empty}>

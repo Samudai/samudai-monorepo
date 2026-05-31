@@ -34,7 +34,7 @@ const Enables: React.FC = () => {
             <OnboardingLayout progress={5}>
                 <div className={css.content}>
                     <div className={css.left}>
-                        <img className={css.logo} src={require('assets/images/logo.png')} alt="" />
+                        <img className={css.logo} src={require('images/logo.png')} alt="" />
 
                         {type === 'trial' ? (
                             <h2 className={css.title}>

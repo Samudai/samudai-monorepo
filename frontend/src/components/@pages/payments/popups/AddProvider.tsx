@@ -133,7 +133,7 @@ const AddProvider: React.FC<AddProviderProps> = ({ onClose }) => {
                             data-analytics-click="provider_select"
                             className="add-payments__provider-select"
                             defaultValue={providerValues[0]}
-                            formatOptionLabel={PaymentsCustomControl}
+                            formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
                             isSearchable={false}
                             styles={paymentsSelectStyles}
                             options={providerValues}
@@ -186,7 +186,7 @@ const AddProvider: React.FC<AddProviderProps> = ({ onClose }) => {
             /> */}
                         {/* <PopupSubtitle text="Chain" className="add-payments__chain-subtitle" />
             <Select
-              formatOptionLabel={PaymentsCustomControl}
+              formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
               isSearchable={false}
               styles={paymentsSelectStyles}
               options={(provider.name === 'gnosis'

@@ -43,7 +43,6 @@ import {
     updateSubTaskRowRequest,
 } from './model';
 
-require('dotenv').config();
 
 export const projectApi = createApi({
     reducerPath: 'projectApi',

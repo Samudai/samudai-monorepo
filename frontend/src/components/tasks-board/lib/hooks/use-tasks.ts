@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { useParams } from 'react-router-dom';
 import { ActivityEnums, NotificationsEnums, Task } from '@samudai_xyz/gateway-consumer-types';
 import { selectActiveDao, selectProvider } from 'store/features/common/slice';

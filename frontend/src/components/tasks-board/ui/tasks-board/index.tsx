@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { useParams } from 'react-router-dom';
 import { SubtasksBoard } from '../subtasks-board';
 import { TaskAccordeon } from '../task-accordeon';
@@ -310,9 +310,9 @@ function TasksBoardWrapper({
                                                             groupBy === BoardGroupByEnum.DEPARTMENT
                                                                 ? ['person']
                                                                 : groupBy ===
-                                                                  BoardGroupByEnum.CONTRIBUTOR
-                                                                ? ['department']
-                                                                : ['department', 'person']
+                                                                    BoardGroupByEnum.CONTRIBUTOR
+                                                                  ? ['department']
+                                                                  : ['department', 'person']
                                                         }
                                                         deleteTask={
                                                             adminAccess ? onDelete : undefined

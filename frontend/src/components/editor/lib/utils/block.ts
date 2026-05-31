@@ -4,6 +4,10 @@ import { Transforms, Editor, Element as SlateElement } from 'slate';
 export const alignTypes = Object.values(EditorAlignFormats) as string[];
 export const listTypes = Object.values(EditorListEnum) as string[];
 
+// Slate's base `Element` type doesn't declare the editor's custom props (`type`
+// and the dynamic `blockType` key), so widen it explicitly instead of `as any`.
+type SlateElementWithType = SlateElement & { type?: string; [key: string]: unknown };
+
 export const isBlockActive = (editor: EditorType, format: string, blockType: string = 'type') => {
     const { selection } = editor;
     if (!selection) return false;
@@ -14,7 +18,7 @@ export const isBlockActive = (editor: EditorType, format: string, blockType: str
             match: (n) =>
                 !Editor.isEditor(n) &&
                 SlateElement.isElement(n) &&
-                (n as any)[blockType] === format,
+                (n as SlateElementWithType)[blockType] === format,
         })
     );
 
@@ -29,7 +33,7 @@ export const toggleBlock = (editor: EditorType, format: string) => {
         match: (n) =>
             !Editor.isEditor(n) &&
             SlateElement.isElement(n) &&
-            listTypes.includes(n.type) &&
+            listTypes.includes((n as SlateElementWithType).type ?? '') &&
             !alignTypes.includes(format),
         split: true,
     });

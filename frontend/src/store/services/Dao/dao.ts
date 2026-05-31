@@ -18,7 +18,6 @@ import {
 } from './model';
 import { checkSubdomainAccessResponse } from '../userProfile/model';
 
-require('dotenv').config();
 
 export const daoApi = createApi({
     reducerPath: 'daoApi',

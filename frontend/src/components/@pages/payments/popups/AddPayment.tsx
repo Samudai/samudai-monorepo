@@ -30,7 +30,6 @@ import styles from '../styles/AddPayment.module.scss';
 import { usePayments } from 'utils/payments/use-payments';
 import { providerList } from 'store/features/payments/paymentsSlice';
 
-require('dotenv').config();
 
 interface AddPaymentProps {
     onClose?: () => void;
@@ -133,8 +132,8 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                 currency: item.token
                                     ? item.token.name
                                     : safeGnosisData.chain_id === 1 || safeGnosisData.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 balance: item.token
                                     ? ethers.formatUnits(item.balance, item.token.decimals)
                                     : ethers.formatEther(item.balance),
@@ -142,8 +141,8 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                 name: item.token
                                     ? item.token.name
                                     : safeGnosisData.chain_id === 1 || safeGnosisData.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 decimal: item.token ? item.token.decimals : 0,
                                 logo_uri: item.token ? item.token.logoUri : '',
                             });
@@ -434,7 +433,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                 .map((item) => ({ ...item, value: item.id }))
                                 .filter((i) => i.id !== provider.id && i.id !== 0)}
                             onChange={(value) => setProvider(value as IProviderList)}
-                            formatOptionLabel={PaymentsCustomControl}
+                            formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
                             isSearchable={false}
                             classNamePrefix="rs"
                             styles={paymentsSelectStyles}
@@ -448,7 +447,9 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                         .map((item) => ({ ...item, value: item.id }))
                                         .filter((i) => i.id !== safeGnosisData.id && i.id !== 0)}
                                     onChange={(value) => setSafeGnosisData(value as IProviderList)}
-                                    formatOptionLabel={PaymentsCustomControl}
+                                    formatOptionLabel={(data) => (
+                                        <PaymentsCustomControl {...data} />
+                                    )}
                                     isSearchable={false}
                                     classNamePrefix="rs"
                                     styles={paymentsSelectStyles}
@@ -462,7 +463,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                         .map((item) => ({ ...item, value: item.id }))
                                         .filter((i) => i.id !== safeParcelData.id && i.id !== 0)}
                                     onChange={(value) => setSafeParcelData(value as IProviderList)}
-                                    formatOptionLabel={PaymentsCustomControl}
+                                    formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
                                     isSearchable={false}
                                     classNamePrefix="rs"
                                     styles={paymentsSelectStyles}
@@ -480,7 +481,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                                         className="add-payments__chain-subtitle"
                                     />
                                     <Select
-                                        formatOptionLabel={PaymentsCustomControl}
+                                        formatOptionLabel={(data) => <PaymentsCustomControl {...data} />}
                                         isSearchable={false}
                                         styles={paymentsSelectStyles}
                                         options={GnosisChainValues.filter(

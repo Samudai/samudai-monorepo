@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useRequest from 'hooks/useRequest';
 import Block from 'components/Block/Block';
@@ -70,7 +70,7 @@ export const NotificationsCenter: React.FC = (props = {}) => {
                         loading={loadingTransactions}
                         skeleton={<NotificationsTransactionSkeleton />}
                     >
-                        {transactions.map(NotificationsTransaction)}
+                        {transactions.map(NotificationsTransaction) as React.ReactNode}
                     </Skeleton>
                 </div>
             </Block.Scrollable>

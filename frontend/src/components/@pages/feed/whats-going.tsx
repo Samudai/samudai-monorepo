@@ -34,7 +34,7 @@ const WhatsGoing: React.FC<WhatsGoingProps> = (props) => {
             </header>
             <ul className={styles.wg_list}>
                 {data.length > 0 ? (
-                    data?.slice(0, 2).map(TwitterItem)
+                    (data?.slice(0, 2).map(TwitterItem) as React.ReactNode)
                 ) : (
                     <li className={styles.wg_no_tweets}>No tweets.</li>
                 )}

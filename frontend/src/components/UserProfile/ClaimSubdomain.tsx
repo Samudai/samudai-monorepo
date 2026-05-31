@@ -28,7 +28,6 @@ const ClaimSubdomain: React.FC<IProps> = ({ onClose, setNewDomain, count }) => {
     const [show, setShow] = useState<boolean>(true);
     const [updateSubDomain] = useUpdateSubDomainMutation();
     const provider = useTypedSelector(selectProvider);
-    require('dotenv').config();
     const handleClaim = async () => {
         try {
             setLoad(true);

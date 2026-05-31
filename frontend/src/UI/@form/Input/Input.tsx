@@ -10,7 +10,7 @@ interface InputProps {
     value?: InputType['value'];
     icon?: JSX.Element;
     controls?: JSX.Element;
-    inputRef?: React.RefObject<HTMLInputElement>;
+    inputRef?: React.RefObject<HTMLInputElement | null>;
     name?: InputType['name'];
     placeholder?: InputType['placeholder'];
     autoComplete?: InputType['autoComplete'];
@@ -61,8 +61,8 @@ const Input = React.forwardRef<HTMLDivElement, InputProps>(
                             redOrGreen === 'red'
                                 ? 'solid #FF6D6D'
                                 : redOrGreen === 'green'
-                                ? 'solid #80F299'
-                                : 'none',
+                                  ? 'solid #80F299'
+                                  : 'none',
                     }}
                 >
                     {icon}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import SwiperCore, { Navigation } from 'swiper';
+import { Swiper as SwiperCore } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
 import { useLazySearchMemberByDaoQuery } from 'store/services/Search/Search';
 import useRequest from 'hooks/useRequest';

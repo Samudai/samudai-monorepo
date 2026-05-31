@@ -93,7 +93,9 @@ export const ReviewsNew: React.FC<ReviewsProps> = ({ className }) => {
                                 />
                                 <span className={styles.infoVotes}>{data?.length} Votes</span>
                             </div>
-                            <ul className={styles.list}>{data?.slice(0, 2).map(ReviewsItem)}</ul>
+                            <ul className={styles.list}>
+                                {data?.slice(0, 2).map(ReviewsItem) as React.ReactNode}
+                            </ul>
                             {data.length > 2 && (
                                 <p
                                     style={{

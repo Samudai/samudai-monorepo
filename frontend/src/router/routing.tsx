@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet, Route, Routes, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAccount } from 'wagmi';
-import Web3Modal from 'web3modal';
 import MainLayout from 'root/layouts/main/main.layout';
 import PublicPage from 'pages/public/public-page';
 import { changeUrl, selectUrl } from 'store/features/common/slice';
@@ -44,7 +43,6 @@ const Routing = () => {
     const user = useTypedSelector(selectUserData);
     const navigate = useNavigate();
     const { checkAuth } = useLogin();
-    const web3Modal = new Web3Modal({ cacheProvider: true });
     const urlLoad = useTypedSelector(selectUrl);
     const dispatch = useTypedDispatch();
     const [URL, setURL] = useState<string>(urlLoad!);

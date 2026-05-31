@@ -10,7 +10,6 @@ import {
 import { useTypedDispatch } from 'hooks/useStore';
 import { getMemberId } from 'utils/utils';
 
-require('dotenv').config();
 
 export const useSearch = () => {
     const [searchValue, setSearchValue] = useState('');

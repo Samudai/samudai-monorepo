@@ -4,18 +4,32 @@ import {
     NewContributorItems,
     NewDAOItems,
 } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
-import { ethers } from 'ethers';
 import { DAOType } from 'root/mockup/daos';
+import type { Provider, Signer } from 'ethers';
+
+// Minimal surface used from the @pushprotocol/socket connection (a socket.io
+// `Socket`). Typed structurally so it's satisfied regardless of which socket.io
+// copy produced it (sidesteps the CJS/ESM dual-package nominal mismatch) and is
+// immer-`Draft`-safe (interface, no `#private` fields).
+export interface PushSDKSocket {
+    on(event: string, listener: (...args: any[]) => void): void;
+}
 
 export interface CommonSliceState {
     activeDao: string;
     projectDao: string;
     activeDaoName: string;
     daoList: DAOType[];
-    provider: ethers.BrowserProvider | null;
-    wallet: ethers.Wallet | null;
+    // Typed as the ethers `Provider`/`Signer` *interfaces* rather than the concrete
+    // `BrowserProvider`/`Wallet` classes: those classes carry ECMAScript `#private`
+    // fields, which immer's `WritableDraft<>` (RTK Toolkit 2) can't reproduce, so the
+    // concrete classes break `createSlice`'s `Draft<State>` reducer typing. A
+    // `BrowserProvider`/`Wallet` is assignable to `Provider`/`Signer`; selectors and
+    // readers down-cast to `BrowserProvider` where the concrete API is needed.
+    provider: Provider | null;
+    wallet: Signer | null;
     socket: any | null;
-    pushSDKSocket: any | null;
+    pushSDKSocket: PushSDKSocket | null;
     account: string | null;
     jwt: string;
     roles: string[];

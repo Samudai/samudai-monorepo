@@ -12,7 +12,6 @@ import 'swiper/css';
 import Loader from 'components/Loader/Loader';
 import { PrivyProvider } from '@privy-io/react-auth';
 
-require('dotenv').config();
 
 if (process.env.REACT_APP_ENV !== 'local' && process.env.REACT_APP_ENV !== 'development') {
     console.log = () => {};
@@ -30,14 +29,10 @@ if (!rootElement) {
 }
 
 const root = ReactDOM.createRoot(rootElement);
-const handleLogin = (user: any) => {
-    console.log(`User ${user.id} logged in!`);
-};
 
 root.render(
     <PrivyProvider
         appId={'clo49k9hm01vlmb0fdq21b1k6'}
-        onSuccess={handleLogin}
         config={{
             loginMethods: ['email', 'github', 'google', 'wallet'],
             appearance: {

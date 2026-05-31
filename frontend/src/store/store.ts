@@ -1,4 +1,3 @@
-import { Dispatch } from 'react';
 import onboardingReducer from './features/Onboarding/slice';
 import appReducer from './features/app/slice';
 import chatReducer from './features/chats/slice';
@@ -24,7 +23,7 @@ import { billingApi } from './services/Billing/billing';
 import { tasksApi } from './services/projects/tasks';
 import { userClansProfileApi } from './services/userProfile/clans';
 import { userProfileApi } from './services/userProfile/userProfile';
-import { AnyAction, configureStore } from '@reduxjs/toolkit';
+import { Middleware, configureStore } from '@reduxjs/toolkit';
 import { discoveryApi } from 'store/services/Discovery/Discovery';
 import { discussionApi } from 'store/services/Discussion/discussion';
 import { gifApi } from 'store/services/Gif/gif';
@@ -37,47 +36,43 @@ import { projectApi } from 'store/services/projects/totalProjects';
 import { EventAnalyticsPayload, sendEventAnalytics } from 'utils/activity/sendTrackingAnalytics';
 import { sendbirdApi } from './services/SendBird/sendbirdApi';
 
-require('dotenv').config();
 
-export const postSuccessLoggerMiddleware =
-    () =>
-    (next: Dispatch<AnyAction>) =>
-    <A extends AnyAction>(action: A) => {
-        const analyticsPayload: EventAnalyticsPayload = {} as EventAnalyticsPayload;
+export const postSuccessLoggerMiddleware: Middleware = () => (next) => (action: any) => {
+    const analyticsPayload: EventAnalyticsPayload = {} as EventAnalyticsPayload;
+    if (
+        action.type.endsWith('/executeMutation/fulfilled') &&
+        action.meta.requestStatus === 'fulfilled'
+    ) {
         if (
-            action.type.endsWith('/executeMutation/fulfilled') &&
-            action.meta.requestStatus === 'fulfilled'
+            !(
+                action.meta.arg.endpointName === 'getMemberById' ||
+                action.meta.arg.endpointName === 'getProjectByMemberId'
+            )
         ) {
-            if (
-                !(
-                    action.meta.arg.endpointName === 'getMemberById' ||
-                    action.meta.arg.endpointName === 'getProjectByMemberId'
-                )
-            ) {
-                analyticsPayload.type = 'POST';
-                analyticsPayload.endpoint = action.meta.baseQueryMeta.url;
-                analyticsPayload.endpointName = action.meta.arg.endpointName;
-                analyticsPayload.args = action.meta.arg.originalArgs;
-                analyticsPayload.fulfilled = true;
-                analyticsPayload.data = action.payload;
-                sendEventAnalytics(analyticsPayload);
-            }
-        } else if (
-            action.type.endsWith('/executeQuery/fulfilled') &&
-            action.meta.requestStatus === 'fulfilled'
-        ) {
-            // analyticsPayload.type = 'GET';
-            // analyticsPayload.endpoint = action.meta.baseQueryMeta.url;
-            // analyticsPayload.endpointName = action.meta.arg.endpointName;
-            // analyticsPayload.args = action.meta.arg.originalArgs;
-            // analyticsPayload.fulfilled = true;
-            // analyticsPayload.data = action.payload;
-            // sendEventAnalytics(analyticsPayload);
-            // console.log('Action Query fulfiled:', action);
+            analyticsPayload.type = 'POST';
+            analyticsPayload.endpoint = action.meta.baseQueryMeta.url;
+            analyticsPayload.endpointName = action.meta.arg.endpointName;
+            analyticsPayload.args = action.meta.arg.originalArgs;
+            analyticsPayload.fulfilled = true;
+            analyticsPayload.data = action.payload;
+            sendEventAnalytics(analyticsPayload);
         }
+    } else if (
+        action.type.endsWith('/executeQuery/fulfilled') &&
+        action.meta.requestStatus === 'fulfilled'
+    ) {
+        // analyticsPayload.type = 'GET';
+        // analyticsPayload.endpoint = action.meta.baseQueryMeta.url;
+        // analyticsPayload.endpointName = action.meta.arg.endpointName;
+        // analyticsPayload.args = action.meta.arg.originalArgs;
+        // analyticsPayload.fulfilled = true;
+        // analyticsPayload.data = action.payload;
+        // sendEventAnalytics(analyticsPayload);
+        // console.log('Action Query fulfiled:', action);
+    }
 
-        return next(action);
-    };
+    return next(action);
+};
 
 const store = configureStore({
     reducer: {

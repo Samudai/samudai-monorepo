@@ -65,7 +65,7 @@ const MeetingCalendar: React.FC<MeetingCalendarProps> = ({
             titleEl.style.display = 'none';
             const yPos = getYPosition();
             titleEl.style.display = '';
-            bodyRef.current.scrollTop = yPos;
+            bodyEl.scrollTop = yPos;
         }
     };
     const dispatch = useTypedDispatch();

@@ -3,7 +3,7 @@ import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
 import { AccessEnums } from '@samudai_xyz/gateway-consumer-types/';
 import { ethers } from 'ethers';
 import { Socket } from 'socket.io-client';
-import { CommonSliceState } from './state';
+import { CommonSliceState, PushSDKSocket } from './state';
 import { DAOType } from 'root/mockup/daos';
 import {
     NewContributorItems,
@@ -127,7 +127,7 @@ const reducers = {
     },
     setPushNotificationSocket: (
         state: CommonSliceState,
-        { payload }: PayloadAction<{ pushSDKSocket: Socket }>
+        { payload }: PayloadAction<{ pushSDKSocket: PushSDKSocket }>
     ) => {
         state.pushSDKSocket = payload.pushSDKSocket;
     },

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import PopupSubtitle from '../components/PopupSubtitle/PopupSubtitle';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ChatCreateGroupType } from '@pushprotocol/restapi/src/lib/chat';
@@ -144,8 +144,11 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({ onClose }) => {
         );
     }, [wallets]);
 
+    // ChatCreateGroupType (a PushAPI type) doesn't satisfy RHF's FieldValues
+    // constraint, so handleSubmit's TFieldValues can't resolve; SubmitHandler<any>
+    // keeps the handler shape without a blanket `any` on the expression.
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit as SubmitHandler<any>)}>
             <Input
                 className={styles.inputTitle}
                 placeholder="Group Name"
@@ -155,7 +158,7 @@ const GroupCreateForm: React.FC<GroupCreateFormProps> = ({ onClose }) => {
             <>
                 <PopupSubtitle className={styles.subtitle} text="Group Description" />
                 <TextArea
-                    value={description}
+                    value={description ?? ''}
                     placeholder="Enter description."
                     className={styles.textArea}
                     onChange={(e) => setValue('groupDescription', e.target.value)}

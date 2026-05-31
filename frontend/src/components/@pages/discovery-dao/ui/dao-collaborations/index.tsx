@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { SwiperOptions } from 'swiper';
+import { Swiper as SwiperCore } from 'swiper';
+import type { SwiperOptions } from 'swiper/types';
 import Button from 'ui/@buttons/Button/Button';
 import css from './dao-collaborations.module.scss';
 import Sprite from 'components/sprite';

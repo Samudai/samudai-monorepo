@@ -13,12 +13,11 @@ import {
     DisclaimerComponent,
     RainbowKitProvider,
     darkTheme,
-    getDefaultWallets,
+    getDefaultConfig,
 } from '@rainbow-me/rainbowkit';
-import { WagmiConfig, configureChains, createConfig } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider, http } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
 import Routing from 'root/router/routing';
 import store from 'store/store';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
@@ -38,6 +37,20 @@ import { CustomType } from 'components/@pages/messages/elements/SendBird';
 
 const socket = store.getState().commonReducer.socket;
 
+const wagmiConfig = getDefaultConfig({
+    appName: 'Samudai App',
+    projectId: '8b60825811388c0a7b52f78296af99f3',
+    chains: [mainnet],
+    transports: {
+        [mainnet.id]: http(
+            `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_ETHEREUM!}`
+        ),
+    },
+    ssr: false,
+});
+
+const queryClient = new QueryClient();
+
 const App = () => {
     const navigate = useNavigate();
     const account = useTypedSelector(selectAccount);
@@ -47,23 +60,6 @@ const App = () => {
     const dispatch = useTypedDispatch();
 
     const isOnboarded = localStorage.getItem('isOnboarded');
-
-    const { chains, publicClient } = configureChains(
-        [mainnet],
-        [alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_ETHEREUM! }), publicProvider()]
-    );
-
-    const { connectors } = getDefaultWallets({
-        appName: 'Samudai App',
-        projectId: '8b60825811388c0a7b52f78296af99f3',
-        chains,
-    });
-
-    const wagmiConfig = createConfig({
-        autoConnect: true,
-        connectors,
-        publicClient,
-    });
 
     const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
         <Text>
@@ -171,22 +167,23 @@ const App = () => {
 
     return (
         <React.Fragment>
-            <WagmiConfig config={wagmiConfig}>
-                <RainbowKitProvider
-                    appInfo={{
-                        appName: 'Samudai App',
-                        learnMoreUrl: 'https://samudai.xyz',
-                        disclaimer: Disclaimer,
-                    }}
-                    chains={chains}
-                    theme={darkTheme({ overlayBlur: 'small' })}
-                >
-                    <Menu />
-                    <FastNotifications />
-                    <Routing />
-                    <Prompt />
-                </RainbowKitProvider>
-            </WagmiConfig>
+            <WagmiProvider config={wagmiConfig}>
+                <QueryClientProvider client={queryClient}>
+                    <RainbowKitProvider
+                        appInfo={{
+                            appName: 'Samudai App',
+                            learnMoreUrl: 'https://samudai.xyz',
+                            disclaimer: Disclaimer,
+                        }}
+                        theme={darkTheme({ overlayBlur: 'small' })}
+                    >
+                        <Menu />
+                        <FastNotifications />
+                        <Routing />
+                        <Prompt />
+                    </RainbowKitProvider>
+                </QueryClientProvider>
+            </WagmiProvider>
         </React.Fragment>
     );
 };

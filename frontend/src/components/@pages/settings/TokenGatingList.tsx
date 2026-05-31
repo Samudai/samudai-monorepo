@@ -26,7 +26,7 @@ const TokenGatingList: React.FC<TokenGatingListProps> = ({ children }) => {
             <ul className={styles.list}>
                 <li className={styles.stepLine} ref={lineRef}></li>
                 {React.Children.map(children, (child, index) => {
-                    if (React.isValidElement(child) && child.type === Item) {
+                    if (React.isValidElement<{ active?: boolean }>(child) && child.type === Item) {
                         if (child.props.active) {
                             return React.cloneElement(child as React.ReactElement<any>, {
                                 ref: (node: HTMLLIElement) => (items.current[index] = node),

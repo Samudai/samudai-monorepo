@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import store from 'store/store';
 import { createProjectRequest } from './model';
 
-require('dotenv').config();
 
 export const userProfileApi = createApi({
     reducerPath: 'newProjectsApi',

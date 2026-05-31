@@ -34,7 +34,7 @@ export const EditorEditable: React.FC<EditableEditorProps> = ({
     });
 
     return (
-        <Slate editor={editor as ReactEditor} value={value} onChange={onChange}>
+        <Slate editor={editor as ReactEditor} initialValue={value} onChange={onChange}>
             {/* <EditorToolbar />
       <EditorLinkPopup /> */}
             <EditorToolbar />

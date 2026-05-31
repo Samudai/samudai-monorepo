@@ -20,7 +20,7 @@ import { ConfirmationModal } from '../forum-comment-delete';
 import { useTypedSelector } from 'hooks/useStore';
 import { discussions } from 'store/features/discussion/slice';
 import { selectAccessList } from 'store/features/common/slice';
-import { MentionsInput, Mention } from 'react-mentions';
+import { MentionsInput, Mention, MentionsInputStyle } from 'react-mentions';
 import { DisplayImageModal } from 'components/chat/elements/DisplayImageModal';
 
 interface ForumCommentsItemProps {
@@ -279,7 +279,7 @@ export const ForumCommentsItem: React.FC<ForumCommentsItemProps> = ({ data, onRe
                                 className={css.mention_input}
                                 value={input}
                                 onChange={(ev) => handleInputChange(ev.target.value)}
-                                style={mentionsInputStyle}
+                                style={mentionsInputStyle as unknown as MentionsInputStyle}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' && !e.shiftKey) {
                                         handleUpdateMessage();

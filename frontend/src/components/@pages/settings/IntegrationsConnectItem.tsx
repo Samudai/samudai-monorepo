@@ -58,7 +58,6 @@ const IntegrationsConnectItem: React.FC<IntegrationsConnectItemProps> = ({
     const navigate = useNavigate();
     const activeDao = useTypedSelector(selectActiveDao);
     const access = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
-    require('dotenv').config();
 
     const discordConnected = localStorage.getItem('discord_connected');
 

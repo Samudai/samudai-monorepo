@@ -10,7 +10,7 @@ const Stepper: React.FC<StepperProps> = ({ active, children }) => {
     return (
         <React.Fragment>
             {React.Children.map(children, (child) => {
-                if (!React.isValidElement(child)) return null;
+                if (!React.isValidElement<{ step?: string | number }>(child)) return null;
 
                 if (child.type !== Step) return null;
 

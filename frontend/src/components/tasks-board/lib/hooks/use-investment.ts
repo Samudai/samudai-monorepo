@@ -1,7 +1,7 @@
 import { useFetchProject } from 'components/@pages/projects/lib';
 import { useTypedDispatch } from 'hooks/useStore';
 import { useEffect, useState } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { useParams } from 'react-router-dom';
 import { updateInvestmentItem } from 'store/features/jobs/slice';
 import { useLazyGetTaskForFormQuery } from 'store/services/projects/tasks';

@@ -8,7 +8,6 @@ import {
     searchRes,
 } from './Model';
 
-require('dotenv').config();
 
 export const searchApi = createApi({
     reducerPath: 'searchApi',

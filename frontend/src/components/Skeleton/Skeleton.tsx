@@ -9,10 +9,10 @@ type SkeletonProps = {
     className?: string;
     afterStart?: JSX.Element;
     beforeEnd?: JSX.Element;
-    component?: keyof JSX.IntrinsicElements;
+    component?: React.ElementType;
     skeleton: JSX.Element;
     loading: boolean;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 
 const Skeleton: React.FC<SkeletonProps> = ({

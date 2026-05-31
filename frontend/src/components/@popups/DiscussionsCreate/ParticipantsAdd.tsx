@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Select from 'react-select';
-import { FilterOptionOption } from 'react-select/dist/declarations/src/filters';
+import Select, { type FilterOptionOption } from 'react-select';
 import colors from 'root/constants/colors';
 import { selectStyles } from 'root/constants/selectStyles';
 import { mockup_users } from 'root/mockup/users';

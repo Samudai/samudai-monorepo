@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { DropResult } from 'react-beautiful-dnd';
+import { DropResult } from '@hello-pangea/dnd';
 import { Task as ITask, ProjectColumn, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
 import clsx from 'clsx';
 import { useHorizontalScroll } from 'hooks/useHorizontalScroll';

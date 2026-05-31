@@ -65,7 +65,8 @@ const ApplicantsJob: React.FC<ApplicantsJobProps> = (props) => {
 
     useEffect(() => {
         if (type !== 'bounty' && type !== 'tasks') {
-            return navigate('/jobs/applicants');
+            navigate('/jobs/applicants');
+            return;
         }
         if (type === 'tasks') {
             getOpportunityDetails(jobId!).then((res) => {

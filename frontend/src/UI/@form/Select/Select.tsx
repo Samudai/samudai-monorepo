@@ -48,7 +48,7 @@ const Select: React.FC<SelectProps> = ({
     };
 
     const childs = React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return null;
+        if (!React.isValidElement<any>(child)) return null;
 
         if (child.type === List)
             return React.cloneElement(child as ReactElement<any>, {
@@ -60,7 +60,7 @@ const Select: React.FC<SelectProps> = ({
 
         if (child.type === Button)
             return React.cloneElement(child as ReactElement<any>, {
-                onClick: handleClickButton(child.props.onClick),
+                onClick: handleClickButton((child.props as { onClick?: onClickButtonType }).onClick),
             });
 
         return null;

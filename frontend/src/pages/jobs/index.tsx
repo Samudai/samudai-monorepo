@@ -179,7 +179,7 @@ const Jobs: React.FC = () => {
                     data-analytics-click="check_saved_jobs_btn"
                 >
                     <ArchiveIcon
-                        className={savedJobs.length > 0 ? styles.controlsBtnSvgFill : null}
+                        className={savedJobs.length > 0 ? styles.controlsBtnSvgFill : undefined}
                     />
                     <span>Saved Jobs</span>
                 </button>

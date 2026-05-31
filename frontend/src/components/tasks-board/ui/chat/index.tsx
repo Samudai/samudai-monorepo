@@ -6,6 +6,7 @@ import css from './chat.module.scss';
 import { useScrollbar } from 'hooks/useScrollbar';
 import { useGetMemberByIdMutation } from 'store/services/userProfile/userProfile';
 import * as PushAPI from '@pushprotocol/restapi';
+import type { BrowserProvider } from 'ethers';
 import { convertMessageToType, fetchHistory } from 'components/@pages/messages/chatUtils';
 import { MemberResponse, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
 import Message from 'components/chat/elements/ChatMessage';
@@ -32,7 +33,7 @@ export const Chat: React.FC<ChatProps> = ({ data, account, pgpDecryptedPvtKey, o
     const { isScrollbar, ref: listRef } = useScrollbar<HTMLUListElement>();
     const bottomRef = useRef<HTMLDivElement>(null);
     const [getMemberDetails] = useGetMemberByIdMutation();
-    const provider = store.getState().commonReducer.provider;
+    const provider = store.getState().commonReducer.provider as BrowserProvider | null;
 
     const fetchMemberDetails = async (memberId: string) => {
         return await getMemberDetails({

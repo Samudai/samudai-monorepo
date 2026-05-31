@@ -12,7 +12,6 @@ import Loader from 'components/Loader/Loader';
 import { getMemberId } from 'utils/utils';
 import 'styles/pages/sign-up.scss';
 
-require('dotenv').config();
 
 const initialState: SignUpState = {
     img: null,

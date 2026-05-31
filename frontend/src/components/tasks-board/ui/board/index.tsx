@@ -1,4 +1,4 @@
-import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable, OnDragEndResponder } from '@hello-pangea/dnd';
 import clsx from 'clsx';
 import { RequiredFields, SortByStatus } from 'components/@pages/projects/lib';
 import css from './board.module.scss';

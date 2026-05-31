@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import AdminDraggable from './AdminDraggable/AdminDraggable';
-import { getWidgetComponent } from 'data/view/utils';
+import { getWidgetComponent } from 'root/data/view/utils';
 import { AdminDraggableExtraProps } from 'components/@pages/dashboard/elements/AdminDraggable/types';
 import { IWidget } from 'utils/types/DAO';
 

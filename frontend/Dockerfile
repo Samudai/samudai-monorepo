@@ -7,7 +7,7 @@ ARG NODE_ENV
 COPY ./ .
 
 # install dependencies
-RUN npm install --force
+RUN npm install
 
 RUN npm run build:$NODE_ENV
 

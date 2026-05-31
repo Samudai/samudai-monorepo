@@ -63,7 +63,7 @@ export const useCreateTask = () => {
                             payment_id: '',
                             bounty_id: '',
                             action_type: ActivityEnums.ActionType.TASK_CREATED,
-                            visibility: project.visibility!,
+                            visibility: project.visibility as unknown as ActivityEnums.Visibility,
                             member: {
                                 username:
                                     store.getState().commonReducer?.member?.data.username || '',

@@ -3,7 +3,6 @@ import { redirectRoutes } from './routes/redirects';
 import { daoSettingRoutes, contributorSettingRoutes } from './routes/settings';
 import { IRoute } from './types';
 
-require('dotenv').config();
 
 const router: IRoute[] = [
     {

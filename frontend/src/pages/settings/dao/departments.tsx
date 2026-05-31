@@ -87,7 +87,7 @@ const AccessManagment: React.FC<AccessManagmentProps> = () => {
         }
     };
 
-    const handleAddDepartment = (ev: React.FocusEvent<HTMLFormElement>) => {
+    const handleAddDepartment = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
         if (text.trim() === '') {
             return;

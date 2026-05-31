@@ -15,7 +15,6 @@ import {
 } from './model';
 import { discordRequest } from '../Login/model';
 
-require('dotenv').config();
 
 export const settingsApi = createApi({
     reducerPath: 'settingsApi',

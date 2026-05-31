@@ -15,7 +15,6 @@ import {
     getTagsResponse,
 } from './model';
 
-require('dotenv').config();
 
 export const discussionApi = createApi({
     reducerPath: 'discussionApi',
