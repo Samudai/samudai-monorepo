@@ -3,9 +3,10 @@
 # the A/AAAA records for these hosts point at this VM before starting Caddy.
 #
 # Routing mirrors the consolidated stack:
-#   app.samudai.xyz -> frontend (static dashboard, nginx :80)
-#   gcn.samudai.xyz -> gateway-consumer-node (client API gateway :8080)
-#   ge.samudai.xyz  -> backend monolith's /external module (third-party webhooks)
+#   app.samudai.xyz           -> frontend (static dashboard, nginx :80)
+#   gcn.samudai.xyz           -> gateway-consumer-node (client API gateway :8080)
+#   ge.samudai.xyz            -> backend monolith's /external module (third-party webhooks)
+#   notifications.samudai.xyz -> service-notification (Socket.IO + REST :8080)
 #
 # Set an email for ACME notifications (optional but recommended).
 {
@@ -22,6 +23,14 @@ app.samudai.xyz {
 gcn.samudai.xyz {
 	encode gzip
 	reverse_proxy gateway-consumer-node:8080
+}
+
+# Real-time notifications (Socket.IO + REST). The dashboard connects here
+# directly via REACT_APP_NOTIFICATIONS_URL. Caddy upgrades the WebSocket
+# transport automatically, so a plain reverse_proxy is sufficient.
+notifications.samudai.xyz {
+	encode gzip
+	reverse_proxy service-notification:8080
 }
 
 # External integrations gateway — third-party inbound webhooks (GitHub App,

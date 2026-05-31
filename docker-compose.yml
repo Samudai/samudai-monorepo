@@ -204,6 +204,25 @@ services:
       service-node: { condition: service_started }
       redis: { condition: service_healthy }
 
+  # Real-time notifications: Socket.IO + Redis. The browser connects to this
+  # directly (public host notifications.samudai.xyz in prod), not via the gateway.
+  service-notification:
+    build:
+      context: ./backend/service-notification
+    environment:
+      PORT: "8080"
+      REDIS_URL: redis://:${REDIS_PASSWORD:-password}@redis:6379/0
+      JWT_KEY: ${JWT_KEY:-local-dev-jwt-key}
+      # Calls the consumer gateway's /api/* routes and the monolith's /external module.
+      GATEWAY_URL: http://gateway-consumer-node:8080
+      GATEWAY_EXTERNAL_URL: http://backend:8080/external
+    ports:
+      - "${SERVICE_NOTIFICATION_PORT:-8083}:8080"
+    depends_on:
+      redis: { condition: service_healthy }
+      backend: { condition: service_started }
+      gateway-consumer-node: { condition: service_started }
+
   # frontend:
   #   build:
   #     context: ./frontend

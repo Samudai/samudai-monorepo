@@ -10,6 +10,7 @@ Polyglot monorepo with four top-level areas:
   - `backend/core/` — the **Go modular monolith** (one Go module `github.com/Samudai/backend`, one binary, one Gin engine). Absorbs every former Go microservice (dao, member, discord, project, point, plugin, dashboard, discovery, discussion, forms, job, analytics) **and** the old `gateway-external`.
   - `backend/service-node/` — the **merged Node/Express service** (former `service-activity`, `service-twitter`, `service-web3`, `service-x` mounted under per-service prefixes).
   - `backend/gateway-consumer-node/` — the Node/TS client API gateway (Express + socket.io).
+  - `backend/service-notification/` — the Node/TS **real-time notifications service** (Socket.IO + Redis, no SQL/Mongo). The dashboard connects to it **directly** (not through the gateway) for both the websocket and the `/notification/*` REST calls; it has its own public host `notifications.samudai.xyz`.
 - `frontend/` — React 19 app built with **Vite** (`vite.config.ts` + `@vitejs/plugin-react`). Flattened from the old `dashboard/dashboard-samudai/`. (Migrated off the deprecated CRA / react-app-rewired / Craco stack.)
 - `bots/` — Node/TypeScript bots (`samudai-bot` for Discord, `telegram-bot`).
 - `deploy/local/postgres-init/` — first-boot script that creates the per-module `*_local` Postgres databases for the compose stack.
@@ -51,6 +52,12 @@ One Express app hosting four former services under prefixes: `/activity-svc`, `/
 - `backend/gateway-consumer-node` (Node/TS, Express + socket.io) — main client API gateway; calls the monolith and `service-node` via `SERVICE_*` env URLs.
 - The old `gateway-external` (Go) is now the `external` module inside `backend/core`, mounted at `/external`. Internal callers reach it via `GATEWAY_EXTERNAL=http://backend:8080/external`; third-party inbound webhooks reach it publicly through Caddy at `ge.samudai.xyz`, which rewrites `/<path>` → `/external/<path>` (preserving the original webhook URLs).
 
+## Notifications service (`backend/service-notification`)
+
+Standalone Node/TS Socket.IO server backed by **Redis only** (no SQL/Mongo, so no migrations). Listens on `8080`; mapped to host `${SERVICE_NOTIFICATION_PORT:-8083}` locally. Routes: `GET /health`, `GET /notification/get/:memberId`, `POST /notification/readnotification/:memberId/:notificationId`, plus the Socket.IO endpoint. Clients authenticate the socket handshake with `{ memberId }` and join a room named after their member id; notification events fan out across replicas via the `@socket.io/redis-adapter`. A `node-cron` job (daily 23:00) prunes read/orphaned notifications from Redis.
+
+It calls back into other services with `axios`: `GATEWAY_URL` (the consumer gateway's `/api/*` routes → `http://gateway-consumer-node:8080`) and `GATEWAY_EXTERNAL_URL` (`/telegram/publishnotifications` → `http://backend:8080/external`), signing requests with `JWT_KEY`. The dashboard reaches it directly via `REACT_APP_NOTIFICATIONS_URL` (local `http://localhost:8083`, prod `https://notifications.samudai.xyz`) — both the websocket and the REST calls — never through the gateway. Toolchain matches the other Node services: Node 22 / TypeScript 6 / Express 5 / socket.io 4.8 / ioredis 5.11; build with `npm install && npm run build`.
+
 ## Frontend (`frontend/`)
 
 React 19 app built with **Vite** (`vite.config.ts`). Reaches the backend through `REACT_APP_GATEWAY` (gateway base URL, baked at build time). `REACT_APP_*` env vars are still used unchanged — Vite exposes them via `envPrefix: 'REACT_APP_'` plus a `define` map that keeps existing `process.env.REACT_APP_*` reads working; SCSS globals (`vars.scss`/`mixins.scss`) are injected via `css.preprocessorOptions.scss.additionalData`; node polyfills come from `vite-plugin-node-polyfills`; path aliases from `vite-tsconfig-paths` (reads `tsconfig.paths.json`). Build output is `build/` (`build.outDir`).
@@ -77,7 +84,7 @@ docker compose up -d --build                          # build + run everything
 
 Postgres auto-creates the 8 `*_local` DBs on first boot (`deploy/local/postgres-init`), then the one-shot `migrate` service applies the schema (`migrations/postgres/<module>`) before `backend` starts — no manual migration step.
 
-Gateway → `localhost:4000`, frontend → `localhost:3000`, backend → `localhost:8081`, service-node → `localhost:8082`, RabbitMQ UI → `localhost:15672`. Smoke: `curl localhost:8081/health`, `curl localhost:8081/dao/...`.
+Gateway → `localhost:4000`, frontend → `localhost:3000`, backend → `localhost:8081`, service-node → `localhost:8082`, service-notification → `localhost:8083`, RabbitMQ UI → `localhost:15672`. Smoke: `curl localhost:8081/health`, `curl localhost:8081/dao/...`, `curl localhost:8083/health`.
 
 ### Run the Go backend locally (without Docker)
 
@@ -119,11 +126,11 @@ cp .env.prod.example .env   # real secrets
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --pull always
 ```
 
-Routing/TLS for `app.samudai.xyz` (frontend), `gcn.samudai.xyz` (gateway), and `ge.samudai.xyz` (backend's `/external` module — third-party webhooks) is in `deploy/caddy/Caddyfile`; point DNS at the VM.
+Routing/TLS for `app.samudai.xyz` (frontend), `gcn.samudai.xyz` (gateway), `ge.samudai.xyz` (backend's `/external` module — third-party webhooks), and `notifications.samudai.xyz` (service-notification — Socket.IO + REST) is in `deploy/caddy/Caddyfile`; point DNS at the VM.
 
 ## CI / Docker builds
 
-- `.github/workflows/backend.yaml` and `service-node.yaml` build/push `ghcr.io/samudai/backend` and `ghcr.io/samudai/service-node` on changes under `backend/core/**` and `backend/service-node/**`. `gateway-consumer.yaml`, `dashboard-samudai.yaml`, and the bot workflows cover the rest.
+- `.github/workflows/backend.yaml` and `service-node.yaml` build/push `ghcr.io/samudai/backend` and `ghcr.io/samudai/service-node` on changes under `backend/core/**` and `backend/service-node/**`. `gateway-consumer.yaml`, `service-notification.yaml` (builds `ghcr.io/samudai/service-notification` on `backend/service-notification/**`), `dashboard-samudai.yaml`, and the bot workflows cover the rest.
 - `.github/workflows/docker-build-check.yaml` runs on every PR: it diffs changed files, walks to the nearest `Dockerfile`, and matrix-builds each affected image — **every image now builds with its own directory as context** (the old `service-plugin` / `gateway-external` root-context special case is gone).
 - When adding a new backend capability, prefer a new module under `backend/core/services/<name>/` mounted in `internal/app/app.go` rather than a new microservice.
 

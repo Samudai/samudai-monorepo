@@ -31,6 +31,12 @@ services:
     restart: unless-stopped
     ports: !reset []
 
+  service-notification:
+    image: ghcr.io/samudai/service-notification:latest
+    pull_policy: always
+    restart: unless-stopped
+    ports: !reset []
+
   frontend:
     image: ghcr.io/samudai/dashboard-samudai:latest
     pull_policy: always
@@ -78,6 +84,7 @@ services:
       backend: { condition: service_started }
       frontend: { condition: service_started }
       gateway-consumer-node: { condition: service_started }
+      service-notification: { condition: service_started }
 
 volumes:
   caddydata:
