@@ -28,7 +28,7 @@ export class ActivityController {
 
   getActivityByDAO = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
+      const dao_id: string = req.params.daoId as string;
       const result: any = await this.ActivityQuery.getLastestActivitiesbyDAO(dao_id);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -44,8 +44,8 @@ export class ActivityController {
 
   getActivitybyAction = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
-      const action: string = req.params.action;
+      const dao_id: string = req.params.daoId as string;
+      const action: string = req.params.action as string;
       const result: any = await this.ActivityQuery.getActivitybyAction(dao_id, action);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -61,8 +61,8 @@ export class ActivityController {
 
   getActivitybyMemberForDAO = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
-      const member_id: string = req.params.memberId;
+      const dao_id: string = req.params.daoId as string;
+      const member_id: string = req.params.memberId as string;
       const result: any = await this.ActivityQuery.getActivitybyMemberForDAO(dao_id, member_id);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -78,7 +78,7 @@ export class ActivityController {
 
   getActivitybyProject = async (req: Request, res: Response) => {
     try {
-      const project_id: string = req.params.projectId;
+      const project_id: string = req.params.projectId as string;
       const result: any = await this.ActivityQuery.getActivitybyProject(project_id);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -94,7 +94,7 @@ export class ActivityController {
 
   getActivitybyTask = async (req: Request, res: Response) => {
     try {
-      const task_id: string = req.params.taskId;
+      const task_id: string = req.params.taskId as string;
       const result: any = await this.ActivityQuery.getActivitybyTask(task_id);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -110,8 +110,8 @@ export class ActivityController {
 
   getActivityByVisibilityForDAO = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
-      const visibility: string = req.params.visibility;
+      const dao_id: string = req.params.daoId as string;
+      const visibility: string = req.params.visibility as string;
       const result: any = await this.ActivityQuery.getActivityByVisibilityForDAO(dao_id, visibility);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -127,7 +127,7 @@ export class ActivityController {
 
   getActivityByDiscussion = async (req: Request, res: Response) => {
     try {
-      const discussion_id: string = req.params.discussionId;
+      const discussion_id: string = req.params.discussionId as string;
       const result: any = await this.ActivityQuery.getActivityByDiscussion(discussion_id);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {
@@ -143,7 +143,7 @@ export class ActivityController {
 
   getActivityByMember = async (req: Request, res: Response) => { 
     try {
-      const member_id: string = req.params.memberId;
+      const member_id: string = req.params.memberId as string;
       const result: any = await this.ActivityQuery.getActivityByMember(member_id);
       res.status(200).json({ message: 'Activity retrieved successfully', data: result });
     } catch (err: any) {

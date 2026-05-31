@@ -29,7 +29,7 @@ export class ProgressBarController {
 
     getDAOProgressBar = async (req: Request, res: Response) => {
         try{
-            const dao_id: string = req.params.daoId;
+            const dao_id: string = req.params.daoId as string;
         
             const result = await this.progressBarQuery.getDAOProgressBar(dao_id);
             res.status(200).json({ message: 'DAO Progress Bar retrieved successfully', data: result });
@@ -64,7 +64,7 @@ export class ProgressBarController {
 
     getContributorProgressBar = async (req: Request, res: Response) => {
         try{
-            const member_id: string = req.params.memberId;
+            const member_id: string = req.params.memberId as string;
         
             const result = await this.progressBarQuery.getContributorProgressBar(member_id);
             res.status(200).json({ message: 'Contributor Progress Bar retrieved successfully', data: result });

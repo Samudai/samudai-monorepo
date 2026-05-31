@@ -27,7 +27,7 @@ export class PaymentController {
 
   getPlatformPaymentsForDAO = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
+      const dao_id: string = req.params.daoId as string;
       console.log('dao_id', dao_id);
       const result: any = await this.paymentQuery.getPaymentForDAO(dao_id);
       res.status(200).json({ message: 'Payments retrieved successfully', data: result });
@@ -44,7 +44,7 @@ export class PaymentController {
 
   getPlatformPaymentsByReceiver = async (req: Request, res: Response) => {
     try {
-      const receiver: string = req.params.memberId;
+      const receiver: string = req.params.memberId as string;
       console.log('receiver', receiver);
       const result: any = await this.paymentQuery.getPaymentByReceiver(receiver);
       res.status(200).json({ message: 'Payments retrieved successfully', data: result });
@@ -61,7 +61,7 @@ export class PaymentController {
 
   getPlatformPaymentsByTaskId = async (req: Request, res: Response) => {
     try {
-      const task_id: string = req.params.taskId;
+      const task_id: string = req.params.taskId as string;
       console.log('task_id', task_id);
       const result: any = await this.paymentQuery.getPaymentByTask(task_id);
       res.status(200).json({ message: 'Payments retrieved successfully', data: result });
@@ -78,7 +78,7 @@ export class PaymentController {
 
   getPaymentById = async (req: Request, res: Response) => {
     try {
-      const payment_id: string = req.params.paymentId;
+      const payment_id: string = req.params.paymentId as string;
       console.log('payment_id', payment_id);
       const result: any = await this.paymentQuery.getPaymentById(payment_id);
       res.status(200).json({ message: 'Payment retrieved successfully', data: result });

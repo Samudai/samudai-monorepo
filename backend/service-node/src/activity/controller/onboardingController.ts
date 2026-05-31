@@ -27,7 +27,7 @@ export class OnboardingController {
 
   getOnboarding = async (req: Request, res: Response) => {
     try {
-      const link_id: string = req.params.linkId;
+      const link_id: string = req.params.linkId as string;
       const result: any = await this.onboardingQuery.getOnboarding(link_id);
       res.status(200).json({ message: 'Onboarding retrieved successfully', data: result });
     } catch (err: any) {
@@ -43,8 +43,8 @@ export class OnboardingController {
 
   getOnboardingByStep = async (req: Request, res: Response) => {
     try {
-      const link_id: string = req.params.linkId;
-      const step_id: string = req.params.stepId;
+      const link_id: string = req.params.linkId as string;
+      const step_id: string = req.params.stepId as string;
       const result: any = await this.onboardingQuery.getStep(link_id, step_id);
       res.status(200).json({ message: 'Onboarding retrieved successfully', data: result });
     } catch (err: any) {
@@ -60,7 +60,7 @@ export class OnboardingController {
 
   deleteOnboarding = async (req: Request, res: Response) => {
     try {
-      const link_id: string = req.params.linkId;
+      const link_id: string = req.params.linkId as string;
       const result = await this.onboardingQuery.deleteOnboarding(link_id);
       res.status(200).json({ message: 'Onboarding deleted successfully', data: result });
     } catch (err: any) {

@@ -29,7 +29,7 @@ export class VerifiableCredController {
 
   getVerifiableCred = async (req: Request, res: Response) => {
     try {
-      const member_id: string = req.params.memberId;
+      const member_id: string = req.params.memberId as string;
       const result = await this.verifiableCredQuery.getVerifiableCred(member_id);
       res.status(200).json({ message: 'Verifiable Credential fetched Successfully', data: result });
     } catch (err: any) {

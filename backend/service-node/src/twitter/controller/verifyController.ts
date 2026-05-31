@@ -65,7 +65,7 @@ export class VerifyController {
 
   getVerified = async (req: Request, res: Response) => {
     try {
-      const id: string = req.params.id;
+      const id: string = req.params.id as string;
       const result = await this.twitterDBQuery.getTwitterVerification(id);
       res.status(200).send({
         message: 'Verified retrieved successfully',
@@ -82,7 +82,7 @@ export class VerifyController {
 
   getByUsername = async (req: Request, res: Response) => {
     try {
-      const username: string = req.params.username;
+      const username: string = req.params.username as string;
       const result = await this.twitterDBQuery.getTwitterVerificationByUsername(username);
       res.status(200).send({
         message: 'Verified retrieved successfully',

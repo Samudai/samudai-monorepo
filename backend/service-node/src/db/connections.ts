@@ -6,6 +6,9 @@ import mongoose from 'mongoose';
 // so existing collections keep living in their original databases.
 const MONGO_URL = process.env.MONGO_URL || '';
 
+// Preserve Mongoose v6 query behavior (filter casting against the schema).
+mongoose.set('strictQuery', true);
+
 const base = mongoose.createConnection(MONGO_URL);
 
 export const activityConn = base.useDb('activity', { useCache: true });

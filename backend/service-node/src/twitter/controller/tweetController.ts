@@ -9,7 +9,7 @@ export class TweetController {
 
   getFeaturedTweet = async (req: Request, res: Response) => {
     try {
-      const linkId = req.params.linkId;
+      const linkId = req.params.linkId as string;
       let twitterResponse: Tweet[] = [];
       const twitterProfile = await this.twitterQuery.getTwitterVerification(linkId);
 
@@ -111,7 +111,7 @@ export class TweetController {
 
   deleteTweet =async (req: Request, res: Response) => {
     try{
-      const linkId = req.params.linkId;
+      const linkId = req.params.linkId as string;
       const result = await this.twitterQuery.deleteTweet(linkId);
       res.status(200).json({ message: 'Tweet deleted successfully', data: result });
     }

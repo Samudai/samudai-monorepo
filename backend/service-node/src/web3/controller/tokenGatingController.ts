@@ -29,7 +29,7 @@ export class TokenGatingController {
 
   getTokenGating = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
+      const dao_id: string = req.params.daoId as string;
       const result = await this.tokenGatingQuery.getTokenGating(dao_id);
       res.status(200).json({ message: 'Token Gating fetched Successfully', data: result });
     } catch (err: any) {
@@ -45,7 +45,7 @@ export class TokenGatingController {
 
   deleteTokenGating = async (req: Request, res: Response) => {
     try {
-      const dao_id: string = req.params.daoId;
+      const dao_id: string = req.params.daoId as string;
       const result = await this.tokenGatingQuery.deleteTokenGating(dao_id);
       res.status(200).json({ message: 'Token Gating deleted Successfully', data: result });
     } catch (err: any) {

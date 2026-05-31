@@ -1,5 +1,5 @@
 import { recoverPersonalSignature } from 'eth-sig-util';
-import { utils } from 'ethers';
+import { getAddress } from 'ethers';
 
 const reg = new RegExp('(?<=sig:).*');
 
@@ -37,7 +37,7 @@ export const handleVerify = async (username: string, tweetBody: string) => {
     sig: tweetSignature,
   });
 
-  const formattedSigner = utils.getAddress(signer);
+  const formattedSigner = getAddress(signer);
 
   console.log('signer', formattedSigner);
 

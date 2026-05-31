@@ -30,7 +30,7 @@ export class ProposalCountController {
 
     getActiveProposalsCountforDao = async (req: Request, res: Response) => {
       try {
-        const dao_id: string = req.params.daoId;
+        const dao_id: string = req.params.daoId as string;
         const result: any = await this.proposalCountQuery.getActiveProposalsCountforDao(dao_id);
         res.status(200).json({ pending_proposal_count: result });
 
