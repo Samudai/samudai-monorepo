@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { IProviderList, providerValues } from '../utils/providerConstants';
 import { paymentsSelectStyles } from '../utils/selectStyles';
 import { Auth } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import { selectProvider } from 'store/features/common/slice';
 import { useGetParcelSafesMutation } from 'store/services/payments/payments';
 import useInput from 'hooks/useInput';

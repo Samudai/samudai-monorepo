@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Popup from '../components/Popup/Popup';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
-import { NFTProfile } from '@samudai_xyz/web3-sdk';
+import { NFTProfile } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import { selectAccount, selectProvider } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';

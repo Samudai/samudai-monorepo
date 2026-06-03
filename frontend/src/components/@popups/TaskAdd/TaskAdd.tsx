@@ -12,7 +12,7 @@ import {
     Provider,
     TaskResponse,
 } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import dayjs, { Dayjs } from 'dayjs';
 import { ethers } from 'ethers';
 import { selectStyles } from 'root/constants/selectStyles1';

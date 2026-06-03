@@ -1,7 +1,7 @@
 import openseaIcon from 'components/@signup/icons/Opensea.png';
 import { useEffect, useState } from 'react';
 // import data from './data';
-import { NFTProfile } from '@samudai_xyz/web3-sdk';
+import { NFTProfile } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import { changeProfilePicture, selectAccount, selectProvider } from 'store/features/common/slice';
 import { useUploadProfilePicMutation } from 'store/services/Login/login';

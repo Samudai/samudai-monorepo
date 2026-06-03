@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Confetti from 'react-confetti';
-import { Subdomain } from '@samudai_xyz/web3-sdk';
+import { Subdomain } from '@samudai/web3-sdk';
 import { selectProvider } from 'store/features/common/slice';
 import { useUpdateSubDomainMutation } from 'store/services/userProfile/userProfile';
 import useInput from 'hooks/useInput';

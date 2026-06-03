@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { PaymentsItemSkeleton } from './payments-item-skeleton';
-import { Gnosis, GnosisTypes, GnosisFetch } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes, GnosisFetch } from '@samudai/web3-sdk';
 import { selectProvider } from 'store/features/common/slice';
 import {
     providerList,
@@ -21,7 +21,7 @@ import './styles/PaymentsHistory.scss';
 import Sprite from 'components/sprite';
 import PaymentsTable from './PaymentsTable';
 import { toast } from 'utils/toast';
-import { TxHistoryObject, TxObject } from '@samudai_xyz/web3-sdk/dist/types/gnosis/utils/types';
+import { TxHistoryObject, TxObject } from '@samudai/web3-sdk/dist/types/gnosis/utils/types';
 import { usePayments } from 'utils/payments/use-payments';
 import { ethers } from 'ethers';
 import { Provider } from '@samudai_xyz/gateway-consumer-types/dist/types/payment/types';

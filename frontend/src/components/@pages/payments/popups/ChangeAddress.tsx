@@ -11,7 +11,7 @@ import {
     providerValues,
 } from '../utils/providerConstants';
 import { paymentsSelectStyles } from '../utils/selectStyles';
-import { Gnosis } from '@samudai_xyz/web3-sdk';
+import { Gnosis } from '@samudai/web3-sdk';
 import { selectProvider } from 'store/features/common/slice';
 import { useUpdateProviderMutation } from 'store/services/payments/payments';
 import useInput from 'hooks/useInput';

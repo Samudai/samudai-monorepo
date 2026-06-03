@@ -18,7 +18,7 @@
     "dependencies": {
         "@aws-sdk/client-s3": "^3.1057.0",
         "@samudai_xyz/gateway-consumer-types": "^0.8.96",
-        "@samudai_xyz/web3-sdk": "file:.yalc/@samudai_xyz/web3-sdk",
+        "@samudai/web3-sdk": "0.1.0",
         "aws-sdk": "^2.1693.0",
         "axios": "^1.16.1",
         "bs58": "^5.0.0",

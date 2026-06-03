@@ -20,7 +20,7 @@
     "@rainbow-me/rainbowkit": "^2.2.11",
     "@reduxjs/toolkit": "^2.12.0",
     "@samudai_xyz/gateway-consumer-types": "^0.8.96",
-    "@samudai_xyz/web3-sdk": "file:.yalc/@samudai_xyz/web3-sdk",
+    "@samudai/web3-sdk": "0.1.0",
     "@sendbird/chat": "^4.9.8",
     "@tanstack/react-query": "^5.100.14",
     "@testing-library/jest-dom": "^5.16.4",

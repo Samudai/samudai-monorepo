@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import { IPaymentCurrency } from 'utils/types/Payments';
 import { useTypedSelector } from 'hooks/useStore';
 import { selectProvider } from 'store/features/common/slice';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import { parcelSign } from 'utils/parcelUtils';
 import { IPayoutRequest } from 'store/services/projects/model';
 import { toast } from 'utils/toast';

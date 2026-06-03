@@ -18,7 +18,7 @@ import {
   ProjectResponse,
   TaskResponse,
 } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import { isDisabled } from '@testing-library/user-event/dist/utils';
 import { clsx } from 'clsx';
 import { ethers } from 'ethers';

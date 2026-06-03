@@ -6,7 +6,7 @@ import {
     TxData,
 } from '@samudai_xyz/gateway-consumer-types';
 import { Provider } from '@samudai_xyz/gateway-consumer-types/dist/types/payment/types';
-import { GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { GnosisTypes } from '@samudai/web3-sdk';
 
 export interface providerResponse {
     message: string;

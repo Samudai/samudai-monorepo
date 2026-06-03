@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Auth, Payout, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import axios from 'axios';
 import { ethers } from 'ethers';
 import { selectProvider } from 'store/features/common/slice';

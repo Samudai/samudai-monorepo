@@ -13,7 +13,7 @@ import {
     ProjectResponse,
     Provider,
 } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import axios from 'axios';
 import { ethers } from 'ethers';
 import { selectAccount } from 'store/features/common/slice';

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import PopupSubtitle from '../components/PopupSubtitle/PopupSubtitle';
 import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import { ethers } from 'ethers';
 import { v4 as uuidv4 } from 'uuid';
 import { selectStyles } from 'root/constants/selectStyles1';

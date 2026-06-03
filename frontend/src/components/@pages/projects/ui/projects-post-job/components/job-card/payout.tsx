@@ -5,7 +5,7 @@ import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types/dist/types';
 import { IPaymentCurrency } from 'utils/types/Payments';
 import { useTypedSelector } from 'hooks/useStore';
 import { selectProvider } from 'store/features/common/slice';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import { parcelSign } from 'utils/parcelUtils';
 import { ITaskPayout } from '../..';
 import css from './job-card.module.scss';

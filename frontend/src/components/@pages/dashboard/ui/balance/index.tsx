@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
-import { GnosisFetch, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import { selectAccessList } from 'store/features/common/slice';
 import { useLazyGetDefaultProviderQuery } from 'store/services/payments/payments';
 import { useTypedSelector } from 'hooks/useStore';

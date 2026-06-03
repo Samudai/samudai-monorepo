@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProposalsDetails } from './components/proposals-details';
 import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
-import { Snapshot } from '@samudai_xyz/web3-sdk';
+import { Snapshot } from '@samudai/web3-sdk';
 import { selectAccessList, selectActiveDao, selectProvider } from 'store/features/common/slice';
 import { useLazyGetDaoByDaoIdQuery } from 'store/services/Dao/dao';
 import usePopup from 'hooks/usePopup';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Confetti from 'react-confetti';
 import { Payout, TaskResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
-import { Subdomain } from '@samudai_xyz/web3-sdk';
+import { Subdomain } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import { selectProvider, selectUserName } from 'store/features/common/slice';
 import { useUpdateSubDomainMutation } from 'store/services/userProfile/userProfile';

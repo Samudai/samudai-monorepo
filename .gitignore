@@ -112,3 +112,5 @@ profile.out
 docs
 
 .playwright-mcp
+
+log.txt

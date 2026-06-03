@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
-import { ClaimSubdomain } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
+import { ClaimSubdomain } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import {
     changeContributorProgress,

@@ -15,10 +15,10 @@ import {
   Provider,
   TaskResponse,
 } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import axios from 'axios';
 import { ethers } from 'ethers';
-import ConnectToBoltX from 'web3modal/dist/providers/connectors/boltx';
+
 import { selectAccount } from 'store/features/common/slice';
 import { selectPopups, taskAddToggle } from 'store/features/popup/slice';
 import { updateInvestmentItem, updateItem } from 'store/features/projects/slice';

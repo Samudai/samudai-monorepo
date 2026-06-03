@@ -162,6 +162,8 @@ services:
   gateway-consumer-node:
     build:
       context: ./backend/gateway-consumer-node
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
     environment:
       PORT: "8080"
       ENVIRONMENT: ${ENVIRONMENT:-local}

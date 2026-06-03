@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Snapshot } from '@samudai_xyz/web3-sdk';
+import { Snapshot } from '@samudai/web3-sdk';
 
 export class PendingProposalsController {
     pendingProposalCron = async () => {

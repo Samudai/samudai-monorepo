@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactSelect, { components } from 'react-select';
 import Modal from '../Modal/Modal';
-import { Gnosis } from '@samudai_xyz/web3-sdk';
+import { Gnosis } from '@samudai/web3-sdk';
 import styles from 'root/components/@popups/ProjectCreate/ProjectCreate.module.scss';
 import { selectStyles } from 'root/constants/selectStyles';
 import {

@@ -5,7 +5,7 @@ import { IProviderList, providerValues } from '../utils/constants';
 import { GnosisChainValues, IChainList } from '../utils/providerConstants';
 import { paymentsSelectStyles } from '../utils/selectStyles';
 import { IMember, Member } from '@samudai_xyz/gateway-consumer-types';
-import { Gnosis, GnosisTypes } from '@samudai_xyz/web3-sdk';
+import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import { ethers } from 'ethers';
 import { selectAccount, selectProvider } from 'store/features/common/slice';
