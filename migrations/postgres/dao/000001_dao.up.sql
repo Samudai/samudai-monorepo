@@ -13,6 +13,7 @@ CREATE TYPE "invitestatus" AS ENUM (
   'accepted',
   'rejected'
 );
+
 CREATE SEQUENCE access_seq;
 CREATE TABLE "access" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('access_seq'::regclass)),
@@ -23,6 +24,7 @@ CREATE TABLE "access" (
   "created_at" timestamp NOT NULL DEFAULT (now()),
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE analytics_seq;
 CREATE TABLE "analytics" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('analytics_seq'::regclass)),
@@ -31,6 +33,7 @@ CREATE TABLE "analytics" (
   "time" timestamp NOT NULL DEFAULT (now()),
   "visitor_ip" text
 );
+
 CREATE SEQUENCE blogs_seq;
 CREATE TABLE "blogs" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('blogs_seq'::regclass)),
@@ -38,6 +41,7 @@ CREATE TABLE "blogs" (
   "link" text,
   "created_at" timestamp NOT NULL DEFAULT (now())
 );
+
 CREATE SEQUENCE collaboration_seq;
 CREATE TABLE "collaboration" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('collaboration_seq'::regclass)),
@@ -56,6 +60,7 @@ CREATE TABLE "collaboration" (
   "created_at" timestamp NOT NULL DEFAULT (now()),
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE dao_id_seq;
 CREATE TABLE "dao" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('dao_id_seq'::regclass)),
@@ -71,8 +76,13 @@ CREATE TABLE "dao" (
   "updated_at" timestamp,
   "onboarding" boolean DEFAULT (false),
   "dao_type" text DEFAULT ('general'),
-  "token_gating" boolean DEFAULT (false)
+  "token_gating" boolean DEFAULT (false),
+  "tags" text[] DEFAULT ('{}'::text[]),
+  "open_to_collaboration" boolean DEFAULT (false),
+  "poc_member_id" uuid,
+  "join_dao_link" text
 );
+
 CREATE SEQUENCE dao_invites_seq;
 CREATE TABLE "dao_invites" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('dao_invites_seq'::regclass)),
@@ -84,6 +94,7 @@ CREATE TABLE "dao_invites" (
   "created_at" timestamp NOT NULL DEFAULT (now()),
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE dao_partner_seq;
 CREATE TABLE "dao_partner" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('dao_partner_seq'::regclass)),
@@ -97,6 +108,7 @@ CREATE TABLE "dao_partner" (
   "updated_at" timestamp,
   "dao_id" uuid
 );
+
 CREATE SEQUENCE department_seq;
 CREATE TABLE "department" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('department_seq'::regclass)),
@@ -106,28 +118,35 @@ CREATE TABLE "department" (
   "updated_at" timestamp,
   "dao_id" uuid
 );
+
 CREATE SEQUENCE favourite_seq;
 CREATE TABLE "favourite" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('favourite_seq'::regclass)),
-  "memeber_id" uuid,
+  "member_id" uuid,
   "created_at" timestamp NOT NULL DEFAULT (now()),
-  "dao_id" uuid
+  "dao_id" uuid,
+  UNIQUE ("dao_id", "member_id")
 );
+
 CREATE SEQUENCE member_role_seq;
 CREATE TABLE "member_roles" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('member_role_seq'::regclass)),
-  "memeber_id" uuid,
+  "member_id" uuid,
   "created_at" timestamp NOT NULL DEFAULT (now()),
   "role_id" uuid,
   "dao_id" uuid
 );
+
 CREATE SEQUENCE dao_member_seq;
-CREATE TABLE "member" (
+CREATE TABLE "members" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('dao_member_seq'::regclass)),
-  "memeber_id" uuid,
+  "member_id" uuid,
   "created_at" timestamp NOT NULL DEFAULT (now()),
-  "dao_id" uuid
+  "dao_id" uuid,
+  "licensed_member" boolean DEFAULT (false),
+  UNIQUE ("dao_id", "member_id")
 );
+
 CREATE SEQUENCE partner_social_seq;
 CREATE TABLE "partner_social" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('partner_social_seq'::regclass)),
@@ -137,6 +156,7 @@ CREATE TABLE "partner_social" (
   "dao_partner_id" uuid,
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE provider_seq;
 CREATE TABLE "provider" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('provider_seq'::regclass)),
@@ -150,6 +170,7 @@ CREATE TABLE "provider" (
   "dao_id" uuid,
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE reviews_seq;
 CREATE TABLE "reviews" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('reviews_seq'::regclass)),
@@ -159,6 +180,7 @@ CREATE TABLE "reviews" (
   "created_at" timestamp NOT NULL DEFAULT (now()),
   "dao_id" uuid
 );
+
 CREATE SEQUENCE dao_role_seq;
 CREATE TABLE "roles" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('dao_role_seq'::regclass)),
@@ -169,15 +191,17 @@ CREATE TABLE "roles" (
   "dao_id" uuid,
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE social_seq;
 CREATE TABLE "social" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('social_seq'::regclass)),
   "type" text,
-  "ur" text,
+  "url" text,
   "created_at" timestamp NOT NULL DEFAULT (now()),
   "dao_id" uuid,
   "updated_at" timestamp
 );
+
 CREATE SEQUENCE token_seq;
 CREATE TABLE "token" (
   "id" bigint PRIMARY KEY DEFAULT (nextval('token_seq'::regclass)),
@@ -190,88 +214,91 @@ CREATE TABLE "token" (
   "updated_at" timestamp
 );
 
+CREATE TABLE "collaboration_pass" (
+  "collaboration_pass_id" uuid PRIMARY KEY DEFAULT (uuid_generate_v4()),
+  "dao_id" uuid,
+  "claimed" boolean DEFAULT (false),
+  "created_at" timestamp NOT NULL DEFAULT (now()),
+  "updated_at" timestamp
+);
+
+CREATE TABLE "stripe_subscription" (
+  "subscription_id" text PRIMARY KEY,
+  "dao_id" uuid,
+  "member_id" uuid,
+  "customer_id" text,
+  "invoice_ids" text[],
+  "subscription_status" text,
+  "quantity" integer,
+  "current_period_end" timestamp,
+  "current_period_start" timestamp,
+  "plan" json,
+  "created_at" timestamp NOT NULL DEFAULT (now())
+);
+
+CREATE TABLE "stripe_customer" (
+  "customer_id" text PRIMARY KEY,
+  "name" text,
+  "email" text,
+  "address" json,
+  "phone" text
+);
+
+CREATE TABLE "subdomain" (
+  "subdomain_id" uuid PRIMARY KEY DEFAULT (uuid_generate_v4()),
+  "dao_id" uuid,
+  "subdomain" text,
+  "redirection_link" text,
+  "wallet_address" text,
+  "access" boolean DEFAULT (false),
+  "transaction_hash" text,
+  "created_at" timestamp NOT NULL DEFAULT (now()),
+  "updated_at" timestamp
+);
+
 CREATE INDEX ON "access" ("id");
-
 CREATE INDEX ON "analytics" ("id");
-
 CREATE INDEX ON "blogs" ("id");
-
 CREATE INDEX ON "collaboration" ("id");
-
 CREATE INDEX ON "collaboration" ("collaboration_id");
-
 CREATE INDEX ON "dao" ("id");
-
 CREATE INDEX ON "dao" ("dao_id");
-
 CREATE INDEX ON "dao" ("guild_id");
-
 CREATE INDEX ON "dao_invites" ("id");
-
 CREATE INDEX ON "dao_invites" ("invite_code");
-
 CREATE INDEX ON "dao_partner" ("id");
-
 CREATE INDEX ON "dao_partner" ("dao_partner_id");
-
 CREATE INDEX ON "department" ("id");
-
 CREATE INDEX ON "department" ("department_id");
-
 CREATE INDEX ON "favourite" ("id");
-
 CREATE INDEX ON "member_roles" ("id");
-
-CREATE INDEX ON "member" ("id");
-
+CREATE INDEX ON "members" ("id");
 CREATE INDEX ON "partner_social" ("id");
-
 CREATE INDEX ON "provider" ("id");
-
 CREATE INDEX ON "reviews" ("id");
-
 CREATE INDEX ON "roles" ("id");
-
 CREATE INDEX ON "roles" ("role_id");
-
 CREATE INDEX ON "social" ("id");
-
 CREATE INDEX ON "token" ("id");
 
 COMMENT ON COLUMN "provider"."provider_type" IS 'enum - gnosis, wallet, parcel';
 
 ALTER TABLE "access" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "blogs" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "collaboration" ADD FOREIGN KEY ("from_dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "collaboration" ADD FOREIGN KEY ("to_dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "collaboration" ADD FOREIGN KEY ("department") REFERENCES "department" ("department_id");
-
 ALTER TABLE "dao_invites" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "dao_partner" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "department" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "favourite" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "member_roles" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("role_id");
-
 ALTER TABLE "member_roles" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
-ALTER TABLE "member" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
+ALTER TABLE "members" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
 ALTER TABLE "partner_social" ADD FOREIGN KEY ("dao_partner_id") REFERENCES "dao_partner" ("dao_partner_id");
-
 ALTER TABLE "provider" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "reviews" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "roles" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "social" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
-
 ALTER TABLE "token" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");
+ALTER TABLE "collaboration_pass" ADD FOREIGN KEY ("dao_id") REFERENCES "dao" ("dao_id");

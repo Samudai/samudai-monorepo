@@ -164,7 +164,7 @@ func GetProjectsByMemberDAO(memberID string, daos []project.DAODetail) ([]projec
 			rows, err := db.Query(`WITH access_tbl AS (SELECT p.project_id, COALESCE(( SELECT a.access
 					FROM access a
 					WHERE a.project_id = p.project_id AND ($1::uuid = ANY (a.members) OR a.roles && $2)
-					ORDER BY (a.access::integer) DESC LIMIT 1),
+					ORDER BY a.access DESC LIMIT 1),
 					CASE WHEN p.visibility = 'public' THEN 'view'::accesstype
 						WHEN p.visibility = 'private' THEN 'hidden'::accesstype
 					END) AS access
@@ -557,7 +557,7 @@ func GetArchivedProjectsByMemberDAO(memberID string, daos []project.DAODetail) (
 			rows, err := db.Query(`WITH access_tbl AS (SELECT p.project_id, COALESCE(( SELECT a.access
 					FROM access a
 					WHERE a.project_id = p.project_id AND ($1::uuid = ANY (a.members) OR a.roles && $2)
-					ORDER BY (a.access::integer) DESC LIMIT 1),
+					ORDER BY a.access DESC LIMIT 1),
 					CASE WHEN p.visibility = 'public' THEN 'view'::accesstype
 						WHEN p.visibility = 'private' THEN 'hidden'::accesstype
 					END) AS access

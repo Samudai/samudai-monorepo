@@ -13,6 +13,42 @@ import (
 
 const magicNumber float64 = 65536
 
+// unmarshalTaskJSON decodes the optional JSON-encoded columns of a task row into task. Each
+// argument is decoded only when non-nil, so callers pass nil for fields their query didn't select.
+func unmarshalTaskJSON(task *project.Task, pr, payout, columns *string, files, subtasks, comments *json.RawMessage) error {
+	if pr != nil {
+		if err := json.Unmarshal([]byte(*pr), &task.GithubPR); err != nil {
+			return fmt.Errorf("error unmarshalling github pr: %w", err)
+		}
+	}
+	if payout != nil {
+		if err := json.Unmarshal([]byte(*payout), &task.Payout); err != nil {
+			return fmt.Errorf("error unmarshalling payout: %w", err)
+		}
+	}
+	if columns != nil {
+		if err := json.Unmarshal([]byte(*columns), &task.Columns); err != nil {
+			return fmt.Errorf("error unmarshalling columns: %w", err)
+		}
+	}
+	if files != nil {
+		if err := json.Unmarshal(*files, &task.Files); err != nil {
+			return fmt.Errorf("error unmarshalling files: %w", err)
+		}
+	}
+	if subtasks != nil {
+		if err := json.Unmarshal(*subtasks, &task.Subtasks); err != nil {
+			return fmt.Errorf("error unmarshalling subtasks: %w", err)
+		}
+	}
+	if comments != nil {
+		if err := json.Unmarshal(*comments, &task.Comments); err != nil {
+			return fmt.Errorf("error unmarshalling comments: %w", err)
+		}
+	}
+	return nil
+}
+
 // GetTask returns a task
 func GetTask(taskID string) (project.Task, error) {
 	db := sqldb.Project()
@@ -36,39 +72,8 @@ func GetTask(taskID string) (project.Task, error) {
 		return task, fmt.Errorf("error getting task: %w", err)
 	}
 
-	if pr != nil {
-		err = json.Unmarshal([]byte(*pr), &task.GithubPR)
-		if err != nil {
-			return task, fmt.Errorf("error unmarshalling github pr: %w", err)
-		}
-	}
-
-	if payout != nil {
-		err = json.Unmarshal([]byte(*payout), &task.Payout)
-		if err != nil {
-			return task, fmt.Errorf("error unmarshalling payout: %w", err)
-		}
-	}
-
-	if files != nil {
-		err := json.Unmarshal(*files, &task.Files)
-		if err != nil {
-			return task, fmt.Errorf("error getting files: %w", err)
-		}
-	}
-
-	if subtasks != nil {
-		err := json.Unmarshal(*subtasks, &task.Subtasks)
-		if err != nil {
-			return task, fmt.Errorf("error getting subtasks: %w", err)
-		}
-	}
-
-	if comments != nil {
-		err := json.Unmarshal(*comments, &task.Comments)
-		if err != nil {
-			return task, fmt.Errorf("error getting comments: %w", err)
-		}
+	if err := unmarshalTaskJSON(&task, pr, payout, nil, files, subtasks, comments); err != nil {
+		return task, err
 	}
 
 	return task, nil
@@ -106,39 +111,8 @@ func GetAllTaskByProject(projectID string) ([]project.Task, int, error) {
 			return tasks, total, fmt.Errorf("error scanning task: %w", err)
 		}
 
-		if pr != nil {
-			err = json.Unmarshal([]byte(*pr), &task.GithubPR)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error unmarshalling github pr: %w", err)
-			}
-		}
-
-		if payout != nil {
-			err = json.Unmarshal([]byte(*payout), &task.Payout)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error unmarshalling payout: %w", err)
-			}
-		}
-
-		if files != nil {
-			err := json.Unmarshal(*files, &task.Files)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error getting files: %w", err)
-			}
-		}
-
-		if subtasks != nil {
-			err := json.Unmarshal(*subtasks, &task.Subtasks)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error getting subtasks: %w", err)
-			}
-		}
-
-		if comments != nil {
-			err := json.Unmarshal(*comments, &task.Comments)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error getting comments: %w", err)
-			}
+		if err := unmarshalTaskJSON(&task, pr, payout, nil, files, subtasks, comments); err != nil {
+			return tasks, total, err
 		}
 		tasks = append(tasks, task)
 	}
@@ -439,7 +413,7 @@ func GetArchiveTaskByProject(projectID string) ([]project.Task, int, error) {
 		created_by, updated_by, poc_member_id, notion_page, tags, 
 		deadline, assignee_member, assignee_clan, feedback, position, 
 		created_at, updated_at, files, subtasks, comments,
-		payout, vc_claim, payment_created, github_issue, github_pr, source,
+		payout, vc_claim, payment_created, github_issue, github_pr, source
 		FROM task_view WHERE project_id = $1::uuid AND archived = $2`, projectID, true)
 	if err != nil {
 		return tasks, total, fmt.Errorf("error getting all tasks: %w", err)
@@ -459,39 +433,8 @@ func GetArchiveTaskByProject(projectID string) ([]project.Task, int, error) {
 			return tasks, total, fmt.Errorf("error scanning task: %w", err)
 		}
 
-		if pr != nil {
-			err = json.Unmarshal([]byte(*pr), &task.GithubPR)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error unmarshalling github pr: %w", err)
-			}
-		}
-
-		if payout != nil {
-			err = json.Unmarshal([]byte(*payout), &task.Payout)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error unmarshalling payout: %w", err)
-			}
-		}
-
-		if files != nil {
-			err := json.Unmarshal(*files, &task.Files)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error getting files: %w", err)
-			}
-		}
-
-		if subtasks != nil {
-			err := json.Unmarshal(*subtasks, &task.Subtasks)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error getting subtasks: %w", err)
-			}
-		}
-
-		if comments != nil {
-			err := json.Unmarshal(*comments, &task.Comments)
-			if err != nil {
-				return tasks, total, fmt.Errorf("error getting comments: %w", err)
-			}
+		if err := unmarshalTaskJSON(&task, pr, payout, nil, files, subtasks, comments); err != nil {
+			return tasks, total, err
 		}
 		tasks = append(tasks, task)
 	}
@@ -567,28 +510,6 @@ func CreateTaskFile(params project.TaskFile) (string, error) {
 	return taskFileID, nil
 }
 
-// // Redundant
-// func UpdateTaskPayout(taskID string, payout []project.Payout, updatedBy string) error {
-// 	db := sqldb.Project()
-// 	var payoutStr *string
-// 	var err error
-
-// 	if payout != nil {
-// 		payoutStr, err = convertToJSONString(payout)
-// 		if err != nil {
-// 			return fmt.Errorf("error converting payout to json: %w", err)
-// 		}
-// 	}
-
-// 	_, err = db.Exec(`UPDATE task SET payout = $2, updated_by = $3, updated_at = CURRENT_TIMESTAMP WHERE task_id = $1::uuid`, taskID, payoutStr, updatedBy)
-// 	if err != nil {
-// 		return fmt.Errorf("error updating task payout: %w", err)
-// 	}
-
-// 	logger.LogMessage("info", "Updated task payout: %s", taskID)
-// 	return nil
-// }
-
 // GetTaskFiles gets a task files
 func GetTaskFiles(taskID string) ([]project.TaskFile, error) {
 	db := sqldb.Project()
@@ -657,32 +578,8 @@ func PersonalTaskByMemberID(memberID string) ([]project.Task, error) {
 			return personalTasks, fmt.Errorf("Error scanning personal task: %w", err)
 		}
 
-		if payout != nil {
-			err := json.Unmarshal([]byte(*payout), &task.Payout)
-			if err != nil {
-				return personalTasks, fmt.Errorf("Error unmarshalling payout: %w", err)
-			}
-		}
-
-		if files != nil {
-			err := json.Unmarshal(*files, &task.Files)
-			if err != nil {
-				return personalTasks, fmt.Errorf("error getting files: %w", err)
-			}
-		}
-
-		if subtasks != nil {
-			err := json.Unmarshal(*subtasks, &task.Subtasks)
-			if err != nil {
-				return personalTasks, fmt.Errorf("error getting subtasks: %w", err)
-			}
-		}
-
-		if comments != nil {
-			err := json.Unmarshal(*comments, &task.Comments)
-			if err != nil {
-				return personalTasks, fmt.Errorf("error getting comments: %w", err)
-			}
+		if err := unmarshalTaskJSON(&task, nil, payout, nil, files, subtasks, comments); err != nil {
+			return personalTasks, err
 		}
 
 		personalTasks = append(personalTasks, task)
@@ -721,39 +618,8 @@ func AssignedTaskByMemberID(memberID string) ([]project.Task, error) {
 			return assignedTasks, fmt.Errorf("Error scanning assigned task: %w", err)
 		}
 
-		if payout != nil {
-			err := json.Unmarshal([]byte(*payout), &task.Payout)
-			if err != nil {
-				return assignedTasks, fmt.Errorf("Error unmarshalling payout: %w", err)
-			}
-		}
-
-		if columns != nil {
-			err := json.Unmarshal([]byte(*columns), &task.Columns)
-			if err != nil {
-				return assignedTasks, fmt.Errorf("Error unmarshalling Columns: %w", err)
-			}
-		}
-
-		if files != nil {
-			err := json.Unmarshal(*files, &task.Files)
-			if err != nil {
-				return assignedTasks, fmt.Errorf("error getting files: %w", err)
-			}
-		}
-
-		if subtasks != nil {
-			err := json.Unmarshal(*subtasks, &task.Subtasks)
-			if err != nil {
-				return assignedTasks, fmt.Errorf("error getting subtasks: %w", err)
-			}
-		}
-
-		if comments != nil {
-			err := json.Unmarshal(*comments, &task.Comments)
-			if err != nil {
-				return assignedTasks, fmt.Errorf("error getting comments: %w", err)
-			}
+		if err := unmarshalTaskJSON(&task, nil, payout, columns, files, subtasks, comments); err != nil {
+			return assignedTasks, err
 		}
 
 		assignedTasks = append(assignedTasks, task)

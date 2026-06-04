@@ -38,9 +38,18 @@ export const searchApi = createApi({
             providesTags: ['Member'],
         }),
         searchMemberByDao: builder.query<searchMemberforDao, { daoId: string; value: string }>({
-            // query: ({ daoId, value }) => `/api/search/daomember/${daoId}/${value}`,
-            query: ({ daoId, value }) =>
-                `/api/search/daomember/${daoId}?query=${encodeURIComponent(value)}`,
+            // Skip the request when daoId is empty so we never hit
+            queryFn: async ({ daoId, value }, _api, _extraOptions, baseQuery) => {
+                if (!daoId) {
+                    return { data: { message: 'skipped: empty daoId', data: [] } };
+                }
+                const result = await baseQuery(
+                    `/api/search/daomember/${daoId}?query=${encodeURIComponent(value)}`
+                );
+                return result.error
+                    ? { error: result.error }
+                    : { data: result.data as searchMemberforDao };
+            },
             providesTags: ['DAOMember'],
         }),
     }),

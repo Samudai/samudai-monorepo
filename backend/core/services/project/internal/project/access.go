@@ -52,7 +52,7 @@ func GetProjectAccessByMemberID(projectID string, memberID string, roles []strin
 	err := db.QueryRow(`SELECT a.access FROM access a 
 		WHERE project_id = $1::uuid 
 		AND ($2 = ANY(a.members) OR $3 && a.roles)
-		ORDER BY (a.access::integer) DESC LIMIT 1`,
+		ORDER BY a.access DESC LIMIT 1`,
 		projectID, memberID, pq.Array(roles)).Scan(&access)
 	if err != nil {
 		if err == sql.ErrNoRows {

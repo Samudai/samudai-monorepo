@@ -1,17 +1,23 @@
-drop analytics
-drop access
-drop blogs
-drop collaboration
-drop dao_invites
-drop department
-drop favourite
-drop member_roles
-drop roles
-drop member
-drop partner_social
-drop dao_partner
-drop provider
-drop reviews
-drop social
-drop token
-drop dao
+DROP TABLE IF EXISTS "subdomain" CASCADE;
+DROP TABLE IF EXISTS "stripe_customer" CASCADE;
+DROP TABLE IF EXISTS "stripe_subscription" CASCADE;
+DROP TABLE IF EXISTS "collaboration_pass" CASCADE;
+DROP TABLE IF EXISTS "analytics" CASCADE;
+DROP TABLE IF EXISTS "access" CASCADE;
+DROP TABLE IF EXISTS "blogs" CASCADE;
+DROP TABLE IF EXISTS "collaboration" CASCADE;
+DROP TABLE IF EXISTS "dao_invites" CASCADE;
+DROP TABLE IF EXISTS "department" CASCADE;
+DROP TABLE IF EXISTS "favourite" CASCADE;
+DROP TABLE IF EXISTS "member_roles" CASCADE;
+DROP TABLE IF EXISTS "roles" CASCADE;
+DROP TABLE IF EXISTS "members" CASCADE;
+DROP TABLE IF EXISTS "partner_social" CASCADE;
+DROP TABLE IF EXISTS "dao_partner" CASCADE;
+DROP TABLE IF EXISTS "provider" CASCADE;
+DROP TABLE IF EXISTS "reviews" CASCADE;
+DROP TABLE IF EXISTS "social" CASCADE;
+DROP TABLE IF EXISTS "token" CASCADE;
+DROP TABLE IF EXISTS "dao" CASCADE;
+DROP TYPE IF EXISTS "accesstype";
+DROP TYPE IF EXISTS "invitestatus";

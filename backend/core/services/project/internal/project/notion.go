@@ -19,7 +19,7 @@ func GetNotionTasks(memberID string, daos []project.DAODetail) ([]project.GetNot
 					COALESCE(( SELECT a.access
 					FROM access a
 					WHERE a.project_id = p.project_id AND (($1::uuid = ANY (a.members)) OR a.roles && $2)
-					ORDER BY (a.access::integer) DESC LIMIT 1),
+					ORDER BY a.access DESC LIMIT 1),
 					CASE
 						WHEN p.visibility = 'public' THEN 'view'::accesstype
 						WHEN p.visibility = 'private' THEN 'hidden'::accesstype

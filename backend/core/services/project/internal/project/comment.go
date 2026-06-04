@@ -33,7 +33,7 @@ func GetCommentsByLinkID(linkID string) ([]project.Comment, error) {
 
 	for rows.Next() {
 		var comment project.Comment
-		err := rows.Scan(&comment.CommentID, &comment.LinkID, &comment.Body, &comment.Author, &comment.Type)
+		err := rows.Scan(&comment.CommentID, &comment.LinkID, &comment.Body, &comment.Author, &comment.Type, &comment.CreatedAt)
 		if err != nil {
 			return nil, fmt.Errorf("failed to scan comment: %w", err)
 		}

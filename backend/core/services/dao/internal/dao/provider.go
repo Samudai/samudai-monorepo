@@ -5,6 +5,9 @@ import (
 	"github.com/Samudai/backend/shared/sqldb"
 )
 
+// providerColumns is the shared SELECT list for provider reads; the Scan order below matches it.
+const providerColumns = `provider_id, id, dao_id, provider_type, address, created_by, chain_id, is_default, name`
+
 func CreateProvider(provider dao.Provider) (string, error) {
 	db := sqldb.Dao()
 	var providerID string
@@ -22,9 +25,8 @@ func CreateProvider(provider dao.Provider) (string, error) {
 func GetProviderById(ProviderID string) (dao.Provider, error) {
 	db := sqldb.Dao()
 	var provider dao.Provider
-	err := db.QueryRow(`SELECT provider_id, dao_id, provider_type, address, created_by, chain_id, 
-		is_default, name FROM provider
-		WHERE provider_id = $1::uuid`, ProviderID).Scan(&provider.ProviderID, &provider.DAOID, &provider.ProviderType,
+	err := db.QueryRow(`SELECT `+providerColumns+` FROM provider
+		WHERE provider_id = $1::uuid`, ProviderID).Scan(&provider.ProviderID, &provider.ID, &provider.DAOID, &provider.ProviderType,
 		&provider.Address, &provider.CreatedBy, &provider.ChainID, &provider.IsDefault, &provider.Name)
 	if err != nil {
 		return provider, err
@@ -36,8 +38,7 @@ func GetProviderById(ProviderID string) (dao.Provider, error) {
 func ListProvidersForDAO(daoID string) ([]dao.Provider, error) {
 	db := sqldb.Dao()
 	var providers []dao.Provider
-	rows, err := db.Query(`SELECT provider_id, id, dao_id, provider_type, address, created_by, chain_id, 
-		is_default, name 
+	rows, err := db.Query(`SELECT `+providerColumns+`
 		FROM provider WHERE dao_id = $1::uuid
 		ORDER BY created_at ASC`, daoID)
 	if err != nil {
@@ -63,8 +64,7 @@ func ListProvidersForDAO(daoID string) ([]dao.Provider, error) {
 func DoesExistProvider(providerID string) ([]dao.Provider, error) {
 	db := sqldb.Dao()
 	var providers []dao.Provider
-	rows, err := db.Query(`SELECT provider_id, id, dao_id, provider_type, address, created_by, chain_id, 
-		is_default, name 
+	rows, err := db.Query(`SELECT `+providerColumns+`
 		FROM provider WHERE provider_id = $1::uuid
 		ORDER BY created_at ASC`, providerID)
 	if err != nil {
@@ -90,7 +90,7 @@ func DoesExistProvider(providerID string) ([]dao.Provider, error) {
 func UpdateProvider(provider dao.Provider) error {
 	db := sqldb.Dao()
 	_, err := db.Exec(`UPDATE provider SET address = $2, chain_id = $3, 
-		is_default = $4, name = $5, update_at = CURRENT_TIMESTAMP WHERE provider_id = $1::uuid`,
+		is_default = $4, name = $5, updated_at = CURRENT_TIMESTAMP WHERE provider_id = $1::uuid`,
 		provider.ProviderID, provider.Address, provider.ChainID, provider.IsDefault, provider.Name)
 	if err != nil {
 		return err
@@ -111,8 +111,7 @@ func DeleteProvider(providerID string) error {
 func GetDefaultProvider(daoID string) (dao.Provider, error) {
 	db := sqldb.Dao()
 	var provider dao.Provider
-	err := db.QueryRow(`SELECT provider_id, id, dao_id, provider_type, address, created_by, chain_id, 
-		is_default, name FROM provider WHERE dao_id = $1::uuid AND is_default = true`, daoID).Scan(&provider.ProviderID, &provider.ID,
+	err := db.QueryRow(`SELECT `+providerColumns+` FROM provider WHERE dao_id = $1::uuid AND is_default = true`, daoID).Scan(&provider.ProviderID, &provider.ID,
 		&provider.DAOID, &provider.ProviderType, &provider.Address, &provider.CreatedBy, &provider.ChainID,
 		&provider.IsDefault, &provider.Name)
 	if err != nil {
