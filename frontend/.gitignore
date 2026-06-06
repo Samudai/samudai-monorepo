@@ -28,9 +28,3 @@ yarn-error.log*
 .firebaserc
 /.firebase
 firebase.json
-
-.npmrc
-
-# yalc local linking (do not commit)
-.yalc
-yalc.lock
