@@ -93,7 +93,6 @@ temp/
 *.tmp
 
 # Local development
-local/
 dev-local/
 nohup.out
 
@@ -107,3 +106,9 @@ bin/
 coverage/
 *.cover
 profile.out 
+
+.claude/
+
+.playwright-mcp
+
+log.txt

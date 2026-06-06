@@ -1,0 +1,52 @@
+{
+  "name": "service-node",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "description": "Merged Node service: activity, twitter, web3, and x mounted under per-service prefixes.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "axios": "^1.16.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "elastic-apm-node": "^4.15.0",
+    "eth-sig-util": "^3.0.1",
+    "ethers": "^6.16.0",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "ioredis": "^5.11.0",
+    "mongodb": "^7.2.0",
+    "mongoose": "^9.6.3",
+    "morgan": "^1.10.1",
+    "twitter-api-sdk": "^1.2.1",
+    "uuid": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.8",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-prettier": "^5.5.6",
+    "nodemon": "^2.0.18",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}

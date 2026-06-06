@@ -1,0 +1,63 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import store from 'store/store';
+import {
+    projectReasrchRes,
+    searchDAOReq,
+    searchMemberRes,
+    searchMemberforDao,
+    searchRes,
+} from './Model';
+
+export const searchApi = createApi({
+    reducerPath: 'searchApi',
+    baseQuery: fetchBaseQuery({
+        baseUrl: import.meta.env.REACT_APP_GATEWAY,
+        prepareHeaders: (headers) => {
+            headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
+            headers.set('daoId', store.getState().commonReducer.activeDao);
+            return headers;
+        },
+    }),
+    tagTypes: ['DAO', 'Member', 'DAOMember'],
+    endpoints: (builder) => ({
+        universalSearch: builder.query<searchRes, string>({
+            query: (value) => `/api/search/universal/${value}`,
+        }),
+        projectSearch: builder.query<projectReasrchRes, string>({
+            query: (value) => `/api/search/project/${value}`,
+        }),
+        searchDAO: builder.query<searchDAOReq, string>({
+            query: (value) => `/api/search/dao/${value}`,
+            // query: (value) => `/api/search/dao/${encodeURIComponent(value)}`,
+            providesTags: ['DAO'],
+        }),
+        searchMember: builder.query<searchMemberRes, string>({
+            query: (value) => `/api/search/member/${value}`,
+            // query: (value) => `/api/search/member/${encodeURIComponent(value)}`,
+            providesTags: ['Member'],
+        }),
+        searchMemberByDao: builder.query<searchMemberforDao, { daoId: string; value: string }>({
+            // Skip the request when daoId is empty so we never hit
+            queryFn: async ({ daoId, value }, _api, _extraOptions, baseQuery) => {
+                if (!daoId) {
+                    return { data: { message: 'skipped: empty daoId', data: [] } };
+                }
+                const result = await baseQuery(
+                    `/api/search/daomember/${daoId}?query=${encodeURIComponent(value)}`
+                );
+                return result.error
+                    ? { error: result.error }
+                    : { data: result.data as searchMemberforDao };
+            },
+            providesTags: ['DAOMember'],
+        }),
+    }),
+});
+
+export const {
+    useLazyUniversalSearchQuery,
+    useLazySearchDAOQuery,
+    useLazySearchMemberQuery,
+    useLazySearchMemberByDaoQuery,
+    useLazyProjectSearchQuery,
+} = searchApi;

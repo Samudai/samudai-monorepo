@@ -3,7 +3,7 @@ on:
     branches:
       - master
     paths:
-      - services/gateway-consumer-node/**
+      - backend/gateway-consumer/**
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/samudai/gateway-consumer-node
+          images: ghcr.io/samudai/gateway-consumer
           tags: |
             type=sha,format=long
             type=ref,event=branch
@@ -40,13 +40,15 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: services/gateway-consumer-node
-          file: services/gateway-consumer-node/Dockerfile
+          context: backend/gateway-consumer
+          file: backend/gateway-consumer/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ghcr.io/samudai/gateway-consumer-node:${{ github.sha }}
-            ghcr.io/samudai/gateway-consumer-node:latest
+            ghcr.io/samudai/gateway-consumer:${{ github.sha }}
+            ghcr.io/samudai/gateway-consumer:latest
+          build-args: |
+            GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 

@@ -55,7 +55,10 @@ export const saveRoles = async (guild: Guild, daoId: string): Promise<AxiosRespo
   });
 };
 
-export const savePointRoles = async (guild: Guild, pointId: string): Promise<AxiosResponse> => {
+export const savePointRoles = async (
+  guild: Guild,
+  pointId: string
+): Promise<AxiosResponse> => {
   const roles = await guild.roles.fetch();
   const rolesSchema: RoleData[] = roles.map((role: Role) => mapRole(role));
 
@@ -80,7 +83,7 @@ export const saveOwner = async (guild: Guild, daoId: string): Promise<AxiosRespo
 
 export const saveEvents = async (guild: Guild, daoId: string) => {
   const events = await guild.scheduledEvents.fetch();
-  let eventsSchema: EventData[] = [];
+  const eventsSchema: EventData[] = [];
   events.forEach(async (value: GuildScheduledEvent, key) => {
     const e: GuildScheduledEvent = await guild.scheduledEvents.fetch(value.id);
     eventsSchema.push(mapEvent(e));
@@ -103,7 +106,10 @@ export const updateGuild = (guild: Guild, daoId: string): Promise<AxiosResponse>
   });
 };
 
-export const updatePointGuild = (guild: Guild, pointId: string): Promise<AxiosResponse> => {
+export const updatePointGuild = (
+  guild: Guild,
+  pointId: string
+): Promise<AxiosResponse> => {
   const guildSchema: GuildData = mapGuild(guild);
   // console.log('Guildschema', guildSchema);
   return axios.post(`${process.env.GATEWAY_EXTERNAL}/discordbot/point/linkdiscord`, {

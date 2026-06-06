@@ -3,7 +3,10 @@ on:
     branches:
       - master
     paths:
-      - services/gateway-external/**
+      - backend/gateway-external/**
+      # gateway-external vendors no deps; it builds against service-go's exported
+      # pkg/* types via `replace`, so a change to those must rebuild this image.
+      - backend/service-go/services/*/pkg/**
 
 jobs:
   build:
@@ -40,8 +43,10 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: services/gateway-external/Dockerfile
+          # Context is backend/ (not the service dir) so the sibling service-go
+          # module is available to the `replace` directive at build time.
+          context: backend
+          file: backend/gateway-external/Dockerfile
           push: true
           labels: ${{ steps.meta.outputs.labels }}
           tags: |

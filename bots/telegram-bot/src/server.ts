@@ -1,8 +1,8 @@
-import express, { Express, Request } from 'express';
-import { AppConfig } from './config/appConfig';
-import { Routes } from './routes/routes';
-import mqConnection from './config/rabbitmqConfig';
-require('dotenv').config();
+import express, { Express, Request } from "express";
+import { AppConfig } from "./config/appConfig";
+import { Routes } from "./routes/routes";
+import mqConnection from "./config/rabbitmqConfig";
+require("dotenv").config();
 
 export class Server {
   app: Express;
@@ -26,10 +26,11 @@ export class Server {
       this.routeConfig();
       await mqConnection.connect();
       this.server = this.app.listen(process.env.PORT, () => {
-        
-        console.log('Samudai Telegram bot is running on port', process.env.PORT);
+        console.log(
+          "Samudai Telegram bot is running on port",
+          process.env.PORT,
+        );
       });
-
     } catch (err) {
       console.error(err);
       process.exit(1);
@@ -37,11 +38,11 @@ export class Server {
   };
 
   stopServer = () => {
-    process.on('SIGINT', () => {
-      console.info('SIGINT signal received.');
-      console.log('Closing http server.');
+    process.on("SIGINT", () => {
+      console.info("SIGINT signal received.");
+      console.log("Closing http server.");
       this.server.close(async () => {
-        console.log('Http server closed.');
+        console.log("Http server closed.");
         process.exit(0);
       });
     });

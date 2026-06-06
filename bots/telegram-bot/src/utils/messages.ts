@@ -1,1 +1,2 @@
-export const disconnectTelegramMessage = "Telegram has successfully been unlinked from Samudai"
+export const disconnectTelegramMessage =
+  "Telegram has successfully been unlinked from Samudai";

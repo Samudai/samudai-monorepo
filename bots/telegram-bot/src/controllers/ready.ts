@@ -15,13 +15,13 @@ export const telegramCreate = async (ctx: any) => {
             last_name: ctx.from.last_name,
             generated_telegram_id: ctx.message.text,
           },
-        }
+        },
       );
 
       ctx.reply(
         "Congrats " +
           ctx.from.first_name +
-          "! Successfully verified your Telegram... You'll now be recieving notifications"
+          "! Successfully verified your Telegram... You'll now be recieving notifications",
       );
     }
   } catch (err: any) {
@@ -53,14 +53,16 @@ export const telegramCreateForPoint = async (ctx: any) => {
     const msg = ctx.message;
 
     if (msg.chat.type == "group") {
-      if (msg.text.startsWith(
-        'Points, points, points! Samudai is bringing the fun to our Telegram group with automated point dispersals! Let the points parade begin! Unique Code: '
-      ) && ctx.message.text != "start") {
-
-        const arr = msg.text.split(':');
-        const otp = arr[1].substring(1)
+      if (
+        msg.text.startsWith(
+          "Points, points, points! Samudai is bringing the fun to our Telegram group with automated point dispersals! Let the points parade begin! Unique Code: ",
+        ) &&
+        ctx.message.text != "start"
+      ) {
+        const arr = msg.text.split(":");
+        const otp = arr[1].substring(1);
         console.log(otp);
-        
+
         const payload = {
           chat_id: msg.chat.id.toString(),
           username: msg.chat.title,
@@ -73,13 +75,13 @@ export const telegramCreateForPoint = async (ctx: any) => {
           `${process.env.GATEWAY_EXTERNAL}/telegram/create/point`,
           {
             telegram: payload,
-          }
+          },
         );
 
         ctx.reply(
           "Congrats " +
             ctx.from.first_name +
-            "! Successfully linked your Telegram."
+            "! Successfully linked your Telegram.",
         );
       }
     } else {
@@ -96,12 +98,12 @@ export const telegramCreateForPoint = async (ctx: any) => {
           `${process.env.GATEWAY_EXTERNAL}/telegram/create/point`,
           {
             telegram: payload,
-          }
+          },
         );
 
         ctx.reply(
           "Congrats! Samudai is Successfully integrated with the Telegram group" +
-          msg.chat.title
+            msg.chat.title,
         );
       }
     }
@@ -150,7 +152,7 @@ export const grpJoiningPointsTipping = async (ctx: any) => {
           "gm " +
             ctx.from.first_name +
             "!! \nPlease enter the string shown on Samudai to link " +
-            msg.chat.title
+            msg.chat.title,
         );
       }
     }
