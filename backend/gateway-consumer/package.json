@@ -22,7 +22,7 @@
         "@samudai_xyz/gateway-consumer-types": "^0.8.96",
         "@samudai/web3-sdk": "0.1.0",
         "aws-sdk": "^2.1693.0",
-        "axios": "^1.16.1",
+        "axios": "^1.17.0",
         "bs58": "^5.0.0",
         "connect-timeout": "^1.9.1",
         "cookie-parser": "^1.4.7",
@@ -50,7 +50,7 @@
         "socket.io": "^4.8.3",
         "stripe": "^22.2.0",
         "tweetnacl": "^1.0.3",
-        "uuid": "^11.1.1"
+        "uuid": "^14.0.0"
     },
     "devDependencies": {
         "@types/connect-timeout": "^1.9.0",
