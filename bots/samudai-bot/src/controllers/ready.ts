@@ -183,8 +183,8 @@ export const guildMemberUpdate = (
 ) => {
   const newMemeberSchema: GuildMemberData = mapMember(newMember);
 
-  let newRoles = newMember.roles.cache.map((role) => role.id);
-  let oldRoles = oldMember.roles.cache.map((role) => role.id);
+  const newRoles = newMember.roles.cache.map((role) => role.id);
+  const oldRoles = oldMember.roles.cache.map((role) => role.id);
 
   axios
     .post(`${process.env.GATEWAY_EXTERNAL}/discordbot/member/update`, {
@@ -449,8 +449,8 @@ export const guildMemberUpdatePoint = (
 ) => {
   const newMemeberSchema: GuildMemberData = mapMember(newMember);
 
-  let newRoles = newMember.roles.cache.map((role) => role.id);
-  let oldRoles = oldMember.roles.cache.map((role) => role.id);
+  const newRoles = newMember.roles.cache.map((role) => role.id);
+  const oldRoles = oldMember.roles.cache.map((role) => role.id);
 
   axios
     .post(`${process.env.GATEWAY_EXTERNAL}/discordbot/point/member/update`, {

@@ -24,10 +24,8 @@ export class Server {
       this.appConfig();
       this.routeConfig();
       this.server = this.app.listen(process.env.PORT, () => {
-        
         console.log('Samudai bot is running on port', process.env.PORT);
       });
-
     } catch (err) {
       console.error(err);
       process.exit(1);

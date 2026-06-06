@@ -111,7 +111,11 @@ client.on('interactionCreate', async (interaction) => {
       );
       console.log(result.data);
 
-      if (result.data && result.data.access && result.data.access.access.includes('admin')) {
+      if (
+        result.data &&
+        result.data.access &&
+        result.data.access.access.includes('admin')
+      ) {
         console.log(result.data);
         const res = await axios.post(
           `${process.env.GATEWAY_EXTERNAL}/discordbot/event/addPointsNum`,
@@ -125,7 +129,7 @@ client.on('interactionCreate', async (interaction) => {
             points: points?.value,
             description: description?.value,
             point_id: result.data.access.point_id,
-            point_name: result.data.access.name,
+            point_name: result.data.access.name
           }
         );
 
@@ -267,7 +271,7 @@ client.on(Events.GuildRoleUpdate, guildRoleUpdatePoints);
 const getGuild = async (guildId: string): Promise<Guild> => {
   // console.log(client)
   const Guilds = client.guilds.cache.map((guild) => guild);
-  let guild = Guilds.filter((item: Guild) => {
+  const guild = Guilds.filter((item: Guild) => {
     // console.log(item.id)
     if (guildId === item.id) return item;
   });
@@ -276,7 +280,7 @@ const getGuild = async (guildId: string): Promise<Guild> => {
 
 const getUser = async (userId: string): Promise<User> => {
   const Users = client.users.cache.map((user) => user);
-  let user = Users.filter((item) => {
+  const user = Users.filter((item) => {
     // console.log(item.id)
     if (userId === item.id) return item;
   });

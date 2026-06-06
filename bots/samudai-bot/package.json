@@ -10,7 +10,9 @@
     "dev": "ts-node-dev src/index.ts",
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +40,11 @@
     "@types/express": "^5.0.6",
     "@types/lodash": "^4.17.24",
     "@types/morgan": "^1.9.10",
-    "@types/node": "^22.0.0"
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-prettier": "^5.5.6"
   }
 }

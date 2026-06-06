@@ -86,10 +86,9 @@
     "test": "vitest",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "lint": "eslint .",
-    "lint:fix": "eslin --fix",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "build:development": "env-cmd -f ./.development.env vite build",
-    "build:staging": "env-cmd -f ./.staging.env vite build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f ./.production.env vite build"
   },
   "eslintConfig": {
