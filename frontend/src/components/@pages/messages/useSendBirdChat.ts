@@ -276,9 +276,9 @@ export const useSendBirdChat = (userId: string) => {
             if (!currentMembersSet.has(memberId)) {
                 // `removeMember` isn't on the public GroupChannel type in this SDK
                 // version; narrow to just the method used instead of `any`.
-                await (channel as unknown as { removeMember(userId: string): Promise<void> }).removeMember(
-                    memberId
-                );
+                await (
+                    channel as unknown as { removeMember(userId: string): Promise<void> }
+                ).removeMember(memberId);
             }
         }
 

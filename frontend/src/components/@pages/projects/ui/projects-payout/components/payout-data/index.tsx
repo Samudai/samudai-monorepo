@@ -136,20 +136,20 @@ export const PayoutData: React.FC<PayoutDataProps> = ({
                                 currency: item.token
                                     ? item.token.name
                                     : activeProvider.chain_id === 1 || activeProvider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 symbol: item.token
                                     ? item.token.name
                                     : activeProvider.chain_id === 1 || activeProvider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 balance: item.balance,
                                 token_address: item.tokenAddress,
                                 name: item.token
                                     ? item.token.name
                                     : activeProvider.chain_id === 1 || activeProvider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 decimal: item.token ? item.token.decimals : 0,
                                 logo_uri: item.token ? item.token.logoUri : '',
                             });
@@ -181,23 +181,23 @@ export const PayoutData: React.FC<PayoutDataProps> = ({
                                             currency: item.token
                                                 ? item.token.name
                                                 : activeProvider.chain_id === 1 ||
-                                                  activeProvider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                    activeProvider.chain_id === 5
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             symbol: item.token
                                                 ? item.token.name
                                                 : activeProvider.chain_id === 1 ||
-                                                  activeProvider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                    activeProvider.chain_id === 5
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             balance: item.balance,
                                             token_address: item.tokenAddress,
                                             name: item.token
                                                 ? item.token.name
                                                 : activeProvider.chain_id === 1 ||
-                                                  activeProvider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                    activeProvider.chain_id === 5
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             decimal: item.token ? item.token.decimals : 0,
                                             logo_uri: item.token ? item.token.logoUri : '',
                                         });

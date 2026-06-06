@@ -560,8 +560,8 @@ const Header: React.FC = () => {
                                 billingTier === 'enterprise'
                                     ? 'enterprise'
                                     : billingTier === 'medium'
-                                    ? 'medium'
-                                    : 'small'
+                                      ? 'medium'
+                                      : 'small'
                             }
                         />
                     }

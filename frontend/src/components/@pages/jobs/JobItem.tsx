@@ -83,7 +83,9 @@ const JobItem: React.FC<JobItemProps> = (props) => {
             <div data-col className={styles.colOpen}>
                 <p className={styles.colPlaceholder}>Open to</p>
                 <p className={styles.text}>
-                    {props?.openTo?.map((role) => <span key={role}>{role}</span>)}
+                    {props?.openTo?.map((role) => (
+                        <span key={role}>{role}</span>
+                    ))}
                 </p>
             </div>
             <div data-col className={styles.colСontrols}>

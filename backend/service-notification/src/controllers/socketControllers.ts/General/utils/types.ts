@@ -1,9 +1,9 @@
-import { IMember } from "../../utils/types";
+import { IMember } from '../../utils/types';
 
 export type GenenralNotificationMetaData = {
   member: IMember;
   redirect_link?: string;
-}
+};
 
 export type MeetingCreatedNotificationMetaData = {
   member: IMember;

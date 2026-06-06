@@ -8,7 +8,6 @@ import {
     searchRes,
 } from './Model';
 
-
 export const searchApi = createApi({
     reducerPath: 'searchApi',
     baseQuery: fetchBaseQuery({

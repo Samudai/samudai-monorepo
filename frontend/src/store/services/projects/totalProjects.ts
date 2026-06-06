@@ -43,7 +43,6 @@ import {
     updateSubTaskRowRequest,
 } from './model';
 
-
 export const projectApi = createApi({
     reducerPath: 'projectApi',
     tagTypes: ['Task', 'Project', 'Folder', 'SubTask', 'Payout'],

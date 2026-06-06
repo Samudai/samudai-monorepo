@@ -12,7 +12,6 @@ import Loader from 'components/Loader/Loader';
 import { getMemberId } from 'utils/utils';
 import 'styles/pages/sign-up.scss';
 
-
 const initialState: SignUpState = {
     img: null,
     account_type: null,
@@ -67,7 +66,9 @@ const AddDao: React.FC = () => {
                     })
                 );
                 axios
-                    .get(`${import.meta.env.REACT_APP_GATEWAY}api/discord/get/guilds/${getMemberId()}`)
+                    .get(
+                        `${import.meta.env.REACT_APP_GATEWAY}api/discord/get/guilds/${getMemberId()}`
+                    )
                     .then((res) => {
                         console.log(res?.data?.data);
                         localStorage.setItem('discordGuilds', JSON.stringify(res?.data?.data));

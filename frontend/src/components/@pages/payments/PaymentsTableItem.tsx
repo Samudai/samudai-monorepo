@@ -331,8 +331,8 @@ const PaymentsTableItem: React.FC<ownProps> = ({
                             {awaiting
                                 ? awaitingData?.payout_amount
                                 : upcoming
-                                ? queuedData?.amountUSD
-                                : historyData?.amountUSD}
+                                  ? queuedData?.amountUSD
+                                  : historyData?.amountUSD}
                         </span>
                     </div>
                     {/* Currency */}
@@ -372,15 +372,15 @@ const PaymentsTableItem: React.FC<ownProps> = ({
                                 {awaiting
                                     ? awaitingData?.provider.name
                                     : upcoming
-                                    ? queuedData?.provider.name
-                                    : historyData?.provider.name}
+                                      ? queuedData?.provider.name
+                                      : historyData?.provider.name}
                             </span>
                             <span className="payment-table__initiated_address">
                                 {awaiting
                                     ? awaitingData?.provider.address
                                     : upcoming
-                                    ? queuedData?.provider.address
-                                    : historyData?.provider.address}
+                                      ? queuedData?.provider.address
+                                      : historyData?.provider.address}
                             </span>
                         </div>
                     </div>
@@ -396,8 +396,8 @@ const PaymentsTableItem: React.FC<ownProps> = ({
                                 {awaiting
                                     ? awaitingData?.initiated_by.username
                                     : upcoming
-                                    ? queuedData?.confirmations[0]
-                                    : historyData?.executedBy}
+                                      ? queuedData?.confirmations[0]
+                                      : historyData?.executedBy}
                             </span>
                         </div>
                     </div>

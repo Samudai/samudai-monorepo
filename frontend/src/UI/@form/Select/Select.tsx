@@ -60,7 +60,9 @@ const Select: React.FC<SelectProps> = ({
 
         if (child.type === Button)
             return React.cloneElement(child as ReactElement<any>, {
-                onClick: handleClickButton((child.props as { onClick?: onClickButtonType }).onClick),
+                onClick: handleClickButton(
+                    (child.props as { onClick?: onClickButtonType }).onClick
+                ),
             });
 
         return null;

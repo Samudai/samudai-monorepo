@@ -1,28 +1,28 @@
-import { recoverPersonalSignature } from 'eth-sig-util';
-import { getAddress } from 'ethers';
+import { recoverPersonalSignature } from "eth-sig-util";
+import { getAddress } from "ethers";
 
-const reg = new RegExp('(?<=sig:).*');
+const reg = new RegExp("(?<=sig:).*");
 
 export const handleVerify = async (username: string, tweetBody: string) => {
   console.log(tweetBody);
   const matchedText = tweetBody.match(reg);
   const tweetSignature = matchedText![0].slice(0, 132);
-  console.log('TweetSignature', tweetSignature);
+  console.log("TweetSignature", tweetSignature);
   console.log(username);
 
   const data = {
     types: {
       EIP712Domain: [
-        { name: 'name', type: 'string' },
-        { name: 'version', type: 'string' },
+        { name: "name", type: "string" },
+        { name: "version", type: "string" },
       ],
-      Permit: [{ name: 'username', type: 'string' }],
+      Permit: [{ name: "username", type: "string" }],
     },
     domain: {
-      name: 'Sybil Verifier',
-      version: '1',
+      name: "Sybil Verifier",
+      version: "1",
     },
-    primaryType: 'Permit',
+    primaryType: "Permit",
     message: {
       username: username,
     },
@@ -39,7 +39,7 @@ export const handleVerify = async (username: string, tweetBody: string) => {
 
   const formattedSigner = getAddress(signer);
 
-  console.log('signer', formattedSigner);
+  console.log("signer", formattedSigner);
 
   return formattedSigner;
 };

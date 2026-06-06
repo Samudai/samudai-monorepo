@@ -77,10 +77,10 @@ export const ProfileConnect: React.FC<ProfileConnectProps> = ({ data }) => {
                             status === 'pending'
                                 ? 'Pending'
                                 : status === 'accepted'
-                                ? 'Connected'
-                                : status === 'declined'
-                                ? 'Connect'
-                                : 'Connect' //conenction status === 'revoked'
+                                  ? 'Connected'
+                                  : status === 'declined'
+                                    ? 'Connect'
+                                    : 'Connect' //conenction status === 'revoked'
                         }
                     </span>
                 </Button>

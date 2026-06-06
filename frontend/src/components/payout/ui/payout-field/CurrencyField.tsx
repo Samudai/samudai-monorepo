@@ -76,20 +76,20 @@ const CurrencyField: React.FC<CurrencyFieldProps> = (props) => {
                                 currency: item.token
                                     ? item.token.name
                                     : provider.chain_id === 1 || provider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 symbol: item.token
                                     ? item.token.name
                                     : provider.chain_id === 1 || provider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 balance: item.balance,
                                 token_address: item.tokenAddress,
                                 name: item.token
                                     ? item.token.name
                                     : provider.chain_id === 1 || provider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 decimal: item.token ? item.token.decimals : 0,
                                 logo_uri: item.token ? item.token.logoUri : '',
                             });
@@ -120,20 +120,20 @@ const CurrencyField: React.FC<CurrencyFieldProps> = (props) => {
                                             currency: item.token
                                                 ? item.token.name
                                                 : provider.chain_id === 1 || provider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             symbol: item.token
                                                 ? item.token.name
                                                 : provider.chain_id === 1 || provider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             balance: item.balance,
                                             token_address: item.tokenAddress,
                                             name: item.token
                                                 ? item.token.name
                                                 : provider.chain_id === 1 || provider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             decimal: item.token ? item.token.decimals : 0,
                                             logo_uri: item.token ? item.token.logoUri : '',
                                         });

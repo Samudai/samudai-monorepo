@@ -1,5 +1,8 @@
-import { ContributorProgressBar, DaoProgressBar } from '../../models/progressBarSchema';
-import { ContributorItems, DAOItems } from '../../utils/types';
+import {
+  ContributorProgressBar,
+  DaoProgressBar,
+} from "../../models/progressBarSchema";
+import { ContributorItems, DAOItems } from "../../utils/types";
 
 export class ProgressBarQuery {
   updateDAOProgressBar = async (daoId: string, itemIds: string[]) => {
@@ -11,8 +14,15 @@ export class ProgressBarQuery {
           itemsUpdate[`items.${itemId}`] = true;
         });
         const update = { $set: itemsUpdate };
-        const updatedDaoPGBar = await DaoProgressBar.findOneAndUpdate({ dao_id: daoId }, update, { new: true });
-        console.log(`Updated DAO ProgressBar document with ID ${daoId}:`, updatedDaoPGBar);
+        const updatedDaoPGBar = await DaoProgressBar.findOneAndUpdate(
+          { dao_id: daoId },
+          update,
+          { new: true },
+        );
+        console.log(
+          `Updated DAO ProgressBar document with ID ${daoId}:`,
+          updatedDaoPGBar,
+        );
         return updatedDaoPGBar;
       } else {
         const itemsDefault: DAOItems = {
@@ -37,12 +47,12 @@ export class ProgressBarQuery {
         });
         const savedDaoPGBar = await newDaoPGBar.save();
 
-        const updatedItems:any = { ...itemsDefault };
+        const updatedItems: any = { ...itemsDefault };
 
-        itemIds.forEach(itemId => {
+        itemIds.forEach((itemId) => {
           updatedItems[itemId] = true;
         });
-        
+
         savedDaoPGBar.items = updatedItems;
         const updatedDaoPGBar = await savedDaoPGBar.save();
         return updatedDaoPGBar;
@@ -54,28 +64,43 @@ export class ProgressBarQuery {
 
   getDAOProgressBar = async (daoId: string) => {
     try {
-      const daoProgressBar = await DaoProgressBar.findOne({ dao_id: daoId }).exec();
+      const daoProgressBar = await DaoProgressBar.findOne({
+        dao_id: daoId,
+      }).exec();
       return daoProgressBar;
     } catch (err: any) {
       console.log(err);
     }
   };
 
-  updateContributorProgressBar = async (memberId: string, itemIds: string[]) => {
+  updateContributorProgressBar = async (
+    memberId: string,
+    itemIds: string[],
+  ) => {
     try {
-      const exists = await ContributorProgressBar.findOne({ member_id: memberId });
+      const exists = await ContributorProgressBar.findOne({
+        member_id: memberId,
+      });
       if (exists) {
         const itemsUpdate: any = {};
         itemIds.forEach((itemId) => {
           itemsUpdate[`items.${itemId}`] = true;
         });
-        console.log('itemsUpdate', itemsUpdate);
-        
+        console.log("itemsUpdate", itemsUpdate);
+
         const update = { $set: itemsUpdate };
-        const updatedContributorPGBar = await ContributorProgressBar.findOneAndUpdate({ member_id: memberId }, update, {
-          new: true,
-        });
-        console.log(`Updated Contributor ProgressBar document with ID ${memberId}:`, updatedContributorPGBar);
+        const updatedContributorPGBar =
+          await ContributorProgressBar.findOneAndUpdate(
+            { member_id: memberId },
+            update,
+            {
+              new: true,
+            },
+          );
+        console.log(
+          `Updated Contributor ProgressBar document with ID ${memberId}:`,
+          updatedContributorPGBar,
+        );
         return updatedContributorPGBar;
       } else {
         const itemsDefault: ContributorItems = {
@@ -101,9 +126,9 @@ export class ProgressBarQuery {
         });
         const savedContributorPGBar = await newContributorPGBar.save();
 
-        const updatedItems:any = { ...itemsDefault };
+        const updatedItems: any = { ...itemsDefault };
 
-        itemIds.forEach(itemId => {
+        itemIds.forEach((itemId) => {
           updatedItems[itemId] = true;
         });
         savedContributorPGBar.items = updatedItems;
@@ -117,7 +142,9 @@ export class ProgressBarQuery {
 
   getContributorProgressBar = async (memberId: string) => {
     try {
-      const contributorProgressBar = await ContributorProgressBar.findOne({ member_id: memberId }).exec();
+      const contributorProgressBar = await ContributorProgressBar.findOne({
+        member_id: memberId,
+      }).exec();
       return contributorProgressBar;
     } catch (err: any) {
       console.log(err);

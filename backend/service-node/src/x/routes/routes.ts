@@ -1,5 +1,5 @@
-import express, { Express, Router } from 'express';
-import { ActivityController } from '../controller/activityController';
+import express, { Express, Router } from "express";
+import { ActivityController } from "../controller/activityController";
 
 export class Routes {
   app: Router;
@@ -18,13 +18,15 @@ export class Routes {
 
   activityRouters = () => {
     //Activity Routes
-    this.activityRouter.post('/fetch', this.activityController.fetchNewTwitterActivity);
+    this.activityRouter.post(
+      "/fetch",
+      this.activityController.fetchNewTwitterActivity,
+    );
 
-    this.app.use('/activity', this.activityRouter);
+    this.app.use("/activity", this.activityRouter);
   };
 
   routesConfig = () => {
     this.activityRouters();
-
   };
 }

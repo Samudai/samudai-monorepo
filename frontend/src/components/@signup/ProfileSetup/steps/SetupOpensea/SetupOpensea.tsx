@@ -100,11 +100,7 @@ const SetupOpensea: React.FC<SetupOpenseaProps> = ({ state, active, onClose, set
             <div className="setup-opensea__header">
                 <BackButton className="setup-opensea__back" onClick={onClose} />
             </div>
-            <ModalTitle
-                icon={openseaIcon}
-                suptitle=""
-                title="Use NFT OpenSea"
-            />
+            <ModalTitle icon={openseaIcon} suptitle="" title="Use NFT OpenSea" />
             <div className="setup-opensea__nfts">
                 <ul className="setup-opensea__list">
                     {data?.map((item, id) => (

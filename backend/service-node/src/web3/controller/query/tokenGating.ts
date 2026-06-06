@@ -1,9 +1,13 @@
-import mongoose from 'mongoose';
-import { TokenGating } from '../../models/tokenGating';
-import { AccessControlConditions, ResourceId } from '../../utils/types';
+import mongoose from "mongoose";
+import { TokenGating } from "../../models/tokenGating";
+import { AccessControlConditions, ResourceId } from "../../utils/types";
 
 export class TokenGatingQuery {
-  addTokenGating = async (dao_id: string, accessControlConditions: AccessControlConditions, resourceId: ResourceId) => {
+  addTokenGating = async (
+    dao_id: string,
+    accessControlConditions: AccessControlConditions,
+    resourceId: ResourceId,
+  ) => {
     try {
       const newTokenGating = await TokenGating.create({
         dao_id: dao_id,
@@ -20,7 +24,7 @@ export class TokenGatingQuery {
     try {
       const tokenGating = await TokenGating.findOne(
         { dao_id: dao_id },
-        { _id: 0, dao_id: 1, accessControlConditions: 1, resourceId: 1 }
+        { _id: 0, dao_id: 1, accessControlConditions: 1, resourceId: 1 },
       ).exec();
       return tokenGating;
     } catch (err: any) {

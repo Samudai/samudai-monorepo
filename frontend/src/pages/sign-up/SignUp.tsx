@@ -8,7 +8,6 @@ import { Complete, ConnectApps, ConnectWallet, StartAs } from 'components/@signu
 import 'styles/pages/sign-up.scss';
 import { SignUpModals, SignUpState } from './types';
 
-
 const initialState: SignUpState = {
     img: null,
     account_type: null,

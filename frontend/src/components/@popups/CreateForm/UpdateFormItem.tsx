@@ -170,8 +170,8 @@ const UpdateFormItem: React.FC<CreateFormItemProps> = ({
                         ? !option.selected
                         : option.selected
                     : item.value === option.value
-                    ? true
-                    : false,
+                      ? true
+                      : false,
         }));
 
         onDataChange({ ...data, options });

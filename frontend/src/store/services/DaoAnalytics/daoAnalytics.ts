@@ -8,7 +8,6 @@ import {
     GetPendingProposalsResponse,
 } from './model';
 
-
 export const daoAnalyticsApi = createApi({
     reducerPath: 'daoAnalytics',
     baseQuery: fetchBaseQuery({

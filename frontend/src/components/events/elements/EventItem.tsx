@@ -21,8 +21,8 @@ const EventItem: React.FC<EventItemProps> = ({ item, showDetailEvent }) => {
     const link = item.link
         ? openUrl(item.link)
         : !!item?.entity_metadata?.location && httpRegex.test(item?.entity_metadata?.location)
-        ? openUrl(item?.entity_metadata?.location)
-        : undefined;
+          ? openUrl(item?.entity_metadata?.location)
+          : undefined;
 
     return (
         <li className={styles.root} onClick={handleShowEvent}>

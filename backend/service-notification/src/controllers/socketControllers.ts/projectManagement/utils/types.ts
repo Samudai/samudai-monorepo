@@ -1,4 +1,4 @@
-import { IMember } from "../../utils/types";
+import { IMember } from '../../utils/types';
 
 export type TaskReviewNotificationMetaData = {
   member: IMember;
@@ -43,8 +43,8 @@ export type TaskCreatedNotificationMetaData = {
     member_id: string;
   };
   project: string;
-  redirect_link?: string; 
-}
+  redirect_link?: string;
+};
 
 export type TaskDeletedNotificationMetaData = {
   member: IMember;
@@ -54,7 +54,7 @@ export type TaskDeletedNotificationMetaData = {
     project_id: string;
   };
   redirect_link?: string;
-}
+};
 
 export type KanbanBoardChangedNotificationMetaData = {
   member: IMember;
@@ -63,7 +63,7 @@ export type KanbanBoardChangedNotificationMetaData = {
     project_id: string;
   };
   redirect_link?: string;
-}
+};
 
 export type PayoutAssignedNotificationnMetaData = {
   member: IMember;
@@ -73,13 +73,13 @@ export type PayoutAssignedNotificationnMetaData = {
     project_id: string;
   };
   payout: {
-    member_id : string,
-    payout_amount : number,
-    payout_currency : string,
-    receiver_address : string
+    member_id: string;
+    payout_amount: number;
+    payout_currency: string;
+    receiver_address: string;
   };
   redirect_link?: string;
-}
+};
 
 export type TaskAssignedToContributorNotificationMetaData = {
   member: IMember;
@@ -90,21 +90,21 @@ export type TaskAssignedToContributorNotificationMetaData = {
     contributors: string[];
   };
   redirect_link?: string;
-}
+};
 
 export type ReviewNudgeContributorNotificationMetaData = {
   member: IMember;
   dao: {
-    dao_id : string;
-    name : string;
+    dao_id: string;
+    name: string;
   };
   redirect_link?: string;
-}
+};
 
 export type ReviewNudgeDAONotificationMetaData = {
   member: IMember;
   redirect_link?: string;
-}
+};
 
 export type AddedToProjectNotificationMetaData = {
   member: IMember;
@@ -114,9 +114,9 @@ export type AddedToProjectNotificationMetaData = {
     dao: string;
     added_by: string;
   };
-  redirect_link? : string;
+  redirect_link?: string;
 };
-  
+
 export type AddedToTaskNotificationMetaData = {
   member: IMember;
   task: {
@@ -124,5 +124,5 @@ export type AddedToTaskNotificationMetaData = {
     task_id: string;
     added_by: string;
   };
-  redirect_link? : string;
+  redirect_link?: string;
 };

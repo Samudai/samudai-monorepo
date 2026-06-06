@@ -18,7 +18,7 @@ import {
 
 export class ContributorNotificationTemplateHandler {
   socialConnectionRequestNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -33,7 +33,7 @@ export class ContributorNotificationTemplateHandler {
           username: member.username,
           profile_picture: member.profile_picture,
           name: member.name,
-          role: member.present_role
+          role: member.present_role,
         },
         from: {
           username: member.username,
@@ -75,7 +75,7 @@ export class ContributorNotificationTemplateHandler {
   };
 
   connectionAcceptedNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -119,7 +119,7 @@ export class ContributorNotificationTemplateHandler {
   };
 
   contributorCompleteProfileNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -154,7 +154,7 @@ export class ContributorNotificationTemplateHandler {
   };
 
   contributorCompleteProfileForJobNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -189,7 +189,7 @@ export class ContributorNotificationTemplateHandler {
   };
 
   contributorSubdomainClaimSuccessNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;

@@ -130,12 +130,7 @@ const Bounty: React.FC<props> = ({ personal, contributors, providerList, setProv
             const gnosis = new GnosisFetch(activeProvider.address!, activeProvider.chain_id!);
             gnosis.getSafeBalance().then((res) => {
                 const balance = res as GnosisTypes.SafeBalanceUsdResponse[];
-                setBalance(
-                    ethers
-                        .formatEther(balance?.[0]?.balance)
-                        .toString()
-                        .slice(0, 6)
-                );
+                setBalance(ethers.formatEther(balance?.[0]?.balance).toString().slice(0, 6));
                 setTokenType(balance?.[0]?.token?.symbol || 'ETH');
                 setTokenAddress(balance?.[0]?.tokenAddress);
             });
@@ -166,20 +161,20 @@ const Bounty: React.FC<props> = ({ personal, contributors, providerList, setProv
                                 currency: item.token
                                     ? item.token.name
                                     : activeProvider.chain_id === 1 || activeProvider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 symbol: item.token
                                     ? item.token.name
                                     : activeProvider.chain_id === 1 || activeProvider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 balance: item.balance,
                                 token_address: item.tokenAddress,
                                 name: item.token
                                     ? item.token.name
                                     : activeProvider.chain_id === 1 || activeProvider.chain_id === 5
-                                    ? 'ETH'
-                                    : 'MATIC',
+                                      ? 'ETH'
+                                      : 'MATIC',
                                 decimal: item.token ? item.token.decimals : 0,
                                 logo_uri: item.token ? item.token.logoUri : '',
                             });
@@ -211,23 +206,23 @@ const Bounty: React.FC<props> = ({ personal, contributors, providerList, setProv
                                             currency: item.token
                                                 ? item.token.name
                                                 : activeProvider.chain_id === 1 ||
-                                                  activeProvider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                    activeProvider.chain_id === 5
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             symbol: item.token
                                                 ? item.token.name
                                                 : activeProvider.chain_id === 1 ||
-                                                  activeProvider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                    activeProvider.chain_id === 5
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             balance: item.balance,
                                             token_address: item.tokenAddress,
                                             name: item.token
                                                 ? item.token.name
                                                 : activeProvider.chain_id === 1 ||
-                                                  activeProvider.chain_id === 5
-                                                ? 'ETH'
-                                                : 'MATIC',
+                                                    activeProvider.chain_id === 5
+                                                  ? 'ETH'
+                                                  : 'MATIC',
                                             decimal: item.token ? item.token.decimals : 0,
                                             logo_uri: item.token ? item.token.logoUri : '',
                                         });

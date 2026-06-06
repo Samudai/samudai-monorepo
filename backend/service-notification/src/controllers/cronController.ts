@@ -10,8 +10,8 @@ export class CronController {
 
   redisCleanup = async () => {
     cron.schedule('0 0 23 * * *', () => {
-        this.redisFunctions.memberNotificationCleanUp();
-        this.redisFunctions.notificationCleanUp();
-    })
+      this.redisFunctions.memberNotificationCleanUp();
+      this.redisFunctions.notificationCleanUp();
+    });
   };
 }

@@ -102,10 +102,10 @@ export const Proposals: React.FC = () => {
                                         item.state === 'pending'
                                             ? 'Pending'
                                             : item.state === 'closed'
-                                            ? 'Closed'
-                                            : item.state === 'active'
-                                            ? 'Active'
-                                            : item.state
+                                              ? 'Closed'
+                                              : item.state === 'active'
+                                                ? 'Active'
+                                                : item.state
                                     }
                                     onDetails={() => handleView(item)}
                                 />

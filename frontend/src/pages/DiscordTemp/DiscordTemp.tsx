@@ -13,7 +13,6 @@ import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
 import { selectContributorProgress, changeContributorProgress } from 'store/features/common/slice';
 import { useUpdateContributorProgressMutation } from 'store/services/userProfile/userProfile';
 
-
 function DiscordTemp() {
     const [discordUpdate] = useDiscordMutation();
     const [completeTrial] = useCompleteTrialDashboardMutation();

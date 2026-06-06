@@ -19,7 +19,6 @@ import {
     updateProviderRequest,
 } from './model';
 
-
 export const paymentsApi = createApi({
     reducerPath: 'paymentsApi',
     baseQuery: fetchBaseQuery({

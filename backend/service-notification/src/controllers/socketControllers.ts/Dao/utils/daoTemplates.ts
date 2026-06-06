@@ -13,7 +13,7 @@ import {
 import { CollabRequestNotificationMetaData, CompleteProfileNotificationMetaData } from './types';
 export class DaoNotificationTemplateHandler {
   daoCollaborationRequestNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -86,7 +86,7 @@ export class DaoNotificationTemplateHandler {
   };
 
   daoCompleteProfileNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -121,7 +121,7 @@ export class DaoNotificationTemplateHandler {
   };
 
   daoSubdomainClaimSuccessNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;

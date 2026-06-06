@@ -19,8 +19,8 @@ export const ProfileEventItem: React.FC<ProfileEventItemProps> = ({ data }) => {
         const href = data.link
             ? openUrl(data.link)
             : !!data?.entity_metadata?.location && httpRegex.test(data?.entity_metadata?.location)
-            ? openUrl(data?.entity_metadata?.location)
-            : '#';
+              ? openUrl(data?.entity_metadata?.location)
+              : '#';
         navigate(href);
     };
 

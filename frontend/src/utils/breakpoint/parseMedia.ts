@@ -21,8 +21,8 @@ export function parseMedia(mediaQueries: MediaObject) {
                         ? MediaOperators.LESS
                         : MediaOperators.MORE
                     : inv
-                    ? MediaOperators.MORE
-                    : MediaOperators.LESS;
+                      ? MediaOperators.MORE
+                      : MediaOperators.LESS;
 
                 check.push({
                     equal,

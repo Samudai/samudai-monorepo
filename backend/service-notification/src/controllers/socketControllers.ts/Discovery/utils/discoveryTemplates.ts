@@ -14,7 +14,7 @@ import { MostActiveNotificationMetaData, viewedProfileNotificationMetaData } fro
 
 export class DiscoveryNotificationTemplateHandler {
   viewedProfileNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;

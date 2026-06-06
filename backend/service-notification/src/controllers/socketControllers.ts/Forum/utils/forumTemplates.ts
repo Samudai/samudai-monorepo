@@ -19,7 +19,7 @@ import {
 } from './types';
 export class ForumNotificationTemplateHandler {
   discussionCreatedNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -368,7 +368,7 @@ export class ForumNotificationTemplateHandler {
   };
 
   commentAddedOnDiscussion = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -564,7 +564,7 @@ export class ForumNotificationTemplateHandler {
   };
 
   mostActiveParticipantToCreator = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -598,8 +598,8 @@ export class ForumNotificationTemplateHandler {
         type: NewNotificationType.ALL,
         tags: ['Forum'],
         popup: false,
-        notificationHeader: `${user.name} is the most active in the discussion  `,
-        notificationBody: `${user.name} is the most active in the discussion  `,
+        notificationHeader: `${user.name} is the most active in the discussion  `,
+        notificationBody: `${user.name} is the most active in the discussion  `,
         metaData: mostActiveParticipantToCreatorNotificationMetaData,
       };
 
@@ -620,7 +620,7 @@ export class ForumNotificationTemplateHandler {
   };
 
   collectedCommentsNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -676,7 +676,7 @@ export class ForumNotificationTemplateHandler {
   };
 
   discussionClosedNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -742,7 +742,7 @@ export class ForumNotificationTemplateHandler {
   };
 
   commentReplyNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -798,7 +798,7 @@ export class ForumNotificationTemplateHandler {
   };
 
   commentTaggedNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;

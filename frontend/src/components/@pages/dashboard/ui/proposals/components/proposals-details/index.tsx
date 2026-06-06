@@ -95,10 +95,10 @@ export const ProposalsDetails: React.FC<ProposalsDetailsProps> = ({
                     {data.state === 'pending'
                         ? 'Pending'
                         : data.state === 'closed'
-                        ? 'Closed'
-                        : data.state === 'active'
-                        ? 'Active'
-                        : data.state}
+                          ? 'Closed'
+                          : data.state === 'active'
+                            ? 'Active'
+                            : data.state}
                 </p>
                 {createAvailable ? (
                     <button

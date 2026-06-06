@@ -134,10 +134,10 @@ export const convertMessageToType = (chatHistory: PushAPI.IMessageIPFS[]) => {
                 message.messageType === 'Text'
                     ? DiscussionEnums.MessageType.TEXT
                     : message.messageType === 'Image'
-                    ? DiscussionEnums.MessageType.FILE
-                    : message.messageType === 'GIF'
-                    ? 'gif'
-                    : DiscussionEnums.MessageType.TEXT,
+                      ? DiscussionEnums.MessageType.FILE
+                      : message.messageType === 'GIF'
+                        ? 'gif'
+                        : DiscussionEnums.MessageType.TEXT,
             sender_id: message.fromCAIP10,
             content: message.messageContent,
             created_at: message.timestamp

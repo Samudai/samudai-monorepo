@@ -39,9 +39,9 @@ export type AccessControlConditions = {
 };
 
 export type PaymentValue = {
-  amount: 'string';
-  currency: 'string';
-  contract_address: 'string';
+  amount: "string";
+  currency: "string";
+  contract_address: "string";
 };
 
 export type PayoutCurrency = {
@@ -52,7 +52,7 @@ export type PayoutCurrency = {
   name: string;
   decimal: number;
   logo_uri: string;
-}
+};
 
 export type PaymentType = {
   dao_id: string;
@@ -64,7 +64,7 @@ export type PaymentType = {
       amount: string;
       currency: PayoutCurrency;
       contract_address: string;
-    }
+    },
   ];
   task_id: string;
   job_id?: string;
@@ -77,7 +77,7 @@ export type PaymentType = {
   status: string;
   chain_id: number;
   payout_id?: string;
-  link_type? : string;
+  link_type?: string;
   type?: string;
   updated_by: string;
 

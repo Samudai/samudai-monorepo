@@ -42,8 +42,6 @@ npm install --force  # force flag is required due to dependency conflicts
   ```bash
   cp .development.env .env  # for development
   # or
-  cp .staging.env .env      # for staging
-  # or
   cp .production.env .env   # for production
   ```
 
@@ -61,7 +59,6 @@ The application will be available at [http://localhost:3000](http://localhost:30
 - `npm test` - Launches the test runner
 - `npm run build` - Builds the app for production
 - `npm run build:development` - Builds for development environment
-- `npm run build:staging` - Builds for staging environment
 - `npm run build:prod` - Builds for production environment
 - `npm run lint` - Runs ESLint
 - `npm run format` - Formats code using Prettier

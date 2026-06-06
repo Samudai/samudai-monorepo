@@ -18,7 +18,6 @@ import {
 } from './model';
 import { checkSubdomainAccessResponse } from '../userProfile/model';
 
-
 export const daoApi = createApi({
     reducerPath: 'daoApi',
     baseQuery: fetchBaseQuery({
@@ -53,6 +52,9 @@ export const daoApi = createApi({
         getDaoByDaoId: builder.query<getSingleDaoResponse, string>({
             query: (daoId) => `/api/dao/get/${daoId}`,
             providesTags: ['dao'],
+        }),
+        getTrialDao: builder.query<getSingleDaoResponse, void>({
+            query: () => '/api/dao/trial',
         }),
         updateDao: builder.mutation<DAO, any>({
             query: (body) => ({
@@ -172,6 +174,7 @@ export const {
     useLazyCheckSubdomainExistsQuery,
     useGetDaoByDaoIdQuery,
     useLazyGetDaoByDaoIdQuery,
+    useLazyGetTrialDaoQuery,
     useUpdateDaoMutation,
     useCreateInviteMutation,
     useAddMemberToDaoMutation,

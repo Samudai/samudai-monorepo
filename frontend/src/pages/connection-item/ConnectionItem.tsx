@@ -171,16 +171,14 @@ const ConnectionItem: React.FC<DiscoverySelectProps> = ({
                         {
                             <li className={styles.infoItem}>
                                 <ul className={styles.infoSkills}>
-                                    {data?.skills
-                                        ?.slice(0, 2)
-                                        .map((skill: any) => (
-                                            <UserSkill
-                                                className={styles.infoSkillsItem}
-                                                skill={skill}
-                                                key={skill}
-                                                hideCross
-                                            />
-                                        ))}
+                                    {data?.skills?.slice(0, 2).map((skill: any) => (
+                                        <UserSkill
+                                            className={styles.infoSkillsItem}
+                                            skill={skill}
+                                            key={skill}
+                                            hideCross
+                                        />
+                                    ))}
                                 </ul>
                             </li>
                         }

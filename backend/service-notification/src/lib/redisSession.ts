@@ -33,11 +33,11 @@ export class RedisSessionStore extends SessionStore {
       'member',
       memberSession.member,
       'connected',
-      memberSession.connected
+      memberSession.connected,
     );
-  
+
     await this.redisClient.expire(key, 1800); // 30 minutes in seconds
-  
+
     return hsetResult;
   }
   async findAllSessions() {

@@ -6,16 +6,25 @@ import css from './enables.module.scss';
 import { getEnablesWordList } from './utils';
 import { getMemberId } from 'utils/utils';
 import { useNavigate } from 'react-router-dom';
+import { useLazyGetTrialDaoQuery } from 'store/services/Dao/dao';
 
 const Enables: React.FC = () => {
     const type = localStorage.getItem('enablesType');
-    const trialDao = import.meta.env.REACT_APP_TRIAL_DAO_ID!;
     const navigate = useNavigate();
+    const [getTrialDao] = useLazyGetTrialDaoQuery();
 
     useEffect(() => {
-        setTimeout(() => {
+        const redirect = async () => {
             if (type === 'trial') {
-                navigate(`/${trialDao}/dashboard/1`);
+                try {
+                    const response = await getTrialDao().unwrap();
+                    const trialDaoId = response.data?.dao?.dao_id;
+                    if (trialDaoId) {
+                        navigate(`/${trialDaoId}/dashboard/1`);
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
             } else if (type === 'dao') {
                 window.location.href = `/dashboard/1`;
             } else if (type === 'contributor') {
@@ -23,8 +32,9 @@ const Enables: React.FC = () => {
                 localStorage.setItem('showTutorial', 'true');
             }
             localStorage.removeItem('enablesType');
-        }, 6000);
-    }, [type, trialDao]);
+        };
+        setTimeout(redirect, 6000);
+    }, [type]);
 
     if (!type) {
         window.location.reload();

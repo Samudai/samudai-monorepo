@@ -33,8 +33,8 @@ const TeamSidebar: React.FC<TeamSidebarProps> = ({ active, changeActiveUser, use
     useEffect(() => {
         if (search === '') setdata(users);
         else {
-            const result = users.filter(
-                (u) => u?.name?.toLowerCase().includes(search.toLowerCase())
+            const result = users.filter((u) =>
+                u?.name?.toLowerCase().includes(search.toLowerCase())
             );
             setdata(result);
         }

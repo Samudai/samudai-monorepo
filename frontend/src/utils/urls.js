@@ -1,4 +1,3 @@
-
 export const discordOAuth = (host) =>
     `https://discord.com/oauth2/authorize?client_id=${import.meta.env.REACT_APP_DISCORD_CLIENT_ID}&redirect_uri=${host}&response_type=code&scope=identify%20email%20guilds`;
 

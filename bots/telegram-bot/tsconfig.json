@@ -25,7 +25,6 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "ignoreDeprecations": "6.0"                          /* Silence deprecation of node10 moduleResolution (removed in TS 7.0). */,
     "module": "commonjs"                                 /* Specify what module code is generated. */,
     "rootDir": "./src",
     "outDir": "./dist"                                   /* Specify the root folder within your source files. */,

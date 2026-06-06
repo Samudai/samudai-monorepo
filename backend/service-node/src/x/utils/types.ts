@@ -1,4 +1,4 @@
-import { LinkType } from './enums';
+import { LinkType } from "./enums";
 
 export type TwitterMember = {
   twitterUsername: string;

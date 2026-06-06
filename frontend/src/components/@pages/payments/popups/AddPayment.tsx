@@ -30,7 +30,6 @@ import styles from '../styles/AddPayment.module.scss';
 import { usePayments } from 'utils/payments/use-payments';
 import { providerList } from 'store/features/payments/paymentsSlice';
 
-
 interface AddPaymentProps {
     onClose?: () => void;
 }

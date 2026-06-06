@@ -18,9 +18,10 @@ samudai-monorepo/
 
 The backend is consolidated into a few deployables:
 
-- **backend/core** - Go modular monolith (one binary, one Gin engine). Hosts every domain module — dao, member, project, job, discovery, discussion, dashboard, discord, plugin, point, analytics, forms — plus third-party integrations (`external`, formerly `gateway-external`), each mounted under a per-service path prefix (`/dao`, `/member`, …).
+- **backend/service-go** - Go modular monolith (one binary, one Gin engine). Hosts every domain module — dao, member, project, job, discovery, discussion, dashboard, discord, plugin, point, forms — each mounted under a per-service path prefix (`/dao`, `/member`, …).
+- **backend/gateway-external** - Standalone Go gateway for third-party integrations (GitHub App, Snapshot, Telegram webhooks + Discord bot calls). Its own module/binary; reuses service-go's exported types via a `replace` directive (its image builds with `backend/` as the Docker context).
 - **backend/service-node** - Merged Node/Express service hosting the former activity, twitter, web3, and x services under per-service prefixes.
-- **backend/gateway-consumer-node** - Main API gateway for client requests (Express + socket.io).
+- **backend/gateway-consumer** - Main API gateway for client requests (Express + socket.io).
 
 ### Bots
 
@@ -37,8 +38,8 @@ whole stack (data stores, backend, service-node, gateway, frontend, bots).
 - Docker (with the Compose plugin) — that's it. No local Go/Node/Postgres needed
   to run the stack.
 - Only for developing an individual service outside Docker: **Node.js 22**
-  (all Node apps — `frontend`, `service-node`, `gateway-consumer-node`, and both
-  bots; `frontend/.nvmrc` pins it) and **Go 1.26** (the `backend/core` monolith).
+  (all Node apps — `frontend`, `service-node`, `gateway-consumer`, and both
+  bots; `frontend/.nvmrc` pins it) and **Go 1.26** (the `backend/service-go` monolith).
 
 ### Run the full stack locally
 
@@ -49,7 +50,7 @@ docker compose up -d --build  # build + run everything
 
 Database schema is applied automatically: a one-shot `migrate` service runs the
 [golang-migrate](https://github.com/golang-migrate/migrate) Postgres migrations
-in `migrations/postgres/<module>` before `backend` starts — no manual step.
+in `migrations/postgres/<module>` before `service-go` starts — no manual step.
 
 | Service | URL |
 | --- | --- |
@@ -57,6 +58,7 @@ in `migrations/postgres/<module>` before `backend` starts — no manual step.
 | Frontend (dashboard) | http://localhost:3000 |
 | Backend (Go monolith) | http://localhost:8081 (e.g. `/health`, `/dao/...`) |
 | service-node | http://localhost:8082 |
+| gateway-external | http://localhost:8084 (e.g. `/health`) |
 | RabbitMQ management | http://localhost:15672 |
 
 Bots (`samudai-bot`, `telegram-bot`) start too but need valid Discord/Telegram
@@ -77,22 +79,22 @@ Each app reads its config from a local `.env` (or shell environment). Point the
 containers above (`localhost` ports as listed in the table) when running on the
 host.
 
-### Backend — Go monolith (`backend/core`)
+### Backend — Go monolith (`backend/service-go`)
 
 ```bash
-cd backend/core
+cd backend/service-go
 go run ./cmd/server                       # serves on $PORT (8080 by default)
 go build ./... && go vet ./...            # compile + lint
 go test ./internal/app/                   # asserts the engine mounts with no route collisions
 ```
 
-Add a new capability as a module under `backend/core/services/<name>/` mounted in
+Add a new capability as a module under `backend/service-go/services/<name>/` mounted in
 `internal/app/app.go` — don't spin up a new microservice.
 
-### Backend — Node services (`service-node`, `gateway-consumer-node`)
+### Backend — Node services (`service-node`, `gateway-consumer`)
 
 ```bash
-cd backend/service-node                   # or backend/gateway-consumer-node
+cd backend/service-node                   # or backend/gateway-consumer
 npm install
 npm run start:dev                         # ts-node-dev live reload (gateway uses: npm run dev)
 npm run build && npm start                # tsc -> node dist/index.js
@@ -112,7 +114,6 @@ npm start                                 # dev server on http://localhost:3000
 
 # production-style builds (each needs the matching .<env>.env file)
 npm run build:development                 # uses .development.env
-npm run build:staging                     # uses .staging.env
 npm run build:prod                        # uses .production.env (used by the Docker image)
 ```
 

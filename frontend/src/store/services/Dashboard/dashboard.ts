@@ -19,7 +19,6 @@ import {
     updateFormReq,
 } from './model';
 
-
 export const dashboardApi = createApi({
     reducerPath: 'dashboardApi',
     baseQuery: fetchBaseQuery({

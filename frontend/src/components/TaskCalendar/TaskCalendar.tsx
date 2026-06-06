@@ -49,7 +49,9 @@ const TaskCalendar: React.FC<TaskCalendarProps> = ({ project, className, control
             <div className={styles.body} data-role="body">
                 <ul className={clsx(styles.grid, 'orange-scrollbar')}>
                     <Title cells={cells} />
-                    {tasks?.map((task) => <Cells cells={cells} task={task} key={task.task_id} />)}
+                    {tasks?.map((task) => (
+                        <Cells cells={cells} task={task} key={task.task_id} />
+                    ))}
                 </ul>
             </div>
         </div>

@@ -4,19 +4,18 @@ import _ReactDOM from 'react-dom';
 
 // react-transition-group v4 uses ReactDOM.findDOMNode which was removed in React 19.
 // This shim restores it by walking the React fiber tree from the class instance.
-(_ReactDOM as any).findDOMNode =
-    function (component: any): Element | null {
-        if (!component) return null;
-        if (component instanceof Element) return component;
-        const fiber = (component as any)._reactInternals;
-        if (!fiber) return null;
-        let node = fiber.child;
-        while (node) {
-            if (node.stateNode instanceof Element) return node.stateNode;
-            node = node.child;
-        }
-        return null;
-    };
+(_ReactDOM as any).findDOMNode = function (component: any): Element | null {
+    if (!component) return null;
+    if (component instanceof Element) return component;
+    const fiber = (component as any)._reactInternals;
+    if (!fiber) return null;
+    let node = fiber.child;
+    while (node) {
+        if (node.stateNode instanceof Element) return node.stateNode;
+        node = node.child;
+    }
+    return null;
+};
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from './store/store';
@@ -28,7 +27,6 @@ import App from './App';
 import 'swiper/css';
 import Loader from 'components/Loader/Loader';
 import { PrivyProvider } from '@privy-io/react-auth';
-
 
 if (import.meta.env.REACT_APP_ENV !== 'local' && import.meta.env.REACT_APP_ENV !== 'development') {
     console.log = () => {};

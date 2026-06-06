@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { activityConn } from '../../db/connections';
+import mongoose from "mongoose";
+import { activityConn } from "../../db/connections";
 const { Schema } = mongoose;
 
 // Updated with latest changes
@@ -81,13 +81,13 @@ const activitySchema = new Schema<IModel>(
   },
   {
     timeseries: {
-      timeField: 'timestamp_property',
-      metaField: 'metadata',
-      granularity: 'minutes',
+      timeField: "timestamp_property",
+      metaField: "metadata",
+      granularity: "minutes",
     },
-  }
+  },
 );
 
-const ActivitySchema = activityConn.model('Activity', activitySchema);
+const ActivitySchema = activityConn.model("Activity", activitySchema);
 
 export { ActivitySchema };

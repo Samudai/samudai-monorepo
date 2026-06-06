@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import { TwitterQuery } from './query/twitterQuery';
-import { Twitter } from '../lib/twitter';
-import { Tweet } from '../utils/types';
+import { Request, Response } from "express";
+import { TwitterQuery } from "./query/twitterQuery";
+import { Twitter } from "../lib/twitter";
+import { Tweet } from "../utils/types";
 
 export class TweetController {
   twitter = new Twitter();
@@ -10,16 +10,20 @@ export class TweetController {
   getFeaturedTweet = async (req: Request, res: Response) => {
     try {
       const linkId = req.params.linkId as string;
-      let twitterResponse: Tweet[] = [];
-      const twitterProfile = await this.twitterQuery.getTwitterVerification(linkId);
+      const twitterResponse: Tweet[] = [];
+      const twitterProfile =
+        await this.twitterQuery.getTwitterVerification(linkId);
 
       console.log(twitterProfile);
 
       if (twitterProfile) {
-        const twitterInfo = await this.twitter.storeTweet(linkId, twitterProfile.twitter.username);
+        const twitterInfo = await this.twitter.storeTweet(
+          linkId,
+          twitterProfile.twitter.username,
+        );
 
         if (twitterInfo) {
-          for (let tweet of twitterInfo.tweets) {
+          for (const tweet of twitterInfo.tweets) {
             const tweetInfo: Tweet = {
               id: twitterInfo.user.username,
               name: twitterInfo.user.name,
@@ -45,20 +49,25 @@ export class TweetController {
 
         return res.status(200).send({
           data: twitterResponse,
-          message: 'Successfully fetched featured tweet',
+          message: "Successfully fetched featured tweet",
         });
       } else {
         res.status(400).send({
-          message: 'Twitter profile not found',
+          message: "Twitter profile not found",
           data: null,
         });
       }
     } catch (err: any) {
       console.log(err);
       if (err.response) {
-        return res.status(err.response.status).send({ message: 'Could not add tweet', error: err.response.data.err });
+        return res.status(err.response.status).send({
+          message: "Could not add tweet",
+          error: err.response.data.err,
+        });
       } else {
-        return res.status(500).send({ message: 'Error while getting tweet', error: err });
+        return res
+          .status(500)
+          .send({ message: "Error while getting tweet", error: err });
       }
     }
   };
@@ -109,20 +118,25 @@ export class TweetController {
   //   }
   // };
 
-  deleteTweet =async (req: Request, res: Response) => {
-    try{
+  deleteTweet = async (req: Request, res: Response) => {
+    try {
       const linkId = req.params.linkId as string;
       const result = await this.twitterQuery.deleteTweet(linkId);
-      res.status(200).json({ message: 'Tweet deleted successfully', data: result });
-    }
-    catch (err: any) {
+      res
+        .status(200)
+        .json({ message: "Tweet deleted successfully", data: result });
+    } catch (err: any) {
       if (err.response) {
-        return res
-          .status(err.response.status)
-          .send({ message: 'Could not delete Tweet', error: err.response.data.err });
+        return res.status(err.response.status).send({
+          message: "Could not delete Tweet",
+          error: err.response.data.err,
+        });
       } else {
-        return res.status(500).send({ message: 'Error deleting Tweet', error: JSON.stringify(err) });
+        return res.status(500).send({
+          message: "Error deleting Tweet",
+          error: JSON.stringify(err),
+        });
       }
     }
-  } 
+  };
 }

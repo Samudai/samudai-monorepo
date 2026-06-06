@@ -17,7 +17,7 @@ import {
 } from './types';
 export class GeneralNotificationTemplateHandler {
   meetingCreatedNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -75,7 +75,7 @@ export class GeneralNotificationTemplateHandler {
   };
 
   generalInformationNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
@@ -131,7 +131,7 @@ export class GeneralNotificationTemplateHandler {
   };
 
   dealFormResponseNotification = async (
-    notificationPartialData: NotificationPartialData
+    notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;

@@ -63,8 +63,8 @@ export const JobsHeader: React.FC<JobsHeaderProps> = ({
     const { daoProgress, memberType, manageDaoAccess } = useProgress();
 
     const createAccess = useMemo(() => {
-        const manageAccessList = Object.values(daoAccessList).filter(
-            (access) => access?.includes(AccessEnums.AccessType.MANAGE_DAO)
+        const manageAccessList = Object.values(daoAccessList).filter((access) =>
+            access?.includes(AccessEnums.AccessType.MANAGE_DAO)
         );
         return Boolean(manageAccessList.length);
     }, [daoAccessList]);

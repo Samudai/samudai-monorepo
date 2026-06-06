@@ -6,7 +6,7 @@ export type SocialConnectionRequestNotificationMetaData = {
     username: string;
     profile_picture: string;
     name: string;
-    role : string;
+    role: string;
   };
   from: {
     username: string;
@@ -24,8 +24,8 @@ export type SocialConnectionRequestNotificationMetaData = {
 
 export type ConnectionAcceptedNotificationMetaData = {
   member: IMember;
-}
+};
 
 export type ContributorCompleteProfileNotificationMetaData = {
-  redirect_link?: string,
+  redirect_link?: string;
 };

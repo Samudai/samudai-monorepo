@@ -7,7 +7,6 @@ import { toast } from 'utils/toast';
 import { useEffect } from 'react';
 import { useReconnectDiscordMutation } from 'store/services/Settings/settings';
 
-
 function ReDiscord() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [reconnect] = useReconnectDiscordMutation();

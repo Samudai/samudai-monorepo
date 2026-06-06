@@ -1,5 +1,5 @@
-import { ActivitySchema } from '../../models/activitySchema';
-import { Activity } from '../../utils/types';
+import { ActivitySchema } from "../../models/activitySchema";
+import { Activity } from "../../utils/types";
 
 export class ActivityQuery {
   addActivity = async (activity: Activity) => {
@@ -13,7 +13,9 @@ export class ActivityQuery {
 
   getLastestActivitiesbyDAO = async (dao_id: string) => {
     try {
-      const activities = await ActivitySchema.find({ dao_id: dao_id }).sort({ timestamp_property: -1 }).limit(100);
+      const activities = await ActivitySchema.find({ dao_id: dao_id })
+        .sort({ timestamp_property: -1 })
+        .limit(100);
       return activities;
     } catch (err: any) {
       console.log(err);
@@ -22,7 +24,10 @@ export class ActivityQuery {
 
   getActivitybyAction = async (dao_id: string, action: string) => {
     try {
-      const activities = await ActivitySchema.find({ dao_id: dao_id, action_type: action })
+      const activities = await ActivitySchema.find({
+        dao_id: dao_id,
+        action_type: action,
+      })
         .sort({ timestamp_property: -1 })
         .limit(50);
       return activities;
@@ -33,7 +38,10 @@ export class ActivityQuery {
 
   getActivitybyMemberForDAO = async (dao_id: string, member_id: string) => {
     try {
-      const activities = await ActivitySchema.find({ dao_id: dao_id, member_id: member_id })
+      const activities = await ActivitySchema.find({
+        dao_id: dao_id,
+        member_id: member_id,
+      })
         .sort({ timestamp_property: -1 })
         .limit(50);
       return activities;
@@ -55,16 +63,24 @@ export class ActivityQuery {
 
   getActivitybyTask = async (task_id: string) => {
     try {
-      const activities = await ActivitySchema.find({ task_id: task_id }).sort({ timestamp_property: -1 }).limit(50);
+      const activities = await ActivitySchema.find({ task_id: task_id })
+        .sort({ timestamp_property: -1 })
+        .limit(50);
       return activities;
     } catch (err: any) {
       console.log(err);
     }
   };
 
-  getActivityByVisibilityForDAO = async (dao_id: string, visibility: string) => {
+  getActivityByVisibilityForDAO = async (
+    dao_id: string,
+    visibility: string,
+  ) => {
     try {
-      const activities = await ActivitySchema.find({ dao_id: dao_id, visibility: visibility })
+      const activities = await ActivitySchema.find({
+        dao_id: dao_id,
+        visibility: visibility,
+      })
         .sort({ timestamp_property: -1 })
         .limit(50);
       return activities;
@@ -75,7 +91,9 @@ export class ActivityQuery {
 
   getActivityByDiscussion = async (discussion_id: string) => {
     try {
-      const activities = await ActivitySchema.find({ discussion_id: discussion_id })
+      const activities = await ActivitySchema.find({
+        discussion_id: discussion_id,
+      })
         .sort({ timestamp_property: -1 })
         .limit(50);
       return activities;
@@ -86,7 +104,9 @@ export class ActivityQuery {
 
   getActivityByMember = async (member_id: string) => {
     try {
-      const activities = await ActivitySchema.find({ member_id: member_id }).sort({ timestamp_property: -1 }).limit(50);
+      const activities = await ActivitySchema.find({ member_id: member_id })
+        .sort({ timestamp_property: -1 })
+        .limit(50);
       return activities;
     } catch (err: any) {
       console.log(err);

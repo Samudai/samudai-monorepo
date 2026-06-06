@@ -15,7 +15,6 @@ import {
 } from './model';
 import { discordRequest } from '../Login/model';
 
-
 export const settingsApi = createApi({
     reducerPath: 'settingsApi',
     baseQuery: fetchBaseQuery({

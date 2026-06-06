@@ -10,7 +10,6 @@ import './Login.scss';
 const log = 'SamudaiFren';
 const pass = 'JAISAMUDAI';
 
-
 const Login: React.FC = () => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');

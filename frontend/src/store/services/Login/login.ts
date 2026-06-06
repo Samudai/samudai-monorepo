@@ -20,7 +20,6 @@ import {
     setUpProfileReq,
 } from './model';
 
-
 export const loginApi = createApi({
     reducerPath: 'loginApi',
     baseQuery: fetchBaseQuery({

@@ -186,7 +186,7 @@ export class RedisFunctions {
           } catch (error) {
             console.error(`Error executing Lua script for hash key ${hashKey}: ${error}`);
           }
-        })
+        }),
       );
     } catch (error) {
       console.error(`Error executing Lua script: ${error}`);
@@ -272,13 +272,13 @@ export class RedisFunctions {
                   2,
                   notificationId,
                   setKeyPrefix,
-                  ...memberNotifications
+                  ...memberNotifications,
                 );
                 console.log('notificationId', notificationId, 'keypresent', result);
               } catch (error) {
                 console.error(`Error processing notification ${n}: ${error}`);
               }
-            })
+            }),
           );
         } catch (error) {
           console.error(`Error executing Lua script3: ${error}`);

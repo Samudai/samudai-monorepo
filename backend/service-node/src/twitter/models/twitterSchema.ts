@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { twitterConn } from '../../db/connections';
+import mongoose from "mongoose";
+import { twitterConn } from "../../db/connections";
 
 const { Schema } = mongoose;
 
@@ -13,6 +13,6 @@ const twitterSchema = new Schema<IModel>({
   twitter: { type: [String], required: true },
 });
 
-const TwitterSchema = twitterConn.model('TwitterSchema', twitterSchema);
+const TwitterSchema = twitterConn.model("TwitterSchema", twitterSchema);
 
 export { TwitterSchema };

@@ -1,16 +1,16 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
 
 let client: MongoClient;
 
 export const initMongo = async () => {
-  const uri = process.env.MONGO_URL || '';
+  const uri = process.env.MONGO_URL || "";
 
   try {
     client = new MongoClient(uri);
     await client.connect();
-    console.log('MongoDB connected');
+    console.log("MongoDB connected");
   } catch (err) {
-    console.error('Failed to connect to MongoDB:', err);
+    console.error("Failed to connect to MongoDB:", err);
     process.exit(1); // Exit the process on connection failure
   }
 };

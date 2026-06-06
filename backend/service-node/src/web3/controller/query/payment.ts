@@ -1,6 +1,6 @@
-import { Payment } from '../../models/payment';
-import { PaymentType } from '../../utils/types';
-import { v4 as uuidv4 } from 'uuid';
+import { Payment } from "../../models/payment";
+import { PaymentType } from "../../utils/types";
+import { v4 as uuidv4 } from "uuid";
 
 export class PaymentQuery {
   addPayment = async (payment: PaymentType) => {
@@ -71,7 +71,12 @@ export class PaymentQuery {
     }
   };
 
-  updatePaymentStatus = async (payment_id: string, status: string, completed_at: string, updated_by: string) => {
+  updatePaymentStatus = async (
+    payment_id: string,
+    status: string,
+    completed_at: string,
+    updated_by: string,
+  ) => {
     try {
       const payment = await Payment.findOneAndUpdate(
         { payment_id: payment_id },
@@ -83,7 +88,7 @@ export class PaymentQuery {
             updated_at: new Date().toISOString(),
           },
         },
-        { new: true }
+        { new: true },
       );
       return payment;
     } catch (err) {

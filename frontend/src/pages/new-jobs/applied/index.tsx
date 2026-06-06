@@ -68,9 +68,8 @@ const Applied: React.FC = () => {
                 return [];
             }
             if (filter.search) {
-                list = list.filter(
-                    (item) =>
-                        item?.job_details?.title.toLowerCase().includes(filter.search.toLowerCase())
+                list = list.filter((item) =>
+                    item?.job_details?.title.toLowerCase().includes(filter.search.toLowerCase())
                 );
             }
             if (filter.dao_names.length) {
@@ -100,11 +99,8 @@ const Applied: React.FC = () => {
                 return [];
             }
             if (filter.search) {
-                list = list.filter(
-                    (item) =>
-                        item?.bounty_details?.title
-                            .toLowerCase()
-                            .includes(filter.search.toLowerCase())
+                list = list.filter((item) =>
+                    item?.bounty_details?.title.toLowerCase().includes(filter.search.toLowerCase())
                 );
             }
             if (filter.dao_names.length) {

@@ -10,7 +10,6 @@ import {
 import { useTypedDispatch } from 'hooks/useStore';
 import { getMemberId } from 'utils/utils';
 
-
 export const useSearch = () => {
     const [searchValue, setSearchValue] = useState('');
     const [fetchUserProfile] = useGetMemberByIdMutation();

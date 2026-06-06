@@ -2,6 +2,7 @@ name: Docker Build Check
 
 permissions:
   contents: read
+  packages: read
 
 on:
   pull_request:
@@ -71,6 +72,13 @@ jobs:
               current_dir=$(dirname "$current_dir")
             done
           done
+
+          # gateway-external builds against service-go's exported pkg/* types via
+          # a `replace` (no vendor), so a change there must also build-check it —
+          # the walk-up above would only catch service-go's own image.
+          if echo "$CHANGED_FILES" | grep -qE '^backend/service-go/services/[^/]+/pkg/'; then
+            AFFECTED_DIRS="$AFFECTED_DIRS backend/gateway-external"
+          fi
           
           # Remove duplicates and limit to 20 services
           AFFECTED_DIRS=$(echo "$AFFECTED_DIRS" | tr ' ' '\n' | sort -u | head -20)
@@ -92,14 +100,18 @@ jobs:
                 fi
                 FIRST=false
                 
-                # Extract service name and determine context.
-                # Every image now builds with its own directory as context
-                # (the old service-plugin / gateway-external root-context hack
-                # is gone — those services are folded into the backend monolith).
+                # Extract service name and determine context. Every image builds
+                # with its own directory as context, except gateway-external:
+                # it needs the sibling service-go module (replace directive, no
+                # vendor), so its context is backend/ (trimmed by .dockerignore).
                 SERVICE_NAME=$(basename "$dir")
                 DOCKERFILE_PATH="$dir/Dockerfile"
+                BUILD_CONTEXT="$dir"
+                if [ "$dir" = "backend/gateway-external" ]; then
+                  BUILD_CONTEXT="backend"
+                fi
 
-                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\"$dir\",\"service\":\"$SERVICE_NAME\"}"
+                DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY{\"path\":\"$DOCKERFILE_PATH\",\"context\":\"$BUILD_CONTEXT\",\"service\":\"$SERVICE_NAME\"}"
               fi
             done
             DOCKERFILE_ARRAY="$DOCKERFILE_ARRAY]"
@@ -130,6 +142,8 @@ jobs:
           file: ${{ matrix.dockerfile.path }}
           push: false
           tags: test-build:${{ matrix.dockerfile.service }}
+          build-args: |
+            GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           cache-from: type=gha,scope=${{ matrix.dockerfile.service }}
           cache-to: type=gha,mode=max,scope=${{ matrix.dockerfile.service }}
 

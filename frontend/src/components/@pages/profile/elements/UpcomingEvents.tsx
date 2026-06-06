@@ -98,7 +98,9 @@ const UpcomingEvents: React.FC = () => {
                                 dayjs(events.scheduled_start_timestamp).isAfter(dayjs())
                         )
                         ?.slice(0, 3)
-                        .map((item: any) => <EventsItem {...item} key={item.id} type="blocks" />)}
+                        .map((item: any) => (
+                            <EventsItem {...item} key={item.id} type="blocks" />
+                        ))}
                 </Skeleton>
                 {/* {!loading && data.length === 0 && (
           <div style={{ color: 'white' }}>No upcoming events</div>

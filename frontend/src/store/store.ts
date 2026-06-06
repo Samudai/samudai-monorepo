@@ -36,7 +36,6 @@ import { projectApi } from 'store/services/projects/totalProjects';
 import { EventAnalyticsPayload, sendEventAnalytics } from 'utils/activity/sendTrackingAnalytics';
 import { sendbirdApi } from './services/SendBird/sendbirdApi';
 
-
 export const postSuccessLoggerMiddleware: Middleware = () => (next) => (action: any) => {
     const analyticsPayload: EventAnalyticsPayload = {} as EventAnalyticsPayload;
     if (

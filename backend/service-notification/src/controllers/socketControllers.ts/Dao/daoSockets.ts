@@ -37,7 +37,7 @@ export class DaoSockets {
         await redisFunc.publishNotification(completeProfileNotification as WebNotification);
 
         await publishTelegramNotification(completeProfileNotification as WebNotification);
-        
+
         //Check if user exists in the session and later emit notification
         for (const member of completeProfileNotification.notificationData.to.to) {
           io.to(member).emit('all', completeProfileNotification);
@@ -56,7 +56,7 @@ export class DaoSockets {
       if (completeProfileNotification) {
         await redisFunc.publishNotification(completeProfileNotification as WebNotification);
 
-        await publishTelegramNotification(completeProfileNotification as WebNotification)
+        await publishTelegramNotification(completeProfileNotification as WebNotification);
 
         //Check if user exists in the session and later emit notification
         for (const member of completeProfileNotification.notificationData.to.to) {
@@ -64,9 +64,7 @@ export class DaoSockets {
         }
       } else {
         console.log('Complete Profile Notification not generated');
-        io
-          .to(notificationPartialData.from.from)
-          .emit('all', completeProfileNotification);
+        io.to(notificationPartialData.from.from).emit('all', completeProfileNotification);
       }
     });
   };

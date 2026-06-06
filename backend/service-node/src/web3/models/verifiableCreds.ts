@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { web3Conn } from '../../db/connections';
+import mongoose from "mongoose";
+import { web3Conn } from "../../db/connections";
 
 const { Schema } = mongoose;
 
@@ -15,14 +15,14 @@ interface IModel {
           provider: string; //DAO Name
           badgePhoto: string;
           credential: {
-            type: ['VerifiableCredential'];
+            type: ["VerifiableCredential"];
             proof: {
               jws: string;
               created: string; //Timestamp
-              proofPurpose: 'assertionMethod';
+              proofPurpose: "assertionMethod";
             };
-            issuer: 'Samudai';
-            '@context': ['https://www.w3.org/2018/credentials/v1'];
+            issuer: "Samudai";
+            "@context": ["https://www.w3.org/2018/credentials/v1"];
             issuanceDate: string; //DATE
             credentialSubject: {
               task: string;
@@ -31,17 +31,17 @@ interface IModel {
               Clan: string; //empty
               skill: string[]; //tags
               timeSpent: string; //''
-              '@context': [
+              "@context": [
                 {
-                  hash: 'https://schema.org/Text';
-                  provider: 'https://schema.org/Text';
-                }
+                  hash: "https://schema.org/Text";
+                  provider: "https://schema.org/Text";
+                },
               ];
             };
           };
-        }
+        },
       ];
-    }
+    },
   ];
 }
 
@@ -64,7 +64,7 @@ const verifiableCredSchema = new Schema<IModel>({
               proofPurpose: { type: String, required: true },
             },
             issuer: { type: String, required: true },
-            '@context': { type: Array, required: true },
+            "@context": { type: Array, required: true },
             issuanceDate: { type: String, required: true },
             credentialSubject: {
               task: { type: String, required: true },
@@ -73,7 +73,7 @@ const verifiableCredSchema = new Schema<IModel>({
               Clan: { type: String },
               skill: { type: Array },
               timeSpent: { type: String },
-              '@context': { type: Array, required: true },
+              "@context": { type: Array, required: true },
             },
           },
         },
@@ -82,6 +82,6 @@ const verifiableCredSchema = new Schema<IModel>({
   ],
 });
 
-const VerifiableCred = web3Conn.model('VerifiableCred', verifiableCredSchema);
+const VerifiableCred = web3Conn.model("VerifiableCred", verifiableCredSchema);
 
 export { VerifiableCred };

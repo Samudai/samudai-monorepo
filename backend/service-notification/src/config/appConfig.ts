@@ -16,7 +16,7 @@ export class AppConfig {
       cors({
         origin: '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,CONNECT',
-      })
+      }),
     );
     this.app.use(morgan('dev'));
   };

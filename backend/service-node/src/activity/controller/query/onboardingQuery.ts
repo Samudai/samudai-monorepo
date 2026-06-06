@@ -1,4 +1,4 @@
-import { Onboarding } from '../../models/onboardingSchema';
+import { Onboarding } from "../../models/onboardingSchema";
 
 export class OnboardingQuery {
   addStep = async (link_id: string, step_id: string, value: any) => {
@@ -10,9 +10,13 @@ export class OnboardingQuery {
           step.completed = true;
           step.value.push(value);
         } else {
-          exists.steps.push({ step_id: step_id, completed: true, value: value });
+          exists.steps.push({
+            step_id: step_id,
+            completed: true,
+            value: value,
+          });
         }
-        if (step_id === 'type_of_member') {
+        if (step_id === "type_of_member") {
           exists.member_type = value.user;
         }
         await exists.save();
@@ -51,7 +55,9 @@ export class OnboardingQuery {
 
   deleteOnboarding = async (link_id: string) => {
     try {
-      const onboarding = await Onboarding.findOneAndDelete({ _id: link_id }).exec();
+      const onboarding = await Onboarding.findOneAndDelete({
+        _id: link_id,
+      }).exec();
       return onboarding;
     } catch (err: any) {
       console.log(err);

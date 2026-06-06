@@ -27,8 +27,8 @@ const ConnectListWallet: React.FC<ConnectListItemProps> = ({
             discordSelected?.isOnboarded
                 ? 'Onboarded'
                 : discordSelected?.dao_id
-                ? 'Connected'
-                : 'Connect'
+                  ? 'Connected'
+                  : 'Connect'
         );
     }, [discordSelected]);
 

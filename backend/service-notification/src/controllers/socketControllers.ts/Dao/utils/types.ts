@@ -18,9 +18,8 @@ export type CollabRequestNotificationMetaData = {
     status: 'accepted';
     collaboration_id: string;
   };
-  
 };
 
 export type CompleteProfileNotificationMetaData = {
-  redirect_link?: string,
+  redirect_link?: string;
 };

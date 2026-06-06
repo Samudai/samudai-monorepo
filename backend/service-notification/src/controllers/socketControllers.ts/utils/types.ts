@@ -35,8 +35,8 @@ export type WebNotification = {
 
 export type NotificationContent = {
   type: NotificationType | NewNotificationType;
-  tags : string[];
-  popup : boolean;
+  tags: string[];
+  popup: boolean;
   notificationHeader: string;
   notificationBody: string;
   metaData?: any;
@@ -67,7 +67,4 @@ export type NotificationPartialData = {
   timestamp: string;
 };
 
-// General 
-
-
-
+// General

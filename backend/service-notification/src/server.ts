@@ -24,7 +24,7 @@ export class Server {
 
   socketConnection = () => {
     new SocketConnections(this.ioSocket).setSocketConnections();
-  }
+  };
 
   appConfig = () => {
     new AppConfig(this.app).includeConfig();

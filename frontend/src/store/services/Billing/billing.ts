@@ -9,7 +9,6 @@ import {
     bulkLicenseUpdateRequest,
 } from './model';
 
-
 export const billingApi = createApi({
     reducerPath: 'billingApi',
     baseQuery: fetchBaseQuery({

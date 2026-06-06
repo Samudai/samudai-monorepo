@@ -1,6 +1,6 @@
-import express, { Express, Router } from 'express';
-import { TweetController } from '../controller/tweetController';
-import { VerifyController } from '../controller/verifyController';
+import express, { Express, Router } from "express";
+import { TweetController } from "../controller/tweetController";
+import { VerifyController } from "../controller/verifyController";
 
 export class Routes {
   app: Router;
@@ -21,24 +21,32 @@ export class Routes {
   }
 
   verifyRouters = () => {
-    this.verifyRouter.post('/verify', this.verifyController.verify);
-    this.verifyRouter.get('/verified/:id', this.verifyController.getVerified);
-    this.verifyRouter.get('/byusername/:username', this.verifyController.getByUsername);
-    this.app.use('/twitter', this.verifyRouter);
+    this.verifyRouter.post("/verify", this.verifyController.verify);
+    this.verifyRouter.get("/verified/:id", this.verifyController.getVerified);
+    this.verifyRouter.get(
+      "/byusername/:username",
+      this.verifyController.getByUsername,
+    );
+    this.app.use("/twitter", this.verifyRouter);
   };
 
   tweetRouters = () => {
     //this.tweetRouter.post('/add/featured', this.tweetController.addFeaturedTweet);
-    this.tweetRouter.get('/get/featured/:linkId', this.tweetController.getFeaturedTweet);
+    this.tweetRouter.get(
+      "/get/featured/:linkId",
+      this.tweetController.getFeaturedTweet,
+    );
     //this.tweetRouter.post('/update/featured', this.tweetController.updateFeaturedTweet);
 
-    this.tweetRouter.delete('/delete/:linkId', this.tweetController.deleteTweet);
-    this.app.use('/twitter', this.tweetRouter);
+    this.tweetRouter.delete(
+      "/delete/:linkId",
+      this.tweetController.deleteTweet,
+    );
+    this.app.use("/twitter", this.tweetRouter);
   };
 
   routesConfig = () => {
     this.verifyRouters();
     this.tweetRouters();
-
   };
 }

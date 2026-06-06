@@ -57,9 +57,9 @@ export const Blogs: React.FC = (props = {}) => {
                             loading={loading}
                             skeleton={<BlogsSkeleton />}
                         >
-                            {data
-                                ?.slice(0, 3)
-                                .map((item) => <BlogsItem key={item.id} item={item} />)}
+                            {data?.slice(0, 3).map((item) => (
+                                <BlogsItem key={item.id} item={item} />
+                            ))}
                         </Skeleton>
                     </div>
                 </Block.Scrollable>

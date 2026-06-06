@@ -7,7 +7,6 @@ import {
     getClanByMemberIdResponse,
 } from './model';
 
-
 export const userClansProfileApi = createApi({
     reducerPath: 'userClansProfileApi',
     baseQuery: fetchBaseQuery({

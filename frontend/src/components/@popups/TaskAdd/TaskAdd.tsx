@@ -179,12 +179,7 @@ const TaskAdd: React.FC<TaskAddProps> = ({
             const gnosis = new GnosisFetch(activeProvider.address!, activeProvider.chain_id!);
             gnosis.getSafeBalance().then((res) => {
                 const balance = res as GnosisTypes.SafeBalanceUsdResponse[];
-                setBalance(
-                    ethers
-                        .formatEther(balance?.[0]?.balance)
-                        .toString()
-                        .slice(0, 6)
-                );
+                setBalance(ethers.formatEther(balance?.[0]?.balance).toString().slice(0, 6));
                 setTokenType(balance?.[0]?.token?.symbol || 'ETH');
                 setTokenAddress(balance?.[0]?.tokenAddress);
             });

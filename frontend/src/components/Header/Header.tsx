@@ -83,8 +83,8 @@ const Header: React.FC<HeaderProps> = memo(({ title, className, hello }) => {
                     {hello
                         ? `Welcome, ${userName} 👋`
                         : typeof title === 'function'
-                        ? title()
-                        : title}
+                          ? title()
+                          : title}
                 </h2>
                 <a href="https://samudai.xyz" className={styles.logo}>
                     <img src={logoAsset} alt="logo" />

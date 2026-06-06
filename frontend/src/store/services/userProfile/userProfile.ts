@@ -26,7 +26,6 @@ import {
 } from './model';
 import { NewContributorItems } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
 
-
 export const userProfileApi = createApi({
     reducerPath: 'userProfileApi',
     baseQuery: fetchBaseQuery({

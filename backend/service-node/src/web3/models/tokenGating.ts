@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { web3Conn } from '../../db/connections';
+import mongoose from "mongoose";
+import { web3Conn } from "../../db/connections";
 const { Schema } = mongoose;
 
 interface IModel {
@@ -15,7 +15,7 @@ interface IModel {
         comparator: string;
         value: string;
       };
-    }
+    },
   ];
   resourceId: {
     baseUrl: string;
@@ -50,6 +50,6 @@ const tokenGatingSchema = new Schema<IModel>({
   },
 });
 
-const TokenGating = web3Conn.model('TokenGating', tokenGatingSchema);
+const TokenGating = web3Conn.model("TokenGating", tokenGatingSchema);
 
 export { TokenGating };

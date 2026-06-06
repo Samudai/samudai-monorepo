@@ -95,10 +95,7 @@ const ConnectSnapshot: React.FC<ConnectSnapshotProps> = ({
     };
     return (
         <React.Fragment>
-            <PopupTitle
-                icon={snapshotIcon}
-                title="Connecting Snapshot"
-            />
+            <PopupTitle icon={snapshotIcon} title="Connecting Snapshot" />
             <Input
                 title="Snapshot Space ID"
                 placeholder="gitcoindao.eth"

@@ -37,7 +37,9 @@ export const ProposalsPopup: React.FC<ProposalsPopupProps> = ({ data, active, on
                                 <strong></strong>
                             </div>
                         </li>
-                        {data?.map((item, id) => <ProposalsItem key={id} {...item} />)}
+                        {data?.map((item, id) => (
+                            <ProposalsItem key={id} {...item} />
+                        ))}
                     </Block.Scrollable>
                 </Block>
             </Popup>

@@ -17,7 +17,6 @@ import {
     getAllDomainTagsResponse,
 } from './model';
 
-
 export const discoveryApi = createApi({
     reducerPath: 'discoveryApi',
     baseQuery: fetchBaseQuery({

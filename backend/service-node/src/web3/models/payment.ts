@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import { web3Conn } from '../../db/connections';
-import { PayoutCurrency } from '../utils/types';
+import mongoose from "mongoose";
+import { web3Conn } from "../../db/connections";
+import { PayoutCurrency } from "../utils/types";
 
 const { Schema } = mongoose;
 
@@ -14,7 +14,7 @@ interface IModel {
       amount: string;
       currency: PayoutCurrency;
       contract_address: string;
-    }
+    },
   ];
   task_id: string;
   job_id?: string;
@@ -27,7 +27,7 @@ interface IModel {
   status: string;
   chain_id: number;
   payout_id?: string;
-  link_type? : string;
+  link_type?: string;
   type?: string;
   updated_by: string;
 
@@ -44,14 +44,14 @@ const paymentSchema = new Schema<IModel>({
   value: [
     {
       amount: { type: String, required: true },
-      currency: { 
-          currency : { type: String },
-          symbol:  { type: String },
-          balance: { type: String },
-          token_address:  { type: String },
-          name:  { type: String },
-          decimal: { type: String },
-          logo_uri: { type: String }
+      currency: {
+        currency: { type: String },
+        symbol: { type: String },
+        balance: { type: String },
+        token_address: { type: String },
+        name: { type: String },
+        decimal: { type: String },
+        logo_uri: { type: String },
       },
       contract_address: { type: String },
     },
@@ -68,10 +68,10 @@ const paymentSchema = new Schema<IModel>({
   chain_id: { type: Number, required: true },
   payout_id: { type: String },
   link_type: { type: String },
-  type:       { type: String },
+  type: { type: String },
   updated_by: { type: String },
   created_at: { type: String },
   updated_at: { type: String },
 });
 
-export const Payment = web3Conn.model('Payment', paymentSchema);
+export const Payment = web3Conn.model("Payment", paymentSchema);

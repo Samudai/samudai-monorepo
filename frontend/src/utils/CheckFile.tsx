@@ -21,7 +21,6 @@ import { getMemberId } from './utils';
 import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { ethers } from 'ethers';
 
-
 const ConnectWalletComp: React.FC = () => {
     const { connector: activeConnector, isConnected } = useAccount();
     const { connect, connectors, error, isPending } = useConnect();

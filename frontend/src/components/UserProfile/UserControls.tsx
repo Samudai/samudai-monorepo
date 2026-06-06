@@ -126,10 +126,10 @@ const UserControls: React.FC<UserInfoProps> = memo(({ call, feed, subdomain, cod
                             status === 'pending'
                                 ? 'Pending'
                                 : status === 'accepted'
-                                ? 'Connected'
-                                : status === 'declined'
-                                ? 'Connect'
-                                : 'Connect' //conenction status === 'revoked'
+                                  ? 'Connected'
+                                  : status === 'declined'
+                                    ? 'Connect'
+                                    : 'Connect' //conenction status === 'revoked'
                         }
                     </span>
                 </button>

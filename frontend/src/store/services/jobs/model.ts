@@ -23,8 +23,10 @@ export interface getBountyByIdResponse {
     message: string;
 }
 
-export interface JobPayoutRequest
-    extends Omit<JobPayout, 'payout_id' | 'name' | 'link_type' | 'link_id' | 'rank'> {
+export interface JobPayoutRequest extends Omit<
+    JobPayout,
+    'payout_id' | 'name' | 'link_type' | 'link_id' | 'rank'
+> {
     payout_id?: string;
     name?: string;
     link_type?: string;
@@ -32,8 +34,10 @@ export interface JobPayoutRequest
     rank?: number;
 }
 
-export interface OpportunityRequest
-    extends Omit<Opportunity, 'job_id' | 'payout' | 'transaction_count'> {
+export interface OpportunityRequest extends Omit<
+    Opportunity,
+    'job_id' | 'payout' | 'transaction_count'
+> {
     job_id?: string;
     payout: JobPayoutRequest[];
 }

@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import { activityConn } from '../../db/connections';
-import { ContributorItems, DAOItems } from '../utils/types';
+import mongoose from "mongoose";
+import { activityConn } from "../../db/connections";
+import { ContributorItems, DAOItems } from "../utils/types";
 const { Schema } = mongoose;
 
 interface IModelDAO {
@@ -61,11 +61,11 @@ const DaoPGBarSchema = new mongoose.Schema<IModelDAO>({
     },
     connect_snapshot: {
       text: Boolean,
-    }
+    },
   },
 });
 
-const DaoProgressBar = activityConn.model('DaoProgressBar', DaoPGBarSchema);
+const DaoProgressBar = activityConn.model("DaoProgressBar", DaoPGBarSchema);
 
 interface IModelContributor {
   member_id: string;
@@ -132,6 +132,9 @@ const ContributorPGBarSchema = new mongoose.Schema<IModelContributor>({
   },
 });
 
-const ContributorProgressBar = activityConn.model('ContributorProgressBar', ContributorPGBarSchema);
+const ContributorProgressBar = activityConn.model(
+  "ContributorProgressBar",
+  ContributorPGBarSchema,
+);
 
 export { ContributorProgressBar, DaoProgressBar };

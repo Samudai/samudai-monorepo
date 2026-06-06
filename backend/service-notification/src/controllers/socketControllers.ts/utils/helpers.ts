@@ -19,7 +19,7 @@ export const getMemberInfo = async (memberId: string, jwt?: string) => {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
-      }
+      },
     );
 
     return memberData.data.data.member;
@@ -48,7 +48,7 @@ export const getMemberByWallet = async (wallet: string, jwt?: string) => {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
-      }
+      },
     );
 
     return memberData.data.data.member;
@@ -65,7 +65,7 @@ export const getMemberByWallet = async (wallet: string, jwt?: string) => {
 
 export const getMembersByWallets = async (wallets: string[], jwt?: string): Promise<string[]> => {
   try {
-    var members: string[] = await Promise.all(
+    let members: string[] = await Promise.all(
       wallets.map(async (wallet) => {
         try {
           const memberData = await axios.post(
@@ -80,7 +80,7 @@ export const getMembersByWallets = async (wallets: string[], jwt?: string): Prom
               headers: {
                 Authorization: `Bearer ${jwt}`,
               },
-            }
+            },
           );
 
           console.log(memberData.data.data.member.member_id);
@@ -90,7 +90,7 @@ export const getMembersByWallets = async (wallets: string[], jwt?: string): Prom
           console.error(`Error fetching member data for wallet ${wallet}:`);
           return null;
         }
-      })
+      }),
     );
 
     members = members.filter((member) => member !== null);
@@ -112,7 +112,7 @@ export const getTelegramChatIds = async (memberIds: string[], jwt?: string) => {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
-      }
+      },
     );
 
     return telegramData.data?.data?.telegram;

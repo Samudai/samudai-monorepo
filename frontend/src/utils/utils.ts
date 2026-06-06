@@ -135,16 +135,6 @@ export const getQueryParam = (obj: Record<string, any>): string => {
     return queryParams.join('&');
 };
 
-export const getTrailDaoId = () => {
-    if (import.meta.env.REACT_APP_ENV === 'production') {
-        return 'e27c7209-b5ba-4f5f-856f-dd2cb05453c0';
-    } else if (import.meta.env.REACT_APP_ENV === 'staging') {
-        return '178534e4-ec05-4405-9791-7558555bb793';
-    } else {
-        return 'dd304ed6-f758-4dec-8413-3d972eb08a39';
-    }
-};
-
 export const ensureHttpsProtocol = (link: string) => {
     if (!link.startsWith('http://') && !link.startsWith('https://')) {
         return 'https://' + link;

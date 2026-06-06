@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { twitterConn } from '../../db/connections';
+import mongoose from "mongoose";
+import { twitterConn } from "../../db/connections";
 const { Schema } = mongoose;
 
 interface IModel {
@@ -20,6 +20,9 @@ const twitterVerificationSchema = new Schema<IModel>({
   },
 });
 
-const TwitterVerification = twitterConn.model('TwitterVerification', twitterVerificationSchema);
+const TwitterVerification = twitterConn.model(
+  "TwitterVerification",
+  twitterVerificationSchema,
+);
 
 export { TwitterVerification };

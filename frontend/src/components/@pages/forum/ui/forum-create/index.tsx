@@ -48,13 +48,10 @@ interface Inputs {
 export const ForumCreate: React.FC<ForumCreateProps> = ({ edit, onClose, refetchDiscussions }) => {
     const inviteModal = usePopup();
     const tagList = useTypedSelector(tags);
-    const handleCreate = useDiscussionCreate(
-        () => {
-            refetchDiscussions?.();
-            onClose();
-        },
-        edit?.discussion_id
-    );
+    const handleCreate = useDiscussionCreate(() => {
+        refetchDiscussions?.();
+        onClose();
+    }, edit?.discussion_id);
 
     const [state, setState] = useObjectState<Inputs>(
         edit

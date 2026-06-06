@@ -17,11 +17,11 @@ import {
     selectDaoList,
     selectUrl,
 } from 'store/features/common/slice';
-import { useLazyGetDaoByDaoIdQuery, useLazyGetDaoQuery } from 'store/services/Dao/dao';
+import { useLazyGetDaoQuery, useLazyGetTrialDaoQuery } from 'store/services/Dao/dao';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { getArrayFromObject } from 'utils/arrayHelperFunctions';
 import checkIfValidUUID from 'utils/checkIfValidUUID';
-import { getMemberId, getTrailDaoId } from 'utils/utils';
+import { getMemberId } from 'utils/utils';
 import { getInitial } from '../getInitial';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
 import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
@@ -39,7 +39,7 @@ export const useDAO = (callback?: () => void) => {
     const isAdddedDAO = useTypedSelector(addedDao);
 
     const [getDao] = useLazyGetDaoQuery();
-    const [getTrialDao] = useLazyGetDaoByDaoIdQuery();
+    const [getTrialDao] = useLazyGetTrialDaoQuery();
     const [activeDAO, setActiveDAO] = useState<DAOType>({
         id: '',
         name: '',
@@ -197,10 +197,8 @@ export const useDAO = (callback?: () => void) => {
     };
 
     const fetchTrialDao = async () => {
-        const trialDao = getTrailDaoId();
-        localStorage.setItem('daoid', trialDao);
         try {
-            const response = await getTrialDao(trialDao).unwrap();
+            const response = await getTrialDao().unwrap();
             if (response.data?.dao) {
                 const dao = response.data.dao;
                 dispatch(

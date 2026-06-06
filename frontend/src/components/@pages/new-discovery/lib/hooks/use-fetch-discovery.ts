@@ -9,6 +9,7 @@ import {
     useLazyGetDiscoveryTagsQuery,
     useLazyGetFavDaosQuery,
 } from 'store/services/Discovery/Discovery';
+import { useLazyGetTrialDaoQuery } from 'store/services/Dao/dao';
 import { toast } from 'utils/toast';
 import { Roles } from 'utils/types/User';
 import { getMemberId, getQueryParam } from 'utils/utils';
@@ -59,8 +60,8 @@ export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () =
     const [getFavoriteDaos] = useLazyGetFavDaosQuery();
     const [getDiscoveryTags] = useLazyGetDiscoveryTagsQuery();
     const [getBulkDiscoveryDaos] = useGetBulkDiscoveryDaoMutation();
+    const [getTrialDao] = useLazyGetTrialDaoQuery();
     const memberId = getMemberId();
-    const samudaiDaoId = import.meta.env.REACT_APP_TRIAL_DAO_ID!;
 
     const getDaoQueryParam = (filter: DiscoveryFilterInputs, pageNo: number) => {
         return getQueryParam({
@@ -135,18 +136,31 @@ export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () =
     };
 
     const fetchStatusDetails = async () => {
-        const res1 = await getDiscoveryTags(memberId).unwrap();
-        const res2 = await getBulkDiscoveryDaos({
-            daoIds: [samudaiDaoId],
-            memberId: memberId,
-        }).unwrap();
-        setDiscoveryTags({
-            samudai: res2.data?.data[0] || null,
-            mostActiveDao: res1.data?.mostActiveDAO[0] || null,
-            mostActiveMember: res1.data?.mostActiveContributor[0] || null,
-            mostViewedDao: res1.data?.mostViewedDAO[0] || null,
-            mostViewedMember: res1.data?.mostViewedContributor[0] || null,
-        });
+        try {
+            const res1 = await getDiscoveryTags(memberId).unwrap();
+
+            let trialDaoId: string | undefined;
+            try {
+                const trialDaoRes = await getTrialDao().unwrap();
+                trialDaoId = trialDaoRes.data?.dao?.dao_id;
+            } catch {
+                // no trial DAO configured in DB; discovery continues without it
+            }
+
+            const res2 = await getBulkDiscoveryDaos({
+                daoIds: trialDaoId ? [trialDaoId] : [],
+                memberId: memberId,
+            }).unwrap();
+            setDiscoveryTags({
+                samudai: res2.data?.data[0] || null,
+                mostActiveDao: res1.data?.mostActiveDAO[0] || null,
+                mostActiveMember: res1.data?.mostActiveContributor[0] || null,
+                mostViewedDao: res1.data?.mostViewedDAO[0] || null,
+                mostViewedMember: res1.data?.mostViewedContributor[0] || null,
+            });
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     const rearrangedDaoData = useMemo(() => {

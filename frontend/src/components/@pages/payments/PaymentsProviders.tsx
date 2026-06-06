@@ -125,8 +125,8 @@ const PaymentsProviders: React.FC = () => {
                                     a.provider_id === main?.provider_id
                                         ? -1
                                         : b.provider_id === main?.provider_id
-                                        ? 1
-                                        : 0
+                                          ? 1
+                                          : 0
                                 )
                                 .slice(
                                     page * MAX_ELEMENTS_PER_PAGE,

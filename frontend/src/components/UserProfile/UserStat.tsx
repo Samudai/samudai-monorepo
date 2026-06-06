@@ -99,8 +99,8 @@ const UserStat: React.FC<UserStatProps> = (props) => {
                                     ? connections?.total
                                     : '0'
                                 : memberConnections?.total
-                                ? memberConnections?.total
-                                : '0'}
+                                  ? memberConnections?.total
+                                  : '0'}
                         </p>
                         {/* <p className={styles.blocksPercentage} data-green>
               +2%

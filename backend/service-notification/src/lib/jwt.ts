@@ -5,6 +5,6 @@ export const generateJWT = (member_id: string) => {
     {
       member_id,
     },
-    process.env.JWT_KEY!
+    process.env.JWT_KEY!,
   );
 };

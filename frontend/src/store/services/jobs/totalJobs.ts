@@ -29,7 +29,6 @@ import {
 } from './model';
 import { getAllTagsResponse } from '../Discovery/model';
 
-
 export const jobsApi = createApi({
     reducerPath: 'jobsApi',
     tagTypes: [

@@ -1,26 +1,26 @@
-import { IMember } from "../../utils/types";
+import { IMember } from '../../utils/types';
 
 export type postingJobNotificationMetaData = {
   member: IMember;
-  job: { 
-    job_id : string,
-    title : string,
-    dao_id : string,
-    dao_name : string
-  }
+  job: {
+    job_id: string;
+    title: string;
+    dao_id: string;
+    dao_name: string;
+  };
   redirect_link?: string;
-}
+};
 
 export type postingBountyNotificationMetaData = {
   member: IMember;
-  bounty: { 
-    bounty_id : string,
-    title : string,
-    dao_id : string,
-    dao_name : string
-  }
+  bounty: {
+    bounty_id: string;
+    title: string;
+    dao_id: string;
+    dao_name: string;
+  };
   redirect_link?: string;
-}
+};
 
 export type JobApplicantNotificationMetaData = {
   member: IMember;
@@ -35,7 +35,7 @@ export type JobApplicantNotificationMetaData = {
   };
   redirect_link?: string;
 };
-  
+
 export type BountySubmissionNotificationMetaData = {
   member: IMember;
   bounty: {
@@ -55,8 +55,7 @@ export type AccecptanceOfJobApplicantNotificationMetaData = {
     id: string;
     title: string;
     applied_on: string;
-    contributors : string[];
+    contributors: string[];
   };
   redirect_link?: string;
-}
-
+};

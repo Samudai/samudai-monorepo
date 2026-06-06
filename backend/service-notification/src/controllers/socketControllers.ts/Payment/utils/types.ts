@@ -1,4 +1,4 @@
-import { IMember } from "../../utils/types";
+import { IMember } from '../../utils/types';
 
 export type PaymentCreatedNotificationMetaData = {
   member: IMember;
@@ -25,12 +25,12 @@ export type rejectTxnNudgeNotificationMetaData = {
   member: IMember;
   redirect_link?: string;
   safeTxHash?: string;
-}
+};
 
 export type ExecutePaymentNotificationMetaData = {
   member: IMember;
   redirect_link?: string;
-}
+};
 
 export type PaymentReceivedNotificationMetaData = {
   member: IMember;
@@ -38,7 +38,7 @@ export type PaymentReceivedNotificationMetaData = {
   payment_tx_hash: string;
   redirect_link?: string;
 };
-  
+
 export type PaymentCompletedNotificationMetaData = {
   member: IMember;
   payment_id: string;
@@ -50,10 +50,10 @@ export type ProviderAddedNotificationMetaData = {
   member: IMember;
   provider_id: string;
   redirect_link?: string;
-}
+};
 
 export type DefaultProviderChangedNotificationMetaData = {
   member: IMember;
   updated_provider_id: string;
   redirect_link?: string;
-}
+};

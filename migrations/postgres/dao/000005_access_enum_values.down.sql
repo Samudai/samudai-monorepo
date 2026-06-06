@@ -1,3 +1,0 @@
--- No-op: PostgreSQL cannot drop enum values without recreating the type and every dependent
--- column/row, which is unsafe. The added values (manage_payment, manage_job, manage_forum)
--- are harmless to leave in place.

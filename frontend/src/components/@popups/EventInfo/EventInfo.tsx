@@ -58,8 +58,8 @@ const EventInfo: React.FC<EventInfoProps> = ({ active, onClose, event }) => {
                                             httpRegex.test(event?.entity_metadata?.location)
                                                 ? openUrl(event?.entity_metadata?.location)
                                                 : event?.link
-                                                ? openUrl(event?.link)
-                                                : '#'
+                                                  ? openUrl(event?.link)
+                                                  : '#'
                                         }
                                         target="_blank"
                                         className="event-info__link"

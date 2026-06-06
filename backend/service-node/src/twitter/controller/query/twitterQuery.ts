@@ -1,8 +1,13 @@
-import { TwitterSchema } from '../../models/twitterSchema';
-import { TwitterVerification } from '../../models/twitterVerifySchema';
+import { TwitterSchema } from "../../models/twitterSchema";
+import { TwitterVerification } from "../../models/twitterVerifySchema";
 
 export class TwitterQuery {
-  addTwitterVerification = async (id: string, username: string, verification: boolean, twitterId: string) => {
+  addTwitterVerification = async (
+    id: string,
+    username: string,
+    verification: boolean,
+    twitterId: string,
+  ) => {
     try {
       const result = await TwitterVerification.create({
         _id: id,
@@ -20,7 +25,9 @@ export class TwitterQuery {
 
   getTwitterVerification = async (id: string) => {
     try {
-      const twitterVerification = await TwitterVerification.findOne({ '_id': id }).exec();
+      const twitterVerification = await TwitterVerification.findOne({
+        _id: id,
+      }).exec();
       return twitterVerification;
     } catch (err: any) {
       console.log(err);
@@ -29,7 +36,9 @@ export class TwitterQuery {
 
   getTwitterVerificationByUsername = async (username: string) => {
     try {
-      const twitterVerification = await TwitterVerification.findOne({ 'twitter.username': username }).exec();
+      const twitterVerification = await TwitterVerification.findOne({
+        "twitter.username": username,
+      }).exec();
       return twitterVerification;
     } catch (err: any) {
       console.log(err);
@@ -38,7 +47,7 @@ export class TwitterQuery {
 
   addFeaturedTweet = async (linkId: string, tweet: string) => {
     try {
-      const twitterExists = await TwitterSchema.findOne({ '_id': linkId }).exec();
+      const twitterExists = await TwitterSchema.findOne({ _id: linkId }).exec();
       console.log(twitterExists);
 
       if (twitterExists) {
@@ -77,12 +86,14 @@ export class TwitterQuery {
     }
   };
 
-  deleteTweet = async ( linkId:string) => {
+  deleteTweet = async (linkId: string) => {
     try {
-      const tweet = await TwitterVerification.findOneAndDelete({ _id: linkId }).exec();
+      const tweet = await TwitterVerification.findOneAndDelete({
+        _id: linkId,
+      }).exec();
       return tweet;
     } catch (err: any) {
       console.log(err);
     }
-  }
+  };
 }

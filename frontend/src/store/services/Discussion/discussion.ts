@@ -15,7 +15,6 @@ import {
     getTagsResponse,
 } from './model';
 
-
 export const discussionApi = createApi({
     reducerPath: 'discussionApi',
     baseQuery: fetchBaseQuery({

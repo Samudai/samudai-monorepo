@@ -1,7 +1,11 @@
 import axios from "axios";
 const { Telegraf } = require("telegraf");
 import { NextFunction, Request, Response } from "express";
-import { grpJoiningPointsTipping, telegramCreate, telegramCreateForPoint } from "./ready";
+import {
+  grpJoiningPointsTipping,
+  telegramCreate,
+  telegramCreateForPoint,
+} from "./ready";
 import { disconnectTelegramMessage } from "../utils/messages";
 
 const bot = new Telegraf(process.env.BOT_ID);
@@ -10,8 +14,8 @@ bot.start((ctx: any) =>
   ctx.reply(
     "Hey " +
       ctx.from.first_name +
-      ", Cheered to have you here! Please send OTP to verify yourself and start receiving your Samudai notifications. 🎉"
-  )
+      ", Cheered to have you here! Please send OTP to verify yourself and start receiving your Samudai notifications. 🎉",
+  ),
 );
 
 // bot.use(async (ctx: any, next: any) => {
@@ -84,7 +88,7 @@ export const disconnectTelegram = async (req: Request, res: Response) => {
 export const healthCheck = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     res.setHeader("Content-Type", "application/json");
