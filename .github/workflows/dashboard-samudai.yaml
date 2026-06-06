@@ -10,12 +10,6 @@ on:
           - prod
           - development
 
-  # push:
-  #   branches:
-  #     - master
-  #   paths:
-  #     - frontend/**
-
 jobs:
   build:
     name: Build and push

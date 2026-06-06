@@ -9,7 +9,6 @@ on:
     paths:
       - 'backend/**'
       - 'bots/**'
-      - 'frontend/**'
       - '**/Dockerfile'
       - '**/Dockerfile.*'
   push:
@@ -18,7 +17,6 @@ on:
     paths:
       - 'backend/**'
       - 'bots/**'
-      - 'frontend/**'
       - '**/Dockerfile'
       - '**/Dockerfile.*'
 
