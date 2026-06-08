@@ -1,0 +1,49 @@
+.root {
+    padding: 14px 24px;
+    border-radius: 12px;
+
+    background: $clr-black-main;
+
+    display: flex;
+    align-items: center;
+}
+
+.img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.content {
+    padding-left: 16px;
+}
+
+.name {
+    font: $font16;
+    color: $clr-white;
+}
+
+.position {
+    margin-top: 4px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+
+.btn {
+    margin-left: auto;
+    width: 67px;
+    height: 35px;
+    border: 1px solid $clr-green;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        stroke: $clr-green;
+    }
+}

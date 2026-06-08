@@ -1,0 +1,76 @@
+.root {
+  padding: 40px 29px;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headTitle {
+  font: 600 18px/1.22 $lato;
+  color: $clr-white;
+}
+.headClearBtn {
+  margin-left: 15px;
+  font: $fontMedium;
+  color: $clr-orange;
+}
+.body {
+  padding-top: 40px;
+}
+.group {
+  &:not(:first-child) {
+    padding-top: 26px;
+  }
+
+  &:not(:last-child) {
+    padding-bottom: 40px;
+    border-bottom: 1.5px solid $clr-black;
+  }
+}
+.title {
+  font: $font16;
+  color: $clr-white;
+  margin-bottom: 24px;
+}
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: $clr-black;
+}
+.name {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  + .item {
+    margin-top: 12px;
+  }
+}
+/* 
+  Type
+*/
+.type {}
+/* 
+  Bounty
+*/
+.bounty {}
+.bountyRange {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  span {
+    font: $font16;
+    color: $clr-white;;
+  }
+}
+.bountyInput {
+  margin-top: 22px;
+}

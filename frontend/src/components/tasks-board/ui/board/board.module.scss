@@ -1,0 +1,25 @@
+.board {
+    display: flex;
+}
+.board_column {
+    width: 229px;
+    min-width: 229px;
+    padding-bottom: 40px;
+
+    &Dragging {
+        background: rgba($clr-black-main, 0.3);
+    }
+
+    + .board_column {
+        margin-left: 20px;
+    }
+}
+.board_item {
+    + .board_item {
+        margin-top: 8px;
+    }
+}
+
+.board_item + .board_creator {
+    margin-top: 8px;
+}

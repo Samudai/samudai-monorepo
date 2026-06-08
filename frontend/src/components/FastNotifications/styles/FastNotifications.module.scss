@@ -1,0 +1,35 @@
+.root {
+  max-width: calc(100% - 20px);
+  width: 354px;
+  max-height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  border-radius: 15px;
+  overflow: hidden auto;
+  right: 10px;
+
+  padding-block: 25px 20px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.root1 {
+  max-width: calc(100% - 20px);
+  width: 354px;
+  max-height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  overflow: hidden auto;
+  right: calc((100vw - $container) / 2);
+
+  padding-block: 100px 50px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

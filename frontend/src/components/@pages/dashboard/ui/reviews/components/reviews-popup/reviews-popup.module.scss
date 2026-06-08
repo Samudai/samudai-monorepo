@@ -1,0 +1,138 @@
+.root[data-role='popup'] {
+    max-width: 780px;
+    background: #161819;
+    padding: 32px;
+    height: 100%;
+}
+
+.rootSmall {
+    height: auto !important;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headTitle {
+    font: $font24;
+    color: $clr-gray;
+}
+
+.controls {
+    margin-top: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 43px;
+}
+
+.controlsLeft {
+}
+
+.controlsDown {
+    margin-top: 11px;
+    display: flex;
+    align-items: center;
+}
+
+.controlsNumber {
+    font: $fontMedium;
+    color: $clr-green;
+}
+
+.controlsRating {
+    margin-left: 14px;
+
+    :global(.filled .svg-fill) {
+        fill: $clr-green;
+    }
+}
+
+.controlsBased {
+    margin-left: 14px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+
+.controlsTitle {
+    font: $font16;
+    color: $clr-white;
+}
+
+.controlsBtn {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 20px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        margin-left: 4px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+    }
+
+    &Mobile {
+        display: none;
+    }
+}
+
+.list {
+    padding-right: 36px;
+    flex: 1 1 auto;
+    // height: 0;
+    overflow: hidden auto;
+}
+
+.paginate {
+    // margin-top: 30px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginatePage {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+    padding: 2px 4px;
+    margin: 0 2px;
+
+    &:not(.paginatePageActive) {
+        cursor: pointer;
+    }
+}
+
+.paginatePageActive {
+    color: $clr-orange;
+}
+
+@media (max-width: $mobile_big) {
+    .root[data-role='popup'] {
+        padding-inline: 20px;
+
+        :global(.popup__body) {
+            margin-top: 20px;
+        }
+    }
+
+    .paginate {
+        margin-inline: auto;
+    }
+
+    .controlsBtn {
+        display: none;
+
+        &Mobile {
+            display: flex;
+        }
+    }
+}

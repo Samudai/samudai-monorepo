@@ -1,0 +1,64 @@
+.attachments {
+  width: 100%;
+  min-height: 168px;
+  padding: 19px 16px;
+  background: $clr-black;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+
+  &HasFiles {
+    .attachments_placeholder {
+      margin: 0;
+    }
+  }
+  &Over {
+    filter: brightness(0.8);
+  }
+}
+
+.attachments_placeholder {
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    transform: translateY(-2px);
+    width: 18px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    font: $font16;
+    color: $clr-orange;
+  }
+}
+
+.attachments_list {
+  margin: -8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.attachments_item {
+  margin-top: 18px;
+  flex: 0 0 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &:nth-child(odd) {
+    padding-right: 8px;
+  }
+}
+
+.attachments_remove {
+  margin-left: 8px;
+}

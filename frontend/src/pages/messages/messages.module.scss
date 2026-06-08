@@ -1,0 +1,45 @@
+.root {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.container {
+  // padding-top: 21px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerTabs {
+  [data-role='button'] {
+    width: 167px;
+  }
+}
+.headerBtn {
+}
+
+.chat {
+  padding-top: 40px;
+  display: flex;
+  flex-grow: 1;
+}
+
+@media (max-width: $tablet) {
+  .chat {
+    margin-top: 30px;
+    flex-direction: column;
+  }
+  .headerBtn {
+    display: none;
+  }
+  .headerTabs {
+    width: 100%;
+    [data-role='button'] {
+      width: calc(100% / 3);
+    }
+  }
+}

@@ -1,0 +1,80 @@
+.connect {
+    padding: 45px 30px 30px;
+    // align-items: center;
+
+    > div {
+        width: 100%;
+    }
+}
+
+.text {
+    margin: 16px auto 0;
+    max-width: 278px;
+    width: 100%;
+
+    text-align: center;
+
+    font: 400 16px/1.3 $lato;
+    color: $clr-white;
+
+    strong {
+        color: $clr-green !important;
+    }
+}
+
+.discordBtn {
+    max-width: 214px;
+    margin: 16px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 17px 28px;
+    background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+    border-radius: 12px;
+
+    white-space: nowrap;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        fill: #000;
+    }
+
+    span {
+        margin-left: 7px;
+
+        font: 700 21px/1.2 $lato;
+        color: #161819;
+    }
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.blocks {
+    padding-top: 10px;
+    border-radius: 21px 21px 0 0;
+    max-width: 314px;
+    height: 162px;
+    width: 100%;
+
+    margin: 32px auto 0; 
+
+    @include strokeGradient(
+        linear-gradient(#17191A, #17191A),
+        linear-gradient(to bottom, #FFFFFF, transparent 80%)
+    );
+
+    border-width: 1.2px;
+
+    svg {
+        width: 100%;
+    }
+}

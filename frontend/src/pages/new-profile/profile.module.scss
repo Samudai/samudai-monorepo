@@ -1,0 +1,84 @@
+.contributor {
+    padding-bottom: 50px;
+}
+
+.contributor_btn_container {
+    display: flex;
+    align-items: center;
+}
+
+.contributor_inviteBtn {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 22px;
+        height: 22px;
+        [data-stroke] {
+            stroke: $clr-green;
+        }
+    }
+
+    span {
+        padding-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-green;
+    }
+}
+.customizeBtn {
+    margin-left: 32px;
+    display: flex;
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        stroke: #f9f9f9;
+    
+        margin-right: 4px;
+    }
+}
+
+.contributor_editBtn {
+    margin-left: 20px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        stroke: $clr-white;
+        border-bottom: 1.5px solid #FFFFFF;
+    }
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+
+    .row {
+        margin-top: 32px;
+    }
+
+    &[data-mt] {
+        margin-top: 32px;
+    }
+}
+
+.point {
+    &_left {
+        margin-right: 8px;
+    }
+
+    &_right {
+        margin-left: 8px;
+    }
+}
+
+.col {
+    width: calc(50% - 40px);
+}
+
+.col_item {
+    + .col_item {
+        margin-top: 32px;
+    }
+}

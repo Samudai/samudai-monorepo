@@ -1,0 +1,41 @@
+
+
+
+.root {
+}
+.field {
+  width: 100%;
+  padding: 0 22px;
+  border-radius: 15px;
+  background: $clr-black-main;
+
+  display: flex;
+  align-items: center;
+}
+.input {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 17px 0;
+  padding-right: 15px;
+  width: 100%;
+  max-width: 100%;
+
+  font: $fontMedium;
+  color: $clr-lavender;
+
+  caret-color: transparent;
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    :global(.svg-stroke) {
+      stroke: $clr-lavender;
+    }
+  }
+}

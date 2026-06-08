@@ -1,0 +1,119 @@
+.minput {
+}
+.minput_title {
+    margin-bottom: 16px;
+    font: $font16;
+    color: $clr-gray-dark;
+}
+.minput_box {
+}
+.minput_list {
+    margin: -14px -7px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.minput_item {
+    margin: 14px 7px 0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: $clr-black;
+    font: 400 14px/1 $lato;
+    color: $clr-white;
+
+    display: flex;
+    align-items: center;
+
+    &Tag {
+        background: transparent;
+    }
+
+    &Input {
+        background: none;
+        padding: 0;
+        flex: 1 0 auto;
+        position: relative;
+        max-width: 100%;
+
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    &Void {
+        padding: 0;
+        background: transparent;
+    }
+}
+.minput_closeBtn {
+    width: 10px;
+    margin-left: 4px;
+}
+.minput_addTag {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+
+    svg {
+        width: 14px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+    span {
+        margin-left: 8px;
+    }
+}
+.minput_input {
+    background: none;
+    border: none;
+    outline: none;
+    font: 600 14px/1 $lato;
+    color: $clr-white;
+    padding: 8px 0;
+    width: 100%;
+
+    &Box {
+        padding: 8px;
+        background: $clr-black;
+        border-radius: 4px;
+        font: 600 14px/1 $lato;
+        color: $clr-white;
+        width: auto;
+        max-width: 100%;
+        overflow: hidden;
+        width: 20px;
+
+        caret-color: $clr-green;
+    }
+}
+.minput_hint_list {
+    width: 210px;
+    background: $clr-black;
+    border-radius: 15px;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 2;
+    padding: 20px 15px;
+    height: 140px;
+    overflow: auto;
+}
+.minput_hint_item {
+    font: 400 14px/1 $lato;
+    color: $clr-white;
+    cursor: pointer;
+    display: flex;
+
+    + .minput_hint_item {
+        margin-top: 16px;
+    }
+
+    span {
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+    }
+}

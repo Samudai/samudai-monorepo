@@ -1,0 +1,28 @@
+
+
+
+.modal-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+}
+.modal-title__icon {
+  max-width: 45px;
+  width: 100%;
+  img {
+    width: 100%;
+  }
+}
+.modal-title__suptitle {
+  margin-top: 16px;
+  font: $fontMedium;
+  color: $clr-orange;
+}
+.modal-title__title {
+  margin-top: 16px;
+  font: 600 24px/1.12 $lato;
+  color: $clr-white;
+  user-select: none;
+}

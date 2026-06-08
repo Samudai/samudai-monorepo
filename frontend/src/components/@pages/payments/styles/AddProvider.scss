@@ -1,0 +1,90 @@
+.add-payments__popup {
+}
+.add-payments {
+  padding: 30px;
+}
+.add-payments__address {
+  margin-top: 36px;
+  .ui-input__title {
+    margin-bottom: 14px;
+  }
+}
+.add-payments__submit {
+  margin-top: 56px;
+  margin-left: auto;
+  min-width: 129px;
+  justify-content: center;
+  padding: 14px;
+}
+.add-payments__select {
+  margin-top: 5px;
+}
+// Complete
+.add-payments_complete {
+  .popup__body {
+    align-items: center;
+  }
+}
+.add-payments__provider-select {
+  margin-top: 48px;
+}
+.add-payments__chain-subtitle {
+  margin: 36px 0 14px;
+}
+.add-payments__mark {
+  margin-top: 53px;
+  flex-shrink: 0;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  background: $clr-green;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 24px;
+    .svg-fill {
+      strokewidth: 2px;
+      stroke: $clr-black-main;
+      fill: $clr-black-main;
+    }
+  }
+}
+.add-payments__thx {
+  margin-top: 16px;
+  text-align: center;
+  font: $fontMedium;
+  color: #fff;
+  strong {
+    color: $clr-orange;
+    text-transform: capitalize;
+  }
+}
+.add-payments__complete-btn {
+  margin-top: 124px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 124px;
+  justify-content: center;
+}
+
+.test-container {
+  min-height: 53px;
+  padding: 10px 18px;
+  background: $clr-black-main;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+}
+@media (max-width: $tablet_small) {
+  .add-payments {
+    padding-inline: 20px;
+  }
+  .add-payments__submit,
+  .add-payments__complete-btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,21 @@
+.text {
+    &:nth-child(2) {
+        width: 93.3%;
+    }
+
+    &:nth-child(3) {
+        max-width: 98%;
+    }
+
+    &:nth-child(4) {
+        max-width: 81.6%;
+    }
+
+    &:last-child {
+        width: 51%;
+    }
+
+    + .text {
+        margin-top: 8px;
+    }
+}

@@ -1,0 +1,193 @@
+.block {
+  background: $clr-black-main;
+  border-radius: 35px;
+  max-width: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__dev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-transform: uppercase;
+    h2 {
+      font: 700 25px/1 $lato;
+      color: rgba(#fff, 0.8);
+      margin: auto;
+    }
+  }
+
+  &::after {
+    content: '';
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+  }
+}
+/* 
+  Header
+*/
+.block-header {
+}
+/* 
+  Title
+*/
+.block-title {
+  font: 600 24px/1.125 $lato;
+  color: $clr-gray;
+
+  &:is(h1, h2, h6) {
+    display: none;
+  }
+  &:is(h3) {
+  }
+  &:is(h4) {
+    font-size: 14px;
+    font-weight: 400;
+    color: #52585e;
+  }
+  &:is(h5) {
+  }
+}
+.block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.block-scrollable {
+  overflow: hidden auto;
+  max-width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+/* 
+  Detail
+*/
+.block-detail {
+  position: relative;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    width: 24px;
+    height: 24px;
+    transition: filter $app-transition;
+
+    svg {
+      max-width: 100%;
+      width: 100%;
+
+      .svg-stroke {
+        stroke: $clr-gray-dark;
+      }
+      .svg-fill {
+        fill: $clr-gray-dark;
+      }
+    }
+
+    &:hover svg .svg-stroke {
+      stroke: #909090;
+    }
+  }
+
+  &.vertical {
+    svg {
+      max-width: 5px;
+    }
+  }
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
+/* 
+  Drag hand
+*/
+.block-move-drag {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+  max-width: 18px;
+  width: 100%;
+  z-index: 120;
+
+  svg {
+    max-width: 100%;
+    width: 100%;
+
+    .svg-fill {
+      fill: $clr-gray-dark;
+      transition: fill $app-transition;
+    }
+  }
+
+  &.active svg .svg-fill {
+    fill: $clr-white;
+  }
+}
+/* 
+  Scrollable
+*/
+.block-scrollable {
+}
+
+/* 
+  Link
+*/
+.block-link {
+  margin-left: auto;
+  width: 17px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    .svg-stroke {
+      storke: $clr-gray-dark;
+    }
+  }
+}
+
+/* 
+  Animation
+*/
+
+.block-enter-active,
+.block-exit-active {
+  transition: 0.3s ease-in-out;
+  transition-property: transform, opacity;
+}
+
+.block-enter {
+  opacity: 0;
+  transform: scale(0);
+}
+.block-enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.block-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.block-exit-active {
+  opacity: 0;
+  transform: scale(0);
+}

@@ -1,0 +1,295 @@
+.root {
+    max-width: 276px;
+    width: 100%;
+    padding: 28px 24px 30px 31px;
+    height: auto;
+    border-right: 1px solid $clr-black;
+}
+.date {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+}
+.user {
+    padding-top: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.userImg {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+.userName {
+    margin-top: 8px;
+    font: $font16;
+    color: $clr-white;
+}
+.userProf {
+    margin: 8px;
+    font: $fontMedium;
+    color: $clr-lavender;
+}
+.userId {
+    margin-top: 32px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+.userLocation {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        stroke: $clr-green;
+    }
+
+    span {
+        padding-left: 8px;
+        font: $fontSmall;
+        color: $clr-white;
+
+        transform: translateY(0.1em);
+    }
+}
+.data {
+    margin-top: 53px;
+    display: flex;
+    align-items: flex-end;
+
+    // New
+    margin-top: 30px;
+}
+.dataLeft {
+}
+.dataRight {
+    // margin-left: auto;
+    padding-left: 10px;
+    // text-align: right;
+
+    // New
+    padding-left: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+.dataTask {
+    font: 700 24px/1.46 $lato;
+    color: #f0f0f0;
+
+    + .dataSubtitle {
+        margin-top: 4px;
+    }
+}
+.dataSubtitle {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+.dataRating {
+    margin-left: 4px;
+    font: $font16;
+    color: $clr-green;
+}
+.dataDown {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+}
+.dataLabel {
+    padding: 2px 10px;
+    border-radius: 15px;
+    background: #3a3e42;
+    font: $fontMedium;
+    color: $clr-lavender;
+}
+.dataStars {
+    margin-left: 14px;
+
+    svg:global(.filled) [data-fill] {
+        fill: $clr-lavender;
+    }
+}
+.info {
+    margin-top: 72px;
+    max-width: 178px;
+
+    // New
+    margin: 35px auto 0;
+}
+.infoItem {
+    display: flex;
+
+    + .infoItem {
+        margin-top: 16px;
+    }
+}
+.infoIcon {
+    width: 20px;
+    flex-shrink: 0;
+
+    &[data-orange] [data-stroke] {
+        stroke: $clr-orange;
+    }
+    &[data-green] [data-stroke] {
+        stroke: $clr-green;
+    }
+    &[data-lavender] [data-stroke] {
+        stroke: $clr-lavender;
+    }
+}
+.infoItemRole {
+    justify-content: center;
+    // flex-direction: column;
+    // align-items: center;
+    // .infoValue {
+    //   margin-left: 0;
+    //   margin-top: 8px;
+    // }
+}
+.infoValue {
+    margin-left: 8px;
+    font: $fontSmall;
+    color: $clr-white;
+}
+.role_title {
+    text-align: center;
+    color: $clr-lavender;
+}
+.role_list {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.role_item {
+    padding: 8px 24px;
+    border-radius: 64px;
+
+    background: $clr-black;
+
+    font: $fontMedium;
+    color: $clr-white;
+
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: $clr-gray;
+        margin-right: 8px;
+    }
+
+    span {
+        transform: translateY(0.1em);
+    }
+
+    &:nth-child(5n + 2)::before {
+        background: #1cbab9;
+    }
+
+    &:nth-child(5n + 3)::before {
+        background: #ffb8af;
+    }
+
+    &:nth-child(5n + 4)::before {
+        background: #5d4c89;
+    }
+
+    &:nth-child(5n + 5)::before {
+        background: #ffb9ae;
+    }
+
+    + .role_item {
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: $laptop_small) {
+    .root {
+        max-width: 240px;
+    }
+}
+@media (max-width: $tablet) {
+    .root {
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        border: none;
+        padding: 0;
+    }
+    .user {
+        flex-direction: row;
+        text-align: left;
+        padding-top: 0;
+    }
+    .user_content {
+        padding-left: 24px;
+    }
+    .userName {
+        margin-top: 0;
+    }
+    .userId {
+        margin-top: 8px;
+    }
+    .data {
+        padding-left: 20px;
+        margin-left: auto;
+        margin-top: 0;
+        align-items: center;
+    }
+    .info {
+        margin-top: 16px;
+        margin-right: 0;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .infoItem {
+        > li {
+            display: flex;
+            align-items: center;
+        }
+    }
+    .role_title {
+    }
+    .role_list {
+        margin-top: 0;
+        padding-left: 16px;
+    }
+}
+@media (max-width: $mobile_small) {
+    .userImg {
+        width: 48px;
+        height: 48px;
+    }
+    .user_content {
+        padding-left: 8px;
+    }
+    .role_title {
+        font-size: 16px;
+    }
+    .role_list {
+        [data-role='icon'] {
+            width: 12px;
+            height: 12px;
+        }
+        [data-role='name'] {
+            font-size: 12px;
+        }
+    }
+    .data {
+        margin-left: 12px;
+    }
+    .dataTask {
+        font-size: 20px;
+    }
+}

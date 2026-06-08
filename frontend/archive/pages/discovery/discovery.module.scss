@@ -1,0 +1,88 @@
+.root {
+  padding-bottom: 65px;
+}
+.root_head {
+  display: flex;
+  align-items: center;
+}
+.header {
+  [data-role='rh-title'] {
+    font: $font24;
+  }
+}
+.back {
+  margin-left: 25px;
+  margin-right: auto;
+}
+// .panel {
+//   margin-top: 7px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+// .panelLeft,
+// .panelRight {
+//   display: flex;
+//   align-items: center;
+// }
+// .panelLeft {
+//   flex-grow: 1;
+// }
+// .panelRight {
+// }
+.search {
+  margin-left: auto;
+  max-width: 400px;
+  [data-role='field'] {
+    border-radius: 25px;
+    padding-left: 22px;
+  }
+  [data-role='input'] {
+    padding-left: 16px;
+    min-height: 43px;
+  }
+}
+.searchIcon {
+  max-width: 20px;
+}
+.filterBtn {
+  margin-left: 24px;
+  padding: 10px 16px;
+
+  > svg {
+    max-width: 16px;
+  }
+}
+.subtitle {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+  user-select: none;
+}
+.body {
+  margin-top: 35px;
+}
+.list {
+  margin: -20px -10px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+}
+.filterSkills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -8px -8px 0;
+}
+.filterSkillsItem {
+  margin: 8px 8px 0;
+}
+.filterClearBtn {
+  padding: 0 8px;
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-orange;
+}

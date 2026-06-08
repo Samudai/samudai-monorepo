@@ -1,0 +1,96 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &:not(.colTitle) {
+    padding-left: 14px;
+  }
+  &.colTitle {
+    flex-grow: 1;
+  }
+  &.colVotesFor {
+    [data-role='progress-line'] {
+      background-color: $clr-green;
+    }
+  }
+  &.colVotesAgainst {
+    [data-role='progress-line'] {
+      background-color: $clr-orange;
+    }
+  }
+  &.colVotesFor,
+  &.colVotesAgainst,
+  &.colStatus {
+    width: 19%;
+  }
+  &.colTime {
+    width: 17%;
+  }
+}
+.rating {
+  max-width: 120px;
+}
+.votes {
+  margin-top: 8px;
+  color: $clr-gray-dark;
+  strong {
+    color: $clr-white;
+  }
+}
+.status {
+  display: inline-block;
+  padding: 8px 14px;
+  min-width: 83px;
+  border-radius: 20px;
+  text-align: center;
+  background: $clr-black;
+
+  font: 400 14px/1 $lato;
+  color: $clr-green;
+}
+
+@media (max-width: $tablet) {
+  .root {
+    flex-wrap: wrap;
+  }
+
+  .col {
+    &:not(.colTitle) {
+      padding-left: 0;
+    }
+
+    &.colTitle {
+      flex-grow: 1;
+      max-width: 70%;
+      order: 1;
+    }
+
+    &.colVotesFor,
+    &.colVotesAgainst {
+      margin-top: 16px;
+      width: 50%;
+    }
+
+    &.colVotesFor {
+      order: 3;
+    }
+    &.colVotesAgainst {
+      order: 4;
+    }
+
+    &.colStatus {
+      width: 30%;
+      order: 2;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &.colTime {
+      display: none;
+    }
+  }
+  .rating {
+    max-width: 90%;
+  }
+}

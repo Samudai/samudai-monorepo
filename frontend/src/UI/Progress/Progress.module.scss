@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.progressText {
+  margin-right: 4px;
+  font: $fontSmall;
+  color: $clr-white;
+}
+.progress {
+  max-width: 100%;
+  width: 100%;
+  height: 8px;
+  background: rgba(#52585e, 0.4);
+  border-radius: 8px;
+  position: relative;
+}
+
+.progressLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+}

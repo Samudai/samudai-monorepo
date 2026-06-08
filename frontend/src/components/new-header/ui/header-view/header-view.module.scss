@@ -1,0 +1,122 @@
+.view {
+    margin-right: 60px;
+    position: relative;
+}
+.view_btn {
+    font: $font16;
+    color: #cbcbcb;
+    display: flex;
+    align-items: center;
+
+    &:global(.active) {
+        color: $clr-green;
+
+        svg {
+            [data-stroke] {
+                stroke: $clr-green;
+            }
+        }
+    }
+
+    svg {
+        margin-left: 16px;
+        width: 7px;
+        flex-shrink: 0;
+        transform: rotate(-90deg);
+        transition: transform 0.2s ease-in-out;
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+
+    &Active {
+        svg {
+            transform: rotate(-90deg) scaleX(-1);
+        }
+    }
+}
+// Button
+.view_list {
+    padding: 16px;
+    border-radius: 10px;
+    top: 100%;
+    left: 50%;
+    width: 180px;
+    transform: translate(-50%, 28px);
+}
+.view_item {
+    padding: 6.5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    :global(.ui-radio) {
+        flex-shrink: 0;
+
+        span {
+            background: $clr-orange;
+        }
+    }
+
+    &Active:not(.view_itemEdit) {
+        [data-class='text-wrapper'] {
+            max-width: 100%;
+        }
+    }
+
+    &:not(.view_itemActive, .view_itemEdit) {
+        [data-class='text-wrapper'] {
+            max-width: 100%;
+        }
+    }
+
+    &:hover {
+        .view_controlBtn {
+            opacity: 1;
+        }
+    }
+}
+.view_input {
+    padding-left: 8px;
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+.view_name {
+    font: $fontMedium;
+    color: $clr-white;
+}
+.view_controlBtn {
+    opacity: 0;
+    transition: opacity $app-transition;
+    width: 16px;
+    flex-shrink: 0;
+
+    [data-fill] {
+        fill: $clr-gray-dark;
+    }
+}
+.view_list_after {
+    margin-left: 2px;
+    margin-top: 6.5px;
+}
+.view_createBtn {
+    font: $fontMedium;
+    color: $clr-orange;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+        transform: translateY(-2px);
+        width: 11px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        margin-left: 6px;
+    }
+}
