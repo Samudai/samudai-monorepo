@@ -24,8 +24,6 @@ import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
 import styles from './profile.module.scss';
 
-// import styles from './Profile.module.scss';
-
 const Tabs: {
     [key: string]: string;
 } = {
@@ -86,10 +84,6 @@ const Profile = () => {
     }, [memberid]);
 
     const isProfile = tabActive === Tabs.Profile;
-
-    const handleEditOpen = () => {
-        dispatch(editProfileToggle(true));
-    };
 
     const handleCloseEdit = () => {
         dispatch(editProfileToggle(false));

@@ -25,7 +25,7 @@ export class DAOReviewController {
 
             const reviewResponse: ReviewResponse[] = [];
 
-            const reviews = result.data.reviews;
+            const reviews = result.data.reviews ?? [];
 
             for (const review of reviews) {
                 const member = await mapMemberToUsername(review.member_id);

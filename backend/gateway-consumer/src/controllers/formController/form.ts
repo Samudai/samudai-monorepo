@@ -74,7 +74,7 @@ export class FormController {
             const dao_id = req.params.daoId as string;
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/bydao/${dao_id}`);
 
-            let forms = response.data.form;
+            let forms = response.data.form ?? [];
 
             const created_by = forms.map((form: any) => form.created_by);
             const updated_by = forms.map((form: any) => form.updated_by);

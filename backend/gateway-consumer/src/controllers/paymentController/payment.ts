@@ -110,42 +110,34 @@ export class PaymentController {
     };
 
     getUninitiatedByDAOId = async (req: Request, res: Response, _next: NextFunction) => {
+        const daoId = req.params.daoId as string;
+        let updatedResultProject: any[] = [];
+        let updatedResultJob: any[] = [];
+
         try {
-            const resultProject = await axios.get(
-                `${process.env.SERVICE_PROJECT}/payout/getfordao/${req.params.daoId as string}`,
-            );
-            const updatedResultProject = resultProject.data?.map((payout: any) => ({
+            const resultProject = await axios.get(`${process.env.SERVICE_PROJECT}/payout/getfordao/${daoId}`);
+            updatedResultProject = (resultProject.data ?? []).map((payout: any) => ({
                 ...payout,
                 type: 'Project',
             }));
+        } catch {
+            // project payouts unavailable — continue with job payouts
+        }
 
-            const resultJob = await axios.get(
-                `${process.env.SERVICE_JOB}/payout/get/uninitiated/${req.params.daoId as string}`,
-            );
-            const updatedResultJob = resultJob.data?.map((payout: any) => ({
+        try {
+            const resultJob = await axios.get(`${process.env.SERVICE_JOB}/payout/get/uninitiated/${daoId}`);
+            updatedResultJob = (resultJob.data ?? []).map((payout: any) => ({
                 ...payout,
                 type: 'Job',
             }));
-
-            if (updatedResultJob && updatedResultProject) {
-                const result = [...updatedResultProject, ...updatedResultJob];
-                res.status(200).send({ message: 'Payout fetched successfully', data: result });
-            } else if (updatedResultJob && !updatedResultProject) {
-                res.status(200).send({ message: 'Payout fetched successfully', data: updatedResultJob });
-            } else if (!updatedResultJob && updatedResultProject) {
-                res.status(200).send({ message: 'Payout fetched successfully', data: updatedResultProject });
-            } else {
-                res.status(200).send({ message: 'Payout fetched successfully', data: [] });
-            }
-        } catch (err: any) {
-            if (err.response) {
-                return res
-                    .status(err.response.status)
-                    .send({ message: 'Error while fetching payout', error: err.response.data });
-            } else {
-                return res.status(500).send({ message: 'Internal server error', error: JSON.stringify(err) });
-            }
+        } catch {
+            // job payouts unavailable — continue with project payouts
         }
+
+        res.status(200).send({
+            message: 'Payout fetched successfully',
+            data: [...updatedResultProject, ...updatedResultJob],
+        });
     };
 
     // updateInitiateByPayout = async (req: Request, res: Response, next: NextFunction) => {
