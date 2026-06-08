@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "icon": "/img/icons/badge-1.svg",
+    "value": 5
+  },
+  {
+    "id": 1,
+    "icon": "/img/icons/badge-2.svg",
+    "value": 10
+  },
+  {
+    "id": 2,
+    "icon": "/img/icons/badge-3.svg",
+    "value": 3
+  },
+  {
+    "id": 3,
+    "icon": "/img/icons/badge-4.svg",
+    "value": 1
+  }
+]

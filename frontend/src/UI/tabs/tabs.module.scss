@@ -1,0 +1,40 @@
+.tabs_list {
+    display: flex;
+    align-items: center;
+}
+
+.tabs_item {
+    padding-bottom: 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+
+    display: flex;
+    align-items: center;
+
+    &Active {
+        cursor: default;
+        border-bottom-color: $clr-green;
+
+        .tabs_name {
+            color: $clr-green;
+        }
+    }
+
+    +.tabs_item {
+        margin-left: 32px;
+    }
+}
+
+.tabs_name {
+    font: $font24;
+    color: $clr-gray-dark;
+    text-transform: capitalize;
+    transform: translateY(.05em);
+}
+
+.tabs_count {
+    margin-left: 8px;
+    padding: 4px 6px;
+    border-radius: 100px;
+    background: $clr-orange;
+}

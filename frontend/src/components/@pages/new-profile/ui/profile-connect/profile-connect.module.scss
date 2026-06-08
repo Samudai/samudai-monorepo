@@ -1,0 +1,44 @@
+.connect_btn,
+.sent_btn {
+    max-width: 183px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    
+    svg {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        flex-shrink: 0;
+        margin-right: 4px;
+    }
+
+    span {
+        font: 600 14px/1.25 $lato;
+        transform: translateY(0.1em);
+    }
+}
+.connect_btn {
+    svg {
+        stroke: #292d32;
+    }
+
+    span {
+        color: #242635;
+    }
+}
+.sent_btn {
+    background: $clr-gray-dark;
+
+    svg {
+        stroke: $clr-white;
+    }
+
+    span {
+        color: $clr-white;
+    }
+}

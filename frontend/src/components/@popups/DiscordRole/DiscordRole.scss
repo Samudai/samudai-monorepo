@@ -1,0 +1,97 @@
+.discord-role__popup {
+  .popup-box__scrollable {
+    align-items: center;
+  }
+}
+.discord-role {
+  padding: 40px 30px 30px;
+  max-width: 390px;
+
+  @media (max-width: $mobile_big) {
+    max-width: 100%;
+  }
+  @media (max-width: $mobile) {
+    padding: 20px;
+  }
+}
+.discord-role__title {
+  text-transform: capitalize;
+}
+.discord-role__search {
+  margin-top: 48px;
+  padding: 0 20px;
+  background: $clr-black-main;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+.discord-role__magnifier {
+  transform: translateY(-1px);
+  max-width: 20px;
+  width: 100%;
+  flex-shrink: 0;
+  .svg-stroke {
+    stroke: $clr-gray-dark;
+  }
+}
+.discord-role__input {
+  padding: 8px;
+  min-height: 52px;
+  background: none;
+  border: none;
+  outline: none;
+  max-width: 100%;
+  width: 100%;
+
+  font: $fontMedium;
+  color: $clr-white;
+
+  &::placeholder {
+    color: $clr-gray-dark;
+  }
+}
+.discord-role__role-list {
+  margin-top: 36px;
+}
+.discord-role__role-item {
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  + .discord-role__role-item {
+    margin-top: 16px;
+  }
+
+  &:not(.checked) {
+    cursor: pointer;
+  }
+}
+.discord-role__role-name {
+  margin-left: 16px;
+  font: $fontMedium;
+  color: $clr-white;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+.discord-role__controls {
+  margin-top: 48px;
+  display: flex;
+  justify-content: space-between;
+}
+.discord-role__btn {
+  padding: 14px;
+  max-width: 48%;
+  width: 100%;
+  justify-content: center;
+}
+.discord-role__btn_cancel {
+  &:nth-child(n) {
+    background: transparent;
+  }
+  border: 1px solid $clr-orange;
+  color: $clr-orange;
+}
+.discord-role__btn_apply {
+}

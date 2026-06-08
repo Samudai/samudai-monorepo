@@ -1,0 +1,37 @@
+$dynamic_colors: (
+  1: '--dynamic-color-abcd',
+  2: '--dynamic-color-fghi',
+  3: '--dynamic-color-kmnn',
+  4: '--dynamic-color-pqrs',
+  5: '--dynamic-color-uvwx',
+  6: '--dynamic-color-zejoty',
+);
+
+@function getClassByIndex($type) {
+  @return map-get($dynamic_colors, $type);
+}
+
+.#{getClassByIndex(1)} {
+  background: linear-gradient(130deg, #ffafbd, #ffc3a0);
+  color: $clr-gray-dark;
+}
+.#{getClassByIndex(2)} {
+  background: linear-gradient(130deg, #2193b0, #6dd5ed);
+  color: $clr-gray-dark;
+}
+.#{getClassByIndex(3)} {
+  background: linear-gradient(130deg, #06beb6, #48b1bf);
+  color: $clr-gray-dark;
+}
+.#{getClassByIndex(4)} {
+  background: linear-gradient(130deg, #eb3349, #f45c43);
+  color: $clr-white;
+}
+.#{getClassByIndex(5)} {
+  background: linear-gradient(130deg, #56ab2f, #a8e063);
+  color: $clr-gray-dark;
+}
+.#{getClassByIndex(6)} {
+  background: linear-gradient(130deg, #614385, #516395);
+  color: $clr-white;
+}

@@ -1,0 +1,11 @@
+.tool {
+  opacity: 0.5;
+
+  &_active {
+    opacity: 1;
+  }
+
+  + .tool {
+    margin-left: 8px;
+  }
+}

@@ -1,0 +1,110 @@
+.block.dashboard-skills {
+  border-radius: 0;
+  background: none;
+  cursor: default;
+}
+.dashboard-skills__edit {
+  svg {
+    max-width: 24px;
+    width: 100%;
+    transition: filter $app-transition;
+
+    .svg-stroke {
+      stroke: #66657a;
+    }
+  }
+  &:hover svg {
+    filter: brightness(1.1);
+  }
+}
+.dashboard-skills__list {
+  margin-top: 25px;
+  padding: 9px 17px 25px;
+  border-radius: 20px;
+  background: $clr-black-main;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dashboard-skills__list-item {
+  margin: 16px 4px 0;
+}
+
+.dashboard-skills__teck-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  > svg {
+    max-width: 14px;
+    width: 100%;
+    .svg-stroke {
+      stroke: $clr-orange;
+    }
+  }
+
+  > span {
+    margin-left: 8px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+
+// Skills
+.dashboard-skills__skills {
+  margin-top: 28px;
+  border-radius: 20px;
+  padding: 26px 25.5px 20px;
+  background: $clr-black-main;
+  display: flex;
+  align-items: center;
+}
+.dashboard-skills__skills-item {
+  margin: 0 12px;
+
+  img {
+    max-width: 36px;
+    width: 100%;
+  }
+}
+
+// Tools
+.dashboard-skills__tools {
+  margin-top: 48px;
+  padding: 24px 25.5px;
+  border-radius: 20px;
+  background: $clr-black-main;
+}
+.dashboard-skills__tools-list {
+  margin: 0 -5px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-skills__tools-item {
+  margin: 0 5px;
+}
+
+.expected-events {
+  padding: 32px 30px 40px 16px;
+}
+.expected-events__list {
+  margin-top: 27px;
+}
+
+.expected-events.small {
+  padding: 32px 15.5px 37px;
+  border-radius: 25px;
+
+  .expected-events__header {
+    padding-left: 19.5px;
+  }
+}
+.block.upcoming-events {
+  background: transparent;
+  border: none;
+}
+.upcoming-events__content {
+  margin-top: 24px;
+}

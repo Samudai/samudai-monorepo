@@ -1,0 +1,23 @@
+.assignees {
+    padding: 38px 40px;
+
+    [data-role='content'] {
+        background: $clr-black-main;
+    }
+}
+
+.assignees_title {
+    font: $font24;
+    color: $clr-white;
+}
+
+.assignees_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.assignees_empty {
+    margin: 40px 0;
+    color: $clr-gray-dark;
+}

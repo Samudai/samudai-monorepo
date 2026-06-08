@@ -1,0 +1,34 @@
+[
+  {
+    "idx": 0,
+    "img": "#FFE78C",
+    "action": "Reques for verification of ABToken",
+    "votesFor": 0,
+    "votesAgainst": 0,
+    "status": "pending"
+  },
+  {
+    "idx": 1,
+    "img": "#B2FFC3",
+    "action": "Reques for verification of ABToken",
+    "votesFor": 70,
+    "votesAgainst": 60,
+    "status": "active"
+  },
+  {
+    "idx": 2,
+    "img": "#DDC3F5",
+    "action": "Reques for verification of ABToken",
+    "votesFor": 120,
+    "votesAgainst": 54,
+    "status": "active"
+  },
+  {
+    "idx": 3,
+    "img": "#FDC087",
+    "action": "Reques for verification of ABToken",
+    "votesFor": 24,
+    "votesAgainst": 100,
+    "status": "active"
+  }
+]

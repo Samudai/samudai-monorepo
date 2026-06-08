@@ -1,0 +1,162 @@
+.root {
+  + .root {
+    margin-top: 36px;
+  }
+}
+.wrapper {
+  padding: 36px 45.5px;
+  border-radius: 20px;
+  background: $clr-black-main;
+  transition: background 0.1s ease-out;
+
+  display: flex;
+  align-items: center;
+
+  > *:not(:first-child) {
+    padding-left: 10px;
+  }
+}
+.colTopic {
+  // width: 35%;
+  flex-grow: 1;
+}
+.colCenter {
+  width: 47%;
+  display: flex;
+  align-items: center;
+}
+.colAuthor {
+  display: flex;
+  align-items: center;
+}
+.colCreated {
+  margin-left: 15px;
+}
+.colType {
+  margin-left: 15px;
+}
+.colParticipants {
+  // flex-grow: 1;
+  width: 27%;
+  display: flex;
+  align-items: center;
+}
+.title {
+  font: 600 18px/1.22 $lato;
+  color: $clr-white;
+  max-width: 363px;
+}
+.name {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.authorImg {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  margin-left: 16px;
+}
+.authorName {
+  font: $font16;
+  color: $clr-white;
+  margin-left: 16px;
+}
+.type {
+  font: $fontMedium;
+
+  &[data-type='project'] {
+    color: $clr-orange;
+  }
+  &[data-type='investment'] {
+    color: $clr-green;
+  }
+  &[data-type='community'] {
+    color: $clr-green;
+  }
+
+  &[data-type='proposal'] {
+    color: $clr-lavender;
+  }
+}
+.members {
+  margin-left: 16px;
+  width: 100%;
+}
+
+.root[data-active='true'] {
+  .wrapper {
+    background: #292b2f;
+  }
+}
+// Minimum
+.root.rootMinimum {
+  .wrapper {
+    flex-direction: column;
+    padding: 24px;
+  }
+  .name {
+    display: none;
+  }
+  .colTopic,
+  .colParticipants {
+    width: 100%;
+    padding-left: 0;
+  }
+  .members {
+    margin-top: 12px;
+    margin-left: 0;
+  }
+  .colTopic {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .type {
+      margin-left: 10px;
+      padding: 4px 8px;
+      border-radius: 15px;
+      background: $clr-black-main;
+    }
+  }
+}
+@media (max-width: $laptop_big) {
+  .wrapper {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .colTopic {
+    width: 100%;
+  }
+  .colCenter {
+    margin-top: 16px;
+    width: 100%;
+    padding-left: 0 !important;
+    justify-content: space-between;
+  }
+  .colAuthor {
+    margin-left: 0;
+  }
+  .colParticipants {
+    padding-left: 0 !important;
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+@media (max-width: $mobile){
+  .colCenter {
+    flex-wrap: wrap;
+  }
+  .colAuthor {
+    width: 100%;
+  }
+  .colCreated,
+  .colTopic {
+    margin-top: 16px;
+    width: 50%;
+    margin-left: 0;
+  }
+  .colTopic {
+    margin-top: 0;
+  }
+}

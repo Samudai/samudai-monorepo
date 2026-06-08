@@ -1,0 +1,54 @@
+
+
+
+.root {
+  margin-top: 23px;
+}
+.list {
+  max-width: 400px;
+}
+.item {
+  display: flex;
+
+  + .item {
+    margin-top: 16px;
+  }
+}
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: $clr-black;
+}
+.title {
+  padding-left: 8px;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+.addBtn {
+  margin-top: 16px;
+  padding: 8px 2px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  svg {
+    width: 14px;
+    flex-shrink: 0;
+    :global(.svg-stroke) {
+      stroke: $clr-orange;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+.removeBtn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  width: 10px;
+}

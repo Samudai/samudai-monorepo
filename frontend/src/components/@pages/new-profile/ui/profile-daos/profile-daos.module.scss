@@ -1,0 +1,57 @@
+.dao {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.dao_item {
+    + .dao_item {
+        margin-left: -10px;
+    }
+}
+
+.dao_hint,
+.dao_wrapper {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    background: #060709;
+    border-radius: 50%;
+    border: 1px solid $clr-black-main;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: $font16;
+    color: $clr-white;
+
+    span {
+        text-transform: uppercase;
+    }
+
+    img {
+        border-radius: 50%;
+    }
+}
+
+.dao_more{
+    margin-left: auto;
+
+    width: 36px;
+    height: 36px;
+    border: 1px dashed $clr-orange;
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: 600 14px/1.25 $lato;
+    color: $clr-orange;
+
+    span {
+        transform: translateY(.1em);
+    }
+}

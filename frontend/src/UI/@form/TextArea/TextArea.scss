@@ -1,0 +1,20 @@
+
+
+
+.textarea {
+  outline: none;
+  background: none;
+  overflow: hidden;
+  resize: none;
+  border: none;
+  width: 100%;
+
+  font: $fontMedium;
+  color: $clr-white;
+
+  &::placeholder,
+  &:disabled {
+    user-select: none;
+    color: $clr-gray-dark;
+  }
+}

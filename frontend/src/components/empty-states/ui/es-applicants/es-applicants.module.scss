@@ -1,0 +1,28 @@
+.empty {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &_img {
+        width: 115px;
+        height: 115px;
+    }
+
+    &_text {
+        margin-top: 12px; 
+        text-align: center;
+
+        font: 400 16px/1.5 $lato;
+        color: $clr-gray-dark;
+
+        span {
+            display: block;
+        }
+    }
+    
+    &_postBtn {
+        margin-top: 22px;
+        padding: 14px 50px;
+    }
+}

@@ -1,0 +1,31 @@
+
+
+
+.root {
+  display: flex;
+
+  + .root {
+    margin-top: 60px;
+  }
+}
+.side {
+  padding-right: 80px;
+}
+.content {
+  flex-grow: 1;
+
+  [data-role="nf-title"] + [data-role="nf-card"] {
+    margin-top: 16px;
+  }
+}
+@media (max-width: $tablet){
+  .root + .root {
+    margin-top: 40px;
+  }
+  .side {
+    padding-right: 0;
+  }
+  .content {
+    margin-left: -30px;
+  }
+}

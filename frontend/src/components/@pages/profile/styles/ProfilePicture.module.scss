@@ -1,0 +1,70 @@
+.root {
+}
+.title {
+    font: $font16;
+    color: $clr-white;
+}
+.row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+}
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inputRounded {
+    width: 51px;
+    height: 51px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px dashed $clr-orange;
+
+    font: 600 14px/1.43 $lato;
+    color: $clr-orange;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        max-width: 47%;
+        width: 100%;
+        max-height: 47%;
+
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+}
+.inputText {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: $clr-orange;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        stroke: $clr-orange;
+        margin-right: 8px;
+    }
+}
+
+.nftSpan {
+    font: 600 14px/1.25 $lato;
+    color: $clr-orange;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.or {
+    margin: 0 44px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}

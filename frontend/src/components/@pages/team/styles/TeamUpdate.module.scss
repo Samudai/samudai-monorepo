@@ -1,0 +1,84 @@
+.root {
+  display: flex;
+  position: relative;
+
+  &:not(:last-child) {
+    padding-bottom: 44px;
+    &::before {
+      content: '';
+      display: block;
+      width: 1px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: linear-gradient(
+        to Bottom,
+        $clr-gray-dark,
+        $clr-gray-dark 50%,
+        transparent 50%,
+        transparent
+      );
+      background-size: 100% 10px;
+      left: 6px;
+    }
+  }
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: $clr-orange;
+  position: relative;
+  z-index: 2;
+}
+.content {
+  padding-left: 38px;
+  font: $font16;
+  color: $clr-gray-dark;
+
+  span {
+    &[data-lavender] {
+      color: $clr-lavender;
+    }
+    &[data-orange] {
+      color: $clr-orange;
+    }
+  }
+}
+
+// Title
+.title {
+  font: $font16;
+  color: $clr-gray-dark;
+
+  [data-name] {
+    color: $clr-lavender;
+  }
+  [data-project],
+  [data-action] {
+    color: $clr-white;
+  }
+
+  @each $status, $color in $listStatus {
+    [data-status='#{$status}'] {
+      color: $color;
+    }
+  }
+}
+// Date
+.date {
+  margin-top: 8px;
+  font: $fontSmall;
+  color: $clr-gray-dark;
+}
+// Box
+.box {
+  padding-top: 24px;
+}
+
+@media (max-width: $mobile_big){
+  .content {
+    padding-left: 12px;
+  }
+}

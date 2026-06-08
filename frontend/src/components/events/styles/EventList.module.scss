@@ -1,0 +1,30 @@
+.root:global(.block) {
+  background: none;
+  border-radius: 0;
+}
+.content {
+}
+.list {
+  max-height: 300px;
+  overflow: hidden auto;
+
+  &:global(.listPd) {
+    padding-right: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin-top: 42px;
+  }
+}
+.listItem {
+  + .listItem {
+    margin-top: 25px;
+  }
+}
+.listItemDate {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+}
+.listItemList {
+  margin-top: 25px;
+}

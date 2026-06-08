@@ -1,0 +1,58 @@
+
+
+
+
+.ui-select-list {
+  width: 100%;
+  background: $clr-black-main;
+  border-radius: 15px;
+  padding: 22px 0 0;
+  position: absolute;
+  left: 0;
+  top: calc(100% - 22px);
+  z-index: 25;
+  transform-origin: center top;
+  overflow: hidden;
+}
+.ui-select-list__list {
+  overflow: auto;
+  &::-webkit-scrollbar {
+    // background: #2b2e31;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: inherit;
+    background: $clr-blue;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: inherit;
+    background: $clr-black;
+    border-radius: 10px;
+  }
+}
+.ui-select-item {
+  overflow-x: hidden;
+}
+
+// Animation 
+.ui-select-list-enter {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.ui-select-list-enter-active {
+  transition: .15s ease-in;
+  transition-property: transform, opacity;
+  opacity: 1;
+  transform: scaleY(1);
+}
+.ui-select-list-exit {
+  opacity: 1;
+  transform: scaleY(1);
+}
+.ui-select-list-exit-active {
+  transition: .15s ease-in;
+  transition-property: transform, opacity;
+  opacity: 0;
+  transform: scaleY(0);
+}

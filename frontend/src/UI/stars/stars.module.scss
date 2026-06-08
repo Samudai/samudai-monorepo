@@ -1,0 +1,28 @@
+.stars {
+    display: flex;
+    align-items: center;
+
+    &Change {
+        .stars_item {
+            cursor: pointer;
+        }
+    }
+}
+
+.stars_item {
+    fill: $clr-gray-dark;
+
+    &Active {
+        fill: $clr-green;
+    }
+}
+
+.star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    +.star {
+        margin-left: 1px;
+    }
+}

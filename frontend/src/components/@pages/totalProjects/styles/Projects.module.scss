@@ -1,0 +1,110 @@
+.root {
+  margin-top: 40px;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.layoutBtn {
+  width: 24px;
+
+  svg {
+    width: 100%;
+    :global(.svg-stroke) {
+      stroke: $clr-gray-dark;
+      transition: stroke $app-transition;
+    }
+  }
+
+  &.layoutBtnActive :global(.svg-stroke) {
+    stroke: $clr-orange;
+  }
+
+  + .layoutBtn {
+    margin-left: 15px;
+  }
+}
+.headNav {
+  display: flex;
+  align-items: center;
+}
+.btnView {
+  font: 600 14px/1 $lato;
+  color: $clr-orange;
+}
+.btnNew {
+  margin-left: 24px;
+}
+.btnImport {
+  margin-left: 24px;
+}
+.body {
+  margin-top: 39px;
+  padding-bottom: 28px;
+  max-width: 100%;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -60px -15px 0;
+  &.listRow {
+    flex-direction: column;
+    margin-top: -14px;
+
+    .card {
+      margin-top: 14px;
+      max-width: 100%;
+    }
+  }
+}
+.card {
+  margin-top: 60px;
+  width: 100%;
+  max-width: calc(100% / 3);
+  padding: 0 15px;
+
+  [data-role='wrapper'] {
+    box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+  }
+}
+
+.paginate {
+  margin-top: 25px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.paginatePage {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+  padding: 2px 4px;
+  margin: 0 2px;
+
+  &:not(.paginatePageActive) {
+    cursor: pointer;
+  }
+}
+.paginatePageActive {
+  color: $clr-orange;
+}
+
+@media (max-width: $tablet) {
+  .list.listRow {
+    flex-direction: column;
+  }
+  .list:not(.listRow) {
+    flex-wrap: nowrap;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      flex: 0 0 288px;
+      max-width: unset;
+    }
+  }
+}

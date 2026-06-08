@@ -1,0 +1,45 @@
+.root {
+    height: 100%;
+    &Disabled {
+        .button {
+            cursor: unset;
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    &Active {
+        .button {
+            &::before {
+                transform: translateX(-100%) scaleY(-1);
+            }
+        }
+    }
+}
+.button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 32px;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: transparent;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zLjM5OTk3IDcuNDk5NDhMOC44MzMzMSAxMi45MzI4QzkuNDc0OTggMTMuNTc0NSAxMC41MjUgMTMuNTc0NSAxMS4xNjY2IDEyLjkzMjhMMTYuNiA3LjQ5OTQ4IiBzdHJva2U9IiNDQkNCQ0IiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPg0KPC9zdmc+DQo=);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-left: -16px;
+        transform: translateX(-100%);
+    }
+}
+
+.content {
+    height: 100%;
+    overflow: hidden;
+    transition: height .2s ease-in-out;
+}

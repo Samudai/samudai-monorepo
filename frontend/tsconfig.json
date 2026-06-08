@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "images/*": ["./src/assets/images/*"],
+      "fonts/*": ["./src/assets/fonts/*"],
+      "media/*": ["./src/assets/media/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "pages/*": ["./src/pages/*"],
+      "styles/*": ["./src/scss/*"],
+      "store/*": ["./src/store/*"],
+      "ui/*": ["./src/UI/*"],
+      "utils/*": ["./src/utils/*"],
+      "root/*": ["./src/*"]
+    }
+  },
+  "extends": "./tsconfig.paths.json",
+  "include": ["src"],
+  "exclude": ["archive", "build", "node_modules"],
+}

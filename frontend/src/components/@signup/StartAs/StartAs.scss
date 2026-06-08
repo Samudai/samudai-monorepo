@@ -1,0 +1,52 @@
+.startas__sign {
+  margin-top: 29px;
+  display: flex;
+  justify-content: space-between;
+}
+.startas__btn {
+  flex: 0 0 48%;
+  padding: 16.5px;
+  border: 1px solid transparent;
+  background: $clr-black-main;
+  border-radius: 15px;
+  transition: $app-transition;
+  transition-property: filter, border;
+  text-align: center;
+
+  span {
+    font: 500 16px/1.25 $lato;
+    color: $clr-white;
+  }
+
+  &.--active {
+    border-color: $clr-orange;
+  }
+
+  &:not(.--active):hover {
+    filter: brightness(0.9);
+  }
+}
+.startas__controls {
+  margin-top: 67px;
+}
+
+.startas__helper {
+  color: $clr-orange;
+  font: $fontMedium;
+}
+
+@media (max-width: $laptop) {
+  .startas__sign {
+    flex-direction: column;
+  }
+  .startas__btn {
+    flex-basis: 100%;
+
+    + .startas__btn {
+      margin-top: 20px;
+    }
+  }
+  .startasbtn {
+    width: 100%;
+  }
+}

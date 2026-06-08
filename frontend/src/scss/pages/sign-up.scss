@@ -1,0 +1,47 @@
+.sign-up {
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sign-up__modal {
+  width: 100%;
+  padding: 50px 25px;
+}
+
+.modal-enter .modal {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.modal-enter-active .modal {
+  opacity: 1;
+  transform: translate(0);
+  transition: ease-in-out 500ms;
+  transition-property: opacity, transform;
+}
+.modal-exit .modal {
+  transform: translate(0);
+  opacity: 1;
+}
+.modal-exit-active .modal {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: ease-in-out 500ms;
+  transition-property: opacity, transform;
+}
+
+@media (max-width: $laptop) {
+  .sign-up {
+    background: #17191a;
+  }
+  .sign-up__modal {
+    padding: 0;
+    padding-bottom: 50px;
+  }
+}
