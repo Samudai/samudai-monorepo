@@ -1,0 +1,71 @@
+
+
+
+.head {
+  font: $font24;
+  color: $clr-white;
+}
+.list {
+  margin-top: 13px;
+  padding-bottom: 20px;
+}
+.item {
+  + .item {
+    margin-top: 24px;
+  }
+}
+.itemHead {
+  display: flex;
+  justify-content: flex-end;
+
+  p {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+  }
+}
+.itemCard {
+  margin-top: 8px;
+  padding: 11px 15.5px;
+  background: $clr-black-main;
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userInfo {
+  [data-role="ui-img"] {
+    width: 55px;
+    height: 55px;
+  }
+  [data-role="ui-id"] {
+    color: $clr-white;
+  }
+}
+.itemLeft {}
+.itemRight {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.addBtn {
+  margin-left: 16px;
+}
+.eyeBtn {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+
+    [data-fill] {
+      fill: $clr-orange;
+    }
+  }
+}

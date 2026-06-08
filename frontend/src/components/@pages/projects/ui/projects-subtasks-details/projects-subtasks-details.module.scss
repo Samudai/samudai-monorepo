@@ -1,0 +1,205 @@
+.subtask {
+    padding: 38px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.subtask_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.subtask_header_title {
+    font: $fontMedium;
+    color: $clr-white;
+    text-transform: uppercase;
+    transform: translateY(0.15em);
+}
+.subtask_header_input {
+    padding-right: 20px;
+
+    [data-role='field'] {
+        background: transparent;
+        padding: 0;
+    }
+
+    [data-role='input'] {
+        font: $font24;
+        min-height: auto;
+        padding: 0;
+    }
+}
+.subtask_header_controls {
+    display: flex;
+    align-items: center;
+}
+.subtask_header_editBtn {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+        stroke: $clr-orange;
+    }
+}
+.subtask_header_closeBtn {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    svg {
+        width: 8px;
+        height: 12px;
+        flex-shrink: 0;
+
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+    }
+
+    span {
+        margin-left: 4px;
+        font: $fontMedium;
+        color: $clr-gray-dark;
+        transform: translateY(0.15em);
+    }
+}
+.subtask_header_crossBtn {
+    margin-left: 24px;
+    flex-shrink: 0;
+}
+.subtask_body {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.subtask_title {
+    font: $font24;
+    color: $clr-white;
+}
+.subtask_lastupdate {
+    margin-top: 12px;
+    font: $fontSmall;
+    color: $clr-gray-dark;
+    display: flex;
+    align-items: center;
+
+    [data-white] {
+        color: $clr-white;
+        margin-left: 6px;
+    }
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        margin-right: 8px;
+        background: $clr-orange;
+        vertical-align: middle;
+    }
+}
+
+.subtask_deadline {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+
+    &_title {
+        display: flex;
+        align-items: center;
+        font: $fontSmall;
+        color: $clr-gray-dark;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+
+            [data-stroke] {
+                stroke: $clr-gray-dark;
+            }
+        }
+
+        span {
+            margin-left: 8px;
+            transform: translateY(0.15em);
+        }
+    }
+
+    &_picker {
+        margin-left: 16px;
+        max-width: 163px;
+
+        [data-role='field'] {
+            background: $clr-black;
+        }
+    }
+
+    &_date {
+        margin-left: 16px;
+        font: $fontSmall;
+        color: $clr-white;
+        transform: translateY(.15em);
+    }
+}
+
+.subtask_members {
+    margin-top: 48px;
+    display: flex;
+}
+
+.subtask_members_col {
+    flex: 1 1;
+
+    &:first-child {
+        max-width: 120px;
+    }
+}
+.subtask_description {
+    margin-top: 48px;
+
+    &_title {
+        font: $fontMedium;
+        color: $clr-gray-dark;
+    }
+
+    &_editor {
+        margin-top: 8px;
+        font: $fontMedium;
+        color: $clr-white;
+    }
+
+    &_input {
+        margin-top: 8px;
+        background: $clr-black;
+        border-radius: 15px;
+        padding: 14px;
+        min-height: 100px;
+    }
+}
+.creator_controls {
+    padding-top: 50px;
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.creator_submitBtn {
+    padding: 14px;
+    max-width: 127px;
+    width: 100%;
+}
+
+.subtask_header_title {
+    font: $font24;
+    color: $clr-white;
+}
+
+.emptyText {
+    color: #fdc087;
+    font: 600 14px/1.22 $lato;
+}

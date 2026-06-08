@@ -1,0 +1,94 @@
+
+
+
+.root {
+}
+.wrapper {
+  width: 100%;
+  background: $clr-black-main;
+  box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+  border-radius: 25px;
+  padding: 18px 20px;
+  min-height: 200px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.headContent {
+  display: flex;
+  align-items: center;
+}
+.userImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+.userCol {
+  padding-left: 19px;
+  font: 500 16px/1.5 $lato;
+}
+.userName {
+  color: $clr-white;
+}
+.userId {
+  margin-top: 1px;
+  color: $clr-gray-dark;
+}
+
+.body {
+  padding-top: 18px;
+  margin-top: auto;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+}
+.item {}
+.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.skill {
+  + .skill {
+    margin-top: 8px;
+  }
+}
+.itemTitle {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+  width: min-content;
+}
+.itemFeild {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+}
+.itemIcon {
+  width: 20px;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+  }
+
+  &.greenIcon :global(.svg-fill) {
+    fill: $clr-green;
+  }
+  &.orangeIcon :global(.svg-stroke) {
+    stroke: $clr-orange;
+  }
+}
+.itemValue {
+  margin-left: 4.5px;
+  font: 900 24px/.83 $lato;
+  color: $clr-white;
+}

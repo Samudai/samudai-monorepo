@@ -1,0 +1,48 @@
+.root[data-role="popup"] {
+  padding: 53px 59.5px 60px;
+
+  display: flex;
+  flex-direction: column;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title {
+  font: $font24;
+  color: $clr-white;
+}
+.saved {
+  margin-top: 55px;
+  flex: 1 1 auto;
+  height: 0;
+  overflow: hidden auto;
+
+  &.savedPd {
+    padding-right: 20px;
+  }
+}
+.item {
+  + .item {
+    margin-top: 48px;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-height: 828px){
+  .root[data-role="popup"] {
+    padding-block: 30px;
+  }
+  .saved {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: $mobile){
+  .root[data-role="popup"] {
+    padding-inline: 20px;
+  }
+}

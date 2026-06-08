@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+}
+.list {
+  position: relative;
+  z-index: 2;
+}
+.stepLine {
+  position: absolute;
+  z-index: 1;
+  left: 8px;
+  top: 0;
+  width: 1px;
+  background: linear-gradient(
+    to Bottom,
+    $clr-orange,
+    $clr-orange 50%,
+    transparent 50%,
+    transparent
+  );
+  background-size: 100% 5px;
+}
+
+@media (max-width: $tablet) {
+  .stepLine {
+    display: none;
+  }
+}

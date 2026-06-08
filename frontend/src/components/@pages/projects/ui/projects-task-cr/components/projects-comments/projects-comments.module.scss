@@ -1,0 +1,42 @@
+.comments_item {
+    + .comments_item {
+        margin-top: 16px;
+    }
+}
+.comments_item_head {
+    display: flex;
+    align-items: center;
+}
+.comments_item_img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+.comments_item_name {
+    padding-left: 8px;
+    font: 500 12px/1 $lato;
+    color: $clr-white;
+    white-space: nowrap;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+.comments_item_createdAt {
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+    padding-left: 15px;
+    white-space: nowrap;
+}
+.comments_item_text {
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: $clr-black-main;
+    border-radius: 0px 15px 15px 15px;
+    font: 400 12px/1 $lato;
+    color: $clr-white;
+}
+.comments_panel {
+    margin-top: 16px;
+}

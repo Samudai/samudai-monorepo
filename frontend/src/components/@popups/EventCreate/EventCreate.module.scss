@@ -1,0 +1,182 @@
+.root {
+}
+.popup {
+    padding: 30px;
+}
+.form {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+}
+.formField {
+    + .formField {
+        margin-top: 36px;
+    }
+}
+.formFieldRow {
+    display: flex;
+    justify-content: space-between;
+}
+.col {
+    width: calc(50% - 10px);
+
+    [data-role="title"] {
+      color: $clr-white !important;
+    }
+}
+.formTitle {
+    // color: $clr-gray-dark;
+    color: $clr-white;
+}
+.input {
+    margin-top: 14px;
+}
+.inputMagnifier {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+  stroke: $clr-gray-dark;
+  margin-right: 7px;
+}
+.inputControl {
+    width: 24px;
+    svg {
+        width: 100%;
+        :global(.svg-stroke) {
+            stroke: $clr-gray-dark;
+        }
+    }
+}
+.textarea {
+    margin-top: 14px;
+    padding: 17px 20px;
+    border-radius: 15px;
+    background: $clr-black-main;
+    height: 103px;
+    overflow: hidden;
+    font: 600 16px/1.25 $lato;
+    color: #fff;
+
+    &::placeholder {
+        color: $clr-gray-dark;
+    }
+}
+.invite {
+    position: relative;
+
+    .input {
+        :global(.ui-input__field) {
+            background: $clr-black;
+        }
+        :global(.ui-input__input) {
+            padding-left: 15px;
+        }
+    }
+}
+.selectRoot {
+    margin-top: 14px;
+}
+.selectMagnifier {
+    width: 35px;
+    flex-shrink: 0;
+    padding-right: 15px;
+}
+.selectContent {
+    display: flex;
+    align-items: center;
+}
+.checkboxBlock {
+  width: 20px;
+  height: 20px;
+  background: $clr-black;
+  border: none;
+}
+.selectImg {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.selectName {
+    margin-left: 16px;
+    font: 500 16px/1.25 $lato;
+    color: $clr-gray-dark;
+
+    span {
+        color: $clr-white;
+    }
+}
+.members {
+    margin-top: 12px;
+    margin: 0 -8px;
+}
+.membersList {
+    display: flex;
+    flex-wrap: wrap;
+}
+.membersItem {
+    margin: 16px 8px 0;
+    padding: 8px 14px;
+    border-radius: 20px;
+
+    background: $clr-black;
+
+    display: flex;
+    align-items: center;
+}
+.membersImg {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+.membersId {
+    transform: translateY(0.05em);
+    margin-left: 8px;
+    font: $fontSmall;
+    color: #52585d;
+}
+.membersClose {
+    margin-left: 5px;
+    &:global(.close-button) {
+        width: 9px;
+    }
+}
+.magnifier {
+    width: 20px;
+}
+.submit {
+    margin-top: 51px;
+    margin-left: auto;
+    padding: 14px;
+    min-width: 129px;
+    justify-content: center;
+}
+
+@media (max-width: 1650px) {
+    // .formField {
+    //     + .formField {
+    //         margin-top: 20px;
+    //     }
+    // }
+    .submit {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: $mobile) {
+    .popup {
+        padding-inline: 20px;
+    }
+    .submit {
+        width: 100%;
+    }
+    .formFieldRow {
+        flex-direction: column;
+    }
+    .col {
+        width: 100%;
+
+        + .col {
+            margin-top: 14px;
+        }
+    }
+}

@@ -1,0 +1,85 @@
+.root {
+    padding: 45px 30px 30px;
+    // align-items: center;
+
+    > div {
+        width: 100%;
+    }
+}
+
+.title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        &:first-child {
+            font: 600 32px/0.9 $lato;
+        }
+        &:last-child {
+            margin-top: 16px;
+            font: $font24;
+            color: $clr-white;
+        }
+    }
+}
+
+.text {
+    margin: 16px auto 0;
+
+    font: 400 16px/1.5 $lato;
+    color: $clr-white;
+
+    max-width: 278px;
+    text-align: center;
+}
+
+.subtitle {
+    margin-top: 32px;
+}
+
+.button {
+    // max-width: 188px;
+    margin: 32px auto 0;
+
+    padding: 17px 28px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+
+    font: 700 16px/1.2 $lato;
+    color: #161819;
+}
+
+.input {
+    margin-top: 14px;
+    margin-right: 14px;
+    width: 300px;
+
+    &_wallet {
+        width: 420px !important;
+    }
+}
+
+.input_container {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.input_text {
+    color: $clr-green;
+    font: 600 18px / 1.43 Lato, sans-serif;
+}
+
+.select {
+    margin-top: 24px;
+    width: 200px;
+}
+
+.frame {
+    padding: 20px;
+    margin: auto;
+    width: 364px;
+    height: 160px;
+    flex-shrink: 0;
+}

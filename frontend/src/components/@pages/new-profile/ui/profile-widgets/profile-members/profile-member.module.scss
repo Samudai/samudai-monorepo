@@ -1,0 +1,38 @@
+.rate {
+  margin-top: 22px;
+  padding: 22px;
+  border-radius: 16px;
+  width: 100%;
+  background: $clr-black;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  &_text {
+    font: $fontMedium;
+    color: $clr-gray;
+  }
+
+  &_value {
+    font: $font16;
+    color: $clr-gray;
+  }
+
+  &_display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &_button {
+    border-top: 1px solid $clr-gray-dark;
+    margin-top: 22px;
+    padding-top: 22px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

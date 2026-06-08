@@ -1,0 +1,841 @@
+import { mockup_users } from 'root/mockup/users';
+import { IChat, IMessage } from 'utils/types/Chat';
+import { IClanInfo } from 'utils/types/Clan';
+
+type getMsgType = () => IMessage[];
+
+export const clansMockup = [
+    { id: '1', name: 'Best Designers', img: '/mockup/img/cl-1.png' },
+    { id: '2', name: 'Alena Williams', img: '/mockup/img/cl-2.png' },
+    { id: '3', name: 'Alena Williams', img: '/mockup/img/cl-3.png' },
+    { id: '4', name: 'Alena Williams', img: '/mockup/img/cl-1.png' },
+    { id: '5', name: 'Alena Williams', img: '/mockup/img/cl-2.png' },
+    { id: '6', name: 'Alena Williams NNNNNNNNNNsadasadsd', img: '/mockup/img/cl-3.png' },
+    { id: '7', name: 'Alena Williams', img: '/mockup/img/cl-1.png' },
+    { id: '8', name: 'Alena Williams', img: '/mockup/img/cl-2.png' },
+    { id: '9', name: 'Alena Williams', img: '/mockup/img/cl-3.png' },
+    { id: '10', name: 'Alena Williams', img: '/mockup/img/cl-1.png' },
+];
+
+const getMessages: getMsgType = () => {
+    return [
+        {
+            id: '1',
+            user: mockup_users[1],
+            text: 'Hello! How are you today? 😍',
+            attachments: [],
+            readed: false,
+            reply: [],
+            updated_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+            created_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+        },
+        {
+            id: '2',
+            user: mockup_users[2],
+            text: 'Hello! I’m good! How are you today?',
+            attachments: [],
+            readed: true,
+            reply: [
+                {
+                    id: '1',
+                    user: mockup_users[1],
+                    text: 'Hello! How are you today? 😍',
+                    attachments: [],
+                    readed: false,
+                    reply: [],
+                    updated_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+                    created_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+                },
+            ],
+            updated_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+            created_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+        },
+        {
+            id: '1',
+            user: mockup_users[1],
+            text: '',
+            attachments: [
+                {
+                    id: '1',
+                    name: 'Presentation.mp4',
+                    size: '489KB',
+                    url: '/mockup/img/attachment-1.png',
+                },
+                {
+                    id: '2',
+                    name: 'Reference.jpeg',
+                    size: '489KB',
+                    url: '/mockup/img/attachment-2.png',
+                },
+            ],
+            readed: false,
+            reply: [],
+            updated_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+            created_at: new Date(Date.now() - 1000 * (Math.random() * 1000)).toISOString(),
+        },
+    ];
+};
+
+export const mockup_clans: IClanInfo[] = [
+    {
+        id: '1',
+        name: 'Best designers',
+        logo: '/mockup/img/clan-logo-1.png',
+        projects: {
+            active: [
+                {
+                    id: '1',
+                    title: 'Upod - Podcast App',
+                    progress: 48,
+                },
+                {
+                    id: '2',
+                    title: 'User flow for fitness app',
+                    progress: 68,
+                },
+                {
+                    id: '3',
+                    title: 'Night mode for sleep app',
+                    progress: 20,
+                },
+                {
+                    id: '4',
+                    title: 'Upod - Podcast App',
+                    progress: 82,
+                },
+            ],
+            completed: [
+                {
+                    id: '1',
+                    title: 'Upod - Design app',
+                    progress: 100,
+                },
+                {
+                    id: '2',
+                    title: 'Design project',
+                    progress: 100,
+                },
+                {
+                    id: '3',
+                    title: 'Night mode for sleep app',
+                    progress: 100,
+                },
+                {
+                    id: '4',
+                    title: 'Upod - Dev app',
+                    progress: 100,
+                },
+            ],
+        },
+        admin: {
+            id: '1',
+            avatar: '/mockup/img/user-1.png',
+            name: 'Alena Williams',
+        },
+        members: [
+            {
+                id: '1',
+                avatar: '/mockup/img/user-1.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '2',
+                avatar: '/mockup/img/user-2.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '3',
+                avatar: '/mockup/img/user-3.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '4',
+                avatar: '/mockup/img/user-4.png',
+                name: 'Alena Williams',
+            },
+        ],
+        skills: [
+            { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+            { id: 2, name: 'Product Design', icon: '/img/skills/product.svg' },
+            { id: 3, name: 'User Flow', icon: '/img/skills/user_flow.svg' },
+            { id: 4, name: 'UI Design', icon: '/img/skills/ui.svg' },
+            { id: 5, name: 'Design systems', icon: '/img/skills/systems.svg' },
+            { id: 6, name: 'User Research', icon: '/img/skills/user_research.svg' },
+            { id: 7, name: 'Custom skill', icon: null },
+            { id: 8, name: 'Dev skill', icon: null },
+            { id: 9, name: 'Animations', icon: null },
+        ],
+        earned_badges: [
+            {
+                id: '1',
+                count: 5,
+                icon: '/img/icons/badge-1.svg',
+            },
+            {
+                id: '2',
+                count: 15,
+                icon: '/img/icons/badge-2.svg',
+            },
+            {
+                id: '3',
+                count: 10,
+                icon: '/img/icons/badge-3.svg',
+            },
+            {
+                id: '4',
+                count: 3,
+                icon: '/img/icons/badge-4.svg',
+            },
+            {
+                id: '5',
+                count: 1,
+                icon: '/img/icons/badge-2.svg',
+            },
+            {
+                id: '6',
+                count: 3,
+                icon: '/img/icons/badge-1.svg',
+            },
+            {
+                id: '7',
+                count: 5,
+                icon: '/img/icons/badge-4.svg',
+            },
+        ],
+        applications: [
+            {
+                id: '1',
+                title: 'Product Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Animations', icon: null },
+                    { id: 4, name: 'Mobile design', icon: null },
+                ],
+            },
+            {
+                id: '2',
+                title: 'Product Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'Design systems', icon: '/img/skills/systems.svg' },
+                    { id: 2, name: 'User Research', icon: '/img/skills/user_research.svg' },
+                    { id: 3, name: 'Animations', icon: null },
+                    { id: 4, name: 'Mobile design', icon: null },
+                ],
+            },
+        ],
+        reviews: {
+            rating: 4.2,
+            votes: 105,
+            popular_reviews: [
+                {
+                    id: '1',
+                    rating: 3.5,
+                    user: {
+                        member_id: '1',
+                        username: 'Alena Williams',
+                        profile_picture: '/mockup/img/user-1.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+                {
+                    id: '2',
+                    rating: 5,
+                    user: {
+                        member_id: '2',
+                        username: 'Phyllis Hall',
+                        profile_picture: '/mockup/img/user-2.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+            ],
+        },
+        total_bounty: {
+            value: 80,
+            data: [10, 20, 40, 32, 24],
+        },
+        chat_id: 1,
+    },
+    {
+        id: '2',
+        name: 'Bloggers',
+        logo: '/mockup/img/clan-logo-2.png',
+        projects: {
+            active: [
+                {
+                    id: '1',
+                    title: 'Upod - Podcast App',
+                    progress: 48,
+                },
+                {
+                    id: '2',
+                    title: 'User flow for fitness app',
+                    progress: 68,
+                },
+                {
+                    id: '3',
+                    title: 'Night mode for sleep app',
+                    progress: 20,
+                },
+            ],
+            completed: [
+                {
+                    id: '1',
+                    title: 'Night mode for sleep app',
+                    progress: 100,
+                },
+                {
+                    id: '2',
+                    title: 'Upod - Dev app',
+                    progress: 100,
+                },
+            ],
+        },
+        admin: {
+            id: '1',
+            avatar: '/mockup/img/user-1.png',
+            name: 'Alena Williams',
+        },
+        members: [
+            {
+                id: '1',
+                avatar: '/mockup/img/user-2.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '2',
+                avatar: '/mockup/img/user-3.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '3',
+                avatar: '/mockup/img/user-4.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '4',
+                avatar: '/mockup/img/user-1.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '5',
+                avatar: '/mockup/img/user-2.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '6',
+                avatar: '/mockup/img/user-3.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '7',
+                avatar: '/mockup/img/user-4.png',
+                name: 'Alena Williams',
+            },
+        ],
+        skills: [
+            { id: 1, name: 'Skill n1', icon: null },
+            { id: 2, name: 'Skill n2', icon: null },
+            { id: 3, name: 'Skill n3', icon: null },
+            { id: 4, name: 'UI Design', icon: '/img/skills/ui.svg' },
+            { id: 5, name: 'Product Design', icon: '/img/skills/product.svg' },
+            { id: 6, name: 'Design systems', icon: '/img/skills/systems.svg' },
+            { id: 7, name: 'User Research', icon: '/img/skills/user_research.svg' },
+            { id: 8, name: 'Custom skill', icon: null },
+            { id: 9, name: 'Dev skill', icon: null },
+            { id: 10, name: 'Animations', icon: null },
+        ],
+        earned_badges: [
+            {
+                id: '1',
+                count: 24,
+                icon: '/img/icons/badge-2.svg',
+            },
+            {
+                id: '2',
+                count: 5,
+                icon: '/img/icons/badge-3.svg',
+            },
+            {
+                id: '3',
+                count: 13,
+                icon: '/img/icons/badge-1.svg',
+            },
+            {
+                id: '4',
+                count: 5,
+                icon: '/img/icons/badge-4.svg',
+            },
+        ],
+        applications: [
+            {
+                id: '1',
+                title: 'Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Dev skill', icon: null },
+                    { id: 4, name: 'Animations', icon: null },
+                ],
+            },
+            {
+                id: '2',
+                title: 'Product Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Dev skill', icon: null },
+                    { id: 4, name: 'Animations', icon: null },
+                ],
+            },
+        ],
+        reviews: {
+            rating: 3.7,
+            votes: 25,
+            popular_reviews: [
+                {
+                    id: '1',
+                    rating: 3.5,
+                    user: {
+                        member_id: '1',
+                        username: 'Alena Williams',
+                        profile_picture: '/mockup/img/user-1.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+                {
+                    id: '2',
+                    rating: 5,
+                    user: {
+                        member_id: '2',
+                        username: 'Phyllis Hall',
+                        profile_picture: '/mockup/img/user-2.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+            ],
+        },
+        total_bounty: {
+            value: 63,
+            data: [24, 12, 33, 38, 22],
+        },
+        chat_id: 2,
+    },
+    {
+        id: '3',
+        name: 'Night chat 😎',
+        logo: '/mockup/img/clan-logo-3.png',
+        projects: {
+            active: [
+                {
+                    id: '1',
+                    title: 'Upod - Podcast App',
+                    progress: 48,
+                },
+                {
+                    id: '2',
+                    title: 'User flow for fitness app',
+                    progress: 68,
+                },
+                {
+                    id: '3',
+                    title: 'Night mode for sleep app',
+                    progress: 20,
+                },
+                {
+                    id: '4',
+                    title: 'Upod - Podcast App',
+                    progress: 82,
+                },
+            ],
+            completed: [
+                {
+                    id: '1',
+                    title: 'Upod - Design app',
+                    progress: 100,
+                },
+                {
+                    id: '2',
+                    title: 'Design project',
+                    progress: 100,
+                },
+                {
+                    id: '3',
+                    title: 'Night mode for sleep app',
+                    progress: 100,
+                },
+                {
+                    id: '4',
+                    title: 'Upod - Dev app',
+                    progress: 100,
+                },
+            ],
+        },
+        admin: {
+            id: '1',
+            avatar: '/mockup/img/user-1.png',
+            name: 'Alena Williams',
+        },
+        members: [
+            {
+                id: '1',
+                avatar: '/mockup/img/user-1.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '2',
+                avatar: '/mockup/img/user-2.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '3',
+                avatar: '/mockup/img/user-3.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '4',
+                avatar: '/mockup/img/user-4.png',
+                name: 'Alena Williams',
+            },
+        ],
+        skills: [
+            { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+            { id: 2, name: 'Product Design', icon: '/img/skills/product.svg' },
+            { id: 3, name: 'Design systems', icon: '/img/skills/systems.svg' },
+            { id: 4, name: 'User Research', icon: '/img/skills/user_research.svg' },
+            { id: 5, name: 'Custom skill', icon: null },
+            { id: 6, name: 'Dev skill', icon: null },
+            { id: 7, name: 'Animations', icon: null },
+        ],
+        earned_badges: [
+            {
+                id: '1',
+                count: 5,
+                icon: '/img/icons/badge-1.svg',
+            },
+            {
+                id: '2',
+                count: 15,
+                icon: '/img/icons/badge-2.svg',
+            },
+            {
+                id: '3',
+                count: 10,
+                icon: '/img/icons/badge-3.svg',
+            },
+            {
+                id: '4',
+                count: 3,
+                icon: '/img/icons/badge-4.svg',
+            },
+            {
+                id: '5',
+                count: 1,
+                icon: '/img/icons/badge-2.svg',
+            },
+            {
+                id: '6',
+                count: 3,
+                icon: '/img/icons/badge-1.svg',
+            },
+            {
+                id: '7',
+                count: 5,
+                icon: '/img/icons/badge-4.svg',
+            },
+        ],
+        applications: [
+            {
+                id: '1',
+                title: 'Product Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Dev skill', icon: null },
+                    { id: 4, name: 'Animations', icon: null },
+                ],
+            },
+            {
+                id: '2',
+                title: 'Product Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Dev skill', icon: null },
+                    { id: 4, name: 'Animations', icon: null },
+                ],
+            },
+        ],
+        reviews: {
+            rating: 5,
+            votes: 255,
+            popular_reviews: [
+                {
+                    id: '1',
+                    rating: 3.5,
+                    user: {
+                        member_id: '1',
+                        username: 'Alena Williams',
+                        profile_picture: '/mockup/img/user-1.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+                {
+                    id: '2',
+                    rating: 5,
+                    user: {
+                        member_id: '2',
+                        username: 'Phyllis Hall',
+                        profile_picture: '/mockup/img/user-2.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+            ],
+        },
+        total_bounty: {
+            value: 88,
+            data: [10, 20, 40, 32, 24],
+        },
+        chat_id: 3,
+    },
+    {
+        id: '4',
+        name: 'Dev app chat',
+        logo: '/mockup/img/clan-logo-2.png',
+        projects: {
+            active: [
+                {
+                    id: '1',
+                    title: 'Upod - Podcast App',
+                    progress: 48,
+                },
+                {
+                    id: '2',
+                    title: 'User flow for fitness app',
+                    progress: 68,
+                },
+                {
+                    id: '3',
+                    title: 'Night mode for sleep app',
+                    progress: 20,
+                },
+            ],
+            completed: [
+                {
+                    id: '1',
+                    title: 'Night mode for sleep app',
+                    progress: 100,
+                },
+                {
+                    id: '2',
+                    title: 'Upod - Dev app',
+                    progress: 100,
+                },
+            ],
+        },
+        admin: {
+            id: '1',
+            avatar: '/mockup/img/user-1.png',
+            name: 'Alena Williams',
+        },
+        members: [
+            {
+                id: '1',
+                avatar: '/mockup/img/user-2.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '2',
+                avatar: '/mockup/img/user-3.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '3',
+                avatar: '/mockup/img/user-4.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '4',
+                avatar: '/mockup/img/user-1.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '5',
+                avatar: '/mockup/img/user-2.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '6',
+                avatar: '/mockup/img/user-3.png',
+                name: 'Alena Williams',
+            },
+            {
+                id: '7',
+                avatar: '/mockup/img/user-4.png',
+                name: 'Alena Williams',
+            },
+        ],
+        skills: [
+            { id: 1, name: 'Skill n1', icon: null },
+            { id: 2, name: 'Skill n2', icon: null },
+            { id: 3, name: 'Skill n3', icon: null },
+            { id: 4, name: 'UI Design', icon: '/img/skills/ui.svg' },
+            { id: 5, name: 'Product Design', icon: '/img/skills/product.svg' },
+            { id: 6, name: 'Design systems', icon: '/img/skills/systems.svg' },
+            { id: 7, name: 'User Research', icon: '/img/skills/user_research.svg' },
+            { id: 8, name: 'Custom skill', icon: null },
+            { id: 9, name: 'Dev skill', icon: null },
+            { id: 10, name: 'Animations', icon: null },
+        ],
+        earned_badges: [
+            {
+                id: '1',
+                count: 24,
+                icon: '/img/icons/badge-2.svg',
+            },
+            {
+                id: '2',
+                count: 5,
+                icon: '/img/icons/badge-3.svg',
+            },
+            {
+                id: '3',
+                count: 13,
+                icon: '/img/icons/badge-1.svg',
+            },
+            {
+                id: '4',
+                count: 5,
+                icon: '/img/icons/badge-4.svg',
+            },
+        ],
+        applications: [
+            {
+                id: '1',
+                title: 'Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Dev skill', icon: null },
+                    { id: 4, name: 'Animations', icon: null },
+                ],
+            },
+            {
+                id: '2',
+                title: 'Product Designer',
+                min_people: 6,
+                open_roles: ['Capitan', 'DAO Members'],
+                payout: '200 USDT',
+                skills: [
+                    { id: 1, name: 'UI Design', icon: '/img/skills/ui.svg' },
+                    { id: 2, name: 'Full Time', icon: null },
+                    { id: 3, name: 'Dev skill', icon: null },
+                    { id: 4, name: 'Animations', icon: null },
+                ],
+            },
+        ],
+        reviews: {
+            rating: 4.8,
+            votes: 177,
+            popular_reviews: [
+                {
+                    id: '1',
+                    rating: 3.5,
+                    user: {
+                        member_id: '1',
+                        username: 'Alena Williams',
+                        profile_picture: '/mockup/img/user-1.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+                {
+                    id: '2',
+                    rating: 5,
+                    user: {
+                        member_id: '2',
+                        username: 'Phyllis Hall',
+                        profile_picture: '/mockup/img/user-2.png',
+                    },
+                    text: 'I live in any area that drives experience — whether it’s initial exploration, critically refining. Lorem ipsum',
+                },
+            ],
+        },
+        total_bounty: {
+            value: 55,
+            data: [22, 13, 14, 18, 20],
+        },
+        chat_id: 4,
+    },
+];
+
+export const mockup_chats: IChat[] = [
+    {
+        id: '1',
+        user: {
+            id: '1',
+            first_name: 'Alena',
+            last_name: 'Williams',
+            link: 'alenawilliams01',
+            unread_messages: 120,
+        },
+        updated_at: (Date.now() - 1000 * (Math.random() * 100)).toString(),
+        created_at: (Date.now() - 1000 * (Math.random() * 100)).toString(),
+    },
+    {
+        id: '2',
+        user: {
+            id: '1',
+            first_name: 'Diana',
+            last_name: 'Sleom',
+            link: 'tensy',
+            unread_messages: 54,
+        },
+        updated_at: (Date.now() - 1000 * (Math.random() * 200)).toString(),
+        created_at: (Date.now() - 1000 * (Math.random() * 200)).toString(),
+    },
+    {
+        id: '3',
+        user: {
+            id: '1',
+            first_name: 'Nick',
+            last_name: 'Wesmin',
+            link: 'wesminnn',
+            unread_messages: 120,
+        },
+        updated_at: (Date.now() - 1000 * (Math.random() * 350)).toString(),
+        created_at: (Date.now() - 1000 * (Math.random() * 350)).toString(),
+    },
+    {
+        id: '4',
+        user: {
+            id: '1',
+            first_name: 'Rick',
+            last_name: 'Daniels',
+            link: 'fglemm',
+            unread_messages: 120,
+        },
+        updated_at: (Date.now() - 1000 * (Math.random() * 450)).toString(),
+        created_at: (Date.now() - 1000 * (Math.random() * 450)).toString(),
+    },
+];

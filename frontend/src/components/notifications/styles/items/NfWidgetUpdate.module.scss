@@ -1,0 +1,58 @@
+
+
+
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &.colPerson {
+    width: 26%;
+  }
+  &.colAction {
+    padding-left: 16px;
+    width: 37.2%;
+  }
+  &.colTime {
+    width: 10.4%;
+    text-align: center;
+  }
+  &.colControl {
+    padding-left: 16px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.controlBtn {
+  min-width: 104px;
+  padding: 11px;
+}
+
+@media (max-width: $tablet){
+  .col {
+    &.colAction,
+    &.colTime {
+      display: none;
+    }
+
+        &.colPerson {
+          flex-grow: 1;
+        }
+
+    &.colControl {
+      max-width: 145px;
+
+      button {
+        min-width: unset;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile_small){
+  .col.colControl {
+    max-width: 40%;
+  }
+}

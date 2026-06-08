@@ -1,0 +1,96 @@
+.root {
+  width: 1225px;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+.container {
+  padding: 28px 0 12.5px;
+}
+.workspace {
+  margin: 0 -29.5px;
+  display: flex;
+}
+.col {
+  padding: 0 29.5px 140px;
+  position: relative;
+  min-height: 200px;
+  flex: 0 0 25%;
+  min-height: 63vh;
+  height: auto;
+
+  &::before {
+    content: '';
+    display: block;
+    width: calc(100% - 59px);
+    height: 4px;
+    position: absolute;
+    left: 50%;
+    top: -24px;
+    transform: translate(-50%, -50%);
+  }
+
+  + .col {
+    border-left: 1px solid $clr-black;
+  }
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headTitle {
+  font: 600 24px/1.12 $lato;
+  color: $clr-white;
+}
+.headBtn {
+  flex-shrink: 0;
+  margin-left: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px dashed;
+  transition: transform $app-transition;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 40%;
+    width: 100%;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.item {
+  margin-top: 32px;
+}
+
+.col {
+  $colors: $clr-orange, $clr-lavender, $clr-blue, $clr-green;
+  $len: length($colors);
+
+  @for $i from 1 through $len {
+    $color: nth($colors, $i);
+    &:nth-child(#{$len}n + #{$i}) {
+      &:before {
+        background: $color;
+      }
+      .headBtn {
+        border-color: $color;
+        svg :global(.svg-stroke) {
+          stroke: $color;
+        }
+      }
+    }
+  }
+}
+.taskDetails {
+  :global(.popup-box__scrollable) {
+    justify-content: flex-end;
+    padding: 0;
+  }
+}

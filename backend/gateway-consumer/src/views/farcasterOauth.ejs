@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Samudai</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+        <script
+            src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+            type="module"
+        ></script>
+        <style>
+            body {
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                background: #161819;
+                overflow: hidden;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                color: #fff;
+                font-family: Lato;
+                font-size: 22px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div
+                class="neynar_signin"
+                data-client_id="2a1626d3-008d-4b38-984c-59afe9de11cc"
+                data-success-callback="onSignInSuccess"
+                data-theme="dark"
+                data-text="Continue to Farcaster"
+                data-styles='{"box-sizing": "border-box","display": "flex","flex-direction": "row","justify-content": "center","align-items":"center", "padding": "14px 20px","gap": "8px","width": "100%","height": "72px","border": "1px solid #b2ffc3","border-radius": "52px","background": "#1f2123","margin-top": "40px","color": " #f9f9f9","font-family":" Lato","font-size": "16px","font-style": "normal","font-weight": "600","line-height": "20px"}'
+            ></div>
+        </div>
+        <script src="https://neynarxyz.github.io/siwn/raw/1.2.0/index.js" async></script>
+        <script>
+            var memberId = '<%= memberId %>';
+            var host = '<%= samudaiUrl %>';
+            function onSignInSuccess(data) {
+                const apiUrl = `${host}/api/member/coposter/forcaster/createuser`;
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ data, memberId }),
+                };
+
+                fetch(apiUrl, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        window.close();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+        </script>
+    </body>
+</html>

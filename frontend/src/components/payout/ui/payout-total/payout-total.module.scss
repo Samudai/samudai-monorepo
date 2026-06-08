@@ -1,0 +1,29 @@
+.total_title {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+.total_list {
+    margin-top: 16px;
+}
+.total_item {
+    margin-top: 24px;
+    padding-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: $font16;
+    color: $clr-white;
+
+    // + .total_item {
+    //     margin-top: 16px;
+    // }
+}
+.total_subitem {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $clr-black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: $fontSmall;
+    color: $clr-gray-dark;
+}

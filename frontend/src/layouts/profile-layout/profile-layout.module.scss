@@ -1,0 +1,12 @@
+.profile_row {
+    padding-top: 32px;
+    display: flex;
+}
+.profile_sidebar {
+    width: 326px;
+}
+.profile_content {
+    padding-left: 64px;
+    width: calc(100% - 326px);
+    flex-grow: 1;
+}

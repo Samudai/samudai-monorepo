@@ -1,0 +1,49 @@
+.setup-socials {
+  margin-top: 40px;
+}
+.setup-socials__field {
+  display: flex;
+  align-items: center;
+
+  + .setup-socials__field {
+    margin-top: 27px;
+  }
+}
+.setup-socials__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  padding: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 18px;
+    max-height: 18px;
+    width: 100%;
+    .svg-fill {
+      fill: #fff;
+    }
+  }
+}
+.setup-socials__input {
+  margin-left: 24px;
+}
+// Modifiers
+.setup-socials__field {
+  &.--twitter .setup-socials__icon {
+    background: #55acee;
+  }
+  &.--behance .setup-socials__icon {
+    background: #1769ff;
+  }
+  &.--dribbble .setup-socials__icon {
+    background: #f26798;
+  }
+  &.--mirror .setup-socials__icon {
+    background: #007aff;
+  }
+}

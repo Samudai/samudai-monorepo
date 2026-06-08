@@ -1,0 +1,18 @@
+.tags_list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -4px -4px 0;
+}
+
+.tags_item {
+    margin: 4px 4px 0;
+
+    &Last {
+        color: $clr-green;
+        border-radius: 20px;
+        padding: 9px 14px;
+        background: $clr-black;
+        font: 400 14px/1 $lato;
+    }
+}

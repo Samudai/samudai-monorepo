@@ -1,0 +1,50 @@
+.icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ffe400;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 55%;
+    flex-shrink: 0;
+    [data-fill] {
+      fill: $clr-black-main;
+    }
+  }
+}
+.input {
+  margin-top: 48px;
+  [data-role='title'] {
+    padding-left: 4px;
+    color: $clr-white;
+  }
+}
+button.doneBtn {
+  margin-top: 48px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+@media (max-width: $tablet_small) {
+  button.doneBtn {
+    width: 100%;
+  }
+}
+
+.box {
+  margin: 20px 5px;
+}
+
+.smallicon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

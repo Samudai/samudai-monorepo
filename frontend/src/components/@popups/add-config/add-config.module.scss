@@ -1,0 +1,78 @@
+.config {
+  padding: 35px 30px 40px;
+
+  &_form {
+    padding-top: 15px;
+  }
+
+  &_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  &_suptitle {
+    font: $font16;
+    color: $clr-gray-dark;
+    text-transform: capitalize;
+
+    &Mg {
+      margin-block: 36px 16px;
+    }
+  }
+
+  &_selectBtn {
+    font: $font16;
+    color: $clr-orange;
+  }
+
+  &_controls {
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-end;
+
+    &_btn {
+      max-width: 120px;
+      width: 100%;
+      padding: 14px;
+    }
+
+    &_btn + &_btn {
+      margin-left: 20px;
+    }
+  }
+
+  &_emoji {
+    position: relative;
+  }
+
+  &_picker {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 50;
+    &Active {
+      display: block;
+    }
+  }
+}
+
+.option {
+  font: $font16;
+  color: $clr-white;
+}
+
+@media (max-width: $mobile_big){
+  .config {
+    padding-inline: 20px;
+
+    &_controls {
+      justify-content: space-between;
+      &_btn {
+        max-width: 160px;
+      }
+    }
+  }
+}

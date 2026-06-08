@@ -1,0 +1,48 @@
+
+
+
+.root {}
+
+.text {
+  text-align: center;
+  font: $font16;
+  color: $clr-white;
+}
+.progress {
+  margin-top: 16px;
+
+  [data-role="progress-line"] {
+    background: $clr-green;
+  }
+}
+.value {
+  margin-top: 16px;
+  position: relative;
+  width: 100%;
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-50%);
+    font: $fontSmall;
+    color: $clr-white;
+  }
+}
+.controls {
+  padding-top: 45px;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn {
+  padding: 14px;
+  min-width: 129px;
+
+  &.btnCancel {
+    background-color: transparent;
+    color: #FDC087;
+  }
+  &.btnAdd {
+    margin-left: 4px;
+  }
+}

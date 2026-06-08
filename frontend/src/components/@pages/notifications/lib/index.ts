@@ -1,0 +1,1 @@
+export { getNotificationsTabs } from './getNotificationsTabs';

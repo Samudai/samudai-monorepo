@@ -1,0 +1,20 @@
+.events {
+  padding-top: 25px;
+}
+.events_title {
+  font: $font24;
+  color: $clr-white;
+}
+.events_list {
+  margin-top: 32px;
+  max-height: 250px;
+  overflow: hidden auto;
+
+  &_pd {
+    padding-right: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $clr-green;
+  }
+}
