@@ -1,0 +1,48 @@
+
+
+
+.root {
+  border-radius: 10px;
+  margin-left: 13px;
+  margin-right: -13px;
+
+}
+.btn {
+  background: none;
+  padding: 0;
+  padding: 8px 13px;
+
+  svg [data-stroke] {
+    stroke: $clr-orange;
+  }
+}
+.list {
+  background: $clr-black;
+  min-width: 185px;
+  top: 100%;
+  padding-top: 0;
+  left: auto;
+  right: 0;
+}
+.content {
+  border-radius: inherit;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+.name {
+  font: $fontMedium;
+  color: $clr-orange;
+}
+.item {
+  padding: 13px;
+  cursor: pointer;
+  transition: background .1s ease-out;
+
+  &:hover {
+    background: darken($clr-black, 2%);
+  }
+
+  .name {
+    color: $clr-white;
+  }
+}

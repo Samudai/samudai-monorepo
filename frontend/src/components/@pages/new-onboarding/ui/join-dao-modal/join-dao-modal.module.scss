@@ -1,0 +1,30 @@
+.root {
+  padding: 45px 30px 30px;
+  // align-items: center;
+
+  >div {
+    width: 100%;
+  }
+}
+
+.skel_icon {
+  width: 135px;
+  align-self: center;
+  margin: 24px;
+}
+
+.text {
+  margin: 16px auto;
+
+  font: 400 18px/1.5 $lato;
+  color: $clr-gray-dark;
+
+  max-width: 278px;
+  text-align: center;
+}
+
+.button {
+  margin: 16px auto;
+  font: 500 16px/1.2 $lato;
+  padding: 10px 20px;
+}

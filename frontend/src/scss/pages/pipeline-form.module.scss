@@ -1,0 +1,19 @@
+.root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
+.head {
+  padding: 20px 0;
+  img {
+    max-width: 45px;
+    width: 100%;
+  }
+}
+
+.form {
+  margin: 50px auto 0;
+  max-width: 600px;
+  width: 100%;
+}

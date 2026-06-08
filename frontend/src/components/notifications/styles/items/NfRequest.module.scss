@@ -1,0 +1,86 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &.colPd {
+    padding-left: 24px;
+  }
+
+  &.colPerson {
+    width: 25%;
+
+    display: flex;
+    align-items: center;
+  }
+  &.colAction {
+    width: 35.5%;
+  }
+  &.coltime {
+    width: 14.5%;
+  }
+  &.colControls {
+    padding-left: 10px;
+    display: flex;
+  }
+}
+.controlBtn {
+  padding: 11px;
+  min-width: 124px;
+
+  &.controlBtnCancel {
+    color: $clr-white;
+  }
+  &.controlBtnAccept {
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: $tablet) {
+  .col {
+    &.coltime {
+      width: 27%;
+    }
+  }
+}
+
+@media (max-width: $tablet_small) {
+  .root {
+    flex-wrap: wrap;
+  }
+  .col {
+    &.colPd {
+      padding-left: 24px;
+    }
+
+    &.colPerson {
+      width: 55%;
+      order: 1;
+    }
+
+    &.colAction {
+      margin-top: 16px;
+      width: 35.5%;
+      order: 3;
+      width: 100%;
+      padding-left: 0;
+    }
+
+    &.coltime {
+      width: 45%;
+      order: 2;
+      text-align: right;
+    }
+
+    &.colControls {
+      width: 100%;
+      order: 4;
+      padding-left: 0;
+    }
+  }
+  .controlBtn.controlBtnAccept {
+    margin-top: 16px;
+    margin-left: 0;
+    width: 100%;
+  }
+}

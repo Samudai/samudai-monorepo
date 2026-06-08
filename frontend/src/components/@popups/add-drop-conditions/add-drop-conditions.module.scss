@@ -1,0 +1,207 @@
+.cond {
+  padding: 35px 30px 50px;
+
+  &_title {
+    font: $font24;
+    color: $clr-white;
+    text-align: center;
+  }
+  &_form {
+    margin-top: 48px;
+  }
+  &_droptitle {
+    margin-top: 24px;
+    font: $font16;
+    color: $clr-gray-dark;
+  }
+  &_selects {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4px;
+
+    &_item {
+      margin-top: 16px;
+      padding-right: 16px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    &_checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      background: $clr-black;
+      border: none;
+    }
+
+    span {
+      padding-left: 8px;
+      font: $fontMedium;
+      color: $clr-white;
+    }
+  }
+  &_addressBtn {
+    margin-block: auto;
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 100%;
+      [data-stroke] {
+        stroke: $clr-gray-dark;
+      }
+    }
+  }
+  &_controls {
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-end;
+
+    &_btn {
+      padding: 11px;
+      width: 100%;
+      &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      &:first-child {
+        max-width: 120px;
+      }
+      &:last-child {
+        margin-left: 20px;
+        max-width: 187px;
+      }
+    }
+  }
+  &_choosed {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &_item {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      padding-right: 8px;
+      color: $clr-gray-dark;
+      cursor: pointer;
+      user-select: none;
+
+      &Active {
+        color: $clr-white;
+        cursor: default;
+      }
+    }
+    &_name {
+      font: $font16;
+    }
+
+    &_btn {
+      margin-left: 8px;
+      width: 10px;
+    }
+  }
+  &_row {
+    display: flex;
+    justify-content: space-between;
+
+    @for $i from 1 through 7 {
+      $px: #{$i * 12}px;
+
+      &[data-margin='#{$px}'] {
+        margin-top: $px;
+      }
+    }
+
+    &_column {
+      flex-direction: column;
+    }
+  }
+
+  &_col {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  &_holding {
+    margin-top: 24px;
+
+    &_subtitle {
+      margin-block: 8px 24px;
+      font: $font16;
+      color: $clr-gray-dark;
+    }
+  }
+
+  &_roles {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px -8px 0;
+
+    &_item {
+      margin: 8px 8px 0;
+      padding: 8px 14px;
+      background: $clr-black;
+      border-radius: 20px;
+      font: $fontMedium;
+      color: $clr-white;
+      cursor: pointer;
+      &Active {
+        background-color: $clr-orange;
+        color: $clr-black-main;
+        cursor: default;
+      }
+    }
+  }
+  &_subtitle {
+    margin-bottom: 16px;
+    font: $font16;
+    color: $clr-gray-dark;
+  }
+}
+.option {
+  font: $font16;
+  color: $clr-white;
+}
+@media (max-width: $mobile) {
+  .cond {
+    padding: 20px;
+
+    &_form {
+      margin-top: 20px;
+    }
+    &_selects {
+      &_item {
+        flex-basis: 50%;
+      }
+    }
+    &_controls {
+      justify-content: space-between;
+      &_btn {
+        &:first-child,
+        &:last-child {
+          max-width: 160px;
+          padding: 14px;
+        }
+      }
+    }
+    &_choosed {
+      &_item {
+        padding-right: 24px;
+      }
+    }
+  }
+}
+@media (max-width: $mobile_small) {
+  .cond {
+    &_row {
+      flex-direction: column;
+    }
+    &_col {
+    }
+    &_col + &_col {
+      margin-top: 16px;
+    }
+  }
+}

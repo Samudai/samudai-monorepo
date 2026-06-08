@@ -1,0 +1,36 @@
+.filter {
+    padding: 40px 30px 20px;
+}
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head_title {
+    font: 600 18px/1.15 $lato;
+    color: $clr-white;
+}
+.head_clearBtn {
+    font: $fontMedium;
+    color: $clr-orange;
+}
+.collaborate {
+    margin-top: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.collaborate_text {
+    flex-grow: 1;
+    padding-right: 10px;
+
+    font: $font16;
+    color: $clr-white;
+
+    display: flex;
+    flex-direction: column;
+}
+.collaborate_radio {
+    font-size: 18px;
+}

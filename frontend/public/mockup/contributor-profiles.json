@@ -1,0 +1,38 @@
+[
+  {
+    "idx": 0,
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-1.png",
+    "rating": "A+"
+  },
+  {
+    "idx": 1,
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-2.png",
+    "rating": "A+"
+  },
+  {
+    "idx": 2,
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-3.png",
+    "rating": "A+"
+  },
+  {
+    "idx": 3,
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-4.png",
+    "rating": "A+"
+  },
+  {
+    "idx": 4,
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-1.png",
+    "rating": "A+"
+  },
+  {
+    "idx": 5,
+    "name": "Alena Williams",
+    "img": "/mockup/img/user-2.png",
+    "rating": "A+"
+  }
+]

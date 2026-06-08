@@ -1,0 +1,23 @@
+
+
+
+.root {
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  + .item {
+    margin-top: 14px;
+  }
+
+  &.active .name {
+    color: $clr-green;
+    transition: color $app-transition;
+  }
+}
+.name {
+  font: 600 14px/1.43 $lato;
+  color: $clr-white;
+}

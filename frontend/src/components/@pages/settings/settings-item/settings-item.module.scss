@@ -1,0 +1,53 @@
+.root {
+    padding-bottom: 32px;
+    border-bottom: 1px solid $clr-gray-dark;
+
+    + .root {
+        margin-top: 40px;
+    }
+
+    &Active {
+        .arrow {
+            transform: rotate(0);
+        }
+    }
+}
+
+.btn {
+    display: flex;
+    cursor: pointer;
+
+    &_content {
+        padding-right: 15px;
+        flex-grow: 1;
+    }
+}
+
+.arrow {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    stroke: $clr-white;
+    transform: rotate(-90deg);
+    transition: transform .2s ease-in-out;
+}
+
+.title {
+    font: 600 18px/1.15 $lato;
+    color: $clr-white;
+}
+
+.description {
+    margin-top: 24px;
+
+    font: 600 16px/1.4 $lato;
+    color: $clr-gray-dark
+}
+
+.content {
+    height: fit-content;
+
+    &_inner {
+        padding-top: 36px;
+    }
+}

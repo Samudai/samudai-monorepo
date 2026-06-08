@@ -1,0 +1,86 @@
+.button {
+    padding: 10px 14px;
+    border-radius: 20px;
+    position: relative;
+    transition: $app-transition;
+    transition-property: filter;
+    user-select: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: 600 14px/1 $lato;
+    color: #1f2123;
+
+    > svg {
+        max-width: 14px;
+        width: 100%;
+        margin-right: 8px;
+        flex-shrink: 0;
+
+        .svg-stroke {
+            stroke: $clr-black-main;
+        }
+
+        .svg-fill {
+            fill: $clr-black-main;
+        }
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        filter: grayscale(0.1);
+        pointer-events: none;
+    }
+
+    $colors: (
+        'orange': $clr-orange,
+        'yellow': $clr-yellow,
+        'blue': $clr-blue,
+        'green': $clr-green,
+        'gray': $clr-gray,
+        'white': $clr-white,
+        'lavender': $clr-lavender,
+        'black': $clr-black,
+    );
+
+    @each $name, $color in $colors {
+        &.#{$name} {
+            background-color: $color;
+        }
+    }
+
+    &.green-outlined {
+        background: transparent;
+        border: 1px solid $clr-green;
+        color: $clr-green;
+    }
+    
+    &.orange-outlined {
+        background: transparent;
+        border: 1px solid $clr-orange;
+        color: $clr-orange;
+    }
+
+    &.red {
+      border: 1px solid #FF9292;
+      color: #FF9292;
+    }
+
+    &.gradient {
+        background: linear-gradient(90deg, #6CFFB1 -0.05%, #FFC266 99.99%);;
+    }
+}
+
+.btn-loading {
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+.loader {
+    padding: 0px;
+    svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}

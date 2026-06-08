@@ -1,0 +1,1 @@
+export { getInitial } from './getInitial';

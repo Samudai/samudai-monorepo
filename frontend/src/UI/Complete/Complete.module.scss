@@ -1,0 +1,30 @@
+
+
+
+.root {
+  margin: 0 auto;
+
+  width: 57px;
+  height: 57px;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background: $clr-green;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root svg {
+  max-width: 50%;
+  max-height: 50%;
+  width: 100%;
+  transform: rotate(-9deg);
+
+  :global(.svg-fill) {
+    strokeWidth: 2px;
+    stroke: $clr-black-main;
+    fill: $clr-black-main;
+  }
+}

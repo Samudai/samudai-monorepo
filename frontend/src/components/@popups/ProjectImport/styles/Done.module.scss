@@ -1,0 +1,24 @@
+
+
+
+.root {}
+.subtitle {
+  margin-top: 36px;
+}
+.controls {
+  padding-top: 45px;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn {
+  padding: 14px;
+  min-width: 129px;
+
+  &.btnCancel {
+    background-color: transparent;
+    color: #FDC087;
+  }
+  &.btnAdd {
+    margin-left: 4px;
+  }
+}

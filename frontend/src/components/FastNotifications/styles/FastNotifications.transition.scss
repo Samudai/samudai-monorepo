@@ -1,0 +1,14 @@
+.fast-notifications-enter {
+  opacity: 0;
+}
+.fast-notifications-enter-active {
+  opacity: 1;
+  transition: opacity .2s ease-out;
+}
+.fast-notifications-exit {
+  opacity: 1;
+}
+.fast-notifications-exit-active {
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}

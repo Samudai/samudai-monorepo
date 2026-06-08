@@ -1,0 +1,20 @@
+[
+  { 
+    "idx": 0,
+    "user": {
+      "img": "/mockup/img/user-1.png",
+      "name": "Phyllis Hall"
+    },
+    "timestamp": "14:50 PM",
+    "text": "I live in any area that drives experience — whether it’s initial exploration, critically refining"
+  },
+  { 
+    "idx": 1,
+    "user": {
+      "img": "/mockup/img/user-2.png",
+      "name": "Alena Williams"
+    },
+    "timestamp": "14:50 PM",
+    "text": "I live in any area that drives experience — whether it’s initial exploration, critically refining"
+  }
+]

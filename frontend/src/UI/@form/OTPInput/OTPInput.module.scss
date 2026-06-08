@@ -1,0 +1,24 @@
+.otpForm {
+  display: flex;
+}
+
+.otpInput {
+  width: 55px;
+  padding: 13px 18px 12px 19px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  border-radius: 12px 12px 0px 0px;
+  border: none;
+  border-bottom: 1px solid $clr-orange;
+  background-color: $clr-black;
+  font: 400 30px/1 $lato;
+  color: $clr-white;
+
+  :disabled {
+    background-color: $clr-black;
+    color: $clr-white;
+  }
+}

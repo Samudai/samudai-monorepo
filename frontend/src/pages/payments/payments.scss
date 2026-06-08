@@ -1,0 +1,38 @@
+.page-payments__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-payments__container {
+  padding-bottom: 51px;
+}
+.page-payments__breadcrumbs {
+  margin-top: 32px;
+}
+.page-payments__hr {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+
+  .payments-desk {
+    max-width: calc(100% - 30px);
+
+    &:first-child:last-child {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: $tablet){
+  .page-payments__hr {
+    flex-direction: column;
+
+    .payments-desk {
+      max-width: 100%;
+
+      + .payments-desk {
+        margin-top: 24px;
+      }
+    }
+  }
+}

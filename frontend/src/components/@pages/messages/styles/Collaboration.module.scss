@@ -1,0 +1,159 @@
+.chat {
+  display: flex;
+  width: 100%;
+}
+.createNewBtn {
+  display: none;
+}
+.hatLeft {
+  display: flex;
+  align-items: center;
+}
+.hatTitle {
+  margin-left: 16px;
+}
+.workspace {
+  padding: 70px 0 40px;
+  align-items: center;
+}
+.content {
+  margin: auto;
+  height: 0;
+  flex: 1 1 auto;
+  width: 100%;
+  padding-inline: 40px;
+  overflow: auto;
+}
+.main {
+}
+
+// Header
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.headerImg {
+  max-width: 45px;
+  width: 100%;
+}
+.headerTitle {
+  margin-top: 16px;
+  text-align: center;
+  font: 500 24px/1.17 $lato;
+  color: $clr-white;
+}
+
+// Condition
+.condition {
+  margin-top: 24px;
+}
+.conditionItem {
+  + .conditionItem {
+    margin-top: 48px;
+  }
+}
+
+.conditionItemTitle {
+  font: 500 16px/1.25 $lato;
+  color: $clr-gray-dark;
+
+  + .conditionItemText {
+    margin-top: 12px;
+  }
+}
+.conditionItemText {
+  font: $fontMedium;
+  color: $clr-white;
+
+  + .conditionItemText {
+    margin-top: 16px;
+  }
+}
+
+.conditionItemTextReject {
+  // max-width: 220px;
+  margin: 25px auto 0;
+  text-align: center;
+  color: $clr-red;
+}
+
+.conditionItemTextAccept {
+  // max-width: 220px;
+  margin: 25px auto 0;
+  text-align: center;
+  color: $clr-green;
+}
+
+// Control
+.control {
+  margin-top: 75px;
+  display: flex;
+  justify-content: flex-end;
+}
+.controlBtn {
+  padding: 14px;
+  min-width: 129px;
+}
+.controlBtnReject {
+  &:global(.orange) {
+    background-color: $clr-black-main;
+    color: $clr-red;
+  }
+}
+.controlBtnAccept {
+  margin-left: 20px;
+}
+@media (max-width: $tablet) {
+  .chat {
+    .main {
+      display: none;
+    }
+
+    &.chat_active {
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        display: block;
+      }
+
+      .allMessagesBtn {
+        display: flex;
+      }
+    }
+  }
+
+  .sidebarHead {
+    flex-wrap: wrap;
+  }
+
+  .createNewBtn {
+    display: flex;
+  }
+  .control {
+    justify-content: space-between;
+  }
+  .controlBtn {
+    width: calc(50% - 10px);
+  }
+}
+@media (max-width: $mobile) {
+  .content {
+    padding-inline: 20px;
+  }
+}
+@media (max-width: $mobile_small) {
+  .content {
+    padding-inline: 5px;
+  }
+}
+
+.cnt {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

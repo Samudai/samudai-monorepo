@@ -1,0 +1,21 @@
+
+
+
+.nf-title {
+  font: $fontSmall;
+  color: $clr-white;
+}
+.nf-title-text {
+  margin-left: 16px;
+}
+.nf-img {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+}

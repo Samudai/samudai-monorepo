@@ -1,0 +1,134 @@
+.payout {
+    display: flex;
+    align-items: center;
+}
+
+.payout_provider {
+    max-width: 128px;
+    width: 100%;
+}
+
+.payout_currency {
+    margin-left: 8px;
+    max-width: 84px;
+    width: 100%;
+}
+
+.payout_label {
+    font: 500 12px/1 $lato;
+    color: $clr-white;
+}
+
+.payout_input {
+    max-width: 78px;
+    width: 100%;
+    margin-left: 8px;
+
+    [data-role='field'] {
+        border-radius: 12px;
+        background: #34383c;
+        padding-inline: 14px;
+    }
+
+    [data-role='input'] {
+        min-height: 40px;
+        padding-inline: 0;
+    }
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 10px;
+    flex-grow: 1;
+}
+
+.controls_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown {
+    [data-role='button'] {
+        transform: rotate(-90deg);
+    }
+}
+
+.dropdown_item {
+    svg {
+        width: 16px;
+
+        [data-stroke],
+        [data-full] {
+            stroke: $clr-white;
+        }
+
+        [data-fill] {
+            fill: $clr-white;
+        }
+    }
+
+    span {
+        margin-left: 8px;
+        transform: translateY(0.15em);
+    }
+}
+
+.cancelBtn {
+    width: 12px;
+}
+
+.submitBtn {
+    margin-left: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+
+        [data-fill] {
+            fill: $clr-green;
+        }
+    }
+}
+
+.controllers_prevBtn,
+.controllers_nextBtn {
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        height: 100%;
+
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+
+    &:disabled {
+        pointer-events: none;
+
+        svg {
+            [data-stroke] {
+                stroke: $clr-gray-dark;
+            }
+        }
+    }
+}
+
+.controllers_prevBtn {
+    transform: scaleY(-1);
+}
+
+.controllers_nextBtn {
+    margin-top: 8px;
+}

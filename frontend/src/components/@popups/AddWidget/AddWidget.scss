@@ -1,0 +1,92 @@
+
+
+
+.addwidget {
+  min-width: 236px;
+  background: #17191a;
+
+  border: 1px solid #2b2e31;
+  box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.35);
+  border-radius: 25px;
+}
+.addwidget__close,
+.addwidget__title {
+  display: none;
+}
+.addwidget__close {
+  margin-left: auto;
+  margin-right: 15px;
+}
+.addwidget__title {
+  margin-top: 8px;
+  text-align: center;
+  font: $font24;
+  color: $clr-white;
+}
+.addwidget__list {
+  padding: 21.5px 13px;
+  padding-left: 20px;
+}
+.addwidget__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+
+  > span {
+    font: $fontMedium;
+    color: $clr-white;
+    transition: color $app-transition;
+  }
+  .switch {
+    margin-left: 8px;
+    font-size: 8px;
+  }
+}
+.addwidget__item {
+  &.inactive .addwidget__btn {
+    span {
+      color: rgba($clr-white, 0.5);
+    }
+    &::before {
+      background: $clr-gray-dark;
+    }
+  }
+}
+
+@media (max-width: $mobile){
+  .addwidget {
+    padding-top: 20px;
+  }
+  .addwidget__close,
+  .addwidget__title {
+    display: block;
+  }
+}
+
+// animation
+
+.addwidget-enter-active,
+.addwidget-exit-active {
+  transition: 0.25s ease-in-out;
+  transition-property: transform, opacity;
+  transform-origin: center top;
+}
+
+.addwidget-enter {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.addwidget-enter-active {
+  opacity: 1;
+  transform: scaleY(1);
+}
+.addwidget-exit {
+  opacity: 1;
+  transform: scaleY(1);
+}
+.addwidget-exit-active {
+  opacity: 0;
+  transform: scaleY(0);
+}

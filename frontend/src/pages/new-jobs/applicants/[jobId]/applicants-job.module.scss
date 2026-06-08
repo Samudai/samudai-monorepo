@@ -1,0 +1,9 @@
+.list {
+    padding-top: 24px;
+}
+.list_item {
+
+    + .list_item {
+        margin-top: 24px;
+    }
+}

@@ -1,0 +1,56 @@
+.payout {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head_title {
+    font: $font24;
+    color: $clr-white;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+.content {
+    margin-top: 16px;
+}
+.content_title {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+}
+.content_container {
+    margin-top: 8px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: $clr-black-main;
+}
+.foot {
+    margin-top: auto;
+    padding-top: 20px;
+}
+.controls {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end;
+}
+.controls_confirmBtn {
+    padding: 14px 15px;
+}
+.total_title {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+    margin-top: 32px;
+}
+.view_payout {
+    margin-top: 24px;
+    padding-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: $font16;
+    color: $clr-white;
+    border-bottom: 1px solid $clr-black;
+}

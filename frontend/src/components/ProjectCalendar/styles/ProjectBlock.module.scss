@@ -1,0 +1,98 @@
+.root {
+  border: 2px solid $clr-gray-dark;
+  border-radius: 45px;
+  padding: 14px 22px;
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+
+  background: $clr-black;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.wrapper {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.members {
+  [data-role='list'] {
+    font-size: 13px;
+  }
+
+  + .bookIcon {
+    margin-left: 14px;
+  }
+}
+.bookIcon {
+  flex-shrink: 0;
+  width: 24px;
+  :global(.svg-fill) {
+    fill: $clr-lavender;
+  }
+}
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 0 14px;
+  flex-grow: 1;
+}
+.contentText {
+  font: 600 18px/1.22 $lato;
+  color: $clr-white;
+  background: $clr-black;
+}
+.contentDeadline {
+  margin-top: 4px;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 18px;
+    flex-shrink: 0;
+
+    :global(.svg-stroke) {
+      stroke: $clr-white;
+    }
+  }
+  span {
+    margin-left: 4px;
+    font: $fontMedium;
+    color: $clr-white;
+  }
+}
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.percentage {
+  font: 900 24px/0.83 $lato;
+  color: $clr-green;
+}
+.complete {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid $clr-green;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 72%;
+    max-height: 72%;
+    width: 100%;
+
+    :global(.svg-fill) {
+      fill: $clr-white;
+    }
+  }
+}

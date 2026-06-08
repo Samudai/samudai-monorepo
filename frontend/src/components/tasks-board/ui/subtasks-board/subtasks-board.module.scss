@@ -1,0 +1,35 @@
+.board {
+    max-height: 90vh;
+    min-height: 200px;
+    height: 400px;
+    padding-block: 0px 28px 22px;
+    display: flex;
+    flex-direction: column;
+
+    :global(.container),
+    .board_wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: auto;
+        // overflow: scroll;
+    }
+}
+.board_wrapper {
+    // overflow: auto;
+    &Scrollbar {
+        padding-right: 8px;
+        margin-right: -16px;
+    }
+}
+.board_container {
+    flex: 1 1 auto;
+    height: 0px;
+    // overflow: auto;
+}
+.board_title {
+    font: 700 24px/1.22 $lato;
+    color: #F9F9F9;
+    line-height: 28px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,20 @@
+
+
+
+.root {
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px -12px 0;
+}
+.item {
+  margin: 8px 12px 0;
+  display: flex;
+  align-items: center;
+}
+.name {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+}

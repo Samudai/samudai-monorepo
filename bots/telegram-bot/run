@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e 
+
+export BOT_ID=$BOT_ID
+export GATEWAY_EXTERNAL=$GATEWAY_EXTERNAL
+export GATEWAY_CONSUMER=$GATEWAY_CONSUMER
+# export GATEWAY_EXTERNAL=https://dev-ge.samudai.xyz
+# export GATEWAY_CONSUMER=https://dev-gc.samudai.xyz
+
+export PORT=3006
+
+npm run dev

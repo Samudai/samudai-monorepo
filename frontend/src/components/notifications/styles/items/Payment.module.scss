@@ -1,0 +1,113 @@
+.root,
+.list,
+.controls {
+  display: flex;
+  align-items: center;
+}
+.root {
+}
+.list {
+  flex-grow: 1;
+}
+.col {
+  &.colProvider {
+    display: flex;
+    align-items: center;
+    width: 19%;
+  }
+  &.colDate {
+    width: 24%;
+  }
+  &.colAmount {
+    width: 13%;
+  }
+  &.colCurrency {
+    width: 12%;
+  }
+  &.colName {
+    width: 19%;
+  }
+  &.colStatus {
+    flex-grow: 1;
+    display: flex;
+  }
+}
+.provider {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $clr-black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 50%;
+    max-height: 50%;
+    width: 100%;
+  }
+}
+.providerTitle {
+  margin-left: 8px;
+}
+.time {
+  margin-top: 8px;
+  color: $clr-gray-dark;
+}
+.id {
+  margin-top: 5px;
+  color: $clr-gray-dark;
+}
+.status {
+  padding: 8px 14px;
+  background: $clr-black;
+  border-radius: 20px;
+  font: 400 14px/1 $lato;
+  color: $clr-green;
+}
+.control {
+  display: flex;
+}
+
+.controlBtn {
+  min-width: 124px;
+  padding: 11px;
+
+  &.controlBtnCancel {
+    color: $clr-white;
+  }
+  &.controlBtnPay {
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: $laptop_big) {
+  .col {
+    &.colProvider {
+      width: 30%;
+    }
+
+    &.colDate {
+      padding-left: 8px;
+      width: 77%;
+    }
+
+    &.colAmount,
+    &.colCurrency,
+    &.colName {
+      width: 0;
+      display: none;
+    }
+
+    &.colStatus {
+      flex-grow: 1;
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: $mobile_small){
+  .col.colDate {
+  }
+}

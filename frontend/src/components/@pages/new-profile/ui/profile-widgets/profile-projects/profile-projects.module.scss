@@ -1,0 +1,73 @@
+.title {
+    font: $font24;
+    color: $clr-white;
+}
+
+.content {
+    margin-top: 24px;
+    max-height: 411px;
+    overflow: auto;
+
+    &Scrollbar {
+        margin-right: -42px;
+        padding-right: 42px;
+    }
+}
+
+.projects_item {
+    + .projects_item {
+        margin-top: 24px;
+    }
+}
+
+.projects_card {
+    [data-role='wrapper'] {
+        padding: 14px 18px 28px !important;
+    }
+}
+
+// Skeleton
+
+.skel {
+}
+
+.skel_content {
+    margin-top: 18px;
+    background: #161819;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 36px 50px #131516;
+    border-radius: 20px;
+
+    padding: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 420px;
+}
+
+.skel_container {
+    max-width: 164px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skel_icon {
+    width: 135px;
+    height: 135px;
+}
+
+.skel_text {
+    margin-top: 13px;
+    font: 400 16px/1.25 $lato;
+    color: $clr-gray-dark;
+    text-align: center;
+}
+
+.skel_btn {
+    margin-top: 22px;
+    width: 100%;
+    padding: 14px;
+}
