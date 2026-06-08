@@ -64,11 +64,11 @@ func GetApplicantList(jobID string) (job.GetApplicantListResponse, error) {
 
 func GetApplicantListByMemberID(memberID string) ([]job.Applicant, error) {
 	db := sqldb.Job()
-	var applicants []job.Applicant
+	applicants := make([]job.Applicant, 0)
 	rows, err := db.Query(`SELECT applicant_id, job_id, member_id, answers, status, application, created_at, updated_at
 		FROM applicants 
 		WHERE member_id = $1::uuid
-		ORDER BY (status::integer) ASC, created_at DESC`, memberID)
+		ORDER BY status ASC, created_at DESC`, memberID)
 	if err != nil {
 		return applicants, err
 	}
@@ -89,11 +89,11 @@ func GetApplicantListByMemberID(memberID string) ([]job.Applicant, error) {
 
 func GetApplicantListByClanID(clanID string) ([]job.Applicant, error) {
 	db := sqldb.Job()
-	var applicants []job.Applicant
+	applicants := make([]job.Applicant, 0)
 	rows, err := db.Query(`SELECT applicant_id, job_id, clan_id, answers, status, application, created_at, updated_at
 		FROM applicants
 		WHERE clan_id = $1::uuid
-		ORDER BY (status::integer) ASC, created_at DESC`, clanID)
+		ORDER BY status ASC, created_at DESC`, clanID)
 	if err != nil {
 		return applicants, err
 	}

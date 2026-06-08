@@ -86,19 +86,6 @@ export function sortTasksByStatus<T extends RequiredFields>(columns: ProjectColu
         .sort((item1, item2) => item1.column.column_id - item2.column.column_id);
 }
 
-export function getDynamicColumns<T extends RequiredFields>(arr: T[]) {
-    const columns: Omit<SortByStatus<T>, 'type'>[] = [];
-
-    for (const item of arr) {
-        const group = columns.find((g) => g.column.column_id === item.col);
-        if (!group) {
-            columns.push({ column: item.status, items: [] });
-        }
-    }
-
-    return columns;
-}
-
 export function groupByStatus<T extends RequiredFields>(columns: ProjectColumn[], arr: T[]) {
     const data = sortTasksByStatus(columns, arr);
     return [{ data, type: 'status' as const }];

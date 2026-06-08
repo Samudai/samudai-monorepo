@@ -3,11 +3,16 @@ import clsx from 'clsx';
 import PorfolioLinksItem from './PorfolioLinksItem';
 import styles from '../styles/PorfolioLinks.module.scss';
 
+export type LinksMeta = Partial<
+    Record<keyof FormDataLinksType, { placeholder: string; checkValue?: string }>
+>;
+
 interface PorfolioLinksProps {
     className?: string;
     links: FormDataLinksType;
     filledLinks?: FormDataLinksType;
     onChange: (name: keyof FormDataLinksType) => (value: string) => void;
+    linksMeta?: LinksMeta;
 }
 
 export type FormDataLinkFilledType = {
@@ -26,11 +31,7 @@ export interface FormDataLinksType {
     website?: string;
 }
 
-type OrderType = {
-    name: keyof FormDataLinksType;
-    icon: JSX.Element;
-};
-type OrderType2 = Record<
+type OrderType = Record<
     keyof FormDataLinksType,
     {
         icon: JSX.Element;
@@ -39,46 +40,7 @@ type OrderType2 = Record<
     }
 >;
 
-const order: OrderType[] = [
-    {
-        name: 'twitter',
-        icon: <Socials.Twitter />,
-    },
-    {
-        name: 'behance',
-        icon: <Socials.Behance />,
-    },
-    {
-        name: 'dribbble',
-        icon: <Socials.Dribbble />,
-    },
-    {
-        name: 'mirror',
-        icon: <Socials.Mirror />,
-    },
-    {
-        name: 'fiverr',
-        icon: <Socials.Fiverr />,
-    },
-    {
-        name: 'linkedIn',
-        icon: <Socials.LinkedIn />,
-    },
-    {
-        name: 'github',
-        icon: <Socials.Github2 />,
-    },
-    {
-        name: 'discord',
-        icon: <Socials.Discord />,
-    },
-    {
-        name: 'website',
-        icon: <Socials.Website />,
-    },
-];
-
-const order2: OrderType2 = {
+const order: OrderType = {
     behance: {
         icon: <Socials.Behance />,
         placeholder: 'https://www.behance.net/username',
@@ -131,21 +93,26 @@ const PorfolioLinks: React.FC<PorfolioLinksProps> = ({
     links,
     filledLinks,
     onChange,
+    linksMeta,
 }) => {
     return (
         <div className={clsx(styles.root, className)}>
             <ul className={styles.list}>
                 {Object.entries(links).map(([name, value]) => {
                     const fieldName = name as keyof FormDataLinksType;
+                    const placeholder =
+                        linksMeta?.[fieldName]?.placeholder ??
+                        order?.[fieldName]?.placeholder ??
+                        name;
 
                     return (
                         <PorfolioLinksItem
-                            icon={order2?.[fieldName]?.icon}
+                            icon={order?.[fieldName]?.icon}
                             value={value}
                             name={fieldName.toLowerCase()}
                             onChange={onChange(fieldName)}
                             initialValue={filledLinks?.[fieldName]}
-                            placeholder={order2?.[fieldName]?.placeholder || name}
+                            placeholder={placeholder}
                             key={name}
                         />
                     );

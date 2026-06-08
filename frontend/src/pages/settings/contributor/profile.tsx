@@ -8,7 +8,7 @@ import {
     selectMemberConnections,
     setMemberData,
 } from 'store/features/common/slice';
-import { useLazyCheckUserNameQuery, useUpdateProfilePicMutation } from 'store/services/Login/login';
+import { useCheckUserNameQuery, useUpdateProfilePicMutation } from 'store/services/Login/login';
 import { getMemberByIdResponse } from 'store/services/userProfile/model';
 import {
     useGetMemberByIdMutation,
@@ -19,7 +19,10 @@ import usePopup from 'hooks/usePopup';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { ConnectDiscordModal } from 'components/@pages/new-onboarding';
 import EditProfileSkills from 'components/@pages/profile/popups/EditProfileSkills';
-import PorfolioLinks, { FormDataLinksType } from 'components/@pages/profile/popups/PorfolioLinks';
+import PorfolioLinks, {
+    FormDataLinksType,
+    LinksMeta,
+} from 'components/@pages/profile/popups/PorfolioLinks';
 import ProfilePicture from 'components/@pages/profile/popups/ProfilePicture';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
 import Button from 'ui/@buttons/Button/Button';
@@ -92,14 +95,8 @@ const Profile: React.FC<ProfileProps> = () => {
     const [updateContributorProgress] = useUpdateContributorProgressMutation();
     const [uploadProfilePic] = useUpdateProfilePicMutation();
     const [memberUpdate] = useUpdateMemberMutation();
-    const [checkUserName] = useLazyCheckUserNameQuery();
 
-    interface IData {
-        id: number;
-        img: string;
-    }
-
-    const order = {
+    const order: LinksMeta = {
         behance: {
             placeholder: 'https://www.behance.net/username',
             checkValue: 'https://www.behance.net/',
@@ -143,6 +140,26 @@ const Profile: React.FC<ProfileProps> = () => {
         domain_tags_for_work: [],
         hourly_rate: '',
     });
+
+    const [debouncedUsername, setDebouncedUsername] = useState('');
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedUsername(formData.username.trim().toLowerCase());
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [formData.username]);
+
+    const { data: usernameCheckResult } = useCheckUserNameQuery(debouncedUsername, {
+        skip: !debouncedUsername,
+    });
+
+    useEffect(() => {
+        if (!usernameCheckResult) return;
+        if (!usernameCheckResult.data?.exist || defaultUserName === debouncedUsername)
+            setIsValid(true);
+        else setIsValid(false);
+    }, [usernameCheckResult, debouncedUsername, defaultUserName]);
 
     const AfterFetch = (res: getMemberByIdResponse) => {
         setData(res?.data?.member);
@@ -203,17 +220,6 @@ const Profile: React.FC<ProfileProps> = () => {
 
     const handleChange = (name: keyof Omit<FormDataType, 'links'>) => {
         return (e: React.ChangeEvent<HTMLInputElement>) => {
-            if (name === 'username') {
-                checkUserName(e.target.value.trim().toLowerCase())
-                    .unwrap()
-                    .then((res) => {
-                        setFormData({ ...formData, [name]: e.target.value });
-                        if (!res.data?.exist) setIsValid(true);
-                        else if (defaultUserName === e.target.value.toLowerCase()) setIsValid(true);
-                        else setIsValid(false);
-                    });
-            }
-
             setFormData({ ...formData, [name]: e.target.value });
         };
     };
@@ -241,6 +247,16 @@ const Profile: React.FC<ProfileProps> = () => {
         if (!formData.bio) return toast('Failure', 5000, 'Bio is required', '')();
         if (!hasNonEmptyStringValue(formData.links))
             return toast('Failure', 5000, 'Atleast 1 portfolio link is required', '')();
+        for (const [key, meta] of Object.entries(order)) {
+            const value = formData.links[key as keyof FormDataLinksType];
+            if (value && meta.checkValue && !value.startsWith(meta.checkValue))
+                return toast(
+                    'Failure',
+                    5000,
+                    `Invalid ${key} link`,
+                    `Link should start with ${meta.checkValue}`
+                )();
+        }
         if (!formData.skills.length) return toast('Failure', 5000, 'Skills are required', '')();
         if (!!formData.open_for_opportunity && !formData.domain_tags_for_work.length)
             return toast('Failure', 5000, 'Domain tags are required', '')();
@@ -294,43 +310,11 @@ const Profile: React.FC<ProfileProps> = () => {
                         : String(+formData?.hourly_rate),
                     currency: data?.currency || 'USDT',
                 },
-                socials: [
-                    {
-                        member_id: getMemberId(),
-                        type: 'twitter',
-                        url: formData.links.twitter,
-                    },
-                    {
-                        member_id: getMemberId(),
-                        type: 'behance',
-                        url: formData.links.behance,
-                    },
-                    {
-                        member_id: getMemberId(),
-                        type: 'dribbble',
-                        url: formData.links.dribbble,
-                    },
-                    {
-                        member_id: getMemberId(),
-                        type: 'mirror',
-                        url: formData.links.mirror,
-                    },
-                    {
-                        member_id: getMemberId(),
-                        type: 'linkedIn',
-                        url: formData.links.linkedIn!,
-                    },
-                    {
-                        member_id: getMemberId(),
-                        type: 'fiverr',
-                        url: formData.links.fiverr!,
-                    },
-                    {
-                        member_id: getMemberId(),
-                        type: 'github',
-                        url: formData.links.github!,
-                    },
-                ],
+                socials: Object.keys(order).map((key) => ({
+                    member_id: getMemberId(),
+                    type: key,
+                    url: formData.links[key as keyof FormDataLinksType] || '',
+                })),
             };
 
             await memberUpdate(payload).unwrap();
@@ -557,6 +541,7 @@ const Profile: React.FC<ProfileProps> = () => {
                         links={formData.links}
                         filledLinks={userLinks}
                         onChange={handleLinks}
+                        linksMeta={order}
                     />
                 </div>
 

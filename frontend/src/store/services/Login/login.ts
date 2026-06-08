@@ -231,6 +231,7 @@ export const {
     useSnapshotAuthMutation,
     useGithubOrgMutation,
     useOnboardingUpdateAdminMutation,
+    useCheckUserNameQuery,
     useLazyCheckUserNameQuery,
     useCreateDepartmentMutation,
     useTypeOfMemberMutation,
