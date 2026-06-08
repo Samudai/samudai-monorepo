@@ -109,7 +109,7 @@ export const useApplicants = (noFetch?: boolean) => {
 
         return await updateApplicantStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Applicant accepted', '')();
                 if (!opportunity?.task_id) return;
                 sendNotification({
@@ -150,7 +150,7 @@ export const useApplicants = (noFetch?: boolean) => {
 
         return await updateApplicantStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Applicant rejected', '')();
                 if (!opportunity?.task_id) return;
                 sendNotification({

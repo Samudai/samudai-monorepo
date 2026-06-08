@@ -55,14 +55,14 @@ export const usePayments = () => {
     const activeDao = useTypedSelector(selectActiveDao);
     const providers = useTypedSelector(providerList);
     const providerEth = useTypedSelector(selectProvider);
-    const defaultProvider = useTypedSelector(selectDefaultProvider);
+    useTypedSelector(selectDefaultProvider);
     const account = useTypedSelector(selectAccount);
     const memberData = useTypedSelector(selectMemberData);
     const safeOwners = useTypedSelector(selectSafeOwners);
     const dispatch = useTypedDispatch();
     const member_id = getMemberId();
 
-    const handleCreate = useDiscussionCreate();
+    useDiscussionCreate();
     const [getChainList] = useLazyGetChainListQuery();
     const [getProviders] = useLazyGetProviderQuery();
     const [getDefaultProvider] = useLazyGetDefaultProviderQuery();

@@ -110,7 +110,7 @@ interface IChainList {
 const AddWallet: React.FC<AddWalletProps> = ({ onSubmit, onClose }) => {
     // const ChainValues = useTypedSelector(chainList);
     const activeData = useTypedSelector(selectActiveDao);
-    const [wallet, setWallet] = useState<IChainList>(ChainValues[0]);
+    const [_wallet, _setWallet] = useState<IChainList>(ChainValues[0]);
     const [complete, setComplete] = useState<boolean>(false);
     const [address, setAddress, addressValue] = useInput('');
     const [name, setName, nameValue] = useInput('');

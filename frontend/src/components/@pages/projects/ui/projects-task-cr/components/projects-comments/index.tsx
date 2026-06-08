@@ -79,7 +79,7 @@ export const ProjectsComments: React.FC<ProjectsCommentsProps> = ({
             },
         })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 updateDetails();
                 sendNotification({
                     to: [daoid!],
@@ -94,7 +94,7 @@ export const ProjectsComments: React.FC<ProjectsCommentsProps> = ({
                         .COMMENT_TASK_ON_NOTIFICATION,
                 });
             })
-            .catch((err) => {
+            .catch((_err) => {
                 setComments(oldComments);
             });
     };

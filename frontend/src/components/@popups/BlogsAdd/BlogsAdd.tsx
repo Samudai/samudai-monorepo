@@ -26,7 +26,7 @@ const BlogsAdd: React.FC<BlogsAddProps> = ({ onClose, onClose1, fetchData }) => 
     const [link, setLink, _, clearlink] = useInput('');
     const { daoid } = useParams();
     const [loading, setLoading] = useState(false);
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const addBlogHandler = () => {
         //form validation
         if (link.length === 0) {

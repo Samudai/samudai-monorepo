@@ -11,7 +11,6 @@ import { AccessEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useLazyGetGuildEventsQuery } from 'store/services/Dashboard/dashboard';
-import usePopup from 'hooks/usePopup';
 import useRequest from 'hooks/useRequest';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import EventPopup from 'components/@popups/EventPopup/EventPopup';
@@ -24,16 +23,12 @@ import './calendar.scss';
 
 export const Calendar: React.FC = () => {
     const { daoid } = useParams();
-    const localData = localStorage.getItem('signUp');
-    const parsedData = !!localData && JSON.parse(localData);
-    const member_id = !!parsedData && parsedData.member_id;
     const [data, setData] = useState<any[]>([]);
     const [isCalendarData, setIsCalendarData] = useState<boolean>(false);
     const [currentMonth, setCurrentMonth] = useState<dayjs.Dayjs>(dayjs());
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const access = useTypedSelector(selectAccess);
     const navigate = useNavigate();
-    const eventPopup = usePopup();
     const [fetchData, loading] = useRequest(async function () {
         const data = await gcalGetEvents(
             daoid!,
@@ -52,7 +47,7 @@ export const Calendar: React.FC = () => {
     const dispatch = useTypedDispatch();
     const eventPopupBool = useTypedSelector(selectEventPopUp);
     const [dData, setDData] = useState<any[]>([]);
-    const [fetchDData, loading1] = useRequest(async function () {
+    const [fetchDData, _loading1] = useRequest(async function () {
         const response = await getDiscordEvents(guildId!, true).unwrap();
         setDData(response?.data || []);
     });
@@ -117,9 +112,6 @@ export const Calendar: React.FC = () => {
                     fetchDData={fetchDData}
                 />
             </PopupBox>
-            {/* <PopupBox active={eventPopup.active} onClose={eventPopup.close}>
-                <EventPopup onClose={eventPopup.close} gData={data} dData={dData} />
-            </PopupBox> */}
         </Block>
     );
 };

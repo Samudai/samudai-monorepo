@@ -24,7 +24,7 @@ export const selectStyles: StylesConfig<any> = {
             border: 'none',
         },
     }),
-    valueContainer: (base, state) => ({
+    valueContainer: (base, _state) => ({
         ...base,
         padding: 0,
         height: '100%',
@@ -35,7 +35,7 @@ export const selectStyles: StylesConfig<any> = {
         alignItems: 'center',
         // overflow: 'hidden auto',
     }),
-    singleValue: (base) => ({
+    singleValue: (_base) => ({
         display: 'flex',
         alignItems: 'center',
         width: '0',

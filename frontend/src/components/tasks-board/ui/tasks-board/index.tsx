@@ -301,7 +301,7 @@ function TasksBoardWrapper({
                                                 data={item.data}
                                                 className={css.board_board}
                                                 onChange={handleChange.bind(null, index)}
-                                                renderElement={(data, shaking) => (
+                                                renderElement={(data, _shaking) => (
                                                     <Task
                                                         data={data}
                                                         shaking={option}

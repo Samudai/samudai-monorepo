@@ -13,7 +13,6 @@ interface ProjectActiveProps {
 const ProjectActive: React.FC<ProjectActiveProps> = ({ className, project }) => {
     // const { progress } = ProjectHelper.getStatistics(project);
     // const contributors = ProjectHelper.getContributorsAll(project);
-    const contributors: any[] = [];
 
     const progress =
         project?.task_count === 0

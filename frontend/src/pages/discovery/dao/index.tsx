@@ -16,7 +16,6 @@ import useFetchDao from 'components/@pages/new-discovery/lib/hooks/use-fetch-dao
 import Button from 'ui/@buttons/Button/Button';
 import Head from 'ui/head';
 import css from './dao.module.scss';
-import { useProgress } from 'hooks/use-progress';
 import { toast } from 'utils/toast';
 import usePopup from 'hooks/usePopup';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
@@ -30,8 +29,8 @@ const Dao = () => {
     const { daoData, isMember } = useFetchDao();
     const navigate = useNavigate();
     const currDao = useTypedSelector(selectActiveDao);
-    const currAccess = useTypedSelector(selectAccess);
-    const daoProgressStatus = useTypedSelector(selectDaoProgress);
+    useTypedSelector(selectAccess);
+    useTypedSelector(selectDaoProgress);
     const accessList = useTypedSelector(selectAccessList);
     const access =
         !!daoData?.dao_id &&
@@ -49,8 +48,6 @@ const Dao = () => {
     };
 
     const requestCollaborateModal = usePopup();
-
-    const { daoProgress, memberType, trialDashboard } = useProgress();
 
     return (
         <div className={css.dao} data-analytics-page="discovery_dao">

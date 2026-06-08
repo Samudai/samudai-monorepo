@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useReconnectDiscordMutation } from 'store/services/Settings/settings';
 
 function ReDiscord() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, _setSearchParams] = useSearchParams();
     const [reconnect] = useReconnectDiscordMutation();
 
     useEffect(() => {

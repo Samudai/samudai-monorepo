@@ -21,7 +21,6 @@ interface MessageProps {
     innerRef?: (node: HTMLLIElement) => void;
     members: Member[];
 }
-const ipfs = (url: string) => `https://${url}.ipfs.w3s.link/`;
 
 const MessageComp: React.FC<MessageProps> = ({
     me,
@@ -31,23 +30,17 @@ const MessageComp: React.FC<MessageProps> = ({
     innerRef,
     members,
 }) => {
-    const fileExt = FileHelper.getFileExt(data.content!);
-    const isImage = fileExt && FileHelper.extensions.image.includes(fileExt);
-
-    const [imageUrl, setImageUrl] = useState('');
+    FileHelper.getFileExt(data.content!);
+    const [_imageUrl, setImageUrl] = useState('');
 
     const checkDecryptMessage = data.content === 'Unable to decrypt message';
-    const previewModal = usePopup();
-
+    usePopup();
     const getInfo = useMemo(() => {
         return members.find((member) => member.wallet === data.sender_id);
     }, [members, data]);
 
     useEffect(() => {
         (async () => {
-            if (data.type === 'file') {
-                const imageUrl = window.URL || window.webkitURL;
-            }
             if (data.attachment_link) {
                 setImageUrl(data.attachment_link);
             }

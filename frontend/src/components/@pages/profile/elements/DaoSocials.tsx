@@ -40,9 +40,9 @@ const SocialPortfolio: React.FC<IProps> = () => {
     const { daoid } = useParams();
     const activeDao = useTypedSelector(selectActiveDao);
     const [getDaoSocials] = useLazyGetDaoSocialsQuery();
-    const [social, setSocial] = useState<any[]>([]);
-    const [popupData, setPopUpdata] = useState<any[]>([]);
-    const [temp, setTemp] = useState<boolean>(false);
+    const [_social, setSocial] = useState<any[]>([]);
+    const [_popupData, setPopUpdata] = useState<any[]>([]);
+    const [_temp, _setTemp] = useState<boolean>(false);
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
         AccessEnums.AccessType.MANAGE_DAO
     );

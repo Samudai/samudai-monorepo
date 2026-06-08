@@ -5,7 +5,6 @@ import { useGetProjectByMemberIdMutation } from 'store/services/userProfile/user
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import Block from 'components/Block/Block';
 import { ProjectList } from 'components/project';
-import { getMemberId } from 'utils/utils';
 import styles from '../styles/AllProjects.module.scss';
 
 interface AllProjectsProps {
@@ -18,11 +17,10 @@ const AllProjects: React.FC<AllProjectsProps> = ({ setShowProjects, showProjects
     const { memberid } = useParams();
     const activeDAO = useTypedSelector(selectActiveDao);
     const roles = useTypedSelector(selectRoles);
-    const dispatch = useTypedDispatch();
+    useTypedDispatch();
     const localData = localStorage.getItem('signUp');
     const parsedData = !!localData && JSON.parse(localData);
     const member_id = !!parsedData && parsedData.member_id;
-    const sameMember = getMemberId() === memberid;
     const payload = {
         member_id: member_id,
         daos: [
@@ -32,14 +30,14 @@ const AllProjects: React.FC<AllProjectsProps> = ({ setShowProjects, showProjects
             },
         ],
     };
-    const [getProjects, { data, isSuccess }] = useGetProjectByMemberIdMutation({
+    const [getProjects, { data }] = useGetProjectByMemberIdMutation({
         fixedCacheKey: activeDAO,
     });
 
     const fetchProjects = async () => {
         getProjects(payload)
             .unwrap()
-            .then((res) => {})
+            .then((_res) => {})
             .catch((err) => {
                 console.error(err);
             });

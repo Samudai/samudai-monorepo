@@ -17,13 +17,13 @@ interface IProps {
     onClose: () => void;
     data: any;
 }
-const CreateDiscussion: React.FC<IProps> = ({ onClose, data }) => {
+const CreateDiscussion: React.FC<IProps> = ({ data }) => {
     const [load, setLoad] = useState<boolean>(false);
     const [CreateDiscussion] = useCreateDiscussionMutation();
-    const [search, setSearch] = useState<string>('');
-    const [searchResult, setSearchResult] = useState<projectSearch[]>([] as projectSearch[]);
-    const [selected, setSelected] = useState<projectSearch>({} as projectSearch);
-    const [searchProject] = useLazyProjectSearchQuery();
+    const [_search, _setSearch] = useState<string>('');
+    const [_searchResult, _setSearchResult] = useState<projectSearch[]>([] as projectSearch[]);
+    const [_selected, _setSelected] = useState<projectSearch>({} as projectSearch);
+    const [_searchProject] = useLazyProjectSearchQuery();
     const navigate = useNavigate();
     const { daoid } = useParams();
 

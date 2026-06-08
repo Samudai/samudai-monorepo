@@ -131,7 +131,7 @@ export const PayoutData: React.FC<PayoutDataProps> = ({
                         provider.address!
                     )) as GnosisTypes.SafeBalanceUsdResponse[];
                     if (res.length > 0) {
-                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, id: number) => {
+                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, _id: number) => {
                             currencyVal.push({
                                 currency: item.token
                                     ? item.token.name

@@ -51,7 +51,7 @@ const AddProvider: React.FC<AddProviderProps> = ({ onClose }) => {
         if (addressValue.value && !!providerEth && provider.value) {
             setBtnLoading(true);
             try {
-                const res = await handleAddProvider({
+                await handleAddProvider({
                     provider_type: provider.value,
                     chain_id: chainId!,
                     address: addressValue.value,

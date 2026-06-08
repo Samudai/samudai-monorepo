@@ -40,7 +40,7 @@ const UserControls: React.FC<UserInfoProps> = memo(({ call, feed, subdomain, cod
     const [newDomain, setNewDomain] = useState<string>('');
     const showConnect = memberIdOnProfile !== memberId;
     const showClaim = memberIdOnProfile === memberId;
-    const connections = useTypedSelector(selectMemberConnections);
+    useTypedSelector(selectMemberConnections);
     const [status, setStatus] = useState<string>('');
     // const connectionStatus = connections!.connections?.find(
     //   (connection: any) => connection.member_id === memberIdOnProfile

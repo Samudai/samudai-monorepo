@@ -11,7 +11,7 @@ interface ReposSelectProps {
     isSingle?: boolean;
 }
 
-const ReposSelect: React.FC<ReposSelectProps> = ({ options, setRepos, className, isSingle }) => {
+const ReposSelect: React.FC<ReposSelectProps> = ({ options, setRepos, isSingle }) => {
     const handleChange = (e: any) => {
         setRepos(Array.isArray(e) ? e?.map((x) => x.value) : []);
     };

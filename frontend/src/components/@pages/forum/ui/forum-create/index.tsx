@@ -3,7 +3,6 @@ import { useDiscussionCreate } from '../../lib/hooks';
 import { Descendant } from 'slate';
 import { tags } from 'store/features/discussion/slice';
 import { useObjectState } from 'hooks/use-object-state';
-import usePopup from 'hooks/usePopup';
 import { useTypedSelector } from 'hooks/useStore';
 import Popup from 'components/@popups/components/Popup/Popup';
 import PopupTitle from 'components/@popups/components/PopupTitle/PopupTitle';
@@ -46,7 +45,6 @@ interface Inputs {
 }
 
 export const ForumCreate: React.FC<ForumCreateProps> = ({ edit, onClose, refetchDiscussions }) => {
-    const inviteModal = usePopup();
     const tagList = useTypedSelector(tags);
     const handleCreate = useDiscussionCreate(() => {
         refetchDiscussions?.();

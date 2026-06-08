@@ -22,7 +22,7 @@ const ContributorProgress: React.FC = () => {
     const navigate = useNavigate();
     const memberid = getMemberId();
     const dispatch = useTypedDispatch();
-    const memberSubdomainClaimed = useTypedSelector(selectMemberSubdomainClaimed);
+    useTypedSelector(selectMemberSubdomainClaimed);
     const progress = useTypedSelector(selectContributorProgress);
 
     const subdomainModal = usePopup();

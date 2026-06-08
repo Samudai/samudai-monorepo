@@ -8,7 +8,7 @@ interface MarqueeProps {
     words: string[];
 }
 
-export const Marquee: React.FC<MarqueeProps> = ({ duration, words }) => {
+export const Marquee: React.FC<MarqueeProps> = ({ words }) => {
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

@@ -17,7 +17,7 @@ import { IMember } from '@samudai/gateway-consumer-types';
 
 interface DaoInformationProps {}
 
-export const DaoInformation: React.FC<DaoInformationProps> = (props) => {
+export const DaoInformation: React.FC<DaoInformationProps> = (_props) => {
     const { daoData, isMember, loading } = useFetchDao();
     const navigate = useNavigate();
     const share = usePopup();

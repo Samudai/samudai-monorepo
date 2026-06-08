@@ -156,7 +156,7 @@ function TasksBoardPersonalWrapper({
                                     <Board
                                         data={item.data}
                                         onChange={handleChange.bind(null, index)}
-                                        renderElement={(data, shaking) => (
+                                        renderElement={(data, _shaking) => (
                                             <Task
                                                 data={data}
                                                 shaking={null}

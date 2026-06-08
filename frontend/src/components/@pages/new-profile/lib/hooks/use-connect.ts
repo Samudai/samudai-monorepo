@@ -36,7 +36,7 @@ export const useConnect = () => {
                 status: 'pending' as const,
                 message,
             };
-            const res = await createConnection({ connection: payload });
+            await createConnection({ connection: payload });
             sendNotification({
                 to: [memberIdOnProfile!],
                 for: NotificationsEnums.NotificationFor.MEMBER,
@@ -58,7 +58,7 @@ export const useConnect = () => {
             });
             setConnect(true);
             toast('Success', 5000, 'Request sent', '')();
-        } catch (err: any) {
+        } catch {
             toast('Failure', 5000, 'Failed to send request', '')();
         }
     };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Popup from 'components/@popups/components/Popup/Popup';
 import PopupTitle from 'components/@popups/components/PopupTitle/PopupTitle';
 import Loader from 'components/Loader/Loader';
@@ -10,10 +10,9 @@ import './styles/ClaimSubdomain.scss';
 interface IProps {
     onClose: () => void;
 }
-const NotionIntegrate: React.FC<IProps> = ({ onClose }) => {
-    const [load, setLoad] = useState<boolean>(false);
+const NotionIntegrate: React.FC<IProps> = () => {
+    const [load, _setLoad] = useState<boolean>(false);
     const navigate = useNavigate();
-    const { daoid } = useParams();
 
     return (
         <>

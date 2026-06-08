@@ -53,7 +53,7 @@ const TelegramIntegration: React.FC<IntegrationsConnectItemProps> = ({
     const [isConnectedState, setIsConnectedState] = useState(isConnected);
     const connectModal = usePopup();
     const memberId = getMemberId();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const currContributorProgress = useTypedSelector(selectContributorProgress);
     const dispatch = useTypedDispatch();
 

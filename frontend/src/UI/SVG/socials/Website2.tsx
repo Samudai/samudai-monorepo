@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Website2 = (props?: React.SVGProps<SVGSVGElement>) => (
+export const Website2 = (_props?: React.SVGProps<SVGSVGElement>) => (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_4960_15300)">
             <path

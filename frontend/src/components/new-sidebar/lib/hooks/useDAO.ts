@@ -34,7 +34,7 @@ export const useDAO = (callback?: () => void) => {
     const { daoid } = useParams();
     const navigate = useNavigate();
     const trialDashboard = useTypedSelector(selectTrialDashboard);
-    const daoList = useTypedSelector(selectDaoList);
+    useTypedSelector(selectDaoList);
     const accessDao = useTypedSelector(selectAccess);
     const isAdddedDAO = useTypedSelector(addedDao);
 
@@ -47,7 +47,7 @@ export const useDAO = (callback?: () => void) => {
         guildId: '',
     });
 
-    const [initial, setInitial] = useState<string>('');
+    const [_initial, setInitial] = useState<string>('');
     const [DAOList, setDAOList] = useState<DAOType[]>([]);
 
     useEffect(() => {

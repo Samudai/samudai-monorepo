@@ -30,14 +30,12 @@ export const Reviews: React.FC<ReviewsProps> = ({ className }) => {
     const reviewAdd = usePopup();
     const { daoid } = useParams();
 
-    const navigate = useNavigate();
+    useNavigate();
     const activeDAO = useTypedSelector(selectActiveDao);
     const [loading, setLoading] = useState(false);
     const [getReview] = useLazyGetReviewQuery();
     const [totalRatings, setTotalRatings] = useState(0);
-    const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
-        AccessEnums.AccessType.MANAGE_DAO
-    );
+    useTypedSelector(selectAccessList)?.[daoid!]?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const discordModal = usePopup();
     const trialDashboard = useTypedSelector(selectTrialDashboard);
 
@@ -54,7 +52,7 @@ export const Reviews: React.FC<ReviewsProps> = ({ className }) => {
                 });
                 setTotalRatings(totalRatings);
             })
-            .catch((err) => {
+            .catch((_err) => {
                 setLoading(false);
             });
     };

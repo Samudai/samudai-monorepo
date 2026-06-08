@@ -13,7 +13,7 @@ interface IProps {
     code: string | null;
     count: number;
 }
-const Invite: React.FC<IProps> = ({ onClose, code, count }) => {
+const Invite: React.FC<IProps> = ({ code, count }) => {
     const url = useMemo(() => {
         return `${window.location.origin}/invite/member/${code}`;
     }, [code]);

@@ -147,7 +147,7 @@ export const DiscoveryCard: React.FC<DiscoveryCardProps> = ({
             });
             setConnect(true);
             toast('Success', 5000, 'Request sent', '')();
-        } catch (err: any) {
+        } catch {
             toast('Failure', 5000, 'Failed to send request', '')();
         }
     };

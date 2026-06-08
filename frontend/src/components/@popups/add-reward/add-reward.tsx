@@ -26,7 +26,7 @@ interface AddRewardProps {
 
 const repeatInterval = [{ value: 'day' }, { value: 'week' }, { value: 'month' }];
 
-const AddReward: React.FC<AddRewardProps> = ({ role, onClose }) => {
+const AddReward: React.FC<AddRewardProps> = ({ role }) => {
     const [formData, setFormData] = useState(getRewardFormData(role));
     const conditionsModal = usePopup();
 

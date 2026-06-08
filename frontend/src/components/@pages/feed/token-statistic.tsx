@@ -29,7 +29,7 @@ const stats = [
     },
 ];
 
-const TokenStatistic: React.FC = (props) => {
+const TokenStatistic: React.FC = (_props) => {
     return (
         <div className={styles.stat}>
             <ul className={styles.stat_list}>

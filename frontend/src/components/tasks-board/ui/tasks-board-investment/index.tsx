@@ -114,7 +114,7 @@ function TasksBoardInvestmentWrapper({
                                         className={css.board_board}
                                         data={item.data}
                                         onChange={handleChange.bind(null, index)}
-                                        renderElement={(data, shaking) => (
+                                        renderElement={(data, _shaking) => (
                                             <TaskInvestment
                                                 data={data}
                                                 handleOpen={taskState.open}

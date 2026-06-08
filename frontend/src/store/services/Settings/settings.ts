@@ -19,7 +19,7 @@ export const settingsApi = createApi({
     reducerPath: 'settingsApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.REACT_APP_GATEWAY,
-        prepareHeaders: (headers, { getState }) => {
+        prepareHeaders: (headers, _api) => {
             headers.set('authorization', `Bearer ${localStorage.getItem('jwt')}`);
             headers.set('daoid', store.getState().commonReducer.activeDao);
             return headers;

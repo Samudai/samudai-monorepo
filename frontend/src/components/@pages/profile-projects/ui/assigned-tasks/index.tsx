@@ -8,7 +8,7 @@ import { TaskResponse } from '@samudai/gateway-consumer-types';
 
 interface AssignedTasksProps {}
 
-export const AssignedTasks: React.FC<AssignedTasksProps> = (props) => {
+export const AssignedTasks: React.FC<AssignedTasksProps> = (_props) => {
     const [search, setSearch] = useState<string>('');
     const [filteredTasks, setFilteredTasks] = useState<TaskResponse[]>([]);
 

@@ -14,7 +14,7 @@ enum Tabs {
     BOUNTY = 'Bounty',
 }
 
-const Applicants: React.FC<ApplicantsProps> = (props) => {
+const Applicants: React.FC<ApplicantsProps> = (_props) => {
     const [activeTab, setActiveTab] = useState(Tabs.PROJECT);
 
     return (

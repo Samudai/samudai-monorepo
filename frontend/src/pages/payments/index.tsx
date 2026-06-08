@@ -16,7 +16,7 @@ import Head from 'ui/head';
 import './payments.scss';
 import { usePayments } from 'utils/payments/use-payments';
 
-const Payments: React.FC = (props) => {
+const Payments: React.FC = (_props) => {
     const { daoid } = useParams();
     const AccessList = useTypedSelector(selectAccessList);
     const activeDao = useTypedSelector(selectActiveDao);

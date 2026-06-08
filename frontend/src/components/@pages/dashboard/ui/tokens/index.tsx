@@ -14,7 +14,7 @@ import './tokens.scss';
 
 export const Tokens: React.FC = () => {
     const [defaultProvider] = useLazyGetDefaultProviderQuery();
-    const [loading, setLoading] = useState<boolean>(false);
+    const [_loading, setLoading] = useState<boolean>(false);
     const { daoid } = useParams();
     const navigate = useNavigate();
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(

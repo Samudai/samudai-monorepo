@@ -21,7 +21,7 @@ interface AssigneesProps {
 export const Assignees: React.FC<AssigneesProps> = ({ subtaskData, taskData, onClose }) => {
     const [members, setMembers] = useState<IMember[]>([]);
     const [chat, setChat] = useState<IMember | null>(null);
-    const [pgpDecryptedKey, setPgpDecryptedKey] = useState<string>('');
+    const [_pgpDecryptedKey, _setPgpDecryptedKey] = useState<string>('');
     const { ref, isScrollbar } = useScrollbar<HTMLUListElement>();
 
     const [getTaskDetails] = useLazyGetTaskDetailsQuery();

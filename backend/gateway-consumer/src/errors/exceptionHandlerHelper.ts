@@ -12,7 +12,7 @@ export abstract class HttpException extends Error {
 
 class ErrorException extends HttpException {
     constructor(err: any, message: string) {
-        if (err.hasOwnProperty('response')) {
+        if (Object.prototype.hasOwnProperty.call(err, 'response')) {
             super(err.response.status, message, err.response.data.error);
         } else {
             super(500, message, err);

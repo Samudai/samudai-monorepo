@@ -7,7 +7,7 @@ import styles from '../styles/items/NfMessage.module.scss';
 
 interface NfMessageProps {}
 
-const NfMessage: React.FC<NfMessageProps> = (props) => {
+const NfMessage: React.FC<NfMessageProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colPerson)}>

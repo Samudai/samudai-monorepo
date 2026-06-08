@@ -15,12 +15,12 @@ import { useUpdateContributorProgressMutation } from 'store/services/userProfile
 
 function DiscordTemp() {
     const [discordUpdate] = useDiscordMutation();
-    const [completeTrial] = useCompleteTrialDashboardMutation();
-    const navigate = useNavigate();
+    const [_completeTrial] = useCompleteTrialDashboardMutation();
+    useNavigate();
     const jwt = localStorage.getItem('jwt');
     const memberType = localStorage.getItem('account_type');
     const dispatch = useTypedDispatch();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, _setSearchParams] = useSearchParams();
     const currContributorProgress = useTypedSelector(selectContributorProgress);
 
     const [updateContributorProgress] = useUpdateContributorProgressMutation();

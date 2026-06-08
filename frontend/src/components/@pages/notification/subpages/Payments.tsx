@@ -8,7 +8,7 @@ import { getMemberId } from 'utils/utils';
 
 interface PaymentsProps {}
 
-const Payments: React.FC<PaymentsProps> = (props) => {
+const Payments: React.FC<PaymentsProps> = (_props) => {
     const [getNotifications] = useLazyFetchNotificationsQuery();
     const [data, setData] = useState<WebNotification[]>([] as WebNotification[]);
     useEffect(() => {
@@ -17,7 +17,7 @@ const Payments: React.FC<PaymentsProps> = (props) => {
                 const res = await getNotifications(getMemberId()).unwrap();
                 setData([...(res?.data || [])]?.reverse() || ([] as WebNotification[]));
                 console.log('payment:', res?.data);
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Unable to fetch payments notifications', 'Please retry')();
             }
         };

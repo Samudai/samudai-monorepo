@@ -37,7 +37,7 @@ export const ReviewsPopup: React.FC<ReviewPopupProps> = ({
 }) => {
     const [page, setPage] = useState(0);
     const MAX_ELEMENTS_PER_PAGE = 10;
-    const [COUNT_SHOW_PAGES, SET_COUNT_SHOW_PAGES] = useState(
+    const [COUNT_SHOW_PAGES, _SET_COUNT_SHOW_PAGES] = useState(
         Math.ceil(reviews.length / MAX_ELEMENTS_PER_PAGE)
     );
 

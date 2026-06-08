@@ -47,18 +47,18 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
     const [safeGnosisData, setSafeGnosisData] = useState<IProviderList>(safeGnosis[0]);
     const [currency, setCurrency] = useState<IPaymentCurrency>({} as IPaymentCurrency);
     const [currencyList, setCurrencyList] = useState<IPaymentCurrency[]>([] as IPaymentCurrency[]);
-    const [chain, setChain] = useState<IChainList>(GnosisChainValues[0]);
+    const [_chain, _setChain] = useState<IChainList>(GnosisChainValues[0]);
     const [complete, setComplete] = useState<boolean>(false);
     const [address, setAddress] = useState('');
     const [bounty, setBounty] = useInput('');
-    const [sdkVale, setSdkValue] = useState<Gnosis | null>(null);
+    const [_sdkVale, _setSdkValue] = useState<Gnosis | null>(null);
     const [search, setSearch] = useState('');
     const [memberData, setMemberData] = useState<any[]>([]);
-    const [chainId, setChainId] = useState<number>(0);
+    const [_chainId, _setChainId] = useState<number>(0);
 
     const { daoid } = useParams();
     const providerEth = useTypedSelector(selectProvider);
-    const connectedWallet = useTypedSelector(selectAccount);
+    useTypedSelector(selectAccount);
     const account = useTypedSelector(selectAccount);
     const providers = useTypedSelector(providerList);
     const member_id = getMemberId();
@@ -96,7 +96,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
         try {
             const res2 = await searchMember(search ? `${search}` : '').unwrap();
             setMemberData(res2?.data || ([] as Member[]));
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Error in fetching discovery data', '')();
         }
     };
@@ -126,7 +126,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                         safeGnosisData.name
                     )) as GnosisTypes.SafeBalanceUsdResponse[];
                     if (res.length > 0) {
-                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, id: number) => {
+                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, _id: number) => {
                             currencyVal.push({
                                 currency: item.token
                                     ? item.token.name
@@ -228,7 +228,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                 // setCurrencyList(currencyVal);
                 // if (value) setSdkValue(value);
             }
-        } catch (err) {
+        } catch {
             //toast
             toast('Failure', 5000, 'Something went wrong', '')();
         }
@@ -248,7 +248,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                     }
                 }
             }
-        } catch (err) {
+        } catch {
             //toast
             toast('Failure', 5000, 'Something went wrong', '')();
         }
@@ -400,7 +400,7 @@ const AddPayment: React.FC<AddPaymentProps> = ({ onClose }) => {
                     // }
                 }
             }
-        } catch (err) {
+        } catch {
             //toast
             toast('Failure', 5000, 'Something went wrong', '')();
         }

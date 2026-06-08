@@ -36,8 +36,7 @@ export const PayoutItem: React.FC<PayoutItemProps> = ({
     const [selectedContributors, setSelectedContributors] = useState<IMember[]>([]);
     const payoutList = useTypedSelector(payoutsList);
     const { data, addBulkPayout, fetchData } = usePayouts(link);
-    const daoAccess = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
-
+    useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const handleAddContributor = (data: IMember) => {
         setSelectedContributors([...selectedContributors, data]);
     };

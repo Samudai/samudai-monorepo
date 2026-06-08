@@ -30,7 +30,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({
     onNextModal,
     dbot,
 }) => {
-    const dispatch = useTypedDispatch();
+    useTypedDispatch();
     const navigate = useNavigate();
     const [step, setStep] = useState<number>(1);
     const [enableNext, setEnableNext] = useState<boolean>(false);
@@ -43,7 +43,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({
     const profile_picture = useTypedSelector(selectProfilePicture);
     console.log('ProfileSetup -> profile_picture', profile_picture);
     const localData = localStorage.getItem('signUp');
-    const parsedData = JSON.parse(localData!);
+    JSON.parse(localData!);
     const account_type = localStorage.getItem('account_type');
     const [loading, setLoading] = useState(false);
 
@@ -176,7 +176,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({
                             console.log(res);
                             onboardingUpdate(payload)
                                 .unwrap()
-                                .then((res) => {
+                                .then((_res) => {
                                     mixpanel.track('create_departments_onboarding', {
                                         daoId: localStorage.getItem('daoId')!,
                                         departments: JSON.stringify(state.department),

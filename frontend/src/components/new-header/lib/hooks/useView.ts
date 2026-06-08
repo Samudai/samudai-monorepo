@@ -22,7 +22,7 @@ import { getMemberId } from 'utils/utils';
 
 export const useView = () => {
     const { daoid } = useParams();
-    const { id, name } = useTypedSelector(selectDaoViewActive);
+    const { id } = useTypedSelector(selectDaoViewActive);
     const views = useTypedSelector(selectDaoViews);
     const activeDao = useTypedSelector(selectActiveDao);
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(

@@ -17,7 +17,7 @@ export const DiscussionsMessage: React.FC<DiscussionsMessageProps> = ({
 
         [...participants, { name: 'all', member_id: 'all' }].forEach((member) => {
             const mentionRegex = new RegExp(`<@${member.member_id}>`, 'g');
-            modifiedText = modifiedText.replace(mentionRegex, (match, id) => {
+            modifiedText = modifiedText.replace(mentionRegex, (_match, _id) => {
                 if (member.member_id === 'all') {
                     return `<span>@${member.name}</span>`;
                 } else {

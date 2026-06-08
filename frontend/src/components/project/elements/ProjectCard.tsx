@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ProjectEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import {
@@ -46,7 +46,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
     const [bookmark, setBookmark] = useState<boolean>(project?.pinned || false);
     const [updatePinned] = useUpdatePinnedMutation();
-    const { daoid } = useParams();
     const progress =
         project?.task_count === 0
             ? 0
@@ -61,7 +60,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         setBookmark(!bookmark);
         const newB = !bookmark;
         try {
-            const res = await updatePinned({
+            await updatePinned({
                 projectId: project?.project_id || '',
                 pinned: !bookmark,
                 linkId: project.link_id,

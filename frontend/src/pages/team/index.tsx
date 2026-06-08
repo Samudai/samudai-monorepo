@@ -13,14 +13,14 @@ import styles from './team.module.scss';
 const Team: React.FC = () => {
     const [candidatActive, setCandidatActive] = useState({} as TeamMember); // On change
     const [selectedMember, setSelectedMember] = useState({} as TeamMemberResponse); // On click
-    const [taskCount, setTaskCount] = useState(0); // On change
+    const [_taskCount, _setTaskCount] = useState(0); // On change
     // const [candidats, setCandidats] = useState<Member[]>(mockup_users); // Fetch user + statistic
     const { ref, isScrollbar } = useScrollbar<HTMLDivElement>(true); // For margin
     const [isLoading, setLoading] = useState(false);
 
     const [memberData, setMemberData] = useState<TeamMember[]>([]);
-    const [fetchMember, loading1] = useLazyGetDaoMemberInfoQuery();
-    const [fetchTeamData, loading] = useLazyGetDaoMembersQuery();
+    const [fetchMember, _loading1] = useLazyGetDaoMemberInfoQuery();
+    const [fetchTeamData, _loading] = useLazyGetDaoMembersQuery();
     const { daoid } = useParams();
 
     const handleChangeActiveUser = async (u: TeamMember) => {

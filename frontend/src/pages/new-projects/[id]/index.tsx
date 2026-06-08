@@ -88,10 +88,10 @@ const ProjectsBoard: React.FC = () => {
 
         updateProject(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Reviewers updated successfully', '')();
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to update reviewers', '')();
             });
     };

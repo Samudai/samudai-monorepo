@@ -105,7 +105,7 @@ export const useSubmissions = (noFetch?: boolean) => {
 
         return await reviewSubmission(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Submission accepted', '')();
                 sendNotification({
                     to: [data.member_id],
@@ -140,7 +140,7 @@ export const useSubmissions = (noFetch?: boolean) => {
 
         return await reviewSubmission(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Submission rejected', '')();
                 sendNotification({
                     to: [data.member_id],

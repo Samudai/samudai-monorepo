@@ -25,7 +25,7 @@ import Loader from 'components/Loader/Loader';
 
 interface ApplicantsJobProps {}
 
-const ApplicantsJob: React.FC<ApplicantsJobProps> = (props) => {
+const ApplicantsJob: React.FC<ApplicantsJobProps> = (_props) => {
     const [activeTab, setActiveTab] = useState<{ name: string; value: string }>({
         name: 'Pending',
         value: JobsEnums.ApplicantStatusType.APPLIED,

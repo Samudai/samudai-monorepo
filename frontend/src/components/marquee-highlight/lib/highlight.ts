@@ -10,8 +10,6 @@ export const createHighlight = (element: HTMLElement) => {
 
         const parent = element.parentElement;
         if (!parent) return;
-
-        const center = parent.offsetHeight / 2;
     };
 
     const draw = () => {

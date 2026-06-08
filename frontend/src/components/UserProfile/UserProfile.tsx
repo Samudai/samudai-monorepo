@@ -21,10 +21,10 @@ const UserProfile: React.FC = () => {
     });
     const [showStat, setShowState] = useState(false);
     const dispatch = useTypedDispatch();
-    const memberId = getMemberId();
-    const data = useParams();
+    getMemberId();
+    useParams();
     const [userData, setUserData] = useState<getMemberByIdResponse>({} as getMemberByIdResponse);
-    const [totalDaos, setTotalDaos] = useState<number>(0);
+    const [_totalDaos, setTotalDaos] = useState<number>(0);
     const [subdomain, setSubdomain] = useState<string | null>(null);
     const [code, setCode] = useState<string | null>(null);
     const [count, setCount] = useState<number>(0);

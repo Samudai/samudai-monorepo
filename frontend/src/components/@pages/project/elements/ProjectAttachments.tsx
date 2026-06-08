@@ -12,8 +12,7 @@ interface ProjectAttachmentsProps {
 }
 
 const ProjectAttachments: React.FC<ProjectAttachmentsProps> = ({ project }) => {
-    const files = ProjectHelper.getAttachmentsAll(project);
-
+    ProjectHelper.getAttachmentsAll(project);
     const sliderSettings: SwiperProps = {
         slidesPerView: 4,
         allowTouchMove: false,

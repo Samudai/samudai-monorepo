@@ -28,7 +28,7 @@ export const ReviewsNew: React.FC<ReviewsProps> = ({ className }) => {
     const reviewAdd = usePopup();
     const [getReview] = useLazyGetUserReviewQuery();
     const { memberid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const [loading, setLoading] = useState(false);
     const [totalRatings, setTotalRatings] = useState(0);
     const sameProfile = getMemberId() === memberid;

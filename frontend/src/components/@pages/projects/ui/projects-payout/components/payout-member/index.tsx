@@ -24,7 +24,7 @@ export const PayoutMember: React.FC<PayoutMemberProps> = ({ memberData, link, ac
     const [payout, setPayout] = useState<IPayoutRequest[]>([]);
     const [address, setAddress] = useState('');
 
-    const { addPayout, editPayout, removePayout } = usePayouts(link);
+    const { removePayout } = usePayouts(link);
     const [getMemberDetails] = useGetMemberByIdMutation();
     const dispatch = useTypedDispatch();
     const payoutList = useTypedSelector(payoutsList);

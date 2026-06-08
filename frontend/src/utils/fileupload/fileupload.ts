@@ -330,7 +330,7 @@ export const downloadFile = async (url: string, storageType: StorageType, name: 
                     const file = new File([blob], name, {
                         type: blob.type,
                     });
-                    const dec = decrypt(file);
+                    decrypt(file);
                 })
                 .catch((err) => {
                     toast('Failure', 5000, 'Failed to download file', 'error')();

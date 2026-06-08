@@ -62,7 +62,7 @@ export const ProfileSwitch = () => {
                         );
                     });
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 3000, 'Failed to update Open for Jobs', '')();
                 updateData(oldData);
             });

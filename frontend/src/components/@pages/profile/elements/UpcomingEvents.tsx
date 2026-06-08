@@ -22,9 +22,9 @@ import '../styles/UpcomingEvents.scss';
 
 const UpcomingEvents: React.FC = () => {
     const [data, setData] = useState<DiscordEvent[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, _setLoading] = useState<boolean>(false);
     const [getDiscordEvents] = useLazyGetMemberEventsQuery();
-    const { memberid, daoid } = useParams();
+    const { memberid } = useParams();
     const [gData, setGData] = useState<any[]>([]);
     const [finalEvents, setFinalEvents] = useState<any>([]);
     const [googleData, setGoogleData] = useState<any[]>([]);
@@ -34,7 +34,7 @@ const UpcomingEvents: React.FC = () => {
         setData(response?.data || []);
     });
 
-    const [fetchGData, loading1] = useRequest(async function () {
+    const [fetchGData, _loading1] = useRequest(async function () {
         const data = await gcalGetEvents(
             memberid!,
             new Date(new Date().setDate(new Date().getDate() - 30)).toISOString(),

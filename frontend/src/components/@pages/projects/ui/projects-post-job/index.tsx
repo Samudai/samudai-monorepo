@@ -73,8 +73,7 @@ export const ProjectsPostJob: React.FC<ProjectsPostJobProps> = ({
     const [taskData, setTaskData] = useState<TaskResponse>(data!);
     const [getDetails] = useLazyGetTaskDetailsQuery();
     const [isEdit, setIsEdit] = useState(true);
-    const positions = getPositions();
-
+    getPositions();
     const fetchTask = async () => {
         if (data?.task_id) {
             localStorage.setItem('_taskid', data.task_id);

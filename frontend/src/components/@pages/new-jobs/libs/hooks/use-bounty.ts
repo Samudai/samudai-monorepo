@@ -62,7 +62,7 @@ export const useBounty = (noFetch?: boolean) => {
     const updateBounty = async (data: createBountyRequest) => {
         await updateJob(data)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Bounty is successfully updated', '')();
             })
             .catch(() => {
@@ -107,7 +107,7 @@ export const useBounty = (noFetch?: boolean) => {
         };
         await updateStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Bounty is successfully archived', '')();
             })
             .catch(() => {
@@ -123,7 +123,7 @@ export const useBounty = (noFetch?: boolean) => {
         };
         await updateStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Bounty is successfully unarchived', '')();
             })
             .catch(() => {
@@ -134,7 +134,7 @@ export const useBounty = (noFetch?: boolean) => {
     const removeBounty = async (bountyId: string) => {
         await deleteStatus(bountyId)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Bounty is successfully deleted', '')();
             })
             .catch(() => {

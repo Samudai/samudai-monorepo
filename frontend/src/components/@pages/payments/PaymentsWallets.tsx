@@ -8,7 +8,6 @@ import {
     useAddProviderMutation,
     useChangeDefaultMutation,
     useDeleteProviderMutation,
-    useGetProviderQuery,
 } from 'store/services/payments/payments';
 import usePopup from 'hooks/usePopup';
 import { useTypedSelector } from 'hooks/useStore';
@@ -32,9 +31,8 @@ const PaymentsWallets: React.FC = () => {
     const { daoid } = useParams();
     const changeAddress = usePopup();
     const wallets = useTypedSelector(walletList);
-    const activeDao = useTypedSelector(selectActiveDao);
-    const [addProviderApi, { isSuccess, isLoading: providerLoader1 }] = useAddProviderMutation();
-    const { refetch } = useGetProviderQuery(daoid!);
+    useTypedSelector(selectActiveDao);
+    const [addProviderApi, { isLoading: providerLoader1 }] = useAddProviderMutation();
     const [deleteProvider, { isLoading: providerLoader2 }] = useDeleteProviderMutation();
     const [changeDefault, { isLoading: providerLoader3 }] = useChangeDefaultMutation();
 

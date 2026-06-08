@@ -5,7 +5,7 @@ import styles from './styles/latest-jobs.module.scss';
 
 interface LatestJobsProps {}
 
-const LatestJobs: React.FC<LatestJobsProps> = (props) => {
+const LatestJobs: React.FC<LatestJobsProps> = (_props) => {
     return (
         <div className={styles.jobs}>
             <header className={styles.jobs_head}>
@@ -13,7 +13,7 @@ const LatestJobs: React.FC<LatestJobsProps> = (props) => {
                 <button className={styles.jobs_all}>View All</button>
             </header>
             <ul className={styles.jobs_list}>
-                {mockup_jobs.slice(0, 2).map((item, id) => (
+                {mockup_jobs.slice(0, 2).map((item, _id) => (
                     <JobSaved
                         title={item.title}
                         bounty={12000}

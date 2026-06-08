@@ -63,7 +63,7 @@ export const Head: React.FC<HeadProps> = ({ data, menu, project_id }) => {
             totalCol: newColumns.length,
         })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 3000, 'Column renamed successfully', '')();
                 setIsEdit({ state: false });
             })
@@ -122,7 +122,7 @@ export const Head: React.FC<HeadProps> = ({ data, menu, project_id }) => {
             totalCol: newColumns.length,
         })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 3000, 'Column removed successfully', '')();
             })
             .catch((err) => {

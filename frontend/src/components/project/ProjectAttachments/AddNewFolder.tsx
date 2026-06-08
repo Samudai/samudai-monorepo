@@ -69,7 +69,7 @@ const AddNewFolder: React.FC<AddNewFolderProps> = ({ onClose, setFolders, projec
             }
             toast('Success', 5000, ' Folder created', '')();
             onClose?.();
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Failed to create folder', '')();
         }
     };

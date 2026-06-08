@@ -358,7 +358,7 @@ const JobCreate: React.FC<JobCreateProps> = ({ onClose }) => {
                             Do you need Captain? <InformationIcon data-icon-info />
                         </h3>
                         <ul className={styles.captain}>
-                            {[true, false].map((value, id) => (
+                            {[true, false].map((value, _id) => (
                                 <li
                                     className={styles.captainItem}
                                     data-active={formData.captain === value}

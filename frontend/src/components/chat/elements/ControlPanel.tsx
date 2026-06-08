@@ -37,7 +37,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 }) => {
     const [createMessage] = useCreateMessageMutation();
     const locaData = localStorage.getItem('signUp');
-    const [load, setLoad] = React.useState(false);
+    const [_load, setLoad] = React.useState(false);
     const member_id = locaData ? JSON.parse(locaData).member_id : '';
     const { id } = useParams();
     const validExtensions = ['pdf', 'doc', 'csv', 'xlsx', 'docx', 'jpg', 'jpeg', 'png'];
@@ -65,7 +65,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 toast('Failure', 5000, "You can't send an empty message", '')();
                 return;
             }
-            const res = await createMessage(payload).unwrap();
+            await createMessage(payload).unwrap();
             mixpanel.track('create_discussion_message', {
                 discussion_id: id!,
                 created_by: member_id,
@@ -132,7 +132,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             if (file?.size > 1e7) return toast('Failure', 5000, 'Upload a smaller file', '')();
             setLoad(true);
             toast('Attention', 5000, 'Uploading file', '')();
-            const res = await uploadFile(file, FileUploadType.DISCUSSIONS, StorageType.SPACES, id!);
+            await uploadFile(file, FileUploadType.DISCUSSIONS, StorageType.SPACES, id!);
             fetch && (await fetch());
             fetch && fetch();
             setLoad(false);

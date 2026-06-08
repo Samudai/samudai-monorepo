@@ -50,7 +50,7 @@ const DiscussionsCreate: React.FC<DiscussionsCreateProps> = ({ onClose, fetchDis
         JSON.parse(localData!) && JSON.parse(localStorage.getItem('signUp')!).member_id;
     const [topic, setTopic] = useInput('');
     const [description, setDescription] = useInput<HTMLTextAreaElement>('');
-    const [showParticipants, setShowParticipants] = useState(false);
+    const [_showParticipants, _setShowParticipants] = useState(false);
     const [participants, setParticipants] = useState<IUser[]>([]);
     const [associated, setAssociated] = useState<DiscussionType>(DiscussionType.Project);
     const [memberData, setMemberData] = useState<any[]>([]);

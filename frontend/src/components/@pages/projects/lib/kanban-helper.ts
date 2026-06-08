@@ -91,9 +91,9 @@ export function getDynamicColumns<T extends RequiredFields>(arr: T[]) {
 
     for (const item of arr) {
         const group = columns.find((g) => g.column.column_id === item.col);
-        // if (!group) {
-        //     columns.push({ column: item.status, items: [] });
-        // }
+        if (!group) {
+            columns.push({ column: item.status, items: [] });
+        }
     }
 
     return columns;

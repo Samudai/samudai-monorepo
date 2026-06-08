@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export const ProfilesItem: React.FC<any> = ({ member_id, profile_picture, name, rating }) => {
+export const ProfilesItem: React.FC<any> = ({ member_id, profile_picture, name }) => {
     return (
         <div className="cb-profiles-slide">
             <div className="cb-profiles-slide__img">

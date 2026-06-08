@@ -41,7 +41,7 @@ export default defineConfig([
             'no-prototype-builtins': 'warn',
             'no-useless-catch': 'warn',
             // empty props interfaces (`interface FooProps {}`) are an idiomatic placeholder here
-            '@typescript-eslint/no-empty-object-type': 'warn',
+            '@typescript-eslint/no-empty-object-type': 'off',
             // allow the codebase's `cond && fn()` / `cond ? a() : b()` side-effect idioms
             '@typescript-eslint/no-unused-expressions': [
                 'error',

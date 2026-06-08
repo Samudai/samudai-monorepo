@@ -103,8 +103,8 @@ export const ProjectsTaskDetails: React.FC<ProjectsTaskDetailsProps> = ({
     const memberId = getMemberId();
     const [updateTask] = useTaskUpdateMutation();
     const [getPrs] = useGetPRsMutation();
-    const [selectedPr, setSelectedPr] = useState<any>({});
-    const [prs, setPrs] = useState<any[]>([]);
+    const [_selectedPr, setSelectedPr] = useState<any>({});
+    const [_prs, setPrs] = useState<any[]>([]);
     const [fetchDepartmentList] = useLazyGetDepartmentsQuery();
 
     const departmentList = useMemo(() => {
@@ -199,7 +199,7 @@ export const ProjectsTaskDetails: React.FC<ProjectsTaskDetailsProps> = ({
 
         updateTask(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 const oldContributors = taskData.assignee_member?.filter(
                     (i) => !payload.task.assignee_member.includes(i)
                 );
@@ -291,7 +291,7 @@ export const ProjectsTaskDetails: React.FC<ProjectsTaskDetailsProps> = ({
                 setEditMode(false);
                 toast('Success', 5000, 'Task updated successfully', '')();
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to update task', '')();
             })
             .finally(() => {

@@ -18,8 +18,7 @@ export const Twitter: React.FC = () => {
     const addTweetPopup = usePopup();
     const [getTweet] = useLazyGetTweetQuery();
     const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
-    // const { data: tweetData } = useGetTweetQuery(activeDAO);
+    useTypedSelector(selectActiveDao);
     const [data, setData] = useState<any[]>([]);
     const [fetchData, loading] = useRequest(async function () {
         const res = await getTweet(daoid!, true).unwrap();
@@ -30,8 +29,7 @@ export const Twitter: React.FC = () => {
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
         AccessEnums.AccessType.MANAGE_DAO
     );
-    const navigate = useNavigate();
-
+    useNavigate();
     useEffect(() => {
         fetchData();
     }, [daoid]);

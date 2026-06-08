@@ -40,7 +40,7 @@ const data = [
     },
 ];
 
-const Clans: React.FC<ClansProps> = (props) => {
+const Clans: React.FC<ClansProps> = (_props) => {
     const [activeChat, setActiveChat] = useState<string | null>(null);
     const [value, setValue] = useInput<HTMLTextAreaElement>('');
     const [search, setSearch] = useState<string>('');

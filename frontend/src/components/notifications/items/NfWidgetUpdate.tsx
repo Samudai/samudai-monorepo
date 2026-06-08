@@ -6,7 +6,7 @@ import styles from '../styles/items/NfWidgetUpdate.module.scss';
 
 interface NfWidgetUpdateProps {}
 
-const NfWidgetUpdate: React.FC<NfWidgetUpdateProps> = (props) => {
+const NfWidgetUpdate: React.FC<NfWidgetUpdateProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colPerson)}>

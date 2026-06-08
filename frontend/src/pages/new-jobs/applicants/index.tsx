@@ -29,7 +29,7 @@ const Applicants: React.FC = () => {
     const [submissions, setSubmissions] = useState<Submission[]>([]);
 
     const { filter, setFilter } = useJobsFilter();
-    const navigate = useNavigate();
+    useNavigate();
     const memberId = getMemberId();
     const { archiveOpportunity, removeOpportunity } = useJobs(true);
     const { archiveBounty, removeBounty } = useBounty(true);

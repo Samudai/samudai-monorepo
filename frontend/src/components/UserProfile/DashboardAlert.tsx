@@ -13,15 +13,14 @@ interface IProps {
     onClose: () => void;
 }
 const DashboardAlert: React.FC<IProps> = ({ onClose }) => {
-    const [load, setLoad] = useState<boolean>(false);
-    const [confetti, setConfetti] = useState<boolean>(false);
-    const [link, setLink, _, clearLink] = useInput('');
-    const [sure, setSure] = useState<boolean>(false);
-    const [show, setShow] = useState<boolean>(true);
-    const [updateSubDomain] = useUpdateSubDomainMutation();
-    const userName = useTypedSelector(selectUserName);
-    const provider = useTypedSelector(selectProvider);
-
+    const [load, _setLoad] = useState<boolean>(false);
+    const [_confetti, _setConfetti] = useState<boolean>(false);
+    const [_link, _setLink, _, _clearLink] = useInput('');
+    const [_sure, _setSure] = useState<boolean>(false);
+    const [_show, _setShow] = useState<boolean>(true);
+    const [_updateSubDomain] = useUpdateSubDomainMutation();
+    useTypedSelector(selectUserName);
+    useTypedSelector(selectProvider);
     return (
         <>
             {

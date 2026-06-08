@@ -40,9 +40,9 @@ enum Visibility {
 const ProjectSettingsManagment: React.FC<ManagmentProps> = ({ project }) => {
     const [visibility, setVisibility] = useState(project?.visibility);
     const [roles, setRoles] = useState<roles[]>([]);
-    const [members, setMembers] = useState<IMember[]>([]);
+    const [_members, _setMembers] = useState<IMember[]>([]);
     const { daoid } = useParams();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const [load, setLoad] = useState(false);
 
     const [formData, setFormData] = useState<FormDataType>({

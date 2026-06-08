@@ -43,7 +43,7 @@ const Popup: React.FC<PopupProps> = ({
             resizeableEle.style.height = `${height}px`;
         };
 
-        const onMouseUpTopResize = (event: any) => {
+        const onMouseUpTopResize = (_event: any) => {
             document.removeEventListener('mousemove', onMouseMoveTopResize);
         };
 

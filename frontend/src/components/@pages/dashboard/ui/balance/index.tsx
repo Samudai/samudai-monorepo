@@ -11,7 +11,7 @@ import Button from 'ui/@buttons/Button/Button';
 import { BalanceSkeleton } from './components';
 import './balance.scss';
 
-export const Balance: React.FC = (props = {}) => {
+export const Balance: React.FC = (_props = {}) => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 

@@ -101,7 +101,7 @@ export const useFavourites = (noFetch?: boolean) => {
         };
         await createFavOpportunity(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is saved successfully', '')();
             })
             .catch(() => {
@@ -112,7 +112,7 @@ export const useFavourites = (noFetch?: boolean) => {
     const DeleteOpportunity = async (jobId: string) => {
         await deleteFavOpportunity({ jobId, memberId })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job unsaved successfully', '')();
             })
             .catch(() => {
@@ -129,7 +129,7 @@ export const useFavourites = (noFetch?: boolean) => {
         };
         await createFavBounty(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Bounty is saved successfully', '')();
             })
             .catch(() => {
@@ -140,7 +140,7 @@ export const useFavourites = (noFetch?: boolean) => {
     const DeleteBounty = async (bountyId: string) => {
         await deleteFavBounty({ bountyId, memberId })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Bounty unsaved successfully', '')();
             })
             .catch(() => {

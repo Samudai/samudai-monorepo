@@ -95,7 +95,7 @@ const ConnectDiscordBot: React.FC<ConnectDiscordBotProps> = ({ onCloseModal, cal
                         minWidth: '350px',
                     }),
                 }}
-                formatOptionLabel={({ value, label }) => (
+                formatOptionLabel={({ label }) => (
                     <p style={{ color: 'white' }} className={styles.selectValue}>
                         {label}
                     </p>

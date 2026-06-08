@@ -8,7 +8,7 @@ import Loader from 'components/Loader/Loader';
 
 interface SettingsProps {}
 
-const Settings: React.FC<SettingsProps> = (props) => {
+const Settings: React.FC<SettingsProps> = (_props) => {
     return (
         <SettingsLayout routes={getSettingsRoutes}>
             <React.Suspense fallback={<Loader />}>

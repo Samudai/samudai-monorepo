@@ -32,9 +32,9 @@ const Header: React.FC<HeaderProps> = memo(({ title, className, hello }) => {
     });
     const [userName, setUserName] = useState<string>('');
     const dispatch = useTypedDispatch();
-    const user = useTypedSelector(selectUserData);
+    useTypedSelector(selectUserData);
     const { daoid } = useParams();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const profilePicture = useTypedSelector(selectProfilePicture);
 
     const AfterFetch = (res: any) => {

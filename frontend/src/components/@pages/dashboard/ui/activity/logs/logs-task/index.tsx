@@ -5,7 +5,7 @@ import styles from './logs-task.module.scss';
 
 interface LogTaskProps {}
 
-export const LogTask: React.FC<LogTaskProps> = (props) => {
+export const LogTask: React.FC<LogTaskProps> = (_props) => {
     return (
         <LogItem icon="/img/icons/activity-doc.svg">
             <LogHead

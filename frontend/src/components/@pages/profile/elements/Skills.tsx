@@ -49,7 +49,7 @@ const Skills: React.FC<IProps> = ({ skills }) => {
                 )}
             </Block.Header>
             <Block.Scrollable className="dashboard-skills__list">
-                {skillsData?.map((skill, idx) => (
+                {skillsData?.map((skill, _idx) => (
                     <UserSkill
                         className="dashboard-skills__list-item"
                         key={skill}

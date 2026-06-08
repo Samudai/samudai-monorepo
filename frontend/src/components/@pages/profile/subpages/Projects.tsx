@@ -64,7 +64,7 @@ const Projects: React.FC = () => {
     const [project1, setProject1] = useState<ProjectResponse | null>(null);
     // const data = useTypedSelector((state) => state.projectsSlice);
     const activeDAO = useTypedSelector(selectActiveDao);
-    const roles = useTypedSelector(selectRoles);
+    useTypedSelector(selectRoles);
     const dispatch = useTypedDispatch();
     const localData = localStorage.getItem('signUp');
     const parsedData = !!localData && JSON.parse(localData);

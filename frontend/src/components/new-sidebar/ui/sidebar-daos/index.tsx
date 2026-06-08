@@ -19,7 +19,7 @@ interface SidebarDaosProps {
 }
 
 export const SidebarDaos: React.FC<SidebarDaosProps> = ({ extended, className, onShrinkMenu }) => {
-    const { DAOList, activeDAO, handleAddDao, handleChangeDao } = useDAO(onShrinkMenu);
+    const { DAOList, activeDAO, handleChangeDao } = useDAO(onShrinkMenu);
     const { ref, isScrollbar } = useScrollbar<HTMLDivElement>();
     const checkDaoActive = (daoId: string) => activeDAO.id === daoId;
     const currTutorialStep = useTypedSelector(tutorialStep);

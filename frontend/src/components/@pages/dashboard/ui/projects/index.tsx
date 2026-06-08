@@ -23,14 +23,14 @@ export const Projects: React.FC = () => {
 
     const isCompleted = ProjectStatuses.Completed === type;
     const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const roles = useTypedSelector(selectRoles);
     const dispatch = useTypedDispatch();
     const navigate = useNavigate();
     const localData = localStorage.getItem('signUp');
     const parsedData = !!localData && JSON.parse(localData);
     const member_id = !!parsedData && parsedData.member_id;
-    const [getProjects, { data, isSuccess, isLoading }] = useGetProjectByMemberIdMutation({
+    const [getProjects, { data, isLoading }] = useGetProjectByMemberIdMutation({
         fixedCacheKey: daoid,
     });
     const items = data?.data

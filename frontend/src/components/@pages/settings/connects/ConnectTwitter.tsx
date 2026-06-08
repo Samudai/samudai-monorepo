@@ -33,9 +33,7 @@ const ConnectTwitter: React.FC<ConnectTwitterProps> = ({
 }) => {
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const providerEth = useTypedSelector(selectProvider);
-    const localData = localStorage.getItem('signUp');
-    const parsedData = !!localData && JSON.parse(localData);
-    const member_id = !!parsedData && parsedData.member_id;
+    localStorage.getItem('signUp');
     const { daoid } = useParams();
     const activeDAO = useTypedSelector(selectActiveDao);
     const activeDaoName = useTypedSelector(selectActiveDaoName);
@@ -73,7 +71,7 @@ const ConnectTwitter: React.FC<ConnectTwitterProps> = ({
             username: userName[0] !== '@' ? userName : userName.slice(1),
         };
         await verifyTwitter(payload)
-            .then((res) => {
+            .then((_res) => {
                 dispatch(
                     changeTwitterData({
                         twitterData: {

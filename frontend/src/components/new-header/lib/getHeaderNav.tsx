@@ -97,11 +97,11 @@ export const getHeaderNav = (): HeaderNavItem[] => [
         name: 'Discovery',
         icon: () => <SearchStatusIcon />,
         sublinks: [
-            { type: 'link', name: 'DAO', getHref: (payload) => `/discovery/dao` },
+            { type: 'link', name: 'DAO', getHref: (_payload) => `/discovery/dao` },
             {
                 type: 'link',
                 name: 'Contributor',
-                getHref: (payload) => `/discovery/contributor`,
+                getHref: (_payload) => `/discovery/contributor`,
             },
         ],
     },

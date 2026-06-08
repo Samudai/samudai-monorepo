@@ -153,7 +153,7 @@ export const Chat: React.FC<ChatProps> = ({ data, account, pgpDecryptedPvtKey, o
                                 isScrollbar && css.chat_messagesListScrollbar
                             )}
                         >
-                            {chats.map((message, id, arr) => (
+                            {chats.map((message, id, _arr) => (
                                 <Message
                                     showAvatar
                                     key={id}

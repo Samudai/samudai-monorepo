@@ -95,7 +95,7 @@ export const useCreateTask = () => {
                 .finally(() => {
                     localStorage.removeItem('_projectid');
                 });
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Failed to add task', '')();
         }
     };

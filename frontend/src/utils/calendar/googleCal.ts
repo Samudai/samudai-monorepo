@@ -76,7 +76,7 @@ export const gcalGetEvents = async (member_id: string, start_date?: string, end_
             return events.data;
         }
         return null;
-    } catch (err) {
+    } catch {
         return Error();
     }
 };

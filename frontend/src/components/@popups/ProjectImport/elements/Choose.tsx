@@ -10,7 +10,7 @@ interface ChooseProps {
     onChangeService: (service: ServiceType) => void;
 }
 
-const Choose: React.FC<ChooseProps> = ({ link, service, onChangeLink, onChangeService }) => {
+const Choose: React.FC<ChooseProps> = ({ service }) => {
     return (
         <div className={styles.root}>
             <Select className={styles.select} closeClickItem closeClickOuside>

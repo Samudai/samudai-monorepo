@@ -42,7 +42,7 @@ const SetupSkills: React.FC<BasicStepProps> = ({ state, setState, setEnableNext 
         setState((prev) => ({ ...prev, department: department }));
     };
 
-    const [text, setText, trimText, cleartext] = useInput<HTMLTextAreaElement>('');
+    const [text, setText, _trimText, cleartext] = useInput<HTMLTextAreaElement>('');
 
     return (
         <React.Fragment>

@@ -20,7 +20,7 @@ interface CreateFormProps {
 const MAX_QUESTIONS_LENGTH = 10;
 
 const CreateForm: React.FC<CreateFormProps> = ({ onClose, editFormClick }) => {
-    const [createForm] = useCreateFormMutation();
+    const [_createForm] = useCreateFormMutation();
     const activeDAO = useTypedSelector(selectActiveDao);
 
     const [data, setData] = useState<GetFormDataItemType[]>([

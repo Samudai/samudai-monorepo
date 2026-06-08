@@ -26,9 +26,7 @@ const SettingsLayout: React.FC<SettingsLayoutProps> = ({
     const location = useLocation();
     const router = routes(daoid, getMemberId());
     const activeDao = useTypedSelector(selectActiveDao);
-    const access = useTypedSelector(selectAccessList)?.[activeDao!]?.includes(
-        AccessEnums.AccessType.MANAGE_DAO
-    );
+    useTypedSelector(selectAccessList)?.[activeDao!]?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const currentRoute = router.find((route) =>
         new RegExp(route.baseUrl, 'i').test(location.pathname)
     );

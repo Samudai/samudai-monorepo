@@ -12,11 +12,8 @@ interface ProjectsFilePreviewProps {
 }
 
 export const ProjectsFilePreview: React.FC<ProjectsFilePreviewProps> = ({ file }) => {
-    const fileName = FileHelper.getOnlyFileName(file.name);
-    const fileExt = FileHelper.getFileExt(file.name);
-    const isImage = fileExt && FileHelper.extensions.image.includes(fileExt);
-    const ipfs = `https://${file.url}.ipfs.w3s.link/`;
-
+    FileHelper.getOnlyFileName(file.name);
+    FileHelper.getFileExt(file.name);
     return (
         <div className={css.file} data-analytics-click="file_item">
             <div className={css.files_icon}>

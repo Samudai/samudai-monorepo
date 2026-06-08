@@ -90,7 +90,7 @@ export const ProjectsMember: React.FC<ProjectsMemberProps> = ({
                                 className={css.members_item}
                                 data-class="item"
                                 style={{ ...style, cursor: 'pointer' }}
-                                onClick={(e) => {
+                                onClick={(_e) => {
                                     window.open(`/${member.member_id}/profile`);
                                 }}
                                 key={member.member_id}
@@ -175,7 +175,7 @@ export const ProjectsMember: React.FC<ProjectsMemberProps> = ({
                                             css.members_dropdown_item,
                                             isActive && css.members_dropdown_itemMember
                                         )}
-                                        onClick={(e) => {
+                                        onClick={(_e) => {
                                             handleMember(member);
                                         }}
                                         key={member.member_id}

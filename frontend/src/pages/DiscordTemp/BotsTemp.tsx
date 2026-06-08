@@ -19,7 +19,7 @@ function BotsTemp() {
 
     useEffect(() => {
         linkDiscord({ daoId: daoId!, guildId: guildId! })
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Discord server connected successfully.', '')();
                 const localData = localStorage.getItem('signUp');
                 const storedData = JSON.parse(localData!);

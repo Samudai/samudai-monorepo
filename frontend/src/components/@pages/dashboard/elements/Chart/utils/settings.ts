@@ -73,7 +73,6 @@ export const chartTabs: ChartTabType[] = [
 ];
 
 export function getLineOptions(tab: ChartTabType): ChartOptions<'line'> | any {
-    const scale = 0;
     return {
         responsive: true,
         interaction: {

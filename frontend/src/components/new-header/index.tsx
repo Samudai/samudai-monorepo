@@ -64,8 +64,8 @@ const Header: React.FC = () => {
     const activeDao = useTypedSelector(selectActiveDao);
     const accessDao = useTypedSelector(selectAccess);
     const accountData = useTypedSelector(selectMember);
-    const daoSubdomainClaimed = useTypedSelector(selectDaoSubdomainClaimed);
-    const memberSubdomainClaimed = useTypedSelector(selectMemberSubdomainClaimed);
+    useTypedSelector(selectDaoSubdomainClaimed);
+    useTypedSelector(selectMemberSubdomainClaimed);
     const dispatch = useTypedDispatch();
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(

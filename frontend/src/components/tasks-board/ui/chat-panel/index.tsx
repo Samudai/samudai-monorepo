@@ -9,7 +9,7 @@ interface ChatPanelProps {
     onSubmit?: (value: string) => void;
 }
 
-export const ChatPanel: React.FC<ChatPanelProps> = ({ onSubmit }) => {
+export const ChatPanel: React.FC<ChatPanelProps> = () => {
     const [inputValue, setInputValue] = useState('');
     return (
         <div className={css.panel}>

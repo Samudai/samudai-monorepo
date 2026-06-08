@@ -68,7 +68,7 @@ interface IChainList {
 
 const AddToken: React.FC<IProps> = ({ onClose, setDropValues }) => {
     const activeDAO = useTypedSelector(selectActiveDao);
-    const [load, setLoad] = useState<boolean>(false);
+    const [load, _setLoad] = useState<boolean>(false);
 
     const [token, setToken] = useState<dep>({} as dep);
     const [lookup, setLookUp] = useState<any>({});

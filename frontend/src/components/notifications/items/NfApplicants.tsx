@@ -7,7 +7,7 @@ import styles from '../styles/items/NfApplicants.module.scss';
 
 interface NfApplicantsProps {}
 
-const NfApplicants: React.FC<NfApplicantsProps> = (props) => {
+const NfApplicants: React.FC<NfApplicantsProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colPerson)}>

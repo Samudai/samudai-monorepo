@@ -9,7 +9,7 @@ import { getMemberId } from 'utils/utils';
 import styles from 'styles/pages/pipeline-form.module.scss';
 
 const Invite = () => {
-    const loadUrl = useTypedSelector(selectUrl);
+    useTypedSelector(selectUrl);
     const navigate = useNavigate();
     const dispatch = useTypedDispatch();
     useEffect(() => {
@@ -36,7 +36,7 @@ const Invite = () => {
                     );
                     navigate(`/${data?.data?.link_id}/projects/${data?.data?.project_id}/board`);
                 }
-            } catch (err) {
+            } catch {
                 toast(
                     'Failure',
                     5000,

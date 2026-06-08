@@ -32,7 +32,7 @@ const Onboarding = () => {
     const goto = useTypedSelector(selectGoTo);
     const { checkAuth } = useLogin();
     const member_type = localStorage.getItem('account_type');
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, _setSearchParams] = useSearchParams();
 
     const billingTier = useTypedSelector(selectBillingTier);
     const billingTerm = useTypedSelector(selectBillingTerm);

@@ -28,7 +28,7 @@ const replaceName = (status: string) => {
 };
 
 const Progress: React.FC<ProgressProps> = ({ statistic, projects }) => {
-    const items = Object.entries(statistic);
+    Object.entries(statistic);
     const dispatch = useTypedDispatch();
     const activeDAO = useTypedSelector(selectActiveDao);
     const pinnedProjects = useTypedSelector(selectPinnedProjects);

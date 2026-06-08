@@ -23,10 +23,10 @@ interface IProps {
 const ClaimSubdomain: React.FC<IProps> = ({ onClose, setNewDomain, count }) => {
     const [load, setLoad] = useState<boolean>(false);
     const [confetti, setConfetti] = useState<boolean>(false);
-    const [link, setLink, _, clearLink] = useInput('');
+    const [link, setLink, _, _clearLink] = useInput('');
     const [sure, setSure] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(true);
-    const [updateSubDomain] = useUpdateSubDomainMutation();
+    const [_updateSubDomain] = useUpdateSubDomainMutation();
     const provider = useTypedSelector(selectProvider);
     const handleClaim = async () => {
         try {

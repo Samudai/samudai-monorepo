@@ -23,7 +23,7 @@ interface SelectMembersProps {
 //   username: string;
 // }
 
-const SelectMembers: React.FC<SelectMembersProps> = ({ roles, setFormData, id, formData }) => {
+const SelectMembers: React.FC<SelectMembersProps> = ({ setFormData, id, formData }) => {
     const [defaultOptions, setDefaultOptions] = useState<IMember[]>([]);
     const [search, setSearch] = useState('');
     const activeDAO = useTypedSelector(selectActiveDao);

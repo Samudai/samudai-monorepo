@@ -6,9 +6,9 @@ import Loader from 'components/Loader/Loader';
 import styles from 'styles/pages/pipeline-form.module.scss';
 
 const Invite = () => {
-    const loadUrl = useTypedSelector(selectUrl);
-    const navigate = useNavigate();
-    const dispatch = useTypedDispatch();
+    useTypedSelector(selectUrl);
+    useNavigate();
+    useTypedDispatch();
     const { inviteid } = useParams();
     useEffect(() => {
         localStorage.setItem('inviteid', inviteid || '');

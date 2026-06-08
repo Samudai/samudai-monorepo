@@ -27,7 +27,7 @@ enum ProjectsStatus {
     COMPLETED = 'completed',
 }
 
-const ClansNew: React.FC<ClansNewProps> = (props) => {
+const ClansNew: React.FC<ClansNewProps> = (_props) => {
     const [inputVal, setInputVal] = useInput('');
     const [projectsActive, setProjectsActive] = useState<ProjectsStatus>(ProjectsStatus.ACTIVE);
 

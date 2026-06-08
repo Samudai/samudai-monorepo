@@ -9,7 +9,7 @@ import { useLogout, usePrivy } from '@privy-io/react-auth';
 import { fetchUser } from 'store/features/user/async';
 
 function BillingTemp() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, _setSearchParams] = useSearchParams();
     const dispatch = useTypedDispatch();
     const navigate = useNavigate();
 

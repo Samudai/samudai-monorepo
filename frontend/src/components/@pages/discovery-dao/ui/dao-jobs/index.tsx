@@ -15,7 +15,7 @@ import clsx from 'clsx';
 
 interface DaoJobsProps {}
 
-export const DaoJobs: React.FC<DaoJobsProps> = (props) => {
+export const DaoJobs: React.FC<DaoJobsProps> = (_props) => {
     const { daoData, jobsList, jobsLoading, isMember } = useFetchDao();
     const navigate = useNavigate();
     const jobsModal = usePopup();

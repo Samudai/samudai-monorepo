@@ -17,7 +17,7 @@ interface CreateFormItemProps {
     formType: string;
 }
 
-const ViewFormItem: React.FC<CreateFormItemProps> = ({ data, isFirst, id, formType }) => {
+const ViewFormItem: React.FC<CreateFormItemProps> = ({ data, id }) => {
     const [answerType, setAnswerType] = useState();
     useEffect(() => {
         setAnswerType(data?.type || FormEnums.QuestionType.TEXT);

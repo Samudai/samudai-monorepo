@@ -141,10 +141,10 @@ const DaoSocialsPopup: React.FC<PorfolioLinksProps> = ({
             //     return toast('Failure', 50000, 'Check the socials links', '')();
             //   }
             // });
-            const res = await updateSocial(payload).unwrap();
+            await updateSocial(payload).unwrap();
             toast('Success', 5000, 'Socials updated', '')();
             onClose?.();
-        } catch (err: any) {
+        } catch {
             toast('Failure', 5000, 'Save Failed', '')();
         }
     };

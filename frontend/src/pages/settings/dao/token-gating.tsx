@@ -52,7 +52,7 @@ const TokenGating: React.FC<TokenGatingProps> = () => {
     const donePopup = usePopup();
     const deletePopup = usePopup();
     const [checkTokenGating] = useLazyGetTokenGatingQuery();
-    const [editable, setEditable] = useState(true);
+    const [_editable, setEditable] = useState(true);
     const [chain, setChain] = useState<string>('');
     const [contractAddress, setContractAddress] = useState<string>('');
     const [value, setValue] = useState<string>('');

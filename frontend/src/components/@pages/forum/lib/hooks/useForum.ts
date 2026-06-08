@@ -23,7 +23,7 @@ export const useForum = () => {
     const [items, setItems] = useState<DiscussionResponse[]>([]);
     const [items1, setItems1] = useState<DiscussionResponse[]>([]);
     const [loaded, setLoaded] = useState(false);
-    const [daoName, setDaoName] = useState('Dao');
+    const [_daoName, setDaoName] = useState('Dao');
 
     const dispatch = useTypedDispatch();
 

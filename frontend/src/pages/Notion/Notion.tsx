@@ -18,7 +18,7 @@ function Notion() {
     useEffect(() => {
         const fun = async () => {
             try {
-                const res = await notionAuth({
+                await notionAuth({
                     code: code || '',
                     member_id: member_id,
                     redirectUri: window.location.origin + '/notion',

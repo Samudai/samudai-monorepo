@@ -55,13 +55,13 @@ const Jobs: React.FC = () => {
         bounty: { min: 1, max: 2 },
     });
     const [savedJobs, setSavedJobs] = useState<OpportunityResponse[]>([]);
-    const [jobsList, setJobsList] = useState<OpportunityResponse[]>([] as OpportunityResponse[]);
-    const [bountyList, setBountyList] = useState<OpportunityResponse[]>(
+    const [jobsList, _setJobsList] = useState<OpportunityResponse[]>([] as OpportunityResponse[]);
+    const [bountyList, _setBountyList] = useState<OpportunityResponse[]>(
         [] as OpportunityResponse[]
     );
     const navigate = useNavigate();
 
-    const member_id: string = getMemberId();
+    getMemberId();
     const daoid: string = useTypedSelector(selectActiveDao);
     const [getPublicJobs] = useLazyGetPublicOpportunitiesQuery();
     const [getOpenBounties] = useLazyGetOpenBountiesQuery();
@@ -74,7 +74,7 @@ const Jobs: React.FC = () => {
 
     useEffect(() => {
         const fetchJobs = async () => {
-            const res = await getPublicJobs(undefined, true).unwrap();
+            await getPublicJobs(undefined, true).unwrap();
             const res2 = await getOpenBounties(undefined, true).unwrap();
             // setJobsList(res.data.opportunities || []);
             const bounties = res2?.data?.bounty?.map((b) => {

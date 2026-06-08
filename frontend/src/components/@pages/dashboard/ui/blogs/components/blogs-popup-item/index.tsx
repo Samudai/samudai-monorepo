@@ -25,7 +25,7 @@ export const BlogsPopupItem: React.FC<BlogsPopupItemProps> = ({
             setTimeout(() => {
                 fetchData();
             }, 1000);
-        } catch (e) {
+        } catch {
             toast('Failure', 5000, ' Blog not deleted', '')();
         }
     };

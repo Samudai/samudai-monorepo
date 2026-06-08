@@ -12,7 +12,7 @@ import styles from './components/notifications-request-skeleton/notifications-re
 import './notifications.scss';
 
 export const NotificationsCenter: React.FC = (props = {}) => {
-    const [requests, setRequests] = useState<any[]>([]);
+    const [_requests, setRequests] = useState<any[]>([]);
     const [transactions, setTransactions] = useState<any[]>([]);
 
     const [fetchRequests, loadingRequests] = useRequest(async () => {

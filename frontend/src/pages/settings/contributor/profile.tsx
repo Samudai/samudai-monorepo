@@ -67,7 +67,7 @@ const getDefaultLinks = () => ({
 const Profile: React.FC<ProfileProps> = () => {
     const memberId = getMemberId();
     const [isValid, setIsValid] = useState<boolean>(true);
-    const [load, setLoad] = useState<boolean>(true);
+    const [_load, setLoad] = useState<boolean>(true);
     const [defaultUserName, setDefaultUserName] = useState<string>('');
     const [picUrl, setPicUrl] = useState<string>('');
     const [data, setData] = useState<MemberResponse>();
@@ -229,8 +229,7 @@ const Profile: React.FC<ProfileProps> = () => {
         }
         if (!formData.name.trim()) return toast('Failure', 5000, 'Name is required', '')();
         if (formData.name.trim()) {
-            const regex = new RegExp('^(?=.{2,20}$)[a-zA-Z]+(?: [a-zA-Z]+)?$');
-            // if (!regex.test(formData.name.trim().toLowerCase()))
+            new RegExp('^(?=.{2,20}$)[a-zA-Z]+(?: [a-zA-Z]+)?$'); // if (!regex.test(formData.name.trim().toLowerCase()))
             //Will allow all unicode values
             if (!formData.name.trim().normalize)
                 return toast('Failure', 5000, 'Please Enter a Valid Name', '')();
@@ -268,7 +267,7 @@ const Profile: React.FC<ProfileProps> = () => {
                             })
                         );
                     })
-                    .catch((err) => {
+                    .catch((_err) => {
                         setLoad(true);
                         toast('Failure', 5000, 'Profile Picture update failed', '')();
                     });
@@ -334,7 +333,7 @@ const Profile: React.FC<ProfileProps> = () => {
                 ],
             };
 
-            const res = await memberUpdate(payload).unwrap();
+            await memberUpdate(payload).unwrap();
             setLoad(true);
             const member = await getMemberDetails({
                 member: { type: 'member_id', value: memberId },

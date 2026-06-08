@@ -13,7 +13,6 @@ import { useCallback, useEffect } from 'react';
 import { changeTutorialStep } from 'store/features/common/slice';
 import usePopup from 'hooks/usePopup';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
-import { useGetEmailQuery } from 'store/services/userProfile/userProfile';
 import Invite from 'components/UserProfile/InvitePopUp';
 import { useProfile } from 'components/@pages/new-profile';
 import SharePopUp from 'components/UserProfile/InviteMembersPopUp';
@@ -21,17 +20,15 @@ import SharePopUp from 'components/UserProfile/InviteMembersPopUp';
 const Prompt = () => {
     const memberType = localStorage.getItem('account_type');
     const dispatch = useTypedDispatch();
-    const emailPopup = usePopup();
+    usePopup();
     const contributorInviteModal = usePopup();
     const daoInviteModal = usePopup();
-    const memberId = getMemberId();
-
+    getMemberId();
     const { userData } = useProfile();
     const trial_dashboard = useTypedSelector(selectTrialDashboard);
     const [completeTrial] = useCompleteTrialDashboardMutation();
-    const { data } = useGetEmailQuery(memberId, { skip: !memberId });
 
-    const handleInviteModal = useCallback(() => {
+    useCallback(() => {
         if (memberType === 'contributor') {
             contributorInviteModal.open();
         } else {

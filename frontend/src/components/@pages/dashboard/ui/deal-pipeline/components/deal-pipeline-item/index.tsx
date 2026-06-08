@@ -24,7 +24,7 @@ interface DealPipelineItemProps {
 }
 
 export const DealPipelineItem: React.FC<DealPipelineItemProps> = ({ data, onEdit, onDelete }) => {
-    const viewPopUp = usePopup();
+    usePopup();
     const sharePopup = usePopup();
     const { daoid } = useParams();
     const navigate = useNavigate();

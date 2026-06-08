@@ -40,7 +40,7 @@ const getInitial = (name: string) => {
     return initials.slice(0, 2).toUpperCase();
 };
 
-const UserStat: React.FC<UserStatProps> = (props) => {
+const UserStat: React.FC<UserStatProps> = (_props) => {
     const [getDao] = useLazyGetDaoQuery();
     const { memberid } = useParams();
     const navigate = useNavigate();

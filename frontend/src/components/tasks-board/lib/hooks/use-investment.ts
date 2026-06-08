@@ -58,7 +58,7 @@ export const useInvestment = () => {
                 updated_by: member_id,
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateInvestmentItem({
                             project_id: project.project_id!,
@@ -160,7 +160,7 @@ export const useInvestment = () => {
                 },
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateInvestmentItem({
                             project_id: project.project_id!,

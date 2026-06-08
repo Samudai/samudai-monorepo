@@ -69,7 +69,7 @@ const UpdateForm: React.FC<CreateFormProps> = ({
     const [createForm] = useCreateFormMutation();
     const [createResponse] = useCreateResponseMutation();
     const activeDAO = useTypedSelector(selectActiveDao);
-    const [getForm] = useLazyGetFormQuery();
+    const [_getForm] = useLazyGetFormQuery();
 
     const formsRemaining = useMemo(() => {
         if (!usedLimitCount || !currSubscription) return 0;

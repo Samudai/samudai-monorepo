@@ -80,7 +80,7 @@ const Profile: React.FC = () => {
     const [uploadProfilePic] = useUpdateDaoProfilePicMutation();
     const { data: allTags } = useGetDaoTagsQuery();
     const navigate = useNavigate();
-    const currentDaoId = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const currDaoProgress = useTypedSelector(selectDaoProgress);
     const dispatch = useTypedDispatch();
 

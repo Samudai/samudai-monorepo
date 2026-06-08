@@ -28,9 +28,9 @@ import { addCurrSubscription, updateCurrBillingDao } from 'store/features/billin
 
 const DaoHead: React.FC = () => {
     const addWidget = usePopup();
-    const disscussion = usePopup();
+    usePopup();
     const { daoid } = useParams();
-    const { id, is_private } = useTypedSelector(selectDaoViewActive);
+    const { id } = useTypedSelector(selectDaoViewActive);
     const activeDaoName = useTypedSelector(selectActiveDaoName);
     const [daoName, setDaoName] = useState('Dao');
     const dispatch = useTypedDispatch();
@@ -41,7 +41,7 @@ const DaoHead: React.FC = () => {
     const navigate = useNavigate();
 
     const [daoData] = useLazyGetDaoByDaoIdQuery();
-    const [loaded, setLoaded] = useState(false);
+    const [_loaded, _setLoaded] = useState(false);
     const onTogglePrivate = () => {
         dispatch(togglePrivateView(id));
     };

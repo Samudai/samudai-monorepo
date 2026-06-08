@@ -30,7 +30,7 @@ const useFetchDao = () => {
         return false;
     }, [id, daoList]);
 
-    const isAdmin = useMemo(() => {
+    useMemo(() => {
         if (id && accessList[id]) return true;
         return false;
     }, [id, accessList]);

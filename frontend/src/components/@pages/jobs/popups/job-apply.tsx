@@ -60,7 +60,7 @@ const JobApply: React.FC<JobApplyProps> = ({ data, isSaved, onSubmit, onSave }) 
                 }
             };
             fn();
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Error while applying for job', 'Something went wrong')();
             onSubmit();
         }

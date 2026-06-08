@@ -10,8 +10,8 @@ import { getMemberId } from 'utils/utils';
 export const useFetchEvent = () => {
     const [data, setData] = useState<DiscordEvent[]>([]);
     const [getDiscordEvents] = useLazyGetMemberEventsQuery();
-    const { memberid, daoid } = useParams();
-    const [gData, setGData] = useState<any[]>([]);
+    const { memberid } = useParams();
+    const [_gData, setGData] = useState<any[]>([]);
     const [finalEvents, setFinalEvents] = useState<any>([]);
     const [googleData, setGoogleData] = useState<any[]>([]);
 
@@ -20,7 +20,7 @@ export const useFetchEvent = () => {
         setData(response?.data || []);
     });
 
-    const [fetchGData, loading1] = useRequest(async function () {
+    const [fetchGData, _loading1] = useRequest(async function () {
         const data = await gcalGetEvents(
             memberid!,
             new Date(new Date().setDate(new Date().getDate() - 30)).toISOString(),

@@ -5,7 +5,7 @@ import styles from '../styles/items/NfProposal.module.scss';
 
 interface NfProposalProps {}
 
-const NfProposal: React.FC<NfProposalProps> = (props) => {
+const NfProposal: React.FC<NfProposalProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colTitle)}>

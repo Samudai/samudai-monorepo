@@ -21,7 +21,7 @@ interface ClaimNFTModalProps {
 }
 
 export const ClaimNFTModal: React.FC<ClaimNFTModalProps> = ({ onClose }) => {
-    const provider = useTypedSelector(selectProvider);
+    useTypedSelector(selectProvider);
     const memberId = getMemberId();
     const [confetti, setConfetti] = React.useState<boolean>(false);
     const currContributorProgress = useTypedSelector(selectContributorProgress);

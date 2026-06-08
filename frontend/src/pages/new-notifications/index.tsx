@@ -20,7 +20,7 @@ const NewNotifications = () => {
     const [tab, setTab] = useState('All');
     const [notifications, setNotifications] = useState<WebNotification[]>([]);
     const [updateConnection] = useUpdateConnectionMutation();
-    const [acceptConnectionReq, setAcceptConnectionReq] = useState(true);
+    const [_acceptConnectionReq, setAcceptConnectionReq] = useState(true);
     const [getNotifications] = useLazyFetchNotificationsQuery();
     const [readNotification] = useReadNotificationsMutation();
     const navigate = useNavigate();
@@ -97,7 +97,7 @@ const NewNotifications = () => {
                     });
                 }
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, `Failed to ${type.slice(0, -2)} request`, '')();
             });
     };

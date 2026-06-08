@@ -50,7 +50,7 @@ const UpdateFormItem: React.FC<CreateFormItemProps> = ({
 }) => {
     const [answerType, setAnswerType] = useState(data.type || FormEnums.QuestionType.TEXT);
     const [fileName, setFileName] = useState<string>('');
-    const [load, setLoad] = useState<boolean>(false);
+    const [_load, setLoad] = useState<boolean>(false);
     const [showDescription, setShowDescription] = useState(false);
 
     useEffect(() => {
@@ -299,7 +299,7 @@ const UpdateFormItem: React.FC<CreateFormItemProps> = ({
                             )}
                             {answerType === FormEnums.QuestionType.MULTISELECT && (
                                 <Checkbox
-                                    onClick={isResponse ? (e) => handleSelect(option) : () => {}}
+                                    onClick={isResponse ? (_e) => handleSelect(option) : () => {}}
                                     className={styles.selectCheckbox}
                                     active={option.selected}
                                 />

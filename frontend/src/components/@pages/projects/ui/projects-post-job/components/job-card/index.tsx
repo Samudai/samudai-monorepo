@@ -56,7 +56,7 @@ export const JobCard: React.FC<JobCardProps> = ({ taskData, data, onChange, edit
     const [localData, setLocalData] = useState<ITaskJob>(CloneObject(data));
     const [countContributors, setCountContributors] = useState<number>(1);
     const [countWinners, setCountWinners] = useState<number>(1);
-    const [payoutIndex, setPayoutIndex] = useState(0);
+    const [_payoutIndex, setPayoutIndex] = useState(0);
     const [isEdit, setIdEdit] = useState(edit);
     const positions = getPositions();
 
@@ -227,7 +227,7 @@ export const JobCard: React.FC<JobCardProps> = ({ taskData, data, onChange, edit
                             });
                         }
                     });
-            } catch (err: any) {
+            } catch {
                 toast('Failure', 3000, 'Failed to create job', '')();
             }
         } else if (localData.type === 'Bounties') {
@@ -256,7 +256,7 @@ export const JobCard: React.FC<JobCardProps> = ({ taskData, data, onChange, edit
                 status: JobsEnums.JobStatus.OPEN,
                 tags: taskData.tags!,
                 skills: localData.skills,
-                payout: localData.bountyPayouts.map((payout, index) => {
+                payout: localData.bountyPayouts.map((payout, _index) => {
                     return {
                         link_type: 'task',
                         link_id: taskData.task_id!,
@@ -302,7 +302,7 @@ export const JobCard: React.FC<JobCardProps> = ({ taskData, data, onChange, edit
                             });
                         }
                     });
-            } catch (err: any) {
+            } catch {
                 toast('Failure', 3000, 'Failed to create job', '')();
             }
         }
@@ -457,7 +457,7 @@ export const JobCard: React.FC<JobCardProps> = ({ taskData, data, onChange, edit
                                     <h4 className={css.item_subtitle}>Payout</h4>
                                     {localData.type === 'Task' && (
                                         <>
-                                            {localData.payouts?.map((p, key) => (
+                                            {localData.payouts?.map((p, _key) => (
                                                 <div className={css.payout_multipleItem} key={p.id}>
                                                     <PayoutMultiple
                                                         countApplicants={countContributors}

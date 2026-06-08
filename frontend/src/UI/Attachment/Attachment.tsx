@@ -10,7 +10,7 @@ interface AttachmentProps {
 }
 
 const Attachment: React.FC<AttachmentProps> = ({ name, url, className }) => {
-    const fileName = FileHelper.getOnlyFileName(name);
+    FileHelper.getOnlyFileName(name);
     const fileExt = FileHelper.getFileExt(name);
     const isImage = fileExt && FileHelper.extensions.image.includes(fileExt);
     const ipfs = `https://${url}.ipfs.w3s.link/`;

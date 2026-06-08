@@ -24,7 +24,7 @@ export const Proposals: React.FC = () => {
     const detailsPopup = usePopup();
     const [getDao] = useLazyGetDaoByDaoIdQuery();
     const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const providerEth = useTypedSelector(selectProvider);
     const [selectedProposal, setSelectedProposal] = useState<any>(null);
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
@@ -32,14 +32,12 @@ export const Proposals: React.FC = () => {
     );
 
     const [data, setData] = useState<any[]>([]);
-    const [loading1, setLoading1] = useState(true);
+    const [_loading1, setLoading1] = useState(true);
     const [isConnected, setIsConnected] = useState(false);
 
     const fetchData = async function () {
         setLoading1(true);
-        const chainId: number = await providerEth!
-            .getNetwork()
-            .then((network) => Number(network.chainId));
+        await providerEth!.getNetwork().then((network) => Number(network.chainId));
 
         // const localData = localStorage.getItem('signUp');
         // const parsedData = !!localData && JSON.parse(localData);

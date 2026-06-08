@@ -18,7 +18,7 @@ interface TeamSidebarProps {
 const TeamSidebar: React.FC<TeamSidebarProps> = ({ active, changeActiveUser, users }) => {
     const [search, setSearch] = useInput('');
     const [data, setdata] = useState<TeamMemberData[]>(users);
-    const [showUsers, setShowUsers] = useState(true);
+    const [showUsers, _setShowUsers] = useState(true);
     const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
     const { data: contributorSkillList } = useGetContributorSkillsQuery();

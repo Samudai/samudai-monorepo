@@ -118,7 +118,7 @@ export const useFetchProfileDaos = () => {
                 //         connections: [...connections?.connections || [], memberRequests.find(member => member.member_id === id)]
                 //     } }));
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to accept request', '')();
             });
     };

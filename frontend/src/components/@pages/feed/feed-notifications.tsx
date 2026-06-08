@@ -6,7 +6,7 @@ import styles from './styles/feed-notifications.module.scss';
 
 interface FeedNotificationsProps {}
 
-const FeedNotifications: React.FC<FeedNotificationsProps> = (props) => {
+const FeedNotifications: React.FC<FeedNotificationsProps> = (_props) => {
     return (
         <div className={styles.notf}>
             <div className={styles.notf_item}>

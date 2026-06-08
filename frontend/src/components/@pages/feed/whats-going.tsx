@@ -8,12 +8,12 @@ import styles from './styles/whats-going.module.scss';
 
 interface WhatsGoingProps {}
 
-const WhatsGoing: React.FC<WhatsGoingProps> = (props) => {
+const WhatsGoing: React.FC<WhatsGoingProps> = (_props) => {
     const [data, setData] = useState<any[]>([]);
     const { daoid } = useParams();
     const [getTweet] = useLazyGetTweetQuery();
 
-    const [fetchData, loading] = useRequest(async function () {
+    const [fetchData, _loading] = useRequest(async function () {
         const res = await getTweet(daoid!, true).unwrap();
         setData(res?.data?.data || []);
     });

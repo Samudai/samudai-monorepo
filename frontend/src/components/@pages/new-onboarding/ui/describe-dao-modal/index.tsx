@@ -8,7 +8,7 @@ import css from './describe-dao-modal.module.scss';
 
 interface DescribeDaoModalProps {}
 
-export const DescribeDaoModal: React.FC<DescribeDaoModalProps> = (props) => {
+export const DescribeDaoModal: React.FC<DescribeDaoModalProps> = (_props) => {
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState<string[]>([]);
 

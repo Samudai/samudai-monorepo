@@ -32,8 +32,8 @@ interface connectedList {
     };
 }
 
-const ConnectedApps: React.FC<ConnectedAppsProps> = (props) => {
-    const [ceramic, setCeramic] = useState('');
+const ConnectedApps: React.FC<ConnectedAppsProps> = (_props) => {
+    const [_ceramic, _setCeramic] = useState('');
     const [getConnectedApps] = useLazyGetConnectedContributorQuery();
     const [notionConnected, setNotionConnected] = useState(false);
     const [discordValue, setDiscordValue] = useState('');

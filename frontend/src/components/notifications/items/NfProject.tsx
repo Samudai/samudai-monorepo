@@ -10,7 +10,7 @@ import styles from '../styles/items/NfProject.module.scss';
 
 interface NfProjectProps {}
 
-const NfProject: React.FC<NfProjectProps> = (props) => {
+const NfProject: React.FC<NfProjectProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colTitle)}>

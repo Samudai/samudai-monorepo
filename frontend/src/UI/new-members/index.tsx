@@ -16,7 +16,7 @@ const Members: React.FC<MembersProps> = ({ maxShow, members, className, size = 3
 
     const style = { width: `${size}px`, height: `${size}px` };
 
-    const renderMembers = useMemo(
+    useMemo(
         () =>
             [...members].concat(
                 members.length < 4 ? Array.from({ length: 4 - members.length }) : []

@@ -4,7 +4,7 @@ import css from './events-skeleton.module.scss';
 
 interface EventsSkeletonProps {}
 
-export const EventsSkeleton: React.FC<EventsSkeletonProps> = (props) => {
+export const EventsSkeleton: React.FC<EventsSkeletonProps> = (_props) => {
     return (
         <div className={css.root}>
             <Skeleton

@@ -1,6 +1,6 @@
 {
-  "name": "samudai",
-  "version": "0.1.0",
+  "name": "samudai-dashboard",
+  "version": "1.0.0",
   "engines": {
     "node": ">=22"
   },
@@ -92,12 +92,6 @@
     "build:development": "env-cmd -f ./.development.env vite build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f ./.production.env vite build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "overrides": {
     "@emoji-mart/react": {
       "react": "$react"
@@ -105,7 +99,7 @@
     "@pushprotocol/socket": {
       "ethers": "$ethers"
     },
-    "typescript": "$typescript",
+    "typescript": "^6.0.3",
     "lit": "3.3.3",
     "lit-html": "3.3.3",
     "lit-element": "4.2.2",

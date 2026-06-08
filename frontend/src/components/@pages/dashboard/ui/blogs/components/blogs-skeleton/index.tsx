@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from 'components/Skeleton/Skeleton';
 import styles from './blogs-skeleton.module.scss';
 
-export const BlogsSkeleton: React.FC = (props) => (
+export const BlogsSkeleton: React.FC = (_props) => (
     <React.Fragment>
         {Array.from({ length: 3 }).map((_, id) => (
             <li className="blogs-item" key={id}>

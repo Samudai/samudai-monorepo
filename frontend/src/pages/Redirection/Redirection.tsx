@@ -5,10 +5,9 @@ import { useLazyGetSubdomainQuery } from 'store/services/userProfile/userProfile
 import { useEffect } from 'react';
 
 function Redirection() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, _setSearchParams] = useSearchParams();
     const [getSubdomain] = useLazyGetSubdomainQuery();
-    const navigate = useNavigate();
-
+    useNavigate();
     const member_id = searchParams.get('id');
     const type = searchParams.get('type');
     const value = searchParams.get('value');

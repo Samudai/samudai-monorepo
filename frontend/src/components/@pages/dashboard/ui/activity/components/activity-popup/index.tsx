@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { ActivityLogs } from '../activity-logs';
 import clsx from 'clsx';
 import { selectActiveDao, selectRoles } from 'store/features/common/slice';
@@ -42,10 +41,9 @@ export const ActivityPopup: React.FC<ActivityPopupProps> = ({
     const [projects, setProjects] = useState<any[]>([]);
     const [active, setActive] = useState<any | null>(null);
     const [load, setLoad] = useState(false);
-    const [getProjects, { data, isSuccess }] = useGetProjectByMemberIdMutation();
+    const [_getProjects] = useGetProjectByMemberIdMutation();
     const [activity, setActivity] = useState<any>();
     const [getPActivity] = useLazyGetProjectActivityQuery();
-    const { daoid } = useParams();
     const activeDAO = useTypedSelector(selectActiveDao);
     const roles = useTypedSelector(selectRoles);
     const localData = localStorage.getItem('signUp');

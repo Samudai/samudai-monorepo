@@ -20,8 +20,7 @@ const Tabs = {
 
 const Messages: React.FC = () => {
     const { activeTab, navigate } = useTabs(Tabs);
-    const access = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
-
+    useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const dispatch = useTypedDispatch();
 
     return (

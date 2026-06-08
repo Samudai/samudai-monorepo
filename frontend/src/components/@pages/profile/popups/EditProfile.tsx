@@ -6,7 +6,7 @@ interface EditProfileProps {
     onClose?: () => void;
 }
 
-const EditProfile: React.FC<EditProfileProps> = (props) => {
+const EditProfile: React.FC<EditProfileProps> = (_props) => {
     return <div>EditProfile Component</div>;
 };
 

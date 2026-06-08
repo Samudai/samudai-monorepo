@@ -13,7 +13,7 @@ import { DiscussionsItem, DiscussionsSkeleton } from './components';
 import './discussions.scss';
 
 export const Discussions: React.FC = () => {
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const [discussions] = useLazyGetDiscussionsQuery();
     const { daoid } = useParams();
     const navigate = useNavigate();

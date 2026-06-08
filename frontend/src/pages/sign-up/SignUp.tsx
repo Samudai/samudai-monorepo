@@ -26,7 +26,7 @@ const SignUp: React.FC = () => {
     const [state, setState] = useState<SignUpState>(initialState);
     const [modal, setModal] = useState<SignUpModals>(SignUpModals.ConnectWallet);
     const dispatch = useTypedDispatch();
-    const navigate = useNavigate();
+    useNavigate();
     const { checkAuth } = useLogin();
 
     const getActiveModal = (current: SignUpModals, element: JSX.Element) => {

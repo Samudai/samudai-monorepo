@@ -5,7 +5,7 @@ import styles from '../styles/items/NfJob.module.scss';
 
 interface NfJobProps {}
 
-const NfJob: React.FC<NfJobProps> = (props) => {
+const NfJob: React.FC<NfJobProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colTitle)}>

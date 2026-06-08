@@ -8,7 +8,7 @@ interface ProjectInfoProps {
     project: ProjectResponse;
 }
 
-const ProjectInfo: React.FC<ProjectInfoProps> = ({ project }) => {
+const ProjectInfo: React.FC<ProjectInfoProps> = () => {
     const projectInvite = usePopup();
     // const contributors = ProjectHelper.getContributorsAll(project);
     // const { progress, hours, status } = ProjectHelper.getStatistics(project);

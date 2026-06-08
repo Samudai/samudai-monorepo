@@ -35,7 +35,7 @@ interface IMember {
 }
 
 export const useFetchDiscussion = (postId?: string, noFetch?: boolean) => {
-    const [leads, setLeads] = useState<IMember[]>([]);
+    const [leads, _setLeads] = useState<IMember[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [fetchMessages] = useLazyGetMessagesQuery();
     const [addParticipant] = useAddParticipantMutation();

@@ -8,7 +8,7 @@ import { getMemberId } from 'utils/utils';
 
 interface ReviewsProps {}
 
-const Reviews: React.FC<ReviewsProps> = (props) => {
+const Reviews: React.FC<ReviewsProps> = (_props) => {
     const [getNotifications] = useLazyFetchNotificationsQuery();
     const [data, setData] = useState<WebNotification[]>([] as WebNotification[]);
 
@@ -19,7 +19,7 @@ const Reviews: React.FC<ReviewsProps> = (props) => {
 
                 setData([...(res?.data || [])]?.reverse() || ([] as WebNotification[]));
                 console.log('payment:', res?.data);
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Unable to fetch reviews notifications', 'Please retry')();
             }
         };

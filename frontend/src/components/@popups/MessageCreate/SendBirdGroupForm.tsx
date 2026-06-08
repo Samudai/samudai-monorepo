@@ -58,7 +58,7 @@ const initialValues: ChatCreateGroupType = {
 };
 
 const SendBirdGroupForm: React.FC<SendBirdGroupFormProps> = ({ currChannel, onClose }) => {
-    const [groupType, setGroupType] = useState<GroupTypeEnum>(GroupTypeEnum.PUBLIC);
+    const [groupType, _setGroupType] = useState<GroupTypeEnum>(GroupTypeEnum.PUBLIC);
     const [memberNames, setMemberNames] = useState<string[]>([]);
     const [members, setMembers] = useState<
         Array<{
@@ -100,14 +100,7 @@ const SendBirdGroupForm: React.FC<SendBirdGroupFormProps> = ({ currChannel, onCl
         }
     }, [currMode, activeChannel]);
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        setValue,
-        watch,
-        formState: { errors },
-    } = useForm<ChatCreateGroupType>({
+    const { register, handleSubmit, reset, setValue, watch } = useForm<ChatCreateGroupType>({
         mode: 'all',
         defaultValues: initialValues,
         // @ts-ignore -- yupResolver type mismatch with react-hook-form generics

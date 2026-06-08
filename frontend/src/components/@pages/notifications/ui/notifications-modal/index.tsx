@@ -148,7 +148,7 @@ export const NotificationsModal: React.FC<NotificationsModalProps> = ({ openLink
                     });
                 }
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, `Failed to ${type.slice(0, -2)} request`, '')();
             });
     };

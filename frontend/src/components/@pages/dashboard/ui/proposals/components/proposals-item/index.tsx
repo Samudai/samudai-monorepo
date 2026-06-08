@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import Button from 'ui/@buttons/Button/Button';
 import ArrowLeftIcon from 'ui/SVG/ArrowLeftIcon';
 
-export const ProposalsItem = ({ id, title, choices, scores, state }: any) => {
-    const totalVotes = scores.reduce((acc: number, val: number) => acc + val, 0);
+export const ProposalsItem = ({ id, title, scores, state }: any) => {
+    scores.reduce((acc: number, val: number) => acc + val, 0);
     return (
         <li className="proposals-item" key={id}>
             <div

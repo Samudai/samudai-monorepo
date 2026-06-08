@@ -23,29 +23,29 @@ import { ConfirmationModal } from './popup/ConfirmationModal';
 
 interface DealPipelineProps {}
 
-export const DealPipeline: React.FC<DealPipelineProps> = (props) => {
+export const DealPipeline: React.FC<DealPipelineProps> = (_props) => {
     const createFormPopup = usePopup();
     const updateFormPopup = usePopup<{
         data: form;
     }>();
     const deleteFormPopup = usePopup<{ data: form }>();
     const { daoid } = useParams();
-    const navigate = useNavigate();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useNavigate();
+    useTypedSelector(selectActiveDao);
     const { data: formData } = useGetFormQuery(daoid!, { skip: !daoid });
     // const [getForm] = useLazyGetFormQuery();
-    const [getResponses] = useLazyResponsesByDaoIDQuery();
+    const [_getResponses] = useLazyResponsesByDaoIDQuery();
     const [deleteForm] = useDeleteFormMutation();
-    const [data, setData] = useState<GetFormDataItemType[]>([]);
+    const [_data, _setData] = useState<GetFormDataItemType[]>([]);
     const [tempData, setTempData] = useState<form[]>([]);
-    const [formId, setFormId] = useState<string>('');
-    const [type, setType] = useState<FormEnums.FormType>();
-    const [responseId, setResponseId] = useState<string>('');
+    const [formId, _setFormId] = useState<string>('');
+    const [type, _setType] = useState<FormEnums.FormType>();
+    const [_responseId, _setResponseId] = useState<string>('');
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
         AccessEnums.AccessType.MANAGE_DAO
     );
 
-    const applyFormClick = async () => {
+    const _applyFormClick = async () => {
         try {
             window.open(`${window.location.origin}/${formId}/form`, '_blank');
         } catch (err: any) {
@@ -142,7 +142,7 @@ export const DealPipeline: React.FC<DealPipelineProps> = (props) => {
             <Block.Scrollable className={styles.block}>
                 <ul className={styles.list}>
                     {tempData?.length > 0 &&
-                        tempData.map((item, id) => (
+                        tempData.map((item, _id) => (
                             <DealPipelineItem
                                 key={item.form_id}
                                 data={item}

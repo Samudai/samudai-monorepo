@@ -40,14 +40,14 @@ interface ProjectProps {
 }
 
 const ProjectSettingsProject: React.FC<ProjectProps> = ({ project, onClose, users }) => {
-    const dispatch = useTypedDispatch();
+    useTypedDispatch();
     const { daoid } = useParams();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const [getRepos] = useLazyGetReposQuery();
-    const [list, setList] = useState<string[]>([] as string[]);
+    const [_list, setList] = useState<string[]>([] as string[]);
     const [checkGithubRepos] = useLazyCheckGithubReposQuery();
     const [updateProject] = useUpdateProjectMutation();
-    const [connected, setConnected] = useState<boolean>(false);
+    const [_connected, setConnected] = useState<boolean>(false);
     const [title, setTitle] = useInput(project?.title || '');
     const [text, setText] = useInput(project?.description || '');
     const [startDate, setStartDate] = useState<Dayjs | null>(
@@ -57,8 +57,8 @@ const ProjectSettingsProject: React.FC<ProjectProps> = ({ project, onClose, user
         project?.end_date ? dayjs(project.end_date) : null
     );
     const [repos, setRepos] = useState<string[]>([] as string[]);
-    const [search, setSearch] = useState('');
-    const [searchedRepos, setSearchedRepos] = useState<string[]>([] as string[]);
+    const [_search, setSearch] = useState('');
+    const [_searchedRepos, setSearchedRepos] = useState<string[]>([] as string[]);
 
     const searchDelay = useDelayedSearch((value: string) => {
         const search = value.toLowerCase().trim();

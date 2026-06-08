@@ -26,8 +26,8 @@ interface AddAboutProps {
 const AddAbout: React.FC<AddAboutProps> = ({ onCloseModal, daoData, setValue, value }) => {
     const [updateDao] = useUpdateDaoMutation();
     const { daoid } = useParams();
-    const activeDao = useTypedSelector(selectActiveDao);
-    const [text, setText, _, clearText] = useInput<HTMLTextAreaElement>(value ? value : '');
+    useTypedSelector(selectActiveDao);
+    const [text, setText, _, _clearText] = useInput<HTMLTextAreaElement>(value ? value : '');
 
     const handleSubmit = () => {
         if (!text) {

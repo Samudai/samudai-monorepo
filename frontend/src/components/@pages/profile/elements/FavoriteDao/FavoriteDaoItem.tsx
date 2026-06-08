@@ -3,7 +3,7 @@ import styles from 'components/UserProfile/styles/UserStat.module.scss';
 import HeartIcon from 'ui/SVG/HeartIcon';
 import VerifyIcon from 'ui/SVG/VerifyIcon';
 
-const FavoriteDaoItem: React.FC<any> = ({ dao_id, profile_picture, name, id, verified }) => {
+const FavoriteDaoItem: React.FC<any> = ({ dao_id, profile_picture, name, verified }) => {
     const navigate = useNavigate();
     const getInitial = (name: string) => {
         // .replaceAll(/\.|\w|\-|\_/g, ',')

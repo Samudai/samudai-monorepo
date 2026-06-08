@@ -11,11 +11,10 @@ import '../styles/EarnedBadges.scss';
 
 const EarnedBadges: React.FC = () => {
     const [data, setData] = useState<any[]>([]);
-    const streamId = useTypedSelector(selectStreamId);
+    useTypedSelector(selectStreamId);
     const { memberid } = useParams();
-    const providerEth = useTypedSelector(selectProvider);
-
-    const fetchBadges = async () => {
+    useTypedSelector(selectProvider);
+    const _fetchBadges = async () => {
         const { data } = await axios.get<any[]>('/mockup/earned-badges.json');
         setData(data);
     };

@@ -8,8 +8,6 @@ import { updateNewMessage, updateNewNotification } from 'store/features/notifica
 
 const listenNotification = () => {
     const socket = store.getState().commonReducer.socket;
-    const provider = store.getState().commonReducer.provider;
-
     if (socket) {
         socket.on(
             NotificationsEnums.NewSocketEventsFromService.ALL,
@@ -61,7 +59,7 @@ const listenNotification = () => {
 
         socket.on(
             NotificationsEnums.NewSocketEventsFromService.MEMBER_CONNECTED,
-            (notification: WebNotification) => {
+            (_notification: WebNotification) => {
                 store.dispatch(setNotificationSocket({ socket }));
             }
         );

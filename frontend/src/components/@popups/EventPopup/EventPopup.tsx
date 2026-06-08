@@ -29,14 +29,14 @@ const EventPopup: React.FC<PopupShowProps> = ({
     fetchDData,
 }) => {
     const access = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
-    const eventCreate = usePopup();
+    usePopup();
     const [month, setMonth] = useState<dayjs.Dayjs>(dayjs);
     const [events, setEvents] = useState<any[]>([]);
     const createEvent = useTypedSelector(selectCreateEvent);
     const dispatch = useTypedDispatch();
     const [googleData, setGoogleData] = useState<any[]>([]);
     const [finalEvents, setFinalEvents] = useState<any>([]);
-    const [temp, setTemp] = useState<boolean>(true);
+    const [temp, _setTemp] = useState<boolean>(true);
     // console.log('calendar gdata', gData);
     // console.log('calendar ddata', dData);
 

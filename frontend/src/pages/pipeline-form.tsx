@@ -14,7 +14,7 @@ import styles from 'styles/pages/pipeline-form.module.scss';
 
 interface PipelineFormProps {}
 
-const PipelineFormPage: React.FC<PipelineFormProps> = (props) => {
+const PipelineFormPage: React.FC<PipelineFormProps> = (_props) => {
     const navigate = useNavigate();
     const { formid } = useParams();
     const [getForm] = useLazyGetFormbyFormIdQuery();
@@ -24,8 +24,7 @@ const PipelineFormPage: React.FC<PipelineFormProps> = (props) => {
     const [type, setType] = useState<FormEnums.FormType>();
     const [daoid, setDaoid] = useState('');
     const [name, setName] = useState('');
-    const acccount1 = useTypedSelector(selectAccount);
-
+    useTypedSelector(selectAccount);
     const connectWallet = async () => {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];

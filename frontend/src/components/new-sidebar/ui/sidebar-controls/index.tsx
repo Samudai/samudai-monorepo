@@ -31,7 +31,7 @@ interface ControlsBoxProps {
 }
 
 const ControlsBox: React.FC<ControlsBoxProps> = ({ noTutorial }) => {
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const dispatch = useTypedDispatch();
 
     return (

@@ -46,7 +46,7 @@ const AddPeopleSearch: React.FC<AddPeopleProps> = ({
     const [list, setList] = useState<IMember[]>([] as IMember[]);
     const [value, setValue] = useState('');
     const [activeSelect, setActiveSelect] = useState(false);
-    const [candidats, setCandidats] = useState<IMember[]>([]);
+    const [_candidats, _setCandidats] = useState<IMember[]>([]);
     const [searchDaoMember] = useLazySearchMemberByDaoQuery();
 
     const searchDelay = useDelayedSearch(async (value: string) => {

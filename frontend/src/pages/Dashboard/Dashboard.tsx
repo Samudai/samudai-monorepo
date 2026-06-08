@@ -42,13 +42,13 @@ const Dao = () => {
     const token_gating = useTypedSelector(selectTokenGating);
     const token_val = useTypedSelector(selectTokenVal);
     const [currentWidget, setCurrentWidget] = useState<IWidget | null>(null);
-    const { widgets, dashboard_uuid } = useTypedSelector(selectDaoViewActive);
+    const { widgets } = useTypedSelector(selectDaoViewActive);
     const activeViewId = useTypedSelector(selectActiveViewId);
     const [fetchDashboard, setFetchDashboard] = useState<boolean>(false);
-    const navigate = useNavigate();
+    useNavigate();
     const { daoid } = useParams();
-    const [tokenGating, setTokenGating] = useState<boolean>(false);
-    const [load, setLoad] = useState<boolean>(false);
+    const [_tokenGating, setTokenGating] = useState<boolean>(false);
+    const [_load, _setLoad] = useState<boolean>(false);
 
     useEffect(() => {
         daoid &&

@@ -96,7 +96,7 @@ export const usePayouts = (link?: { type: 'task' | 'subtask'; id: string }) => {
             });
             fetchData();
             toast('Success', 5000, 'Payout added successfully', '')();
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Failed to add payout', '')();
         }
     };
@@ -132,7 +132,7 @@ export const usePayouts = (link?: { type: 'task' | 'subtask'; id: string }) => {
             });
             fetchData();
             toast('Success', 5000, 'Payout added successfully', '')();
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Failed to add payout', '')();
         }
     };
@@ -144,7 +144,7 @@ export const usePayouts = (link?: { type: 'task' | 'subtask'; id: string }) => {
             await updatePayout(payload).unwrap();
             fetchData();
             toast('Success', 5000, 'Payout updated successfully', '')();
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Failed to update payout', '')();
         }
     };
@@ -154,7 +154,7 @@ export const usePayouts = (link?: { type: 'task' | 'subtask'; id: string }) => {
             await deletePayout(payoutId).unwrap();
             fetchData();
             toast('Success', 5000, 'Payout removed successfully', '')();
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Failed to remove payout', '')();
         }
     };

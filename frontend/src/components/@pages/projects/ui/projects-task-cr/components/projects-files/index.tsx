@@ -27,7 +27,7 @@ export const ProjectsFiles: React.FC<ProjectsFilesProps> = ({
     updateDetails,
     access,
 }) => {
-    const { ref: listRef, isScrollbar } = useScrollbar<HTMLUListElement>();
+    const { ref: listRef } = useScrollbar<HTMLUListElement>();
     const { daoid, projectId } = useParams<{
         daoid: string;
         projectId: string;

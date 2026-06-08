@@ -179,7 +179,7 @@ const TaskAddColumn: React.FC<ColumnAddProps> = ({
 
         addColumn(payloadColumns)
             .unwrap()
-            .then((res: any) => {
+            .then((_res: any) => {
                 toast('Success', 5000, 'New column added successfully', '')();
                 updateActivity({
                     dao_id: activeDAO,
@@ -209,26 +209,26 @@ const TaskAddColumn: React.FC<ColumnAddProps> = ({
                 });
                 onClose?.();
             })
-            .catch((err: any) => {
+            .catch((_err: any) => {
                 toast('Failure', 5000, 'Failed to add new column', '')();
             });
 
         bulkTaskPositionUpdate(payloadTasks!)
             .unwrap()
-            .then((res: any) => {
+            .then((_res: any) => {
                 if (setNewColumn) setNewColumn(true);
                 onClose?.();
             })
-            .catch((err: any) => {
+            .catch((_err: any) => {
                 toast('Failure', 5000, 'Failed to update tasks', '')();
             });
 
         bulkSubTaskPositionUpdate(payloadSubTasks!)
             .unwrap()
-            .then((res: any) => {
+            .then((_res: any) => {
                 onClose?.();
             })
-            .catch((err: any) => {
+            .catch((_err: any) => {
                 toast('Failure', 5000, 'Failed to update subtasks', '')();
             });
     };

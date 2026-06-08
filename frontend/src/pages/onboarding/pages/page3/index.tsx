@@ -41,7 +41,7 @@ const Page3: React.FC<Page3Props> = ({ callback }) => {
                 window.location.reload();
                 window.location.href = `/loading`;
             }
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Failed to change user name. Please try again.', '')();
         }
     };

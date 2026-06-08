@@ -68,8 +68,8 @@ const MeetingCalendar: React.FC<MeetingCalendarProps> = ({
             bodyEl.scrollTop = yPos;
         }
     };
-    const dispatch = useTypedDispatch();
-    const eventPopupBool = useTypedSelector(selectEventPopUp);
+    useTypedDispatch();
+    useTypedSelector(selectEventPopUp);
     return (
         <Block
             media={media}
