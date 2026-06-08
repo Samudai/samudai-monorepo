@@ -37,7 +37,7 @@
     "axios": "^1.16.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "elastic-apm-node": "^3.49.1",
+    "elastic-apm-node": "^4.15.0",
     "express": "^5.2.1",
     "express-rate-limit": "^8.5.2",
     "express-validator": "^7.3.2",
