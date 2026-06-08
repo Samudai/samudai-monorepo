@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { JobPayout } from '@samudai/gateway-consumer-types';
 
 export class JobPayoutController {
-    createPayout = async (req: Request, res: Response, next: NextFunction) => {
+    createPayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payout: JobPayout = req.body.payout;
 
@@ -22,7 +22,7 @@ export class JobPayoutController {
         }
     };
 
-    updatePayout = async (req: Request, res: Response, next: NextFunction) => {
+    updatePayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payout: JobPayout = req.body.payout;
 
@@ -41,7 +41,7 @@ export class JobPayoutController {
         }
     };
 
-    updatePayoutStatus = async (req: Request, res: Response, next: NextFunction) => {
+    updatePayoutStatus = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payout_id = req.body.payoutId;
             const status = req.body.status;
@@ -63,7 +63,7 @@ export class JobPayoutController {
         }
     };
 
-    completePayout = async (req: Request, res: Response, next: NextFunction) => {
+    completePayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.post(
                 `${process.env.SERVICE_JOB}/payout/complete/${req.params.payoutId as string}`,
@@ -81,7 +81,7 @@ export class JobPayoutController {
         }
     };
 
-    deletePayout = async (req: Request, res: Response, next: NextFunction) => {
+    deletePayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.delete(
                 `${process.env.SERVICE_JOB}/payout/delete/${req.params.payoutId as string}`,
@@ -99,7 +99,7 @@ export class JobPayoutController {
         }
     };
 
-    getPayoutById = async (req: Request, res: Response, next: NextFunction) => {
+    getPayoutById = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.get(`${process.env.SERVICE_JOB}/payout/get/${req.params.payoutId as string}`);
 

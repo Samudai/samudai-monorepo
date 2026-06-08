@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import { AppConfig } from "./config/appConfig";
 import { Routes } from "./routes/routes";
 import mqConnection from "./config/rabbitmqConfig";
-require("dotenv").config();
+import "dotenv/config";
 
 export class Server {
   app: Express;

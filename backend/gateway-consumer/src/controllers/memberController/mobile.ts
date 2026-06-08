@@ -127,7 +127,7 @@ export class MobileController {
         }
     };
 
-    getIDAOForMobile = async (req: Request, res: Response, next: NextFunction) => {
+    getIDAOForMobile = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/idao/bymemberid/${memberId}`);

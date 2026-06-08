@@ -28,7 +28,7 @@ export class Routes {
 
     this.app.get("/health", healthCheck);
 
-    this.app.get("/*path", (req, res) => {
+    this.app.get("/*path", (_req, _res) => {
       throw new NotFoundError();
     });
   };

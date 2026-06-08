@@ -2,10 +2,10 @@ import express, { Express } from 'express';
 import { AppConfig } from './config/appConfig';
 import httpServer from 'http';
 import { Routes } from './routes/routes';
-const io = require('socket.io');
+import { Server as SocketServer } from 'socket.io';
 import { SocketConnections } from './config/socketConnections';
 
-require('dotenv').config();
+import 'dotenv/config';
 
 export class Server {
   app: Express;
@@ -15,7 +15,7 @@ export class Server {
   constructor() {
     this.app = express();
     this.server = httpServer.createServer(this.app);
-    this.ioSocket = io(this.server, {
+    this.ioSocket = new SocketServer(this.server, {
       cors: {
         origin: '*',
       },

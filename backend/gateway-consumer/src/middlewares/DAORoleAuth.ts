@@ -48,7 +48,7 @@ declare global {
 
 //Should have access to certain roles only
 
-async function managerDAOWorker(req: Request, res: Response) {
+async function managerDAOWorker(req: Request, _res: Response) {
     let jwtToken = req.headers['x-auth-token'] || req.headers.authorization || req.body.jwt;
 
     const daoId = req.headers.daoid as string;

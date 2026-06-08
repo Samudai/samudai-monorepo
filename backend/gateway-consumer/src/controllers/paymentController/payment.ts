@@ -109,7 +109,7 @@ export class PaymentController {
         }
     };
 
-    getUninitiatedByDAOId = async (req: Request, res: Response, next: NextFunction) => {
+    getUninitiatedByDAOId = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const resultProject = await axios.get(
                 `${process.env.SERVICE_PROJECT}/payout/getfordao/${req.params.daoId as string}`,

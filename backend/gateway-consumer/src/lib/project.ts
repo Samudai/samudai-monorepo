@@ -26,28 +26,24 @@ export const createProjectFromNotion = async (
     dao_id: string,
     department: string,
 ): Promise<string> => {
-    try {
-        const description = `Imported from Notion - ${database.url}`;
-        const project: Project = {
-            project_id: '',
-            link_id: dao_id,
-            type: ProjectEnums.LinkType.DAO,
-            project_type: ProjectEnums.ProjectType.DEFAULT,
-            title: database.title[0].plain_text,
-            description: description,
-            visibility: ProjectEnums.Visibility.PRIVATE,
-            created_by: member_id,
-            department: department,
-            completed: false,
-            pinned: false,
-        };
-        const result = await axios.post(`${projectService}/project/create`, {
-            project,
-        });
-        return result.data.project_id;
-    } catch (err: any) {
-        throw err;
-    }
+    const description = `Imported from Notion - ${database.url}`;
+    const project: Project = {
+        project_id: '',
+        link_id: dao_id,
+        type: ProjectEnums.LinkType.DAO,
+        project_type: ProjectEnums.ProjectType.DEFAULT,
+        title: database.title[0].plain_text,
+        description: description,
+        visibility: ProjectEnums.Visibility.PRIVATE,
+        created_by: member_id,
+        department: department,
+        completed: false,
+        pinned: false,
+    };
+    const result = await axios.post(`${projectService}/project/create`, {
+        project,
+    });
+    return result.data.project_id;
 };
 
 export const createTaskFromNotion = async (params: CreateNotionTaskParam, pages: any) => {
@@ -124,30 +120,22 @@ export const createTaskFromNotion = async (params: CreateNotionTaskParam, pages:
 };
 
 export const getNotionTasks = async (member_id: string, memberDao: DaoDetailParam[]): Promise<NotionTaskResponse[]> => {
-    try {
-        const result = await axios.get(`${projectService}/notion/getnotiontasks`, {
-            params: {
-                member_id,
-                daos: memberDao,
-            },
-        });
-        return result.data;
-    } catch (err: any) {
-        throw err;
-    }
+    const result = await axios.get(`${projectService}/notion/getnotiontasks`, {
+        params: {
+            member_id,
+            daos: memberDao,
+        },
+    });
+    return result.data;
 };
 
 export const assignMemberToNotionTask = async (task_id: string, member_id: string) => {
-    try {
-        const result = await axios.post(`${projectService}/task/notion/assignee`, {
-            task_id,
-            assignee: member_id,
-            updated_by: member_id,
-        });
-        return result.data;
-    } catch (err: any) {
-        throw err;
-    }
+    const result = await axios.post(`${projectService}/task/notion/assignee`, {
+        task_id,
+        assignee: member_id,
+        updated_by: member_id,
+    });
+    return result.data;
 };
 
 export const mapTaskFormResponseToTask = (formTaskResponse: TaskFormResponse): Task => {
@@ -181,27 +169,23 @@ export const mapTaskFormResponseToTask = (formTaskResponse: TaskFormResponse): T
 };
 
 export const getTaskContributors = async (project_id: string): Promise<IMember[]> => {
-    try {
-        const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/contributor/${project_id}`);
+    const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/contributor/${project_id}`);
 
-        const memberIds = Object.keys(result.data);
-        // todo - optimise with member cache
-        const memberList = await bulkMemberMap(memberIds);
+    const memberIds = Object.keys(result.data);
+    // todo - optimise with member cache
+    const memberList = await bulkMemberMap(memberIds);
 
-        const contributors: IMember[] = memberList.map((m: any) => {
-            // todo: fix datatype here
-            return {
-                member_id: m.member_id,
-                name: m.name,
-                username: m.username,
-                profile_picture: m.profile_picture,
-            };
-        });
+    const contributors: IMember[] = memberList.map((m: any) => {
+        // todo: fix datatype here
+        return {
+            member_id: m.member_id,
+            name: m.name,
+            username: m.username,
+            profile_picture: m.profile_picture,
+        };
+    });
 
-        return contributors;
-    } catch (err: any) {
-        throw err;
-    }
+    return contributors;
 };
 
 export const getProject = async (project_id: string): Promise<Project | null> => {

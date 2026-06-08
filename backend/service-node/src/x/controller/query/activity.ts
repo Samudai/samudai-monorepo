@@ -8,24 +8,20 @@ export class ActivityQuery {
     maxRetries: number = 3,
     retryDelay: number = 1500,
   ) => {
-    try {
-      for (let attempt = 1; attempt <= maxRetries; attempt++) {
-        const result = await axios.get(url, {
-          headers: {
-            Accept: "application/json",
-            "x-rapidapi-host": "twttrapi.p.rapidapi.com",
-            "x-rapidapi-key": process.env.RAPID_API_KEY!,
-          },
-        });
-        if (result.data?.error && result.data?.success === false) {
-          console.log(result.data?.error);
-          await new Promise((resolve) => setTimeout(resolve, retryDelay));
-        } else {
-          return result;
-        }
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      const result = await axios.get(url, {
+        headers: {
+          Accept: "application/json",
+          "x-rapidapi-host": "twttrapi.p.rapidapi.com",
+          "x-rapidapi-key": process.env.RAPID_API_KEY!,
+        },
+      });
+      if (result.data?.error && result.data?.success === false) {
+        console.log(result.data?.error);
+        await new Promise((resolve) => setTimeout(resolve, retryDelay));
+      } else {
+        return result;
       }
-    } catch (error: any) {
-      throw error;
     }
   };
   callTwitterApi = async (
@@ -117,27 +113,23 @@ export class ActivityQuery {
     });
   };
   checkDbandCollection = async (dbName: string, collectionName: string) => {
-    try {
-      const dbClient = getMongoClient();
-      const adminDb = dbClient.db("admin");
-      const databases = await adminDb.admin().listDatabases();
-      const dbExists = databases.databases.some((db) => db.name === dbName);
-      if (!dbExists) {
+    const dbClient = getMongoClient();
+    const adminDb = dbClient.db("admin");
+    const databases = await adminDb.admin().listDatabases();
+    const dbExists = databases.databases.some((db) => db.name === dbName);
+    if (!dbExists) {
+      return false;
+    } else {
+      const db = await dbClient.db(dbName);
+      const collection = await db.listCollections().toArray();
+      const collectionExists = collection.some(
+        (colln) => colln.name === collectionName,
+      );
+      if (!collectionExists) {
         return false;
-      } else {
-        const db = await dbClient.db(dbName);
-        const collection = await db.listCollections().toArray();
-        const collectionExists = collection.some(
-          (colln) => colln.name === collectionName,
-        );
-        if (!collectionExists) {
-          return false;
-        }
       }
-      return true;
-    } catch (error) {
-      throw error;
     }
+    return true;
   };
   sendPayload = async (
     memberArray: TwitterMember[],
@@ -183,84 +175,80 @@ export class ActivityQuery {
     twitter_username: string,
     point_id: string,
   ) => {
-    try {
-      const dbClient = getMongoClient();
-      const username_db = await dbClient.db(twitter_username);
-      const follower_collections = await username_db.collection("Followers");
-      const new_followers: TwitterMember[] = [];
-      let next_cursor: string = "";
+    const dbClient = getMongoClient();
+    const username_db = await dbClient.db(twitter_username);
+    const follower_collections = await username_db.collection("Followers");
+    const new_followers: TwitterMember[] = [];
+    let next_cursor: string = "";
 
-      const dbExists = await this.checkDbandCollection(
-        twitter_username,
-        "Followers",
-      );
+    const dbExists = await this.checkDbandCollection(
+      twitter_username,
+      "Followers",
+    );
 
-      // 1. Fetch followers from API calls and compare them against follower_collections till you find a match
-      // FETCH ALL FOLLOWER DATA FROM MONGO
-      const allFollowersCursor = await follower_collections.find({});
-      const allFollowersArray = await allFollowersCursor.toArray();
+    // 1. Fetch followers from API calls and compare them against follower_collections till you find a match
+    // FETCH ALL FOLLOWER DATA FROM MONGO
+    const allFollowersCursor = await follower_collections.find({});
+    const allFollowersArray = await allFollowersCursor.toArray();
 
-      // TODO: Change the no of iterations AFTER PURCHASING API
-      for (let i = 0; i < 10; i++) {
-        const url =
-          i === 0
-            ? `https://twttrapi.p.rapidapi.com/user-followers?username=${twitter_username}&count=100`
-            : `https://twttrapi.p.rapidapi.com/user-followers?username=${twitter_username}&cursor=${next_cursor}&count=100`;
+    // TODO: Change the no of iterations AFTER PURCHASING API
+    for (let i = 0; i < 10; i++) {
+      const url =
+        i === 0
+          ? `https://twttrapi.p.rapidapi.com/user-followers?username=${twitter_username}&count=100`
+          : `https://twttrapi.p.rapidapi.com/user-followers?username=${twitter_username}&cursor=${next_cursor}&count=100`;
 
-        const rapid_follower_fetch = await this.callApi(url);
-        const follower_arr =
-          i === 0
-            ? rapid_follower_fetch?.data?.data?.user?.timeline_response
-                ?.timeline?.instructions[3]?.entries
-            : rapid_follower_fetch?.data?.data?.user?.timeline_response
-                ?.timeline?.instructions[0]?.entries;
-        follower_arr?.forEach(async (follower: any) => {
-          if (follower?.content?.__typename === "TimelineTimelineItem") {
-            const user_data =
-              follower?.content?.content?.userResult?.result?.legacy;
-            const new_follower: TwitterMember = {
-              twitterUsername: user_data?.screen_name,
-              twitterUserId: user_data?.id_str,
-              twitterName: user_data?.name,
-            };
+      const rapid_follower_fetch = await this.callApi(url);
+      const follower_arr =
+        i === 0
+          ? rapid_follower_fetch?.data?.data?.user?.timeline_response?.timeline
+              ?.instructions[3]?.entries
+          : rapid_follower_fetch?.data?.data?.user?.timeline_response?.timeline
+              ?.instructions[0]?.entries;
+      follower_arr?.forEach(async (follower: any) => {
+        if (follower?.content?.__typename === "TimelineTimelineItem") {
+          const user_data =
+            follower?.content?.content?.userResult?.result?.legacy;
+          const new_follower: TwitterMember = {
+            twitterUsername: user_data?.screen_name,
+            twitterUserId: user_data?.id_str,
+            twitterName: user_data?.name,
+          };
 
-            // TODO: Check how you store in mongo and how it is retrieved from mongo
-            if (dbExists) {
-              const isNewFollower = !allFollowersArray.some(
-                (existingFollower) =>
-                  existingFollower.twitterUserId === new_follower.twitterUserId,
-              );
-              if (isNewFollower) {
-                new_followers.push(new_follower);
-              }
-            } else {
+          // TODO: Check how you store in mongo and how it is retrieved from mongo
+          if (dbExists) {
+            const isNewFollower = !allFollowersArray.some(
+              (existingFollower) =>
+                existingFollower.twitterUserId === new_follower.twitterUserId,
+            );
+            if (isNewFollower) {
               new_followers.push(new_follower);
             }
-          } else if (
-            follower?.content?.__typename === "TimelineTimelineCursor" &&
-            follower?.content?.cursorType === "Bottom"
-          ) {
-            next_cursor = follower?.content?.value;
+          } else {
+            new_followers.push(new_follower);
           }
-        });
-      }
-      if (new_followers.length > 0) {
-        if (dbExists) {
-          this.sendPayload(
-            new_followers,
-            [],
-            "Follow",
-            twitter_username,
-            twitter_userId,
-            point_id,
-          );
+        } else if (
+          follower?.content?.__typename === "TimelineTimelineCursor" &&
+          follower?.content?.cursorType === "Bottom"
+        ) {
+          next_cursor = follower?.content?.value;
         }
-        await follower_collections.insertMany(new_followers);
-      } else {
-        console.log("No new followers to insert.");
+      });
+    }
+    if (new_followers.length > 0) {
+      if (dbExists) {
+        this.sendPayload(
+          new_followers,
+          [],
+          "Follow",
+          twitter_username,
+          twitter_userId,
+          point_id,
+        );
       }
-    } catch (err: any) {
-      throw err;
+      await follower_collections.insertMany(new_followers);
+    } else {
+      console.log("No new followers to insert.");
     }
   };
   addNewMention = async (
@@ -268,100 +256,96 @@ export class ActivityQuery {
     twitter_username: string,
     point_id: string,
   ) => {
-    try {
-      const dbClient = getMongoClient();
-      const username_db = await dbClient.db(twitter_username);
-      const mention_collections = await username_db.collection("mentions");
-      const new_mentions: TweetMember[] = [];
-      let next_cursor: string = "";
+    const dbClient = getMongoClient();
+    const username_db = await dbClient.db(twitter_username);
+    const mention_collections = await username_db.collection("mentions");
+    const new_mentions: TweetMember[] = [];
+    let next_cursor: string = "";
 
-      const dbExists = await this.checkDbandCollection(
-        twitter_username,
-        "mentions",
-      );
+    const dbExists = await this.checkDbandCollection(
+      twitter_username,
+      "mentions",
+    );
 
-      const allMentionsCursor = await mention_collections.find({});
-      const allMentionsArray = await allMentionsCursor.toArray();
+    const allMentionsCursor = await mention_collections.find({});
+    const allMentionsArray = await allMentionsCursor.toArray();
 
-      // TODO: Change the no of iterations AFTER PURCHASING API
-      for (let i = 0; i < 2; i++) {
-        const url =
-          i === 0
-            ? `https://twttrapi.p.rapidapi.com/search-latest?query=%40${twitter_username}`
-            : `https://twttrapi.p.rapidapi.com/search-latest?query=%40${twitter_username}&cursor=${next_cursor}`;
+    // TODO: Change the no of iterations AFTER PURCHASING API
+    for (let i = 0; i < 2; i++) {
+      const url =
+        i === 0
+          ? `https://twttrapi.p.rapidapi.com/search-latest?query=%40${twitter_username}`
+          : `https://twttrapi.p.rapidapi.com/search-latest?query=%40${twitter_username}&cursor=${next_cursor}`;
 
-        const rapid_mention_fetch = await this.callApi(url);
-        const mention_arr =
-          rapid_mention_fetch?.data?.data?.search?.timeline_response?.timeline
-            ?.instructions[0]?.entries;
+      const rapid_mention_fetch = await this.callApi(url);
+      const mention_arr =
+        rapid_mention_fetch?.data?.data?.search?.timeline_response?.timeline
+          ?.instructions[0]?.entries;
 
-        mention_arr?.forEach(async (mention: any) => {
-          if (mention?.content?.__typename === "TimelineTimelineItem") {
-            const user_data =
-              mention?.content?.content?.tweetResult?.result?.core?.user_result
-                ?.result?.legacy;
-            const inReply =
-              mention?.content?.content?.tweetResult?.result?.legacy
-                ?.conversation_id_str !=
-              mention?.content?.content?.tweetResult?.result?.rest_id;
-            const new_mention: TweetMember = {
-              twitterUsername: user_data?.screen_name,
-              twitterUserId: user_data?.id_str,
-              twitterName: user_data?.name,
-              tweetId: mention?.content?.content?.tweetResult?.result?.rest_id,
-            };
+      mention_arr?.forEach(async (mention: any) => {
+        if (mention?.content?.__typename === "TimelineTimelineItem") {
+          const user_data =
+            mention?.content?.content?.tweetResult?.result?.core?.user_result
+              ?.result?.legacy;
+          const inReply =
+            mention?.content?.content?.tweetResult?.result?.legacy
+              ?.conversation_id_str !=
+            mention?.content?.content?.tweetResult?.result?.rest_id;
+          const new_mention: TweetMember = {
+            twitterUsername: user_data?.screen_name,
+            twitterUserId: user_data?.id_str,
+            twitterName: user_data?.name,
+            tweetId: mention?.content?.content?.tweetResult?.result?.rest_id,
+          };
 
-            if (dbExists) {
-              const isNewMention = !allMentionsArray.some(
-                (existingMention) =>
-                  existingMention.twitterUserId === new_mention.twitterUserId &&
-                  existingMention.tweetId === new_mention.tweetId,
-              );
-              if (
-                isNewMention &&
-                new_mention.twitterUserId !== twitter_userId &&
-                !inReply
-              ) {
-                new_mentions.push(new_mention);
-              }
-            } else {
-              if (new_mention.twitterUserId !== twitter_userId && !inReply) {
-                new_mentions.push(new_mention);
-              }
+          if (dbExists) {
+            const isNewMention = !allMentionsArray.some(
+              (existingMention) =>
+                existingMention.twitterUserId === new_mention.twitterUserId &&
+                existingMention.tweetId === new_mention.tweetId,
+            );
+            if (
+              isNewMention &&
+              new_mention.twitterUserId !== twitter_userId &&
+              !inReply
+            ) {
+              new_mentions.push(new_mention);
             }
-          } else if (
-            mention?.content?.__typename === "TimelineTimelineCursor" &&
-            mention?.content?.cursorType === "Bottom"
-          ) {
-            next_cursor = mention?.content?.value;
+          } else {
+            if (new_mention.twitterUserId !== twitter_userId && !inReply) {
+              new_mentions.push(new_mention);
+            }
           }
-        });
-        if (
-          rapid_mention_fetch?.data?.search?.timeline_response?.timeline
-            ?.instructions?.length > 1
+        } else if (
+          mention?.content?.__typename === "TimelineTimelineCursor" &&
+          mention?.content?.cursorType === "Bottom"
         ) {
-          next_cursor =
-            rapid_mention_fetch?.data?.search?.timeline_response?.timeline
-              ?.instructions[2]?.entry?.content?.value;
+          next_cursor = mention?.content?.value;
         }
+      });
+      if (
+        rapid_mention_fetch?.data?.search?.timeline_response?.timeline
+          ?.instructions?.length > 1
+      ) {
+        next_cursor =
+          rapid_mention_fetch?.data?.search?.timeline_response?.timeline
+            ?.instructions[2]?.entry?.content?.value;
       }
-      if (new_mentions.length > 0) {
-        if (dbExists) {
-          this.sendPayload(
-            [],
-            new_mentions,
-            "Mention",
-            twitter_username,
-            twitter_userId,
-            point_id,
-          );
-        }
-        await mention_collections.insertMany(new_mentions);
-      } else {
-        console.log("No new mentions to insert.");
+    }
+    if (new_mentions.length > 0) {
+      if (dbExists) {
+        this.sendPayload(
+          [],
+          new_mentions,
+          "Mention",
+          twitter_username,
+          twitter_userId,
+          point_id,
+        );
       }
-    } catch (err: any) {
-      throw err;
+      await mention_collections.insertMany(new_mentions);
+    } else {
+      console.log("No new mentions to insert.");
     }
   };
   addNewHashtags = async (
@@ -370,94 +354,87 @@ export class ActivityQuery {
     point_id: string,
     hashtag_val: string,
   ) => {
-    try {
-      const dbClient = getMongoClient();
-      const username_db = await dbClient.db(twitter_username);
-      const hashtag_collections = await username_db.collection("hashtag");
-      const new_hashtags: TweetMember[] = [];
-      let next_cursor: string = "";
+    const dbClient = getMongoClient();
+    const username_db = await dbClient.db(twitter_username);
+    const hashtag_collections = await username_db.collection("hashtag");
+    const new_hashtags: TweetMember[] = [];
+    let next_cursor: string = "";
 
-      const dbExists = await this.checkDbandCollection(
-        twitter_username,
-        "hashtag",
-      );
+    const dbExists = await this.checkDbandCollection(
+      twitter_username,
+      "hashtag",
+    );
 
-      const allHashtagsCursor = await hashtag_collections.find({});
-      const allHashtagsArray = await allHashtagsCursor.toArray();
+    const allHashtagsCursor = await hashtag_collections.find({});
+    const allHashtagsArray = await allHashtagsCursor.toArray();
 
-      // TODO: Change the no of iterations AFTER PURCHASING API
-      for (let i = 0; i < 2; i++) {
-        const url =
-          i === 0
-            ? `https://twttrapi.p.rapidapi.com/search-latest?query=%23${hashtag_val}`
-            : `https://twttrapi.p.rapidapi.com/search-latest?query=%23${hashtag_val}&cursor=${next_cursor}`;
+    // TODO: Change the no of iterations AFTER PURCHASING API
+    for (let i = 0; i < 2; i++) {
+      const url =
+        i === 0
+          ? `https://twttrapi.p.rapidapi.com/search-latest?query=%23${hashtag_val}`
+          : `https://twttrapi.p.rapidapi.com/search-latest?query=%23${hashtag_val}&cursor=${next_cursor}`;
 
-        const rapid_hashtag_fetch = await this.callApi(url);
-        const hashtag_arr =
-          rapid_hashtag_fetch?.data?.data?.search?.timeline_response?.timeline
-            ?.instructions[0]?.entries;
+      const rapid_hashtag_fetch = await this.callApi(url);
+      const hashtag_arr =
+        rapid_hashtag_fetch?.data?.data?.search?.timeline_response?.timeline
+          ?.instructions[0]?.entries;
 
-        hashtag_arr?.forEach(async (hashtag: any) => {
-          if (hashtag?.content?.__typename === "TimelineTimelineItem") {
-            const user_data =
-              hashtag?.content?.content?.tweetResult?.result?.core?.user_result
-                ?.result?.legacy;
-            const new_hashtag: TweetMember = {
-              twitterUsername: user_data?.screen_name,
-              twitterUserId: user_data?.id_str,
-              twitterName: user_data?.name,
-              tweetId: hashtag?.content?.content?.tweetResult?.result?.rest_id,
-            };
-            if (dbExists) {
-              const isNewHashtag = !allHashtagsArray.some(
-                (existingHashtag) =>
-                  existingHashtag.twitterUserId === new_hashtag.twitterUserId &&
-                  existingHashtag.tweetId === new_hashtag.tweetId,
-              );
-              if (
-                isNewHashtag &&
-                new_hashtag.twitterUserId !== twitter_userId
-              ) {
-                new_hashtags.push(new_hashtag);
-              }
-            } else {
-              if (new_hashtag.twitterUserId !== twitter_userId) {
-                new_hashtags.push(new_hashtag);
-              }
+      hashtag_arr?.forEach(async (hashtag: any) => {
+        if (hashtag?.content?.__typename === "TimelineTimelineItem") {
+          const user_data =
+            hashtag?.content?.content?.tweetResult?.result?.core?.user_result
+              ?.result?.legacy;
+          const new_hashtag: TweetMember = {
+            twitterUsername: user_data?.screen_name,
+            twitterUserId: user_data?.id_str,
+            twitterName: user_data?.name,
+            tweetId: hashtag?.content?.content?.tweetResult?.result?.rest_id,
+          };
+          if (dbExists) {
+            const isNewHashtag = !allHashtagsArray.some(
+              (existingHashtag) =>
+                existingHashtag.twitterUserId === new_hashtag.twitterUserId &&
+                existingHashtag.tweetId === new_hashtag.tweetId,
+            );
+            if (isNewHashtag && new_hashtag.twitterUserId !== twitter_userId) {
+              new_hashtags.push(new_hashtag);
             }
-          } else if (
-            hashtag?.content?.__typename === "TimelineTimelineCursor" &&
-            hashtag?.content?.cursorType === "Bottom"
-          ) {
-            next_cursor = hashtag?.content?.value;
+          } else {
+            if (new_hashtag.twitterUserId !== twitter_userId) {
+              new_hashtags.push(new_hashtag);
+            }
           }
-        });
-        if (
-          rapid_hashtag_fetch?.data?.search?.timeline_response?.timeline
-            ?.instructions?.length > 1
+        } else if (
+          hashtag?.content?.__typename === "TimelineTimelineCursor" &&
+          hashtag?.content?.cursorType === "Bottom"
         ) {
-          next_cursor =
-            rapid_hashtag_fetch?.data?.search?.timeline_response?.timeline
-              ?.instructions[2]?.entry?.content?.value;
+          next_cursor = hashtag?.content?.value;
         }
+      });
+      if (
+        rapid_hashtag_fetch?.data?.search?.timeline_response?.timeline
+          ?.instructions?.length > 1
+      ) {
+        next_cursor =
+          rapid_hashtag_fetch?.data?.search?.timeline_response?.timeline
+            ?.instructions[2]?.entry?.content?.value;
       }
-      if (new_hashtags.length > 0) {
-        if (dbExists) {
-          this.sendPayload(
-            [],
-            new_hashtags,
-            "Hashtag",
-            twitter_username,
-            twitter_userId,
-            point_id,
-          );
-        }
-        await hashtag_collections.insertMany(new_hashtags);
-      } else {
-        console.log("No new hashtags to insert.");
+    }
+    if (new_hashtags.length > 0) {
+      if (dbExists) {
+        this.sendPayload(
+          [],
+          new_hashtags,
+          "Hashtag",
+          twitter_username,
+          twitter_userId,
+          point_id,
+        );
       }
-    } catch (err: any) {
-      throw err;
+      await hashtag_collections.insertMany(new_hashtags);
+    } else {
+      console.log("No new hashtags to insert.");
     }
   };
   addNewRetweets = async (
@@ -466,81 +443,77 @@ export class ActivityQuery {
     point_id: string,
     tweet_id: string,
   ) => {
-    try {
-      const dbClient = getMongoClient();
-      const tweet_db = await dbClient.db(tweet_id);
-      const tweet_collections = await tweet_db.collection("Retweets");
-      const new_retweets: TwitterMember[] = [];
-      let next_cursor: string = "";
+    const dbClient = getMongoClient();
+    const tweet_db = await dbClient.db(tweet_id);
+    const tweet_collections = await tweet_db.collection("Retweets");
+    const new_retweets: TwitterMember[] = [];
+    let next_cursor: string = "";
 
-      const dbExists = await this.checkDbandCollection(tweet_id, "Retweets");
+    const dbExists = await this.checkDbandCollection(tweet_id, "Retweets");
 
-      const allRetweetsCursor = await tweet_collections.find({});
-      const allRetweetsArray = await allRetweetsCursor.toArray();
+    const allRetweetsCursor = await tweet_collections.find({});
+    const allRetweetsArray = await allRetweetsCursor.toArray();
 
-      // TODO: Change the no of iterations AFTER PURCHASING API
-      for (let i = 0; i < 2; i++) {
-        const url =
-          i === 0
-            ? `https://twttrapi.p.rapidapi.com/reposted-timeline?tweet_id=${tweet_id}`
-            : `https://twttrapi.p.rapidapi.com/reposted-timeline?tweet_id=${tweet_id}&cursor=${next_cursor}`;
+    // TODO: Change the no of iterations AFTER PURCHASING API
+    for (let i = 0; i < 2; i++) {
+      const url =
+        i === 0
+          ? `https://twttrapi.p.rapidapi.com/reposted-timeline?tweet_id=${tweet_id}`
+          : `https://twttrapi.p.rapidapi.com/reposted-timeline?tweet_id=${tweet_id}&cursor=${next_cursor}`;
 
-        const rapid_retweets_fetch = await this.callApi(url);
-        const retweet_arr =
-          rapid_retweets_fetch?.data?.data?.timeline_response?.timeline
-            ?.instructions[0]?.entries;
+      const rapid_retweets_fetch = await this.callApi(url);
+      const retweet_arr =
+        rapid_retweets_fetch?.data?.data?.timeline_response?.timeline
+          ?.instructions[0]?.entries;
 
-        if (
-          rapid_retweets_fetch?.data?.timeline_response?.timeline
-            ?.instructions[1]?.__typename === "TimelineTerminateTimeline"
-        ) {
-          break;
-        }
+      if (
+        rapid_retweets_fetch?.data?.timeline_response?.timeline?.instructions[1]
+          ?.__typename === "TimelineTerminateTimeline"
+      ) {
+        break;
+      }
 
-        retweet_arr?.forEach(async (retweet: any) => {
-          if (retweet?.content?.__typename === "TimelineTimelineItem") {
-            const user_data =
-              retweet?.content?.content?.userResult?.result?.legacy;
-            const new_retweet: TwitterMember = {
-              twitterUsername: user_data?.screen_name,
-              twitterUserId: user_data?.id_str,
-              twitterName: user_data?.name,
-            };
-            if (dbExists) {
-              // TODO: Check how you store in mongo and how it is retrieved from mongo
-              const isNewRetweet = !allRetweetsArray.some(
-                (existingRetweet) =>
-                  existingRetweet.twitterUserId === new_retweet.twitterUserId,
-              );
-              if (isNewRetweet) {
-                new_retweets.push(new_retweet);
-              }
-            } else {
+      retweet_arr?.forEach(async (retweet: any) => {
+        if (retweet?.content?.__typename === "TimelineTimelineItem") {
+          const user_data =
+            retweet?.content?.content?.userResult?.result?.legacy;
+          const new_retweet: TwitterMember = {
+            twitterUsername: user_data?.screen_name,
+            twitterUserId: user_data?.id_str,
+            twitterName: user_data?.name,
+          };
+          if (dbExists) {
+            // TODO: Check how you store in mongo and how it is retrieved from mongo
+            const isNewRetweet = !allRetweetsArray.some(
+              (existingRetweet) =>
+                existingRetweet.twitterUserId === new_retweet.twitterUserId,
+            );
+            if (isNewRetweet) {
               new_retweets.push(new_retweet);
             }
-          } else if (
-            retweet?.content?.__typename === "TimelineTimelineCursor" &&
-            retweet?.content?.cursorType === "Bottom"
-          ) {
-            next_cursor = retweet?.content?.value;
+          } else {
+            new_retweets.push(new_retweet);
           }
-        });
-      }
-      if (new_retweets.length > 0) {
-        this.sendPayload(
-          new_retweets,
-          [],
-          "Retweet",
-          twitter_username,
-          twitter_userId,
-          point_id,
-        );
-        await tweet_collections.insertMany(new_retweets);
-      } else {
-        console.log("No new retweets to insert.");
-      }
-    } catch (err: any) {
-      throw err;
+        } else if (
+          retweet?.content?.__typename === "TimelineTimelineCursor" &&
+          retweet?.content?.cursorType === "Bottom"
+        ) {
+          next_cursor = retweet?.content?.value;
+        }
+      });
+    }
+    if (new_retweets.length > 0) {
+      this.sendPayload(
+        new_retweets,
+        [],
+        "Retweet",
+        twitter_username,
+        twitter_userId,
+        point_id,
+      );
+      await tweet_collections.insertMany(new_retweets);
+    } else {
+      console.log("No new retweets to insert.");
     }
   };
   addNewLikes = async (
@@ -551,90 +524,86 @@ export class ActivityQuery {
     access_token: string,
     refresh_token: string,
   ) => {
-    try {
-      const dbClient = getMongoClient();
-      const tweet_db = await dbClient.db(tweet_id);
-      const tweet_collections = await tweet_db.collection("Likes");
-      const new_likes: TwitterMember[] = [];
-      let next_cursor: string = "";
+    const dbClient = getMongoClient();
+    const tweet_db = await dbClient.db(tweet_id);
+    const tweet_collections = await tweet_db.collection("Likes");
+    const new_likes: TwitterMember[] = [];
+    let next_cursor: string = "";
 
-      const dbExists = await this.checkDbandCollection(tweet_id, "Likes");
+    const dbExists = await this.checkDbandCollection(tweet_id, "Likes");
 
-      const allLikesCursor = await tweet_collections.find({});
-      const allLikesArray = await allLikesCursor.toArray();
-      let new_access_token = "";
-      let new_refresh_token = "";
+    const allLikesCursor = await tweet_collections.find({});
+    const allLikesArray = await allLikesCursor.toArray();
+    let new_access_token = "";
+    let new_refresh_token = "";
 
-      // TODO: Change the no of iterations AFTER PURCHASING API
-      for (let i = 0; i < 5; i++) {
-        const url =
-          i === 0
-            ? `https://api.twitter.com/2/tweets/${tweet_id}/liking_users?max_results=100`
-            : `https://api.twitter.com/2/tweets/${tweet_id}/liking_users?max_results=100&pagination_token=${next_cursor}`;
+    // TODO: Change the no of iterations AFTER PURCHASING API
+    for (let i = 0; i < 5; i++) {
+      const url =
+        i === 0
+          ? `https://api.twitter.com/2/tweets/${tweet_id}/liking_users?max_results=100`
+          : `https://api.twitter.com/2/tweets/${tweet_id}/liking_users?max_results=100&pagination_token=${next_cursor}`;
 
-        let x_likes_fetch = await this.callTwitterApi(
+      let x_likes_fetch = await this.callTwitterApi(
+        url,
+        new_access_token === "" ? access_token : new_access_token,
+        new_refresh_token === "" ? refresh_token : new_refresh_token,
+        point_id,
+      );
+      if (x_likes_fetch?.access_token) {
+        new_access_token = x_likes_fetch.access_token;
+        new_refresh_token = x_likes_fetch.refresh_token;
+        x_likes_fetch = await this.callTwitterApi(
           url,
-          new_access_token === "" ? access_token : new_access_token,
-          new_refresh_token === "" ? refresh_token : new_refresh_token,
+          new_access_token,
+          refresh_token,
           point_id,
         );
-        if (x_likes_fetch?.access_token) {
-          new_access_token = x_likes_fetch.access_token;
-          new_refresh_token = x_likes_fetch.refresh_token;
-          x_likes_fetch = await this.callTwitterApi(
-            url,
-            new_access_token,
-            refresh_token,
-            point_id,
+      }
+      const likes_arr = x_likes_fetch?.data?.data;
+
+      if (x_likes_fetch?.data?.meta?.result_count === 0) {
+        break;
+      }
+
+      likes_arr?.forEach(async (like: any) => {
+        const new_like: TwitterMember = {
+          twitterUsername: like.username,
+          twitterUserId: like.id,
+          twitterName: like.name,
+        };
+        if (dbExists) {
+          // TODO: Check how you store in mongo and how it is retrieved from mongo
+          const isNewLike = !allLikesArray.some(
+            (existingLike) =>
+              existingLike.twitterUserId === new_like.twitterUserId,
           );
-        }
-        const likes_arr = x_likes_fetch?.data?.data;
-
-        if (x_likes_fetch?.data?.meta?.result_count === 0) {
-          break;
-        }
-
-        likes_arr?.forEach(async (like: any) => {
-          const new_like: TwitterMember = {
-            twitterUsername: like.username,
-            twitterUserId: like.id,
-            twitterName: like.name,
-          };
-          if (dbExists) {
-            // TODO: Check how you store in mongo and how it is retrieved from mongo
-            const isNewLike = !allLikesArray.some(
-              (existingLike) =>
-                existingLike.twitterUserId === new_like.twitterUserId,
-            );
-            if (isNewLike) {
-              new_likes.push(new_like);
-            }
-          } else {
+          if (isNewLike) {
             new_likes.push(new_like);
           }
-        });
-        next_cursor = x_likes_fetch?.data?.meta?.next_token || "";
-      }
-      if (new_likes.length > 0) {
-        this.sendPayload(
-          new_likes,
-          [],
-          "Like",
-          twitter_username,
-          twitter_userId,
-          point_id,
-        );
-        await tweet_collections.insertMany(new_likes);
-      } else {
-        console.log("No new likes to insert.");
-      }
-      return {
-        access_token: new_access_token,
-        refresh_token: new_refresh_token,
-      };
-    } catch (err: any) {
-      throw err;
+        } else {
+          new_likes.push(new_like);
+        }
+      });
+      next_cursor = x_likes_fetch?.data?.meta?.next_token || "";
     }
+    if (new_likes.length > 0) {
+      this.sendPayload(
+        new_likes,
+        [],
+        "Like",
+        twitter_username,
+        twitter_userId,
+        point_id,
+      );
+      await tweet_collections.insertMany(new_likes);
+    } else {
+      console.log("No new likes to insert.");
+    }
+    return {
+      access_token: new_access_token,
+      refresh_token: new_refresh_token,
+    };
   };
   addNewQuotes = async (
     twitter_userId: string,
@@ -644,76 +613,72 @@ export class ActivityQuery {
     access_token: string,
     refresh_token: string,
   ) => {
-    try {
-      const dbClient = getMongoClient();
-      const tweet_db = await dbClient.db(tweet_id);
-      const tweet_collections = await tweet_db.collection("Quotes");
-      const new_qts: TwitterMember[] = [];
-      let new_access_token = "";
-      let new_refresh_token = "";
+    const dbClient = getMongoClient();
+    const tweet_db = await dbClient.db(tweet_id);
+    const tweet_collections = await tweet_db.collection("Quotes");
+    const new_qts: TwitterMember[] = [];
+    let new_access_token = "";
+    let new_refresh_token = "";
 
-      const dbExists = await this.checkDbandCollection(tweet_id, "Quotes");
+    const dbExists = await this.checkDbandCollection(tweet_id, "Quotes");
 
-      const allQuotesCursor = await tweet_collections.find({});
-      const allQuotesArray = await allQuotesCursor.toArray();
+    const allQuotesCursor = await tweet_collections.find({});
+    const allQuotesArray = await allQuotesCursor.toArray();
 
-      const url = `https://api.twitter.com/2/tweets/${tweet_id}/quote_tweets?max_results=100&expansions=author_id`;
+    const url = `https://api.twitter.com/2/tweets/${tweet_id}/quote_tweets?max_results=100&expansions=author_id`;
 
-      let x_qts_fetch = await this.callTwitterApi(
+    let x_qts_fetch = await this.callTwitterApi(
+      url,
+      new_access_token === "" ? access_token : new_access_token,
+      new_refresh_token === "" ? refresh_token : new_refresh_token,
+      point_id,
+    );
+    if (x_qts_fetch?.access_token) {
+      new_access_token = x_qts_fetch.access_token;
+      new_refresh_token = x_qts_fetch.refresh_token;
+      x_qts_fetch = await this.callTwitterApi(
         url,
-        new_access_token === "" ? access_token : new_access_token,
-        new_refresh_token === "" ? refresh_token : new_refresh_token,
+        new_access_token,
+        refresh_token,
         point_id,
       );
-      if (x_qts_fetch?.access_token) {
-        new_access_token = x_qts_fetch.access_token;
-        new_refresh_token = x_qts_fetch.refresh_token;
-        x_qts_fetch = await this.callTwitterApi(
-          url,
-          new_access_token,
-          refresh_token,
-          point_id,
-        );
-      }
-      const qts_arr = x_qts_fetch?.data?.includes?.users;
+    }
+    const qts_arr = x_qts_fetch?.data?.includes?.users;
 
-      qts_arr?.forEach(async (qt: any) => {
-        const new_qt: TwitterMember = {
-          twitterUsername: qt.username,
-          twitterUserId: qt.id,
-          twitterName: qt.name,
-        };
-        if (dbExists) {
-          // TODO: Check how you store in mongo and how it is retrieved from mongo
-          const isNewQuote = !allQuotesArray.some(
-            (existingQt) => existingQt.twitterUserId === new_qt.twitterUserId,
-          );
-          if (isNewQuote) {
-            new_qts.push(new_qt);
-          }
-        } else {
+    qts_arr?.forEach(async (qt: any) => {
+      const new_qt: TwitterMember = {
+        twitterUsername: qt.username,
+        twitterUserId: qt.id,
+        twitterName: qt.name,
+      };
+      if (dbExists) {
+        // TODO: Check how you store in mongo and how it is retrieved from mongo
+        const isNewQuote = !allQuotesArray.some(
+          (existingQt) => existingQt.twitterUserId === new_qt.twitterUserId,
+        );
+        if (isNewQuote) {
           new_qts.push(new_qt);
         }
-      });
-      if (new_qts.length > 0) {
-        this.sendPayload(
-          new_qts,
-          [],
-          "Quotes",
-          twitter_username,
-          twitter_userId,
-          point_id,
-        );
-        await tweet_collections.insertMany(new_qts);
       } else {
-        console.log("No new qts to insert.");
+        new_qts.push(new_qt);
       }
-      return {
-        access_token: new_access_token,
-        refresh_token: new_refresh_token,
-      };
-    } catch (err: any) {
-      throw err;
+    });
+    if (new_qts.length > 0) {
+      this.sendPayload(
+        new_qts,
+        [],
+        "Quotes",
+        twitter_username,
+        twitter_userId,
+        point_id,
+      );
+      await tweet_collections.insertMany(new_qts);
+    } else {
+      console.log("No new qts to insert.");
     }
+    return {
+      access_token: new_access_token,
+      refresh_token: new_refresh_token,
+    };
   };
 }

@@ -1,6 +1,6 @@
 import { redis } from '../config/redisConfig';
 import { WebNotification } from '../controllers/socketControllers.ts/utils/types';
-const crypto = require('crypto');
+import crypto from 'crypto';
 export class RedisFunctions {
   private redisClient: any;
 
@@ -41,7 +41,7 @@ export class RedisFunctions {
     return rooms;
   };
 
-  getNotifications = async (memberId: string, offset = 0, size = 50) => {
+  getNotifications = async (memberId: string, _offset = 0, _size = 50) => {
     return new Promise((resolve, reject) => {
       this.redisClient.hgetall(`member_notifications:${memberId}`, async (err: any, hashData: any) => {
         if (err) {

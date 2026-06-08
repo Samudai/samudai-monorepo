@@ -1,9 +1,9 @@
-const { Telegraf } = require("telegraf");
+import { Telegraf } from "telegraf";
 import { NextFunction, Request, Response } from "express";
 import { grpJoiningPointsTipping, telegramCreateForPoint } from "./ready";
 import { disconnectTelegramMessage } from "../utils/messages";
 
-const bot = new Telegraf(process.env.BOT_ID);
+const bot: any = new (Telegraf as any)(process.env.BOT_ID);
 
 bot.start((ctx: any) =>
   ctx.reply(

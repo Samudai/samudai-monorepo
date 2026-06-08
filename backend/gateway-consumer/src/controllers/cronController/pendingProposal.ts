@@ -8,7 +8,7 @@ export class PendingProposalsController {
             const snapshotData = result.data?.data!;
 
             await Promise.all(
-                snapshotData.map(async (snapshot: any, i: number) => {
+                snapshotData.map(async (snapshot: any, _i: number) => {
                     const snap = new Snapshot(snapshot.snapshot);
 
                     const activeVal: any = await snap.getActiveProposals();

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Payout } from '@samudai/gateway-consumer-types';
 
 export class PayoutController {
-    createPayout = async (req: Request, res: Response, next: NextFunction) => {
+    createPayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payout: Payout = req.body.payout;
 
@@ -22,7 +22,7 @@ export class PayoutController {
         }
     };
 
-    createBulkPayout = async (req: Request, res: Response, next: NextFunction) => {
+    createBulkPayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payouts: Payout[] = req.body.payouts;
 
@@ -41,7 +41,7 @@ export class PayoutController {
         }
     };
 
-    updatePayout = async (req: Request, res: Response, next: NextFunction) => {
+    updatePayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payout: Payout = req.body.payout;
 
@@ -60,7 +60,7 @@ export class PayoutController {
         }
     };
 
-    updatePayoutPaymentStatus = async (req: Request, res: Response, next: NextFunction) => {
+    updatePayoutPaymentStatus = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const payout_id = req.body.payoutId;
             const payment_status = req.body.payment_status;
@@ -82,7 +82,7 @@ export class PayoutController {
         }
     };
 
-    completePayout = async (req: Request, res: Response, next: NextFunction) => {
+    completePayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.post(
                 `${process.env.SERVICE_PROJECT}/payout/complete/${req.params.payoutId as string}`,
@@ -100,7 +100,7 @@ export class PayoutController {
         }
     };
 
-    deletePayout = async (req: Request, res: Response, next: NextFunction) => {
+    deletePayout = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.delete(
                 `${process.env.SERVICE_PROJECT}/payout/delete/${req.params.payoutId as string}`,
@@ -118,7 +118,7 @@ export class PayoutController {
         }
     };
 
-    getPayoutById = async (req: Request, res: Response, next: NextFunction) => {
+    getPayoutById = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.get(
                 `${process.env.SERVICE_PROJECT}/payout/get/${req.params.payoutId as string}`,

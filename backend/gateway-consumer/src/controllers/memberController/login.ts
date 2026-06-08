@@ -298,7 +298,7 @@ export class LoginController {
         }
     };
 
-    reauth = async (req: Request, res: Response, next: NextFunction) => {
+    reauth = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             let refreshToken =
                 req.headers['x-auth-token'] ||

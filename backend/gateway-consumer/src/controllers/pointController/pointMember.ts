@@ -106,7 +106,7 @@ export class PointMemberController {
         }
     };
 
-    CreatePointForMember = async (req: Request, res: Response, next: NextFunction) => {
+    CreatePointForMember = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const memberId: string = req.body.memberId;
             const value = req.body.value;

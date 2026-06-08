@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors/customError';
 import { HttpException } from '../errors/exceptionHandlerHelper';
 
-export const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (error: Error, req: Request, res: Response, _next: NextFunction) => {
     if (error instanceof CustomError) {
         return res.status(error.statusCode).json({
             errors: error.serializeErrors(),

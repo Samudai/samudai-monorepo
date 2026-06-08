@@ -19,7 +19,7 @@ import {
   guildMemberUpdatePoint
 } from './ready';
 import axios from 'axios';
-require('dotenv').config();
+import 'dotenv/config';
 
 const client = new Client({
   intents: [
@@ -271,7 +271,11 @@ const getUser = async (userId: string): Promise<User> => {
   return user[0];
 };
 
-export const getGuildEvents = async (req: Request, res: Response, next: NextFunction) => {
+export const getGuildEvents = async (
+  req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
   try {
     const guildId = String(req.params.guildId);
     const guild: Guild = await getGuild(guildId);
@@ -299,7 +303,7 @@ export const getGuildEvents = async (req: Request, res: Response, next: NextFunc
 export const getMemberEvents = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   try {
     const memberId = String(req.params.memberId);
@@ -337,7 +341,7 @@ export const healthCheck = async (req: Request, res: Response, next: NextFunctio
 export const linkDiscordToDAO = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   try {
     const daoId = String(req.params.dao_id);
@@ -362,7 +366,7 @@ export const linkDiscordToDAO = async (
 export const linkDiscordToPOINT = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   try {
     const pointId = String(req.params.point_id);

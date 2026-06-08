@@ -4,19 +4,11 @@ import { DAO, MemberDAOView } from '@samudai/gateway-consumer-types';
 const daoService = process.env.SERVICE_DAO;
 
 export const getDAOForMember = async (memberId: string): Promise<MemberDAOView[]> => {
-    try {
-        const response = await axios.get(`${daoService}/dao/bymemberid/${memberId}`);
-        return response.data.dao;
-    } catch (err: any) {
-        throw err;
-    }
+    const response = await axios.get(`${daoService}/dao/bymemberid/${memberId}`);
+    return response.data.dao;
 };
 
 export const getDAOInfo = async (daoId: string): Promise<DAO> => {
-    try {
-        const response = await axios.get(`${daoService}/dao/${daoId}`);
-        return response.data.dao;
-    } catch (err: any) {
-        throw err;
-    }
+    const response = await axios.get(`${daoService}/dao/${daoId}`);
+    return response.data.dao;
 };

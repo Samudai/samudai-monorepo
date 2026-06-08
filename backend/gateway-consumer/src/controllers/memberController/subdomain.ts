@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { UpdateSuccess } from '../../lib/helper/Responsehandler';
 import * as fs from 'fs';
-const path = require('path');
+import path from 'path';
 
 export class SubdomainController {
     requestSubdomain = async (req: Request, res: Response, next: NextFunction) => {

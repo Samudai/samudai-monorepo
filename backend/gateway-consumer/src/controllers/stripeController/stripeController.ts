@@ -2,12 +2,13 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { FetchSuccess } from '../../lib/helper/Responsehandler';
-const stripe = process.env.STRIPE_SECRET_KEY ? require('stripe')(process.env.STRIPE_SECRET_KEY) : null;
+import Stripe from 'stripe';
+const stripe: any = process.env.STRIPE_SECRET_KEY ? (Stripe as any)(process.env.STRIPE_SECRET_KEY) : null;
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
 
 export class stripeController {
-    webhook = async (req: Request, res: Response, next: NextFunction) => {
+    webhook = async (req: Request, res: Response, _next: NextFunction) => {
         const sig = req.headers['stripe-signature'];
 
         let event;

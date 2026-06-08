@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
 import axios from 'axios';
-require('path');
 interface Tweet {
     tweet_id: string;
     text: string;

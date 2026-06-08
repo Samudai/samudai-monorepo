@@ -107,7 +107,7 @@ export class Routes {
             res.send('Gateway Consumer is running!');
         });
 
-        this.app.get('/{*path}', (req, res) => {
+        this.app.get('/{*path}', (_req, _res) => {
             throw new NotFoundError();
         });
 

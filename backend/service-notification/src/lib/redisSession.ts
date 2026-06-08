@@ -1,8 +1,8 @@
 import { MemberSession } from '../controllers/socketControllers.ts/utils/types';
 
 /* abstract */ class SessionStore {
-  findSession(id: string) {}
-  saveSession(id: string, session: MemberSession) {}
+  findSession(_id: string) {}
+  saveSession(_id: string, _session: MemberSession) {}
   findAllSessions() {}
 }
 

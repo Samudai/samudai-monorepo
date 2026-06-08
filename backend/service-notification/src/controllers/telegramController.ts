@@ -1,4 +1,4 @@
-require('dotenv').config();
+import 'dotenv/config';
 import { WebNotification } from './socketControllers.ts/utils/types';
 import { getTelegramChatIds } from './socketControllers.ts/utils/helpers';
 import { generateJWT } from '../lib/jwt';

@@ -8,7 +8,7 @@ import { CreateNotionTaskParam, PropertyValue } from '@samudai/gateway-consumer-
 export class NotionController {
     serviceNotion = `${process.env.SERVICE_PLUGIN}/plugins/notion`;
 
-    auth = async (req: Request, res: Response, next: NextFunction) => {
+    auth = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id: string = req.body.member_id;
             const code: string = req.body.code;
@@ -103,7 +103,7 @@ export class NotionController {
         }
     };
 
-    getAllDatabase = async (req: Request, res: Response, next: NextFunction) => {
+    getAllDatabase = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id: string = req.body.member_id;
             const result = await getAllDatabase(member_id);
@@ -126,7 +126,7 @@ export class NotionController {
         }
     };
 
-    getDatabaseProperties = async (req: Request, res: Response, next: NextFunction) => {
+    getDatabaseProperties = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id = req.body.member_id;
             const database_id = req.body.database_id;
@@ -150,7 +150,7 @@ export class NotionController {
         }
     };
 
-    importDatabase = async (req: Request, res: Response, next: NextFunction) => {
+    importDatabase = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id: string = req.body.member_id;
             const database_id: string = req.body.database_id;
@@ -190,7 +190,7 @@ export class NotionController {
         }
     };
 
-    isExists = async (req: Request, res: Response, next: NextFunction) => {
+    isExists = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id: string = req.params.memberId as string;
             const result = await axios.get(`${this.serviceNotion}/exists/${member_id}`);
@@ -213,7 +213,7 @@ export class NotionController {
         }
     };
 
-    deleteNotion = async (req: Request, res: Response, next: NextFunction) => {
+    deleteNotion = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id: string = req.params.memberId as string;
             const result = await axios.delete(`${this.serviceNotion}/${member_id}`);

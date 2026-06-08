@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Plugin, PluginsEnums } from '@samudai/gateway-consumer-types';
 
 export class PluginController {
-    getPluginListForDAO = async (req: Request, res: Response, next: NextFunction) => {
+    getPluginListForDAO = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const link_id = req.params.linkId as string;
             const pluginList: Plugin[] = [];
@@ -112,7 +112,7 @@ export class PluginController {
         }
     };
 
-    getPluginListForMember = async (req: Request, res: Response, next: NextFunction) => {
+    getPluginListForMember = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id = req.params.memberId as string;
             const pluginList: Plugin[] = [];
