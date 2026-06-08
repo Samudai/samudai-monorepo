@@ -1,0 +1,44 @@
+.tags {
+  padding: 16px 18px;
+  background: $clr-black;
+  border-radius: 15px;
+  min-height: 131px;
+}
+.tags_wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: -8px -7px 0;
+}
+.tags_input {
+  margin-top: 8px;
+  margin-left: 7px;
+  flex: 1 1 auto;
+  background: none;
+  border: none;
+  outline: none;
+
+  font: $font16;
+  color: $clr-green;
+
+  &::placeholder {
+    color: $clr-gray-dark;
+  }
+}
+.tags_item {
+  margin: 8px 7px 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: $clr-black-main;
+
+  font: 400 14px/1 $lato;
+  color: $clr-white;
+
+  display: flex;
+  align-items: center;
+}
+.tags_remove {
+  width: 10px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}

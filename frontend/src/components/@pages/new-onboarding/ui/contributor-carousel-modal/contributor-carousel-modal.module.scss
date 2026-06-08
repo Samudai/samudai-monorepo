@@ -1,0 +1,55 @@
+.root {
+    max-width: 704px;
+    padding: 43px 47px;
+}
+
+.title {
+    font: $font24;
+    color: $clr-white;
+    text-align: center;
+}
+
+.text {
+    max-width: 280px;
+    width: 100%;
+    margin: 16px auto 0;
+
+    text-align: center;
+
+    font: $font16;
+    color: $clr-white;
+
+    img {
+        display: inline;
+        transform: translateY(0.2em);
+    }
+}
+
+.carousel {
+    margin-top: 24px;
+}
+
+.controls {
+    margin-top: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_disBtn,
+    &_connectBtn {
+        padding: 17px 28px;
+        border-radius: 12px;
+        font: 700 16px/1.5 $satoshi;
+    }
+
+    &_disBtn {
+        color: $clr-white;
+        background: $clr-black;
+    }
+
+    &_connectBtn {
+        color: #161819;
+        background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+    }
+}

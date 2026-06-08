@@ -1,0 +1,18 @@
+.root {
+  overflow: hidden auto;
+  direction: rtl;
+
+  &:global(.orange-scrollbar) {
+    &::-webkit-scrollbar-thumb {
+      background-color: $clr-green;
+    }
+  }
+
+  &.pd {
+    padding-left: 13px;
+  }
+}
+.content {
+  direction: ltr;
+  
+}

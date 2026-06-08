@@ -1,0 +1,34 @@
+.root {
+  background: none;
+  border: none;
+}
+.header {
+}
+.title {
+}
+.content {
+  margin-top: 27px;
+  overflow: visible;
+}
+.list {
+  [data-role='list'] {
+    padding-right: 16px;
+    max-height: 220px;
+
+    &::-webkit-scrollbar-track {
+      // margin-top: 15px;
+    }
+  }
+}
+.showMore {
+  font: 600 14px/1 $lato;
+  color: $clr-orange;
+}
+@media (max-width: $laptop) {
+  .list {
+    [data-role='list'] {
+      padding-right: 16px;
+      max-height: 400px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "idx": 0,
+    "img": "/mockup/img/user-1.png",
+    "name": "Alena Williams",
+    "rating": 4,
+    "text": "I live in any area that drives experience — whether it’s initial exploration, critically refining some other text"
+  },
+  {
+    "idx": 1,
+    "img": "/mockup/img/user-2.png",
+    "name": "Alena Williams",
+    "rating": 3,
+    "text": "I live in any area that drives experience — whether it’s initial"
+  }
+]

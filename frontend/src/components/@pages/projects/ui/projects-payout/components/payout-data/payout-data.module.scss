@@ -1,0 +1,80 @@
+.data {
+    display: flex;
+
+    + .data {
+        margin-top: 8px;
+    }
+}
+.data_label {
+    font: 500 12px/1 $lato;
+    color: $clr-white;
+}
+.data_provider {
+    width: 115px;
+    flex-shrink: 0;
+}
+.data_currency {
+    margin-left: 8px;
+    width: 85px;
+    flex-shrink: 0;
+}
+.data_input {
+    width: 80px;
+    margin-left: 8px;
+
+    [data-role='field'] {
+        border-radius: 12px;
+        background: #34383c;
+    }
+    [data-role='input'] {
+        min-height: 40px;
+    }
+}
+.data_controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 10px;
+    flex-grow: 1;
+}
+.data_dropdown {
+    [data-role='button'] {
+        transform: rotate(-90deg);
+    }
+}
+.data_dropdown_item {
+    svg {
+        width: 16px;
+        [data-stroke],
+        [data-full] {
+            stroke: $clr-white;
+        }
+        [data-fill] {
+            fill: $clr-white;
+        }
+    }
+    span {
+        margin-left: 8px;
+        transform: translateY(0.15em);
+    }
+}
+
+.data_cancelBtn {
+    width: 12px;
+}
+.data_submitBtn {
+    margin-left: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        [data-fill] {
+            fill: $clr-green;
+        }
+    }
+}

@@ -1,0 +1,197 @@
+.card {
+    background: $clr-black-main;
+    border-radius: 20px;
+    padding: 32px;
+}
+.card_head {
+    display: flex;
+    align-items: center;
+}
+
+.card_author {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.card_author_picture {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: center;
+}
+.card_author_col {
+    padding-left: 16px;
+    font: $fontMedium;
+}
+.card_author_name {
+    color: $clr-white;
+}
+.card_author_date {
+    margin-top: 4px;
+    color: $clr-gray-dark;
+}
+.card_description {
+    margin-top: 27px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.card_label {
+    margin-left: auto;
+    border-radius: 10px;
+    padding: 6px 19.5px;
+
+    font: $fontMedium;
+    text-transform: capitalize;
+
+    &_project {
+        background: rgba($clr-orange, 0.2);
+        color: $clr-orange;
+    }
+
+    &_proposal {
+        background-color: rgba($clr-lavender, 0.2);
+        color: $clr-lavender;
+    }
+    
+    &_community,
+    &_investment {
+        background-color: rgba($clr-green, 0.2);
+        color: $clr-green;
+    }
+
+    &_transaction {
+        background-color: rgba($clr-yellow, 0.2);
+        color: $clr-yellow;
+    }
+}
+
+.card_settings {
+    margin-left: 32px;
+}
+
+.card_settingsItem {
+    background: $clr-black;
+    user-select: none;
+    cursor: pointer;
+
+    svg {
+        width: 12px;
+        flex-shrink: 0;
+        margin-right: 8px;
+        color: $clr-white;
+
+        [data-full] {
+            stroke-width: 2px;
+            stroke: $clr-white;
+        }
+        [data-fill] {
+            stroke-width: 1px;
+            stroke: $clr-white;
+        }
+    }
+
+    span {
+        color: $clr-white;
+    }
+}
+
+.card_description {
+    border-radius: 0;
+}
+
+.card_description_editor {
+    padding: 0;
+}
+
+.card_footer {
+    margin-top: 27px;
+    padding-top: 27px;
+    border-top: 0.5px solid $clr-gray-dark;
+    display: flex;
+    align-items: center;
+}
+
+.card_tags {
+    margin-top: 30px;
+    margin: -4px -4px 0;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card_tags_item {
+    margin: 4px 4px 0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: $clr-black;
+
+    font: 400 14px/1 $lato;
+    color: $clr-white;
+}
+
+.card_joinContainer {
+    margin-left: auto;
+}
+
+.card_joinBtn {
+    margin-left: auto;
+    padding: 12px 32px;
+    border-radius: 100px;
+}
+
+.card_closedBtn {
+    background: $clr-black;
+    user-select: none;
+    cursor: default;
+
+    span {
+        color: $clr-red;
+    }
+}
+
+.card_joinedBtn {
+    background: $clr-black;
+    user-select: none;
+
+    svg {
+        width: 12px;
+        flex-shrink: 0;
+        margin-right: 8px;
+
+        [data-fill] {
+            stroke-width: 2px;
+            fill: $clr-green;
+            stroke: $clr-green;
+        }
+    }
+
+    span {
+        color: $clr-green;
+    }
+}
+
+.card_leaveBtn {
+    background: $clr-orange;
+    user-select: none;
+    cursor: pointer;
+
+    svg {
+        // width: 12px;
+        height: 7px;
+        flex-shrink: 0;
+        margin: 2px 0 2px 8px;
+
+        [data-fill] {
+            stroke-width: 0.2px;
+            fill: $clr-black;
+            stroke: $clr-black;
+        }
+    }
+
+    span {
+        color: $clr-black;
+    }
+}

@@ -1,0 +1,13 @@
+
+
+
+.root {
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+  background: $clr-black-main;
+
+  + .root {
+    margin-top: 16px;
+  }
+}

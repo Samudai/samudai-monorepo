@@ -1,0 +1,69 @@
+.stat {
+  overflow: hidden;
+}
+.stat_list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -12px -11px 0;
+}
+.stat_item {
+  margin-top: 12px;
+  flex: 0 0 25%;
+  overflow: hidden;
+  padding-inline: 11px;
+  text-align: center;
+
+  &_wrapper {
+    border-radius: 15px;
+    background: $clr-black-main;
+    padding: 16px;
+  }
+
+  &[data-growing='true'] {
+    .stat_tok {
+      svg [data-stroke] {
+        stroke: $clr-green;
+      }
+      span {
+        color: $clr-green;
+      }
+    }
+  }
+  &[data-growing='false'] {
+    .stat_tok {
+      svg {
+        transform: scaleY(-1) translateY(0.1em);
+        [data-stroke] {
+          stroke: $clr-orange;
+        }
+      }
+
+      span {
+        color: $clr-orange;
+      }
+    }
+  }
+}
+.stat_tok {
+  font: $fontMedium;
+  color: $clr-white;
+
+  svg {
+    margin-left: 2px;
+    display: inline-block;
+    width: 16px;
+    flex-shrink: 0;
+    vertical-align: middle;
+    transform: translateY(-0.1em);
+  }
+}
+.stat_amount {
+  margin-top: 10px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+@media (max-width: $laptop_small){
+  .stat_item {
+    flex-basis: 50%;
+  }
+}

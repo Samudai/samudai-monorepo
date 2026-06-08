@@ -1,0 +1,49 @@
+
+
+
+.root {
+  margin-top: 70px;
+}
+.loading {
+  margin-top: 70px;
+  font: 900 50px/1 $lato;
+  color: $clr-white;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFF;
+}
+.table {
+  display: flex;
+}
+.content {
+  flex: 1 1;
+  padding-top: 50px;
+}
+.hat {}
+.hatRight {
+  display: flex;
+  align-items: center;
+}
+.settings {
+  margin-left: 30px;
+}
+.workspace {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  + .row {
+    margin-top: 50px;
+  }
+}
+.col {
+  max-width: 325px;
+  width: 100%;
+
+  + .col {
+    margin-left: 15px;
+  }
+}
