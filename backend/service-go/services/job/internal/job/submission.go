@@ -85,7 +85,7 @@ func GetSubmissionListByMemberID(memberID string) ([]job.Submission, error) {
 	rows, err := db.Query(`SELECT submission_id, bounty_id, member_id,
 		submission, file, status, rank, feedback, created_at, updated_at
 		FROM submission WHERE member_id = $1::uuid
-		ORDER BY (status::integer) ASC, created_at DESC`, memberID)
+		ORDER BY status ASC, created_at DESC`, memberID)
 	if err != nil {
 		return submissions, err
 	}
@@ -112,7 +112,7 @@ func GetSubmissionListByClanID(clanID string) ([]job.Submission, error) {
 	rows, err := db.Query(`SELECT submission_id, bounty_id, clan_id,
 		submission, file, status, rank, feedback, created_at, updated_at
 		FROM submission WHERE clan_id = $1::uuid
-		ORDER BY (status::integer) ASC, created_at DESC`, clanID)
+		ORDER BY status ASC, created_at DESC`, clanID)
 	if err != nil {
 		return submissions, err
 	}
