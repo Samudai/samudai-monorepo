@@ -1,16 +1,10 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import {
-    AddSuccess,
-    CreateSuccess,
-    DeleteSuccess,
-    FetchSuccess,
-    UpdateSuccess,
-} from '../../lib/helper/Responsehandler';
+import { AddSuccess, DeleteSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
 import { generateOTP } from '../../lib/otp';
 import { generateJWTWithExpiration } from '../../lib/jwt';
-import { MemberFetch, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MemberFetch, MembersEnums } from '@samudai/gateway-consumer-types';
 export class MobileController {
     addMobileForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -26,7 +20,7 @@ export class MobileController {
                         member_id: result.data.member_id,
                     });
 
-                    const member = res1.data.member
+                    const member = res1.data.member;
 
                     const tokens = generateJWTWithExpiration(result.data.member_id);
                     result.data.name = member.name;
@@ -69,7 +63,7 @@ export class MobileController {
 
     GetLinkedStatusForMobile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/mobile/get/linkedstaus/${member_id}`);
 
@@ -81,7 +75,7 @@ export class MobileController {
 
     DeleteMobileForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
 
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/mobile/delete/${memberId}`);
             new DeleteSuccess(res, 'Mobile', result);
@@ -92,7 +86,7 @@ export class MobileController {
 
     FetchIMemberForMobile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-        const member: MemberFetch = req.body.member;
+            const member: MemberFetch = req.body.member;
             let member_id = '';
             let username = '';
             let wallet_address = '';
@@ -128,17 +122,16 @@ export class MobileController {
                 memberResult = result.data;
             }
             new FetchSuccess(res, 'MEMBER', memberResult!);
-
         } catch (err: any) {
             next(new ErrorException(err, 'Error while fetching a imember for mobile'));
         }
-    }
+    };
 
     getIDAOForMobile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/idao/bymemberid/${memberId}`);
-            
+
             return res.status(200).send({
                 message: 'DAO fetched successfully for mobile member',
                 data: result.data,

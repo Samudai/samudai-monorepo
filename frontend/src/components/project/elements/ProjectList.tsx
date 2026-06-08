@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types/dist/types';
 import clsx from 'clsx';
 import ProjectCard from './ProjectCard';
 import styles from '../styles/ProjectList.module.scss';

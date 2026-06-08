@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NotionDatabase } from '@samudai_xyz/gateway-consumer-types';
+import { NotionDatabase } from '@samudai/gateway-consumer-types';
 import { PageObjectResponse } from '../utils/notionApiEndpoint';
 import { AuthResponse } from '../utils/types';
 
@@ -67,7 +67,7 @@ export const getPages = async (member_id: string, database_id: string) => {
 
 export const getMemberIDs = async (people: any) => {
     try {
-        let user_ids: string[] = [];
+        const user_ids: string[] = [];
         people.map((user: any) => {
             user_ids.push(user.id);
         });

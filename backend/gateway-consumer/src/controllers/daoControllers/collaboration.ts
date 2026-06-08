@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Collaboration } from '@samudai_xyz/gateway-consumer-types';
+import { Collaboration } from '@samudai/gateway-consumer-types';
 
 export class DAOCollaborationController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -19,7 +19,7 @@ export class DAOCollaborationController {
 
     listForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/collaboration/list/${daoId}`);
             new FetchSuccess(res, 'DAO Collaboration List', result);
         } catch (err: any) {
@@ -46,7 +46,7 @@ export class DAOCollaborationController {
 
     deleteCollaboration = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const collaborationId = (req.params.collaborationId as string);
+            const collaborationId = req.params.collaborationId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/collaboration/delete/${collaborationId}`);
             new DeleteSuccess(res, 'DAO Collaboration', result);
         } catch (err: any) {

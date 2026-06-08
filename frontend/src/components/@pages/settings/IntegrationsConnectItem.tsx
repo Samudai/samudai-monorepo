@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateActivity } from '../../../utils/activity/updateActivity';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
 import { changeTwitterData, selectAccess, selectActiveDao } from 'store/features/common/slice';
 import { useSnapshotAuthMutation } from 'store/services/Login/login';
 import {

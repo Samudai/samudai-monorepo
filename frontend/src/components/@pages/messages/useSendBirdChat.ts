@@ -21,7 +21,7 @@ import { useCreateUserMutation, useLazyGetUserQuery } from 'store/services/SendB
 import { useGetMemberByIdMutation } from 'store/services/userProfile/userProfile';
 import { groupImages } from 'components/@popups/MessageCreate/constants';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 export interface ChatStatus {
     userId: string;

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { DAO, TeamMemberResponse } from '@samudai_xyz/gateway-consumer-types';
-import { NewDAOItems } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
+import { DAO, TeamMemberResponse } from '@samudai/gateway-consumer-types';
+import { NewDAOItems } from '@samudai/gateway-consumer-types/dist/types/activity/enums';
 import store from 'store/store';
 import {
     addDaoResponse,

@@ -4,11 +4,11 @@ import Sprite from 'components/sprite';
 import Button from 'ui/@buttons/Button/Button';
 import css from './profile-connect.module.scss';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 import { SetupConnection } from 'components/@signup/ProfileSetup/steps';
 import { JobsChat } from 'components/@pages/new-jobs';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import { useTypedDispatch } from 'hooks/useStore';
 import { openLoginModal } from 'store/features/common/slice';
 

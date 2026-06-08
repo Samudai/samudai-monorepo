@@ -7,7 +7,7 @@ import Input from 'ui/@form/Input/Input';
 import Head from 'ui/head';
 import css from './connections.module.scss';
 import { useFetchProfileDaos } from 'components/@pages/new-profile';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { MemberResponse } from '@samudai/gateway-consumer-types/dist/types';
 import { useParams } from 'react-router-dom';
 
 const enum Status {

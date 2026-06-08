@@ -1,5 +1,5 @@
 import { publishTelegramNotification } from '../../telegramController';
-import { WebNotification, NotificationPartialData, ErrorResponse } from '../utils/types';
+import { WebNotification, NotificationPartialData } from '../utils/types';
 import { DaoNotificationTemplateHandler } from './utils/daoTemplates';
 
 export class DaoSockets {

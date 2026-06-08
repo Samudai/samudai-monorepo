@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DAO, MemberDAOView } from '@samudai_xyz/gateway-consumer-types';
+import { DAO, MemberDAOView } from '@samudai/gateway-consumer-types';
 
 const daoService = process.env.SERVICE_DAO;
 

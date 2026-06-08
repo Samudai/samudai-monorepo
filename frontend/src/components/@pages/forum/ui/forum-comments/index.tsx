@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ForumCommentsItem } from '../forum-comments-item';
-import { DiscussionResponse, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse, MessageResponse } from '@samudai/gateway-consumer-types';
 import css from './forum-comments.module.scss';
 import { useTypedSelector } from 'hooks/useStore';
 import { optIn } from 'store/features/discussion/slice';

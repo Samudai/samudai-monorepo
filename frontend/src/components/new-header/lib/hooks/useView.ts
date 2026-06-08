@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types/';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import {
     appendView,

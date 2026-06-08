@@ -9,7 +9,7 @@ import {
     SubTask,
     TaskResponse,
     NotificationsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs, { Dayjs } from 'dayjs';
 import { Descendant } from 'slate';

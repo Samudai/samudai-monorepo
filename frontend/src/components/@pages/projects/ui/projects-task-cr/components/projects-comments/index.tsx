@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Comment, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Comment, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { useAddCommentsMutation } from 'store/services/projects/totalProjects';
 import MessagePanel from 'components/message-panel';

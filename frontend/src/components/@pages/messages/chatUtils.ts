@@ -3,7 +3,7 @@ import { ENV } from '@pushprotocol/restapi/src/lib/constants';
 import { changeChatKey, changeChatUser, setChats } from 'store/features/chats/slice';
 import store from 'store/store';
 import { ChatCreateGroupType } from '@pushprotocol/restapi/src/lib/chat';
-import { DiscussionEnums, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums, MessageResponse } from '@samudai/gateway-consumer-types';
 import type { BrowserProvider } from 'ethers';
 
 export const sendMessage = async (content: string, activeChat: PushAPI.IFeeds, chatKey: string) => {

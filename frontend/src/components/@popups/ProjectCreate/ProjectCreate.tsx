@@ -1,6 +1,6 @@
 import Popup from '../components/Popup/Popup';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
-import { ActivityEnums, ProjectEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, ProjectEnums } from '@samudai/gateway-consumer-types';
 import {
     changeDaoProgress,
     selectActiveDao,

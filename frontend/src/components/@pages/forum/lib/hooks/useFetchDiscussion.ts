@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { DiscussionEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import {
     useAddParticipantMutation,
     useRemoveParticipantMutation,

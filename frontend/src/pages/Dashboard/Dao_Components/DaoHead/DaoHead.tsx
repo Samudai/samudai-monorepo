@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { AccessEnums } from '@samudai/gateway-consumer-types/';
 import {
     changeTutorialStep,
     selectAccess,

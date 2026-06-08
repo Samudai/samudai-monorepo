@@ -9,7 +9,7 @@ import TrashIcon from 'ui/SVG/TrashIcon';
 import CloseButton from 'ui/@buttons/Close/Close';
 import MarkIcon from 'ui/SVG/MarkIcon';
 import { useGetParcelBalanceMutation, useGetProviderQuery } from 'store/services/payments/payments';
-import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { Auth, Provider } from '@samudai/gateway-consumer-types/dist/types';
 import { useParams } from 'react-router-dom';
 import { IPaymentCurrency } from 'utils/types/Payments';
 import { useTypedSelector } from 'hooks/useStore';

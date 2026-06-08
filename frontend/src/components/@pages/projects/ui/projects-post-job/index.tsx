@@ -5,8 +5,8 @@ import {
     OpportunityResponse,
     Task,
     TaskResponse,
-} from '@samudai_xyz/gateway-consumer-types';
-import { Provider } from '@samudai_xyz/gateway-consumer-types/dist/types';
+} from '@samudai/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types/dist/types';
 import { v4 as uuidv4 } from 'uuid';
 import { useLazyGetTaskDetailsQuery } from 'store/services/projects/tasks';
 import Popup from 'components/@popups/components/Popup/Popup';

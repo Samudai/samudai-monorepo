@@ -13,7 +13,7 @@ import usePopup from 'hooks/usePopup';
 import { JobsChat } from 'components/@pages/new-jobs';
 import { toast } from 'utils/toast';
 import { useNavigate } from 'react-router-dom';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 interface DaoInformationProps {}
 

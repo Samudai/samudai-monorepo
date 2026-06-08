@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
 import { Networks } from './utils/networks';
-import { Auth, TxData } from '@samudai_xyz/gateway-consumer-types';
+import { Auth, TxData } from '@samudai/gateway-consumer-types';
 
 export class ParcelController {
     getSafes = async (req: Request, res: Response, next: NextFunction) => {
@@ -27,7 +27,7 @@ export class ParcelController {
                         'x-parcel-app-token': apiKey!,
                         'x-parcel-network': chainId,
                     },
-                }
+                },
             );
             new FetchSuccess(res, 'SAFES', response);
         } catch (err: any) {
@@ -57,7 +57,7 @@ export class ParcelController {
                         'x-parcel-app-token': apiKey!,
                         'x-parcel-network': chainId,
                     },
-                }
+                },
             );
             new FetchSuccess(res, 'SAFE BALANCE', response);
         } catch (err: any) {
@@ -90,7 +90,7 @@ export class ParcelController {
                         'x-parcel-app-token': apiKey!,
                         'x-parcel-network': chainId,
                     },
-                }
+                },
             );
             new CreateSuccess(res, 'TRANSACTION', response);
         } catch (err: any) {
@@ -121,7 +121,7 @@ export class ParcelController {
                         'x-parcel-app-token': apiKey!,
                         'x-parcel-network': chainId,
                     },
-                }
+                },
             );
             new FetchSuccess(res, 'SAFE INFO', response);
         } catch (err: any) {

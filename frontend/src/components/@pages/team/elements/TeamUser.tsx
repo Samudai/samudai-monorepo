@@ -1,4 +1,4 @@
-import { TeamMemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMemberResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import styles from '../styles/TeamUser.module.scss';

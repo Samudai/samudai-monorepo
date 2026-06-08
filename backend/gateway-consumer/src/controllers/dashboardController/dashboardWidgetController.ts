@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { DashboardWidget } from '@samudai_xyz/gateway-consumer-types';
+import { DashboardWidget } from '@samudai/gateway-consumer-types';
 
 export class DashBoardWidgetController {
     // This function is not in use by frontend
@@ -21,7 +21,7 @@ export class DashBoardWidgetController {
     listWidgetsForDashboard = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.get(
-                `${process.env.SERVICE_DASHBOARD}/dashboardwidget/list/${(req.params.dashboardId as string)}`
+                `${process.env.SERVICE_DASHBOARD}/dashboardwidget/list/${req.params.dashboardId as string}`,
             );
             new FetchSuccess(res, 'Widgets List', result);
         } catch (err: any) {
@@ -46,7 +46,7 @@ export class DashBoardWidgetController {
     deleteWidgets = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_DASHBOARD}/dashboardwidget/delete/${(req.params.widgetId as string)}`
+                `${process.env.SERVICE_DASHBOARD}/dashboardwidget/delete/${req.params.widgetId as string}`,
             );
             new DeleteSuccess(res, 'Widgets', result);
         } catch (err: any) {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
 import { useParams } from 'react-router-dom';
-import { ActivityEnums, NotificationsEnums, Task } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, NotificationsEnums, Task } from '@samudai/gateway-consumer-types';
 import { selectActiveDao, selectProvider } from 'store/features/common/slice';
 import { updateItem } from 'store/features/jobs/slice';
 import {

@@ -1,5 +1,5 @@
 import dayjs, { Dayjs, UnitTypeShort, QUnitType } from 'dayjs';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 
 /* 
   Types

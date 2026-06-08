@@ -11,9 +11,9 @@ import Input from 'ui/@form/Input/Input';
 import Radio from 'ui/@form/Radio/Radio';
 import { CloneObject } from 'utils/clone-object';
 import css from './job-card.module.scss';
-import { TaskResponse, NotificationsEnums, AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse, NotificationsEnums, AccessEnums } from '@samudai/gateway-consumer-types';
 import { useParams } from 'react-router-dom';
-import { JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { JobsEnums } from '@samudai/gateway-consumer-types';
 import { getMemberId } from 'utils/utils';
 import { BountyRequest, OpportunityRequest } from 'store/services/jobs/model';
 import {

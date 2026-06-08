@@ -1,4 +1,4 @@
-import { TeamMember as TeamMemberData } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMember as TeamMemberData } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import styles from '../styles/TeamMember.module.scss';
 

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { ActivityEnums } from '@samudai/gateway-consumer-types/';
 import { selectActiveDao } from 'store/features/common/slice';
 import {
     useAddReviewsMutation,

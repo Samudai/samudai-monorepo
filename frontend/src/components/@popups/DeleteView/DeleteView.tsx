@@ -1,7 +1,7 @@
 import Popup from '../components/Popup/Popup';
 import PopupBox from '../components/PopupBox/PopupBox';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { ActivityEnums } from '@samudai/gateway-consumer-types/';
 import { selectActiveDao } from 'store/features/common/slice';
 import { removeView } from 'store/features/dao/slice';
 import { useDeleteDashboardMutation } from 'store/services/Dashboard/dashboard';

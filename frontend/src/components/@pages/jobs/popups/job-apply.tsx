@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { JobsEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useCreateApplicantMutation } from 'store/services/jobs/totalJobs';
 import Popup from 'components/@popups/components/Popup/Popup';

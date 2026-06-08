@@ -8,7 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTypedSelector } from 'hooks/useStore';
 import { selectAccount } from 'store/features/common/slice';
 import { usePayments } from 'utils/payments/use-payments';
-import { MemberResponse, Payment } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse, Payment } from '@samudai/gateway-consumer-types';
 import { useNavigate } from 'react-router-dom';
 import usePopup from 'hooks/usePopup';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';

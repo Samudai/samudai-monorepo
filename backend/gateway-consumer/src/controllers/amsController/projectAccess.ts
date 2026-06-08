@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 import { bulkMemberMap } from '../../lib/memberUtils';
-import { ProjectAccess, ProjectAccessResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectAccess, ProjectAccessResponse } from '@samudai/gateway-consumer-types';
 
 export class ProjectAccessController {
     createProjectAccess = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,9 +20,9 @@ export class ProjectAccessController {
 
     getProjectAccessForProjectId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const projectId = (req.params.projectId as string);
+            const projectId = req.params.projectId as string;
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/access/listbyprojectid/${projectId}`);
-            let projectAccessResponse: ProjectAccessResponse[] = [];
+            const projectAccessResponse: ProjectAccessResponse[] = [];
             const projectAccess: ProjectAccess[] = result.data;
 
             for (const access of projectAccess) {
@@ -68,7 +68,7 @@ export class ProjectAccessController {
 
     deleteProjectAccess = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const projectId = (req.params.projectId as string);
+            const projectId = req.params.projectId as string;
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/access/delete/${projectId}`);
             new DeleteSuccess(res, 'Project Access', result);
         } catch (err: any) {
@@ -83,7 +83,7 @@ export class ProjectAccessController {
             const project_id: string = req.body.projectId;
             const updated_by = req.body.updatedBy;
 
-            const visibiltyResult = await axios.post(`${process.env.SERVICE_PROJECT}/project/update/visibility`, {
+            await axios.post(`${process.env.SERVICE_PROJECT}/project/update/visibility`, {
                 visibility: visibility,
                 project_id: project_id,
                 updated_by: updated_by,

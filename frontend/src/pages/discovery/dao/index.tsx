@@ -24,7 +24,7 @@ import CollaborateRequest from 'components/@popups/CollaborateRequest/Collaborat
 import mixpanel from 'utils/mixpanel/mixpanelInit';
 import { getMemberId } from 'utils/utils';
 import Settings from 'ui/SVG/Settings';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 
 const Dao = () => {
     const { daoData, isMember } = useFetchDao();

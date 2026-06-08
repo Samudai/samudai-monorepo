@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { WebNotification } from '@samudai/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types/';
 import { ethers } from 'ethers';
 import { Socket } from 'socket.io-client';
 import { CommonSliceState, PushSDKSocket } from './state';
@@ -8,7 +8,7 @@ import { DAOType } from 'root/mockup/daos';
 import {
     NewContributorItems,
     NewDAOItems,
-} from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
+} from '@samudai/gateway-consumer-types/dist/types/activity/enums';
 
 const reducers = {
     changeActiveDao: (

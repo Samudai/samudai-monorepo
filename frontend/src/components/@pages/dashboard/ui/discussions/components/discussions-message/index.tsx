@@ -1,5 +1,5 @@
 import { getTime } from 'utils/utils';
-import { MessageResponse, IMember } from '@samudai_xyz/gateway-consumer-types';
+import { MessageResponse, IMember } from '@samudai/gateway-consumer-types';
 
 interface DiscussionsMessageProps extends MessageResponse {
     participants: IMember[];

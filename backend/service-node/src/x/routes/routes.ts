@@ -1,4 +1,4 @@
-import express, { Express, Router } from "express";
+import express, { Router } from "express";
 import { ActivityController } from "../controller/activityController";
 
 export class Routes {

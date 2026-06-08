@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFetchDiscussion, useForum } from '../../lib/hooks';
 import { ForumCreate } from '../forum-create';
-import { DiscussionResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import usePopup from 'hooks/usePopup';

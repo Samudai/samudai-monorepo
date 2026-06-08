@@ -114,19 +114,19 @@ export class JobsRouter {
         this.applicantRouter.get(
             '/list/member/:memberId',
             requireVerifyAuth,
-            this.applicantController.getApplicantsListForMember
+            this.applicantController.getApplicantsListForMember,
         );
 
         this.applicantRouter.delete(
             '/delete/:applicantId',
             requireVerifyAuth,
-            this.applicantController.deleteApplicant
+            this.applicantController.deleteApplicant,
         );
 
         this.applicantRouter.get(
             '/list/clan/:clanId',
             requireVerifyAuth,
-            this.applicantController.getApplicantsListForClan
+            this.applicantController.getApplicantsListForClan,
         );
 
         this.applicantRouter.post('/update', requireVerifyAuth, this.applicantController.updateApplicant);
@@ -141,7 +141,7 @@ export class JobsRouter {
         this.bountyRouter.get(
             '/list/created/:memberId',
             requireVerifyAuth,
-            this.bountyController.listCreatedBountyByMember
+            this.bountyController.listCreatedBountyByMember,
         );
         this.bountyRouter.post('/list/member', requireVerifyAuth, this.bountyController.listForMember);
         this.bountyRouter.post('/update', requireVerifyAuth, this.bountyController.updateBounty);
@@ -161,23 +161,23 @@ export class JobsRouter {
         this.submissionRouter.get(
             '/list/bounty/:bountyId',
             requireVerifyAuth,
-            this.submissionController.getSubmissionsByBounty
+            this.submissionController.getSubmissionsByBounty,
         );
         this.submissionRouter.get(
             '/list/member/:memberId',
             requireVerifyAuth,
-            this.submissionController.getSubmissionsByMember
+            this.submissionController.getSubmissionsByMember,
         );
         this.submissionRouter.get(
             '/list/clan/:clanId',
             requireVerifyAuth,
-            this.submissionController.getSubmissionsByClan
+            this.submissionController.getSubmissionsByClan,
         );
         this.submissionRouter.post('/review', requireVerifyAuth, this.submissionController.reviewSubmission);
         this.submissionRouter.delete(
             '/delete/:submissionId',
             requireVerifyAuth,
-            this.submissionController.deleteSubmission
+            this.submissionController.deleteSubmission,
         );
 
         //Favourtie
@@ -185,13 +185,13 @@ export class JobsRouter {
         this.favouriteRouter.get(
             '/get/member/:memberId',
             requireVerifyAuth,
-            this.favouriteController.getFavouriteForMember
+            this.favouriteController.getFavouriteForMember,
         );
         this.favouriteRouter.get('/get/count/:jobId', requireVerifyAuth, this.favouriteController.getCountForJob);
         this.favouriteRouter.delete(
             '/delete/:jobId/:memberId',
             requireVerifyAuth,
-            this.favouriteController.deleteFavourite
+            this.favouriteController.deleteFavourite,
         );
 
         //Favourtie
@@ -199,17 +199,17 @@ export class JobsRouter {
         this.favouriteBountyRouter.get(
             '/get/member/:memberId',
             requireVerifyAuth,
-            this.favouriteBountyController.getFavouriteForMember
+            this.favouriteBountyController.getFavouriteForMember,
         );
         this.favouriteBountyRouter.get(
             '/get/count/:bountyId',
             requireVerifyAuth,
-            this.favouriteBountyController.getCountForBounty
+            this.favouriteBountyController.getCountForBounty,
         );
         this.favouriteBountyRouter.delete(
             '/delete/:bountyId/:memberId',
             requireVerifyAuth,
-            this.favouriteBountyController.deleteFavourite
+            this.favouriteBountyController.deleteFavourite,
         );
 
         // Payout
@@ -220,8 +220,8 @@ export class JobsRouter {
         this.payoutRouter.delete('/delete/:payoutId', requireVerifyAuth, this.payoutController.deletePayout);
         this.payoutRouter.get('/get/:payoutId', requireVerifyAuth, this.payoutController.getPayoutById);
 
-        // Analytics 
-        this.analyticsRouter.post('/jobstats', this.analyticsController.getJobAppliedCountForMember)
+        // Analytics
+        this.analyticsRouter.post('/jobstats', this.analyticsController.getJobAppliedCountForMember);
 
         this.app.use('/api/jobs', this.jobRouter);
         this.app.use('/api/jobsFile', this.jobFileRouter);

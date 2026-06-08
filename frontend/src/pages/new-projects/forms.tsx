@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import { selectAccessList } from 'store/features/common/slice';
 import { projectsList } from 'store/features/projects/projectSlice';
 import usePopup from 'hooks/usePopup';

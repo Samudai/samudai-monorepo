@@ -1,5 +1,5 @@
 import React from 'react';
-import { DiscussionResponse } from '@samudai_xyz/gateway-consumer-types/';
+import { DiscussionResponse } from '@samudai/gateway-consumer-types/';
 import { useAddParticipantMutation } from 'store/services/Discussion/discussion';
 import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';

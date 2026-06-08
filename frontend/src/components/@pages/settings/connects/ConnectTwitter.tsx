@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMemberId } from '../../../../utils/utils';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { ActivityEnums } from '@samudai/gateway-consumer-types/';
 import {
     changeTwitterData,
     selectActiveDao,

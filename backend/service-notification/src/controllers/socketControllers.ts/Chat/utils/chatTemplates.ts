@@ -1,15 +1,7 @@
-import axios from 'axios';
-import { getMemberByWallet, getMemberInfo } from '../../utils/helpers';
+import { getMemberInfo } from '../../utils/helpers';
 import { NotificationPartialData, WebNotification, NotificationContent } from '../../utils/types';
 import { generateJWT } from '../../../../lib/jwt';
-import {
-  NewNotificationScope,
-  NewNotificationType,
-  NotificationFor,
-  NotificationScope,
-  NotificationStatus,
-  NotificationType,
-} from '../../utils/enums';
+import { NewNotificationScope, NewNotificationType, NotificationStatus } from '../../utils/enums';
 import {
   ChatRequestAcceptedNotificationMetaData,
   ChatRequestNotificationMetaData,

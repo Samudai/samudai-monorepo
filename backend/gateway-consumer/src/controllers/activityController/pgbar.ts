@@ -1,4 +1,4 @@
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
@@ -32,7 +32,7 @@ export class ProgressBarController {
 
     getProgressForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId: string = (req.params.daoId as string);
+            const daoId: string = req.params.daoId as string;
 
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/progressbar/dao/${daoId}`);
 
@@ -59,7 +59,7 @@ export class ProgressBarController {
 
     getProgressForContributor = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = (req.params.memberId as string);
+            const member_id: string = req.params.memberId as string;
 
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/progressbar/contributor/${member_id}`);
 

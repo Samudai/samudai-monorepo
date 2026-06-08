@@ -171,7 +171,7 @@ const Onboarding = () => {
     useEffect(() => {
         const source = searchParams.get('s');
         const semail = searchParams.get('e');
-        source === 'email' && semail ? localStorage.setItem('semail', semail) : null;
+        if (source === 'email' && semail) localStorage.setItem('semail', semail);
     }, []);
 
     return (

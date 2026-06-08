@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { NfPerson } from '../elements/Components';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { selectActiveDao } from 'store/features/common/slice';

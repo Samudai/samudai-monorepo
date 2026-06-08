@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { BlogsPopupItem } from '../blogs-popup-item';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccessList } from 'store/features/common/slice';
 import { blogData } from 'store/services/Dashboard/model';

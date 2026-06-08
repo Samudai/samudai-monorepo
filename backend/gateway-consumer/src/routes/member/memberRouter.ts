@@ -79,13 +79,13 @@ export class MemberRouter {
         this.router.post(
             '/update/opportunitystatus',
             requireVerifyAuth,
-            this.memberController.UpdateMemberOpportunityStatus
+            this.memberController.UpdateMemberOpportunityStatus,
         );
         this.router.post('/update/domaintags', requireVerifyAuth, this.memberController.updateDomainTagsWorkForMember);
         this.router.post(
             '/update/featuredprojects',
             requireVerifyAuth,
-            this.memberController.updateFeaturedProjectsForMember
+            this.memberController.updateFeaturedProjectsForMember,
         );
         this.router.delete('/delete/:memberId', requireVerifyAuth, this.memberController.deleteMember);
         this.router.get('/checkusername/:username', this.memberController.checkUserName);
@@ -100,7 +100,7 @@ export class MemberRouter {
         this.router.get(
             '/get/all/contributors/open_to_work',
             requireVerifyAuth,
-            this.memberController.getAllOpenToWorkContributor
+            this.memberController.getAllOpenToWorkContributor,
         );
         this.router.post('/getbulkmember/discovery', this.memberController.getBulkMembersForDiscovery);
         this.router.post('/getbulktelegramchatids', this.memberController.getBulkTelelegramChatIds);
@@ -115,7 +115,7 @@ export class MemberRouter {
         this.router.get('/subdomain/get/:member_id/:subdomain', this.subdomainController.getSubdomainForMember);
         this.router.get(
             '/subdomain/checksubdomaincreate/:member_id',
-            this.subdomainController.checkSubdomainCreateForMember
+            this.subdomainController.checkSubdomainCreateForMember,
         );
 
         // Domain_tags_for_work
@@ -146,7 +146,7 @@ export class MemberRouter {
         this.router.delete(
             '/social/delete/:socialId',
             requireVerifyAuth,
-            this.memberSocialsController.deleteMemberSocial
+            this.memberSocialsController.deleteMemberSocial,
         );
 
         //wallet
@@ -155,14 +155,14 @@ export class MemberRouter {
             '/wallet/default/:memberId',
 
             requireVerifyAuth,
-            this.memberWalletController.getDefaultWallet
+            this.memberWalletController.getDefaultWallet,
         );
         this.router.post('/wallet/update', requireVerifyAuth, this.memberWalletController.updateWallet);
         this.router.delete(
             '/wallet/delete/:memberId/:walletAddress',
 
             requireVerifyAuth,
-            this.memberWalletController.deleteWalletForMember
+            this.memberWalletController.deleteWalletForMember,
         );
 
         //connection
@@ -170,49 +170,49 @@ export class MemberRouter {
             '/connection/create',
 
             requireVerifyAuth,
-            this.memberConnectionController.createConnection
+            this.memberConnectionController.createConnection,
         );
         this.router.get(
             '/connection/receiver/:memberId',
 
             requireVerifyAuth,
-            this.memberConnectionController.listbyReceiver
+            this.memberConnectionController.listbyReceiver,
         );
         this.router.get(
             '/connection/sender/:memberId',
 
             requireVerifyAuth,
-            this.memberConnectionController.listbySender
+            this.memberConnectionController.listbySender,
         );
         this.router.get(
             '/connection/list/:memberId',
 
             requireVerifyAuth,
-            this.memberConnectionController.getConnectionsByMemberId
+            this.memberConnectionController.getConnectionsByMemberId,
         );
         this.router.get(
             '/connection/listall/:memberId',
 
             requireVerifyAuth,
-            this.memberConnectionController.getAllConnectionsByMemberId
+            this.memberConnectionController.getAllConnectionsByMemberId,
         );
         this.router.post(
             '/connection/update',
 
             requireVerifyAuth,
-            this.memberConnectionController.updateConnection
+            this.memberConnectionController.updateConnection,
         );
         this.router.delete(
             '/connection/delete/:senderId/:receiverId',
 
             requireVerifyAuth,
-            this.memberConnectionController.deleteConnection
+            this.memberConnectionController.deleteConnection,
         );
         this.router.get(
             '/connection/status/:viewerId/:memberId',
 
             requireVerifyAuth,
-            this.memberConnectionController.getConnectionStatus
+            this.memberConnectionController.getConnectionStatus,
         );
 
         //Review
@@ -222,13 +222,13 @@ export class MemberRouter {
             '/review/get/byreviewer/:reviewerId',
 
             requireVerifyAuth,
-            this.memberReviewController.listByReviewerId
+            this.memberReviewController.listByReviewerId,
         );
         this.router.delete(
             '/review/delete/:reviewId',
 
             requireVerifyAuth,
-            this.memberReviewController.deleteReview
+            this.memberReviewController.deleteReview,
         );
 
         //Reward
@@ -246,7 +246,7 @@ export class MemberRouter {
         this.router.delete(
             '/telegram/delete/:memberId',
             requireVerifyAuth,
-            this.telegramController.DeleteTelegramForMember
+            this.telegramController.DeleteTelegramForMember,
         );
 
         // Mobile App
@@ -258,7 +258,7 @@ export class MemberRouter {
         this.router.get(
             '/mobile/fetch/idaosformember/:memberId',
             requireVerifyAuth,
-            this.mobileController.getIDAOForMobile
+            this.mobileController.getIDAOForMobile,
         );
 
         // Coposting Extension
@@ -269,7 +269,7 @@ export class MemberRouter {
         this.router.post('/coposter/twitter/tweet', this.coposterController.sendMultipleTweet);
         this.router.get(
             '/coposter/forcaster/getUserDetails/:coposterUserId',
-            this.coposterController.getFarcasterUserDetails
+            this.coposterController.getFarcasterUserDetails,
         );
         this.router.post('/coposter/x/updateUser', this.coposterController.updateXUser);
         this.router.post('/coposter/warpcast/updateUser', this.coposterController.updateWarpcastUser);

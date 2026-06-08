@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 import Checkbox from 'ui/@form/Checkbox/Checkbox';
 import Input from 'ui/@form/Input/Input';
 import Radio from 'ui/@form/Radio/Radio';

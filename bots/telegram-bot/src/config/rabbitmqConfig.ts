@@ -1,4 +1,4 @@
-import client, { ChannelModel, Channel, ConsumeMessage } from "amqplib";
+import client, { ChannelModel, Channel } from "amqplib";
 
 const rmqUser = process.env.MQ_USERNAME;
 const rmqPass = process.env.MQ_PASSWORD;

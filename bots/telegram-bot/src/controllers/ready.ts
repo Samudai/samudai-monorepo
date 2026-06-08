@@ -5,18 +5,15 @@ export const telegramCreate = async (ctx: any) => {
   console.log(`Generated Telegram Id ${ctx.message.text}`);
   try {
     if (ctx.message.text != "start" && ctx.message.text.length === 6) {
-      const res = await axios.post(
-        `${process.env.GATEWAY_EXTERNAL}/telegram/create`,
-        {
-          telegram: {
-            chat_id: ctx.from.id.toString(),
-            username: ctx.from.username,
-            first_name: ctx.from.first_name,
-            last_name: ctx.from.last_name,
-            generated_telegram_id: ctx.message.text,
-          },
+      await axios.post(`${process.env.GATEWAY_EXTERNAL}/telegram/create`, {
+        telegram: {
+          chat_id: ctx.from.id.toString(),
+          username: ctx.from.username,
+          first_name: ctx.from.first_name,
+          last_name: ctx.from.last_name,
+          generated_telegram_id: ctx.message.text,
         },
-      );
+      });
 
       ctx.reply(
         "Congrats " +
@@ -30,7 +27,7 @@ export const telegramCreate = async (ctx: any) => {
       message = "Error occured while creating Telegram";
       error = err.response.data.error;
 
-      if ((error = "No rows found for the specified generated_telegram_id")) {
+      if (error === "No rows found for the specified generated_telegram_id") {
         ctx.reply("Ohho! Its seems that you otp is incorrect.. Try again");
       }
     } else if (err.request) {
@@ -71,7 +68,7 @@ export const telegramCreateForPoint = async (ctx: any) => {
           otp: otp,
         };
 
-        const res = await axios.post(
+        await axios.post(
           `${process.env.GATEWAY_EXTERNAL}/telegram/create/point`,
           {
             telegram: payload,
@@ -94,7 +91,7 @@ export const telegramCreateForPoint = async (ctx: any) => {
           otp: ctx.message.text,
         };
 
-        const res = await axios.post(
+        await axios.post(
           `${process.env.GATEWAY_EXTERNAL}/telegram/create/point`,
           {
             telegram: payload,
@@ -113,7 +110,7 @@ export const telegramCreateForPoint = async (ctx: any) => {
       message = "Error occured while linking Telegram Group";
       error = err.response.data.error;
 
-      if ((error = "No rows found for the specified generated_telegram_id")) {
+      if (error === "No rows found for the specified generated_telegram_id") {
         ctx.reply("Ohho! Its seems that you otp is incorrect.. Try again");
       }
     } else if (err.request) {
@@ -162,7 +159,7 @@ export const grpJoiningPointsTipping = async (ctx: any) => {
       message = "Error occured while linking Telegram Group";
       error = err.response.data.error;
 
-      if ((error = "No rows found for the specified generated_telegram_id")) {
+      if (error === "No rows found for the specified generated_telegram_id") {
         ctx.reply("Ohho! Its seems that you otp is incorrect.. Try again");
       }
     } else if (err.request) {

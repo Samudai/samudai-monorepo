@@ -5,7 +5,7 @@ import {
     getProjectByMemberIdResponse,
 } from '../projects/model';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Project, Subdomain } from '@samudai_xyz/gateway-consumer-types';
+import { Project, Subdomain } from '@samudai/gateway-consumer-types';
 import store from 'store/store';
 import {
     claimNFTResponse,
@@ -24,7 +24,7 @@ import {
     getCID,
     checkSubdomainAccessResponse,
 } from './model';
-import { NewContributorItems } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
+import { NewContributorItems } from '@samudai/gateway-consumer-types/dist/types/activity/enums';
 
 export const userProfileApi = createApi({
     reducerPath: 'userProfileApi',

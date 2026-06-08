@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ArchiveIcon } from '../icons/archive-icon';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';
 import { BreadcrumbsItem } from 'components/breadcrumbs';

@@ -6,15 +6,15 @@ import { getNotificationsTabs } from '../../lib';
 import { NotificationsItemMini } from '../notifications-item-mini';
 import css from './notifications-modal.module.scss';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 import { getMemberId } from 'utils/utils';
-import { NewNotificationScope } from '@samudai_xyz/gateway-consumer-types/dist/types/notifications/enums';
+import { NewNotificationScope } from '@samudai/gateway-consumer-types/dist/types/notifications/enums';
 import {
     useLazyGetConnectionsByReceiverIdQuery,
     useUpdateConnectionMutation,
 } from 'store/services/userProfile/userProfile';
 import { useReadNotificationsMutation } from 'store/services/Notifications/Notifications';
-import { MembersEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MembersEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { toast } from 'utils/toast';
 import sendNotification from 'utils/notification/sendNotification';
 import { updateNewNotification } from 'store/features/notifications/slice';

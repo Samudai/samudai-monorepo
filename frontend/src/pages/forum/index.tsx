@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList } from 'store/features/common/slice';
 import { bookmarkedDiscussions, tags } from 'store/features/discussion/slice';
 import usePopup from 'hooks/usePopup';

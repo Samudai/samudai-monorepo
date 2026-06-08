@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProviderDetails } from './model/model';
-import { Provider, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Provider, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import { walletList } from 'store/features/payments/paymentsSlice';
 import {

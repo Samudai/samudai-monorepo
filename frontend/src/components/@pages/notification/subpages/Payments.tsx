@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NotificationsEnums, WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, WebNotification } from '@samudai/gateway-consumer-types';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
 import { NfItem, NfTitle } from 'components/notifications/elements';
 import { NfBounty, NfPayment } from 'components/notifications/items';

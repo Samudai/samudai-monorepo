@@ -1,6 +1,6 @@
 import React from 'react';
-import { ActivityEnums, MemberResponse } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, MemberResponse } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 import { DaoTags, IconsList, getDiscoveryStatus } from 'components/@pages/new-discovery';
 import { JobsChat } from 'components/@pages/new-jobs';

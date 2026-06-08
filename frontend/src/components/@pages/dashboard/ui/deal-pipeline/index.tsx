@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums, FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, FormEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import {
     useDeleteFormMutation,

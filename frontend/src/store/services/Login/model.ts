@@ -1,4 +1,4 @@
-import { Feedback, MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { Feedback, MemberResponse } from '@samudai/gateway-consumer-types';
 import { GuildInfo, MemberGuilds } from 'store/features/Onboarding/state';
 
 export interface LoginRequest {

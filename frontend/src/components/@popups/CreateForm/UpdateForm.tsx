@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Popup from '../components/Popup/Popup';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
 import { GetFormDataItemType, getFormDataItem } from './utils/createFormData';
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import {
     useCreateFormMutation,

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSettingsRoutes } from '../utils/settings-routes';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import SettingsLayout from 'root/layouts/settings/settings.layout';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import { roles } from 'store/services/Settings/model';

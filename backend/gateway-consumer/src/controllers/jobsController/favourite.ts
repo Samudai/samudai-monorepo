@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
-import { FavouriteJob } from '@samudai_xyz/gateway-consumer-types';
+import { FavouriteJob } from '@samudai/gateway-consumer-types';
 
 export class JobsFavouriteController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -29,10 +29,13 @@ export class JobsFavouriteController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/favourite/bymember/${(req.params.memberId as string)}`, {
-                limit: limit,
-                offset: offset,
-            });
+            const result = await axios.post(
+                `${process.env.SERVICE_JOB}/favourite/bymember/${req.params.memberId as string}`,
+                {
+                    limit: limit,
+                    offset: offset,
+                },
+            );
             new FetchSuccess(res, 'Favourite', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving a favourite'));
@@ -42,7 +45,7 @@ export class JobsFavouriteController {
     deleteFavourite = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_JOB}/favourite/delete/${(req.params.jobId as string)}/${(req.params.memberId as string)}`
+                `${process.env.SERVICE_JOB}/favourite/delete/${req.params.jobId as string}/${req.params.memberId as string}`,
             );
             new DeleteSuccess(res, 'Favourite', result);
         } catch (err: any) {
@@ -52,7 +55,9 @@ export class JobsFavouriteController {
 
     getCountForJob = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/favourite/countbyjob/${(req.params.jobId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/favourite/countbyjob/${req.params.jobId as string}`,
+            );
             new FetchSuccess(res, 'Favourite count', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving a favourite count'));

@@ -1,4 +1,4 @@
-import { WebNotification, NotificationPartialData, ErrorResponse } from '../utils/types';
+import { WebNotification, NotificationPartialData } from '../utils/types';
 import { DiscoveryNotificationTemplateHandler } from './utils/discoveryTemplates';
 
 export class DiscoverySockets {

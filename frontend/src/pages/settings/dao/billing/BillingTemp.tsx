@@ -31,7 +31,7 @@ function BillingTemp() {
         if (!priceTier && !billingTerm) {
             setTimeout(() => {
                 localStorage.setItem('billing-status', 'success');
-                window.opener === null;
+                window.opener = null;
                 window.close();
             }, 2000);
         } else {

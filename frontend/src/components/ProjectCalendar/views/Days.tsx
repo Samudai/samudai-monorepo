@@ -4,7 +4,7 @@ import ProjectBlock from '../elements/ProjectBlock';
 import TitleCell from '../elements/TitleCell';
 import { getBlocks } from '../utils/blocks';
 import { CompareDatesType } from '../utils/types';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { Dayjs } from 'dayjs';
 import { getCells } from 'utils/calendar';

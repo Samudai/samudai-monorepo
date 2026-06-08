@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
-import { SubTask, IMember, SubTaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { SubTask, IMember, SubTaskResponse } from '@samudai/gateway-consumer-types';
 import { UpdateSuccess } from '../../lib/helper/Responsehandler';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { updatePayouts, updatePayout } from '../../lib/project';
@@ -31,9 +31,7 @@ export class SubTaskController {
         try {
             const subtask: SubTask = req.body.subtask;
             if (subtask.payout) {
-                const resp = await axios.post(`${process.env.SERVICE_PROJECT}/payout/create`, {
-                    payout: subtask.payout,
-                });
+                await axios.post(`${process.env.SERVICE_PROJECT}/payout/create`, { payout: subtask.payout });
             }
 
             subtask.payout = [];
@@ -68,7 +66,9 @@ export class SubTaskController {
 
     getAllSubtasks = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/allsubtask/${(req.params.projectId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_PROJECT}/subtask/allsubtask/${req.params.projectId as string}`,
+            );
 
             if (result.data?.subtasks?.length > 0) {
                 result.data.subtasks = await Promise.all(
@@ -108,7 +108,7 @@ export class SubTaskController {
                             return { ...subtask, created_by_member: created_by_member };
                         }
                         return { ...subtask, payout: updatedPayout };
-                    })
+                    }),
                 );
             }
 
@@ -126,7 +126,7 @@ export class SubTaskController {
 
     getSubtask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/${(req.params.subtaskId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/${req.params.subtaskId as string}`);
 
             let subtask: SubTask = result.data;
 
@@ -172,7 +172,9 @@ export class SubTaskController {
 
     deleteSubtask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_PROJECT}/subtask/${(req.params.subtaskId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_PROJECT}/subtask/${req.params.subtaskId as string}`,
+            );
 
             res.status(201).send({ message: 'Subtask deleted successfully', data: result.data });
         } catch (err: any) {
@@ -315,7 +317,7 @@ export class SubTaskController {
     getAllArchivedSubtask = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.get(
-                `${process.env.SERVICE_PROJECT}/subtask/getall/archived/${(req.params.projectId as string)}`
+                `${process.env.SERVICE_PROJECT}/subtask/getall/archived/${req.params.projectId as string}`,
             );
 
             if (result.data?.subtasks?.length > 0) {
@@ -334,7 +336,7 @@ export class SubTaskController {
                             return { ...subtask, created_by_member: created_by_member };
                         }
                         return { ...subtask, payout: updatedPayout };
-                    })
+                    }),
                 );
             }
 

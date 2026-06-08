@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { FormResponse, MemberReviewResponse } from '@samudai_xyz/gateway-consumer-types';
+import { FormResponse, MemberReviewResponse } from '@samudai/gateway-consumer-types';
 import store from 'store/store';
 import {
     DiscordEventsRes,

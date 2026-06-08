@@ -1,5 +1,5 @@
-import { DAO, MemberResponse, ProjectEnums } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { DAO, MemberResponse, ProjectEnums } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 export interface searchMemberRes {
     message: string;

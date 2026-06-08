@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { IProviderList, providerValues } from '../utils/constants';
 import { GnosisChainValues, IChainList } from '../utils/providerConstants';
 import { paymentsSelectStyles } from '../utils/selectStyles';
-import { IMember, Member } from '@samudai_xyz/gateway-consumer-types';
+import { IMember, Member } from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import { ethers } from 'ethers';

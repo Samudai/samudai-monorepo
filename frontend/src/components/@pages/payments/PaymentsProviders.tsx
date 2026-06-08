@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { useParams } from 'react-router-dom';
 import { ProviderDetails } from './model/model';
 import AddProvider from './popups/AddProvider';
-import { Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectActiveDao } from 'store/features/common/slice';
 import {

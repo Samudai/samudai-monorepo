@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useStore';
 import { selectMemberConnections } from '../../store/features/common/slice';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types/';
 import {
     useCreateConnectionMutation,
     useLazyGetConnectionStatusQuery,

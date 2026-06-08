@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MessageResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { downloadFile } from 'utils/fileupload/fileupload';

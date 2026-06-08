@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import UserSkill from 'ui/UserSkill/UserSkill';
 import css from './dao-jobs-item.module.scss';
-import { JobPayout } from '@samudai_xyz/gateway-consumer-types';
+import { JobPayout } from '@samudai/gateway-consumer-types';
 import { totalPayout } from 'components/payout/lib';
 
 interface DaoJobsItemProps {

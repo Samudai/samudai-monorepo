@@ -7,7 +7,7 @@ import TeamMember from './TeamMember';
 import styles from '../styles/TeamSidebar.module.scss';
 import { TeamFilter } from './TeamFilter';
 import { useGetContributorSkillsQuery } from 'store/services/Discovery/Discovery';
-import { TeamMember as TeamMemberData } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMember as TeamMemberData } from '@samudai/gateway-consumer-types';
 
 interface TeamSidebarProps {
     active: TeamMemberData;

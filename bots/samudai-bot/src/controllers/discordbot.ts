@@ -4,28 +4,11 @@ import {
   Events,
   GatewayIntentBits,
   Guild,
-  REST,
-  Routes,
-  ShardEvents,
   SlashCommandBuilder,
   User
 } from 'discord.js';
 import { NextFunction, Request, Response } from 'express';
 import {
-  guildCreate,
-  guildDelete,
-  guildMemberAdd,
-  guildMemberRemove,
-  guildMemberUpdate,
-  guildRoleCreate,
-  guildRoleDelete,
-  guildRoleUpdate,
-  guildScheduledEventCreate,
-  guildScheduledEventDelete,
-  guildScheduledEventUpdate,
-  guildScheduledEventUserAdd,
-  guildScheduledEventUserRemove,
-  guildUpdate,
   linkDiscordToDao,
   linkDiscordToPoint,
   guildRoleCreatePoints,
@@ -148,7 +131,7 @@ client.on('interactionCreate', async (interaction) => {
           `You dont have the access to give points. Please ask to your Admin to grant access.`
         );
       }
-    } catch (error) {
+    } catch {
       await interaction.reply(
         `You dont have the access to give points. Please ask to your Admin to grant access.`
       );
@@ -293,7 +276,7 @@ export const getGuildEvents = async (req: Request, res: Response, next: NextFunc
     const guildId = String(req.params.guildId);
     const guild: Guild = await getGuild(guildId);
     const events = await guild!.scheduledEvents.fetch();
-    for (const [id, event] of events) {
+    for (const [id] of events) {
       const e = await guild.scheduledEvents.fetch(id);
       console.log(e);
       const subs = await e.fetchSubscribers();
@@ -322,7 +305,7 @@ export const getMemberEvents = async (
     const memberId = String(req.params.memberId);
     const guildId = String(req.params.guildId);
     const guild = await getGuild(guildId);
-    const member = await getUser(memberId);
+    await getUser(memberId);
     const events = await guild.scheduledEvents.fetch();
     // const events = await guild.members.scheduledEvents.fetch();
     // console.log(events);

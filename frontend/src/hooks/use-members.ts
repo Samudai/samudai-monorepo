@@ -4,7 +4,7 @@ import { useLazySearchMemberByDaoQuery } from 'store/services/Search/Search';
 import useInput from 'hooks/useInput';
 import useDelayedSearch from './useDelayedSearch';
 import { useTypedSelector } from './useStore';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 export const useMembers = (daoId?: string) => {
     const [searchDaoMember] = useLazySearchMemberByDaoQuery();

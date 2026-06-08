@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MembersEnums } from '@samudai/gateway-consumer-types';
 import { setMemberData } from 'store/features/common/slice';
 import {
     useGetMemberByIdMutation,

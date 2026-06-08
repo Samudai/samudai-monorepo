@@ -1,10 +1,8 @@
 import axios from 'axios';
-import nodemailer from 'nodemailer';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { generateOTPWithoutMemberID } from '../../lib/otp';
-import { MemberFetch, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MemberFetch, MembersEnums } from '@samudai/gateway-consumer-types';
 import { sendEmailVerificationMail } from '../../lib/verificationMail';
 
 export class PointMemberController {
@@ -94,8 +92,7 @@ export class PointMemberController {
 
     getPointMembers = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = (req.params.pointId as string);
-            const query = req.query.query;
+            const pointId = req.params.pointId as string;
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
@@ -120,18 +117,16 @@ export class PointMemberController {
 
             const pointId = result.data.point_id;
 
-            const res1 = await axios.post(`${process.env.SERVICE_POINT}/memberpoint/create`, {
+            await axios.post(`${process.env.SERVICE_POINT}/memberpoint/create`, {
                 point_member: {
                     point_id: pointId,
                     member_id: memberId,
                 },
             });
 
-            const res2 = await axios.post(`${process.env.SERVICE_POINT}/access/creatediscord`, {
-                point_id: pointId,
-            });
+            await axios.post(`${process.env.SERVICE_POINT}/access/creatediscord`, { point_id: pointId });
 
-            const res3 = await axios.post(`${process.env.SERVICE_POINT}/access/addmemberdiscord`, {
+            await axios.post(`${process.env.SERVICE_POINT}/access/addmemberdiscord`, {
                 point_id: pointId,
                 access: 'admin',
                 member_id: memberId,
@@ -160,7 +155,7 @@ export class PointMemberController {
     };
     GetPointForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.member_id as string);
+            const memberId = req.params.member_id as string;
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/point/bymemberid/${memberId}`, {});
 
@@ -171,12 +166,12 @@ export class PointMemberController {
     };
     GetActivity = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.point_id as string);
-            const page_number = (req.params.page_number as string);
-            const limit = (req.params.limit as string);
+            const point_id = req.params.point_id as string;
+            const page_number = req.params.page_number as string;
+            const limit = req.params.limit as string;
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/event/getRecentActivity/${point_id}/${page_number}/${limit}`,
-                {}
+                {},
             );
 
             new FetchSuccess(res, 'Successfully fetched Activity', result);
@@ -186,12 +181,12 @@ export class PointMemberController {
     };
     GetMemberActivity = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId: string = (req.params.member_id as string);
-            const page_number = (req.params.page_number as string);
-            const limit = (req.params.limit as string);
+            const memberId: string = req.params.member_id as string;
+            const page_number = req.params.page_number as string;
+            const limit = req.params.limit as string;
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/event/getMemberActivity/${memberId}/${page_number}/${limit}`,
-                {}
+                {},
             );
 
             new FetchSuccess(res, 'Successfully fetched Member Activity', result);
@@ -202,13 +197,13 @@ export class PointMemberController {
 
     GetLeaderBoard = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.point_id as string);
-            const page_number = (req.params.page_number as string);
-            const limit = (req.params.limit as string);
+            const point_id = req.params.point_id as string;
+            const page_number = req.params.page_number as string;
+            const limit = req.params.limit as string;
 
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/event/getLeaderBoard/${point_id}/${page_number}/${limit}`,
-                {}
+                {},
             );
 
             new FetchSuccess(res, 'Successfully fetched LeaderBoard', result);
@@ -219,7 +214,7 @@ export class PointMemberController {
 
     GetDiscordForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId: string = (req.params.member_id as string);
+            const memberId: string = req.params.member_id as string;
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/member/fetchdiscord/${memberId}`);
 
@@ -230,11 +225,11 @@ export class PointMemberController {
     };
     GetMetricsData = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.point_id as string);
-            const days = (req.params.days as string);
+            const point_id = req.params.point_id as string;
+            const days = req.params.days as string;
             const result = await axios.get(
                 `${process.env.SERVICE_DISCORD}/point/discord/getMetric/${point_id}/${days}`,
-                {}
+                {},
             );
 
             new FetchSuccess(res, 'Successfully fetched Metrics for Point System', result);
@@ -246,7 +241,7 @@ export class PointMemberController {
         try {
             const wallet = req.body.wallet;
             const result = await axios.post(`${process.env.SERVICE_POINT}/wallet/create`, {
-                wallet
+                wallet,
             });
 
             new FetchSuccess(res, 'Successfully Linked Wallet', result);

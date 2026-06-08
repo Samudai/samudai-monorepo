@@ -29,12 +29,12 @@ export class DiscoveryRouter {
         this.router.post('/views/add', this.discoveryController.addDiscoveryViews);
 
         // Most Active
-        this.router.get('/mostactive/dao', this.mostActiveController.mostActiveDao)
-        this.router.get('/mostactive/contributor', this.mostActiveController.mostActiveContributor)
+        this.router.get('/mostactive/dao', this.mostActiveController.mostActiveDao);
+        this.router.get('/mostactive/contributor', this.mostActiveController.mostActiveContributor);
 
         // Most Viewed
-        this.router.get('/mostviewed/dao', this.mostViewedController.mostViewedDao)
-        this.router.get('/mostviewed/contributor', this.mostViewedController.mostViewedContributor)
+        this.router.get('/mostviewed/dao', this.mostViewedController.mostViewedDao);
+        this.router.get('/mostviewed/contributor', this.mostViewedController.mostViewedContributor);
 
         this.app.use('/api/discovery', this.router);
     };

@@ -33,7 +33,7 @@ import { getMemberId } from 'utils/utils';
 import css from './claim-subdomain-modal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import sendNotification from 'utils/notification/sendNotification';
-import { ActivityEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 interface ClaimSubdomainModalProps {
     type?: 'dao' | 'contributor';
     onClose?: () => void;

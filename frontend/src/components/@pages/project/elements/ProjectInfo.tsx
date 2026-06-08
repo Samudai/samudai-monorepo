@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types/dist/types';
 import usePopup from 'hooks/usePopup';
 import ProjectInvite from 'components/@popups/ProjectInvite/ProjectInvite';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';

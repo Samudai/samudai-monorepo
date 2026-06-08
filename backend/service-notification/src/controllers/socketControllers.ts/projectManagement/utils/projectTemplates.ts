@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getMemberByWallet, getMemberInfo } from '../../utils/helpers';
+import { getMemberInfo } from '../../utils/helpers';
 import { NotificationPartialData, WebNotification, NotificationContent } from '../../utils/types';
 import {
   TaskReviewNotificationMetaData,
@@ -26,7 +26,7 @@ export class ProjectNotificationHandler {
 
       const jwt = generateJWT(from.from);
 
-      const projectDetails = await axios.get(`${process.env.GATEWAY_URL}/api/project/${metaData?.id}`, {
+      await axios.get(`${process.env.GATEWAY_URL}/api/project/${metaData?.id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           projectid: metaData?.id!,
@@ -97,7 +97,7 @@ export class ProjectNotificationHandler {
       });
       const task = taskResult.data.data;
 
-      const projectDetails = await axios.get(`${process.env.GATEWAY_URL}/api/project/${task.project_id}`, {
+      await axios.get(`${process.env.GATEWAY_URL}/api/project/${task.project_id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           projectid: task.project_id!,
@@ -150,7 +150,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       //console.log('taskReviewNotification', notificationPartialData);
       const jwt = generateJWT(from.from);
       if (to.for === NotificationFor.ADMIN) {
@@ -226,8 +225,6 @@ export class ProjectNotificationHandler {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
 
-      const reviewer_id: string = to.to[0];
-
       const jwt = generateJWT(from.from);
 
       const taskResult = await axios.get(`${process.env.GATEWAY_URL}/api/notification/task/${metaData?.id}`, {
@@ -292,7 +289,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
 
       const jwt = generateJWT(from.from);
       if (to.for === NotificationFor.ADMIN) {
@@ -365,8 +361,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
-      let task;
       let arr: string[] = [];
 
       const jwt = generateJWT(from.from);
@@ -464,7 +458,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       let task;
       let job_type;
       let arr: string[] = [];
@@ -637,7 +630,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
 
       const jwt = generateJWT(from.from);
       const payoutId = metaData?.extra?.payout_id;
@@ -792,8 +784,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      let task;
-      const arr: string[] = [];
 
       const jwt = generateJWT(from.from);
 
@@ -861,7 +851,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       let task;
       let arr: string[] = [];
 
@@ -960,7 +949,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       let task;
       let arr: string[] = [];
 
@@ -1057,7 +1045,6 @@ export class ProjectNotificationHandler {
   AttachmentAddedToTask = async (notificationPartialData: NotificationPartialData): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       let task;
       let arr: string[] = [];
 
@@ -1350,7 +1337,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       let task;
       let arr: string[] = [];
 
@@ -1512,7 +1498,6 @@ export class ProjectNotificationHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       //console.log('taskReviewNotification', notificationPartialData);
       const jwt = generateJWT(from.from);
       if (to.for === NotificationFor.ADMIN) {

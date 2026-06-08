@@ -26,7 +26,7 @@ const checkFileType = (file: any) => {
     if (extensionName && mimetype) {
         return true;
     } else {
-        false;
+        return false;
     }
 };
 
@@ -43,7 +43,7 @@ export const upload = async (file: any) => {
     const fileCheck = checkFileType(file);
     if (fileCheck) {
         const s3Client: aws.S3 = await init();
-        const result = await s3Client.send(new PutObjectCommand(bucketParams));
+        await s3Client.send(new PutObjectCommand(bucketParams));
         const url = `https://${process.env.SPACES_CDN}/${bucketParams.Key}`;
         return url;
     }

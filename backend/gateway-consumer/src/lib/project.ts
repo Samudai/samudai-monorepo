@@ -9,7 +9,7 @@ import {
     Project,
     Task,
     TaskFormResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { bulkMemberMap } from './memberUtils';
 import { getMemberIDs } from './notion';
 
@@ -24,7 +24,7 @@ export const createProjectFromNotion = async (
     database: any,
     member_id: string,
     dao_id: string,
-    department: string
+    department: string,
 ): Promise<string> => {
     try {
         const description = `Imported from Notion - ${database.url}`;
@@ -182,12 +182,8 @@ export const mapTaskFormResponseToTask = (formTaskResponse: TaskFormResponse): T
 
 export const getTaskContributors = async (project_id: string): Promise<IMember[]> => {
     try {
-        interface IContributor {
-            [key: string]: number;
-        }
         const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/contributor/${project_id}`);
 
-        const taskCount: IContributor = result.data;
         const memberIds = Object.keys(result.data);
         // todo - optimise with member cache
         const memberList = await bulkMemberMap(memberIds);
@@ -212,7 +208,7 @@ export const getProject = async (project_id: string): Promise<Project | null> =>
     try {
         const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/${project_id}`);
         return result.data;
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -232,16 +228,16 @@ export const getDepartments = async (projects: ProjectResponse[]): Promise<any |
         await Promise.all(
             departments.map(async (department: any) => {
                 const departmentResponse = await axios.get(
-                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`
+                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`,
                 );
-                if(departmentResponse.data){
+                if (departmentResponse.data) {
                     departmentResponse.data.forEach((dep: any) => {
                         if (dep.department_id === department.department_id) {
                             depMap.set(dep.department_id, dep.name);
                         }
                     });
                 }
-            })
+            }),
         );
         return depMap;
     } catch (err) {
@@ -259,7 +255,7 @@ export const updatePayouts = async (payouts: Payout[]) => {
                 } else {
                     return { ...payout, provider_exists: false };
                 }
-            })
+            }),
         );
         return updatedPayouts;
     } catch (err) {
@@ -277,7 +273,7 @@ export const updatePayout = async (data: any) => {
                 } else {
                     return { ...payout, provider_exists: false };
                 }
-            })
+            }),
         );
 
         return { ...data, payout: updatedPayouts };

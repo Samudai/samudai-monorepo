@@ -29,7 +29,7 @@ import {
     PaymentEnums,
     Provider,
     addPaymentsRequest,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { getMemberId, getMemberIdfromAddress, getRawText } from 'utils/utils';

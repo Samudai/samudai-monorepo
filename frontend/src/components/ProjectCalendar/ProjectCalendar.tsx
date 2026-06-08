@@ -3,7 +3,7 @@ import Head from './elements/Head';
 import Days from './views/Days';
 import Months from './views/Months';
 import Weeks from './views/Weeks';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { Tabs } from './utils';

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { FetchSuccess, UniversalSuccess } from '../../lib/helper/Responsehandler';
-import { MemberReward } from '@samudai_xyz/gateway-consumer-types';
+import { MemberReward } from '@samudai/gateway-consumer-types';
 
 export class MemberRewardController {
     createReward = async (req: Request, res: Response, next: NextFunction) => {
@@ -19,9 +19,7 @@ export class MemberRewardController {
 
     getRewardsForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
-            const dao_id = req.query.dao_id ? req.query.dao_id : undefined;
-            const type = req.query.type ? req.query.type : undefined;
+            const member_id = req.params.memberId as string;
             const result = await axios.post(`${process.env.SERVICE_MEMBER}/reward/formember`, {
                 member_id,
             });

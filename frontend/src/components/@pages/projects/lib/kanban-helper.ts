@@ -1,5 +1,5 @@
-import { ProjectColumn } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectColumn } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 export interface ProjectTasksWithColumn<T extends RequiredFields> {
     column: ProjectColumn;

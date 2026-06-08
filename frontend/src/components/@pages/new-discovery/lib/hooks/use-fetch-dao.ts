@@ -1,4 +1,4 @@
-import { DAOView } from '@samudai_xyz/gateway-consumer-types';
+import { DAOView } from '@samudai/gateway-consumer-types';
 import { useTypedSelector } from 'hooks/useStore';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';

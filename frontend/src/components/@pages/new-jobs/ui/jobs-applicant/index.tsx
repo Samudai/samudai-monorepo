@@ -1,8 +1,8 @@
 import React from 'react';
 import { JobsChat } from '../jobs-chat';
 import { JobsTags } from '../jobs-tags';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
 import Button from 'ui/@buttons/Button/Button';

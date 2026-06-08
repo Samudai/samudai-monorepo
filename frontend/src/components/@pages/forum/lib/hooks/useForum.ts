@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { DiscussionResponse } from '@samudai_xyz/gateway-consumer-types/';
+import { DiscussionResponse } from '@samudai/gateway-consumer-types/';
 import { useLazyGetDaoByDaoIdQuery } from 'store/services/Dao/dao';
 import {
     useLazyGetDiscussionsByMemberIdQuery,

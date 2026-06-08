@@ -15,7 +15,7 @@ export const publishTelegramNotification = async (notification: WebNotification)
 
     const telegramInfo = await getTelegramChatIds(sendersList, jwt);
 
-    const res = await axios.post(`${process.env.GATEWAY_EXTERNAL_URL}/telegram/publishnotifications`, {
+    await axios.post(`${process.env.GATEWAY_EXTERNAL_URL}/telegram/publishnotifications`, {
       telegram: telegramInfo,
       notification_message: notificationMessage,
     });

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import styles from '../styles/Item.module.scss';
-import { CollaborationResponse } from '@samudai_xyz/gateway-consumer-types';
+import { CollaborationResponse } from '@samudai/gateway-consumer-types';
 
 type ItemBaseProps = {
     hideMessage?: boolean;

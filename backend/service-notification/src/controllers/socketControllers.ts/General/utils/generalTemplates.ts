@@ -1,15 +1,8 @@
 import axios from 'axios';
-import { getMemberByWallet, getMemberInfo } from '../../utils/helpers';
+import { getMemberInfo } from '../../utils/helpers';
 import { NotificationPartialData, WebNotification, NotificationContent } from '../../utils/types';
 import { generateJWT } from '../../../../lib/jwt';
-import {
-  NewNotificationScope,
-  NewNotificationType,
-  NotificationFor,
-  NotificationScope,
-  NotificationStatus,
-  NotificationType,
-} from '../../utils/enums';
+import { NewNotificationScope, NewNotificationType, NotificationFor, NotificationStatus } from '../../utils/enums';
 import {
   MeetingCreatedNotificationMetaData,
   GenenralNotificationMetaData,
@@ -79,7 +72,6 @@ export class GeneralNotificationTemplateHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       const jwt = generateJWT(from.from);
       if (to.for === NotificationFor.ADMIN) {
         const result = await axios.get(`${process.env.GATEWAY_URL}/api/dao/members/${to.to[0]}/manage_dao`, {

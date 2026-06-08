@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { AccessEnums } from '@samudai/gateway-consumer-types/';
 import clsx from 'clsx';
 import { selectAccess } from 'store/features/common/slice';
 import { blogData } from 'store/services/Dashboard/model';

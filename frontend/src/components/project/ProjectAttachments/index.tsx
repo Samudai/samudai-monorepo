@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { ProjectFile, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectFile, ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { Swiper as SwiperCore } from 'swiper';

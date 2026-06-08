@@ -1,5 +1,5 @@
 import { ProjectNotificationHandler } from './utils/projectTemplates';
-import { WebNotification, NotificationPartialData, ErrorResponse } from '../utils/types';
+import { WebNotification, NotificationPartialData } from '../utils/types';
 import { publishTelegramNotification } from '../../telegramController';
 
 export class ProjectSockets {

@@ -24,14 +24,22 @@ export class DiscussionRouter {
         this.router.get(
             '/byproposal/:proposalId',
             requireVerifyAuth,
-            this.discussionController.getDiscussionByProposal
+            this.discussionController.getDiscussionByProposal,
         );
-        this.router.get('/getfor/:memberId/:daoId', requireVerifyAuth, this.discussionController.getDiscussionForMember);
+        this.router.get(
+            '/getfor/:memberId/:daoId',
+            requireVerifyAuth,
+            this.discussionController.getDiscussionForMember,
+        );
         this.router.get('/gettags/:daoId', requireVerifyAuth, this.discussionController.getTagsForDAO);
 
         this.router.post('/message/create', requireVerifyAuth, this.discussionController.createMessage);
         this.router.post('/message/update/content', requireVerifyAuth, this.discussionController.updateMessageContent);
-        this.router.delete('/message/delete/:messageId', requireVerifyAuth, this.discussionController.deleteMessageContent);
+        this.router.delete(
+            '/message/delete/:messageId',
+            requireVerifyAuth,
+            this.discussionController.deleteMessageContent,
+        );
         this.router.get('/message/:discussionId', requireVerifyAuth, this.discussionController.getMessages);
 
         this.router.post('/participant/add', requireVerifyAuth, this.discussionController.addParticipant);
@@ -40,7 +48,7 @@ export class DiscussionRouter {
         this.router.get(
             '/isparticipant/:discussionId/:memberId',
             requireVerifyAuth,
-            this.discussionController.isParticipant
+            this.discussionController.isParticipant,
         );
         this.router.get('/participant/:discussionId', requireVerifyAuth, this.discussionController.getParticipants);
 

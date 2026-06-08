@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Bounty, BountyFile, BountyFilter, JobPayout, JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Bounty, BountyFile, BountyFilter, JobPayout, JobsEnums } from '@samudai/gateway-consumer-types';
 
 export class BountyController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -30,7 +30,7 @@ export class BountyController {
                 bounty: bounty,
             });
 
-            var payoutids: string[] = [];
+            const payoutids: string[] = [];
             if (result && bounty.payout) {
                 await Promise.all(
                     bounty.payout.map(async (payout: JobPayout) => {
@@ -42,12 +42,12 @@ export class BountyController {
                         });
 
                         payoutids.push(res.data.payout_id);
-                    })
+                    }),
                 );
             }
 
             if (bounty.task_id) {
-                const updatedTask = await axios.post(`${process.env.SERVICE_PROJECT}/task/update/associatejob`, {
+                await axios.post(`${process.env.SERVICE_PROJECT}/task/update/associatejob`, {
                     task_id: bounty.task_id,
                     associated_job_type: JobsEnums.JobPayoutLinkType.BOUNTY,
                     associated_job_id: result.data.bounty_id,
@@ -55,14 +55,14 @@ export class BountyController {
             }
 
             if (bounty.subtask_id) {
-                const updatedSubTask = await axios.post(`${process.env.SERVICE_PROJECT}/subtask/update/associatejob`, {
+                await axios.post(`${process.env.SERVICE_PROJECT}/subtask/update/associatejob`, {
                     subtask_id: bounty.subtask_id,
                     associated_job_type: JobsEnums.JobPayoutLinkType.BOUNTY,
                     associated_job_id: result.data.bounty_id,
                 });
             }
 
-            var response = {
+            const response = {
                 bounty_id: result.data.bounty_id,
                 payout: payoutids,
                 // task_id: bounty.task_id ? bounty.task_id : createdTaskId,
@@ -77,7 +77,7 @@ export class BountyController {
 
     getBountyById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/bounty/${(req.params.bountyId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/bounty/${req.params.bountyId as string}`);
 
             // if (result.data.bounty) {
             //     result.data.bounty = await getAttachmentBounty(result.data.bounty);
@@ -94,7 +94,7 @@ export class BountyController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/list/${(req.params.daoId as string)}`, {
+            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/list/${req.params.daoId as string}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -115,7 +115,7 @@ export class BountyController {
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
             const dao_ids = req.body.dao_ids;
-            var results = [];
+            const results = [];
             for (let i = 0; i < dao_ids.length; i++) {
                 const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/list/${dao_ids[i]}`, {
                     limit: limit,
@@ -133,8 +133,8 @@ export class BountyController {
         try {
             const query: string = req.query.query?.toString() ? req.query.query.toString() : '';
             const page: string = req.query.page ? (req.query.page as string) : '1';
-            let querySkills: string = req.query.skills as string;
-            let queryDaoNames: string = req.query.daoNames as string;
+            const querySkills: string = req.query.skills as string;
+            const queryDaoNames: string = req.query.daoNames as string;
             const limit = 25;
             const offset = (parseInt(page) - 1) * limit;
             const skills = querySkills ? querySkills.split(',') : [];
@@ -162,10 +162,13 @@ export class BountyController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/bounty/createdby/${(req.params.memberId as string)}`, {
-                limit: limit,
-                offset: offset,
-            });
+            const result = await axios.post(
+                `${process.env.SERVICE_JOB}/bounty/createdby/${req.params.memberId as string}`,
+                {
+                    limit: limit,
+                    offset: offset,
+                },
+            );
 
             // if (result.data.bounties) {
             //     result.data.bounty = await getAttachmentBounties(result.data.bounties);
@@ -226,7 +229,9 @@ export class BountyController {
 
     deleteBounty = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/bounty/delete/${(req.params.bountyId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_JOB}/bounty/delete/${req.params.bountyId as string}`,
+            );
             new DeleteSuccess(res, 'BOUNTY', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting a bounty'));
@@ -248,7 +253,9 @@ export class BountyController {
 
     getBountyFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/bountyfile/list/${(req.params.bountyId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/bountyfile/list/${req.params.bountyId as string}`,
+            );
             new FetchSuccess(res, 'BOUNTY FILE', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while fetching a bounty file'));
@@ -257,7 +264,9 @@ export class BountyController {
 
     deleteBountyFile = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/bountyfile/${(req.params.bountyFileId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_JOB}/bountyfile/${req.params.bountyFileId as string}`,
+            );
             new DeleteSuccess(res, 'BOUNTY FILE', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting a bountyfile'));

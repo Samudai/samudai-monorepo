@@ -26,7 +26,7 @@ import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
 // import styles from 'components/@pages/dashboard/styles/popups/BlogsPopup.module.scss';
 import styles from './SkillsAdd.module.scss';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 
 interface AddReviewProps {
     onClose: () => void;

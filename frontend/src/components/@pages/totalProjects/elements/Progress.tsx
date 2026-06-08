@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AccessEnums, ProjectEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ProjectEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import {
     changeProjectid,
     selectActiveDao,

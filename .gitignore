@@ -48,6 +48,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.envrc
 
 # IDE files
 .vscode/
@@ -108,7 +109,5 @@ coverage/
 profile.out 
 
 .claude/
-
 .playwright-mcp
-
 log.txt

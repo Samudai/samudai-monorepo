@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Project } from '@samudai_xyz/gateway-consumer-types';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { Project } from '@samudai/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import { RootState } from 'store/store';
 import { initialState, ProjectSliceState } from './state';
 import { IPayoutRequest } from 'store/services/projects/model';

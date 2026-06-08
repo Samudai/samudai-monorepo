@@ -14,7 +14,7 @@ import Head from 'ui/head';
 import css from './projects-board.module.scss';
 import Button from 'ui/@buttons/Button/Button';
 import PlusIcon from 'ui/SVG/PlusIcon';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { getMemberId } from 'utils/utils';
 import TaskAddColumn from 'components/@popups/TaskAdd/TaskAddColumn';
 import { groupByStatus } from 'components/@pages/projects/lib';

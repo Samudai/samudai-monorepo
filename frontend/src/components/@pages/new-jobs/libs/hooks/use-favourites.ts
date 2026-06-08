@@ -1,4 +1,4 @@
-import { BountyResponse, OpportunityResponse } from '@samudai_xyz/gateway-consumer-types';
+import { BountyResponse, OpportunityResponse } from '@samudai/gateway-consumer-types';
 import { useCallback, useEffect, useState } from 'react';
 import { favouriteBountyRequest, favouriteOpportunityRequest } from 'store/services/jobs/model';
 import {

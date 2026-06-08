@@ -8,7 +8,7 @@ import {
     Discussion,
     DiscussionEnums,
     ProjectEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 
 export class FormResponseController {
     magicNumber: number = 65536;
@@ -20,7 +20,9 @@ export class FormResponseController {
                 response: formResponse,
             });
 
-            const investment = await axios.get(`${process.env.SERVICE_PROJECT}/project/investment/forms/${daoId}/${formResponse.form_id}`);
+            const investment = await axios.get(
+                `${process.env.SERVICE_PROJECT}/project/investment/forms/${daoId}/${formResponse.form_id}`,
+            );
             const projectId: string = investment.data.project_id;
 
             const getresponses = await axios.get(`${process.env.SERVICE_PROJECT}/response/allresponse/${projectId}`);
@@ -54,7 +56,7 @@ export class FormResponseController {
                 discussion,
             });
 
-            const updateResponse = await axios.post(`${process.env.SERVICE_PROJECT}/response/update/discussion`, {
+            await axios.post(`${process.env.SERVICE_PROJECT}/response/update/discussion`, {
                 response_id: createResponse.data.response_id,
                 discussion_id: createDiscussion.data.discussion_id,
                 title: 'Response ' + (count + 1),
@@ -71,7 +73,9 @@ export class FormResponseController {
 
     getFormResponse = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/response/${(req.params.responseId as string)}`);
+            const response = await axios.get(
+                `${process.env.SERVICE_FORMS}/deal/response/${req.params.responseId as string}`,
+            );
             new FetchSuccess(res, 'RESPONSE', response);
         } catch (err: any) {
             next(new ErrorException(err, 'Response fetch failed'));
@@ -80,7 +84,7 @@ export class FormResponseController {
 
     getFormResponseForForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_id = (req.params.formId as string);
+            const form_id = req.params.formId as string;
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/response/byform/${form_id}`);
 
             new FetchSuccess(res, 'RESPONSE', response);
@@ -91,7 +95,7 @@ export class FormResponseController {
 
     getResponseByDAOId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
 
             const formResult = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/bydao/${daoId}`);
             const form_id = formResult.data.form.form_id;
@@ -106,7 +110,7 @@ export class FormResponseController {
 
     deleteResponse = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const response_id = (req.params.responseId as string);
+            const response_id = req.params.responseId as string;
             const response = await axios.delete(`${process.env.SERVICE_FORMS}/deal/response/${response_id}`);
             new DeleteSuccess(res, 'RESPONSE', response);
         } catch (err: any) {

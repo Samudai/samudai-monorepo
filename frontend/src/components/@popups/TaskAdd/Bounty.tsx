@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import PopupSubtitle from '../components/PopupSubtitle/PopupSubtitle';
-import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Auth, Provider } from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import { ethers } from 'ethers';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,7 +17,7 @@ import { parcelSign } from 'utils/parcelUtils';
 import { toast } from 'utils/toast';
 import { IPaymentCurrency } from 'utils/types/Payments';
 import styles from './TaskAdd.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 // interface IMember {
 //   member_id: string;

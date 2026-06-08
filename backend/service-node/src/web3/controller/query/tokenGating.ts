@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { TokenGating } from "../../models/tokenGating";
 import { AccessControlConditions, ResourceId } from "../../utils/types";
 

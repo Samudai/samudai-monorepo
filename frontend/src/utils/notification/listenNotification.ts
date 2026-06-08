@@ -1,4 +1,4 @@
-import { NotificationsEnums, WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, WebNotification } from '@samudai/gateway-consumer-types';
 import { setNotificationSocket } from 'store/features/common/slice';
 import store from 'store/store';
 import { toast } from 'utils/toast';

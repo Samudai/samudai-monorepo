@@ -32,33 +32,33 @@ export class AccessRouter {
         this.projectAccessRoleRouter.post(
             '/create',
             manageProjectAccess,
-            this.projectAccessController.createProjectAccess
+            this.projectAccessController.createProjectAccess,
         );
         this.projectAccessRoleRouter.get(
             '/get/:projectId',
             viewAccess,
-            this.projectAccessController.getProjectAccessForProjectId
+            this.projectAccessController.getProjectAccessForProjectId,
         );
         this.projectAccessRoleRouter.post(
             '/update',
             manageProjectAccess,
-            this.projectAccessController.updateProjectAccess
+            this.projectAccessController.updateProjectAccess,
         );
         this.projectAccessRoleRouter.delete(
             '/delete/:projectId',
             manageProjectAccess,
-            this.projectAccessController.deleteProjectAccess
+            this.projectAccessController.deleteProjectAccess,
         );
         this.projectAccessRoleRouter.post(
             '/get/bymember',
             requireVerifyAuth,
-            this.projectAccessController.getProjectAccessForMember
+            this.projectAccessController.getProjectAccessForMember,
         );
 
         this.projectAccessRoleRouter.post(
             '/update/access',
             manageProjectAccess,
-            this.projectAccessController.updateProjectAccessVisbility
+            this.projectAccessController.updateProjectAccessVisbility,
         );
 
         //Adding the accessRoleRouter to the app

@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { Task, SubTask, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { Task, SubTask, TaskResponse } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 
 type PopupType<T = any> = {

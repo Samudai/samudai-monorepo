@@ -1,4 +1,4 @@
-import express, { Express, Router } from "express";
+import express, { Router } from "express";
 import { TweetController } from "../controller/tweetController";
 import { VerifyController } from "../controller/verifyController";
 

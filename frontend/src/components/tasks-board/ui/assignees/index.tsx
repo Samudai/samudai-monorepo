@@ -4,7 +4,7 @@ import { useScrollbar } from 'hooks/useScrollbar';
 import Popup from 'components/@popups/components/Popup/Popup';
 import CloseButton from 'ui/@buttons/Close/Close';
 import css from './assignees.module.scss';
-import { IMember, SubTaskResponse, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { IMember, SubTaskResponse, TaskResponse } from '@samudai/gateway-consumer-types';
 import {
     useLazyGetSubTaskDetailsQuery,
     useLazyGetTaskDetailsQuery,

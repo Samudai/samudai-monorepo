@@ -32,7 +32,7 @@ export class UploadRouter {
         this.router.delete(
             '/file/delete/project/:projectFileId',
             requireVerifyAuth,
-            this.uploadController.deleteProjectFile
+            this.uploadController.deleteProjectFile,
         );
         this.router.delete('/file/delete/task/:taskFileId', requireVerifyAuth, this.uploadController.deleteTaskFile);
 

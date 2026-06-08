@@ -20,7 +20,7 @@ export class DAOInviteController {
 
     deleteInvite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const inviteId = (req.params.inviteId as string);
+            const inviteId = req.params.inviteId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/daoinvite/delete/${inviteId}`);
 
             new DeleteSuccess(res, 'DAO Invite', result);

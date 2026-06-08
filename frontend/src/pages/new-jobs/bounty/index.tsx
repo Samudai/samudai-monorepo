@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { JobsEnums, Submission } from '@samudai_xyz/gateway-consumer-types';
+import { JobsEnums, Submission } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 import css from 'pages/new-jobs/jobs.module.scss';
 import {

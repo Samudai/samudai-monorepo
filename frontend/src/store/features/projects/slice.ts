@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ProjectResponse, Task } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse, Task } from '@samudai/gateway-consumer-types';
 import update from 'immutability-helper';
 import { RootState } from 'store/store';
 import { fetchProjects } from './async';

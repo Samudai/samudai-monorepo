@@ -1,4 +1,4 @@
-import { BountyResponse, JobsEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { BountyResponse, JobsEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { useCallback, useEffect, useState } from 'react';
 import {
     createBountyRequest,

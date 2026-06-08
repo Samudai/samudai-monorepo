@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useApplicants } from '../../libs/hooks';
 import { JobsSkills } from '../jobs-skills';
-import { OpportunityResponse, Applicant, JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { OpportunityResponse, Applicant, JobsEnums } from '@samudai/gateway-consumer-types';
 import { ProfileDaoItem } from 'components/@pages/new-profile';
 import Popup from 'components/@popups/components/Popup/Popup';
 import { deserialize } from 'components/editor';

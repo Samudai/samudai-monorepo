@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAbbr } from 'utils/getAbbr';
 import css from './profile-dao-item.module.scss';
-import { DaoWorked } from '@samudai_xyz/gateway-consumer-types';
+import { DaoWorked } from '@samudai/gateway-consumer-types';
 
 interface ProfileDaoItemProps {
     data: DaoWorked;

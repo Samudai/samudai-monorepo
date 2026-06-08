@@ -1,4 +1,4 @@
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 import { useTypedDispatch } from 'hooks/useStore';
 import { useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';

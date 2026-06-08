@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactSelect, { StylesConfig } from 'react-select';
-import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Auth, Provider } from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import { selectStyles } from 'root/constants/selectStyles';
 import { selectProvider } from 'store/features/common/slice';

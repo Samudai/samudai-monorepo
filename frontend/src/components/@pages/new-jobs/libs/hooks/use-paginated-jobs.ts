@@ -3,7 +3,7 @@ import {
     JobsEnums,
     NotificationsEnums,
     OpportunityResponse,
-} from '@samudai_xyz/gateway-consumer-types/dist/types';
+} from '@samudai/gateway-consumer-types/dist/types';
 import { JobsFilterInputs } from '../../ui/types';
 import { getMemberId, getQueryParam } from 'utils/utils';
 import {

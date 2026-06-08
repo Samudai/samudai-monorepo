@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProjectColumn } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectColumn } from '@samudai/gateway-consumer-types/dist/types';
 import {
     useBulkTaskPositionUpdateMutation,
     useGetSubTasksByProjectIdQuery,

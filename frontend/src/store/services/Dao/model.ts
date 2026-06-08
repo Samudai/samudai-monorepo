@@ -5,9 +5,9 @@ import {
     DAOView,
     SubdomainInfo,
     TeamMember,
-} from '@samudai_xyz/gateway-consumer-types';
-import { NewDAOItems } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
-import { InviteStatus } from '@samudai_xyz/gateway-consumer-types/dist/types/dao/enums';
+} from '@samudai/gateway-consumer-types';
+import { NewDAOItems } from '@samudai/gateway-consumer-types/dist/types/activity/enums';
+import { InviteStatus } from '@samudai/gateway-consumer-types/dist/types/dao/enums';
 
 export interface getDaoResponse {
     message: string;

@@ -107,21 +107,18 @@ export class Twitter {
         });
 
         if (pinnedTweet) {
-          const userTweets = await this.client.tweets.usersIdTweets(
-            user.data?.id!,
-            {
-              "tweet.fields": [
-                "author_id",
-                "created_at",
-                "public_metrics",
-                "attachments",
-                "entities",
-              ],
-              expansions: ["author_id"],
-              "media.fields": ["preview_image_url", "url"],
-              "user.fields": ["id", "profile_image_url", "username"],
-            },
-          );
+          await this.client.tweets.usersIdTweets(user.data?.id!, {
+            "tweet.fields": [
+              "author_id",
+              "created_at",
+              "public_metrics",
+              "attachments",
+              "entities",
+            ],
+            expansions: ["author_id"],
+            "media.fields": ["preview_image_url", "url"],
+            "user.fields": ["id", "profile_image_url", "username"],
+          });
 
           tweets.unshift(pinnedTweet.data);
         }

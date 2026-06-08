@@ -1,13 +1,7 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import {
-    AddSuccess,
-    CreateSuccess,
-    DeleteSuccess,
-    FetchSuccess,
-    UpdateSuccess,
-} from '../../lib/helper/Responsehandler';
+import { AddSuccess, CreateSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
 import { generateOTP } from '../../lib/otp';
 
 export class PointTelegramController {
@@ -51,7 +45,7 @@ export class PointTelegramController {
 
     GetTelegramForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/telegram/getformember/${member_id}`);
 
@@ -63,7 +57,7 @@ export class PointTelegramController {
 
     GetTelegramForPoint = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.pointId as string);
+            const point_id = req.params.pointId as string;
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/telegram/getforpoint/${point_id}`);
 
@@ -99,7 +93,7 @@ export class PointTelegramController {
 
     GetTelegramEventsForPoint = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.pointId as string);
+            const point_id = req.params.pointId as string;
 
             const result = await axios.get(`${process.env.SERVICE_POINT}/telegram/getevents/${point_id}`);
 

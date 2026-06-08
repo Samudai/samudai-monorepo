@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import CommentsIcon from 'ui/SVG/CommentsIcon';
 import EyeIcon from 'ui/SVG/EyeIcon';

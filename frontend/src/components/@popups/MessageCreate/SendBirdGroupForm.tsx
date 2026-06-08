@@ -110,7 +110,7 @@ const SendBirdGroupForm: React.FC<SendBirdGroupFormProps> = ({ currChannel, onCl
     } = useForm<ChatCreateGroupType>({
         mode: 'all',
         defaultValues: initialValues,
-        //@ts-ignore
+        // @ts-ignore -- yupResolver type mismatch with react-hook-form generics
         resolver: yupResolver(validationSchema),
     });
 

@@ -6,8 +6,8 @@ import {
     Opportunity,
     OpportunityResponse,
     Submission,
-} from '@samudai_xyz/gateway-consumer-types';
-import { JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
+import { JobsEnums } from '@samudai/gateway-consumer-types';
 
 export interface getOpportunityByIdResponse {
     data: {

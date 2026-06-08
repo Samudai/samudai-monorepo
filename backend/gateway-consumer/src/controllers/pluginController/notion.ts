@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { getDAOForMember } from '../../lib/daoHelpers';
 import { auth, getAllDatabase, getDatabase, getDatabaseProperties, getPages } from '../../lib/notion';
 import { createProjectFromNotion, createTaskFromNotion } from '../../lib/project';
-import { CreateNotionTaskParam, PropertyValue } from '@samudai_xyz/gateway-consumer-types';
+import { CreateNotionTaskParam, PropertyValue } from '@samudai/gateway-consumer-types';
 
 export class NotionController {
     serviceNotion = `${process.env.SERVICE_PLUGIN}/plugins/notion`;
@@ -15,8 +15,7 @@ export class NotionController {
             const redirect_uri: string = req.body.redirectUri;
             const result = await auth(member_id, code, redirect_uri);
             // fetch DAOs of member
-            const daos = await getDAOForMember(member_id);
-
+            await getDAOForMember(member_id);
             // if (!!daos) {
             //     const memberDao: DaoDetailParam[] = [];
             //     daos.forEach((value: MemberDAOView) => {
@@ -193,7 +192,7 @@ export class NotionController {
 
     isExists = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = (req.params.memberId as string);
+            const member_id: string = req.params.memberId as string;
             const result = await axios.get(`${this.serviceNotion}/exists/${member_id}`);
             return res.status(200).send({
                 message: 'Check if notion account exists successful',
@@ -216,7 +215,7 @@ export class NotionController {
 
     deleteNotion = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = (req.params.memberId as string);
+            const member_id: string = req.params.memberId as string;
             const result = await axios.delete(`${this.serviceNotion}/${member_id}`);
             return res.status(200).send({
                 message: 'Delete notion account successful',

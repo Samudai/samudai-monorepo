@@ -7,7 +7,7 @@ import {
     genFormDataOption,
     getFormDataDefault,
 } from './utils/createFormData';
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 import CloseButton from 'ui/@buttons/Close/Close';
 import Checkbox from 'ui/@form/Checkbox/Checkbox';
 import FileInput from 'ui/@form/FileInput/FileInput';

@@ -11,7 +11,7 @@ import {
     ProjectResponse,
     Provider,
     TaskResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import dayjs, { Dayjs } from 'dayjs';
 import { ethers } from 'ethers';
@@ -34,7 +34,7 @@ import { IPaymentCurrency } from 'utils/types/Payments';
 import { getMemberId } from 'utils/utils';
 import Bounty from './Bounty';
 import styles from './TaskAdd.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 const githubMock = [
     {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskFile } from '@samudai_xyz/gateway-consumer-types';
+import { TaskFile } from '@samudai/gateway-consumer-types';
 import DownloadIcon from 'ui/SVG/DownloadIcon';
 import TrashIcon from 'ui/SVG/TrashIcon';
 import { downloadFile } from 'utils/fileupload/fileupload';

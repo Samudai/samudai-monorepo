@@ -1,37 +1,31 @@
 import axios from 'axios';
-import {
-    GuildInfoResponse,
-    MemberGuilds,
-    MembersEnums,
-    DAOEnums,
-} from '@samudai_xyz/gateway-consumer-types';
-import { getGuildsWithSteps } from './guilds';
-import { getKeysFromArrayofObjects } from './utils';
+import { GuildInfoResponse, MemberGuilds, MembersEnums } from '@samudai/gateway-consumer-types';
 
 export const getNextStepForMember = async (member_id: string) => {
     try {
         //Get onboarding step
         let nextStep;
-        let memberOnboardingIntegration: { [key: string]: boolean }[] = [];
-        let discord_bot = null;
-        let guildInfoResponse: GuildInfoResponse[] = [];
-        let memberGuildsResponse: MemberGuilds = {};
+        const memberOnboardingIntegration: { [key: string]: boolean }[] = [];
+        const guildInfoResponse: GuildInfoResponse[] = [];
+        const memberGuildsResponse: MemberGuilds = {};
 
         const onboardingStep = await axios.get(`${process.env.SERVICE_ACTIVITY}/onboarding/get/${member_id}`);
 
-        let onboardingStepValue = onboardingStep.data.data.steps.length;
+        const onboardingStepValue = onboardingStep.data.data.steps.length;
         const last_step = onboardingStep.data.data.steps[onboardingStepValue - 1].step_id;
 
         console.log(onboardingStep.data.data.steps);
-        
-        const member_type = onboardingStep.data.data.steps[1] ? onboardingStep.data.data.steps[1].value[onboardingStep.data.data.steps[1].value.length - 1].user : null;
+
+        const member_type = onboardingStep.data.data.steps[1]
+            ? onboardingStep.data.data.steps[1].value[onboardingStep.data.data.steps[1].value.length - 1].user
+            : null;
         console.log('Member Type', member_type);
 
         const last_step_count = MembersEnums.MemberOnboardingFlowStepNumber[last_step] as any;
-        
+
         nextStep = MembersEnums.MemberOnboardingFlow[1];
         nextStep = MembersEnums.MemberOnboardingFlow[last_step_count];
-        
+
         // if (member_type && member_type === 'contributor') {
         //     nextStep = MembersEnums.MemberOnboardingFlow[last_step_count];
         // } else if (member_type && member_type === 'admin') {
@@ -120,7 +114,7 @@ export const getNextStepForMember = async (member_id: string) => {
 export const getNextStepForDAO = async (dao_id: string) => {
     try {
         let nextStep;
-        let onboardingIntegration: { [key: string]: boolean }[] = [];
+        const onboardingIntegration: { [key: string]: boolean }[] = [];
         const onboardingStep = await axios.get(`${process.env.SERVICE_ACTIVITY}/onboarding/get/${dao_id}`);
 
         let onboardingStepValue = onboardingStep.data.data.steps.length;

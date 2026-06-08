@@ -6,7 +6,7 @@ import {
     MembersEnums,
     Onboarding,
     Social,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ogs from 'open-graph-scraper';
@@ -15,7 +15,6 @@ import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../..
 import { deleteMemberFromRedis } from '../../lib/memberUtils';
 import { upload } from '../../lib/profilePhotoUpload';
 import { daoOnboarding, daoOnboardingComplete } from '../../lib/onboarding';
-
 
 export class MemberController {
     fetchMember = async (req: Request, res: Response, next: NextFunction) => {
@@ -57,7 +56,7 @@ export class MemberController {
             }
             if (memberResult) {
                 const socialsResult = await axios.get(
-                    `${process.env.SERVICE_MEMBER}/social/list/${memberResult.member.member_id}`
+                    `${process.env.SERVICE_MEMBER}/social/list/${memberResult.member.member_id}`,
                 );
                 memberResult.socials = socialsResult.data.socials;
             }
@@ -71,13 +70,9 @@ export class MemberController {
         try {
             const member: Member = req.body.member;
             const socials: Social[] = req.body.socials;
-            const memberUpdateResult = await axios.post(`${process.env.SERVICE_MEMBER}/member/update`, {
-                member,
-            });
+            await axios.post(`${process.env.SERVICE_MEMBER}/member/update`, { member });
 
-            const socialUpdateResult = await axios.post(`${process.env.SERVICE_MEMBER}/social/update`, {
-                socials,
-            });
+            await axios.post(`${process.env.SERVICE_MEMBER}/social/update`, { socials });
 
             const clearRedis = await deleteMemberFromRedis(member.member_id);
 
@@ -115,7 +110,7 @@ export class MemberController {
                 {
                     member_id: memberId,
                     open_for_opportunity: open_for_opportunity,
-                }
+                },
             );
             new UpdateSuccess(res, 'MEMBER OPPORTUNITY STATUS', memberUpdateOpportunityResult);
         } catch (err: any) {
@@ -125,7 +120,7 @@ export class MemberController {
 
     deleteMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/member/${memberId}`);
             new DeleteSuccess(res, 'MEMBER', result);
         } catch (err: any) {
@@ -147,7 +142,7 @@ export class MemberController {
 
     getMemberbyDiscord = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const discordId = (req.params.discordId as string);
+            const discordId = req.params.discordId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/bydiscorduserid/${discordId}/`);
             new FetchSuccess(res, 'MEMBER', result);
         } catch (err: any) {
@@ -157,7 +152,7 @@ export class MemberController {
 
     getMemberWorkProgress = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/workprogress/${member_id}`);
             new FetchSuccess(res, 'MEMBER Work Progress', result);
         } catch (err: any) {
@@ -178,7 +173,7 @@ export class MemberController {
     };
     checkUserName = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const username = (req.params.username as string);
+            const username = req.params.username as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/username/exist/${username}`);
             new FetchSuccess(res, 'MEMBER', result);
         } catch (err: any) {
@@ -204,7 +199,7 @@ export class MemberController {
                 profilePictureUrl = nftProfileLink;
             }
 
-            const result = await axios.post(`${process.env.SERVICE_MEMBER}/member/update/profilepicture`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/member/update/profilepicture`, {
                 member_id: member_id,
                 url: profilePictureUrl,
             });
@@ -241,7 +236,7 @@ export class MemberController {
                 profilePictureUrl = nftProfileLink;
             }
 
-            const result = await axios.post(`${process.env.SERVICE_MEMBER}/member/update/profilepicture`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/member/update/profilepicture`, {
                 member_id: member_id,
                 url: profilePictureUrl,
             });
@@ -284,23 +279,23 @@ export class MemberController {
             const email = req.body.email;
             const result = await axios.post(`${process.env.SERVICE_MEMBER}/member/update/email`, {
                 member_id: memberId,
-                email
+                email,
             });
             new UpdateSuccess(res, 'MEMBER Email', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while updating Email'));
         }
-    }
+    };
 
     isEmailUpdated = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.member_id as string);
+            const member_id = req.params.member_id as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/is/emailupdated/${member_id}`);
             new FetchSuccess(res, 'MEMBER IsEmailUpdated', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while requesting IsUpdatedEmail'));
         }
-    }
+    };
 
     getBulkMembersForDiscovery = async (req: Request, res: Response) => {
         try {
@@ -352,7 +347,7 @@ export class MemberController {
             const member_id: string = req.body.memberId;
             const value = req.body.value;
 
-            const daoId = await daoOnboarding(member_id, value)
+            const daoId = await daoOnboarding(member_id, value);
 
             const daoOnbComplete = await daoOnboardingComplete(daoId, member_id);
 
@@ -360,7 +355,7 @@ export class MemberController {
                 message: 'Member Onboarding completed successfully ',
                 data: {
                     daoId: daoId,
-                    daoOnboardingComplete: daoOnbComplete
+                    daoOnboardingComplete: daoOnbComplete,
                 },
             });
         } catch (err: any) {
@@ -381,7 +376,7 @@ export class MemberController {
 
     getInviteCountForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/member/invitecount/${memberId}`);
             new FetchSuccess(res, 'MEMBER INVITE COUNT', result);
         } catch (err: any) {

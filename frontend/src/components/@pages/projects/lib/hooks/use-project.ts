@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ProjectEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import { changeProjectid } from 'store/features/common/slice';
 import { useUpdatePinnedMutation } from 'store/services/projects/totalProjects';
 import { useTypedDispatch } from 'hooks/useStore';

@@ -30,10 +30,26 @@ export class FormRouter {
 
         // Form Response Routes
         this.router.post('/deal/response/create', requireVerifyAuth, this.formResponseController.createResponse);
-        this.router.get('/deal/response/get/:responseId', requireVerifyAuth, this.formResponseController.getFormResponse);
-        this.router.get('/deal/response/getbyform/:formId', requireVerifyAuth, this.formResponseController.getFormResponseForForm);
-        this.router.get('/deal/response/getbydao/:daoId', requireVerifyAuth, this.formResponseController.getResponseByDAOId);
-        this.router.delete('/deal/response/delete/:responseId', requireVerifyAuth, this.formResponseController.deleteResponse);
+        this.router.get(
+            '/deal/response/get/:responseId',
+            requireVerifyAuth,
+            this.formResponseController.getFormResponse,
+        );
+        this.router.get(
+            '/deal/response/getbyform/:formId',
+            requireVerifyAuth,
+            this.formResponseController.getFormResponseForForm,
+        );
+        this.router.get(
+            '/deal/response/getbydao/:daoId',
+            requireVerifyAuth,
+            this.formResponseController.getResponseByDAOId,
+        );
+        this.router.delete(
+            '/deal/response/delete/:responseId',
+            requireVerifyAuth,
+            this.formResponseController.deleteResponse,
+        );
 
         this.app.use('/api/form', this.router);
     };

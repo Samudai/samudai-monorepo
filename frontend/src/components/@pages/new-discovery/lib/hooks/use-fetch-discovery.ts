@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DiscoveryFilterInputs } from '../../types';
-import { DAOView, FavouriteDAOResponse, MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DAOView, FavouriteDAOResponse, MemberResponse } from '@samudai/gateway-consumer-types';
 import {
     useGetBulkDiscoveryDaoMutation,
     useLazyDiscoveryDaoQuery,

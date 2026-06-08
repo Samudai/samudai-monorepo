@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UniversalSuccess } from '../../lib/helper/Responsehandler';
-import { Submission, JobsEnums, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Submission, JobsEnums, MembersEnums } from '@samudai/gateway-consumer-types';
 
 export class SubmissionController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -21,7 +21,9 @@ export class SubmissionController {
 
     getSubmissionById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/${(req.params.submissionId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/submission/${req.params.submissionId as string}`,
+            );
             new FetchSuccess(res, 'SUBMISSIONS', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving submissions'));
@@ -30,16 +32,18 @@ export class SubmissionController {
 
     getSubmissionsByBounty = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/list/${(req.params.bountyId as string)}`);
-            var i = 0;
-            for (var member of result.data.submissions.clans) {
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/submission/list/${req.params.bountyId as string}`,
+            );
+            let i = 0;
+            for (const member of result.data.submissions.clans) {
                 try {
                     const response = await axios.post(`${process.env.SERVICE_MEMBER}/member/fetch`, {
                         type: MembersEnums.FetchMemberType.MEMBER_ID,
                         member_id: member.member_id,
                     });
                     result.data.submissions.clans[i].member_details = response.data.member;
-                } catch (err: any) {
+                } catch {
                     result.data.submissions.clans[i].member_details = null;
                 }
                 i = i + 1;
@@ -52,13 +56,15 @@ export class SubmissionController {
 
     getSubmissionsByMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/bymember/${(req.params.memberId as string)}`);
-            var j = 0;
-            for (var bounty of result.data.submissions) {
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/submission/bymember/${req.params.memberId as string}`,
+            );
+            let j = 0;
+            for (const bounty of result.data.submissions) {
                 try {
                     const res = await axios.get(`${process.env.SERVICE_JOB}/bounty/${bounty.bounty_id}`);
                     result.data.submissions[j].bounty_details = res.data.bounty;
-                } catch (err: any) {
+                } catch {
                     result.data.submissions[j].bounty_details = null;
                 }
                 j = j + 1;
@@ -71,7 +77,9 @@ export class SubmissionController {
 
     getSubmissionsByClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/submission/byclan/${(req.params.clanId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/submission/byclan/${req.params.clanId as string}`,
+            );
             new FetchSuccess(res, 'SUBMISSIONS', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving submissions'));
@@ -92,13 +100,13 @@ export class SubmissionController {
                 const address = await axios.get(`${process.env.SERVICE_MEMBER}/wallet/default/${submission.member_id}`);
 
                 if (address.data.wallet) {
-                    const res = await axios.post(`${process.env.SERVICE_JOB}/payout/update/bylinkid/rank`, {
+                    await axios.post(`${process.env.SERVICE_JOB}/payout/update/bylinkid/rank`, {
                         link_id: submission.bounty_id,
                         rank: submission.rank,
                         receiver_address: address.data.wallet.wallet_address,
                         member_id: submission.member_id,
                         status: JobsEnums.JobPayoutStatus.UNASSIGNED,
-                        initiated_by: submission.updated_by
+                        initiated_by: submission.updated_by,
                     });
                 }
 
@@ -120,7 +128,7 @@ export class SubmissionController {
     deleteSubmission = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_JOB}/submission/delete/${(req.params.submissionId as string)}`
+                `${process.env.SERVICE_JOB}/submission/delete/${req.params.submissionId as string}`,
             );
             new DeleteSuccess(res, 'SUBMISSION', result);
         } catch (err: any) {

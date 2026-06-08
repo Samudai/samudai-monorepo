@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 
 export type TabVariants = 'day' | 'week' | 'month';

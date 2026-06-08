@@ -11,8 +11,8 @@ import {
     useLazyGetTaskDetailsQuery,
 } from 'store/services/projects/tasks';
 import { useState } from 'react';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { useTypedDispatch } from 'hooks/useStore';
 import { updatePayoutList } from 'store/features/projects/projectSlice';
 import sendNotification from 'utils/notification/sendNotification';

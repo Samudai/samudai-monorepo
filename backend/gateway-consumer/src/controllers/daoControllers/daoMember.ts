@@ -11,7 +11,7 @@ import {
     TeamMember,
     TeamMemberResponse,
     MemberResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 
 export class DAOMemberController {
     createDAOMember = async (req: Request, res: Response, next: NextFunction) => {
@@ -28,7 +28,7 @@ export class DAOMemberController {
 
     getDAOMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const query = req.query.query;
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
@@ -70,7 +70,7 @@ export class DAOMemberController {
 
     getMembersForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/member/getfordao/${daoId}`);
 
@@ -100,8 +100,8 @@ export class DAOMemberController {
 
     deleteDAOMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
-            const memberId = (req.params.memberId as string);
+            const daoId = req.params.daoId as string;
+            const memberId = req.params.memberId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/member/delete/${daoId}/${memberId}`);
 
             new DeleteSuccess(res, 'DAO MEMBER', result);
@@ -127,7 +127,7 @@ export class DAOMemberController {
 
     listmemberforDAOUUID = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/member/listuuid/${daoId}`);
             new FetchSuccess(res, 'DAO Member', result);
         } catch (err: any) {
@@ -137,13 +137,13 @@ export class DAOMemberController {
 
     getTeamMemberInfo = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
-            const memberId = (req.params.memberId as string);
+            const daoId = req.params.daoId as string;
+            const memberId = req.params.memberId as string;
 
             const memberInfo = await mapMemberToUsername(memberId);
 
             const rolesResult = await axios.get(`${process.env.SERVICE_DAO}/role/listbymemberid/${daoId}/${memberId}`);
-            let roleIds = rolesResult?.data?.roles?.map((role: DAORole) => role.role_id);
+            const roleIds = rolesResult?.data?.roles?.map((role: DAORole) => role.role_id);
 
             const memberProjectsResult = await axios.post(`${process.env.SERVICE_PROJECT}/project/bymember`, {
                 member_id: memberId,
@@ -156,13 +156,13 @@ export class DAOMemberController {
             });
 
             const activityResult = await axios.get(
-                `${process.env.SERVICE_ACTIVITY}/activity/member/${daoId}/${memberId}`
+                `${process.env.SERVICE_ACTIVITY}/activity/member/${daoId}/${memberId}`,
             );
 
             const activity: Activity = activityResult.data.data;
 
             if (memberInfo) {
-                let teamMemberResponse: TeamMemberResponse = {
+                const teamMemberResponse: TeamMemberResponse = {
                     member: {
                         member_id: memberInfo.member_id,
                         username: memberInfo.username,
@@ -183,7 +183,7 @@ export class DAOMemberController {
                 };
                 new FetchSuccess(res, 'TEAM MEMBER', teamMemberResponse);
             } else {
-                let teamMemberResponse: TeamMemberResponse = {
+                const teamMemberResponse: TeamMemberResponse = {
                     member: {
                         member_id: memberId,
                         username: 'Unknown',

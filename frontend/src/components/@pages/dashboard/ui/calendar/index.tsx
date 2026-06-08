@@ -7,7 +7,7 @@ import {
     setEventPopUp,
 } from '../../../../../store/features/common/slice';
 import { gcalDataArrange } from '../../../../../utils/calendar/googleCal';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useLazyGetGuildEventsQuery } from 'store/services/Dashboard/dashboard';

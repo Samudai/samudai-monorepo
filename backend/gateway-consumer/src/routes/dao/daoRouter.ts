@@ -82,14 +82,10 @@ export class DAORouter {
         this.router.post('/linkdiscordbot/:dao_id/:guild_id', this.daoProfileController.linkdiscordbotForDAO);
 
         this.router.get('/fetchsubdomainbydaoid/:daoId', this.daoProfileController.fetchSubdomainByDAOId);
-        this.router.get('/getsubscriptionfordao/:daoId', this.daoProfileController.getSubscriptionForDAO)
+        this.router.get('/getsubscriptionfordao/:daoId', this.daoProfileController.getSubscriptionForDAO);
         this.router.post('/subdomain/create', this.subdomainController.createSubdomain);
         this.router.get('/subdomain/get/:dao_id/:subdomain', this.subdomainController.getSubdomainForDao);
-        this.router.get(
-            '/subdomain/checksubdomaincreate/:dao_id',
-            this.subdomainController.checkSubdomainCreateForDao
-        );
-
+        this.router.get('/subdomain/checksubdomaincreate/:dao_id', this.subdomainController.checkSubdomainCreateForDao);
 
         // Tags
         this.router.get('/tag/getall', requireVerifyAuth, this.daoProfileController.listTags);
@@ -98,16 +94,20 @@ export class DAORouter {
         //DAO member
         this.router.post('/member/create', requireVerifyAuth, this.daoMemberController.createDAOMember);
         this.router.get('/member/list/:daoId', requireVerifyAuth, this.daoMemberController.getDAOMember);
-        this.router.get('/member/getfordao/:daoId', requireVerifyAuth, this.daoMemberController.getMembersForDAO); 
+        this.router.get('/member/getfordao/:daoId', requireVerifyAuth, this.daoMemberController.getMembersForDAO);
         this.router.delete(
             '/member/delete/:daoId/:memberId',
             requireVerifyAuth,
-            this.daoMemberController.deleteDAOMember
+            this.daoMemberController.deleteDAOMember,
         );
         this.router.post('/member/createbulk', requireVerifyAuth, this.daoMemberController.createBulkDAOMember);
         this.router.get('/member/getalluuid/:daoId', this.daoMemberController.listmemberforDAOUUID);
-        this.router.post('/member/update/license', requireVerifyAuth, this.daoMemberController.updateDAOMemberLicense)
-        this.router.post('/member/update/licensebulk', requireVerifyAuth, this.daoMemberController.updateDAOMemberLicenseBulk)
+        this.router.post('/member/update/license', requireVerifyAuth, this.daoMemberController.updateDAOMemberLicense);
+        this.router.post(
+            '/member/update/licensebulk',
+            requireVerifyAuth,
+            this.daoMemberController.updateDAOMemberLicenseBulk,
+        );
         //snapshot
         this.router.post('/add/snapshot', manageDAOAccess, this.daoProfileController.addSnapshot);
         this.router.get('/member/team/:daoId/:memberId', this.daoMemberController.getTeamMemberInfo);
@@ -160,12 +160,12 @@ export class DAORouter {
         this.router.get(
             '/favourites/countfordao/:daoId',
             requireVerifyAuth,
-            this.daoFavouriteController.countFavouriteForDAO
+            this.daoFavouriteController.countFavouriteForDAO,
         );
         this.router.delete(
             '/favourites/delete/:favouriteId',
             requireVerifyAuth,
-            this.daoFavouriteController.deleteFavourite
+            this.daoFavouriteController.deleteFavourite,
         );
 
         //Token
@@ -181,21 +181,29 @@ export class DAORouter {
 
         //DAO Collaboration
         this.router.post('/collaboration/create', manageDAOAccess, this.daoCollaborationController.create);
-        this.router.post('/collaboration/update/status', requireVerifyAuth, this.daoCollaborationController.updateCollaborationStatus);
+        this.router.post(
+            '/collaboration/update/status',
+            requireVerifyAuth,
+            this.daoCollaborationController.updateCollaborationStatus,
+        );
         this.router.get('/collaboration/get/:daoId', requireVerifyAuth, this.daoCollaborationController.listForDAO);
         this.router.delete(
             '/collaboration/delete/:collaborationId',
             manageDAOAccess,
-            this.daoCollaborationController.deleteCollaboration
+            this.daoCollaborationController.deleteCollaboration,
         );
 
         // DAO Collaboration Pass
-        this.router.post('/collaborationpass/create', this.daoCollaborationPassController.create)
-        this.router.get('/collaborationpass/get/:daoId', requireVerifyAuth, this.daoCollaborationPassController.getForDAO);
-        this.router.post('/collaborationpass/update', this.daoCollaborationPassController.update)
+        this.router.post('/collaborationpass/create', this.daoCollaborationPassController.create);
+        this.router.get(
+            '/collaborationpass/get/:daoId',
+            requireVerifyAuth,
+            this.daoCollaborationPassController.getForDAO,
+        );
+        this.router.post('/collaborationpass/update', this.daoCollaborationPassController.update);
         this.router.delete(
             '/collaborationpass/delete/:collaborationPassId',
-            this.daoCollaborationPassController.deleteCollaborationPass
+            this.daoCollaborationPassController.deleteCollaborationPass,
         );
 
         //Department
@@ -205,7 +213,7 @@ export class DAORouter {
         this.router.delete(
             '/department/delete/:departmentId',
             manageDAOAccess,
-            this.daoDepartmentController.deleteDepartment
+            this.daoDepartmentController.deleteDepartment,
         );
 
         // Blogs

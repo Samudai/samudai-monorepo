@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TeamMemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMemberResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';

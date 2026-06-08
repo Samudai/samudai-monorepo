@@ -5,7 +5,7 @@ import { PayoutItem } from './components';
 import css from './projects-payout.module.scss';
 import { useTypedSelector } from 'hooks/useStore';
 import { payoutsList } from 'store/features/projects/projectSlice';
-import { AccessEnums, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, TaskResponse } from '@samudai/gateway-consumer-types';
 import { selectAccessList } from 'store/features/common/slice';
 import { useParams } from 'react-router-dom';
 import { getMemberId } from 'utils/utils';

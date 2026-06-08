@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActivityEnums, SubTask, SubTaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, SubTask, SubTaskResponse } from '@samudai/gateway-consumer-types';
 import {
     useCreateSubTaskMutation,
     useGetSubTasksByProjectIdQuery,
@@ -67,7 +67,7 @@ export const useSubTasks = (taskId: string, project_id?: string) => {
                             task_id: taskId,
                             subtask_id: res.data?.subtask_id,
                             action_type: ActivityEnums.ActionType.SUBTASK_CREATED,
-                            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+
                             visibility: projectData?.project
                                 ?.visibility as unknown as ActivityEnums.Visibility,
                             member: {

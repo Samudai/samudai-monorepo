@@ -2,7 +2,7 @@ import {
     JobsEnums,
     OpportunityResponse,
     NotificationsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useCallback, useEffect, useState } from 'react';
 import {
     createApplicantRequest,

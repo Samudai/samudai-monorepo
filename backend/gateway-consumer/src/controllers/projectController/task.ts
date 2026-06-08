@@ -18,9 +18,8 @@ import {
     Task,
     TaskAssign,
     TaskResponse,
-    Payout,
     AccessEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { updatePayouts, updatePayout } from '../../lib/project';
 
 export class TaskController {
@@ -45,7 +44,7 @@ export class TaskController {
                         event: memberEvent,
                     });
                     new CreateSuccess(res, 'TASK', result);
-                } catch (err: any) {
+                } catch {
                     new CreateSuccess(res, 'TASK', result);
                 }
             }
@@ -59,9 +58,7 @@ export class TaskController {
             const task: Task = req.body.task;
 
             if (task.payout) {
-                const resp = await axios.post(`${process.env.SERVICE_PROJECT}/payout/create`, {
-                    payout: task.payout,
-                });
+                await axios.post(`${process.env.SERVICE_PROJECT}/payout/create`, { payout: task.payout });
             }
 
             task.payout = [];
@@ -72,12 +69,12 @@ export class TaskController {
             if (task.assignee_member && task.assignee_member?.length > 0) {
                 await Promise.all(
                     task.assignee_member.map(async (assignee) => {
-                        const result = await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
+                        await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
                             member_id: assignee,
                             project_id: task.project_id,
                             access: AccessEnums.ProjectAccessType.MANAGE_PROJECT,
                         });
-                    })
+                    }),
                 );
             }
 
@@ -117,12 +114,12 @@ export class TaskController {
             if (taskAssign.assignee_member && taskAssign.assignee_member?.length > 0) {
                 await Promise.all(
                     taskAssign.assignee_member.map(async (assignee) => {
-                        const result = await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
+                        await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
                             member_id: assignee,
                             project_id: taskAssign.project_id,
                             access: AccessEnums.ProjectAccessType.MANAGE_PROJECT,
                         });
-                    })
+                    }),
                 );
             }
 
@@ -134,9 +131,11 @@ export class TaskController {
 
     getTaskForProject = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result: any = await axios.get(`${process.env.SERVICE_PROJECT}/task/alltask/${(req.params.projectId as string)}`);
+            const result: any = await axios.get(
+                `${process.env.SERVICE_PROJECT}/task/alltask/${req.params.projectId as string}`,
+            );
 
-            const contributors = await getTaskContributors((req.params.projectId as string));
+            const contributors = await getTaskContributors(req.params.projectId as string);
 
             if (result.data?.tasks?.length > 0) {
                 result.data.tasks = await Promise.all(
@@ -175,7 +174,7 @@ export class TaskController {
                             return { ...task, created_by_member: created_by_member };
                         }
                         return { ...task, payout: updatedPayout };
-                    })
+                    }),
                 );
             }
             if (result.data.tasks) {
@@ -194,7 +193,7 @@ export class TaskController {
 
     getTaskById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/${(req.params.taskId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/${req.params.taskId as string}`);
 
             let task: Task = result.data;
             task = await updatePayout(task);
@@ -219,14 +218,14 @@ export class TaskController {
                     const members = await bulkMemberMap(task.assignee_member);
                     assigned_members = members;
                 } else if (task.assignee_clan && task.assignee_clan.length > 0) {
-                    let clans: ClanView[] = [];
+                    const clans: ClanView[] = [];
 
-                    for (let clanId of task.assignee_clan) {
+                    for (const clanId of task.assignee_clan) {
                         const clanResult = await axios.get(`${process.env.SERVICE_CLAN}/clan/${clanId}`);
                         clans.push(clanResult.data.clan);
                     }
 
-                    for (let clan of clans) {
+                    for (const clan of clans) {
                         assigned_members.push({
                             member_id: clan.clan_id,
                             username: clan.name,
@@ -296,17 +295,14 @@ export class TaskController {
                     });
 
                     if (projectPayouts.length > 0) {
-                        const resultProject = await axios.post(
-                            `${process.env.SERVICE_PROJECT}/payout/update/initiated_by`,
-                            {
-                                payouts: projectPayouts,
-                                initiated_by: updated_by,
-                            }
-                        );
+                        await axios.post(`${process.env.SERVICE_PROJECT}/payout/update/initiated_by`, {
+                            payouts: projectPayouts,
+                            initiated_by: updated_by,
+                        });
                     }
 
                     if (jobPayouts.length > 0) {
-                        const resultJob = await axios.post(`${process.env.SERVICE_JOB}/payout/update/initiated_by`, {
+                        await axios.post(`${process.env.SERVICE_JOB}/payout/update/initiated_by`, {
                             payouts: jobPayouts,
                             initiated_by: updated_by,
                         });
@@ -323,7 +319,7 @@ export class TaskController {
 
     deleteTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const taskId: string = (req.params.taskId as string);
+            const taskId: string = req.params.taskId as string;
             // const member_id = res.locals.member_id;
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/task/${taskId}`);
 
@@ -412,7 +408,9 @@ export class TaskController {
 
     getMemberPersonalTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/personaltask/${(req.params.memberId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_PROJECT}/task/personaltask/${req.params.memberId as string}`,
+            );
 
             if (result.data?.tasks?.length > 0) {
                 const updatedData = result.data?.tasks.map(async (data: any) => {
@@ -430,7 +428,9 @@ export class TaskController {
 
     getMemberAssignedTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/task/assignedtask/${(req.params.memberId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_PROJECT}/task/assignedtask/${req.params.memberId as string}`,
+            );
 
             if (result.data?.tasks?.length > 0) {
                 const updatedData = result.data?.tasks.map(async (data: any) => {
@@ -441,14 +441,14 @@ export class TaskController {
                             const members = await bulkMemberMap(data.assignee_member);
                             assigned_members = members;
                         } else if (data.assignee_clan && data.assignee_clan.length > 0) {
-                            let clans: ClanView[] = [];
+                            const clans: ClanView[] = [];
 
-                            for (let clanId of data.assignee_clan) {
+                            for (const clanId of data.assignee_clan) {
                                 const clanResult = await axios.get(`${process.env.SERVICE_CLAN}/clan/${clanId}`);
                                 clans.push(clanResult.data.clan);
                             }
 
-                            for (let clan of clans) {
+                            for (const clan of clans) {
                                 assigned_members.push({
                                     member_id: clan.clan_id,
                                     username: clan.name,
@@ -570,10 +570,10 @@ export class TaskController {
     getArchivedTaskForProject = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result: any = await axios.get(
-                `${process.env.SERVICE_PROJECT}/task/allarchivetask/${(req.params.projectId as string)}`
+                `${process.env.SERVICE_PROJECT}/task/allarchivetask/${req.params.projectId as string}`,
             );
 
-            const contributors = await getTaskContributors((req.params.projectId as string));
+            const contributors = await getTaskContributors(req.params.projectId as string);
 
             if (result.data?.tasks?.length > 0) {
                 result.data.tasks = await Promise.all(
@@ -591,7 +591,7 @@ export class TaskController {
                             return { ...task, created_by_member: created_by_member };
                         }
                         return { ...task, payout: updatedPayout };
-                    })
+                    }),
                 );
             }
             if (result.data.tasks) {

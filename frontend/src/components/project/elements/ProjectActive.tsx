@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import Members from 'ui/Members/Members';
 import Progress from 'ui/Progress/Progress';

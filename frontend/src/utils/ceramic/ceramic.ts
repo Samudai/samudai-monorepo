@@ -45,7 +45,7 @@ export const ceramicInit = async (
     try {
         const seed = await generateSignature(signer, isPrivy, signedTextRes);
         const provider = new Ed25519Provider(seed);
-        // @ts-ignore
+        // @ts-ignore -- DID constructor provider/resolver types mismatch across dep versions
         const did = new DID({ provider, resolver: getResolver() });
         await did.authenticate();
         const ceramic = new CeramicClient('https://ceramic-clay.3boxlabs.com');

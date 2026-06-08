@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import { getAccessLevel, getMemberAccessForDAO, getVisibilityAccessLevel } from '../../lib/accessHelpers';
+import { getMemberAccessForDAO, getVisibilityAccessLevel } from '../../lib/accessHelpers';
 import { bulkMemberMap, mapMemberToUsername } from '../../lib/memberUtils';
 import { getDepartments } from '../../lib/project';
 import {
@@ -12,7 +12,7 @@ import {
     Project,
     ProjectColumn,
     ProjectResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 
 export class ProjectController {
     createProject = async (req: Request, res: Response) => {
@@ -22,17 +22,21 @@ export class ProjectController {
 
             if (project.type === 'dao') {
                 const subscriptionData = await axios.get(
-                    `${process.env.SERVICE_DAO}/dao/getsubscription/fordao/${project.link_id}`
+                    `${process.env.SERVICE_DAO}/dao/getsubscription/fordao/${project.link_id}`,
                 );
 
-                const projectLimit = subscriptionData.data.data.current_plan.projects
-            
-                const projectCount = await axios.get(`${process.env.SERVICE_PROJECT}/project/get/projectcount/${project.link_id}`);
+                const projectLimit = subscriptionData.data.data.current_plan.projects;
 
-                const projectUsed = projectCount.data.count
+                const projectCount = await axios.get(
+                    `${process.env.SERVICE_PROJECT}/project/get/projectcount/${project.link_id}`,
+                );
 
-                if(projectUsed >= projectLimit) {
-                    return res.status(500).send({ message: 'Project Creating Limit Used', error: 'Project Creating Limit Used' });
+                const projectUsed = projectCount.data.count;
+
+                if (projectUsed >= projectLimit) {
+                    return res
+                        .status(500)
+                        .send({ message: 'Project Creating Limit Used', error: 'Project Creating Limit Used' });
                 }
             }
 
@@ -150,12 +154,12 @@ export class ProjectController {
 
     getProjectById = async (req: Request, res: Response) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/${(req.params.projectId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/${req.params.projectId as string}`);
             const projectAccess = await axios.get(
-                `${process.env.SERVICE_PROJECT}/access/listbyprojectid/${(req.params.projectId as string)}`
+                `${process.env.SERVICE_PROJECT}/access/listbyprojectid/${req.params.projectId as string}`,
             );
             const memberAccess = res.locals.projectAccess;
-            let projectResponse: ProjectResponse = { ...result.data };
+            const projectResponse: ProjectResponse = { ...result.data };
             projectResponse.tasks = [];
 
             const project: Project = result.data;
@@ -245,7 +249,7 @@ export class ProjectController {
                         daoAccess,
                         project.access,
                         project.visibility,
-                        project.project_type
+                        project.project_type,
                     );
                     highestAccess =
                         highestAccess === 'manage_dao' || highestAccess === 'manage_project'
@@ -309,7 +313,7 @@ export class ProjectController {
                         daoAccess,
                         project.access,
                         project.visibility,
-                        project.project_type
+                        project.project_type,
                     );
                     highestAccess =
                         highestAccess === 'manage_dao' || highestAccess === 'manage_project'
@@ -354,17 +358,20 @@ export class ProjectController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_PROJECT}/project/bylinkid/${(req.params.linkId as string)}`, {
-                limit: limit,
-                offset: offset,
-            });
+            const result = await axios.post(
+                `${process.env.SERVICE_PROJECT}/project/bylinkid/${req.params.linkId as string}`,
+                {
+                    limit: limit,
+                    offset: offset,
+                },
+            );
 
             const projects: Project[] = result.data.projects;
 
-            let projectResponses: ProjectResponse[] = [];
+            const projectResponses: ProjectResponse[] = [];
 
             for (const project of projects) {
-                let projectResponse: ProjectResponse = { ...project };
+                const projectResponse: ProjectResponse = { ...project };
                 const memberList = await bulkMemberMap(project.contributors!);
                 projectResponse.contributor_list = memberList;
                 projectResponse.tasks = [];
@@ -385,7 +392,7 @@ export class ProjectController {
 
     deleteProject = async (req: Request, res: Response) => {
         try {
-            const projectId: string = (req.params.projectId as string);
+            const projectId: string = req.params.projectId as string;
             const daoId: string = req.headers.daoid as string;
             const result = await axios.delete(`${process.env.SERVICE_PROJECT}/project/${projectId}`);
 
@@ -451,7 +458,7 @@ export class ProjectController {
                 [key: string]: number;
             }
             const result = await axios.get(
-                `${process.env.SERVICE_PROJECT}/project/contributor/${(req.params.projectId as string)}`
+                `${process.env.SERVICE_PROJECT}/project/contributor/${req.params.projectId as string}`,
             );
 
             const taskCount: IContributor = result.data;
@@ -564,7 +571,9 @@ export class ProjectController {
 
     getWorkprogressForDAO = async (req: Request, res: Response) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/workprogress/${(req.params.daoId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_PROJECT}/project/workprogress/${req.params.daoId as string}`,
+            );
             res.status(200).send({ message: 'Work progress fetched successfully', data: result.data });
         } catch (err: any) {
             if (err.response) {
@@ -580,8 +589,8 @@ export class ProjectController {
 
     addInviteForProject = async (req: Request, res: Response) => {
         try {
-            const invite_code = (req.params.inviteCode as string);
-            const member_id = (req.params.memberId as string);
+            const invite_code = req.params.inviteCode as string;
+            const member_id = req.params.memberId as string;
 
             const result = await axios.post(`${process.env.SERVICE_PROJECT}/access/byinvite`, {
                 invite_code: invite_code,
@@ -603,7 +612,7 @@ export class ProjectController {
 
     getInvestmentProjectForDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/investment/${daoId}`);
             res.status(200).send({ message: 'Investment project fetched successfully', data: result.data });
         } catch (err: any) {
@@ -696,7 +705,7 @@ export class ProjectController {
                         daoAccess,
                         project.access,
                         project.visibility,
-                        project.project_type
+                        project.project_type,
                     );
                     highestAccess =
                         highestAccess === 'manage_dao' || highestAccess === 'manage_project'

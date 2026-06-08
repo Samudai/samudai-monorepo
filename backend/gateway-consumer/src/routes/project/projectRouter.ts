@@ -63,32 +63,32 @@ export class ProjectManagementRouter {
         this.projectRouter.get(
             '/contributor/:projectId',
             projectViewAccess,
-            this.projectController.getContributorByProjectId
+            this.projectController.getContributorByProjectId,
         );
         this.projectRouter.post('/update/columns', projectManageAccess, this.projectController.updateProjectColumn);
         this.projectRouter.post('/update/status', projectManageAccess, this.projectController.updateProjectCompleted);
         this.projectRouter.post(
             '/update/visibility',
             projectManageAccess,
-            this.projectController.updateProjectVisibility
+            this.projectController.updateProjectVisibility,
         );
         this.projectRouter.get('/get/workprogress/:daoId', this.projectController.getWorkprogressForDAO);
         this.projectRouter.get(
             '/invite/access/:inviteCode/:memberId',
             requireVerifyAuth,
-            this.projectController.addInviteForProject
+            this.projectController.addInviteForProject,
         );
         this.projectRouter.get(
             '/get/investment/:daoId',
             requireVerifyAuth,
-            this.projectController.getInvestmentProjectForDAO
+            this.projectController.getInvestmentProjectForDAO,
         );
         this.projectRouter.post('/update/pinned', requireVerifyAuth, this.projectController.updatePinnedProject);
         this.projectRouter.post('/archive', requireVerifyAuth, this.projectController.archiveProject);
         this.projectRouter.post(
             '/get/archived/bymemberdao',
             viewAccess,
-            this.projectController.getArchivedProjectByMemberDAO
+            this.projectController.getArchivedProjectByMemberDAO,
         );
 
         //Tags
@@ -102,7 +102,7 @@ export class ProjectManagementRouter {
             '/alltask/:projectId',
             // projectViewAccess,
             requireVerifyAuth,
-            this.taskController.getTaskForProject
+            this.taskController.getTaskForProject,
         );
         this.taskRouter.get('/:taskId', projectViewAccess, this.taskController.getTaskById);
         this.taskRouter.delete('/delete/:taskId', projectManageAccess, this.taskController.deleteTask);
@@ -115,12 +115,12 @@ export class ProjectManagementRouter {
         this.taskRouter.get(
             '/get/personaltask/:memberId',
             requireVerifyAuth,
-            this.taskController.getMemberPersonalTask
+            this.taskController.getMemberPersonalTask,
         );
         this.taskRouter.get(
             '/get/assignedtask/:memberId',
             requireVerifyAuth,
-            this.taskController.getMemberAssignedTask
+            this.taskController.getMemberAssignedTask,
         );
         this.taskRouter.post('/update/vcstatus', requireVerifyAuth, this.taskController.updateVCClaimStatus);
         this.taskRouter.post('/update/payment', manageProjectAccess, this.taskController.updateTaskPaymentStatus);
@@ -130,7 +130,7 @@ export class ProjectManagementRouter {
         this.taskRouter.get(
             '/allarchivedtask/:projectId',
             requireVerifyAuth,
-            this.taskController.getArchivedTaskForProject
+            this.taskController.getArchivedTaskForProject,
         );
 
         //Subtask
@@ -140,27 +140,35 @@ export class ProjectManagementRouter {
         this.subTaskRouter.get('/:subtaskId', projectViewAccess, this.subtaskController.getSubtask);
         this.subTaskRouter.delete('/:subtaskId', requireVerifyAuth, this.subtaskController.deleteSubtask);
         // REDUNDANT // this.subTaskRouter.post('/update/payout', manageProjectAccess, this.subtaskController.updatePayout);
-        this.subTaskRouter.post('/update/associatejob', requireVerifyAuth, this.subtaskController.updateSubTaskAssociateJob);
+        this.subTaskRouter.post(
+            '/update/associatejob',
+            requireVerifyAuth,
+            this.subtaskController.updateSubTaskAssociateJob,
+        );
         this.subTaskRouter.post('/update/status', requireVerifyAuth, this.subtaskController.updateSubTaskStatus);
         this.subTaskRouter.post('/update/column', requireVerifyAuth, this.subtaskController.updateSubTaskColumn);
         this.subTaskRouter.post(
             '/update/column/bulk',
             requireVerifyAuth,
-            this.subtaskController.updateSubTaskColumnBulk
+            this.subtaskController.updateSubTaskColumnBulk,
         );
         this.subTaskRouter.post('/update/position', requireVerifyAuth, this.subtaskController.updateSubtaskPosition);
         this.subTaskRouter.post('/archive', requireVerifyAuth, this.subtaskController.archiveSubtask);
         this.subTaskRouter.get(
             '/getall/archived/:projectId',
             requireVerifyAuth,
-            this.subtaskController.getAllArchivedSubtask
+            this.subtaskController.getAllArchivedSubtask,
         );
 
         // Payout
         this.payoutRouter.post('/create', requireVerifyAuth, this.payoutController.createPayout);
         this.payoutRouter.post('/createbulk', requireVerifyAuth, this.payoutController.createBulkPayout);
         this.payoutRouter.post('/update', requireVerifyAuth, this.payoutController.updatePayout);
-        this.payoutRouter.post('/update/paymentstatus', requireVerifyAuth, this.payoutController.updatePayoutPaymentStatus);
+        this.payoutRouter.post(
+            '/update/paymentstatus',
+            requireVerifyAuth,
+            this.payoutController.updatePayoutPaymentStatus,
+        );
         this.payoutRouter.post('/complete/:payoutId', requireVerifyAuth, this.payoutController.completePayout);
         this.payoutRouter.delete('/delete/:payoutId', requireVerifyAuth, this.payoutController.deletePayout);
         this.payoutRouter.get('/get/:payoutId', requireVerifyAuth, this.payoutController.getPayoutById);
@@ -175,38 +183,38 @@ export class ProjectManagementRouter {
         this.taskFormResponseRouter.post(
             '/create',
             requireVerifyAuth,
-            this.taskFormResponseController.createTaskFormResponse
+            this.taskFormResponseController.createTaskFormResponse,
         );
         this.taskFormResponseRouter.get(
             '/get/project/:projectId',
             requireVerifyAuth,
-            this.taskFormResponseController.getAllResponseForProject
+            this.taskFormResponseController.getAllResponseForProject,
         );
         this.taskFormResponseRouter.get('/get/:responseId', this.taskFormResponseController.getTaskFormResponse);
         this.taskFormResponseRouter.post(
             '/update/column',
             taskFormResponseAccessAuth,
-            this.taskFormResponseController.updateTaskFormResponseColumn
+            this.taskFormResponseController.updateTaskFormResponseColumn,
         );
         this.taskFormResponseRouter.post(
             '/update/position',
             requireVerifyAuth,
-            this.taskFormResponseController.updateTaskFormResponsePosition
+            this.taskFormResponseController.updateTaskFormResponsePosition,
         );
         this.taskFormResponseRouter.post(
             '/update/column/bulk',
             requireVerifyAuth,
-            this.taskFormResponseController.updateTaskFormResponseColumnBulk
+            this.taskFormResponseController.updateTaskFormResponseColumnBulk,
         );
         this.taskFormResponseRouter.post(
             '/update/discussion',
             requireVerifyAuth,
-            this.taskFormResponseController.updateTaskFormResponseDiscussion
+            this.taskFormResponseController.updateTaskFormResponseDiscussion,
         );
         this.taskFormResponseRouter.get(
             '/byformresponse/:formResponseId',
             requireVerifyAuth,
-            this.taskFormResponseController.getTaskFormResponsebyFormResponseId
+            this.taskFormResponseController.getTaskFormResponsebyFormResponseId,
         );
 
         //Adding the router to the app

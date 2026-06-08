@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { DiscussionEnums } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useCreateMessageMutation } from 'store/services/Discussion/discussion';
 import usePopup from 'hooks/usePopup';

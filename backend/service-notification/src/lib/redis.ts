@@ -1,5 +1,5 @@
 import { redis } from '../config/redisConfig';
-import { WebNotification, NotificationPartialData } from '../controllers/socketControllers.ts/utils/types';
+import { WebNotification } from '../controllers/socketControllers.ts/utils/types';
 const crypto = require('crypto');
 export class RedisFunctions {
   private redisClient: any;
@@ -18,8 +18,7 @@ export class RedisFunctions {
 
     const memberKey = `member:${memberId}`;
 
-    const result = await this.redisClient.set(memberIdKey, memberKey);
-
+    await this.redisClient.set(memberIdKey, memberKey);
     await this.redisClient.hmset(memberKey, ['memberId', memberId, 'member', memberIdKey]);
 
     await this.redisClient.sadd(`member:${memberId}:rooms`, `${memberId}`);
@@ -103,8 +102,7 @@ export class RedisFunctions {
     for (const toMember of to) {
       //notification.notificationData.to.to = [toMember];
       const id = await this.redisClient.zcard(`room:${toMember}`);
-      const result = await this.redisClient.zadd(`room:${toMember}`, id + 1, JSON.stringify(notification));
-      //expire after 7 days
+      await this.redisClient.zadd(`room:${toMember}`, id + 1, JSON.stringify(notification)); //expire after 7 days
       await this.redisClient.expire(`room:${toMember}`, 604800);
       await this.redisClient.publish('activityLog', JSON.stringify(notification));
       //We need to add 2 zadds later to make sure that the notification is published to the correct room

@@ -4,7 +4,7 @@ import styles from './forum-comment-delete.module.scss';
 import css from '../forum-comments-item/forum-comments-item.module.scss';
 import Button from 'ui/@buttons/Button/Button';
 import { getMemberId } from 'utils/utils';
-import { IMember, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { IMember, MessageResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';

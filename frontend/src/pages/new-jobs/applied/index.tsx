@@ -5,7 +5,7 @@ import {
     JobsEnums,
     OpportunityResponse,
     Submission,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import {
     useGetOpenBountiesQuery,
     useGetPublicOpportunitiesQuery,

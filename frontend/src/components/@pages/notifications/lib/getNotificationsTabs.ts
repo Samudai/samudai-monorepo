@@ -1,4 +1,4 @@
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 export const getNotificationsTabs = () => [
     { name: 'All', value: NotificationsEnums.NewNotificationScope.ALL },

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import EventCreate from '../EventCreate/EventCreate';
 import Popup from '../components/Popup/Popup';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { createEventPopUp, selectAccess, selectCreateEvent } from 'store/features/common/slice';
 import usePopup from 'hooks/usePopup';

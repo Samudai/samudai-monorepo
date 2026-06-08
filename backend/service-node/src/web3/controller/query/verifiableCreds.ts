@@ -20,14 +20,14 @@ export class VerifiableCredQuery {
           event_context: "verify_creds",
         };
 
-        const eventResult = await axios.post(
+        await axios.post(
           `${process.env.SERVICE_DISCOVERY}/events/member/create`,
           {
             event: memberEvent,
           },
         );
       } else {
-        const newVerifiableCred = await VerifiableCred.create({
+        await VerifiableCred.create({
           member_id: member_id,
           did: did,
           stream_id: stream_id,
@@ -40,7 +40,7 @@ export class VerifiableCredQuery {
           event_context: "verify_creds",
         };
 
-        const eventResult = await axios.post(
+        await axios.post(
           `${process.env.SERVICE_DISCOVERY}/events/member/create`,
           {
             event: memberEvent,

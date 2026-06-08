@@ -1,7 +1,4 @@
-import {
-    LinkType,
-    ProjectType,
-} from '@samudai_xyz/gateway-consumer-types/dist/types/project/enums';
+import { LinkType, ProjectType } from '@samudai/gateway-consumer-types/dist/types/project/enums';
 
 export interface createProjectRequest {
     title: string;

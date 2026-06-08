@@ -8,7 +8,7 @@ import TextArea from 'ui/@form/TextArea/TextArea';
 import { LinkIcon } from '../icons';
 import css from './jobs-submission-modal.module.scss';
 import Checkbox from 'ui/@form/Checkbox/Checkbox';
-import { BountyResponse, JobsEnums, Submission } from '@samudai_xyz/gateway-consumer-types';
+import { BountyResponse, JobsEnums, Submission } from '@samudai/gateway-consumer-types';
 import { useSubmissions } from '../../libs/hooks';
 import { indexes } from 'components/@pages/projects/ui/projects-post-job/components/job-card';
 import sideBarCss from 'components/new-sidebar/ui/sidebar-daos/sidebar-daos.module.scss';
@@ -16,7 +16,7 @@ import { ensureHttpsProtocol, getInitial } from 'utils/utils';
 import clsx from 'clsx';
 import { Editor, deserialize } from 'components/editor';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { getMemberId } from 'utils/utils';
 import { useNavigate } from 'react-router-dom';
 

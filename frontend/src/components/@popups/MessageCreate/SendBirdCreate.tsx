@@ -18,7 +18,7 @@ import SendBirdGroupForm from './SendBirdGroupForm';
 import SearchMemberByName from './SearchMemberByName';
 import { GroupChannel } from '@sendbird/chat/groupChannel';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 enum TabsEnum {
     PERSONAL = 'Personal',

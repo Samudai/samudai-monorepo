@@ -5,7 +5,7 @@ import AttachmentIcon from 'ui/SVG/AttachmentIcon';
 import { ProjectHelper } from 'utils/helpers/ProjectHelper';
 import styles from '../styles/ProjectAttachments.module.scss';
 import FileInput from 'ui/@form/FileInput/FileInput';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types/dist/types';
 
 interface ProjectAttachmentsProps {
     project: ProjectResponse;

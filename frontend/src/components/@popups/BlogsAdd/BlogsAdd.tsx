@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Popup from '../components/Popup/Popup';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useAddBlogMutation } from 'store/services/Dashboard/dashboard';
 import store from 'store/store';

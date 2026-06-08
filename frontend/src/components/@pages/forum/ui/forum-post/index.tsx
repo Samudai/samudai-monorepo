@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchDiscussion, useOptIn } from '../../lib/hooks';
-import { AccessEnums, DiscussionResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, DiscussionResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { selectAccessList } from 'store/features/common/slice';

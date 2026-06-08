@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Task, Opportunity } from '@samudai_xyz/gateway-consumer-types';
+import { Task, Opportunity } from '@samudai/gateway-consumer-types';
 import { RootState } from 'store/store';
 import { fetchProjects } from './async';
 

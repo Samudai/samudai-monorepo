@@ -9,7 +9,7 @@ import useDelayedSearch from 'hooks/useDelayedSearch';
 import { useTypedSelector } from 'hooks/useStore';
 import { FormDataType } from 'pages/settings/dao/access-managment';
 import styles from './styles/SelectMembers.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 interface SelectMembersProps {
     roles: roles[];

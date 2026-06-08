@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import { IPayoutRequest } from 'store/services/projects/model';
 
 export interface ProjectSliceState {

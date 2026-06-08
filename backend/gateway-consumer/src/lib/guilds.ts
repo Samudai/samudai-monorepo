@@ -1,10 +1,10 @@
-import { Guilds, GuildInfoResponse, MemberGuilds } from '@samudai_xyz/gateway-consumer-types';
+import { Guilds, GuildInfoResponse, MemberGuilds } from '@samudai/gateway-consumer-types';
 import axios from 'axios';
 import { getNextStepForDAO } from './nextstep';
 
 export const getGuildsWithSteps = async (member_id: string) => {
     try {
-        let memberGuilds: MemberGuilds = {};
+        const memberGuilds: MemberGuilds = {};
 
         const guildsResult = await axios.get(`${process.env.SERVICE_DISCORD}/discord/guildadmin/${member_id}`);
 
@@ -33,7 +33,7 @@ export const getGuildsWithSteps = async (member_id: string) => {
                             };
                         } else {
                             const { nextStep, onboardingData, onboardingIntegration } = await getNextStepForDAO(
-                                daoInfo.data.dao.dao_id
+                                daoInfo.data.dao.dao_id,
                             );
                             memberGuilds[guild.id] = {
                                 id: guild.id,
@@ -72,18 +72,11 @@ export const getGuildsWithSteps = async (member_id: string) => {
 
 export const getPointGuilds = async (member_id: string) => {
     try {
-        let memberGuilds: any[] = [];
+        const memberGuilds: any[] = [];
 
         const guildsResult = await axios.get(`${process.env.SERVICE_DISCORD}/point/discord/guildadmin/${member_id}`);
 
         const guilds: Guilds[] = guildsResult.data;
-
-        const guildsInfo: GuildInfoResponse[] = guilds?.map((guild) => {
-            return {
-                label: guild.name,
-                value: guild.id,
-            };
-        });
 
         if (guildsResult.data) {
             try {

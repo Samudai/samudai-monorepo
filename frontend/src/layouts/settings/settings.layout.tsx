@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';

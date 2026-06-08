@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useClickOutside } from 'hooks/useClickOutside';
 import PersonAddIcon from 'ui/SVG/PersonAddIcon';

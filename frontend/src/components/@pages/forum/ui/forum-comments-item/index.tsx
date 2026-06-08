@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { AccessEnums, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, MessageResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import css from './forum-comments-item.module.scss';
 import clsx from 'clsx';

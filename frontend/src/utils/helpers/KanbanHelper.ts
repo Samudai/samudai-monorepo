@@ -1,5 +1,5 @@
 import { DropResult } from '@hello-pangea/dnd';
-import { ProjectResponse, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse, TaskResponse } from '@samudai/gateway-consumer-types';
 import { ITask, TaskStatus } from 'utils/types/Project';
 
 type ColumnType = {

@@ -19,8 +19,8 @@ import {
     BountyResponse,
     Submission,
     JobsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import Loader from 'components/Loader/Loader';
 
 interface ApplicantsJobProps {}

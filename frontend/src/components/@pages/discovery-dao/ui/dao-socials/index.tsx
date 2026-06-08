@@ -1,7 +1,7 @@
 import React from 'react';
 import Sprite from 'components/sprite';
 import css from './dao-socials.module.scss';
-import { DAOSocial } from '@samudai_xyz/gateway-consumer-types';
+import { DAOSocial } from '@samudai/gateway-consumer-types';
 
 interface DaoSocialsProps {
     socials: DAOSocial[];

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TeamMember, TeamMemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMember, TeamMemberResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useLazyGetDaoMemberInfoQuery, useLazyGetDaoMembersQuery } from 'store/services/Dao/dao';
 import { useScrollbar } from 'hooks/useScrollbar';

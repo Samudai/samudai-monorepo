@@ -24,7 +24,7 @@ import { toast } from 'utils/toast';
 import { TxHistoryObject, TxObject } from '@samudai/web3-sdk/dist/types/gnosis/utils/types';
 import { usePayments } from 'utils/payments/use-payments';
 import { ethers } from 'ethers';
-import { Provider } from '@samudai_xyz/gateway-consumer-types/dist/types/payment/types';
+import { Provider } from '@samudai/gateway-consumer-types/dist/types/payment/types';
 
 const Tabs = {
     'Pending Payments': 'initiate',

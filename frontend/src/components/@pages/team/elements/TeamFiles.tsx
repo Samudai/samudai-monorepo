@@ -1,4 +1,4 @@
-import { ProjectFile } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectFile } from '@samudai/gateway-consumer-types/dist/types';
 import Attachment from 'ui/Attachment/Attachment';
 import styles from '../styles/TeamFiles.module.scss';
 

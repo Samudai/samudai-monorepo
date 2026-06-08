@@ -1,4 +1,4 @@
-import express, { Express, Request } from 'express';
+import express, { Express } from 'express';
 import { AppConfig } from './config/appConfig';
 import { Routes } from './routes/routes';
 require('dotenv').config();

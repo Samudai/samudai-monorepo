@@ -1,5 +1,5 @@
-import { Activity } from '@samudai_xyz/gateway-consumer-types';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Activity } from '@samudai/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import store from 'store/store';
 import { sendActivityUpdate } from './sendActivityUpdate';
 

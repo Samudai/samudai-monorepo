@@ -1,7 +1,6 @@
 import { Express } from 'express';
 import {
   healthCheck,
-  getOwner,
   linkDiscordToDAO,
   linkDiscordToPOINT
 } from '../controllers/discordbot';

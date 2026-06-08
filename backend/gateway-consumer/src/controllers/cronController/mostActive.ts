@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CronEnums } from '@samudai_xyz/gateway-consumer-types';
+import { CronEnums } from '@samudai/gateway-consumer-types';
 
 export class MostActiveController {
     mostActiveDAOCron = async () => {

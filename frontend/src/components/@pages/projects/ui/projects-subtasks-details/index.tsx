@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchProject } from '../../lib/hooks/use-fetch-project';
 import { ProjectsMember } from '../projects-member';
-import { ActivityEnums, SubTask } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, SubTask } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { useLazyGetSubTaskDetailsQuery } from 'store/services/projects/tasks';
@@ -98,7 +98,7 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
                     task_id: subTaskData.task_id,
                     subtask_id: subTaskData.subtask_id!,
                     action_type: ActivityEnums.ActionType.SUBTASK_UPDATED,
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+
                     visibility: projectData?.project
                         ?.visibility as unknown as ActivityEnums.Visibility,
                     member: {

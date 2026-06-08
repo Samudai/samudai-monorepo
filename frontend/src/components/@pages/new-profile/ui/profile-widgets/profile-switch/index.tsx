@@ -13,7 +13,7 @@ import { ConnectDiscordModal } from 'components/@pages/new-onboarding';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import usePopup from 'hooks/usePopup';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import { changeContributorProgress, selectContributorProgress } from 'store/features/common/slice';
 
 export const ProfileSwitch = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ActivityEnums, MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, MemberResponse } from '@samudai/gateway-consumer-types';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
 import {
     changeContributorProgress,

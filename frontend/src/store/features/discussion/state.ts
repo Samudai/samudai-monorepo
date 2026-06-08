@@ -1,4 +1,4 @@
-import { DiscussionResponse, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse, MessageResponse } from '@samudai/gateway-consumer-types';
 
 export interface DiscussionSliceState {
     bookmarkCount: number;

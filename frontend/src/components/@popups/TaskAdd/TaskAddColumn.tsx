@@ -13,7 +13,7 @@ import {
     ProjectResponse,
     SubTask,
     Task,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import {
     useAddColumnMutation,

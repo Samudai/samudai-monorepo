@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { ActivityEnums, DAO } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, DAO } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useUpdateDaoMutation } from 'store/services/Dao/dao';

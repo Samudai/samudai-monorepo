@@ -7,7 +7,7 @@ import {
     NotificationsEnums,
     ProjectEnums,
     ProjectResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import { roles } from 'store/services/Settings/model';
 import { useLazyGetRolesQuery } from 'store/services/Settings/settings';

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { ArrowDownIcon } from '../icons/arrow-down-icon';
 import { ProjectsCard } from '../projects-card';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useObjectState } from 'hooks/use-object-state';
 import LayoutGridIcon from 'ui/SVG/LayoutGridIcon';

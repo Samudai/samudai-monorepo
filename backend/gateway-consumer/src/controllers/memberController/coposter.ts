@@ -1,9 +1,9 @@
 // import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { AddSuccess, CreateSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
+import { CreateSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
 import axios from 'axios';
-const path = require('path');
+require('path');
 interface Tweet {
     tweet_id: string;
     text: string;
@@ -15,7 +15,7 @@ interface Cast {
 export class CoposterController {
     neynarOauth = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
 
             res.render(`farcasterOauth.ejs`, {
                 memberId,
@@ -51,7 +51,7 @@ export class CoposterController {
 
     getFarcasterUserDetails = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const coposter_user_id = (req.params.coposterUserId as string);
+            const coposter_user_id = req.params.coposterUserId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/coposter/getuser/byId/${coposter_user_id}`);
             const fid = result.data.coposterUser.fid;
             console.log('FID', fid);
@@ -76,9 +76,8 @@ export class CoposterController {
             const coposter_user_id = req.body.coposterUserId;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/coposter/getuser/byId/${coposter_user_id}`);
             const signer_uuid = result.data.coposterUser.signer_uuid;
-            const fid = result.data.coposterUser.fid;
             const textMessageArray = req.body.textMessageArray;
-            let castArr: Cast[] = [];
+            const castArr: Cast[] = [];
             let prev_hash = '';
             for (let i = 0; i < textMessageArray.length; i++) {
                 const textMessage = textMessageArray[i];
@@ -94,7 +93,7 @@ export class CoposterController {
                             headers: {
                                 api_key: process.env.NEYNAR_API_KEY!,
                             },
-                        }
+                        },
                     );
                     prev_hash = await createCast.data.cast.hash;
                     castArr.push({ cast_hash: prev_hash, text: textMessage });
@@ -109,13 +108,13 @@ export class CoposterController {
                             headers: {
                                 api_key: process.env.NEYNAR_API_KEY!,
                             },
-                        }
+                        },
                     );
                     prev_hash = await createCast.data.cast.hash;
                     castArr.push({ cast_hash: prev_hash, text: textMessage });
                 }
             }
-            const addCast = await axios.post(`${process.env.SERVICE_MEMBER}/coposter/warpcast/addCast`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/coposter/warpcast/addCast`, {
                 cast_info: {
                     member_id: member_id,
                     casts: castArr,
@@ -129,7 +128,7 @@ export class CoposterController {
     sendMultipleTweet = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const member_id = req.body.member_id;
-            let tweetArr: Tweet[] = [];
+            const tweetArr: Tweet[] = [];
             const accessToken = req.body.accessToken;
             const textMessageArray = req.body.textMessageArray;
             let prev_tweet_id = '';
@@ -149,7 +148,7 @@ export class CoposterController {
                                 'Content-Type': 'application/json',
                                 Authorization: `Bearer ${accessToken}`,
                             },
-                        }
+                        },
                     );
                     prev_tweet_id = await createTweet.data.data.id;
                     tweetArr.push({ tweet_id: prev_tweet_id, text: textMessage });
@@ -164,13 +163,13 @@ export class CoposterController {
                                 'Content-Type': 'application/json',
                                 Authorization: `Bearer ${accessToken}`,
                             },
-                        }
+                        },
                     );
                     prev_tweet_id = await createTweet.data.data.id;
                     tweetArr.push({ tweet_id: await createTweet.data.data.id, text: textMessage });
                 }
             }
-            const addTweet = await axios.post(`${process.env.SERVICE_MEMBER}/coposter/x/addTweet`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/coposter/x/addTweet`, {
                 tweet_info: {
                     member_id: member_id,
                     tweets: tweetArr,
@@ -194,7 +193,7 @@ export class CoposterController {
                     headers: {
                         api_key: process.env.NEYNAR_API_KEY!,
                     },
-                }
+                },
             );
             const prev_hash = await getCast.data.casts[0].hash;
             if (prev_hash) {
@@ -209,7 +208,7 @@ export class CoposterController {
                         headers: {
                             api_key: process.env.NEYNAR_API_KEY!,
                         },
-                    }
+                    },
                 );
                 new CreateSuccess(res, 'Reply to Cast', createCast);
             }
@@ -222,7 +221,7 @@ export class CoposterController {
             const bodyData = JSON.parse(req.body.body);
             const member_id = bodyData.member_id;
             const username = bodyData.username;
-            const result = await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/updateXUser`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/updateXUser`, {
                 update_x_user: {
                     member_id: member_id,
                     x_username: username,
@@ -239,7 +238,7 @@ export class CoposterController {
             const bodyData = JSON.parse(req.body.body);
             const member_id = bodyData.member_id;
             const username = bodyData.username;
-            const result = await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/updateWarpcastUser`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/updateWarpcastUser`, {
                 update_warpcast_user: {
                     member_id: member_id,
                     warpcast_username: username,

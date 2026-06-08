@@ -1,7 +1,7 @@
 import logoAsset from 'images/logo.png';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 import { selectAccount } from 'store/features/common/slice';
 import { useLazyGetFormbyFormIdQuery } from 'store/services/Dashboard/dashboard';
 import { useTypedSelector } from 'hooks/useStore';

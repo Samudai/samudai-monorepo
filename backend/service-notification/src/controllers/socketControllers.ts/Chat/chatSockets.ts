@@ -1,5 +1,5 @@
 import { publishTelegramNotification } from '../../telegramController';
-import { WebNotification, NotificationPartialData, ErrorResponse } from '../utils/types';
+import { WebNotification, NotificationPartialData } from '../utils/types';
 import { ChatNotificationTemplateHandler } from './utils/chatTemplates';
 
 export class ChatSockets {

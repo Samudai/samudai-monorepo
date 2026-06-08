@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Social } from '@samudai_xyz/gateway-consumer-types';
+import { Social } from '@samudai/gateway-consumer-types';
 
 export class MemberSocialsController {
     createMemberSocial = async (req: Request, res: Response, next: NextFunction) => {
@@ -27,7 +27,7 @@ export class MemberSocialsController {
 
     getMemberSocial = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/social/list/${memberId}`);
             new FetchSuccess(res, 'MEMBER SOCIAL', result);
         } catch (err: any) {
@@ -49,7 +49,7 @@ export class MemberSocialsController {
 
     deleteMemberSocial = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const socialId = (req.params.socialId as string);
+            const socialId = req.params.socialId as string;
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/social/delete/${socialId}`);
             new DeleteSuccess(res, 'MEMBER SOCIAL', result);
         } catch (err: any) {

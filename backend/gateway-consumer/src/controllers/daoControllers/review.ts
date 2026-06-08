@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
 import { mapMemberToUsername } from '../../lib/memberUtils';
-import { Review, ReviewResponse } from '@samudai_xyz/gateway-consumer-types';
+import { Review, ReviewResponse } from '@samudai/gateway-consumer-types';
 
 export class DAOReviewController {
     createReview = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,14 +20,14 @@ export class DAOReviewController {
 
     listReviewForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/reviews/list/${daoId}`);
 
-            let reviewResponse: ReviewResponse[] = [];
+            const reviewResponse: ReviewResponse[] = [];
 
             const reviews = result.data.reviews;
 
-            for (let review of reviews) {
+            for (const review of reviews) {
                 const member = await mapMemberToUsername(review.member_id);
                 const reviewData: ReviewResponse = {
                     ...review,
@@ -60,7 +60,7 @@ export class DAOReviewController {
 
     deleteReview = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const reviewId = (req.params.reviewId as string);
+            const reviewId = req.params.reviewId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/reviews/delete/${reviewId}`);
             new DeleteSuccess(res, 'REVIEW', result);
         } catch (err: any) {

@@ -1,4 +1,4 @@
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import { mockup_users } from 'root/mockup/users';
 import { LogHead, LogItem } from '../ui';
 

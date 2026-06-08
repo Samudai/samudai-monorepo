@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { FilterValues } from '../../lib/hooks/useForumFilter';
 import { ForumFilterAccordeon } from '../forum-filter-accordeon';
-import { DiscussionEnums } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useClickOutside } from 'hooks/useClickOutside';
 import useInput from 'hooks/useInput';

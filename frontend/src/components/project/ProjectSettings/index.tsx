@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 // import { IMember } from 'store/services/projects/model';
 import Popup from 'components/@popups/components/Popup/Popup';

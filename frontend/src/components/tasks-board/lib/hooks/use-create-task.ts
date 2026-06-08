@@ -3,7 +3,7 @@ import {
     ActivityEnums,
     ProjectResponse,
     NotificationsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useCreateTaskMutation } from 'store/services/projects/totalProjects';
 import store from 'store/store';
 import { updateActivity } from 'utils/activity/updateActivity';

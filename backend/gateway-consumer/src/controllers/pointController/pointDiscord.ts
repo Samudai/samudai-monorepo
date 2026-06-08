@@ -1,13 +1,12 @@
-import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
+import { FetchSuccess } from '../../lib/helper/Responsehandler';
 import { getPointGuilds } from '../../lib/guilds';
 
 export class PointDiscordController {
     getMemberGuildsForOnboarding = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
 
             const { memberGuilds } = await getPointGuilds(member_id);
 

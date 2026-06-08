@@ -3,7 +3,7 @@ import {
     BountyResponse,
     JobsEnums,
     NotificationsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useTypedSelector } from 'hooks/useStore';
 import { useCallback, useEffect, useState } from 'react';
 import { selectAccessList } from 'store/features/common/slice';

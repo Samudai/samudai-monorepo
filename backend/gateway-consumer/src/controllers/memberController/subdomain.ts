@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
+import { UpdateSuccess } from '../../lib/helper/Responsehandler';
 import * as fs from 'fs';
 const path = require('path');
-import ejs from 'ejs';
 
 export class SubdomainController {
     requestSubdomain = async (req: Request, res: Response, next: NextFunction) => {
@@ -25,7 +24,7 @@ export class SubdomainController {
 
     checkSubdomainForMember = async (req: Request, res: Response) => {
         try {
-            const subdomain = (req.params.subdomain as string);
+            const subdomain = req.params.subdomain as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/onboarding/checksubdomain/${subdomain}`);
 
@@ -46,10 +45,10 @@ export class SubdomainController {
 
     fetchSubdomainByMemberId = async (req: Request, res: Response) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
 
             const result = await axios.get(
-                `${process.env.SERVICE_MEMBER}/onboarding/fetchsubdomainformember/${member_id}`
+                `${process.env.SERVICE_MEMBER}/onboarding/fetchsubdomainformember/${member_id}`,
             );
 
             return res.status(201).send({
@@ -69,8 +68,8 @@ export class SubdomainController {
 
     getCID = async (req: Request, res: Response) => {
         try {
-            const memberId = (req.params.memberId as string);
-            const subdomain = (req.params.subdomain as string);
+            const memberId = req.params.memberId as string;
+            const subdomain = req.params.subdomain as string;
 
             const inputFilePath = path.join(__dirname, '../../input.html');
             const outputFilePath = path.join(__dirname, `../../${memberId}.html`);
@@ -92,7 +91,7 @@ export class SubdomainController {
 
             return res.status(201).send({
                 message: 'Members Info successfully fetched',
-                data: {cid : response},
+                data: { cid: response },
             });
         } catch (err: any) {
             if (err.response) {
@@ -113,7 +112,7 @@ export class SubdomainController {
                 subdomain,
             });
 
-            const subdomainUpdate = await axios.post(`${process.env.SERVICE_MEMBER}/member/update/subdomain`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/member/update/subdomain`, {
                 member_id: subdomain.member_id,
                 subdomain: subdomain.subdomain,
             });
@@ -135,8 +134,8 @@ export class SubdomainController {
 
     getSubdomainForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = (req.params.member_id as string);
-            const subdomain = (req.params.subdomain as string);
+            const memberId = req.params.member_id as string;
+            const subdomain = req.params.subdomain as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/subdomain/get/${memberId}/${subdomain}`);
 
@@ -157,7 +156,7 @@ export class SubdomainController {
 
     checkSubdomainCreateForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = (req.params.member_id as string);
+            const memberId = req.params.member_id as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/subdomain/checksubdomaincreate/${memberId}`);
 

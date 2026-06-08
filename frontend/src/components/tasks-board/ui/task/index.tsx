@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NotificationsEnums, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, TaskResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { ProjectOption } from 'components/@pages/projects/types';
 import { ProjectsMember } from 'components/@pages/projects/ui/projects-member';

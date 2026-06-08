@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { IMember } from '../../utils/types';
 
 export type DiscussionCreatedNotificationMetaData = {

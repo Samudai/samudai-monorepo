@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMemberId } from '../../../utils/utils';
-import { MemberResponse, Payment } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse, Payment } from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import clsx from 'clsx';
 import dayjs from 'dayjs';

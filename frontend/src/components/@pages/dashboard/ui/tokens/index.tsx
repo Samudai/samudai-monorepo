@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { GnosisFetch } from '@samudai/web3-sdk';
 import { GnosisTypes } from '@samudai/web3-sdk';
 import { selectAccessList } from 'store/features/common/slice';

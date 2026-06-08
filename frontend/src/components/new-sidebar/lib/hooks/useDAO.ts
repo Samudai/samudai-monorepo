@@ -24,7 +24,7 @@ import checkIfValidUUID from 'utils/checkIfValidUUID';
 import { getMemberId } from 'utils/utils';
 import { getInitial } from '../getInitial';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { addedDao, changeAddedDao } from 'store/features/common/slice';
 
 export const useDAO = (callback?: () => void) => {

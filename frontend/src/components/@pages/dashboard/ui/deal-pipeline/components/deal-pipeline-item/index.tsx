@@ -7,7 +7,7 @@ import styles from './deal-pipeline-item.module.scss';
 import UserIcon from 'ui/SVG/UserIcon';
 import SettingsDropdown from 'ui/SettingsDropdown/SettingsDropdown';
 import { EditIcon, TrashIcon, ShareIcon } from 'components/@pages/new-jobs/ui/icons';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { useTypedSelector } from 'hooks/useStore';
 import { selectAccessList } from 'store/features/common/slice';
 import { useNavigate, useParams } from 'react-router-dom';

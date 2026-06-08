@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Opportunity } from '@samudai_xyz/gateway-consumer-types';
+import { Opportunity } from '@samudai/gateway-consumer-types';
 import { RootState } from 'store/store';
 
 const initialState: Opportunity[] = [] as Opportunity[];

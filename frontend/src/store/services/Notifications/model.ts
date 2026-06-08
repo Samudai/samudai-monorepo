@@ -1,4 +1,4 @@
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 
 export interface notificationResponse {
     error?: any;

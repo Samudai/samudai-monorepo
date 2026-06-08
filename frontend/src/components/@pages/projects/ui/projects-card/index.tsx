@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProject } from '../../lib';
 import { ProjectsMember } from '../projects-member';
-import { AccessEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccessList } from 'store/features/common/slice';
 import usePopup from 'hooks/usePopup';

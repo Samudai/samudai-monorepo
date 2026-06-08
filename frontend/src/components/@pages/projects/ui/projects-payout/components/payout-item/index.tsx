@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ProjectsAccordeon } from '../../../projects-accordeon';
 import { PayoutAddContributor } from '../payout-add-contributor';
 import { PayoutMember } from '../payout-member';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import { payoutsList } from 'store/features/projects/projectSlice';
 import { useTypedSelector } from 'hooks/useStore';
 import { ArrowDownIcon } from 'components/editor/ui/icons';
@@ -11,7 +11,7 @@ import PlusIcon from 'ui/SVG/PlusIcon';
 import css from './payout-item.module.scss';
 import clsx from 'clsx';
 import { selectAccess } from 'store/features/common/slice';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import Button from 'ui/@buttons/Button/Button';
 import { toast } from 'utils/toast';
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ProjectEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import {
     addPinnedProject,

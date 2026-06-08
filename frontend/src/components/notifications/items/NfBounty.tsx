@@ -1,4 +1,4 @@
-import { NotificationContent } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationContent } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { cutText } from 'utils/format';

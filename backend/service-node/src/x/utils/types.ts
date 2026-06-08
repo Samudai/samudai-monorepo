@@ -1,5 +1,3 @@
-import { LinkType } from "./enums";
-
 export type TwitterMember = {
   twitterUsername: string;
   twitterUserId: string;

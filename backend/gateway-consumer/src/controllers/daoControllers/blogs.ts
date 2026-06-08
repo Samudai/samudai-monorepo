@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ogs from 'open-graph-scraper';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
-import { Blog } from '@samudai_xyz/gateway-consumer-types';
+import { Blog } from '@samudai/gateway-consumer-types';
 
 export class DAOBlogController {
     createBlog = async (req: Request, res: Response, next: NextFunction) => {
@@ -28,7 +28,7 @@ export class DAOBlogController {
 
     listBlogForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/blog/list/${daoId}`);
             new FetchSuccess(res, 'Blog list', result);
         } catch (err: any) {
@@ -38,7 +38,7 @@ export class DAOBlogController {
 
     deleteBlog = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const blogId = (req.params.blogId as string);
+            const blogId = req.params.blogId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/blog/delete/${blogId}`);
             new DeleteSuccess(res, 'Blog', result);
         } catch (err: any) {

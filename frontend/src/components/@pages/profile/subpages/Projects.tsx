@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AllProjects from '../elements/AllProjects';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { changeProjectid, selectActiveDao, selectRoles } from 'store/features/common/slice';
 import { useLazyGetDaoQuery } from 'store/services/Dao/dao';

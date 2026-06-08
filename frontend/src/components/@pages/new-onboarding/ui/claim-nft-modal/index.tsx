@@ -14,7 +14,7 @@ import Popup from 'components/@popups/components/Popup/Popup';
 import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
 import css from './claim-nft-modal.module.scss';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 
 interface ClaimNFTModalProps {
     onClose?: () => void;

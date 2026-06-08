@@ -43,7 +43,7 @@ export class DAODepartmentController {
 
     listDepartmentForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/department/list/${daoId}`);
             new FetchSuccess(res, 'DEPARTMENT', result);
         } catch (err: any) {
@@ -53,7 +53,7 @@ export class DAODepartmentController {
 
     deleteDepartment = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const departmentId = (req.params.departmentId as string);
+            const departmentId = req.params.departmentId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/department/delete/${departmentId}`);
             new DeleteSuccess(res, 'DEPARMENT', result);
         } catch (err: any) {

@@ -28,7 +28,7 @@ export class PointCustomProductController {
     };
     getCustomProductById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const productId = (req.params.productId as string);
+            const productId = req.params.productId as string;
             const result = await axios.get(`${process.env.SERVICE_POINT}/customproduct/getbyid/${productId}`);
             new FetchSuccess(res, 'Fetch Custom Product', result);
         } catch (err: any) {
@@ -38,7 +38,7 @@ export class PointCustomProductController {
 
     getCustomPointById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = (req.params.pointId as string);
+            const pointId = req.params.pointId as string;
             const result = await axios.get(`${process.env.SERVICE_POINT}/customproduct/getbypointid/${pointId}`);
             new FetchSuccess(res, 'Fetch Custom Product', result);
         } catch (err: any) {
@@ -62,10 +62,10 @@ export class PointCustomProductController {
 
     getPointsForUserByProductId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const productId = (req.params.productId as string);
-            const uniqueUserId = (req.params.uniqueUserId as string);
+            const productId = req.params.productId as string;
+            const uniqueUserId = req.params.uniqueUserId as string;
             const result = await axios.get(
-                `${process.env.SERVICE_DISCORD}/point/event/getcpuserpoints/${productId}/${uniqueUserId}`
+                `${process.env.SERVICE_DISCORD}/point/event/getcpuserpoints/${productId}/${uniqueUserId}`,
             );
             new FetchSuccess(res, 'Custom User Points', result);
         } catch (err: any) {

@@ -4,7 +4,7 @@ import { ProjectsItem } from '../projects-item';
 import { ProjectsSearch } from '../projects-search';
 import css from './assigned-tasks.module.scss';
 import { useFetchProfileProjects } from 'components/@pages/profile-projects';
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 
 interface AssignedTasksProps {}
 

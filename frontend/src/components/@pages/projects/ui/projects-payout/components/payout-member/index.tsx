@@ -6,7 +6,7 @@ import PlusIcon from 'ui/SVG/PlusIcon';
 import css from './payout-member.module.scss';
 import { IPayoutRequest } from 'store/services/projects/model';
 import { usePayouts } from 'components/tasks-board/lib/hooks/use-payouts';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import { useGetMemberByIdMutation } from 'store/services/userProfile/userProfile';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { payoutsList, updatePayoutList } from 'store/features/projects/projectSlice';

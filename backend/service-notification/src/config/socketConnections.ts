@@ -3,11 +3,6 @@ import { generateSessionId } from '../controllers/socketControllers.ts/utils/hel
 import { redis } from './redisConfig';
 import { RedisSessionStore } from '../lib/redisSession';
 import { RedisFunctions } from '../lib/redis';
-import {
-  WebNotification,
-  NotificationPartialData,
-  ErrorResponse,
-} from '../controllers/socketControllers.ts/utils/types';
 
 import { ProjectSockets } from '../controllers/socketControllers.ts/projectManagement/projectSockets';
 import { PaymentSockets } from '../controllers/socketControllers.ts/Payment/paymentSockets';
@@ -58,7 +53,6 @@ export class SocketConnections {
     // can run multiple replicas behind the load balancer.
     this.ioSocket.adapter(createAdapter(pubClient, subClient));
 
-    const users: any[] = [];
     //Sockets
     this.ioSocket.use(async (socket: any, next: (err?: Error) => void) => {
       const sessionId = socket.handshake.auth.sessionId;
@@ -83,7 +77,7 @@ export class SocketConnections {
     this.ioSocket.on('connection', async (socket: any) => {
       //persist session
 
-      const res = await redisSession.saveSession(socket.sessionId, {
+      await redisSession.saveSession(socket.sessionId, {
         memberId: socket.memberId,
         member: socket.member,
         connected: true,

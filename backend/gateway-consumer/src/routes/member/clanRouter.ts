@@ -30,7 +30,7 @@ export class ClanRouter {
         this.router.get(
             '/invite/receiver/:receiverId',
             requireVerifyAuth,
-            this.clanController.getClanInviteForReceiver
+            this.clanController.getClanInviteForReceiver,
         );
 
         this.app.use('/api/clan', this.router);

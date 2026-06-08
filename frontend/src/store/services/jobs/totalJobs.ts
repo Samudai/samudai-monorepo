@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { JobFile } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { JobFile } from '@samudai/gateway-consumer-types/dist/types';
 import store from 'store/store';
 import {
     createApplicantRequest,

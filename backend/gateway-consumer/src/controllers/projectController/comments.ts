@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Comment } from '@samudai_xyz/gateway-consumer-types';
+import { Comment } from '@samudai/gateway-consumer-types';
 
 export class CommentsController {
     createComment = async (req: Request, res: Response, next: NextFunction) => {

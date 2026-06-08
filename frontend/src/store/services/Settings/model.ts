@@ -1,6 +1,6 @@
 // import { IMember } from '../projects/model';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 export interface getRolesResponse {
     message: string;

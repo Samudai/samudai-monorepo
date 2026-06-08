@@ -30,7 +30,7 @@ export class PluginRouter {
         this.router.post(
             '/notion/getdatabaseproperties',
             requireVerifyAuth,
-            this.notionController.getDatabaseProperties
+            this.notionController.getDatabaseProperties,
         );
         this.router.post('/notion/importdatabase', requireVerifyAuth, this.notionController.importDatabase);
         this.router.get('/notion/exists/:memberId', requireVerifyAuth, this.notionController.isExists);

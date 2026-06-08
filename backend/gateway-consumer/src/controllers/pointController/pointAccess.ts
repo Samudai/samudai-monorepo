@@ -18,7 +18,7 @@ export class PointAccessController {
 
     getAccessForPoint = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = (req.params.pointId as string);
+            const pointId = req.params.pointId as string;
             const result = await axios.get(`${process.env.SERVICE_POINT}/access/listbypointid/${pointId}`);
 
             new FetchSuccess(res, 'Point Access Role', result);
@@ -53,7 +53,9 @@ export class PointAccessController {
 
     deleteAccess = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_POINT}/access/delete/${(req.params.pointId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_POINT}/access/delete/${req.params.pointId as string}`,
+            );
             new DeleteSuccess(res, 'Access Role', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting an Access Role'));
@@ -62,8 +64,8 @@ export class PointAccessController {
 
     getAccessForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.pointId as string);
-            const member_id = (req.params.memberId as string);
+            const point_id = req.params.pointId as string;
+            const member_id = req.params.memberId as string;
             const result = await axios.post(`${process.env.SERVICE_POINT}/access/formember`, {
                 point_id,
                 member_id,
@@ -76,8 +78,8 @@ export class PointAccessController {
 
     getAccessForMemberByGuildId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const guild_id = (req.params.guildId as string);
-            const discord_user_id = (req.params.discordUserId as string);
+            const guild_id = req.params.guildId as string;
+            const discord_user_id = req.params.discordUserId as string;
             const result = await axios.post(`${process.env.SERVICE_POINT}/access/formemberbyguildid`, {
                 guild_id,
                 discord_user_id,

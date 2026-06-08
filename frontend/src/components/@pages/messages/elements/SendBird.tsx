@@ -41,7 +41,7 @@ import { getMemberId } from 'utils/utils';
 import dayjs from 'dayjs';
 import { toast } from 'utils/toast';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 enum Tabs {
     Conversations = 'Conversations',

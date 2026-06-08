@@ -6,7 +6,6 @@ import { MemberSession } from '../controllers/socketControllers.ts/utils/types';
   findAllSessions() {}
 }
 
-const SESSION_TTL = 60 * 60 * 24 * 7; // 1 week
 const mapSession = (memberSession: string[]) =>
   memberSession[0] ? { memberId: memberSession[0], member: memberSession[1], connected: 'true' } : undefined;
 
