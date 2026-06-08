@@ -1,15 +1,14 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import unusedImports from 'eslint-plugin-unused-imports';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 
-export default tseslint.config(
-  { ignores: ['dist/', 'node_modules/'] },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  prettierRecommended,
+export default defineConfig([
+  globalIgnores(['dist/', 'node_modules/']),
   {
+    extends: [js.configs.recommended, tseslint.configs.recommended, prettierRecommended],
     plugins: { 'unused-imports': unusedImports },
     languageOptions: {
       ecmaVersion: 'latest',
@@ -48,4 +47,4 @@ export default tseslint.config(
       'no-constant-condition': 'error'
     }
   }
-);
+]);

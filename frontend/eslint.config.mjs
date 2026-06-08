@@ -1,3 +1,4 @@
+import { defineConfig, globalIgnores } from 'eslint/config';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
@@ -5,14 +6,16 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 
-export default tseslint.config(
-    { ignores: ['archive/', 'build/', 'dist/', 'node_modules/'] },
-    js.configs.recommended,
-    ...tseslint.configs.recommended,
-    react.configs.flat.recommended,
-    react.configs.flat['jsx-runtime'],
-    prettierRecommended,
+export default defineConfig([
+    globalIgnores(['archive/', 'build/', 'dist/', 'node_modules/']),
     {
+        extends: [
+            js.configs.recommended,
+            tseslint.configs.recommended,
+            react.configs.flat.recommended,
+            react.configs.flat['jsx-runtime'],
+            prettierRecommended,
+        ],
         plugins: { 'unused-imports': unusedImports },
         languageOptions: {
             ecmaVersion: 'latest',
@@ -64,5 +67,5 @@ export default tseslint.config(
             ],
             'no-constant-condition': 'error',
         },
-    }
-);
+    },
+]);
