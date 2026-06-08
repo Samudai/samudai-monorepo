@@ -1,4 +1,4 @@
-import { Activity } from '@samudai_xyz/gateway-consumer-types/';
+import { Activity } from '@samudai/gateway-consumer-types/';
 import axios from 'axios';
 import store from 'store/store';
 

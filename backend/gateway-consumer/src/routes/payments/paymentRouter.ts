@@ -24,7 +24,7 @@ export class PaymentRouter {
         this.router.get(
             '/payment/get/member/:memberId',
             requireVerifyAuth,
-            this.paymentController.getPlatformPaymentsForMember
+            this.paymentController.getPlatformPaymentsForMember,
         );
         this.router.get('/payment/get/task/:taskId', requireVerifyAuth, this.paymentController.getPaymentForTask);
         this.router.get('/payment/get/payment/:paymentId', requireVerifyAuth, this.paymentController.getPayment);
@@ -32,7 +32,7 @@ export class PaymentRouter {
         this.router.get(
             '/payment/get/uninitiatedfordao/:daoId',
             requireVerifyAuth,
-            this.paymentController.getUninitiatedByDAOId
+            this.paymentController.getUninitiatedByDAOId,
         );
 
         //Provider
@@ -44,7 +44,7 @@ export class PaymentRouter {
         this.router.get(
             '/provider/get/default/:daoId',
             requireVerifyAuth,
-            this.providerController.getDAODefaultProvider
+            this.providerController.getDAODefaultProvider,
         );
         this.router.get('/provider/exists/:providerId', requireVerifyAuth, this.providerController.doesExistProvider);
         this.router.post('/provider/update/default', manageDAOAccess, this.providerController.updateDefaultProvider);

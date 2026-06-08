@@ -118,7 +118,7 @@ export const verifyLitAccess = async (daoId) => {
         });
 
         console.log(jwt);
-        const { verfied, header, payload } = LitJsSdk.verifyJwt({ jwt });
+        const { payload } = LitJsSdk.verifyJwt({ jwt });
         if (
             payload.baseUrl === window.location.origin &&
             payload.path === window.location.pathname &&

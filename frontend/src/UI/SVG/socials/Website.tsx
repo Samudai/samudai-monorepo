@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Twitter = (props?: React.SVGProps<SVGSVGElement>) => {
+const Twitter = (_props?: React.SVGProps<SVGSVGElement>) => {
     return (
         // <svg {...props} viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         //   <path

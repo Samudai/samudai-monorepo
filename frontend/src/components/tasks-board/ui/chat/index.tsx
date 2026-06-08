@@ -8,7 +8,7 @@ import { useGetMemberByIdMutation } from 'store/services/userProfile/userProfile
 import * as PushAPI from '@pushprotocol/restapi';
 import type { BrowserProvider } from 'ethers';
 import { convertMessageToType, fetchHistory } from 'components/@pages/messages/chatUtils';
-import { MemberResponse, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse, MessageResponse } from '@samudai/gateway-consumer-types';
 import Message from 'components/chat/elements/ChatMessage';
 import ControlPanel from 'components/chat/elements/ControlPanel';
 import useInput from 'hooks/useInput';
@@ -153,7 +153,7 @@ export const Chat: React.FC<ChatProps> = ({ data, account, pgpDecryptedPvtKey, o
                                 isScrollbar && css.chat_messagesListScrollbar
                             )}
                         >
-                            {chats.map((message, id, arr) => (
+                            {chats.map((message, id, _arr) => (
                                 <Message
                                     showAvatar
                                     key={id}

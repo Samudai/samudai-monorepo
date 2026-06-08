@@ -19,8 +19,8 @@ export class PointController {
 
     linkdiscordbotForPoint = async (req: Request, res: Response) => {
         try {
-            const point_id: string = (req.params.point_id as string);
-            const guild_id: string = (req.params.guild_id as string);
+            const point_id: string = req.params.point_id as string;
+            const guild_id: string = req.params.guild_id as string;
             const result = await axios.post(`${process.env.SAMUDAI_BOT}/linkdiscord/point/${point_id}/${guild_id}`);
             return res.status(201).send({
                 message: 'Bot Linked With Point System Successfully',
@@ -39,7 +39,7 @@ export class PointController {
 
     getPointByPointId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const point_id = (req.params.point_id as string);
+            const point_id = req.params.point_id as string;
             const result = await axios.get(`${process.env.SERVICE_POINT}/point/getpointbyid/${point_id}`);
 
             new FetchSuccess(res, 'POINT SYSTEM', result);
@@ -74,7 +74,7 @@ export class PointController {
 
     getPointByWallet = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const wallet_address = (req.params.wallet_address as string);
+            const wallet_address = req.params.wallet_address as string;
             const result = await axios.get(`${process.env.SERVICE_DISCORD}/member/getpointbywallet/${wallet_address}`);
 
             new FetchSuccess(res, 'POINT IDS By Wallet', result);

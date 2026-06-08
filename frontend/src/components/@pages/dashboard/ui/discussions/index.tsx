@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DiscussionResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse } from '@samudai/gateway-consumer-types';
 import routes from 'root/router/routes';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useLazyGetDiscussionsQuery } from 'store/services/Discussion/discussion';
@@ -13,7 +13,7 @@ import { DiscussionsItem, DiscussionsSkeleton } from './components';
 import './discussions.scss';
 
 export const Discussions: React.FC = () => {
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const [discussions] = useLazyGetDiscussionsQuery();
     const { daoid } = useParams();
     const navigate = useNavigate();

@@ -12,7 +12,7 @@ import TextArea from 'ui/@form/TextArea/TextArea';
 import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
 import styles from './SetupHourlyRate.module.scss';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import { useTypedSelector, useTypedDispatch } from 'hooks/useStore';
 import { selectContributorProgress, changeContributorProgress } from 'store/features/common/slice';
 

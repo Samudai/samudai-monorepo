@@ -18,7 +18,7 @@ export class MemberReviewController {
 
     listReview = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/reviews/list/${memberId}`);
             new FetchSuccess(res, 'REVIEW', result);
         } catch (err: any) {
@@ -28,7 +28,7 @@ export class MemberReviewController {
 
     listByReviewerId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const reviewerId = (req.params.reviewerId as string);
+            const reviewerId = req.params.reviewerId as string;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/reviews/listbyreviewerid/${reviewerId}`);
             new FetchSuccess(res, 'REVIEW', result);
         } catch (err: any) {
@@ -38,7 +38,7 @@ export class MemberReviewController {
 
     deleteReview = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const reviewId = (req.params.reviewId as string);
+            const reviewId = req.params.reviewId as string;
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/reviews/delete/${reviewId}`);
             new DeleteSuccess(res, 'REVIEW', result);
         } catch (err: any) {

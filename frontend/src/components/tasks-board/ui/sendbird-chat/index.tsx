@@ -199,7 +199,7 @@ export const SendBirdChat: React.FC<SendBirdChatProps> = ({ data, onClose }) => 
             };
             channel
                 .sendUserMessage(userMessageParams)
-                .onSucceeded((message) => {
+                .onSucceeded((_message) => {
                     updateState({ ...stateRef.current, messageInputValue: '' });
                 })
                 .onFailed((error) => {
@@ -216,7 +216,7 @@ export const SendBirdChat: React.FC<SendBirdChatProps> = ({ data, onClose }) => 
             };
             channel
                 .sendFileMessage(fileMessageParams)
-                .onSucceeded((message) => {
+                .onSucceeded((_message) => {
                     updateState({ ...stateRef.current, messageInputValue: '' });
                 })
                 .onFailed((error) => {

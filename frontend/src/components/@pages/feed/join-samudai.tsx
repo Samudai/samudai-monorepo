@@ -3,7 +3,7 @@ import styles from './styles/join-samudai.module.scss';
 
 interface JoinSamudaiProps {}
 
-const JoinSamudai: React.FC<JoinSamudaiProps> = (props) => {
+const JoinSamudai: React.FC<JoinSamudaiProps> = (_props) => {
     return (
         <div className={styles.js}>
             <h3 className={styles.js_title}>Join Samudai Today</h3>

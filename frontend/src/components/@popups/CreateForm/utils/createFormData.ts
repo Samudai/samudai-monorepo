@@ -1,4 +1,4 @@
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 
 export interface FormDataType {
     id: number;

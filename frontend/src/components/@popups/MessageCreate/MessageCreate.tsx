@@ -13,7 +13,7 @@ import GroupCreateForm from './GroupCreateForm';
 import SearchMember from './SearchMember';
 import styles from './MessageCreate.module.scss';
 import { toast } from 'utils/toast';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { getMemberId } from 'utils/utils';
 import sendNotification from 'utils/notification/sendNotification';
 

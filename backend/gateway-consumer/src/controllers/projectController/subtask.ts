@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
-import { SubTask, IMember, SubTaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { SubTask, IMember, SubTaskResponse } from '@samudai/gateway-consumer-types';
 import { UpdateSuccess } from '../../lib/helper/Responsehandler';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { updatePayouts, updatePayout } from '../../lib/project';
 import { bulkMemberMap, mapMemberToUsername } from '../../lib/memberUtils';
 
 export class SubTaskController {
-    createSubtask = async (req: Request, res: Response, next: NextFunction) => {
+    createSubtask = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const subtask: SubTask = req.body.subtask;
 
@@ -27,13 +27,11 @@ export class SubTaskController {
         }
     };
 
-    updateSubtask = async (req: Request, res: Response, next: NextFunction) => {
+    updateSubtask = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const subtask: SubTask = req.body.subtask;
             if (subtask.payout) {
-                const resp = await axios.post(`${process.env.SERVICE_PROJECT}/payout/create`, {
-                    payout: subtask.payout,
-                });
+                await axios.post(`${process.env.SERVICE_PROJECT}/payout/create`, { payout: subtask.payout });
             }
 
             subtask.payout = [];
@@ -66,9 +64,11 @@ export class SubTaskController {
         }
     };
 
-    getAllSubtasks = async (req: Request, res: Response, next: NextFunction) => {
+    getAllSubtasks = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/allsubtask/${(req.params.projectId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_PROJECT}/subtask/allsubtask/${req.params.projectId as string}`,
+            );
 
             if (result.data?.subtasks?.length > 0) {
                 result.data.subtasks = await Promise.all(
@@ -108,7 +108,7 @@ export class SubTaskController {
                             return { ...subtask, created_by_member: created_by_member };
                         }
                         return { ...subtask, payout: updatedPayout };
-                    })
+                    }),
                 );
             }
 
@@ -124,9 +124,9 @@ export class SubTaskController {
         }
     };
 
-    getSubtask = async (req: Request, res: Response, next: NextFunction) => {
+    getSubtask = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/${(req.params.subtaskId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_PROJECT}/subtask/${req.params.subtaskId as string}`);
 
             let subtask: SubTask = result.data;
 
@@ -170,9 +170,11 @@ export class SubTaskController {
         }
     };
 
-    deleteSubtask = async (req: Request, res: Response, next: NextFunction) => {
+    deleteSubtask = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_PROJECT}/subtask/${(req.params.subtaskId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_PROJECT}/subtask/${req.params.subtaskId as string}`,
+            );
 
             res.status(201).send({ message: 'Subtask deleted successfully', data: result.data });
         } catch (err: any) {
@@ -222,7 +224,7 @@ export class SubTaskController {
             next(new ErrorException(err, 'Error while updating task associate job'));
         }
     };
-    updateSubTaskStatus = async (req: Request, res: Response, next: NextFunction) => {
+    updateSubTaskStatus = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const subtask_id: string = req.body.subtaskId;
             const completed: boolean = req.body.completed;
@@ -243,7 +245,7 @@ export class SubTaskController {
         }
     };
 
-    updateSubTaskColumn = async (req: Request, res: Response, next: NextFunction) => {
+    updateSubTaskColumn = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const subtask_id: string = req.body.subtaskId;
             const col: number = req.body.col;
@@ -266,7 +268,7 @@ export class SubTaskController {
         }
     };
 
-    updateSubtaskPosition = async (req: Request, res: Response, next: NextFunction) => {
+    updateSubtaskPosition = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const subtask_id: string = req.body.subtaskId;
             const position: number = req.body.position;
@@ -289,7 +291,7 @@ export class SubTaskController {
         }
     };
 
-    archiveSubtask = async (req: Request, res: Response, next: NextFunction) => {
+    archiveSubtask = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const subtask_id: string = req.body.subtaskId;
             const archived: number = req.body.archived;
@@ -312,10 +314,10 @@ export class SubTaskController {
         }
     };
 
-    getAllArchivedSubtask = async (req: Request, res: Response, next: NextFunction) => {
+    getAllArchivedSubtask = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const result = await axios.get(
-                `${process.env.SERVICE_PROJECT}/subtask/getall/archived/${(req.params.projectId as string)}`
+                `${process.env.SERVICE_PROJECT}/subtask/getall/archived/${req.params.projectId as string}`,
             );
 
             if (result.data?.subtasks?.length > 0) {
@@ -334,7 +336,7 @@ export class SubTaskController {
                             return { ...subtask, created_by_member: created_by_member };
                         }
                         return { ...subtask, payout: updatedPayout };
-                    })
+                    }),
                 );
             }
 

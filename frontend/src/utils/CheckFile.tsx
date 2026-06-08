@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import mixpanel from './mixpanel/mixpanelInit';
 import connectSocket from './notification/connectSocket';
 import axios from 'axios';
-import { useAccount, useConnect, useWalletClient } from 'wagmi';
+import { useAccount, useWalletClient } from 'wagmi';
 import { changeGoTo } from 'store/features/Onboarding/slice';
 import {
     changeAccount,
@@ -23,7 +23,6 @@ import { ethers } from 'ethers';
 
 const ConnectWalletComp: React.FC = () => {
     const { connector: activeConnector, isConnected } = useAccount();
-    const { connect, connectors, error, isPending } = useConnect();
     const {
         data: walletClient,
         isError,
@@ -37,7 +36,7 @@ const ConnectWalletComp: React.FC = () => {
     const search = useLocation().search;
     const inviteCode = new URLSearchParams(search).get('invite');
     localStorage.setItem('inviteCode', inviteCode || '');
-    const [url, setUrl] = useState(window.location.href.replace(window.location.origin, ''));
+    const [url, _setUrl] = useState(window.location.href.replace(window.location.origin, ''));
     const { authenticated, ready } = usePrivy();
     const { ready: walletReady, wallets } = useWallets();
     const [loginCheck, SetLoginCheck] = useState(false);
@@ -203,7 +202,7 @@ const ConnectWalletComp: React.FC = () => {
         }
     };
 
-    const connectWallet = async () => {
+    const _connectWallet = async () => {
         try {
             const provider = !isWalletLoading && walletClientToSigner(walletClient!);
             // const web3Provider = await web3modal.connect();
@@ -221,7 +220,6 @@ const ConnectWalletComp: React.FC = () => {
     const connectPrivyWallet = async () => {
         try {
             const embeddedWallet = wallets[0];
-            const embeddedWalletAddress = embeddedWallet?.address;
             const eip1193Provider = await embeddedWallet?.getEthereumProvider();
             if (!eip1193Provider) return;
             const provider = new ethers.BrowserProvider(eip1193Provider);

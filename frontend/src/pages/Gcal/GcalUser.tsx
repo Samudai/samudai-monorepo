@@ -10,10 +10,7 @@ import styles from 'styles/pages/pipeline-form.module.scss';
 function GCal() {
     const [searchParams] = useSearchParams();
     const code = decodeURIComponent(searchParams.get('code')!);
-    const localData = localStorage.getItem('signUp');
-    const storedData = localData ? JSON.parse(localData) : null;
-    const member_id = storedData?.member_id;
-
+    localStorage.getItem('signUp');
     useEffect(() => {
         const localData = localStorage.getItem('signUp');
         const storedData = JSON.parse(localData!);

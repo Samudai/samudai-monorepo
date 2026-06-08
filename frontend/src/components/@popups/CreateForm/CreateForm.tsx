@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
 import { GetFormDataItemType, getFormDataItem } from './utils/createFormData';
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useCreateFormMutation } from 'store/services/Dashboard/dashboard';
 import { useTypedSelector } from 'hooks/useStore';
@@ -20,7 +20,7 @@ interface CreateFormProps {
 const MAX_QUESTIONS_LENGTH = 10;
 
 const CreateForm: React.FC<CreateFormProps> = ({ onClose, editFormClick }) => {
-    const [createForm] = useCreateFormMutation();
+    const [_createForm] = useCreateFormMutation();
     const activeDAO = useTypedSelector(selectActiveDao);
 
     const [data, setData] = useState<GetFormDataItemType[]>([

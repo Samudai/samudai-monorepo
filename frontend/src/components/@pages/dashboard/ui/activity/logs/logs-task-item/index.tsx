@@ -3,7 +3,7 @@ import styles from './logs-task-item.module.scss';
 
 interface LogTaskItemProps {}
 
-export const LogTaskItem: React.FC<LogTaskItemProps> = (props) => {
+export const LogTaskItem: React.FC<LogTaskItemProps> = (_props) => {
     return (
         <li className={styles.root}>
             <div className={styles.colInfo}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AccessEnums, DiscussionEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, DiscussionEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccessList } from 'store/features/common/slice';
 import { comments, discussions, optIn } from 'store/features/discussion/slice';

@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from 'components/Skeleton/Skeleton';
 import styles from './transactions-skeleton.module.scss';
 
-export const TransactionsSkeleton: React.FC = (props) => (
+export const TransactionsSkeleton: React.FC = (_props) => (
     <React.Fragment>
         {Array.from({ length: 7 }).map((_, id) => (
             <li className="transactions-item" key={id}>

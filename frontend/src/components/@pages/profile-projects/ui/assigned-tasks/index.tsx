@@ -4,11 +4,11 @@ import { ProjectsItem } from '../projects-item';
 import { ProjectsSearch } from '../projects-search';
 import css from './assigned-tasks.module.scss';
 import { useFetchProfileProjects } from 'components/@pages/profile-projects';
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 
 interface AssignedTasksProps {}
 
-export const AssignedTasks: React.FC<AssignedTasksProps> = (props) => {
+export const AssignedTasks: React.FC<AssignedTasksProps> = (_props) => {
     const [search, setSearch] = useState<string>('');
     const [filteredTasks, setFilteredTasks] = useState<TaskResponse[]>([]);
 

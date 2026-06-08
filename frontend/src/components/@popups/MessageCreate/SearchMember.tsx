@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { MemberResponse } from '@samudai/gateway-consumer-types/dist/types';
 import clsx from 'clsx';
 import { useLazySearchMemberQuery } from 'store/services/Search/Search';
 import Input from 'ui/@form/Input/Input';

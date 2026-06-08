@@ -1,4 +1,4 @@
-import express, { Express, Router } from "express";
+import express, { Router } from "express";
 import { PaymentController } from "../controller/paymentController";
 import { TokenGatingController } from "../controller/tokenGatingController";
 import { VerifiableCredController } from "../controller/verifiableCredController";

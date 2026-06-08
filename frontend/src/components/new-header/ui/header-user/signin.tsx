@@ -6,11 +6,10 @@ import { useTypedDispatch } from 'hooks/useStore';
 import css from './header-user.module.scss';
 
 export const SignIn: React.FC<{ className?: string }> = ({ className }) => {
-    const [fetchUserProfile] = useGetMemberByIdMutation();
-    const [userName, setUserName] = useState<string>('--');
-    const [profilePicture, setProfilePicture] = useState<string>('');
-    const dispatch = useTypedDispatch();
-
+    const [_fetchUserProfile] = useGetMemberByIdMutation();
+    const [_userName, _setUserName] = useState<string>('--');
+    const [_profilePicture, _setProfilePicture] = useState<string>('');
+    useTypedDispatch();
     return (
         <div
             onClick={() => console.log('Sign in')}

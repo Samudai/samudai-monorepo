@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProviderDetails } from './model/model';
-import { Provider, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Provider, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import { walletList } from 'store/features/payments/paymentsSlice';
 import {
     useAddProviderMutation,
     useChangeDefaultMutation,
     useDeleteProviderMutation,
-    useGetProviderQuery,
 } from 'store/services/payments/payments';
 import usePopup from 'hooks/usePopup';
 import { useTypedSelector } from 'hooks/useStore';
@@ -32,9 +31,8 @@ const PaymentsWallets: React.FC = () => {
     const { daoid } = useParams();
     const changeAddress = usePopup();
     const wallets = useTypedSelector(walletList);
-    const activeDao = useTypedSelector(selectActiveDao);
-    const [addProviderApi, { isSuccess, isLoading: providerLoader1 }] = useAddProviderMutation();
-    const { refetch } = useGetProviderQuery(daoid!);
+    useTypedSelector(selectActiveDao);
+    const [addProviderApi, { isLoading: providerLoader1 }] = useAddProviderMutation();
     const [deleteProvider, { isLoading: providerLoader2 }] = useDeleteProviderMutation();
     const [changeDefault, { isLoading: providerLoader3 }] = useChangeDefaultMutation();
 

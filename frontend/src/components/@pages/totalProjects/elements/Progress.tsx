@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AccessEnums, ProjectEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ProjectEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import {
     changeProjectid,
     selectActiveDao,
@@ -28,7 +28,7 @@ const replaceName = (status: string) => {
 };
 
 const Progress: React.FC<ProgressProps> = ({ statistic, projects }) => {
-    const items = Object.entries(statistic);
+    Object.entries(statistic);
     const dispatch = useTypedDispatch();
     const activeDAO = useTypedSelector(selectActiveDao);
     const pinnedProjects = useTypedSelector(selectPinnedProjects);

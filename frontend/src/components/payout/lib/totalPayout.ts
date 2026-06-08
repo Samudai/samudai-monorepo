@@ -1,4 +1,4 @@
-import { PayoutCurrency } from '@samudai_xyz/gateway-consumer-types';
+import { PayoutCurrency } from '@samudai/gateway-consumer-types';
 
 interface CustomPayout {
     amount: string | number;

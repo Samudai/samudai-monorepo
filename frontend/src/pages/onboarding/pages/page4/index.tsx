@@ -52,7 +52,7 @@ const Page4: React.FC<Page4Props> = ({ discordSelected, setDiscordSelected, call
                     }),
                 }}
                 className={css.select}
-                formatOptionLabel={({ value, label }) => (
+                formatOptionLabel={({ label }) => (
                     <p style={{ color: 'white' }} className={styles.selectValue}>
                         {label}
                     </p>

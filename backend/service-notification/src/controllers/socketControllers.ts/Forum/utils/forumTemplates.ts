@@ -1,15 +1,8 @@
 import axios from 'axios';
-import { getMemberByWallet, getMemberInfo } from '../../utils/helpers';
+import { getMemberInfo } from '../../utils/helpers';
 import { NotificationPartialData, WebNotification, NotificationContent } from '../../utils/types';
 import { generateJWT } from '../../../../lib/jwt';
-import {
-  NewNotificationScope,
-  NewNotificationType,
-  NotificationFor,
-  NotificationScope,
-  NotificationStatus,
-  NotificationType,
-} from '../../utils/enums';
+import { NewNotificationScope, NewNotificationType, NotificationFor, NotificationStatus } from '../../utils/enums';
 import {
   DiscussionCreatedNotificationMetaData,
   DiscussionInvitationNotificationMetaData,
@@ -23,7 +16,6 @@ export class ForumNotificationTemplateHandler {
   ): Promise<WebNotification | null> => {
     try {
       const { to, from, metaData, timestamp } = notificationPartialData;
-      const dao_id: string = to.to[0];
       //User Info
       // const memberResult = await getMemberInfo(from.from);
       // const member = memberResult;

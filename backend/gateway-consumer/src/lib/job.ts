@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { jobs } from 'googleapis/build/src/apis/jobs';
-import { Bounty, Opportunity } from '@samudai_xyz/gateway-consumer-types';
+import { Bounty, Opportunity } from '@samudai/gateway-consumer-types';
 import { bulkMemberMap } from './memberUtils';
 
 export const getAttachmentJob = async (job: any) => {
@@ -30,7 +29,7 @@ export const getAttachmentJob = async (job: any) => {
         job.files = jobfiles.data || [];
 
         return job;
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -50,14 +49,14 @@ export const getAttachmentJobs = async (jobs: Opportunity[]) => {
         await Promise.all(
             departments.map(async (department: any) => {
                 const departmentResponse = await axios.get(
-                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`
+                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`,
                 );
                 departmentResponse.data?.forEach((dep: any) => {
                     if (dep.department_id === department.department_id) {
                         depMap.set(dep.department_id, dep.name);
                     }
                 });
-            })
+            }),
         );
 
         const fileMap = new Map();
@@ -66,7 +65,7 @@ export const getAttachmentJobs = async (jobs: Opportunity[]) => {
                 const jobfiles = await axios.get(`${process.env.SERVICE_JOB}/jobfile/list/${job.job_id}`);
 
                 fileMap.set(job.job_id, jobfiles.data);
-            })
+            }),
         );
 
         const created_by = jobs.map((job: any) => job.created_by);
@@ -85,7 +84,7 @@ export const getAttachmentJobs = async (jobs: Opportunity[]) => {
         });
 
         return jobs;
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -116,7 +115,7 @@ export const getAttachmentBounty = async (bounty: any) => {
         bounty.department = depMap.get(bounty.department) || '';
         bounty.files = bountyFiles.data || [];
         return bounty;
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -136,14 +135,14 @@ export const getAttachmentBounties = async (bounties: Bounty[]) => {
         await Promise.all(
             departments.map(async (department: any) => {
                 const departmentResponse = await axios.get(
-                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`
+                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`,
                 );
                 departmentResponse.data?.forEach((dep: any) => {
                     if (dep.department_id === department.department_id) {
                         depMap.set(dep.department_id, dep.name);
                     }
                 });
-            })
+            }),
         );
 
         const fileMap = new Map();
@@ -151,7 +150,7 @@ export const getAttachmentBounties = async (bounties: Bounty[]) => {
             bounties.map(async (bounty: any) => {
                 const bountyFiles = await axios.get(`${process.env.SERVICE_JOB}/bountyfile/list/${bounty.bounty_id}`);
                 fileMap.set(bounty.bounty_id, bountyFiles.data);
-            })
+            }),
         );
 
         const created_by = bounties.map((bounty: any) => bounty.created_by);
@@ -171,7 +170,7 @@ export const getAttachmentBounties = async (bounties: Bounty[]) => {
         });
 
         return bounties;
-    } catch (err) {
+    } catch {
         return null;
     }
 };

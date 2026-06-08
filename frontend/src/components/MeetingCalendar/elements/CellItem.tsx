@@ -19,10 +19,8 @@ const CellItem: FC<CellItemProps> = ({ date, currentProjects, isToday, scrollInt
     const [tooltipShow, setTooltipShow] = useState(false);
     const [data, setData] = useState([]);
     const currentProject: any = getCurrentDateProject(date, currentProjects);
-    const dispatch = useTypedDispatch();
-    // console.log('calendar project', currentProject, !!currentProject?.meetings.length);
-    const eventCreate = useTypedSelector(selectCreateEvent);
-
+    useTypedDispatch(); // console.log('calendar project', currentProject, !!currentProject?.meetings.length);
+    useTypedSelector(selectCreateEvent);
     useEffect(() => {
         const dataObj =
             (currentProject &&

@@ -44,7 +44,7 @@ const SetupImgName: React.FC<SetupImgNameProps> = ({
                 console.log(res);
                 dispatch(changeProfilePicture({ profilePicture: res.data }));
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Please Try Again', '')();
             });
     };

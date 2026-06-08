@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ActivityEnums, SubTask, SubTaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, SubTask, SubTaskResponse } from '@samudai/gateway-consumer-types';
 import {
     useCreateSubTaskMutation,
     useGetSubTasksByProjectIdQuery,
@@ -67,7 +67,7 @@ export const useSubTasks = (taskId: string, project_id?: string) => {
                             task_id: taskId,
                             subtask_id: res.data?.subtask_id,
                             action_type: ActivityEnums.ActionType.SUBTASK_CREATED,
-                            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+
                             visibility: projectData?.project
                                 ?.visibility as unknown as ActivityEnums.Visibility,
                             member: {
@@ -98,12 +98,12 @@ export const useSubTasks = (taskId: string, project_id?: string) => {
                         });
                     }
                 });
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Sub-Task Creation Failed', '')();
         }
     };
 
-    const updateSubTask = (newSubTask: SubTask, dropResult: DropResult) => {
+    const updateSubTask = (newSubTask: SubTask, _dropResult: DropResult) => {
         const oldSubTasks = subTasks.slice();
         const oldSubTask = oldSubTasks.find((subtask) => subtask.task_id === newSubTask.task_id);
         const project = projectData?.project;
@@ -139,7 +139,7 @@ export const useSubTasks = (taskId: string, project_id?: string) => {
                 updated_by: member_id as string,
             })
                 .unwrap()
-                .catch((err) => {
+                .catch((_err) => {
                     setSubTasks(oldSubTasks);
                 });
         }

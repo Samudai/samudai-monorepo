@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NotificationsEnums, WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, WebNotification } from '@samudai/gateway-consumer-types';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
 import { NfItem, NfTitle } from 'components/notifications/elements';
 import { NfBounty, NfPayment } from 'components/notifications/items';
@@ -8,7 +8,7 @@ import { getMemberId } from 'utils/utils';
 
 interface PaymentsProps {}
 
-const Payments: React.FC<PaymentsProps> = (props) => {
+const Payments: React.FC<PaymentsProps> = (_props) => {
     const [getNotifications] = useLazyFetchNotificationsQuery();
     const [data, setData] = useState<WebNotification[]>([] as WebNotification[]);
     useEffect(() => {
@@ -17,7 +17,7 @@ const Payments: React.FC<PaymentsProps> = (props) => {
                 const res = await getNotifications(getMemberId()).unwrap();
                 setData([...(res?.data || [])]?.reverse() || ([] as WebNotification[]));
                 console.log('payment:', res?.data);
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Unable to fetch payments notifications', 'Please retry')();
             }
         };

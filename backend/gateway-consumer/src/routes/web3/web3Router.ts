@@ -28,19 +28,19 @@ export class Web3Router {
         this.router.delete(
             '/api/web3/tokengating/delete/:daoId',
             manageDAOAccess,
-            this.tokenGatingController.deleteTokenGating
+            this.tokenGatingController.deleteTokenGating,
         );
 
         //VerifiableCred
         this.router.post(
             '/api/web3/verifiablecred/add',
             requireVerifyAuth,
-            this.verifiableCredController.addVerifiableCred
+            this.verifiableCredController.addVerifiableCred,
         );
         this.router.get(
             '/api/web3/verifiablecred/get/:memberId',
             requireVerifyAuth,
-            this.verifiableCredController.getVerifiableCred
+            this.verifiableCredController.getVerifiableCred,
         );
 
         this.router.get('/api/web3/token/get/:address', requireVerifyAuth, this.web3Controller.getTokenFromContract);

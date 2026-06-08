@@ -16,7 +16,7 @@ const GithubOrg = () => {
     const setupAction = searchParams.get('setup_action');
     const state = searchParams.get('state');
     const [gitHubUser] = useGithubOrgMutation();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const jwt = localStorage.getItem('jwt');
     store.dispatch(changeJwt({ jwt: jwt! }));
     useEffect(() => {

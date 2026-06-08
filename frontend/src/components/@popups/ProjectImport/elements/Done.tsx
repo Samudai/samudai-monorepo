@@ -26,8 +26,6 @@ interface dropdownItem {
     name: string;
 }
 
-const departments = ['Department1', 'Department2', 'Department3', 'Department4'];
-
 const Done: React.FC<DoneProps> = ({ setStep }) => {
     const [getNotionDB] = useGetNotionDatabaseMutation();
     const [notionProperties] = useGetNotionPropertiesMutation();
@@ -35,8 +33,8 @@ const Done: React.FC<DoneProps> = ({ setStep }) => {
     const activeDao = useTypedSelector(selectActiveDao);
     const dispatch = useTypedDispatch();
 
-    const [name, setName] = useInput('');
-    const [status, setStatus] = useState(progressList[0]);
+    const [_name, _setName] = useInput('');
+    const [_status, _setStatus] = useState(progressList[0]);
     const [projectName, setProjectName] = useState<dropdownItem[]>([]);
     const [activeProject, setActiveProject] = useState<dropdownItem>({ id: '', name: '' });
     const [dbName, setDbName] = useState<dropdownItem[]>([]);

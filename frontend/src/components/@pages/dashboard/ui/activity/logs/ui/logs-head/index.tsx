@@ -9,7 +9,7 @@ interface LogHeadProps {
     children?: React.ReactNode;
 }
 
-export const LogHead: React.FC<LogHeadProps> = ({ user, data, addedAt, children }) => {
+export const LogHead: React.FC<LogHeadProps> = ({ user, data, children }) => {
     return (
         <div className={styles.root}>
             <div className={styles.avatar}>

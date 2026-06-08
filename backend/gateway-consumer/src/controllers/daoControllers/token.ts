@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Token } from '@samudai_xyz/gateway-consumer-types';
+import { Token } from '@samudai/gateway-consumer-types';
 
 export class DAOTokenController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -19,7 +19,7 @@ export class DAOTokenController {
 
     getToken = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_DAO}/token/bydaoid/${(req.params.daoId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_DAO}/token/bydaoid/${req.params.daoId as string}`);
             new FetchSuccess(res, 'TOKEN', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving a Token'));
@@ -40,7 +40,9 @@ export class DAOTokenController {
 
     delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_DAO}/token/delete/${(req.params.tokenId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_DAO}/token/delete/${req.params.tokenId as string}`,
+            );
             new DeleteSuccess(res, 'TOKEN', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting token'));

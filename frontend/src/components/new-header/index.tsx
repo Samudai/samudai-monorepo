@@ -47,7 +47,7 @@ import { JoinDaoModal } from 'components/@pages/new-onboarding/ui/join-dao-modal
 import { CollaborationPassModal } from 'components/@pages/new-onboarding/ui/collaboration-pass-modal';
 import { ClaimNFTModal } from 'components/@pages/new-onboarding/ui/claim-nft-modal';
 import Tutorial from 'ui/tutorial';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
 import { updateNewNotification } from 'store/features/notifications/slice';
 import { useBilling } from 'utils/billing/use-billing';
@@ -64,8 +64,8 @@ const Header: React.FC = () => {
     const activeDao = useTypedSelector(selectActiveDao);
     const accessDao = useTypedSelector(selectAccess);
     const accountData = useTypedSelector(selectMember);
-    const daoSubdomainClaimed = useTypedSelector(selectDaoSubdomainClaimed);
-    const memberSubdomainClaimed = useTypedSelector(selectMemberSubdomainClaimed);
+    useTypedSelector(selectDaoSubdomainClaimed);
+    useTypedSelector(selectMemberSubdomainClaimed);
     const dispatch = useTypedDispatch();
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(
@@ -279,7 +279,7 @@ const Header: React.FC = () => {
                     return notification.read === false;
                 });
 
-                x ? dispatch(updateNewNotification(x)) : null;
+                if (x) dispatch(updateNewNotification(x));
             });
     }, []);
 

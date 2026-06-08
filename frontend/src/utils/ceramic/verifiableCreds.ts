@@ -32,7 +32,7 @@ export const claimVC = async (
             );
 
             const streamIdResult: string = result.id.toString();
-            const addVC = await axios.post(
+            await axios.post(
                 `${import.meta.env.REACT_APP_GATEWAY}api/web3/verifiablecred/add`,
                 {
                     memberId: memberId,
@@ -94,7 +94,7 @@ export const claimVC = async (
                 }
             );
 
-            const addVC = await axios.post(
+            await axios.post(
                 `${import.meta.env.REACT_APP_GATEWAY}api/web3/verifiablecred/add`,
                 {
                     memberId: memberId,

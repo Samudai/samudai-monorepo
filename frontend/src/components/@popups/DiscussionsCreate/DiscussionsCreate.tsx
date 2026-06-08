@@ -4,7 +4,7 @@ import { updateActivity } from '../../../utils/activity/updateActivity';
 import Popup from '../components/Popup/Popup';
 import PopupSubtitle from '../components/PopupSubtitle/PopupSubtitle';
 import PopupTitle from '../components/PopupTitle/PopupTitle';
-import { ActivityEnums, Member } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, Member } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useCreateDiscussionMutation } from 'store/services/Discussion/discussion';
@@ -50,7 +50,7 @@ const DiscussionsCreate: React.FC<DiscussionsCreateProps> = ({ onClose, fetchDis
         JSON.parse(localData!) && JSON.parse(localStorage.getItem('signUp')!).member_id;
     const [topic, setTopic] = useInput('');
     const [description, setDescription] = useInput<HTMLTextAreaElement>('');
-    const [showParticipants, setShowParticipants] = useState(false);
+    const [_showParticipants, _setShowParticipants] = useState(false);
     const [participants, setParticipants] = useState<IUser[]>([]);
     const [associated, setAssociated] = useState<DiscussionType>(DiscussionType.Project);
     const [memberData, setMemberData] = useState<any[]>([]);

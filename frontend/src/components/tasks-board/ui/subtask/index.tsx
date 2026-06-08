@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSubtaskState } from 'components/tasks-board/providers/withSubtasks';
 import CommentsIcon from 'ui/SVG/CommentsIcon';
 import css from './subtask.module.scss';
-import { SubTaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { SubTaskResponse } from '@samudai/gateway-consumer-types';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
 import { Assignees } from '../assignees';
 import usePopup from 'hooks/usePopup';

@@ -11,7 +11,7 @@ import { initMongo, closeMongo } from "./x/utils/mongo";
 import mqConnection from "./x/config/rabbitmqConfig";
 import { closeConnections } from "./db/connections";
 
-require("dotenv").config();
+import "dotenv/config";
 
 // Server hosts the four former Node micro-services in one process. Each is
 // mounted under a distinct prefix so the gateway reaches it via

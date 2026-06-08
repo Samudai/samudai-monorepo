@@ -1,4 +1,4 @@
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 import { useTypedDispatch } from 'hooks/useStore';
 import { useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
@@ -84,7 +84,7 @@ export const useFetchProfileProjects = () => {
             });
     };
 
-    const updateTask = (newTask: TaskResponse, dropResult: DropResult) => {
+    const updateTask = (newTask: TaskResponse, _dropResult: DropResult) => {
         const oldTasks = personalTasks.slice();
         const oldTask = oldTasks.find((task) => task.task_id === newTask.task_id);
         const project = projectData?.data?.projects[0];
@@ -110,7 +110,7 @@ export const useFetchProfileProjects = () => {
                 totalcol: lastColumnId,
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateItem({
                             project_id: project.project_id!,
@@ -130,7 +130,7 @@ export const useFetchProfileProjects = () => {
                 project_id: project.project_id!,
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateItem({
                             project_id: project.project_id!,
@@ -138,7 +138,7 @@ export const useFetchProfileProjects = () => {
                         })
                     );
                 })
-                .catch((err) => {
+                .catch((_err) => {
                     setPersonalTasks(oldTasks);
                 });
         }

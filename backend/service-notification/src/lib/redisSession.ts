@@ -1,12 +1,11 @@
 import { MemberSession } from '../controllers/socketControllers.ts/utils/types';
 
 /* abstract */ class SessionStore {
-  findSession(id: string) {}
-  saveSession(id: string, session: MemberSession) {}
+  findSession(_id: string) {}
+  saveSession(_id: string, _session: MemberSession) {}
   findAllSessions() {}
 }
 
-const SESSION_TTL = 60 * 60 * 24 * 7; // 1 week
 const mapSession = (memberSession: string[]) =>
   memberSession[0] ? { memberId: memberSession[0], member: memberSession[1], connected: 'true' } : undefined;
 

@@ -36,7 +36,7 @@ import './styles/Chart.scss';
 ChartJS?.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler);
 
 const Chart: React.FC = () => {
-    const [data, setData] = useState<any[]>([]);
+    const [_data, setData] = useState<any[]>([]);
     const [activeTab, setActiveTab] = useState<ChartTabType>(chartTabs[0]);
     const [activePeriod, setActivePeriod] = useState<ChartPeriodType>(chartPeriod[0]);
     const { daoid } = useParams();

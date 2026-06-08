@@ -6,7 +6,7 @@ import Loader from 'components/Loader/Loader';
 import styles from 'styles/pages/pipeline-form.module.scss';
 import { useLinkDiscordBotMutation, useUpdateDaoProgressMutation } from 'store/services/Dao/dao';
 import { toast } from 'utils/toast';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 
 function BotsTemp() {
     const dispatch = useTypedDispatch();
@@ -19,7 +19,7 @@ function BotsTemp() {
 
     useEffect(() => {
         linkDiscord({ daoId: daoId!, guildId: guildId! })
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Discord server connected successfully.', '')();
                 const localData = localStorage.getItem('signUp');
                 const storedData = JSON.parse(localData!);

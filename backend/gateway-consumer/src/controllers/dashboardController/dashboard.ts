@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import { Dashboard, DashboardName, DashboardResponse } from '@samudai_xyz/gateway-consumer-types';
+import { Dashboard, DashboardName, DashboardResponse } from '@samudai/gateway-consumer-types';
 
 export class DashBoardController {
     createDashboard = async (req: Request, res: Response) => {
@@ -11,7 +11,7 @@ export class DashBoardController {
             const result = await axios.post(`${process.env.SERVICE_DASHBOARD}/dashboard/create`, {
                 dashboard: dashboard,
             });
-            let dashboardResponse: DashboardResponse = {
+            const dashboardResponse: DashboardResponse = {
                 ...dashboard,
                 widgets: [],
                 dashboard_id: result.data.dashboard_id,
@@ -19,7 +19,7 @@ export class DashBoardController {
             dashboardResponse.dashboard_id = result.data.dashboard_id;
             if (result.status === 200) {
                 const widgetResult = await axios.get(
-                    `${process.env.SERVICE_DASHBOARD}/dashboardwidget/list/${dashboardResponse.dashboard_id}`
+                    `${process.env.SERVICE_DASHBOARD}/dashboardwidget/list/${dashboardResponse.dashboard_id}`,
                 );
                 if (widgetResult.data.dashboard_widgets.length > 0) {
                     dashboardResponse.widgets = widgetResult.data.dashboard_widgets;
@@ -41,7 +41,9 @@ export class DashBoardController {
 
     listDashboardForDAO = async (req: Request, res: Response) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_DASHBOARD}/dashboard/list/${(req.params.daoId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_DASHBOARD}/dashboard/list/${req.params.daoId as string}`,
+            );
             if (res.locals.default) {
                 return res.status(200).send({ message: 'Dashboard list successfully', data: result.data });
             } else {
@@ -103,7 +105,7 @@ export class DashBoardController {
     deleteDashboard = async (req: Request, res: Response) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_DASHBOARD}/dashboard/delete/${(req.params.dashboardId as string)}`
+                `${process.env.SERVICE_DASHBOARD}/dashboard/delete/${req.params.dashboardId as string}`,
             );
             res.status(200).send({ message: 'Dashboard deleted successfully', data: result.data });
         } catch (err: any) {
@@ -119,7 +121,7 @@ export class DashBoardController {
 
     updateDashboardVisibility = async (req: Request, res: Response) => {
         try {
-            const dashboard_id = (req.params.dashboardId as string);
+            const dashboard_id = req.params.dashboardId as string;
             const visibility = req.body.visibility;
             const result = await axios.post(`${process.env.SERVICE_DASHBOARD}/dashboard/update/visibility`, {
                 dashboard_id: dashboard_id,

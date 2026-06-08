@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSettingsRoutes } from '../utils/settings-routes';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import SettingsLayout from 'root/layouts/settings/settings.layout';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import { roles } from 'store/services/Settings/model';
@@ -53,13 +53,13 @@ export interface FormDataType {
 const AccessManagment: React.FC<AccessManagmentProps> = () => {
     const [getRoles, { isSuccess: rolesSuccess }] = useLazyGetRolesQuery();
     const [getAccess, { isSuccess: accessSuccess }] = useLazyGetAccessQuery();
-    const [getDaoMember] = useLazySearchMemberByDaoQuery();
-    const [createAccess] = useCreateAccessMutation();
-    const [updateAccess] = useUpdateAccessMutation();
+    const [_getDaoMember] = useLazySearchMemberByDaoQuery();
+    const [_createAccess] = useCreateAccessMutation();
+    const [_updateAccess] = useUpdateAccessMutation();
     const [updateAllAccess] = useUpdateAllAccessMutation();
     const activeDao = useTypedSelector(selectActiveDao);
     const [roles, setRoles] = useState<roles[]>([]);
-    const [members, setMembers] = useState<IMember[]>([]);
+    const [_members, _setMembers] = useState<IMember[]>([]);
     const [load, setLoad] = useState(false);
     const { daoid } = useParams();
     const access = useTypedSelector(selectAccessList)[daoid!]?.includes(
@@ -196,7 +196,7 @@ const AccessManagment: React.FC<AccessManagmentProps> = () => {
             ],
         })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Access updated successfully', '')();
                 updateActivity({
                     dao_id: activeDao!,
@@ -230,7 +230,7 @@ const AccessManagment: React.FC<AccessManagmentProps> = () => {
                     metadata: {},
                 });
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to update access', '')();
             });
     };

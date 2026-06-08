@@ -12,8 +12,8 @@ import {
     Task,
     TaskResponse,
     Token,
-} from '@samudai_xyz/gateway-consumer-types';
-import { IMember as ProjectIMember } from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
+import { IMember as ProjectIMember } from '@samudai/gateway-consumer-types';
 
 export interface getTokenRes {
     message: string;

@@ -5,14 +5,12 @@ import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess } from '../../lib/helper/Responsehandler';
 import { generateOTPWithoutMemberID } from '../../lib/otp';
 import {
-    GuildForMember,
     GuildForMemberPoints,
-    GuildInfo,
     GuildPointsInfo,
     MapDiscordParams,
     MemberDiscord,
     MembersEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 
 export class PointLoginController {
     login = async (req: Request, res: Response, next: NextFunction) => {
@@ -80,12 +78,12 @@ export class PointLoginController {
             const toemail = req.body.toemail;
             const otp = generateOTPWithoutMemberID();
 
-            const result = await axios.post(`${process.env.SERVICE_POINT}/member/update/verificationcode`, {
+            await axios.post(`${process.env.SERVICE_POINT}/member/update/verificationcode`, {
                 member_id: memberId,
                 email_verification_code: otp,
             });
 
-            let transporter = nodemailer.createTransport({
+            const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
                     user: 'vanshkapoor1408@gmail.com',
@@ -113,7 +111,7 @@ export class PointLoginController {
             const memberId = req.body.memberId;
             const emailVerificationCode = req.body.emailVerificationCode;
 
-            const result = await axios.post(`${process.env.SERVICE_POINT}/member/verifyemail`, {
+            await axios.post(`${process.env.SERVICE_POINT}/member/verifyemail`, {
                 member_id: memberId,
                 email_verification_code: emailVerificationCode,
             });
@@ -148,7 +146,7 @@ export class PointLoginController {
             if (result.status === 200) {
                 try {
                     discord_data = await axios.get(
-                        `${process.env.SERVICE_DISCORD}/point/discord/guildforuser/${discord.discord_user_id}`
+                        `${process.env.SERVICE_DISCORD}/point/discord/guildforuser/${discord.discord_user_id}`,
                     );
                 } catch (err: any) {
                     if (err.response) {
@@ -164,7 +162,7 @@ export class PointLoginController {
                 if (discord_data && discord_data.data) {
                     try {
                         const data: GuildForMemberPoints[] = discord_data.data;
-                        let guilds: GuildPointsInfo[] = [];
+                        const guilds: GuildPointsInfo[] = [];
                         data.forEach((member: GuildForMemberPoints) => {
                             const guild: GuildPointsInfo = {
                                 guild_id: member.guild_id,
@@ -179,7 +177,7 @@ export class PointLoginController {
                             member_id: memberId,
                             guild_info: guilds,
                         };
-                        const result = await axios.post(`${process.env.SERVICE_POINT}/memberpoint/mapdiscord`, payload);
+                        await axios.post(`${process.env.SERVICE_POINT}/memberpoint/mapdiscord`, payload);
                     } catch (err) {
                         return res.status(500).send({
                             message: 'Error while requesting data from point',

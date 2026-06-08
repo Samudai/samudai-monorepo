@@ -12,7 +12,7 @@ interface SocialsProps {
 
 const Socials: React.FC<SocialsProps> = ({ className, social }) => {
     // const user = useTypedSelector(selectUserData);
-    const [updateSocial] = useUpdateDaoSocialsMutation();
+    const [_updateSocial] = useUpdateDaoSocialsMutation();
     const [socials, setSocials] = useState<any>(social);
 
     useEffect(() => {

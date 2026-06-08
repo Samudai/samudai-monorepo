@@ -18,7 +18,7 @@ interface FileProps {
 }
 
 const File: React.FC<FileProps> = ({ name, size, url, className, onClick, download = true }) => {
-    const [imageUrl, setImageUrl] = useState('');
+    const [_imageUrl, setImageUrl] = useState('');
 
     useEffect(() => {
         (async () => {

@@ -1,7 +1,7 @@
 import styles from '../styles/Info.module.scss';
 import Label from './Label';
 
-const NfInfo: React.FC = (props) => {
+const NfInfo: React.FC = (_props) => {
     return (
         <div className={styles.root}>
             <ul className={styles.list}>

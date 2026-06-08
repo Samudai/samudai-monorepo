@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import React, { useCallback, useMemo, useState } from 'react';
 import ProjectProgress from 'ui/project-progress';
 import css from './projects-item.module.scss';
-import { AccessEnums, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, TaskResponse } from '@samudai/gateway-consumer-types';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
 import { Assignees } from 'components/tasks-board/ui/assignees';
 import usePopup from 'hooks/usePopup';

@@ -33,7 +33,7 @@ import { getMemberId } from 'utils/utils';
 import css from './claim-subdomain-modal.module.scss';
 import { useNavigate } from 'react-router-dom';
 import sendNotification from 'utils/notification/sendNotification';
-import { ActivityEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 interface ClaimSubdomainModalProps {
     type?: 'dao' | 'contributor';
     onClose?: () => void;
@@ -43,13 +43,13 @@ export const ClaimSubdomainModal: React.FC<ClaimSubdomainModalProps> = ({ type, 
     const daoid = useTypedSelector(selectActiveDao);
     const walletAddress = useTypedSelector(selectAccount);
     const [subdomain, setSubdomain] = useState('');
-    const [subdomainAvailable, setSubdomainAvailable] = useState(false);
+    const [_subdomainAvailable, setSubdomainAvailable] = useState(false);
     const [popop, setPopop] = useState(1);
-    const [safes, setSafes] = useState<{ label: string; value: string }[]>([]);
+    const [_safes, setSafes] = useState<{ label: string; value: string }[]>([]);
     const providerEth = useTypedSelector(selectProvider);
     const [daoClaimed, setDaoClaimed] = useState(true);
     const [memberClaimed, setMemberClaimed] = useState(true);
-    const [chainId, setChainId] = useState<number | null>(null);
+    const [_chainId, setChainId] = useState<number | null>(null);
     const memberId = getMemberId();
     const dispatch = useTypedDispatch();
     const claimSubdomainInstance = new ClaimSubdomain();

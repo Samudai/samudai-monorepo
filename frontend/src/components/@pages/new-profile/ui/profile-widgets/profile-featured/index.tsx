@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProjectsSkeleton } from '../../profile-skeleton';
 import { ProfileFeaturedModal } from '../profile-featured-modal';
-import { FeaturedProjects } from '@samudai_xyz/gateway-consumer-types';
+import { FeaturedProjects } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import usePopup from 'hooks/usePopup';
 import { useScrollbar } from 'hooks/useScrollbar';

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import PopupSubtitle from '../components/PopupSubtitle/PopupSubtitle';
-import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Auth, Provider } from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import { ethers } from 'ethers';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,7 +17,7 @@ import { parcelSign } from 'utils/parcelUtils';
 import { toast } from 'utils/toast';
 import { IPaymentCurrency } from 'utils/types/Payments';
 import styles from './TaskAdd.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 // interface IMember {
 //   member_id: string;
@@ -64,15 +64,15 @@ const Bounty: React.FC<props> = ({ personal, contributors, providerList, setProv
     const [options, setOptions] = useState<Provider[]>([] as Provider[]);
     const [bounty, setBounty, _, clearBounty] = useInput('');
     const [balance, setBalance] = useState<string>('');
-    const { data: providerData, isSuccess } = useGetProviderQuery(daoid!);
+    const { data: providerData } = useGetProviderQuery(daoid!);
     const [currency, setCurrency] = useState<IPaymentCurrency>({} as IPaymentCurrency);
     const [currencyList, setCurrencyList] = useState<IPaymentCurrency[]>([] as IPaymentCurrency[]);
     const [user, setUser] = useState<IMember>({} as IMember);
 
-    const [tokenType, setTokenType] = useState<string>('');
-    const [tokenAddress, setTokenAddress] = useState<string>('');
+    const [_tokenType, setTokenType] = useState<string>('');
+    const [_tokenAddress, setTokenAddress] = useState<string>('');
     const [getParcelBalance] = useGetParcelBalanceMutation();
-    const [sdkVale, setSdkValue] = useState<Gnosis | null>(null);
+    const [_sdkVale, setSdkValue] = useState<Gnosis | null>(null);
     const [show, setShow] = useState<boolean>(false);
 
     const onClickProvider = (provider: Provider) => {
@@ -156,7 +156,7 @@ const Bounty: React.FC<props> = ({ personal, contributors, providerList, setProv
                     )) as GnosisTypes.SafeBalanceUsdResponse[];
                     console.log('here:', res);
                     if (res.length > 0) {
-                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, id: number) => {
+                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, _id: number) => {
                             currencyVal.push({
                                 currency: item.token
                                     ? item.token.name

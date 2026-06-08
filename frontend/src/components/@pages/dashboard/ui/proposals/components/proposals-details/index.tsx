@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { selectProvider } from 'store/features/common/slice';
 import { useLazyGetDiscussionsByProposalQuery } from 'store/services/Discussion/discussion';
 import usePopup from 'hooks/usePopup';
-import { useTypedSelector } from 'hooks/useStore';
 import Popup from 'components/@popups/components/Popup/Popup';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
 import CreateDiscussionPopUp from 'components/UserProfile/CreateDiscussionPopUp';
@@ -29,18 +27,18 @@ export const ProposalsDetails: React.FC<ProposalsDetailsProps> = ({
     onClose,
     data,
 }) => {
-    const providerEth = useTypedSelector(selectProvider);
+    // const providerEth = useTypedSelector(selectProvider);
     const navigate = useNavigate();
     const [getDiscussionId] = useLazyGetDiscussionsByProposalQuery();
-    const [author, setAuthor] = useState(data?.author);
+    // const [author, setAuthor] = useState(data?.author);
     console.log('proposalData', data);
-    const getENS = async () => {
-        const name = await providerEth!.lookupAddress(data.author);
-        const address = await providerEth!.resolveName('alice.eth');
-        if (address === data.author) setAuthor(name);
-        console.log(name);
-        console.log(address, data.author);
-    };
+    // const getENS = async () => {
+    //     const name = await providerEth!.lookupAddress(data.author);
+    //     const address = await providerEth!.resolveName('alice.eth');
+    //     if (address === data.author) setAuthor(name);
+    //     console.log(name);
+    //     console.log(address, data.author);
+    // };
     const createPopUp = usePopup();
 
     const goToDiscussion = async () => {
@@ -50,7 +48,7 @@ export const ProposalsDetails: React.FC<ProposalsDetailsProps> = ({
             ? navigate(`/${response?.data?.dao_id}/forum/${response?.data?.discussion_id}`)
             : createPopUp.open();
     };
-    const handleClick = async (item: number) => {
+    const handleClick = async (_item: number) => {
         try {
             window.open(
                 `https://snapshot.org/#/${data.space.id}/proposal/${data.id}`,

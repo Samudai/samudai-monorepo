@@ -10,8 +10,8 @@ import '../styles/ActiveProjects.scss';
 
 const ActiveProjects: React.FC = () => {
     const activeDAO = useTypedSelector(selectActiveDao);
-    const roles = useTypedSelector(selectRoles);
-    const dispatch = useTypedDispatch();
+    useTypedSelector(selectRoles);
+    useTypedDispatch();
     const { memberid } = useParams();
     const [getDao] = useLazyGetDaoQuery();
     const [userData, setUserData] = useState<any[]>([]);
@@ -41,14 +41,14 @@ const ActiveProjects: React.FC = () => {
         member_id: memberid!,
         daos: userData,
     };
-    const [getProjects, { data, isSuccess }] = useGetProjectByMemberIdMutation({
+    const [getProjects, { data }] = useGetProjectByMemberIdMutation({
         fixedCacheKey: memberid,
     });
 
     const fetchProjects = async () => {
         getProjects(payload)
             .unwrap()
-            .then((res) => {})
+            .then((_res) => {})
             .catch((err) => {
                 console.error(err);
             });

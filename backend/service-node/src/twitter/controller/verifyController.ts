@@ -47,7 +47,7 @@ export class VerifyController {
         });
       }
 
-      const result = await this.twitterDBQuery.addTwitterVerification(
+      await this.twitterDBQuery.addTwitterVerification(
         id,
         username,
         verified,

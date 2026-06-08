@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
 import {
     changeContributorProgress,

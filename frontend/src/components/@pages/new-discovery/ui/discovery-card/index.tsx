@@ -4,7 +4,7 @@ import { getDiscoveryStatus } from '../../lib/utils';
 import { DaoTags } from '../dao-tags';
 import { IconsList } from '../icons-list';
 import { UserTickIcon } from '../icons/user-tick-icon';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
 import { useAddDiscoveryViewMutation } from 'store/services/Discovery/Discovery';
 import { DiscoveryViewRequest } from 'store/services/Discovery/model';
@@ -147,7 +147,7 @@ export const DiscoveryCard: React.FC<DiscoveryCardProps> = ({
             });
             setConnect(true);
             toast('Success', 5000, 'Request sent', '')();
-        } catch (err: any) {
+        } catch {
             toast('Failure', 5000, 'Failed to send request', '')();
         }
     };

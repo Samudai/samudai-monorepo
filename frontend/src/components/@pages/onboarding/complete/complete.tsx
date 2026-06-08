@@ -7,7 +7,7 @@ import styles from './complete.module.scss';
 
 interface CompleteProps {}
 
-const Complete: React.FC<CompleteProps> = (props) => {
+const Complete: React.FC<CompleteProps> = (_props) => {
     const navigate = useNavigate();
 
     return (

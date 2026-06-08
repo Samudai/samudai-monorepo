@@ -1,4 +1,4 @@
-import { WebNotification, NotificationPartialData, ErrorResponse } from '../utils/types';
+import { WebNotification, NotificationPartialData } from '../utils/types';
 import { ContributorNotificationTemplateHandler } from './utils/contributorTemplates';
 import { publishTelegramNotification } from '../../telegramController';
 

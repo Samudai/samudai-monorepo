@@ -7,7 +7,7 @@ import TeamMember from './TeamMember';
 import styles from '../styles/TeamSidebar.module.scss';
 import { TeamFilter } from './TeamFilter';
 import { useGetContributorSkillsQuery } from 'store/services/Discovery/Discovery';
-import { TeamMember as TeamMemberData } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMember as TeamMemberData } from '@samudai/gateway-consumer-types';
 
 interface TeamSidebarProps {
     active: TeamMemberData;
@@ -18,7 +18,7 @@ interface TeamSidebarProps {
 const TeamSidebar: React.FC<TeamSidebarProps> = ({ active, changeActiveUser, users }) => {
     const [search, setSearch] = useInput('');
     const [data, setdata] = useState<TeamMemberData[]>(users);
-    const [showUsers, setShowUsers] = useState(true);
+    const [showUsers, _setShowUsers] = useState(true);
     const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
     const { data: contributorSkillList } = useGetContributorSkillsQuery();

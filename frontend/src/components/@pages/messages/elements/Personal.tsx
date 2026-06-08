@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { ContentSkeleton } from '../content-skeleton';
 import { SidebarSkeleton } from '../sidebar-skeleton';
 import { EmptyState } from '../sidebar-skeleton/EmptyState';
 import * as PushAPI from '@pushprotocol/restapi';
 import { ENV } from '@pushprotocol/restapi/src/lib/constants';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
-import { MessageResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
+import { MessageResponse } from '@samudai/gateway-consumer-types/dist/types';
 import clsx from 'clsx';
 import { changeChatKey, selectChatKey, selectChats } from 'store/features/chats/slice';
 import { selectAccount, selectProvider } from 'store/features/common/slice';
@@ -54,24 +53,21 @@ enum Tabs {
     Requests = 'Requests',
 }
 
-const Personal: React.FC = (props) => {
+const Personal: React.FC = (_props) => {
     const [value, setValue, _, clearValue] = useInput<HTMLTextAreaElement>('');
     const [search, setSearch] = useState<string>('');
     const [activeTab, setActiveTab] = useState<string>(Tabs.Conversations);
     const [isAttachments, setAttachments] = useState<boolean>(false);
-    const [isPalette, setPalette] = useState<boolean>(false);
+    const [_isPalette, _setPalette] = useState<boolean>(false);
     const listRef = useRef<HTMLUListElement>(null);
-    const chatList = useTypedSelector(selectChats);
+    useTypedSelector(selectChats);
     const chatKey = useTypedSelector(selectChatKey);
-    const [decryptedKey, setDecryptedKey] = useState<string>('' as string);
+    const [_decryptedKey, setDecryptedKey] = useState<string>('' as string);
     const provider = useTypedSelector(selectProvider);
     const dispatch = useTypedDispatch();
     const account = useTypedSelector(selectAccount);
     const [chatData, setChatData] = useState<ChatData[]>([]);
     const [chatRequestData, setChatRequestData] = useState<ChatData[]>([]);
-    const [chatHistory, setChatHistory] = useState<PushAPI.IMessageIPFS[]>(
-        [] as PushAPI.IMessageIPFS[]
-    );
     const [activeMessages, setActiveMessages] = useState<MessageResponse[]>(
         [] as MessageResponse[]
     );
@@ -81,7 +77,6 @@ const Personal: React.FC = (props) => {
     const [isPrevChatLoading, setIsPrevChatLoading] = useState<boolean>(false);
 
     const [fetchMember] = useGetMemberByIdMutation();
-    const { daoid } = useParams();
 
     const chatEnv = ENV?.PROD;
 
@@ -115,7 +110,7 @@ const Personal: React.FC = (props) => {
             });
     };
 
-    const decryptKey = async (user: PushAPI.IUser): Promise<string> => {
+    const _decryptKey = async (user: PushAPI.IUser): Promise<string> => {
         const _signer = await provider?.getSigner();
         const decryptedPvtKey = await PushAPI.chat.decryptPGPKey({
             encryptedPGPPrivateKey: user.encryptedPrivateKey,
@@ -156,7 +151,6 @@ const Personal: React.FC = (props) => {
     };
 
     const fetchChatHistory = async () => {
-        console.log('chatHistory check', activeChat);
         if (chatKey) {
             setIsLoading(true);
             const chatHistory = await fetchHistory(
@@ -545,7 +539,7 @@ const Personal: React.FC = (props) => {
                                         onScroll={handleScroll}
                                     >
                                         {activeMessages &&
-                                            activeMessages.map((message, id, arr) => (
+                                            activeMessages.map((message, id, _arr) => (
                                                 <Message
                                                     showAvatar
                                                     key={id}

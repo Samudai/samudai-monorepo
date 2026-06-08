@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from 'components/Skeleton/Skeleton';
 import styles from './notifications-transaction-skeleton.module.scss';
 
-export const NotificationsTransactionSkeleton: React.FC = (props) => (
+export const NotificationsTransactionSkeleton: React.FC = (_props) => (
     <React.Fragment>
         {Array.from({ length: 5 }).map((_, id) => (
             <li className="notifications-transcation" key={id}>

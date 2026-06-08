@@ -6,7 +6,7 @@ const concepts = ['/mockup/img/concept-1.jpg', '/mockup/img/concept-2.jpg'];
 
 interface LogConceptsProps {}
 
-export const LogConcepts: React.FC<LogConceptsProps> = (props) => {
+export const LogConcepts: React.FC<LogConceptsProps> = (_props) => {
     return (
         <LogItem icon="/img/icons/activity-file.svg">
             <LogHead

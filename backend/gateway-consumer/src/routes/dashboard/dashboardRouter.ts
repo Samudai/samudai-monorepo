@@ -27,7 +27,7 @@ export class DashboardRouter {
         this.dashboardRouter.post(
             '/update/visibility',
             manageDAOAccess,
-            this.dashboardController.updateDashboardVisibility
+            this.dashboardController.updateDashboardVisibility,
         );
 
         //Widgets
@@ -37,17 +37,17 @@ export class DashboardRouter {
         this.dashboardRouter.get(
             '/widget/list/:dashboardId',
             viewAccess,
-            this.dashboardWidgetController.listWidgetsForDashboard
+            this.dashboardWidgetController.listWidgetsForDashboard,
         );
         this.dashboardRouter.delete(
             '/widget/delete/:widgetId',
             manageDAOAccess,
-            this.dashboardWidgetController.deleteWidgets
+            this.dashboardWidgetController.deleteWidgets,
         );
         this.dashboardRouter.post(
             '/widget/update/active',
             manageDAOAccess,
-            this.dashboardWidgetController.updateWidgetActive
+            this.dashboardWidgetController.updateWidgetActive,
         );
 
         this.app.use('/api/dashboard', this.dashboardRouter);

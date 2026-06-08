@@ -20,7 +20,7 @@ export const selectRoleStyles: StylesConfig<any> = {
         ...selectStyles.placeholder?.(base, props),
         textTransform: 'capitalize',
     }),
-    multiValue: (base) => ({
+    multiValue: (_base) => ({
         display: 'flex',
         alignItems: 'center',
         background: colors.black,
@@ -28,7 +28,7 @@ export const selectRoleStyles: StylesConfig<any> = {
         padding: '6px 8px',
         margin: '2px',
     }),
-    multiValueRemove: (base) => ({
+    multiValueRemove: (_base) => ({
         width: 16,
         height: 16,
         marginLeft: 8,
@@ -51,7 +51,7 @@ export const selectRoleStyles: StylesConfig<any> = {
     multiValueLabel: () => ({
         color: colors.white,
     }),
-    clearIndicator: (base) => ({
+    clearIndicator: (_base) => ({
         width: 16,
         height: 16,
         marginRight: 4,
@@ -112,7 +112,7 @@ export const selectRoleStyles1: StylesConfig<any> = {
         ...selectStyles1.input?.(base, state),
         color: colors.white,
     }),
-    multiValue: (base) => ({
+    multiValue: (_base) => ({
         display: 'flex',
         alignItems: 'center',
         background: colors.black,
@@ -120,7 +120,7 @@ export const selectRoleStyles1: StylesConfig<any> = {
         padding: '5px 12px',
         margin: '2px',
     }),
-    multiValueRemove: (base) => ({
+    multiValueRemove: (_base) => ({
         background: 'transparent',
         display: 'flex',
         alignItems: 'center',

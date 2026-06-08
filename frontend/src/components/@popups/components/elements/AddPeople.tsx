@@ -29,7 +29,7 @@ const AddPeople: React.FC<AddPeopleProps> = ({ title, className, onAddUser, user
     const [list, setList] = useState<IMember[]>(members);
     const [value, setValue] = useState('');
     const [activeSelect, setActiveSelect] = useState(false);
-    const [candidats, setCandidats] = useState<IMember[]>([]);
+    const [_candidats, _setCandidats] = useState<IMember[]>([]);
     console.log(list);
 
     const searchDelay = useDelayedSearch(async (value: string) => {

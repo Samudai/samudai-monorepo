@@ -1,4 +1,4 @@
-import { NotificationPartialData, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationPartialData, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import store from 'store/store';
 
 const sendNotification: {

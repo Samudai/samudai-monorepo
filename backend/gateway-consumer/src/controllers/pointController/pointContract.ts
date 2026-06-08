@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
+import { CreateSuccess, DeleteSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 
 export class PointContractController {
     addContract = async (req: Request, res: Response, next: NextFunction) => {
@@ -30,7 +30,7 @@ export class PointContractController {
     deleteContract = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_POINT}/contract/delete/${(req.params.pointId as string)}/${(req.params.contract_address as string)}/${(req.params.topic as string)}`
+                `${process.env.SERVICE_POINT}/contract/delete/${req.params.pointId as string}/${req.params.contract_address as string}/${req.params.topic as string}`,
             );
             new DeleteSuccess(res, 'Contract', result);
         } catch (err: any) {

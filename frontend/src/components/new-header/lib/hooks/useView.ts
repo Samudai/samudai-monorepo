@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types/';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import {
     appendView,
@@ -22,7 +22,7 @@ import { getMemberId } from 'utils/utils';
 
 export const useView = () => {
     const { daoid } = useParams();
-    const { id, name } = useTypedSelector(selectDaoViewActive);
+    const { id } = useTypedSelector(selectDaoViewActive);
     const views = useTypedSelector(selectDaoViews);
     const activeDao = useTypedSelector(selectActiveDao);
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(

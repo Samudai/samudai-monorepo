@@ -77,11 +77,11 @@ export class PointsRouter {
         this.router.get('/member/getActivity/:point_id/:page_number/:limit', this.pointMemberController.GetActivity);
         this.router.get(
             '/member/getMemberActivity/:member_id/:page_number/:limit',
-            this.pointMemberController.GetMemberActivity
+            this.pointMemberController.GetMemberActivity,
         );
         this.router.get(
             '/member/getLeaderBoard/:point_id/:page_number/:limit',
-            this.pointMemberController.GetLeaderBoard
+            this.pointMemberController.GetLeaderBoard,
         );
         this.router.get('/member/getdiscord/:member_id', this.pointMemberController.GetDiscordForMember);
         this.router.get('/member/getMetricsData/:point_id/:days', this.pointMemberController.GetMetricsData);
@@ -96,7 +96,7 @@ export class PointsRouter {
         this.router.get('/access/:pointId/:memberId', this.pointAccessController.getAccessForMember);
         this.router.get(
             '/accessbydiscord&guild/:guildId/:discordUserId',
-            this.pointAccessController.getAccessForMemberByGuildId
+            this.pointAccessController.getAccessForMemberByGuildId,
         );
 
         // Point Contract
@@ -104,7 +104,7 @@ export class PointsRouter {
         this.router.post('/contract/update', this.pointContractController.updateContract);
         this.router.delete(
             '/contract/delete/:pointId/:contract_address/:topic',
-            this.pointContractController.deleteContract
+            this.pointContractController.deleteContract,
         );
 
         // Point Roles
@@ -127,13 +127,13 @@ export class PointsRouter {
         this.router.post('/customproduct/update', this.pointCustomProductController.updateCustomProduct);
         this.router.get(
             '/customproduct/fetchbyproductid/:productId',
-            this.pointCustomProductController.getCustomProductById
+            this.pointCustomProductController.getCustomProductById,
         );
         this.router.get('/customproduct/fetchbypointid/:pointId', this.pointCustomProductController.getCustomPointById);
         this.router.post('/customproduct/updatestatus', this.pointCustomProductController.updateCustomProductStatus);
         this.router.get(
             '/customproduct/getpointforuser/:productId/:uniqueUserId',
-            this.pointCustomProductController.getPointsForUserByProductId
+            this.pointCustomProductController.getPointsForUserByProductId,
         );
 
         // Member Product
@@ -144,7 +144,7 @@ export class PointsRouter {
         this.router.post('/productevent/update', this.pointCustomEventsController.updateProductEvents);
         this.router.delete(
             '/productevent/delete/:pointId/:productId/:eventName',
-            this.pointCustomEventsController.deleteProductEvents
+            this.pointCustomEventsController.deleteProductEvents,
         );
 
         // Twitter Oauth

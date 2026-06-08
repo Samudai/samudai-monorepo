@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import Block from 'components/Block/Block';
 import { ProjectCard } from 'components/project';
 import Members from 'ui/Members/Members';

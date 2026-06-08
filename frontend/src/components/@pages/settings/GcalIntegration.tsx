@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccess, selectActiveDao } from 'store/features/common/slice';
 import { useDeleteGcalMutation } from 'store/services/Settings/settings';
 import usePopup from 'hooks/usePopup';
@@ -31,11 +30,10 @@ const GcalIntegration: React.FC<IntegrationsConnectItemProps> = ({
     value,
     contributor,
 }) => {
-    const { active, open, close: handleClose } = usePopup();
+    const { active, close: handleClose } = usePopup();
     const [isConnectedState, setIsConnectedState] = useState(isConnected);
     const activeDAO = useTypedSelector(selectActiveDao);
     const [deleteGcal] = useDeleteGcalMutation();
-    const { daoid } = useParams();
     const access = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
 
     useEffect(() => {

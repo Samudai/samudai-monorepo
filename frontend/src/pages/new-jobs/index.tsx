@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Applicant, JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Applicant, JobsEnums } from '@samudai/gateway-consumer-types';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
 import usePopup from 'hooks/usePopup';
 import { useTypedSelector } from 'hooks/useStore';

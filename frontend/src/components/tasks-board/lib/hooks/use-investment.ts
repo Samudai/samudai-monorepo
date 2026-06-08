@@ -12,7 +12,7 @@ import {
 import store from 'store/store';
 import { updateActivity } from 'utils/activity/updateActivity';
 import { getMemberId } from 'utils/utils';
-import { ActivityEnums, Task } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, Task } from '@samudai/gateway-consumer-types';
 
 export const useInvestment = () => {
     const [taskData, setTaskData] = useState<Task[]>([]);
@@ -58,7 +58,7 @@ export const useInvestment = () => {
                 updated_by: member_id,
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateInvestmentItem({
                             project_id: project.project_id!,
@@ -160,7 +160,7 @@ export const useInvestment = () => {
                 },
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateInvestmentItem({
                             project_id: project.project_id!,

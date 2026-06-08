@@ -6,7 +6,7 @@ interface NavigationProps {
     onClickNext?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ label, onClickPrev, onClickNext }) => {
+const Navigation: React.FC<NavigationProps> = ({ label }) => {
     return (
         <div className={styles.root}>
             {/* <NavButton onClick={onClickPrev} /> */}

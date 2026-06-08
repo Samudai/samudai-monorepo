@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import ArchiveIcon from 'ui/SVG/ArchiveIcon';
 import styles from './styles/JobItem.module.scss';
-import { OpportunityOpenTo } from '@samudai_xyz/gateway-consumer-types/dist/types/jobs/enums';
+import { OpportunityOpenTo } from '@samudai/gateway-consumer-types/dist/types/jobs/enums';
 
 type JobItemProps =
     | {

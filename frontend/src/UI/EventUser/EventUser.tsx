@@ -5,7 +5,7 @@ interface EventUserProps {
     avatar: string;
 }
 
-const EventUser: React.FC<EventUserProps> = ({ id, avatar }) => {
+const EventUser: React.FC<EventUserProps> = () => {
     return <div>EventUser Component</div>;
 };
 

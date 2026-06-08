@@ -1,4 +1,4 @@
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse } from '@samudai/gateway-consumer-types';
 
 export interface MemberSliceState {
     membersDetail: MemberResponse[];

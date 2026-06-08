@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MessageResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { downloadFile } from 'utils/fileupload/fileupload';
@@ -14,9 +14,8 @@ interface MessageProps {
     showAvatar?: boolean;
     innerRef?: (node: HTMLLIElement) => void;
 }
-const ipfs = (url: string) => `https://${url}.ipfs.w3s.link/`;
 
-const MessageComp: React.FC<MessageProps> = ({ me, data, className, showAvatar, innerRef }) => {
+const MessageComp: React.FC<MessageProps> = ({ me, data, className, showAvatar }) => {
     const fileExt = FileHelper.getFileExt(data.content!);
     const isImage = fileExt && FileHelper.extensions.image.includes(fileExt);
 

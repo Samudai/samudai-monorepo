@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'store/store';
-import { Subscription } from '@samudai_xyz/gateway-consumer-types';
+import { Subscription } from '@samudai/gateway-consumer-types';
 import { usedLimitCount } from 'store/services/Billing/model';
 
 interface IInitialState {

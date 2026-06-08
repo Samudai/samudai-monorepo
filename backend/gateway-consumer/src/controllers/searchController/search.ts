@@ -2,13 +2,13 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { FetchSuccess } from '../../lib/helper/Responsehandler';
-import { DAO, MemberResponse, UniversalSearchResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DAO, MemberResponse, UniversalSearchResponse } from '@samudai/gateway-consumer-types';
 
 export class SearchController {
     memberSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            let query = decodeURIComponent(req.params.query as string);
-            let querySkills: string = req.query.skills as string;
+            const query = decodeURIComponent(req.params.query as string);
+            const querySkills: string = req.query.skills as string;
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
@@ -28,7 +28,7 @@ export class SearchController {
 
     daoSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            let query = decodeURIComponent((req.params.query as string));
+            const query = decodeURIComponent(req.params.query as string);
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 10;
             const offset = (parseInt(page) - 1) * limit;
@@ -74,7 +74,7 @@ export class SearchController {
 
     projectSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const query = decodeURIComponent((req.params.query as string));
+            const query = decodeURIComponent(req.params.query as string);
             //console.log(query);
             const dao_id = (req.query.daoId as string) ? (req.query.daoId as string) : null;
 
@@ -97,11 +97,11 @@ export class SearchController {
 
     universalSearch = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const query = decodeURIComponent((req.params.query as string));
+            const query = decodeURIComponent(req.params.query as string);
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 5;
             const offset = (parseInt(page) - 1) * limit;
-            let universalSearchResponse: UniversalSearchResponse[] = [];
+            const universalSearchResponse: UniversalSearchResponse[] = [];
 
             const memberSearchResult = await axios.post(`${process.env.SERVICE_MEMBER}/member/search`, {
                 query,

@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { useParams } from 'react-router-dom';
 import { ProviderDetails } from './model/model';
 import AddProvider from './popups/AddProvider';
-import { Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectActiveDao } from 'store/features/common/slice';
 import {
@@ -34,7 +34,7 @@ const PaymentsProviders: React.FC = () => {
     const [data, setData] = useState<Provider[]>([]);
     const [is_default, setIs_default] = useState<boolean>(false);
     const [page, setPage] = useState(0);
-    const [COUNT_SHOW_PAGES, SET_COUNT_SHOW_PAGES] = useState(
+    const [COUNT_SHOW_PAGES, _SET_COUNT_SHOW_PAGES] = useState(
         Math.ceil(data?.length / MAX_ELEMENTS_PER_PAGE)
     );
     const [selectedProvider, setSelectedProvider] = useState<ProviderDetails>(
@@ -67,7 +67,7 @@ const PaymentsProviders: React.FC = () => {
         }
     };
 
-    const fetchDefaultProvider = async () => {
+    const _fetchDefaultProvider = async () => {
         const defaultProviderData = await getDefaultProvider(daoid!, true).unwrap();
         if (defaultProviderData?.data) {
             dispatch(addDefaultProvider(defaultProviderData.data));

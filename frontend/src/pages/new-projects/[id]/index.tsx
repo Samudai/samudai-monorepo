@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { changeProjectid, selectAccessList } from 'store/features/common/slice';
 import {
@@ -88,10 +88,10 @@ const ProjectsBoard: React.FC = () => {
 
         updateProject(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Reviewers updated successfully', '')();
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to update reviewers', '')();
             });
     };

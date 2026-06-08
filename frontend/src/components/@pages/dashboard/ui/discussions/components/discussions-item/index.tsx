@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { DiscussionsMessage } from '../discussions-message';
 import clsx from 'clsx';
 import ArrowLeftIcon from 'ui/SVG/ArrowLeftIcon';
-import { DiscussionResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse } from '@samudai/gateway-consumer-types';
 
 export const DiscussionsItem: React.FC<DiscussionResponse> = ({
     participants,

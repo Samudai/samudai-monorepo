@@ -6,7 +6,7 @@ import styles from './logs-files.module.scss';
 
 interface LogFilesProps {}
 
-export const LogFiles: React.FC<LogFilesProps> = (props) => {
+export const LogFiles: React.FC<LogFilesProps> = (_props) => {
     return (
         <LogItem icon="/img/icons/activity-file.svg">
             <LogHead

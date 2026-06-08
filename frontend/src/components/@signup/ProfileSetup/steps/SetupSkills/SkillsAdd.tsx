@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import SetupSkillsSelected from './elements/SetupSkillsSelected';
 // import { RequestType } from '../../../../../../utils/activity/sendActivityUpdate';
 import {
@@ -26,7 +25,7 @@ import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
 // import styles from 'components/@pages/dashboard/styles/popups/BlogsPopup.module.scss';
 import styles from './SkillsAdd.module.scss';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 
 interface AddReviewProps {
     onClose: () => void;
@@ -35,12 +34,11 @@ interface AddReviewProps {
 }
 
 const AddReview: React.FC<AddReviewProps> = ({ onClose, data, changeSkills }) => {
-    const [addReview] = useAddReviewsMutation();
-    const [addUserReview] = useAddUserReviewsMutation();
+    const [_addReview] = useAddReviewsMutation();
+    const [_addUserReview] = useAddUserReviewsMutation();
     const [updateSkills] = useUpdateSkillsMutation();
-    const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
-    const [stars, setStars] = useState(0);
+    useTypedSelector(selectActiveDao);
+    const [stars, _setStars] = useState(0);
     const [link, setLink, _, clearlink] = useInput<HTMLTextAreaElement>('');
 
     const [skills, setSkills] = useState<string[]>(data || []);
@@ -50,7 +48,7 @@ const AddReview: React.FC<AddReviewProps> = ({ onClose, data, changeSkills }) =>
 
     const [updateContributorProgress] = useUpdateContributorProgressMutation();
 
-    const computedForm = useMemo(() => {
+    useMemo(() => {
         const starsValue = stars;
         const linkValue = link.trim();
         const isValid = starsValue > 0 && starsValue < 6 && linkValue !== '';
@@ -69,10 +67,7 @@ const AddReview: React.FC<AddReviewProps> = ({ onClose, data, changeSkills }) =>
 
     const handleSkills = async () => {
         try {
-            const res = await updateSkills({
-                memberId: getMemberId(),
-                skills: skills,
-            })
+            await updateSkills({ memberId: getMemberId(), skills: skills })
                 .unwrap()
                 .then(() => {
                     if (!currContributorProgress.add_techstack && skills.length)
@@ -92,7 +87,7 @@ const AddReview: React.FC<AddReviewProps> = ({ onClose, data, changeSkills }) =>
                 });
             changeSkills(skills);
             onClose();
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Add skills failed', '')();
         }
     };

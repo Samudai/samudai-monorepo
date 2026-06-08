@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DiscoveryFilterInputs } from '../../types';
-import { DAOView, FavouriteDAOResponse, MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DAOView, FavouriteDAOResponse, MemberResponse } from '@samudai/gateway-consumer-types';
 import {
     useGetBulkDiscoveryDaoMutation,
     useLazyDiscoveryDaoQuery,
@@ -35,7 +35,7 @@ const getRole = (role?: string) => {
     }
 };
 
-export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () => void) => {
+export const useFetchDiscovery = (filter: DiscoveryFilterInputs, _callback?: () => void) => {
     const [daoData, setDaoData] = useState<DAOView[]>([]);
     const [memberData, setMemberData] = useState<MemberResponse[]>([]);
     const [page, setPage] = useState({
@@ -53,7 +53,7 @@ export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () =
         samudai: null,
     });
 
-    const { role: discoveryRole, daoid } = useParams<{ role: string; daoid: string }>();
+    const { role: discoveryRole } = useParams<{ role: string; daoid: string }>();
     const role = useMemo(() => getRole(discoveryRole), [discoveryRole]);
     const [getDiscoveryDao] = useLazyDiscoveryDaoQuery();
     const [getDiscoveryMember] = useLazyDiscoveryMemberQuery();
@@ -107,7 +107,7 @@ export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () =
                 setDaoData((prevData) => [...prevData, ...(res?.data?.daos || [])]);
                 setPage((page) => ({ ...page, isLoading: false, noFetch: !res?.data?.daos }));
             }
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Error in fetching discovery data', '');
         } finally {
             setLoading(false);
@@ -128,7 +128,7 @@ export const useFetchDiscovery = (filter: DiscoveryFilterInputs, callback?: () =
                 setMemberData((prevData) => [...prevData, ...(res2?.data || [])]);
                 setPage((page) => ({ ...page, isLoading: false, noFetch: !res2?.data }));
             }
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Error in fetching discovery data', '');
         } finally {
             setLoading(false);

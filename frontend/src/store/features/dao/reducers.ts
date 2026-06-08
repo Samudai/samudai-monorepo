@@ -6,7 +6,6 @@ import { ToggleActiveWidgetType, UpdateLayoutViewType } from './types';
 const reducers = {
     // To add a new view to an empty array of views
     addView: (state: DaoSliceState, { payload }: PayloadAction<any>) => {
-        const maxViewId = 1;
         state.views = [
             {
                 id: payload.dashboard_id,
@@ -20,7 +19,6 @@ const reducers = {
 
     // To add to an existing array of views
     appendView: (state: DaoSliceState, { payload }: PayloadAction<any>) => {
-        const maxViewId = state.views.length;
         state.views.push({
             id: payload.dashboard_id,
             is_private: false,
@@ -32,7 +30,7 @@ const reducers = {
 
     // To add an array of views
     addViews: (state: DaoSliceState, { payload }: PayloadAction<any[]>) => {
-        state.views = payload.map((view, idx): IView => {
+        state.views = payload.map((view, _idx): IView => {
             return {
                 id: view.dashboard_id,
                 is_private: false,

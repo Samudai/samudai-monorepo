@@ -15,7 +15,7 @@ export const combineTwoArrays = (arr1: any[], arr2: any[]) => {
 };
 
 export const getKeysFromArrayofObjects = (arr: any[]) => {
-    let keys: string[] = [];
+    const keys: string[] = [];
 
     const keysArray = arr.map((item) => {
         return Object.keys(item);

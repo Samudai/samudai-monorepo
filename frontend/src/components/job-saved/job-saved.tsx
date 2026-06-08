@@ -13,7 +13,7 @@ interface JobSavedProps {
     type: string;
 }
 
-const JobSaved: React.FC<JobSavedProps> = ({ bounty, experience, id, isSaved, title, type }) => {
+const JobSaved: React.FC<JobSavedProps> = ({ bounty, experience, isSaved, title, type }) => {
     return (
         <li className={styles.job}>
             <header className={styles.job_head}>

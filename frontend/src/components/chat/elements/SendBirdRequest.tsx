@@ -7,7 +7,7 @@ import { toast } from 'utils/toast';
 import { setReloadChats } from 'store/features/messages/slice';
 import { getMemberId } from 'utils/utils';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 interface SendBirdRequestProps {
     channel: GroupChannel;

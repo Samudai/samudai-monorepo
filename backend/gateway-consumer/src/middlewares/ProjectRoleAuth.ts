@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { ProjAccessResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjAccessResponse } from '@samudai/gateway-consumer-types';
 import { NotAuthorisedError } from '../errors/authError';
 import { getProjectAccess } from '../lib/accessHelpers';
 import { getProject } from '../lib/project';
@@ -55,7 +55,7 @@ export const projectManageAccess = async (req: Request, res: Response, next: Nex
                 next();
             }
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
@@ -96,7 +96,7 @@ export const taskCreateAccess = async (req: Request, res: Response, next: NextFu
                 next();
             }
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
@@ -134,7 +134,7 @@ export const projectViewAccess = async (req: Request, res: Response, next: NextF
                 next();
             }
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };

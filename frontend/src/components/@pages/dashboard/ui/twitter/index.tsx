@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import { useLazyGetTweetQuery } from 'store/services/Dashboard/dashboard';
 import usePopup from 'hooks/usePopup';
@@ -18,8 +18,7 @@ export const Twitter: React.FC = () => {
     const addTweetPopup = usePopup();
     const [getTweet] = useLazyGetTweetQuery();
     const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
-    // const { data: tweetData } = useGetTweetQuery(activeDAO);
+    useTypedSelector(selectActiveDao);
     const [data, setData] = useState<any[]>([]);
     const [fetchData, loading] = useRequest(async function () {
         const res = await getTweet(daoid!, true).unwrap();
@@ -30,8 +29,7 @@ export const Twitter: React.FC = () => {
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
         AccessEnums.AccessType.MANAGE_DAO
     );
-    const navigate = useNavigate();
-
+    useNavigate();
     useEffect(() => {
         fetchData();
     }, [daoid]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NotificationsEnums, WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, WebNotification } from '@samudai/gateway-consumer-types';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
 import { NfItem, NfTitle } from 'components/notifications/elements';
 import { NfRequest } from 'components/notifications/items';
@@ -8,7 +8,7 @@ import { getMemberId } from 'utils/utils';
 
 interface ReviewsProps {}
 
-const Reviews: React.FC<ReviewsProps> = (props) => {
+const Reviews: React.FC<ReviewsProps> = (_props) => {
     const [getNotifications] = useLazyFetchNotificationsQuery();
     const [data, setData] = useState<WebNotification[]>([] as WebNotification[]);
 
@@ -19,7 +19,7 @@ const Reviews: React.FC<ReviewsProps> = (props) => {
 
                 setData([...(res?.data || [])]?.reverse() || ([] as WebNotification[]));
                 console.log('payment:', res?.data);
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Unable to fetch reviews notifications', 'Please retry')();
             }
         };

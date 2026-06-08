@@ -4,7 +4,7 @@ import styles from './applicants-job.module.scss';
 
 interface ApplicantsJobProps {}
 
-const ApplicantsJob: React.FC<ApplicantsJobProps> = (props) => {
+const ApplicantsJob: React.FC<ApplicantsJobProps> = (_props) => {
     return (
         <div className={styles.job}>
             <p className={clsx(styles.job_col, styles.job_colTitle)}>Product Designer</p>

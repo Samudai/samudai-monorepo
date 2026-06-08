@@ -1,6 +1,6 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { BrowserProvider } from 'ethers';
-import '@samudai_xyz/gateway-consumer-types';
+import '@samudai/gateway-consumer-types';
 import { selectProvider } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';
 import Login from 'pages/onboarding/ConnectWallet';

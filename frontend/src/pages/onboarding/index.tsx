@@ -32,7 +32,7 @@ const Onboarding = () => {
     const goto = useTypedSelector(selectGoTo);
     const { checkAuth } = useLogin();
     const member_type = localStorage.getItem('account_type');
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, _setSearchParams] = useSearchParams();
 
     const billingTier = useTypedSelector(selectBillingTier);
     const billingTerm = useTypedSelector(selectBillingTerm);
@@ -171,7 +171,7 @@ const Onboarding = () => {
     useEffect(() => {
         const source = searchParams.get('s');
         const semail = searchParams.get('e');
-        source === 'email' && semail ? localStorage.setItem('semail', semail) : null;
+        if (source === 'email' && semail) localStorage.setItem('semail', semail);
     }, []);
 
     return (

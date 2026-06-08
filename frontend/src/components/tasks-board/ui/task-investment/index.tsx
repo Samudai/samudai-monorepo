@@ -1,5 +1,5 @@
 import React from 'react';
-import { Task } from '@samudai_xyz/gateway-consumer-types';
+import { Task } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import css from '../task/task.module.scss';
 

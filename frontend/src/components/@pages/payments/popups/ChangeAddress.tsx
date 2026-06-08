@@ -34,15 +34,15 @@ const ChangeAddress: React.FC<ChangeAddressProps> = ({ selectedProvider, onClose
     const [updateProvider] = useUpdateProviderMutation();
 
     const providerEth = useTypedSelector(selectProvider);
-    const [provider, setProvider] = useState<IProviderList>(providerValues[0]);
+    const [provider, _setProvider] = useState<IProviderList>(providerValues[0]);
     const [chain, setChain] = useState<IChainList>(
         GnosisChainValues.find((c) => c.chain_id === selectedProvider.chain_id) ||
             GnosisChainValues[0]
     );
     const [complete, setComplete] = useState<boolean>(false);
     const [address, setAddress, addressValue] = useInput(selectedProvider.address);
-    const [name, setName, nameValue] = useInput(selectedProvider.name);
-    const [addDisable, setAddDisable] = useState<boolean>(true);
+    const [name, setName, _nameValue] = useInput(selectedProvider.name);
+    const [_addDisable, _setAddDisable] = useState<boolean>(true);
 
     const handleChangeChain = (chain: IChainList) => {
         setChain(chain);

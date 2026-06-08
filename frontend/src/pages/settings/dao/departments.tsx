@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import {
     useCreateDepartmentMutation,
@@ -22,7 +22,7 @@ import { getSettingsRoutes } from '../utils/settings-routes';
 interface AccessManagmentProps {}
 
 const AccessManagment: React.FC<AccessManagmentProps> = () => {
-    const [text, setText, trimText, cleartext] = useInput<HTMLInputElement>('');
+    const [text, setText, _trimText, cleartext] = useInput<HTMLInputElement>('');
     const [getDepartments] = useLazyGetDepartmentsQuery();
     const [createDepartment] = useCreateDepartmentMutation();
     const [deleteDepartment] = useDeleteDepartmentsMutation();
@@ -70,7 +70,7 @@ const AccessManagment: React.FC<AccessManagmentProps> = () => {
             cleartext();
             // await fun();
             // await fun();
-        } catch (err: any) {
+        } catch {
             toast('Failure', 5000, 'Something went wrong', 'Please Try Again')();
         }
     };
@@ -81,7 +81,7 @@ const AccessManagment: React.FC<AccessManagmentProps> = () => {
             await deleteDepartment(id).unwrap();
             const department = formData.filter((skillName) => skillName.department_id !== id);
             setFormData(department);
-        } catch (err) {
+        } catch {
             setFormData(deps);
             toast('Failure', 5000, 'Something went wrong', 'Please Try Again')();
         }

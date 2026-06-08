@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Applicant, Member, AccessEnums, MembersEnums, JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Applicant, AccessEnums, MembersEnums, JobsEnums } from '@samudai/gateway-consumer-types';
 
 export class ApplicantController {
     createApplicant = async (req: Request, res: Response, next: NextFunction) => {
@@ -21,7 +21,7 @@ export class ApplicantController {
 
     getApplicant = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/applicant/${(req.params.applicantId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/applicant/${req.params.applicantId as string}`);
             new FetchSuccess(res, 'APPLICANT', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving applicants'));
@@ -30,16 +30,16 @@ export class ApplicantController {
 
     getApplicantsList = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            let result = await axios.get(`${process.env.SERVICE_JOB}/applicant/list/${(req.params.jobId as string)}`);
-            var i = 0;
-            for (var member of result.data.applicants.members) {
+            const result = await axios.get(`${process.env.SERVICE_JOB}/applicant/list/${req.params.jobId as string}`);
+            let i = 0;
+            for (const member of result.data.applicants.members) {
                 try {
                     const response = await axios.post(`${process.env.SERVICE_MEMBER}/member/fetch`, {
                         type: MembersEnums.FetchMemberType.MEMBER_ID,
                         member_id: member.member_id,
                     });
                     result.data.applicants.members[i].member_details = response.data.member;
-                } catch (err: any) {
+                } catch {
                     result.data.applicants.members[i].member_details = null;
                 }
                 i = i + 1;
@@ -52,13 +52,15 @@ export class ApplicantController {
 
     getApplicantsListForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/applicant/bymember/${(req.params.memberId as string)}`);
-            var j = 0;
-            for (var job of result.data.applicants) {
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/applicant/bymember/${req.params.memberId as string}`,
+            );
+            let j = 0;
+            for (const job of result.data.applicants) {
                 try {
                     const res = await axios.get(`${process.env.SERVICE_JOB}/job/${job.job_id}`);
                     result.data.applicants[j].job_details = res.data.opportunity;
-                } catch (err: any) {
+                } catch {
                     result.data.applicants[j].job_details = null;
                 }
                 j = j + 1;
@@ -71,7 +73,9 @@ export class ApplicantController {
 
     getApplicantsListForClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/applicant/byclan/${(req.params.clanId as string)}`);
+            const result = await axios.get(
+                `${process.env.SERVICE_JOB}/applicant/byclan/${req.params.clanId as string}`,
+            );
             new FetchSuccess(res, 'APPLICANT', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while retrieving applicants'));
@@ -110,11 +114,11 @@ export class ApplicantController {
                     const job = res.data.opportunity;
 
                     const address = await axios.get(
-                        `${process.env.SERVICE_MEMBER}/wallet/default/${applicant.member_id}`
+                        `${process.env.SERVICE_MEMBER}/wallet/default/${applicant.member_id}`,
                     );
 
                     if (address.data.wallet && job.transaction_count) {
-                        const res = await axios.post(`${process.env.SERVICE_JOB}/payout/update/bylinkid/transactions`, {
+                        await axios.post(`${process.env.SERVICE_JOB}/payout/update/bylinkid/transactions`, {
                             link_id: applicant.job_id,
                             receiver_address: address.data.wallet.wallet_address,
                             status: JobsEnums.JobPayoutStatus.MPT,
@@ -131,7 +135,7 @@ export class ApplicantController {
                             updated_by: applicant.updated_by,
                         });
 
-                        const result = await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
+                        await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
                             member_id: applicant.member_id,
                             project_id: project_id,
                             access: AccessEnums.ProjectAccessType.MANAGE_PROJECT,
@@ -145,7 +149,7 @@ export class ApplicantController {
                             updated_by: applicant.updated_by,
                         });
 
-                        const result = await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
+                        await axios.post(`${process.env.SERVICE_PROJECT}/access/add/formember`, {
                             member_id: applicant.member_id,
                             project_id: project_id,
                             access: AccessEnums.ProjectAccessType.MANAGE_PROJECT,
@@ -172,7 +176,9 @@ export class ApplicantController {
 
     deleteApplicant = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/applicant/delete/${(req.params.applicantId as string)}`);
+            const result = await axios.delete(
+                `${process.env.SERVICE_JOB}/applicant/delete/${req.params.applicantId as string}`,
+            );
             new DeleteSuccess(res, 'APPLICANT', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting an applicant'));

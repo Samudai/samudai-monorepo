@@ -49,7 +49,7 @@ export function Board<T extends RequiredFields>({
                                             }
                                             index={index}
                                         >
-                                            {(provided, snapshot) => (
+                                            {(provided, _snapshot) => (
                                                 <div
                                                     className={css.board_item}
                                                     ref={provided.innerRef}

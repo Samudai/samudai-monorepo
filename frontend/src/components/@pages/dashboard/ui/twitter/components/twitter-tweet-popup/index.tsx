@@ -20,7 +20,7 @@ export const TwitterTweetPopup: React.FC<AddTweetPopupProps> = ({ onClose }) => 
     const [loading, setLoading] = useState(false);
     const [addTweet] = useAddTweetMutation();
     const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const handleAddTweet = async () => {
         if (link.length === 0) {
             toast('Failure', 5000, 'Input Field cannot be empty', '')();

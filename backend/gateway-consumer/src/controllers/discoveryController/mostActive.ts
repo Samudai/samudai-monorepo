@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { FetchSuccess } from '../../lib/helper/Responsehandler';
-import { MostActiveResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MostActiveResponse } from '@samudai/gateway-consumer-types';
 
 export class MostActiveController {
     mostActiveDao = async (req: Request, res: Response, next: NextFunction) => {

@@ -34,10 +34,10 @@ const EventCreate: React.FC<PopupShowProps> = ({
     const { daoid } = useParams();
     const [title, setTitle] = useInput('');
     const [location, setLocation] = useInput('');
-    const [link, setLink] = useInput('');
+    const [_link, _setLink] = useInput('');
     const [emails, setEmails] = useInput('');
     const [isOpen, setOpen] = useState(false);
-    const [time, setTime] = useInput('02:00 - 03:00 PM');
+    const [_time, _setTime] = useInput('02:00 - 03:00 PM');
     const [date, setDate] = useState<Dayjs | null>(null);
     const [description, setDescription] = useInput<HTMLTextAreaElement>('');
     const [member, setMember] = useState('');
@@ -45,8 +45,6 @@ const EventCreate: React.FC<PopupShowProps> = ({
     const [timeFrom, setTimeFrom] = useState<Dayjs>(dayjs().set('h', 9).set('m', 0));
     const [timeTo, setTimeTo] = useState<Dayjs>(dayjs().set('h', 9).set('m', 0));
     // const [interval, setInterval] = useState<'AM' | 'PM'>('AM');
-
-    const handleInterval = (interval: 'AM' | 'PM') => setInterval(interval);
 
     const handleAddItem = (user: IUser) => {
         setMemberList([...memberList, user]);
@@ -163,7 +161,7 @@ const EventCreate: React.FC<PopupShowProps> = ({
         }
     };
 
-    const filterMembers = member.trim()
+    const _filterMembers = member.trim()
         ? mockup_users.filter((user) => {
               if (memberList.includes(user)) return false;
               if (user.fullname.toLowerCase().includes(member.toLowerCase())) return true;

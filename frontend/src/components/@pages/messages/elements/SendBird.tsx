@@ -41,7 +41,7 @@ import { getMemberId } from 'utils/utils';
 import dayjs from 'dayjs';
 import { toast } from 'utils/toast';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 enum Tabs {
     Conversations = 'Conversations',
@@ -233,7 +233,7 @@ const SendBird: React.FC = () => {
             };
             currentlyJoinedChannel
                 .sendUserMessage(userMessageParams)
-                .onSucceeded((message) => {
+                .onSucceeded((_message) => {
                     scrollToBottom(channelRef.current, 'smooth');
                 })
                 .onFailed((error) => {
@@ -321,7 +321,7 @@ const SendBird: React.FC = () => {
             };
             currentlyJoinedChannel
                 .sendFileMessage(fileMessageParams)
-                .onSucceeded((message) => {
+                .onSucceeded((_message) => {
                     updateState({ ...stateRef.current, messageInputValue: '' });
                 })
                 .onFailed((error) => {
@@ -370,7 +370,7 @@ const SendBird: React.FC = () => {
     );
 
     const groupImg = useCallback(
-        (channel: GroupChannel, index: number) => {
+        (channel: GroupChannel, _index: number) => {
             if (channel.customType === CustomType.Personal) {
                 const memberData = channel.members.find(
                     (member: any) => member.userId !== memberId

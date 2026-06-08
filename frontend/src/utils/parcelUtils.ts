@@ -1,4 +1,4 @@
-import { Auth } from '@samudai_xyz/gateway-consumer-types';
+import { Auth } from '@samudai/gateway-consumer-types';
 import { ethers } from 'ethers';
 
 export const parcelSign = async (provider: ethers.BrowserProvider): Promise<Auth> => {

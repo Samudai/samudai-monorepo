@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { selectActiveDaoName } from 'store/features/common/slice';
 import { useSnapshotAuthMutation } from 'store/services/Login/login';
 import useInput from 'hooks/useInput';
@@ -15,13 +14,11 @@ interface ShowTextProps {
     text: string;
 }
 
-export const AboutFullText: React.FC<ShowTextProps> = ({ onCloseModal, text, title }) => {
-    const [snapshotAuth] = useSnapshotAuthMutation();
-    const { daoid } = useParams();
-    const [spaceId, setSpaceId] = useInput('');
+export const AboutFullText: React.FC<ShowTextProps> = ({ text, title }) => {
+    const [_snapshotAuth] = useSnapshotAuthMutation();
+    const [_spaceId, _setSpaceId] = useInput('');
     const daoName = useTypedSelector(selectActiveDaoName);
-    const initial = getInitial(daoName);
-
+    getInitial(daoName);
     return (
         <React.Fragment>
             <PopupTitle icon={'/img/icons/about.png'} title={title || ''} />

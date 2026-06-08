@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactSelect, { StylesConfig } from 'react-select';
-import { Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types';
 import { selectStyles } from 'root/constants/selectStyles';
 import { useGetProviderQuery } from 'store/services/payments/payments';
 import css from './payout-field.module.scss';

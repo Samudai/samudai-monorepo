@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactSelect, { StylesConfig } from 'react-select';
-import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Auth, Provider } from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisTypes } from '@samudai/web3-sdk';
 import { selectStyles } from 'root/constants/selectStyles';
 import { selectProvider } from 'store/features/common/slice';
@@ -71,7 +71,7 @@ const CurrencyField: React.FC<CurrencyFieldProps> = (props) => {
                     )) as GnosisTypes.SafeBalanceUsdResponse[];
                     console.log(value, res);
                     if (res.length > 0) {
-                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, id: number) => {
+                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, _id: number) => {
                             currencyVal.push({
                                 currency: item.token
                                     ? item.token.name

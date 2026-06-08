@@ -1,12 +1,8 @@
 import express, { Express } from 'express';
 import cors from 'cors';
-import { json } from 'body-parser';
-import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import cookieSession from 'cookie-session';
 import fileUpload from 'express-fileupload';
-import timeout from 'connect-timeout';
-import { timeoutHandler } from '../middlewares/timeoutHandler';
 export class AppConfig {
     app: Express;
 
@@ -36,9 +32,9 @@ export class AppConfig {
                 signed: false,
                 httpOnly: true,
                 maxAge: 24 * 60 * 60 * 1000, // 24 hours
-            })
+            }),
         );
-        var origin;
+        let origin;
         switch (process.env.ENVIRONMENT) {
             case 'dev':
                 origin = [
@@ -132,13 +128,13 @@ export class AppConfig {
                     'taskId',
                     'Access-Token',
                 ],
-            })
+            }),
         );
         this.app.use(morgan('short'));
         this.app.use(
             fileUpload({
                 limits: { fileSize: 5 * 1024 * 1024 },
-            })
+            }),
         );
     };
 

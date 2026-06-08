@@ -47,7 +47,7 @@ export const guildCreate = async (guild: Guild) => {
     );
 
     // owner
-    const ownerResponse = await saveOwner(guild, daoId);
+    await saveOwner(guild, daoId);
     console.log(response.data, response.status, 'Owner Added');
 
     // events

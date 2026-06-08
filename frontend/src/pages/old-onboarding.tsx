@@ -19,7 +19,7 @@ const getFormData = () =>
         movedWidget: false,
     }) as OnboardingFormData;
 
-const Onboarding: React.FC = (props) => {
+const Onboarding: React.FC = (_props) => {
     const [formData, setFormData] = useState(getFormData());
     const [screen, setScreen] = useState(OnboardingScreens.CONNECT_WALLET);
 

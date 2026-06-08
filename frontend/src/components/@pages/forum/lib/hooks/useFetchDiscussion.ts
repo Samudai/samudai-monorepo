@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { DiscussionEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import {
     useAddParticipantMutation,
     useRemoveParticipantMutation,
@@ -35,7 +35,7 @@ interface IMember {
 }
 
 export const useFetchDiscussion = (postId?: string, noFetch?: boolean) => {
-    const [leads, setLeads] = useState<IMember[]>([]);
+    const [leads, _setLeads] = useState<IMember[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [fetchMessages] = useLazyGetMessagesQuery();
     const [addParticipant] = useAddParticipantMutation();

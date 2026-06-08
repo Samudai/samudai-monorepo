@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { trackCustomWallet } from '@intract/attribution';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ethers } from 'ethers';
-import { useAccount, useConnect } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { type WalletClient } from 'viem';
 import css from './onboarding.module.scss';
 import { usePrivy, useWallets, useLogin } from '@privy-io/react-auth';
@@ -27,7 +27,7 @@ export const PrivyLogin = () => {
     const { user, ready, authenticated, signMessage } = usePrivy();
     const { ready: walletReady, wallets } = useWallets();
     const { loginUtil } = samudaiLogin();
-    const [privyLoggedIn, setPrivyLoggedIn] = useState(false);
+    const [_privyLoggedIn, setPrivyLoggedIn] = useState(false);
     const [privyModal, setPrivyModal] = useState(false);
     const navigate = useNavigate();
 
@@ -135,8 +135,7 @@ export const PrivyLogin = () => {
 };
 
 export const LoginComp = () => {
-    const { connector: activeConnector, isConnected } = useAccount();
-    const { connect, connectors, error, isPending } = useConnect();
+    const { connector: activeConnector } = useAccount();
 
     // useEffect(() => {
     //     console.log('activeConnector', activeConnector);

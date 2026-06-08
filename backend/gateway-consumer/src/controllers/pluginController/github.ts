@@ -5,7 +5,7 @@ export class GithubController {
     serviceGithub = `${process.env.SERVICE_PLUGIN}/plugins/github`;
     serviceGithubApp = `${process.env.SERVICE_PLUGIN}/plugins/githubapp`;
 
-    auth = async (req: Request, res: Response, next: NextFunction) => {
+    auth = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const member_id = req.body.member_id;
             const code = req.body.code;
@@ -69,7 +69,7 @@ export class GithubController {
         }
     };
 
-    appauth = async (req: Request, res: Response, next: NextFunction) => {
+    appauth = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const dao_id: string = req.body.dao_id;
             const code: string = req.body.code;
@@ -105,9 +105,9 @@ export class GithubController {
         }
     };
 
-    memberExists = async (req: Request, res: Response, next: NextFunction) => {
+    memberExists = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
             const response = await axios.get(`${this.serviceGithub}/exists/${member_id}`);
             return res.status(200).send({
                 message: 'Member exists successful',
@@ -128,9 +128,9 @@ export class GithubController {
         }
     };
 
-    daoExists = async (req: Request, res: Response, next: NextFunction) => {
+    daoExists = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
             const response = await axios.get(`${this.serviceGithubApp}/exists/${dao_id}`);
             return res.status(200).send({
                 message: 'DAO exists successful',
@@ -151,9 +151,9 @@ export class GithubController {
         }
     };
 
-    getRepos = async (req: Request, res: Response, next: NextFunction) => {
+    getRepos = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
             const response = await axios.get(`${this.serviceGithubApp}/getrepos/${dao_id}`);
             return res.status(200).send({
                 message: 'Get Repos successful',
@@ -174,7 +174,7 @@ export class GithubController {
         }
     };
 
-    fetchIssues = async (req: Request, res: Response, next: NextFunction) => {
+    fetchIssues = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const dao_id: string = req.body.dao_id;
             const github_repos: string[] = req.body.github_repos;
@@ -201,7 +201,7 @@ export class GithubController {
         }
     };
 
-    fetchPullRequests = async (req: Request, res: Response, next: NextFunction) => {
+    fetchPullRequests = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const dao_id: string = req.body.dao_id;
             const github_repos: string[] = req.body.github_repos;
@@ -228,9 +228,9 @@ export class GithubController {
         }
     };
 
-    deleteGithubForMember = async (req: Request, res: Response, next: NextFunction) => {
+    deleteGithubForMember = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
             const response = await axios.delete(`${this.serviceGithub}/${member_id}`);
             return res.status(200).send({
                 message: 'Delete Github for Member successful',
@@ -251,9 +251,9 @@ export class GithubController {
         }
     };
 
-    deleteGithubApp = async (req: Request, res: Response, next: NextFunction) => {
+    deleteGithubApp = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
             const response = await axios.delete(`${this.serviceGithubApp}/${dao_id}`);
             return res.status(200).send({
                 message: 'Delete Github App successful',

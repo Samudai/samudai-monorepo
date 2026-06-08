@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { redis } from '../config/redisConfig';
-import { IMember, MemberResponse, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { IMember, MemberResponse, MembersEnums } from '@samudai/gateway-consumer-types';
 
 export const mapMemberToUsername = async (memberId: string): Promise<MemberResponse | null> => {
     try {
@@ -21,7 +21,7 @@ export const mapMemberToUsername = async (memberId: string): Promise<MemberRespo
             return memberResponse.data.member;
         }
         //If not in cache, fetch from db and add to cache
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -43,7 +43,7 @@ export const bulkMemberMap = async (memberIds: string[]): Promise<IMember[]> => 
             }
         }
         return members;
-    } catch (err: any) {
+    } catch {
         return [];
     }
 };
@@ -60,7 +60,7 @@ export const getMembersDefaultAddress = async (memberIds: string[]): Promise<str
             }
         }
         return membersWallets;
-    } catch (err: any) {
+    } catch {
         return [];
     }
 };
@@ -75,7 +75,7 @@ export const getMemberByWallet = async (walletAddress: string): Promise<MemberRe
         return memberResponse.data.member;
 
         //If not in cache, fetch from db and add to cache
-    } catch (err) {
+    } catch {
         return undefined;
     }
 };
@@ -84,7 +84,7 @@ export const deleteMemberFromRedis = async (memberId: string) => {
     try {
         await redis.del(`member${memberId}`);
         return true;
-    } catch (err) {
+    } catch {
         return null;
     }
 };

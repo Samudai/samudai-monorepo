@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { awaitingPaymentObject } from 'store/services/payments/model';
 import PaymentsTableItem from './PaymentsTableItem';
 import './styles/PaymentsTable.scss';
-import { Payment } from '@samudai_xyz/gateway-consumer-types';
+import { Payment } from '@samudai/gateway-consumer-types';
 import { QueuedTxnObject, HistoryTxnObject } from './PaymentsHistory';
 
 interface PaymentsTableProps {

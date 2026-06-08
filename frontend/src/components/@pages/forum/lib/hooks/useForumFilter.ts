@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { DiscussionEnums, DiscussionResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums, DiscussionResponse } from '@samudai/gateway-consumer-types';
 import { useObjectState } from 'hooks/use-object-state';
 
 export interface FilterValues {

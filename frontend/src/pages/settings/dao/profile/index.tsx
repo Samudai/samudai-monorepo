@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
 import SettingsLayout from 'root/layouts/settings/settings.layout';
 import {
     changeDaoProgress,
@@ -80,7 +80,7 @@ const Profile: React.FC = () => {
     const [uploadProfilePic] = useUpdateDaoProfilePicMutation();
     const { data: allTags } = useGetDaoTagsQuery();
     const navigate = useNavigate();
-    const currentDaoId = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const currDaoProgress = useTypedSelector(selectDaoProgress);
     const dispatch = useTypedDispatch();
 

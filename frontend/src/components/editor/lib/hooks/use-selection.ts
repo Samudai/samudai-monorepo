@@ -7,7 +7,7 @@ export const useSelection = () => {
     const lastSelection = useRef<Range | null>(null);
     const editorNode = useEditorNodeRef();
 
-    const handleSelection = (ev: any) => {
+    const handleSelection = (_ev: any) => {
         const editor = editorNode.current;
         if (!editor) return;
         const domSelection = window.getSelection();

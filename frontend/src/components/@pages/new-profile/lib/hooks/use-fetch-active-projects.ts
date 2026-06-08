@@ -4,7 +4,7 @@ import { selectActiveDao } from 'store/features/common/slice';
 import { useLazyGetDaoQuery } from 'store/services/Dao/dao';
 import { useGetProjectByMemberIdMutation } from 'store/services/userProfile/userProfile';
 import { useTypedSelector } from 'hooks/useStore';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 
 export const useFetchActiveProjects = () => {
     const activeDAO = useTypedSelector(selectActiveDao);

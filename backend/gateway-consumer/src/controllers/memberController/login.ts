@@ -3,8 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { generateJWT, generateJWTWithExpiration } from '../../lib/jwt';
 import { getNextStepForMember } from '../../lib/nextstep';
-import { Member, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
-import { NotAuthorisedError } from '../../errors/authError';
+import { Member, MembersEnums } from '@samudai/gateway-consumer-types';
 import jwt, { TokenExpiredError } from 'jsonwebtoken';
 
 interface MemberPayload {
@@ -41,7 +40,6 @@ export class LoginController {
         let onboardingResult: any;
         let onboardingStatus: boolean = false;
         //let onboardingStepValue = 0;
-        let member_type = '';
 
         if (!member.email) {
             member.email = privyUserDetails?.userEmailAddress || privyUserDetails?.google?.email;
@@ -69,10 +67,10 @@ export class LoginController {
                 });
                 if (existingMember && isXcaster) {
                     const user = await axios.get(
-                        `${process.env.SERVICE_MEMBER}/coposter/fetch/${existingMember.data.member.member_id}`
+                        `${process.env.SERVICE_MEMBER}/coposter/fetch/${existingMember.data.member.member_id}`,
                     );
                     if (!user.data.data) {
-                        const result = await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/addUser`, {
+                        await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/addUser`, {
                             xcaster_user: {
                                 member_id: existingMember.data.member.member_id,
                             },
@@ -81,7 +79,7 @@ export class LoginController {
                 }
 
                 onboardingResult = await axios.get(
-                    `${process.env.SERVICE_MEMBER}/onboarding/${existingMember.data.member.member_id}`
+                    `${process.env.SERVICE_MEMBER}/onboarding/${existingMember.data.member.member_id}`,
                 );
 
                 if (onboardingResult.data) {
@@ -112,7 +110,7 @@ export class LoginController {
 
                     if (newMember.status === 200) {
                         if (isPrivy) {
-                            const result = await axios.post(`${process.env.SERVICE_MEMBER}/privy/add`, {
+                            await axios.post(`${process.env.SERVICE_MEMBER}/privy/add`, {
                                 privy: {
                                     member_id: newMember.data.member_id,
                                     privy_did: privyUserDetails?.userId,
@@ -132,13 +130,13 @@ export class LoginController {
                             });
                         }
                         if (isXcaster) {
-                            const result = await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/addUser`, {
+                            await axios.post(`${process.env.SERVICE_MEMBER}/coposter/xcaster/addUser`, {
                                 xcaster_user: {
                                     member_id: newMember.data.member_id,
                                 },
                             });
                         }
-                        const result = await axios.post(`${process.env.SERVICE_ACTIVITY}/onboarding/add`, {
+                        await axios.post(`${process.env.SERVICE_ACTIVITY}/onboarding/add`, {
                             link_id: newMember.data.member_id,
                             step_id: MembersEnums.MemberOnboardingFlowStep.LOGIN,
                             value: {
@@ -169,7 +167,7 @@ export class LoginController {
 
                 try {
                     dao_data = await axios.get(
-                        `${process.env.SERVICE_DAO}/dao/getbymemberid/${existingMember!.data.member.member_id}`
+                        `${process.env.SERVICE_DAO}/dao/getbymemberid/${existingMember!.data.member.member_id}`,
                     );
                 } catch (err: any) {
                     if (err.response) {
@@ -300,7 +298,7 @@ export class LoginController {
         }
     };
 
-    reauth = async (req: Request, res: Response, next: NextFunction) => {
+    reauth = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             let refreshToken =
                 req.headers['x-auth-token'] ||
@@ -347,7 +345,7 @@ export class LoginController {
                     message: 'Token not provided, User is not Authorized',
                 });
             }
-        } catch (error) {
+        } catch {
             res.status(500).send({
                 message: 'Internal Server Error',
             });

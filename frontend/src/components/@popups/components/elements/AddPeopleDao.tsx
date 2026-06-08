@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Select from 'react-select';
 import { addPeopleStyles } from '../utils/addPeopleStyles';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectActiveDao } from 'store/features/common/slice';
 import { useLazySearchMemberByDaoQuery } from 'store/services/Search/Search';
@@ -46,7 +46,7 @@ const AddPeopleSearch: React.FC<AddPeopleProps> = ({
     const [list, setList] = useState<IMember[]>([] as IMember[]);
     const [value, setValue] = useState('');
     const [activeSelect, setActiveSelect] = useState(false);
-    const [candidats, setCandidats] = useState<IMember[]>([]);
+    const [_candidats, _setCandidats] = useState<IMember[]>([]);
     const [searchDaoMember] = useLazySearchMemberByDaoQuery();
 
     const searchDelay = useDelayedSearch(async (value: string) => {

@@ -12,7 +12,7 @@ const data = Array.from({ length: 5 }).map((_, k) => ({
     name: 'Google job interview',
 }));
 
-const ExpectedEvents: React.FC<ExpectedEventsProps> = (props) => {
+const ExpectedEvents: React.FC<ExpectedEventsProps> = (_props) => {
     const { ref, isScrollbar } = useScrollbar<HTMLUListElement>();
     return (
         <div className={styles.events}>

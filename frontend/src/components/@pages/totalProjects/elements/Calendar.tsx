@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import ProjectCalendar from 'components/ProjectCalendar/ProjectCalendar';
 import styles from '../styles/Calendar.module.scss';
 

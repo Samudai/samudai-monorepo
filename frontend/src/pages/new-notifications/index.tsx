@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
 import { NotificationsItem, getNotificationsTabs } from 'components/@pages/notifications';
 import Button from 'ui/@buttons/Button/Button';
@@ -8,7 +8,7 @@ import Head from 'ui/head';
 import Tabs from 'ui/tabs/tabs';
 import { getMemberId } from 'utils/utils';
 import css from './new-notifications.module.scss';
-import { MembersEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MembersEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { toast } from 'utils/toast';
 import { useUpdateConnectionMutation } from 'store/services/userProfile/userProfile';
 import { useReadNotificationsMutation } from 'store/services/Notifications/Notifications';
@@ -20,7 +20,7 @@ const NewNotifications = () => {
     const [tab, setTab] = useState('All');
     const [notifications, setNotifications] = useState<WebNotification[]>([]);
     const [updateConnection] = useUpdateConnectionMutation();
-    const [acceptConnectionReq, setAcceptConnectionReq] = useState(true);
+    const [_acceptConnectionReq, setAcceptConnectionReq] = useState(true);
     const [getNotifications] = useLazyFetchNotificationsQuery();
     const [readNotification] = useReadNotificationsMutation();
     const navigate = useNavigate();
@@ -97,7 +97,7 @@ const NewNotifications = () => {
                     });
                 }
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, `Failed to ${type.slice(0, -2)} request`, '')();
             });
     };

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { Form } from '@samudai_xyz/gateway-consumer-types';
+import { Form } from '@samudai/gateway-consumer-types';
 
 export class FormController {
     createForm = async (req: Request, res: Response, next: NextFunction) => {
@@ -31,7 +31,7 @@ export class FormController {
 
     getForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/${dao_id}`);
             new FetchSuccess(res, 'Form', response);
         } catch (err: any) {
@@ -41,7 +41,7 @@ export class FormController {
 
     deleteForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_id = (req.params.formId as string);
+            const form_id = req.params.formId as string;
             const response = await axios.delete(`${process.env.SERVICE_FORMS}/deal/questions/${form_id}`);
             new DeleteSuccess(res, 'Form', response);
         } catch (err: any) {

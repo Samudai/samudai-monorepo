@@ -1,4 +1,4 @@
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 
 export const getHours = (task: TaskResponse) => {

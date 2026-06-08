@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetchProject } from '../../lib/hooks/use-fetch-project';
 import { ProjectsMember } from '../projects-member';
-import { ActivityEnums, SubTask } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, SubTask } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { useLazyGetSubTaskDetailsQuery } from 'store/services/projects/tasks';
@@ -44,7 +44,7 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
     const [subTaskData, setSubTaskData] = useObjectState<SubTask>(data);
     const [reviewer, setReviewer] = useState<IMember | null>();
     const [contributors, setContributors] = useState<IMember[]>();
-    const [activeTab, setActiveTab] = useState<TaskTabs>('payouts');
+    const [_activeTab, _setActiveTab] = useState<TaskTabs>('payouts');
     const [btnLoading, setBtnLoading] = useState(false);
     const { projectData } = useFetchProject();
 
@@ -52,10 +52,8 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
     const { daoid } = useParams();
     const [getDetails] = useLazyGetSubTaskDetailsQuery();
     const [updateSubTask] = useUpdateSubTaskMutation();
-    const memberId = getMemberId();
-    const projectID = useTypedSelector(selectProjectid);
-
-    const tabs: TaskTabs[] = ['payouts'];
+    getMemberId();
+    useTypedSelector(selectProjectid);
 
     const fetchDetails = async () => {
         if (data?.subtask_id) {
@@ -90,7 +88,7 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
 
         updateSubTask(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 updateActivity({
                     dao_id: daoid!,
                     member_id: getMemberId(),
@@ -98,7 +96,7 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
                     task_id: subTaskData.task_id,
                     subtask_id: subTaskData.subtask_id!,
                     action_type: ActivityEnums.ActionType.SUBTASK_UPDATED,
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+
                     visibility: projectData?.project
                         ?.visibility as unknown as ActivityEnums.Visibility,
                     member: {
@@ -128,7 +126,7 @@ export const ProjectsSubtasksDetails: React.FC<ProjectsSubtasksDetailsProps> = (
                 fetchDetails();
                 toast('Success', 5000, 'Subtask updated successfully', '')();
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to update subtask', '')();
             })
             .finally(() => {

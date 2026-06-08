@@ -9,7 +9,7 @@ import {
     Project,
     Task,
     TaskFormResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { bulkMemberMap } from './memberUtils';
 import { getMemberIDs } from './notion';
 
@@ -24,30 +24,26 @@ export const createProjectFromNotion = async (
     database: any,
     member_id: string,
     dao_id: string,
-    department: string
+    department: string,
 ): Promise<string> => {
-    try {
-        const description = `Imported from Notion - ${database.url}`;
-        const project: Project = {
-            project_id: '',
-            link_id: dao_id,
-            type: ProjectEnums.LinkType.DAO,
-            project_type: ProjectEnums.ProjectType.DEFAULT,
-            title: database.title[0].plain_text,
-            description: description,
-            visibility: ProjectEnums.Visibility.PRIVATE,
-            created_by: member_id,
-            department: department,
-            completed: false,
-            pinned: false,
-        };
-        const result = await axios.post(`${projectService}/project/create`, {
-            project,
-        });
-        return result.data.project_id;
-    } catch (err: any) {
-        throw err;
-    }
+    const description = `Imported from Notion - ${database.url}`;
+    const project: Project = {
+        project_id: '',
+        link_id: dao_id,
+        type: ProjectEnums.LinkType.DAO,
+        project_type: ProjectEnums.ProjectType.DEFAULT,
+        title: database.title[0].plain_text,
+        description: description,
+        visibility: ProjectEnums.Visibility.PRIVATE,
+        created_by: member_id,
+        department: department,
+        completed: false,
+        pinned: false,
+    };
+    const result = await axios.post(`${projectService}/project/create`, {
+        project,
+    });
+    return result.data.project_id;
 };
 
 export const createTaskFromNotion = async (params: CreateNotionTaskParam, pages: any) => {
@@ -124,30 +120,22 @@ export const createTaskFromNotion = async (params: CreateNotionTaskParam, pages:
 };
 
 export const getNotionTasks = async (member_id: string, memberDao: DaoDetailParam[]): Promise<NotionTaskResponse[]> => {
-    try {
-        const result = await axios.get(`${projectService}/notion/getnotiontasks`, {
-            params: {
-                member_id,
-                daos: memberDao,
-            },
-        });
-        return result.data;
-    } catch (err: any) {
-        throw err;
-    }
+    const result = await axios.get(`${projectService}/notion/getnotiontasks`, {
+        params: {
+            member_id,
+            daos: memberDao,
+        },
+    });
+    return result.data;
 };
 
 export const assignMemberToNotionTask = async (task_id: string, member_id: string) => {
-    try {
-        const result = await axios.post(`${projectService}/task/notion/assignee`, {
-            task_id,
-            assignee: member_id,
-            updated_by: member_id,
-        });
-        return result.data;
-    } catch (err: any) {
-        throw err;
-    }
+    const result = await axios.post(`${projectService}/task/notion/assignee`, {
+        task_id,
+        assignee: member_id,
+        updated_by: member_id,
+    });
+    return result.data;
 };
 
 export const mapTaskFormResponseToTask = (formTaskResponse: TaskFormResponse): Task => {
@@ -181,38 +169,30 @@ export const mapTaskFormResponseToTask = (formTaskResponse: TaskFormResponse): T
 };
 
 export const getTaskContributors = async (project_id: string): Promise<IMember[]> => {
-    try {
-        interface IContributor {
-            [key: string]: number;
-        }
-        const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/contributor/${project_id}`);
+    const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/contributor/${project_id}`);
 
-        const taskCount: IContributor = result.data;
-        const memberIds = Object.keys(result.data);
-        // todo - optimise with member cache
-        const memberList = await bulkMemberMap(memberIds);
+    const memberIds = Object.keys(result.data);
+    // todo - optimise with member cache
+    const memberList = await bulkMemberMap(memberIds);
 
-        const contributors: IMember[] = memberList.map((m: any) => {
-            // todo: fix datatype here
-            return {
-                member_id: m.member_id,
-                name: m.name,
-                username: m.username,
-                profile_picture: m.profile_picture,
-            };
-        });
+    const contributors: IMember[] = memberList.map((m: any) => {
+        // todo: fix datatype here
+        return {
+            member_id: m.member_id,
+            name: m.name,
+            username: m.username,
+            profile_picture: m.profile_picture,
+        };
+    });
 
-        return contributors;
-    } catch (err: any) {
-        throw err;
-    }
+    return contributors;
 };
 
 export const getProject = async (project_id: string): Promise<Project | null> => {
     try {
         const result = await axios.get(`${process.env.SERVICE_PROJECT}/project/${project_id}`);
         return result.data;
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -232,16 +212,16 @@ export const getDepartments = async (projects: ProjectResponse[]): Promise<any |
         await Promise.all(
             departments.map(async (department: any) => {
                 const departmentResponse = await axios.get(
-                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`
+                    `${process.env.SERVICE_DAO}/department/list/${department.dao_id}`,
                 );
-                if(departmentResponse.data){
+                if (departmentResponse.data) {
                     departmentResponse.data.forEach((dep: any) => {
                         if (dep.department_id === department.department_id) {
                             depMap.set(dep.department_id, dep.name);
                         }
                     });
                 }
-            })
+            }),
         );
         return depMap;
     } catch (err) {
@@ -259,7 +239,7 @@ export const updatePayouts = async (payouts: Payout[]) => {
                 } else {
                     return { ...payout, provider_exists: false };
                 }
-            })
+            }),
         );
         return updatedPayouts;
     } catch (err) {
@@ -277,7 +257,7 @@ export const updatePayout = async (data: any) => {
                 } else {
                     return { ...payout, provider_exists: false };
                 }
-            })
+            }),
         );
 
         return { ...data, payout: updatedPayouts };

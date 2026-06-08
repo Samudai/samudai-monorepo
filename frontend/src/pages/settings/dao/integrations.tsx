@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums, ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, ActivityEnums } from '@samudai/gateway-consumer-types';
 import SettingsLayout from 'root/layouts/settings/settings.layout';
 import {
     changeDaoProgress,
@@ -48,7 +48,7 @@ interface connectedList {
     };
 }
 
-const Integrations: React.FC<IntegrationsProps> = (props) => {
+const Integrations: React.FC<IntegrationsProps> = (_props) => {
     const [list, setList] = useState<connectedList>({
         discord: {
             connected: false,
@@ -73,10 +73,10 @@ const Integrations: React.FC<IntegrationsProps> = (props) => {
     });
 
     const activeDao = useTypedSelector(selectActiveDao);
-    const [notionConnected, setNotionConnected] = useState(false);
+    const [_notionConnected, setNotionConnected] = useState(false);
     const [getConnections, { isLoading }] = useLazyGetConnectedQuery();
     const gcalConnected = useTypedSelector(selectGcal);
-    const twitterData = useTypedSelector(selectTwitterData);
+    useTypedSelector(selectTwitterData);
     const { daoid } = useParams();
     const access = useTypedSelector(selectAccessList)[daoid!]?.includes(
         AccessEnums.AccessType.MANAGE_DAO

@@ -3,7 +3,7 @@ import {
     OpportunityResponse,
     NotificationsEnums,
     AccessEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useTypedSelector } from 'hooks/useStore';
 import { useCallback, useEffect, useState } from 'react';
 import { selectAccessList } from 'store/features/common/slice';
@@ -109,7 +109,7 @@ export const useApplicants = (noFetch?: boolean) => {
 
         return await updateApplicantStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Applicant accepted', '')();
                 if (!opportunity?.task_id) return;
                 sendNotification({
@@ -150,7 +150,7 @@ export const useApplicants = (noFetch?: boolean) => {
 
         return await updateApplicantStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Applicant rejected', '')();
                 if (!opportunity?.task_id) return;
                 sendNotification({

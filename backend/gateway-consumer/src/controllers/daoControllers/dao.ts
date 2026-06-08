@@ -9,8 +9,7 @@ import {
     MemberDAOView,
     Project,
     ProjectEnums,
-} from '@samudai_xyz/gateway-consumer-types';
-import { completeOnboarding } from '../../lib/onboarding';
+} from '@samudai/gateway-consumer-types';
 import { upload } from '../../lib/profilePhotoUpload';
 
 export class DAOProfileController {
@@ -38,7 +37,7 @@ export class DAOProfileController {
 
     getDAOProfile = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/${daoId}`);
             return res.status(200).send({
                 message: 'DAO fetched successfully',
@@ -75,7 +74,7 @@ export class DAOProfileController {
 
     getDAObyGuildId = async (req: Request, res: Response) => {
         try {
-            const guildId = (req.params.guildId as string);
+            const guildId = req.params.guildId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/byguildid/${guildId}`);
             if (result.data.dao) {
                 return res.status(200).send({
@@ -101,7 +100,7 @@ export class DAOProfileController {
 
     getDAOForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await getDAOForMember(memberId);
             return res.status(200).send({
                 message: 'DAO fetched successfully',
@@ -128,9 +127,7 @@ export class DAOProfileController {
 
             if (socials) {
                 try {
-                    const socialUpdateResult = await axios.post(`${process.env.SERVICE_DAO}/social/update`, {
-                        social: socials,
-                    });
+                    await axios.post(`${process.env.SERVICE_DAO}/social/update`, { social: socials });
                 } catch (err: any) {
                     if (err.response) {
                         return res.status(err.response.status).send({
@@ -160,7 +157,7 @@ export class DAOProfileController {
 
     deleteDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/dao/delete/${daoId}`);
             return res.status(200).send({
                 message: 'DAO deleted successfully',
@@ -179,8 +176,8 @@ export class DAOProfileController {
 
     getMembersByAccess = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
-            const access = (req.params.access as string);
+            const daoId = req.params.daoId as string;
+            const access = req.params.access as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/members/${daoId}/${access}`);
             return res.status(200).send({
                 message: 'DAO admins fetched successfully',
@@ -222,7 +219,7 @@ export class DAOProfileController {
 
     getLatestDAOForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/bymemberid/${memberId}`);
             const daos: MemberDAOView[] = result.data.dao;
 
@@ -299,9 +296,7 @@ export class DAOProfileController {
                     pinned: true,
                 };
 
-                const projectResult = await axios.post(`${process.env.SERVICE_PROJECT}/project/create`, {
-                    project,
-                });
+                await axios.post(`${process.env.SERVICE_PROJECT}/project/create`, { project });
 
                 // const access: DAOAccess = {
                 //     id: '',
@@ -342,23 +337,19 @@ export class DAOProfileController {
                     visibility: 'public',
                 };
 
-                const dashboardResult = await axios.post(`${process.env.SERVICE_DASHBOARD}/dashboard/create`, {
-                    dashboard: daoDashboard,
-                });
+                await axios.post(`${process.env.SERVICE_DASHBOARD}/dashboard/create`, { dashboard: daoDashboard });
 
-                const addAdminData = await axios.post(
-                    `${process.env.SERVICE_ACTIVITY}/admins/dao/add`, {
-                        admin : {
-                            member_id,
-                            dao_id,
-                            type_of_member: memberOnboarded ? 'contributor' : 'admin',
-                        }
+                await axios.post(`${process.env.SERVICE_ACTIVITY}/admins/dao/add`, {
+                    admin: {
+                        member_id,
+                        dao_id,
+                        type_of_member: memberOnboarded ? 'contributor' : 'admin',
+                    },
                 });
 
                 // const deleteOnboarding = await axios.delete(
                 //     `${process.env.SERVICE_ACTIVITY}/onboarding/delete/${dao_id}`
                 // );
-
 
                 return res.status(201).send({
                     message: 'Dao And Member Onboarding Complete',
@@ -495,7 +486,7 @@ export class DAOProfileController {
 
     checkSubdomainForDAO = async (req: Request, res: Response) => {
         try {
-            const subdomain = (req.params.subdomain as string);
+            const subdomain = req.params.subdomain as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/checksubdomain/${subdomain}`);
 
@@ -539,8 +530,8 @@ export class DAOProfileController {
 
     linkdiscordbotForDAO = async (req: Request, res: Response) => {
         try {
-            const dao_id: string = (req.params.dao_id as string);
-            const guild_id: string = (req.params.guild_id as string);
+            const dao_id: string = req.params.dao_id as string;
+            const guild_id: string = req.params.guild_id as string;
             const result = await axios.post(`${process.env.SAMUDAI_BOT}/linkdiscord/dao/${dao_id}/${guild_id}`);
             return res.status(201).send({
                 message: 'Dao Info successfully fetched',
@@ -559,7 +550,7 @@ export class DAOProfileController {
 
     fetchSubdomainByDAOId = async (req: Request, res: Response) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/fetchsubdomainfordao/${dao_id}`);
 
@@ -580,7 +571,7 @@ export class DAOProfileController {
 
     getSubscriptionForDAO = async (req: Request, res: Response) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/dao/getsubscription/fordao/${dao_id}`);
 

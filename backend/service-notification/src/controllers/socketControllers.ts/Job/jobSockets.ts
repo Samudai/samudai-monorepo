@@ -1,5 +1,5 @@
 import { JobNotificationTemplateHandler } from './utils/jobTemplates';
-import { WebNotification, NotificationPartialData, ErrorResponse } from '../utils/types';
+import { WebNotification, NotificationPartialData } from '../utils/types';
 import { publishTelegramNotification } from '../../telegramController';
 
 export class JobSockets {

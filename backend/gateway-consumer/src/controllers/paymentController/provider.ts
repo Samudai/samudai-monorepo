@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import { Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types';
 
 export class ProviderController {
     create = async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ export class ProviderController {
 
     getProviderById = async (req: Request, res: Response) => {
         try {
-            const providerId = (req.params.providerId as string);
+            const providerId = req.params.providerId as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/provider/get/${providerId}`);
 
@@ -55,7 +55,7 @@ export class ProviderController {
 
     getProviderForDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const response = await axios.get(`${process.env.SERVICE_DAO}/provider/list/${daoId}`);
             if (response.data.provider_list !== null) {
                 return res.status(200).send({
@@ -110,7 +110,7 @@ export class ProviderController {
 
     deleteProvider = async (req: Request, res: Response) => {
         try {
-            const providerId = (req.params.providerId as string);
+            const providerId = req.params.providerId as string;
             const response = await axios.delete(`${process.env.SERVICE_DAO}/provider/delete/${providerId}`);
             res.status(200).send({
                 message: 'Provider deleted successfully',
@@ -155,7 +155,7 @@ export class ProviderController {
 
     getDAODefaultProvider = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const response = await axios.get(`${process.env.SERVICE_DAO}/provider/default/${daoId}`);
             res.status(200).send({
                 message: 'Default provider retrieved successfully',
@@ -178,7 +178,7 @@ export class ProviderController {
 
     doesExistProvider = async (req: Request, res: Response) => {
         try {
-            const providerId = (req.params.providerId as string);
+            const providerId = req.params.providerId as string;
             const response = await axios.get(`${process.env.SERVICE_DAO}/provider/exists/${providerId}`);
             res.status(200).send({
                 message: 'Provider checked successfully',

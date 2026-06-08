@@ -1,5 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { ProjectEnums, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { useNavigate } from 'react-router-dom';
+import { ProjectEnums, ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import routes from 'root/router/routes';
@@ -30,12 +30,10 @@ const ProjectBlock: React.FC<ProjectBlockProps> = ({
 }) => {
     const dispatch = useTypedDispatch();
     const navigate = useNavigate();
-    const { daoid } = useParams();
 
     if (!project) return null;
 
-    const link = replaceParam(routes.project, 'id', `${project.project_id}/board`);
-    // let { progress } = ProjectHelper.getStatistics(project);
+    replaceParam(routes.project, 'id', `${project.project_id}/board`); // let { progress } = ProjectHelper.getStatistics(project);
     // let contributors = ProjectHelper.getContributorsAll(project);
     const progress =
         project?.task_count === 0

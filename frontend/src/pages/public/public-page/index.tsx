@@ -38,14 +38,14 @@ const PublicPage: React.FC<PublicPageProps> = ({ component: Component }) => {
 
     const loginModal = usePopup();
 
-    const { connector: activeConnector, isConnected } = useAccount();
-    const { data: walletClient, isError, isLoading } = useWalletClient({ chainId: 1 });
+    const { connector: activeConnector } = useAccount();
+    const { data: walletClient } = useWalletClient({ chainId: 1 });
     const navigate = useNavigate();
     const inviteCode = localStorage.getItem('inviteCode');
 
     const [login] = useLoginMutation();
 
-    const ConnectWalletHandler = async (provider: ethers.BrowserProvider) => {
+    const _ConnectWalletHandler = async (provider: ethers.BrowserProvider) => {
         localStorage.removeItem('discord bot');
         try {
             const signer = await provider.getSigner();

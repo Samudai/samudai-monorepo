@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MembersEnums } from '@samudai/gateway-consumer-types';
 import { setMemberData } from 'store/features/common/slice';
 import {
     useGetMemberByIdMutation,
@@ -73,7 +73,7 @@ const ConnectionItem: React.FC<DiscoverySelectProps> = ({
         console.log(data);
         setLoading(true);
         try {
-            const res = await updateConnection({
+            await updateConnection({
                 connection: {
                     id: data.id,
                     sender_id: data.member_id,
@@ -88,7 +88,7 @@ const ConnectionItem: React.FC<DiscoverySelectProps> = ({
                 fetchRequests?.();
             }, 2000);
             setLoading(false);
-        } catch (err) {
+        } catch {
             setLoading(false);
             toast('Failure', 5000, 'Something went wrong', '');
         }

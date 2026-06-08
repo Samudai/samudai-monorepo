@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse } from '@samudai/gateway-consumer-types';
 import Sprite from 'components/sprite';
 import css from './profile-connection-item.module.scss';
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { DiscussionResponse } from '@samudai_xyz/gateway-consumer-types/';
+import { DiscussionResponse } from '@samudai/gateway-consumer-types/';
 import { useLazyGetDaoByDaoIdQuery } from 'store/services/Dao/dao';
 import {
     useLazyGetDiscussionsByMemberIdQuery,
@@ -23,7 +23,7 @@ export const useForum = () => {
     const [items, setItems] = useState<DiscussionResponse[]>([]);
     const [items1, setItems1] = useState<DiscussionResponse[]>([]);
     const [loaded, setLoaded] = useState(false);
-    const [daoName, setDaoName] = useState('Dao');
+    const [_daoName, setDaoName] = useState('Dao');
 
     const dispatch = useTypedDispatch();
 

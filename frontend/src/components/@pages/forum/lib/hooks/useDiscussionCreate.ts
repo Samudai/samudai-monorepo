@@ -1,4 +1,4 @@
-import { ActivityEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import { selectActiveDao } from 'store/features/common/slice';
 import {
     useCreateDiscussionMutation,

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Applicant, JobsEnums, Submission } from '@samudai_xyz/gateway-consumer-types';
+import { Applicant, JobsEnums, Submission } from '@samudai/gateway-consumer-types';
 import usePopup from 'hooks/usePopup';
 import {
     JobsAddModal,
@@ -29,7 +29,7 @@ const Applicants: React.FC = () => {
     const [submissions, setSubmissions] = useState<Submission[]>([]);
 
     const { filter, setFilter } = useJobsFilter();
-    const navigate = useNavigate();
+    useNavigate();
     const memberId = getMemberId();
     const { archiveOpportunity, removeOpportunity } = useJobs(true);
     const { archiveBounty, removeBounty } = useBounty(true);

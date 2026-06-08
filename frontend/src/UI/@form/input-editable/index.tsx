@@ -19,7 +19,7 @@ export const InputEditable: React.FC<InputEditableProps> = ({
     initialEdit = false,
     placeholder,
 }) => {
-    const firstValue = useMemo(() => input, []);
+    useMemo(() => input, []);
     const [localValue, setLocalValue] = useState(input);
     const [isEditable, setIsEditable] = useState(initialEdit);
 

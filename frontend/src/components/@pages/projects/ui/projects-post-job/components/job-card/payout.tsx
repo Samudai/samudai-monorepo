@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useGetParcelBalanceMutation, useGetProviderQuery } from 'store/services/payments/payments';
 import { useParams } from 'react-router-dom';
-import { Auth, Provider } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { Auth, Provider } from '@samudai/gateway-consumer-types/dist/types';
 import { IPaymentCurrency } from 'utils/types/Payments';
 import { useTypedSelector } from 'hooks/useStore';
 import { selectProvider } from 'store/features/common/slice';
@@ -86,7 +86,7 @@ export const Payout: React.FC<PayoutProps> = ({ data: payoutData, onChange, disa
                         provider.address!
                     )) as GnosisTypes.SafeBalanceUsdResponse[];
                     if (res.length > 0) {
-                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, id: number) => {
+                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, _id: number) => {
                             currencyVal.push({
                                 currency: item.token
                                     ? item.token.name

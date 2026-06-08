@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Comment, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Comment, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { useAddCommentsMutation } from 'store/services/projects/totalProjects';
 import MessagePanel from 'components/message-panel';
@@ -79,7 +79,7 @@ export const ProjectsComments: React.FC<ProjectsCommentsProps> = ({
             },
         })
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 updateDetails();
                 sendNotification({
                     to: [daoid!],
@@ -94,7 +94,7 @@ export const ProjectsComments: React.FC<ProjectsCommentsProps> = ({
                         .COMMENT_TASK_ON_NOTIFICATION,
                 });
             })
-            .catch((err) => {
+            .catch((_err) => {
                 setComments(oldComments);
             });
     };

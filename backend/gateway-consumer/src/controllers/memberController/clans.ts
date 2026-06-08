@@ -16,10 +16,9 @@ import {
     ClanInvite,
     ClanMember,
     ClanMemberInfo,
-    ClanProjectInfo,
     ClanResponse,
     ClanView,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 export class ClansController {
     createClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -44,9 +43,7 @@ export class ClansController {
                     notification: true,
                 };
 
-                const memberResult = await axios.post(`${process.env.SERVICE_MEMBER}/clan/addmember`, {
-                    clan_member: clanMember,
-                });
+                await axios.post(`${process.env.SERVICE_MEMBER}/clan/addmember`, { clan_member: clanMember });
             }
 
             new CreateSuccess(res, 'CLAN', result);
@@ -70,20 +67,18 @@ export class ClansController {
 
     getClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanId = (req.params.clanId as string);
+            const clanId = req.params.clanId as string;
 
             //Initializers
-            let clanAdmin: ClanMemberInfo;
-            let clanMembers: ClanMemberInfo[] = [];
+            const clanMembers: ClanMemberInfo[] = [];
             let clanResponse: ClanResponse;
-            let clanProject: ClanProjectInfo;
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/clan/${clanId}`);
             const clan: ClanView = result.data.clan;
 
             if (result.status === 200) {
                 const admin: ClanMember = clan.members.find((member) => member.role === MembersEnums.ClanRole.OWNER)!;
                 const members: ClanMember[] = clan.members.filter(
-                    (member) => member.role !== MembersEnums.ClanRole.OWNER
+                    (member) => member.role !== MembersEnums.ClanRole.OWNER,
                 );
 
                 members.forEach((member: ClanMember) => {
@@ -149,7 +144,7 @@ export class ClansController {
 
     deleteClan = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanId = (req.params.clanId as string);
+            const clanId = req.params.clanId as string;
 
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/clan/${clanId}`);
             new DeleteSuccess(res, 'CLAN', result);
@@ -160,11 +155,11 @@ export class ClansController {
 
     removeClanMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id: string = (req.params.memberId as string);
-            const clan_id: string = (req.params.clanId as string);
+            const member_id: string = req.params.memberId as string;
+            const clan_id: string = req.params.clanId as string;
 
             const result = await axios.delete(
-                `${process.env.SERVICE_MEMBER}/clan/removemember/${clan_id}/${member_id}`
+                `${process.env.SERVICE_MEMBER}/clan/removemember/${clan_id}/${member_id}`,
             );
             new UniversalSuccess(res, 'CLAN MEMBER removed', result.data);
         } catch (err: any) {
@@ -174,7 +169,7 @@ export class ClansController {
 
     getClansByMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/clan/bymember/${memberId}`);
 
@@ -201,7 +196,7 @@ export class ClansController {
 
     getClanInvite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanId = (req.params.clanId as string);
+            const clanId = req.params.clanId as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/claninvite/list/${clanId}`);
             new FetchSuccess(res, 'CLAN INVITE', result);
@@ -225,7 +220,7 @@ export class ClansController {
 
     getClanInviteForReceiver = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const receiverId = (req.params.receiverId as string);
+            const receiverId = req.params.receiverId as string;
 
             const result = await axios.get(`${process.env.SERVICE_MEMBER}/claninvite/byreceiverid/${receiverId}`);
             new FetchSuccess(res, 'CLAN INVITE', result);
@@ -236,7 +231,7 @@ export class ClansController {
 
     deleteClanInvite = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const clanInviteId = (req.params.clanInviteId as string);
+            const clanInviteId = req.params.clanInviteId as string;
 
             const result = await axios.delete(`${process.env.SERVICE_MEMBER}/claninvite/delete/${clanInviteId}`);
 

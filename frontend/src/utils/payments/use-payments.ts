@@ -29,7 +29,7 @@ import {
     PaymentEnums,
     Provider,
     addPaymentsRequest,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useParams } from 'react-router-dom';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { getMemberId, getMemberIdfromAddress, getRawText } from 'utils/utils';
@@ -55,14 +55,14 @@ export const usePayments = () => {
     const activeDao = useTypedSelector(selectActiveDao);
     const providers = useTypedSelector(providerList);
     const providerEth = useTypedSelector(selectProvider);
-    const defaultProvider = useTypedSelector(selectDefaultProvider);
+    useTypedSelector(selectDefaultProvider);
     const account = useTypedSelector(selectAccount);
     const memberData = useTypedSelector(selectMemberData);
     const safeOwners = useTypedSelector(selectSafeOwners);
     const dispatch = useTypedDispatch();
     const member_id = getMemberId();
 
-    const handleCreate = useDiscussionCreate();
+    useDiscussionCreate();
     const [getChainList] = useLazyGetChainListQuery();
     const [getProviders] = useLazyGetProviderQuery();
     const [getDefaultProvider] = useLazyGetDefaultProviderQuery();

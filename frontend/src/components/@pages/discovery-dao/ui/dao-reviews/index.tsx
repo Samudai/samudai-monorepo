@@ -16,7 +16,7 @@ import css from './dao-reviews.module.scss';
 
 interface DaoReviewsProps {}
 
-export const DaoReviews: React.FC<DaoReviewsProps> = (props) => {
+export const DaoReviews: React.FC<DaoReviewsProps> = (_props) => {
     const { reviewList, reviewLoading, daoData } = useFetchDao();
     const reviewsModal = usePopup();
     const reviewAdd = usePopup();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { JobsEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useCreateApplicantMutation } from 'store/services/jobs/totalJobs';
 import Popup from 'components/@popups/components/Popup/Popup';
@@ -60,7 +60,7 @@ const JobApply: React.FC<JobApplyProps> = ({ data, isSaved, onSubmit, onSave }) 
                 }
             };
             fn();
-        } catch (error) {
+        } catch {
             toast('Failure', 5000, 'Error while applying for job', 'Something went wrong')();
             onSubmit();
         }

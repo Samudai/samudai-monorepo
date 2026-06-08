@@ -10,7 +10,7 @@ import styles from '../styles/Clans.module.scss';
 const Clans: React.FC = () => {
     const [data, setData] = useState<IClanInfo[]>([]);
     const [selected, setSelected] = useState<IClanInfo | null>(null);
-    const [value, setValue] = useInput('');
+    const [value, _setValue] = useInput('');
     const [getClansByMember] = useLazyGetClanByMemberIdQuery();
 
     const [fetchData, loading] = useRequest(async () => {
@@ -39,7 +39,7 @@ const Clans: React.FC = () => {
         setSelected(clan);
     };
 
-    const filteredClans = value.trim()
+    const _filteredClans = value.trim()
         ? data.filter((cl) => {
               if (cl === selected || cl.name.toLowerCase().includes(value.trim().toLowerCase()))
                   return true;

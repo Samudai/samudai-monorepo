@@ -2,8 +2,8 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { ProjectEnums } from '@samudai_xyz/gateway-consumer-types';
-import { Form, Project } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectEnums } from '@samudai/gateway-consumer-types';
+import { Form, Project } from '@samudai/gateway-consumer-types';
 import { bulkMemberMap } from '../../lib/memberUtils';
 
 export class FormController {
@@ -12,7 +12,7 @@ export class FormController {
             const form: Form = req.body.form;
 
             const subscriptionData = await axios.get(
-                `${process.env.SERVICE_DAO}/dao/getsubscription/fordao/${form.dao_id}`
+                `${process.env.SERVICE_DAO}/dao/getsubscription/fordao/${form.dao_id}`,
             );
 
             const formLimit = subscriptionData.data.data.current_plan.forms;
@@ -47,9 +47,7 @@ export class FormController {
                     form_id: form_id,
                 };
 
-                const projectResult = await axios.post(`${process.env.SERVICE_PROJECT}/project/create`, {
-                    project,
-                });
+                await axios.post(`${process.env.SERVICE_PROJECT}/project/create`, { project });
             }
 
             form.form_id = form_id;
@@ -73,7 +71,7 @@ export class FormController {
 
     getFormByDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id = (req.params.daoId as string);
+            const dao_id = req.params.daoId as string;
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/bydao/${dao_id}`);
 
             let forms = response.data.form;
@@ -100,7 +98,7 @@ export class FormController {
 
     deleteForm = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_id = (req.params.formId as string);
+            const form_id = req.params.formId as string;
             const response = await axios.delete(`${process.env.SERVICE_FORMS}/deal/questions/delete/${form_id}`);
             new DeleteSuccess(res, 'Form', response);
         } catch (err: any) {
@@ -110,7 +108,7 @@ export class FormController {
 
     getFormById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const form_id = (req.params.formId as string);
+            const form_id = req.params.formId as string;
             const response = await axios.get(`${process.env.SERVICE_FORMS}/deal/questions/${form_id}`);
             new FetchSuccess(res, 'Form by ID', response);
         } catch (err: any) {

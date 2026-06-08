@@ -1,5 +1,5 @@
 import { useTypedSelector } from './useStore';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 
 export const useDaoType = () => {

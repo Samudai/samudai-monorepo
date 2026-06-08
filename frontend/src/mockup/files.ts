@@ -1,4 +1,4 @@
-import { ProjectFile } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectFile } from '@samudai/gateway-consumer-types';
 
 export const mockup_projectFiles: ProjectFile[] = [
     {

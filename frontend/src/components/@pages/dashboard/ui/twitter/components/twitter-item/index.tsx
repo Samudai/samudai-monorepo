@@ -48,7 +48,7 @@ export const TwitterItem: React.FC<tweet> = ({
                 </header>
                 <div className={styles.itemContent}>
                     <p className={styles.itemText}>{text}</p>
-                    {(links || []).map((link, i) => (
+                    {(links || []).map((link, _i) => (
                         <a className={styles.itemLink} href={openUrl(link)} key={link}>
                             {link}
                         </a>

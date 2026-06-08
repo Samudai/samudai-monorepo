@@ -12,7 +12,7 @@ import MarkIcon from 'ui/SVG/MarkIcon';
 import { ArrowDownIcon } from 'components/editor/ui/icons/arrow-down-icon';
 import ProviderField from './ProviderField';
 import CurrencyField from './CurrencyField';
-import { Provider } from '@samudai_xyz/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types';
 import { useGetProviderQuery } from 'store/services/payments/payments';
 import { toast } from 'utils/toast';
 

@@ -6,7 +6,7 @@ import PlusIcon from 'ui/SVG/PlusIcon';
 import css from './payout-member.module.scss';
 import { IPayoutRequest } from 'store/services/projects/model';
 import { usePayouts } from 'components/tasks-board/lib/hooks/use-payouts';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import { useGetMemberByIdMutation } from 'store/services/userProfile/userProfile';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { payoutsList, updatePayoutList } from 'store/features/projects/projectSlice';
@@ -24,7 +24,7 @@ export const PayoutMember: React.FC<PayoutMemberProps> = ({ memberData, link, ac
     const [payout, setPayout] = useState<IPayoutRequest[]>([]);
     const [address, setAddress] = useState('');
 
-    const { addPayout, editPayout, removePayout } = usePayouts(link);
+    const { removePayout } = usePayouts(link);
     const [getMemberDetails] = useGetMemberByIdMutation();
     const dispatch = useTypedDispatch();
     const payoutList = useTypedSelector(payoutsList);

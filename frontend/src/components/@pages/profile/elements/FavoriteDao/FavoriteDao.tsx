@@ -16,7 +16,7 @@ const FavoriteDao: React.FC = () => {
             try {
                 const res = await getFavoriteDaos(memberid!, true).unwrap();
                 setData(res?.data?.favourite_list || []);
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Error in fetching favourite DAOs', '');
             }
         };

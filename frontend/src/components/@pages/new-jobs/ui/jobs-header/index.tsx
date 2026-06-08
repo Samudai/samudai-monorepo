@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ArchiveIcon } from '../icons/archive-icon';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';
 import { BreadcrumbsItem } from 'components/breadcrumbs';
@@ -19,7 +19,6 @@ import { JobsFilterModal } from '../jobs-filter-modal';
 import usePopup from 'hooks/usePopup';
 import { getMemberId } from 'utils/utils';
 import { useLazyDiscoveryDaoQuery } from 'store/services/Discovery/Discovery';
-import { useProgress } from 'hooks/use-progress';
 
 interface JobsHeaderProps {
     currentLink: string | string[];
@@ -55,12 +54,11 @@ export const JobsHeader: React.FC<JobsHeaderProps> = ({
     const [daoList, setDaoList] = useState<string[]>([]);
 
     const location = useLocation();
-    const links = Array.isArray(currentLink) ? currentLink : [currentLink];
+    const _links = Array.isArray(currentLink) ? currentLink : [currentLink];
     const daoAccessList = useTypedSelector(selectAccessList);
 
     const filterModal = usePopup();
     const [getDiscoveryDao] = useLazyDiscoveryDaoQuery();
-    const { daoProgress, memberType, manageDaoAccess } = useProgress();
 
     const createAccess = useMemo(() => {
         const manageAccessList = Object.values(daoAccessList).filter((access) =>

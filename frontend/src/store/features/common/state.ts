@@ -1,9 +1,9 @@
-import { AccessEnums, MemberResponse } from '@samudai_xyz/gateway-consumer-types';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, MemberResponse } from '@samudai/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 import {
     NewContributorItems,
     NewDAOItems,
-} from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
+} from '@samudai/gateway-consumer-types/dist/types/activity/enums';
 import { DAOType } from 'root/mockup/daos';
 import type { Provider, Signer } from 'ethers';
 

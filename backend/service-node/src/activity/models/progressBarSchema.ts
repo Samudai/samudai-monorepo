@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { activityConn } from "../../db/connections";
 import { ContributorItems, DAOItems } from "../utils/types";
-const { Schema } = mongoose;
 
 interface IModelDAO {
   dao_id: string;

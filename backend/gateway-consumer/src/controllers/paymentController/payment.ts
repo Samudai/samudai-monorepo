@@ -3,13 +3,12 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { AddSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 import { getMemberByWallet } from '../../lib/memberUtils';
-import { IMember, Payment, MemberReward, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { IMember, Payment, MemberReward, MembersEnums } from '@samudai/gateway-consumer-types';
 export class PaymentController {
     addPayment = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const payment: Payment = req.body.payment;
-            let reward: MemberReward = req.body.reward ? req.body.reward : null;
-            let resp: any;
+            const reward: MemberReward = req.body.reward ? req.body.reward : null;
 
             const response = await axios.post(`${process.env.SERVICE_WEB3}/web3/payment/add`, {
                 payment,
@@ -17,12 +16,12 @@ export class PaymentController {
 
             if (payment.payout_id) {
                 if (payment.type === 'Project') {
-                    resp = await axios.post(`${process.env.SERVICE_PROJECT}/payout/update/paymentstatus`, {
+                    await axios.post(`${process.env.SERVICE_PROJECT}/payout/update/paymentstatus`, {
                         payout_id: payment.payout_id,
                         payment_status: 'payment-initiated',
                     });
                 } else {
-                    resp = await axios.post(`${process.env.SERVICE_JOB}/payout/update/status`, {
+                    await axios.post(`${process.env.SERVICE_JOB}/payout/update/status`, {
                         payout_id: payment.payout_id,
                         status: 'payment_initiated',
                     });
@@ -44,9 +43,7 @@ export class PaymentController {
                     const memberResult = await getMemberByWallet(reward.member_id);
                     if (memberResult) {
                         reward.member_id = memberResult.member_id;
-                        const rewardResponse = await axios.post(`${process.env.SERVICE_MEMBER}/reward/create`, {
-                            reward_earned: reward,
-                        });
+                        await axios.post(`${process.env.SERVICE_MEMBER}/reward/create`, { reward_earned: reward });
                     }
                 }
             }
@@ -58,7 +55,7 @@ export class PaymentController {
 
     getPlatformPaymentsForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/${daoId}`);
 
             new FetchSuccess(res, 'Payments for DAO', response);
@@ -69,7 +66,7 @@ export class PaymentController {
 
     getPlatformPaymentsForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/member/${memberId}`);
             new FetchSuccess(res, 'Payments for Member', response);
         } catch (err: any) {
@@ -79,7 +76,7 @@ export class PaymentController {
 
     getPaymentForTask = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const taskId = (req.params.taskId as string);
+            const taskId = req.params.taskId as string;
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/task/${taskId}`);
             new FetchSuccess(res, 'Payment for task', response);
         } catch (err: any) {
@@ -89,7 +86,7 @@ export class PaymentController {
 
     getPayment = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const paymentId = (req.params.paymentId as string);
+            const paymentId = req.params.paymentId as string;
             const response = await axios.get(`${process.env.SERVICE_WEB3}/web3/payment/get/payment/${paymentId}`);
             new FetchSuccess(res, 'Payment', response);
         } catch (err: any) {
@@ -112,18 +109,20 @@ export class PaymentController {
         }
     };
 
-    getUninitiatedByDAOId = async (req: Request, res: Response, next: NextFunction) => {
+    getUninitiatedByDAOId = async (req: Request, res: Response, _next: NextFunction) => {
         try {
             const resultProject = await axios.get(
-                `${process.env.SERVICE_PROJECT}/payout/getfordao/${(req.params.daoId as string)}`
+                `${process.env.SERVICE_PROJECT}/payout/getfordao/${req.params.daoId as string}`,
             );
-            let updatedResultProject = resultProject.data?.map((payout: any) => ({
+            const updatedResultProject = resultProject.data?.map((payout: any) => ({
                 ...payout,
                 type: 'Project',
             }));
 
-            const resultJob = await axios.get(`${process.env.SERVICE_JOB}/payout/get/uninitiated/${(req.params.daoId as string)}`);
-            let updatedResultJob = resultJob.data?.map((payout: any) => ({
+            const resultJob = await axios.get(
+                `${process.env.SERVICE_JOB}/payout/get/uninitiated/${req.params.daoId as string}`,
+            );
+            const updatedResultJob = resultJob.data?.map((payout: any) => ({
                 ...payout,
                 type: 'Job',
             }));

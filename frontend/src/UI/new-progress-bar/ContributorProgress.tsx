@@ -13,7 +13,7 @@ import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
 import { ClaimSubdomainModal } from 'components/@pages/new-onboarding';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
 import usePopup from 'hooks/usePopup';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import { changeScrollToFeatured } from 'store/features/Onboarding/slice';
 
 const ContributorProgress: React.FC = () => {
@@ -22,7 +22,7 @@ const ContributorProgress: React.FC = () => {
     const navigate = useNavigate();
     const memberid = getMemberId();
     const dispatch = useTypedDispatch();
-    const memberSubdomainClaimed = useTypedSelector(selectMemberSubdomainClaimed);
+    useTypedSelector(selectMemberSubdomainClaimed);
     const progress = useTypedSelector(selectContributorProgress);
 
     const subdomainModal = usePopup();

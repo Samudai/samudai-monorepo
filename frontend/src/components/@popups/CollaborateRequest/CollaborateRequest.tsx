@@ -12,7 +12,7 @@ import { toast } from 'utils/toast';
 import { useCreateCollaborationMutation } from 'store/services/Dao/dao';
 import { createCollaborationRequest } from 'store/services/Dao/model';
 import { getMemberId } from 'utils/utils';
-import { DAOEnums } from '@samudai_xyz/gateway-consumer-types';
+import { DAOEnums } from '@samudai/gateway-consumer-types';
 
 interface CollaborateRequestProps {
     fromDaoId: string;

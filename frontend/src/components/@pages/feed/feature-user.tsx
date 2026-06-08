@@ -7,7 +7,7 @@ import styles from './styles/feature-user.module.scss';
 
 interface FeatureUserProps {}
 
-const FeatureUser: React.FC<FeatureUserProps> = (props) => {
+const FeatureUser: React.FC<FeatureUserProps> = (_props) => {
     return (
         <div className={styles.feature}>
             <header className={styles.feature_head}>

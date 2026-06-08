@@ -78,8 +78,7 @@ const SendBirdMessageComp: React.FC<SendBirdMessageProps> = ({
         return members.find((member) => member.userId === message.sender.userId);
     }, [members, message]);
 
-    const ordinalIndicator = getOrdinalIndicator(dayjs(message.createdAt).date());
-
+    getOrdinalIndicator(dayjs(message.createdAt).date());
     const handleUpdateMessage = async () => {
         setIsEdit(false);
         setEditMessage('');

@@ -21,7 +21,7 @@ const SelectRole: React.FC<SelectRoleProps> = ({ roles, setFormData, id, formDat
     const [search, setSearch] = useState('');
     const [list, setList] = useState<roles[]>(roles);
     const [defaultOptions, setDefaultOptions] = useState<any>([]);
-    const [load, setLoad] = useState(false);
+    const [_load, setLoad] = useState(false);
     const { daoid } = useParams();
 
     useEffect(() => {

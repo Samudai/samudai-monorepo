@@ -13,7 +13,7 @@ const mockMembers = [
     '/img/icons/user-4.png',
 ];
 
-const NfTask: React.FC<NfTaskProps> = (props) => {
+const NfTask: React.FC<NfTaskProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colTask)}>

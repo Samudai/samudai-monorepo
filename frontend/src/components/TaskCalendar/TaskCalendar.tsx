@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Cells from './elements/Cells';
 import Head from './elements/Head';
 import Title from './elements/Title';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs, { Dayjs } from 'dayjs';
 import { getCells } from 'utils/calendar';

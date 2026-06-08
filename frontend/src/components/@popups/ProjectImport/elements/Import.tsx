@@ -12,7 +12,7 @@ interface ImportProps {
     setStep: (step: Steps) => void;
 }
 
-const Import: React.FC<ImportProps> = ({ link, service, setStep }) => {
+const Import: React.FC<ImportProps> = ({ setStep }) => {
     const [percentage, setPercentage] = useState(0);
 
     useEffect(() => {

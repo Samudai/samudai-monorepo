@@ -1,7 +1,7 @@
 import Skeleton from 'components/Skeleton/Skeleton';
 import styles from '../styles/Skeleton.module.scss';
 
-const MeetingCalendarSkeleton: React.FC = (props) => {
+const MeetingCalendarSkeleton: React.FC = (_props) => {
     return (
         <div className={styles.root}>
             <div className={styles.header}>

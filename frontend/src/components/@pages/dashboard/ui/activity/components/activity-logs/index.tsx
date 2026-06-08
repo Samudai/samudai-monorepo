@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { LogConcepts, LogFiles, LogMerge, LogTask } from '../../logs';
 import { PeriodList } from '../../logs/ui';
-import { Activity } from '@samudai_xyz/gateway-consumer-types/';
+import { Activity } from '@samudai/gateway-consumer-types/';
 import dayjs from 'dayjs';
 import styles from './activity-logs.module.scss';
 

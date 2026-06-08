@@ -19,13 +19,13 @@ import {
     BountyResponse,
     Submission,
     JobsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import Loader from 'components/Loader/Loader';
 
 interface ApplicantsJobProps {}
 
-const ApplicantsJob: React.FC<ApplicantsJobProps> = (props) => {
+const ApplicantsJob: React.FC<ApplicantsJobProps> = (_props) => {
     const [activeTab, setActiveTab] = useState<{ name: string; value: string }>({
         name: 'Pending',
         value: JobsEnums.ApplicantStatusType.APPLIED,

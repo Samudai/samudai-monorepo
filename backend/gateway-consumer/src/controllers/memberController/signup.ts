@@ -4,12 +4,11 @@ import {
     MapDiscordParams,
     Member,
     MemberDiscord,
-    MembersEnums,
     Onboarding,
     Project,
     ProjectEnums,
     Social,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
@@ -21,7 +20,6 @@ export class SignupController {
             const memberId = req.body.memberId;
             const code = req.body.code;
             const redirectUri = req.body.redirectUri;
-            const type_of_member = req.body.type_of_member;
 
             const discordResult = await axios.post(`${process.env.SERVICE_DISCORD}/discord/authuser`, {
                 member_id: memberId,
@@ -38,7 +36,7 @@ export class SignupController {
                 discord,
             });
 
-            const memberUsername = await axios.post(`${process.env.SERVICE_MEMBER}/member/update/username`, {
+            await axios.post(`${process.env.SERVICE_MEMBER}/member/update/username`, {
                 member_id: memberId,
                 username: discord.username,
             });
@@ -46,7 +44,7 @@ export class SignupController {
             if (result.status === 200) {
                 try {
                     discord_data = await axios.get(
-                        `${process.env.SERVICE_DISCORD}/discord/guildforuser/${discord.discord_user_id}`
+                        `${process.env.SERVICE_DISCORD}/discord/guildforuser/${discord.discord_user_id}`,
                     );
                 } catch (err: any) {
                     if (err.response) {
@@ -62,7 +60,7 @@ export class SignupController {
                 if (discord_data && discord_data.data) {
                     try {
                         const data: GuildForMember[] = discord_data.data;
-                        let guilds: GuildInfo[] = [];
+                        const guilds: GuildInfo[] = [];
                         data.forEach((member: GuildForMember) => {
                             const guild: GuildInfo = {
                                 guild_id: member.guild_id,
@@ -76,7 +74,7 @@ export class SignupController {
                             member_id: memberId,
                             guild_info: guilds,
                         };
-                        const result = await axios.post(`${process.env.SERVICE_DAO}/member/mapdiscord`, payload);
+                        await axios.post(`${process.env.SERVICE_DAO}/member/mapdiscord`, payload);
                     } catch (err) {
                         return res.status(500).send({
                             message: 'Error while requesting data from dao',
@@ -121,7 +119,7 @@ export class SignupController {
 
     listAdminGuilds = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_DISCORD}/discord/guildadmin/${memberId}`);
             new FetchSuccess(res, 'ADMIN GUILDS', result);
         } catch (err: any) {
@@ -143,13 +141,9 @@ export class SignupController {
 
             if (result.status === 200) {
                 try {
-                    const socialResult = await axios.post(`${process.env.SERVICE_MEMBER}/social/create`, {
-                        socials,
-                    });
+                    await axios.post(`${process.env.SERVICE_MEMBER}/social/create`, { socials });
 
-                    const onBoardingResult = await axios.post(`${process.env.SERVICE_MEMBER}/onboarding/update`, {
-                        onBoarding,
-                    });
+                    await axios.post(`${process.env.SERVICE_MEMBER}/onboarding/update`, { onBoarding });
 
                     const project: Project = {
                         link_id: member.member_id,
@@ -175,9 +169,7 @@ export class SignupController {
                     });
                 }
 
-                const deleteOnboarding = await axios.delete(
-                    `${process.env.SERVICE_ACTIVITY}/onboarding/delete/${member.member_id}`
-                );
+                await axios.delete(`${process.env.SERVICE_ACTIVITY}/onboarding/delete/${member.member_id}`);
             }
 
             return res.status(201).send({

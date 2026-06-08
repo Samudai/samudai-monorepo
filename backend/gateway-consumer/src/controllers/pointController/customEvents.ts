@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
+import { CreateSuccess, DeleteSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 
 export class PointCustomEventsController {
     addProductEvents = async (req: Request, res: Response, next: NextFunction) => {
@@ -30,7 +30,7 @@ export class PointCustomEventsController {
     deleteProductEvents = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result = await axios.delete(
-                `${process.env.SERVICE_POINT}/productevent/delete/${(req.params.pointId as string)}/${(req.params.productId as string)}/${(req.params.eventName as string)}`
+                `${process.env.SERVICE_POINT}/productevent/delete/${req.params.pointId as string}/${req.params.productId as string}/${req.params.eventName as string}`,
             );
             new DeleteSuccess(res, 'product event', result);
         } catch (err: any) {

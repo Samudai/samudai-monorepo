@@ -1,6 +1,6 @@
 {
-  "name": "samudai",
-  "version": "0.1.0",
+  "name": "samudai-dashboard",
+  "version": "1.0.0",
   "engines": {
     "node": ">=22"
   },
@@ -19,7 +19,7 @@
     "@pushprotocol/socket": "^0.5.3",
     "@rainbow-me/rainbowkit": "^2.2.11",
     "@reduxjs/toolkit": "^2.12.0",
-    "@samudai_xyz/gateway-consumer-types": "^0.8.96",
+    "@samudai/gateway-consumer-types": "1.0.0",
     "@samudai/web3-sdk": "0.1.0",
     "@sendbird/chat": "^4.9.8",
     "@tanstack/react-query": "^5.100.14",
@@ -67,6 +67,7 @@
     "redux-logger": "^3.0.6",
     "sass": "^1.53.0",
     "slate": "^0.124.1",
+    "slate-dom": "^0.124.1",
     "slate-hyperscript": "^0.125.0",
     "slate-react": "^0.124.2",
     "socket.io-client": "^4.5.3",
@@ -91,12 +92,6 @@
     "build:development": "env-cmd -f ./.development.env vite build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f ./.production.env vite build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "overrides": {
     "@emoji-mart/react": {
       "react": "$react"
@@ -104,7 +99,7 @@
     "@pushprotocol/socket": {
       "ethers": "$ethers"
     },
-    "typescript": "$typescript",
+    "typescript": "^6.0.3",
     "lit": "3.3.3",
     "lit-html": "3.3.3",
     "lit-element": "4.2.2",
@@ -126,6 +121,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/js": "^9.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.2.1",
     "@types/mixpanel-browser": "^2.38.0",
     "@types/react-linkify": "^1.0.1",
@@ -133,20 +129,20 @@
     "@types/react-transition-group": "^4.4.5",
     "@types/redux-logger": "^3.0.9",
     "@types/validator": "^13.7.17",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
     "@vitejs/plugin-react": "^6.0.2",
     "env-cmd": "^10.1.0",
     "esbuild": "^0.28.0",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-unused-imports": "^3.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-unused-imports": "^4.0.0",
+    "globals": "^17.0.0",
     "jsdom": "^29.1.1",
     "prettier": "^3.0.0",
     "sass-migrator": "^2.5.7",
     "source-map-explorer": "^2.5.3",
+    "typescript-eslint": "^8.60.1",
     "typescript-plugin-css-modules": "^3.4.0",
     "vite": "^8.0.14",
     "vite-plugin-node-polyfills": "^0.28.0",

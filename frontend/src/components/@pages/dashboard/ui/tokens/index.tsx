@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { GnosisFetch } from '@samudai/web3-sdk';
 import { GnosisTypes } from '@samudai/web3-sdk';
 import { selectAccessList } from 'store/features/common/slice';
@@ -14,7 +14,7 @@ import './tokens.scss';
 
 export const Tokens: React.FC = () => {
     const [defaultProvider] = useLazyGetDefaultProviderQuery();
-    const [loading, setLoading] = useState<boolean>(false);
+    const [_loading, setLoading] = useState<boolean>(false);
     const { daoid } = useParams();
     const navigate = useNavigate();
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(

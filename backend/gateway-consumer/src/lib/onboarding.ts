@@ -7,14 +7,12 @@ import {
     Onboarding,
     AccessEnums,
     Dashboard,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { getDAOInfo } from './daoHelpers';
 
 export const completeOnboarding = async (onboarding: Onboarding) => {
     try {
-        const onBoardingResult = await axios.post(`${process.env.SERVICE_MEMBER}/onboarding/update`, {
-            onboarding,
-        });
+        await axios.post(`${process.env.SERVICE_MEMBER}/onboarding/update`, { onboarding });
 
         const project: Project = {
             link_id: onboarding.member_id,
@@ -51,13 +49,11 @@ export const completeOnboarding = async (onboarding: Onboarding) => {
                     });
 
                     return result.data;
-                })
+                }),
             );
         }
 
-        const deleteOnboarding = await axios.delete(
-            `${process.env.SERVICE_ACTIVITY}/onboarding/delete/${onboarding.member_id}`
-        );
+        await axios.delete(`${process.env.SERVICE_ACTIVITY}/onboarding/delete/${onboarding.member_id}`);
 
         return {
             data: {
@@ -78,18 +74,16 @@ export const daoOnboarding = async (memberId: string, value: any) => {
 
         const daoId = result.data.dao_id;
 
-        const res1 = await axios.post(`${process.env.SERVICE_DAO}/member/create`, {
+        await axios.post(`${process.env.SERVICE_DAO}/member/create`, {
             member: {
                 dao_id: daoId,
                 member_id: memberId,
             },
         });
-        
-        const res2 = await axios.post(`${process.env.SERVICE_DAO}/access/creatediscord`, {
-            dao_id: daoId,            
-        });
 
-        const res3 = await axios.post(`${process.env.SERVICE_DAO}/access/addmemberdiscord`, {
+        await axios.post(`${process.env.SERVICE_DAO}/access/creatediscord`, { dao_id: daoId });
+
+        await axios.post(`${process.env.SERVICE_DAO}/access/addmemberdiscord`, {
             dao_id: daoId,
             access: AccessEnums.AccessType.MANAGE_DAO,
             member_id: memberId,
@@ -122,9 +116,7 @@ export const daoOnboardingComplete = async (dao_id: string, member_id: string) =
             pinned: true,
         };
 
-        const projectResult = await axios.post(`${process.env.SERVICE_PROJECT}/project/create`, {
-            project,
-        });
+        await axios.post(`${process.env.SERVICE_PROJECT}/project/create`, { project });
 
         const daoDashboard: Dashboard = {
             dao_id: dao_id,
@@ -134,11 +126,9 @@ export const daoOnboardingComplete = async (dao_id: string, member_id: string) =
             visibility: 'public',
         };
 
-        const dashboardResult = await axios.post(`${process.env.SERVICE_DASHBOARD}/dashboard/create`, {
-            dashboard: daoDashboard,
-        });
+        await axios.post(`${process.env.SERVICE_DASHBOARD}/dashboard/create`, { dashboard: daoDashboard });
 
-        const addAdminData = await axios.post(`${process.env.SERVICE_ACTIVITY}/admins/dao/add`, {
+        await axios.post(`${process.env.SERVICE_ACTIVITY}/admins/dao/add`, {
             admin: {
                 member_id,
                 dao_id,
@@ -146,10 +136,10 @@ export const daoOnboardingComplete = async (dao_id: string, member_id: string) =
             },
         });
 
-        return ({
+        return {
             message: 'Dao And Member Onboarding Complete',
             data: result.data,
-        });
+        };
     } catch (err) {
         return err;
     }

@@ -8,7 +8,7 @@ import MarkIcon from 'ui/SVG/MarkIcon';
 import Input from 'ui/@form/Input/Input';
 import FormMembers from './FormMembers';
 import rootStyles from '../styles/AddMembers.module.scss';
-import { ProjectEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectEnums } from '@samudai/gateway-consumer-types';
 import { useCreateClanMutation } from 'store/services/userProfile/clans';
 import { createClanRequest } from 'store/services/userProfile/model';
 import styles from '../styles/ClanSetup.module.scss';

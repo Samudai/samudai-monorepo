@@ -6,7 +6,7 @@ import { ControlButton, ModalTitle } from '../elements';
 import { CompleteProps } from '../types';
 import './Complete.scss';
 
-const Complete: React.FC<CompleteProps> = ({ state }) => {
+const Complete: React.FC<CompleteProps> = () => {
     const navigate = useNavigate();
 
     const onClickControl = () => {

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types/dist/types';
 import routes from 'root/router/routes';
 import { replaceParam } from 'root/router/utils';
 import TaskCalendar from 'components/TaskCalendar/TaskCalendar';

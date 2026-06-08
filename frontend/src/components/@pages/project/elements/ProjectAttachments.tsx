@@ -5,15 +5,14 @@ import AttachmentIcon from 'ui/SVG/AttachmentIcon';
 import { ProjectHelper } from 'utils/helpers/ProjectHelper';
 import styles from '../styles/ProjectAttachments.module.scss';
 import FileInput from 'ui/@form/FileInput/FileInput';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types/dist/types';
 
 interface ProjectAttachmentsProps {
     project: ProjectResponse;
 }
 
 const ProjectAttachments: React.FC<ProjectAttachmentsProps> = ({ project }) => {
-    const files = ProjectHelper.getAttachmentsAll(project);
-
+    ProjectHelper.getAttachmentsAll(project);
     const sliderSettings: SwiperProps = {
         slidesPerView: 4,
         allowTouchMove: false,

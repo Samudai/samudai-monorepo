@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { ProjectFile, ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectFile, ProjectResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { Swiper as SwiperCore } from 'swiper';
@@ -40,18 +40,17 @@ interface ProjectAttachmentsProps {
 
 // Config
 const MAX_ELEMENTS_PER_PAGE = 4;
-const COUNT_SHOW_PAGES = 4;
 
 const ProjectAttachments: React.FC<ProjectAttachmentsProps> = ({ onClose, project }) => {
     const [search, setSearch] = useInput('');
     const [swiper, setSwiper] = useState<SwiperCore | null>(null);
     const [, setActiveSlide] = useState(0);
     const [page, setPage] = useState(0);
-    const [period, setPeriod] = useState<DatePeriodPeriod>({
+    const [period, _setPeriod] = useState<DatePeriodPeriod>({
         start: null,
         end: null,
     });
-    const [showCalendar, setShowCalendar] = useState(false);
+    const [_showCalendar, _setShowCalendar] = useState(false);
     const addFolderPopup = usePopup();
     const [folders, setFolders] = useState<folderRes[]>([] as folderRes[]);
     const [foldersFilter, setFoldersFilter] = useState<ProjectFile[]>([] as ProjectFile[]);

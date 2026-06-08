@@ -18,7 +18,7 @@ const GithubUser = () => {
     useEffect(() => {
         const fun = async () => {
             try {
-                const res = await gitHubUser({
+                await gitHubUser({
                     code: code || '',
                     member_id: member_id,
                     redirectUri: window.location.origin + '/githubuser',

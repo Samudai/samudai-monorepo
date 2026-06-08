@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Task, Opportunity } from '@samudai_xyz/gateway-consumer-types';
+import { Task, Opportunity } from '@samudai/gateway-consumer-types';
 import { RootState } from 'store/store';
 import { fetchProjects } from './async';
 
@@ -26,7 +26,7 @@ export const jobsSlice = createSlice({
     name: 'projects',
     initialState,
     reducers: {
-        updateItem: (state: JobsSliceState, { payload }: PayloadAction<UpdateItemType>) => {
+        updateItem: (_state: JobsSliceState, _action: PayloadAction<UpdateItemType>) => {
             // state.data = state.data.map((project) => {
             //   if (project.project_id === payload.project_id) {
             //     project.tasks = project?.tasks?.map((task) => {
@@ -39,10 +39,7 @@ export const jobsSlice = createSlice({
             //   return project;
             // });
         },
-        updateInvestmentItem: (
-            state: JobsSliceState,
-            { payload }: PayloadAction<UpdateItemType>
-        ) => {
+        updateInvestmentItem: (_state: JobsSliceState, _action: PayloadAction<UpdateItemType>) => {
             // const { project_id, task } = payload;
             // const projectIndex = state.data.findIndex((p) => p.project_id === project_id);
             // if (projectIndex === -1) {

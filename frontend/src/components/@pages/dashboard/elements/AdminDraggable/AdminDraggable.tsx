@@ -48,10 +48,6 @@ const AdminDraggable: React.FC<AdminDraggableProps> = ({
         }
     };
 
-    const onClickDragButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-        setDraggable(!isDraggable);
-    };
-
     return (
         <div
             className={clsx('admin-draggable', { draggable: isDragging })}
@@ -64,11 +60,6 @@ const AdminDraggable: React.FC<AdminDraggableProps> = ({
                 onDrop: (e) => dropHandler(e, widget),
             })}
         >
-            {/* <Block.DragButton
-        isDraggable={widget.draggable}
-        isDraggableActive={isDraggable}
-        onClickDrag={onClickDragButton}
-      /> */}
             {children}
         </div>
     );

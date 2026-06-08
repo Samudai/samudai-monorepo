@@ -17,7 +17,7 @@ import {
     SubTask,
     SubTaskResponse,
     TaskResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import PlusIcon from 'ui/SVG/PlusIcon';
 import { toast } from 'utils/toast';
 import { IMember } from 'utils/types/User';

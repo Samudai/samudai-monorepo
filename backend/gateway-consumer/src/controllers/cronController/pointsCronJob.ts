@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { CronEnums } from '@samudai_xyz/gateway-consumer-types';
 
 export class PointCronController {
     guildMetricCron = async () => {

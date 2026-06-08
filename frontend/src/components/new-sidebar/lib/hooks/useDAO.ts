@@ -24,7 +24,7 @@ import checkIfValidUUID from 'utils/checkIfValidUUID';
 import { getMemberId } from 'utils/utils';
 import { getInitial } from '../getInitial';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { addedDao, changeAddedDao } from 'store/features/common/slice';
 
 export const useDAO = (callback?: () => void) => {
@@ -34,7 +34,7 @@ export const useDAO = (callback?: () => void) => {
     const { daoid } = useParams();
     const navigate = useNavigate();
     const trialDashboard = useTypedSelector(selectTrialDashboard);
-    const daoList = useTypedSelector(selectDaoList);
+    useTypedSelector(selectDaoList);
     const accessDao = useTypedSelector(selectAccess);
     const isAdddedDAO = useTypedSelector(addedDao);
 
@@ -47,7 +47,7 @@ export const useDAO = (callback?: () => void) => {
         guildId: '',
     });
 
-    const [initial, setInitial] = useState<string>('');
+    const [_initial, setInitial] = useState<string>('');
     const [DAOList, setDAOList] = useState<DAOType[]>([]);
 
     useEffect(() => {

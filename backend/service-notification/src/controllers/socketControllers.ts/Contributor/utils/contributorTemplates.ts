@@ -1,15 +1,7 @@
-import axios from 'axios';
-import { getMemberByWallet, getMemberInfo } from '../../utils/helpers';
+import { getMemberInfo } from '../../utils/helpers';
 import { NotificationPartialData, WebNotification, NotificationContent } from '../../utils/types';
 import { generateJWT } from '../../../../lib/jwt';
-import {
-  NotificationFor,
-  NotificationScope,
-  NotificationStatus,
-  NotificationType,
-  NewNotificationScope,
-  NewNotificationType,
-} from '../../utils/enums';
+import { NotificationStatus, NewNotificationScope, NewNotificationType } from '../../utils/enums';
 import {
   SocialConnectionRequestNotificationMetaData,
   ContributorCompleteProfileNotificationMetaData,
@@ -78,7 +70,7 @@ export class ContributorNotificationTemplateHandler {
     notificationPartialData: NotificationPartialData,
   ): Promise<WebNotification | null> => {
     try {
-      const { to, from, metaData, timestamp } = notificationPartialData;
+      const { to, from, timestamp } = notificationPartialData;
       const jwt = generateJWT(from.from);
       //User Info
       const memberResult = await getMemberInfo(from.from, jwt);

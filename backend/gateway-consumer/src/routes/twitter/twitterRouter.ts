@@ -34,7 +34,7 @@ export class TwitterRouter {
         //     this.twitterController.updateFeaturedTweet
         // );
 
-        this.router.delete('/api/twitter/delete/:linkId', this.twitterController.deleteTweet)
+        this.router.delete('/api/twitter/delete/:linkId', this.twitterController.deleteTweet);
 
         this.app.use(this.router);
     };

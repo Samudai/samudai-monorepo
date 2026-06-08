@@ -2,16 +2,12 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { JobFilter, JobPayout, Opportunity, JobsEnums, ProjectEnums } from '@samudai_xyz/gateway-consumer-types';
-
-type OpportunityResponse = {
-    opportunity: Opportunity[];
-};
+import { JobFilter, JobPayout, Opportunity, JobsEnums, ProjectEnums } from '@samudai/gateway-consumer-types';
 
 export class JobsController {
     createJob = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            var createdTaskId;
+            let createdTaskId;
 
             const opportunity: Opportunity = req.body.opportunity;
             opportunity.transaction_count = opportunity.payout?.length!;
@@ -41,7 +37,7 @@ export class JobsController {
                 opportunity: opportunity,
             });
 
-            var payoutids: string[] = [];
+            let payoutids: string[] = [];
             const contributor_count = opportunity.req_people_count;
 
             if (result && opportunity.payout) {
@@ -59,12 +55,12 @@ export class JobsController {
                         });
 
                         payoutids = [...payoutids, res.data.payout_ids];
-                    })
+                    }),
                 );
             }
 
             if (opportunity.task_id) {
-                const updatedTask = await axios.post(`${process.env.SERVICE_PROJECT}/task/update/associatejob`, {
+                await axios.post(`${process.env.SERVICE_PROJECT}/task/update/associatejob`, {
                     task_id: opportunity.task_id,
                     associated_job_type: JobsEnums.JobPayoutLinkType.TASK,
                     associated_job_id: result.data.job_id,
@@ -72,14 +68,14 @@ export class JobsController {
             }
 
             if (opportunity.subtask_id) {
-                const updatedSubTask = await axios.post(`${process.env.SERVICE_PROJECT}/subtask/update/associatejob`, {
+                await axios.post(`${process.env.SERVICE_PROJECT}/subtask/update/associatejob`, {
                     subtask_id: opportunity.subtask_id,
                     associated_job_type: JobsEnums.JobPayoutLinkType.TASK,
                     associated_job_id: result.data.job_id,
                 });
             }
 
-            var response = {
+            const response = {
                 job_id: result.data.job_id,
                 payout: payoutids,
                 task_id: opportunity.task_id ? opportunity.task_id : createdTaskId,
@@ -106,7 +102,7 @@ export class JobsController {
 
     getJob = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.get(`${process.env.SERVICE_JOB}/job/${(req.params.jobId as string)}`);
+            const result = await axios.get(`${process.env.SERVICE_JOB}/job/${req.params.jobId as string}`);
             // if(result.data.opportunity){
             //     result.data.opportunity = await getAttachmentJob(result.data.opportunity);
             // }
@@ -122,10 +118,13 @@ export class JobsController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/job/createdby/${(req.params.memberId as string)}`, {
-                limit: limit,
-                offset: offset,
-            });
+            const result = await axios.post(
+                `${process.env.SERVICE_JOB}/job/createdby/${req.params.memberId as string}`,
+                {
+                    limit: limit,
+                    offset: offset,
+                },
+            );
 
             // if(result.data.opportunities){
             //     result.data.opportunities = await getAttachmentJobs(result.data.opportunities);
@@ -142,7 +141,7 @@ export class JobsController {
             const page: string = req.query.page ? (req.query.page as string) : '1';
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
-            const result = await axios.post(`${process.env.SERVICE_JOB}/job/list/${(req.params.daoId as string)}`, {
+            const result = await axios.post(`${process.env.SERVICE_JOB}/job/list/${req.params.daoId as string}`, {
                 limit: limit,
                 offset: offset,
             });
@@ -163,7 +162,7 @@ export class JobsController {
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
             const dao_ids = req.body.dao_ids;
-            var results = [];
+            const results = [];
             for (let i = 0; i < dao_ids.length; i++) {
                 const result = await axios.post(`${process.env.SERVICE_JOB}/job/list/${dao_ids[i]}`, {
                     limit: limit,
@@ -186,8 +185,8 @@ export class JobsController {
         try {
             const query: string = req.query.query?.toString() ? req.query.query.toString() : '';
             const page: string = req.query.page ? (req.query.page as string) : '1';
-            let querySkills: string = req.query.skills as string;
-            let queryDaoNames: string = req.query.daoNames as string;
+            const querySkills: string = req.query.skills as string;
+            const queryDaoNames: string = req.query.daoNames as string;
             const limit = 50;
             const offset = (parseInt(page) - 1) * limit;
             const skills = querySkills ? querySkills.split(',') : [];
@@ -212,7 +211,7 @@ export class JobsController {
 
     deleteJob = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_JOB}/job/delete/${(req.params.jobId as string)}`);
+            const result = await axios.delete(`${process.env.SERVICE_JOB}/job/delete/${req.params.jobId as string}`);
             new DeleteSuccess(res, 'OPPORTUNITY', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting an opportunity'));

@@ -10,13 +10,11 @@ import styles from 'styles/pages/pipeline-form.module.scss';
 function GCal() {
     const [searchParams] = useSearchParams();
     const code = searchParams.get('code');
-    const localData = localStorage.getItem('signUp');
-    const storedData = localData ? JSON.parse(localData) : null;
+    localStorage.getItem('signUp');
     useEffect(() => {
         const localData = localStorage.getItem('signUp');
         const storedData = JSON.parse(localData!);
         const code = decodeURIComponent(searchParams.get('code')!);
-        const member_id = storedData?.member_id;
         const jwt = localStorage.getItem('jwt');
         store.dispatch(changeJwt({ jwt: jwt! }));
         localStorage.setItem('discordId', 'true');

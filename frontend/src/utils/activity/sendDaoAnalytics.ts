@@ -6,10 +6,10 @@ export type AnalyticsRequest = {
     member_id: string;
 };
 
-export const sendDaoAnalytics = async (data: AnalyticsRequest, type?: string, extras?: any) => {
+export const sendDaoAnalytics = async (data: AnalyticsRequest, _type?: string, _extras?: any) => {
     const url = `${import.meta.env.REACT_APP_GATEWAY}api/dao/analytics/dao/add`;
 
-    const res = await axios.post(
+    await axios.post(
         url,
         { analytics: { ...data } },
         {

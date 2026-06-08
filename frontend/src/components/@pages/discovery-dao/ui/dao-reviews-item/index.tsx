@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stars } from 'ui/stars';
 import css from './dao-reviews-item.module.scss';
-import { ReviewResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ReviewResponse } from '@samudai/gateway-consumer-types';
 
 interface DaoReviewsItemProps {
     data: ReviewResponse;

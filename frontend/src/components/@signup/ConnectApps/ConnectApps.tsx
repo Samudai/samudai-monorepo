@@ -41,22 +41,22 @@ interface dropdown {
     value: string;
     label: string;
 }
-const ConnectApps: React.FC<ConnectAppsProps> = ({ onNextModal, dbot }) => {
+const ConnectApps: React.FC<ConnectAppsProps> = ({ dbot }) => {
     const dispatch = useTypedDispatch();
     const [id, setId] = useState<string>(localStorage.getItem('account_type')!);
     const providerEth = useTypedSelector(selectProvider);
     const discordData = useTypedSelector(selectDiscord);
     const selectedDiscordInfo = useTypedSelector(selectSelectedDiscord);
     const [discordId, setDiscordId] = useState<string>('');
-    const [text, setText, trimText, cleartext] = useInput<HTMLTextAreaElement>('');
-    const [gtext, setGText, trimGText, cleargtext] = useInput<HTMLTextAreaElement>('');
-    const [skip, setSkip] = useState<boolean>(true);
-    const [next, setNext] = useState<boolean>(false);
+    const [text, _setText, _trimText, _cleartext] = useInput<HTMLTextAreaElement>('');
+    const [gtext, _setGText, _trimGText, _cleargtext] = useInput<HTMLTextAreaElement>('');
+    const [_skip, setSkip] = useState<boolean>(true);
+    const [_next, setNext] = useState<boolean>(false);
     const [content, setContent] = useState<string>('');
     let timer: ReturnType<typeof setTimeout>;
     const [daoData] = useLazyGetLatestDaoForMemberQuery();
     const [connected, setConnected] = useState<boolean>(dbot ? true : false);
-    const [botsConnected, setBotsConnected] = useState<boolean>(false);
+    const [_botsConnected, setBotsConnected] = useState<boolean>(false);
     const [snapshot, setSnapshot] = useState<boolean>(false);
     const [gnosis, setGnosis] = useState<boolean>(false);
     const [daoId, setDaoId] = useState<string>('');
@@ -104,7 +104,7 @@ const ConnectApps: React.FC<ConnectAppsProps> = ({ onNextModal, dbot }) => {
             });
     };
 
-    const handleNextAdmin = async (val: string) => {
+    const _handleNextAdmin = async (val: string) => {
         if (val === 'snapshot' && snapshot && !!text.trim()) {
             try {
                 await snapshotAuth({
@@ -297,8 +297,6 @@ const ConnectApps: React.FC<ConnectAppsProps> = ({ onNextModal, dbot }) => {
         setDiscordId(localStorage.getItem('discordId') || '');
     }, []);
 
-    const disabled = connected && ((botsConnected && id === 'admin') || id !== 'admin');
-
     return (
         <Modal data-analytics-page="add_daos_page">
             <ModalTitle icon="/img/icons/apps.png" title="Connect Discord Server" />
@@ -352,7 +350,7 @@ const ConnectApps: React.FC<ConnectAppsProps> = ({ onNextModal, dbot }) => {
                                         }),
                                     }}
                                     className={styles.githubSelect}
-                                    formatOptionLabel={({ value, label }) => (
+                                    formatOptionLabel={({ label }) => (
                                         <p
                                             style={{ color: 'white' }}
                                             className={styles.selectValue}
@@ -594,8 +592,7 @@ const ConnectApps: React.FC<ConnectAppsProps> = ({ onNextModal, dbot }) => {
                             const storageVal = sessionStorage.getItem('memberInfo');
                             const localData = localStorage.getItem('signUp');
                             const parsedData = JSON.parse(localData!);
-                            const member_id = parsedData.member_id;
-                            const account_type = localStorage.getItem('account_type');
+                            localStorage.getItem('account_type');
                             const discord = parsedData.discord;
                             const member = JSON.parse(storageVal!);
                             const randInt = Math.floor(1000 + Math.random() * 9000);

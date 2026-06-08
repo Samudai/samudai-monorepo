@@ -1,9 +1,9 @@
 import { IMember } from '../../UI/UserInfo/ConnectionUserInfo';
-import '@samudai_xyz/gateway-consumer-types';
-import { OpportunityOpenTo } from '@samudai_xyz/gateway-consumer-types/dist/types/jobs/enums';
-import { Visibility } from '@samudai_xyz/gateway-consumer-types/dist/types/project/enums';
+import '@samudai/gateway-consumer-types';
+import { OpportunityOpenTo } from '@samudai/gateway-consumer-types/dist/types/jobs/enums';
+import { Visibility } from '@samudai/gateway-consumer-types/dist/types/project/enums';
 import { IUser } from 'utils/types/User';
-import { JobFile, BountyFile } from '@samudai_xyz/gateway-consumer-types';
+import { JobFile, BountyFile } from '@samudai/gateway-consumer-types';
 
 export interface IOpportunity {
     job_id: string;

@@ -17,7 +17,7 @@ import AttachmentIcon from 'ui/SVG/AttachmentIcon';
 import PlusIcon from 'ui/SVG/PlusIcon';
 import UploadIcon from 'ui/SVG/UploadIcon';
 import styles from './styles/CreateFormItem.module.scss';
-import { FormEnums } from '@samudai_xyz/gateway-consumer-types';
+import { FormEnums } from '@samudai/gateway-consumer-types';
 
 interface CreateFormItemProps {
     data: GetFormDataItemType;

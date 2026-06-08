@@ -6,7 +6,7 @@ import styles from './styles/feature-dao.module.scss';
 
 interface FeatureDaoProps {}
 
-const FeatureDao: React.FC<FeatureDaoProps> = (props) => {
+const FeatureDao: React.FC<FeatureDaoProps> = (_props) => {
     return (
         <div className={styles.feature}>
             <header className={styles.feature_head}>

@@ -18,8 +18,8 @@ interface IProps {
     id: string;
     pid?: string;
 }
-const DeleteTask: React.FC<IProps> = ({ onClose, project, id, pid }) => {
-    const [load, setLoad] = useState<boolean>(false);
+const DeleteTask: React.FC<IProps> = ({ onClose, project, id }) => {
+    const [load, _setLoad] = useState<boolean>(false);
     const navigate = useNavigate();
     const { daoid } = useParams();
     const roles = useTypedSelector(selectRoles);
@@ -56,7 +56,7 @@ const DeleteTask: React.FC<IProps> = ({ onClose, project, id, pid }) => {
                 navigate(`/${daoid}/projects`);
                 onClose();
             }
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Unable to delete', '')();
         }
     };

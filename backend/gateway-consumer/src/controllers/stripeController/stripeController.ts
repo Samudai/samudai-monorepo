@@ -2,12 +2,13 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { FetchSuccess } from '../../lib/helper/Responsehandler';
-const stripe = process.env.STRIPE_SECRET_KEY ? require('stripe')(process.env.STRIPE_SECRET_KEY) : null;
+import Stripe from 'stripe';
+const stripe: any = process.env.STRIPE_SECRET_KEY ? (Stripe as any)(process.env.STRIPE_SECRET_KEY) : null;
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET;
 
 export class stripeController {
-    webhook = async (req: Request, res: Response, next: NextFunction) => {
+    webhook = async (req: Request, res: Response, _next: NextFunction) => {
         const sig = req.headers['stripe-signature'];
 
         let event;
@@ -32,7 +33,7 @@ export class stripeController {
 
                 console.log(customer);
 
-                const res1 = await axios.post(`${process.env.SERVICE_DAO}/stripe/customer/add`, {
+                await axios.post(`${process.env.SERVICE_DAO}/stripe/customer/add`, {
                     customer: {
                         customer_id: checkoutCompleted.customer,
                         name: customer.name,
@@ -44,7 +45,7 @@ export class stripeController {
 
                 const subscription = await stripe.subscriptions.retrieve(checkoutCompleted.subscription);
 
-                const result = await axios.post(`${process.env.SERVICE_DAO}/stripe/subscription/add`, {
+                await axios.post(`${process.env.SERVICE_DAO}/stripe/subscription/add`, {
                     subscription: {
                         dao_id,
                         member_id,
@@ -69,7 +70,7 @@ export class stripeController {
         if (event.type === 'customer.subscription.updated') {
             const updatedSubscription = event.data.object;
 
-            const result = await axios.post(`${process.env.SERVICE_DAO}/stripe/subscription/update`, {
+            await axios.post(`${process.env.SERVICE_DAO}/stripe/subscription/update`, {
                 subscription: {
                     subscription_id: updatedSubscription.id,
                     invoice_ids: [updatedSubscription.latest_invoice],
@@ -90,7 +91,7 @@ export class stripeController {
         if (event.type === 'customer.updated') {
             const updatedCustomer = event.data.object;
 
-            const res1 = await axios.post(`${process.env.SERVICE_DAO}/stripe/customer/update`, {
+            await axios.post(`${process.env.SERVICE_DAO}/stripe/customer/update`, {
                 customer: {
                     customer_id: updatedCustomer.id,
                     name: updatedCustomer.name,
@@ -106,7 +107,7 @@ export class stripeController {
 
     getPaymentLinkForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/stripe/getcustomerid/${daoId}`);
 
             let session;
@@ -239,7 +240,7 @@ export class stripeController {
 
     getUsedLimitsForDao = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
 
             const [userCount, projectCount, formCount, discussionCount] = await Promise.all([
                 axios.get(`${process.env.SERVICE_DAO}/member/licensed/getcount/${daoId}`),

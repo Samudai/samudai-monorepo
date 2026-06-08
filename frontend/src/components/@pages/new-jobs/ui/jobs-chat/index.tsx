@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import Popup from 'components/@popups/components/Popup/Popup';
 import CloseButton from 'ui/@buttons/Close/Close';
 import css from './jobs-chat.module.scss';

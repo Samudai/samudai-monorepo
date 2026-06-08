@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
+import { CreateSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 
 export class PointTwitterController {
     twitterOauth = async (req: Request, res: Response, next: NextFunction) => {
@@ -15,7 +15,7 @@ export class PointTwitterController {
                 redirect_uri: Oauth.redirect_uri,
                 code_verifier: 'challenge',
             });
-            var res1: any;
+            let res1: any;
 
             const res2 = await axios.get(`https://api.twitter.com/2/users/me`, {
                 headers: { Authorization: 'Bearer ' + result.data.access_token },
@@ -104,7 +104,7 @@ export class PointTwitterController {
 
     getTwitterByPointId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const pointId = (req.params.pointId as string);
+            const pointId = req.params.pointId as string;
             const result = await axios.get(`${process.env.SERVICE_POINT}/twitter/getbypointid/${pointId}`);
             new FetchSuccess(res, 'Fetch Twitter', result);
         } catch (err: any) {

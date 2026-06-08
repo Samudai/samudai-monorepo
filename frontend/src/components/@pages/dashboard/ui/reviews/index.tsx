@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectTrialDashboard } from 'store/features/Onboarding/slice';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
@@ -30,14 +30,12 @@ export const Reviews: React.FC<ReviewsProps> = ({ className }) => {
     const reviewAdd = usePopup();
     const { daoid } = useParams();
 
-    const navigate = useNavigate();
+    useNavigate();
     const activeDAO = useTypedSelector(selectActiveDao);
     const [loading, setLoading] = useState(false);
     const [getReview] = useLazyGetReviewQuery();
     const [totalRatings, setTotalRatings] = useState(0);
-    const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
-        AccessEnums.AccessType.MANAGE_DAO
-    );
+    useTypedSelector(selectAccessList)?.[daoid!]?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const discordModal = usePopup();
     const trialDashboard = useTypedSelector(selectTrialDashboard);
 
@@ -54,7 +52,7 @@ export const Reviews: React.FC<ReviewsProps> = ({ className }) => {
                 });
                 setTotalRatings(totalRatings);
             })
-            .catch((err) => {
+            .catch((_err) => {
                 setLoading(false);
             });
     };

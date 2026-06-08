@@ -24,9 +24,7 @@ export class BadGateway extends CustomResponse {
 
 export class AddSuccess extends CustomResponse {
     constructor(res: Response, name: string, result: any) {
-        if (result.hasOwnProperty('data').hasOwnProperty('data')) {
-            super(201, `${name} Added Successfully`, res, result.data.data);
-        } else if (result.hasOwnProperty('data')) {
+        if (Object.prototype.hasOwnProperty.call(result, 'data')) {
             super(201, `${name} Added Successfully`, res, result.data);
         } else {
             super(201, `${name} Added Successfully`, res, result);
@@ -40,9 +38,7 @@ export class AddSuccess extends CustomResponse {
 
 export class FetchSuccess extends CustomResponse {
     constructor(res: Response, name: string, result: any) {
-        if (result.hasOwnProperty('data').hasOwnProperty('data')) {
-            super(200, `${name} Fetched Successfully`, res, result.data.data);
-        } else if (result.hasOwnProperty('data')) {
+        if (Object.prototype.hasOwnProperty.call(result, 'data')) {
             super(200, `${name} Fetched Successfully`, res, result.data);
         } else {
             super(200, `${name} Fetched Successfully`, res, result);
@@ -56,9 +52,7 @@ export class FetchSuccess extends CustomResponse {
 
 export class DeleteSuccess extends CustomResponse {
     constructor(res: Response, name: string, result: any) {
-        if (result.hasOwnProperty('data').hasOwnProperty('data')) {
-            super(200, `${name} Deleted Successfully`, res, result.data.data);
-        } else if (result.hasOwnProperty('data')) {
+        if (Object.prototype.hasOwnProperty.call(result, 'data')) {
             super(200, `${name} Deleted Successfully`, res, result.data);
         } else {
             super(200, `${name} Deleted Successfully`, res, result);
@@ -72,9 +66,7 @@ export class DeleteSuccess extends CustomResponse {
 
 export class CreateSuccess extends CustomResponse {
     constructor(res: Response, name: string, result: any) {
-        if (result.hasOwnProperty('data').hasOwnProperty('data')) {
-            super(201, `${name} Created Successfully`, res, result.data.data);
-        } else if (result.hasOwnProperty('data')) {
+        if (Object.prototype.hasOwnProperty.call(result, 'data')) {
             super(201, `${name} Created Successfully`, res, result.data);
         } else {
             super(201, `${name} Created Successfully`, res, result);
@@ -88,9 +80,7 @@ export class CreateSuccess extends CustomResponse {
 
 export class UpdateSuccess extends CustomResponse {
     constructor(res: Response, name: string, result: any) {
-        if (result.hasOwnProperty('data').hasOwnProperty('data')) {
-            super(201, `${name} Updated Successfully`, res, result.data.data);
-        } else if (result.hasOwnProperty('data')) {
+        if (Object.prototype.hasOwnProperty.call(result, 'data')) {
             super(201, `${name} Updated Successfully`, res, result.data);
         } else {
             super(201, `${name} Updated Successfully`, res, result);
@@ -104,9 +94,7 @@ export class UpdateSuccess extends CustomResponse {
 
 export class VerifySuccess extends CustomResponse {
     constructor(res: Response, name: string, result: any) {
-        if (result.hasOwnProperty('data').hasOwnProperty('data')) {
-            super(201, `${name} Verified Successfully`, res, result.data.data);
-        } else if (result.hasOwnProperty('data')) {
+        if (Object.prototype.hasOwnProperty.call(result, 'data')) {
             super(201, `${name} Verified Successfully`, res, result.data);
         } else {
             super(201, `${name} Verified Successfully`, res, result);

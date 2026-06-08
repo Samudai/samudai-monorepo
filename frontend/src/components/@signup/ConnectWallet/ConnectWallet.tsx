@@ -31,10 +31,9 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
     const { connectAsync } = useConnect();
     const config = useConfig();
     const navigate = useNavigate();
-    const search = useLocation().search;
+    const _search = useLocation().search;
     const inviteCode = localStorage.getItem('inviteCode');
-    const daomember = localStorage.getItem('daomember');
-
+    localStorage.getItem('daomember');
     const ConnectWalletHandler = async () => {
         localStorage.removeItem('discord bot');
         try {
@@ -197,7 +196,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
                             mixpanel.time_event('connect_wallet');
                             console.log('triggered connect wallet event');
                         })
-                        .catch((err) => {
+                        .catch((_err) => {
                             toast('Failure', 1000, 'Something went wrong', '');
                         });
                 }

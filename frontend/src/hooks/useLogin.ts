@@ -13,8 +13,7 @@ const useLogin = () => {
         const isTimeoutToken = token && Date.now() - +token > parseTime('3d');
         const isRequestAuth = !token;
         const url = window.location.href.replace(window.location.origin, '');
-        const path = url.split('/');
-
+        url.split('/');
         if (isRequestAuth || isTimeoutToken) {
             localStorage.removeItem('access_token');
             navigate(routes.login);

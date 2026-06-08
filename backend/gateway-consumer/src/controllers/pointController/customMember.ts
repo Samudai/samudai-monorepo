@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
+import { CreateSuccess } from '../../lib/helper/Responsehandler';
 
 export class PointCustomMemberController {
     addCustomMember = async (req: Request, res: Response, next: NextFunction) => {

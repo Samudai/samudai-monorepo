@@ -8,8 +8,8 @@ import {
 } from '../utils/getDefaultCreateData';
 import { contactsSelectStyles, departmentSelectStyles } from '../utils/job-select.styles';
 import JobSubmitted from './job-submitted';
-import { JobsEnums } from '@samudai_xyz/gateway-consumer-types';
-// import { IMember } from '@samudai_xyz/gateway-consumer-types/dist/types/notifications/types';
+import { JobsEnums } from '@samudai/gateway-consumer-types';
+// import { IMember } from '@samudai/gateway-consumer-types/dist/types/notifications/types';
 import clsx from 'clsx';
 import { v4 as uuidv4 } from 'uuid';
 // import { members } from 'root/members';
@@ -50,7 +50,7 @@ import JobSkills from '../JobSkills';
 import JobTags, { TagType } from '../JobTags';
 import JobTask from '../JobTask';
 import styles from '../styles/JobCreate.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 interface JobCreateProps {
     onClose: () => void;
@@ -358,7 +358,7 @@ const JobCreate: React.FC<JobCreateProps> = ({ onClose }) => {
                             Do you need Captain? <InformationIcon data-icon-info />
                         </h3>
                         <ul className={styles.captain}>
-                            {[true, false].map((value, id) => (
+                            {[true, false].map((value, _id) => (
                                 <li
                                     className={styles.captainItem}
                                     data-active={formData.captain === value}

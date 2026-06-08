@@ -5,7 +5,7 @@ import styles from '../styles/Messages.module.scss';
 
 interface MessagesProps {}
 
-const Messages: React.FC<MessagesProps> = (props) => {
+const Messages: React.FC<MessagesProps> = (_props) => {
     return (
         <React.Fragment>
             <NfItem type="actions">

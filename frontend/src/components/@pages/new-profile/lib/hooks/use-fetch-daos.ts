@@ -10,7 +10,7 @@ import {
 import { useTypedSelector } from 'hooks/useStore';
 import { toast } from 'utils/toast';
 import { getMemberId } from 'utils/utils';
-import { MemberResponse, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse, MembersEnums } from '@samudai/gateway-consumer-types';
 import {
     useLazyGetMostActiveContributorQuery,
     useLazyGetMostViewedContributorQuery,
@@ -118,7 +118,7 @@ export const useFetchProfileDaos = () => {
                 //         connections: [...connections?.connections || [], memberRequests.find(member => member.member_id === id)]
                 //     } }));
             })
-            .catch((err) => {
+            .catch((_err) => {
                 toast('Failure', 5000, 'Failed to accept request', '')();
             });
     };

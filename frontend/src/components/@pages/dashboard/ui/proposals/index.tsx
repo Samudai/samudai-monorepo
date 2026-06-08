@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProposalsDetails } from './components/proposals-details';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { Snapshot } from '@samudai/web3-sdk';
 import { selectAccessList, selectActiveDao, selectProvider } from 'store/features/common/slice';
 import { useLazyGetDaoByDaoIdQuery } from 'store/services/Dao/dao';
@@ -24,7 +24,7 @@ export const Proposals: React.FC = () => {
     const detailsPopup = usePopup();
     const [getDao] = useLazyGetDaoByDaoIdQuery();
     const { daoid } = useParams();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const providerEth = useTypedSelector(selectProvider);
     const [selectedProposal, setSelectedProposal] = useState<any>(null);
     const access = useTypedSelector(selectAccessList)?.[daoid!]?.includes(
@@ -32,14 +32,12 @@ export const Proposals: React.FC = () => {
     );
 
     const [data, setData] = useState<any[]>([]);
-    const [loading1, setLoading1] = useState(true);
+    const [_loading1, setLoading1] = useState(true);
     const [isConnected, setIsConnected] = useState(false);
 
     const fetchData = async function () {
         setLoading1(true);
-        const chainId: number = await providerEth!
-            .getNetwork()
-            .then((network) => Number(network.chainId));
+        await providerEth!.getNetwork().then((network) => Number(network.chainId));
 
         // const localData = localStorage.getItem('signUp');
         // const parsedData = !!localData && JSON.parse(localData);

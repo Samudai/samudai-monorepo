@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { UniversalSuccess } from '../../lib/helper/Responsehandler';
-import { MemberFilter } from '@samudai_xyz/gateway-consumer-types';
+import { MemberFilter } from '@samudai/gateway-consumer-types';
 
 export class MemberDiscoveryController {
     discoverCaptain = async (req: Request, res: Response, next: NextFunction) => {

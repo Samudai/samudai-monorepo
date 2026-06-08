@@ -1,4 +1,4 @@
-import { NotificationsEnums, WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, WebNotification } from '@samudai/gateway-consumer-types';
 import { setNotificationSocket } from 'store/features/common/slice';
 import store from 'store/store';
 import { toast } from 'utils/toast';
@@ -8,8 +8,6 @@ import { updateNewMessage, updateNewNotification } from 'store/features/notifica
 
 const listenNotification = () => {
     const socket = store.getState().commonReducer.socket;
-    const provider = store.getState().commonReducer.provider;
-
     if (socket) {
         socket.on(
             NotificationsEnums.NewSocketEventsFromService.ALL,
@@ -61,7 +59,7 @@ const listenNotification = () => {
 
         socket.on(
             NotificationsEnums.NewSocketEventsFromService.MEMBER_CONNECTED,
-            (notification: WebNotification) => {
+            (_notification: WebNotification) => {
                 store.dispatch(setNotificationSocket({ socket }));
             }
         );

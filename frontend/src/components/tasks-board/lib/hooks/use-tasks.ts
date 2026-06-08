@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
 import { useParams } from 'react-router-dom';
-import { ActivityEnums, NotificationsEnums, Task } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, NotificationsEnums, Task } from '@samudai/gateway-consumer-types';
 import { selectActiveDao, selectProvider } from 'store/features/common/slice';
 import { updateItem } from 'store/features/jobs/slice';
 import {
@@ -26,7 +26,7 @@ export interface ITaskData extends Omit<Task, 'created_by'> {
 
 export const useTasks = (project_id?: string) => {
     const { projectData, isSuccess: projectSuccess, isLoading: projectLoading } = useFetchProject();
-    const providerEth = useTypedSelector(selectProvider);
+    useTypedSelector(selectProvider);
     const [updateColumn] = useUpdateColumnsMutation();
     const [updateRow] = useUpdateRowMutation();
     const [removeTask] = useDeleteTaskMutation();
@@ -85,7 +85,7 @@ export const useTasks = (project_id?: string) => {
                 totalcol: lastColumnId,
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateItem({
                             project_id: project.project_id!,
@@ -283,7 +283,7 @@ export const useTasks = (project_id?: string) => {
                 project_id: project.project_id!,
             })
                 .unwrap()
-                .then((res) => {
+                .then((_res) => {
                     dispatch(
                         updateItem({
                             project_id: project.project_id!,
@@ -291,7 +291,7 @@ export const useTasks = (project_id?: string) => {
                         })
                     );
                 })
-                .catch((err) => {
+                .catch((_err) => {
                     setTasks(oldTasks);
                 });
         }

@@ -1,5 +1,5 @@
-import { ProjectColumn } from '@samudai_xyz/gateway-consumer-types';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectColumn } from '@samudai/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 export interface ProjectTasksWithColumn<T extends RequiredFields> {
     column: ProjectColumn;
@@ -91,9 +91,9 @@ export function getDynamicColumns<T extends RequiredFields>(arr: T[]) {
 
     for (const item of arr) {
         const group = columns.find((g) => g.column.column_id === item.col);
-        // if (!group) {
-        //     columns.push({ column: item.status, items: [] });
-        // }
+        if (!group) {
+            columns.push({ column: item.status, items: [] });
+        }
     }
 
     return columns;

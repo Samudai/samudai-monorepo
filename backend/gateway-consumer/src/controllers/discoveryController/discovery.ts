@@ -4,27 +4,25 @@ import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, FetchSuccess, AddSuccess } from '../../lib/helper/Responsehandler';
 import {
     DAOEvent,
-    DiscoverDAOResponse,
-    DiscoverMemberResponse,
     MemberEvent,
     MostActiveResponse,
     MostViewedResponse,
     NewView,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 
 export class DiscoveryController {
     discoverDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
             // to get ismember for Dao members
-            var member_id = (req.params.memberId as string);
+            let member_id = req.params.memberId as string;
             if (member_id === ':memberId') {
                 member_id = null!;
             }
 
             // todo: optimize this
             const query: string = req.query.query?.toString() ? req.query.query.toString() : '';
-            let queryTags: string = req.query.tags as string;
-            let queryTypes: string = req.query.types as string;
+            const queryTags: string = req.query.tags as string;
+            const queryTypes: string = req.query.types as string;
             const open_to_collaboration = req.query.open_to_collaboration
                 ? req.query.open_to_collaboration === 'true'
                     ? true
@@ -93,15 +91,15 @@ export class DiscoveryController {
     discoverMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
             // to get isconnect for connections
-            var member_id = (req.params.memberId as string);
+            let member_id = req.params.memberId as string;
             if (member_id === ':memberId') {
                 member_id = null!;
             }
 
             // filters
             const query: string = req.query.query?.toString() ? req.query.query.toString() : '';
-            let querySkills: string = req.query.skills as string;
-            let queryTags: string = req.query.tags as string;
+            const querySkills: string = req.query.skills as string;
+            const queryTags: string = req.query.tags as string;
             const open_for_opportunity = req.query.open_for_opportunity
                 ? req.query.open_for_opportunity === 'true'
                     ? true
@@ -182,7 +180,7 @@ export class DiscoveryController {
 
     fetchTags = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
 
             const daoResult1 = await axios.get(`${process.env.SERVICE_ACTIVITY}/engagement/mostactive/dao`);
             const mostActiveDAO: MostActiveResponse = daoResult1.data.data;
@@ -191,12 +189,12 @@ export class DiscoveryController {
             const mostViewedDAO: MostViewedResponse = daoResult2.data.data;
 
             const contributorResult1 = await axios.get(
-                `${process.env.SERVICE_ACTIVITY}/engagement/mostactive/contributor`
+                `${process.env.SERVICE_ACTIVITY}/engagement/mostactive/contributor`,
             );
             const mostActiveContributor: MostActiveResponse = contributorResult1.data.data;
 
             const contributorResult2 = await axios.get(
-                `${process.env.SERVICE_ACTIVITY}/engagement/mostviewed/contributor`
+                `${process.env.SERVICE_ACTIVITY}/engagement/mostviewed/contributor`,
             );
             const mostViewedContributor: MostViewedResponse = contributorResult2.data.data;
 
@@ -233,7 +231,7 @@ export class DiscoveryController {
                 {
                     member_ids,
                     member_id,
-                }
+                },
             );
 
             const mostActiveDAOData: any = [];

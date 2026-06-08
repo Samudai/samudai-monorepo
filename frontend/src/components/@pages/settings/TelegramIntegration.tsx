@@ -23,7 +23,7 @@ import Button from 'ui/@buttons/Button/Button';
 import CopyIcon from 'ui/SVG/CopyIcon';
 import { toast } from 'utils/toast';
 import OTPInput from 'ui/@form/OTPInput/OTPInput';
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums } from '@samudai/gateway-consumer-types';
 import { useUpdateContributorProgressMutation } from 'store/services/userProfile/userProfile';
 
 enum PopupPage {
@@ -53,7 +53,7 @@ const TelegramIntegration: React.FC<IntegrationsConnectItemProps> = ({
     const [isConnectedState, setIsConnectedState] = useState(isConnected);
     const connectModal = usePopup();
     const memberId = getMemberId();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const currContributorProgress = useTypedSelector(selectContributorProgress);
     const dispatch = useTypedDispatch();
 

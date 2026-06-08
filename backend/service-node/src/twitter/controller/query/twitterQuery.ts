@@ -52,12 +52,9 @@ export class TwitterQuery {
 
       if (twitterExists) {
         twitterExists.twitter.push(tweet);
-        const result = await twitterExists.save();
+        await twitterExists.save();
       } else {
-        const newTwitter = await TwitterSchema.create({
-          _id: linkId,
-          twitter: [tweet],
-        });
+        await TwitterSchema.create({ _id: linkId, twitter: [tweet] });
       }
     } catch (err: any) {
       console.log(err);

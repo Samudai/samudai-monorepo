@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 import { bulkMemberMap } from '../../lib/memberUtils';
-import { DAOAccess, DAOAccessResponse } from '@samudai_xyz/gateway-consumer-types';
+import { DAOAccess, DAOAccessResponse } from '@samudai/gateway-consumer-types';
 
 export class AccessController {
     createAccess = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,9 +20,9 @@ export class AccessController {
 
     getAccessForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/access/listbydaoid/${daoId}`);
-            let daoAccessResponse: DAOAccessResponse[] = [];
+            const daoAccessResponse: DAOAccessResponse[] = [];
             const daoAccess = result.data;
 
             for (const access of daoAccess) {
@@ -90,7 +90,7 @@ export class AccessController {
 
     deleteAccess = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await axios.delete(`${process.env.SERVICE_DAO}/access/delete/${(req.params.daoId as string)}`);
+            const result = await axios.delete(`${process.env.SERVICE_DAO}/access/delete/${req.params.daoId as string}`);
             new DeleteSuccess(res, 'Access Role', result);
         } catch (err: any) {
             next(new ErrorException(err, 'Error while deleting an Access Role'));
@@ -99,8 +99,8 @@ export class AccessController {
 
     getAccessForMember = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const dao_id = (req.params.daoId as string);
-            const member_id = (req.params.memberId as string);
+            const dao_id = req.params.daoId as string;
+            const member_id = req.params.memberId as string;
             const result = await axios.post(`${process.env.SERVICE_DAO}/access/formember`, {
                 dao_id,
                 member_id,

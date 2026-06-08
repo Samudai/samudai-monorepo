@@ -1,4 +1,4 @@
-import { ActivityEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { ActivityEnums } from '@samudai/gateway-consumer-types/';
 import mixpanel from 'utils/mixpanel/mixpanelInit';
 import store from 'store/store';
 import { getMemberId } from 'utils/utils';

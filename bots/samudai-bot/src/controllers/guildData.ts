@@ -84,7 +84,7 @@ export const saveOwner = async (guild: Guild, daoId: string): Promise<AxiosRespo
 export const saveEvents = async (guild: Guild, daoId: string) => {
   const events = await guild.scheduledEvents.fetch();
   const eventsSchema: EventData[] = [];
-  events.forEach(async (value: GuildScheduledEvent, key) => {
+  events.forEach(async (value: GuildScheduledEvent, _key) => {
     const e: GuildScheduledEvent = await guild.scheduledEvents.fetch(value.id);
     eventsSchema.push(mapEvent(e));
   });

@@ -1,4 +1,4 @@
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { CalendarCell } from 'utils/calendar';
 import styles from '../styles/TaskCalendar.module.scss';

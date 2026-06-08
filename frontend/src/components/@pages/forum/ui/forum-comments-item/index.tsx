@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { AccessEnums, MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums, MessageResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import css from './forum-comments-item.module.scss';
 import clsx from 'clsx';
@@ -171,7 +171,7 @@ export const ForumCommentsItem: React.FC<ForumCommentsItemProps> = ({ data, onRe
 
         [...participants, { name: 'all', member_id: 'all' }].forEach((member) => {
             const mentionRegex = new RegExp(`<@${member.member_id}>`, 'g');
-            modifiedText = modifiedText.replace(mentionRegex, (match, id) => {
+            modifiedText = modifiedText.replace(mentionRegex, (_match, _id) => {
                 if (member.member_id === 'all') {
                     return `<span style="color: #FDC087;">@${member.name}</span>`;
                 } else {

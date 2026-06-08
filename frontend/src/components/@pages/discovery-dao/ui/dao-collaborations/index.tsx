@@ -12,7 +12,7 @@ import { getAbbr } from 'utils/getAbbr';
 
 interface DaoCollaborationsProps {}
 
-export const DaoCollaborations: React.FC<DaoCollaborationsProps> = (props) => {
+export const DaoCollaborations: React.FC<DaoCollaborationsProps> = (_props) => {
     const [swiperCore, setSwiperCore] = useState<SwiperCore>();
 
     const { daoData, loading } = useFetchDao();

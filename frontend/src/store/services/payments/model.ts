@@ -4,8 +4,8 @@ import {
     PaymentEnums,
     PayoutCurrency,
     TxData,
-} from '@samudai_xyz/gateway-consumer-types';
-import { Provider } from '@samudai_xyz/gateway-consumer-types/dist/types/payment/types';
+} from '@samudai/gateway-consumer-types';
+import { Provider } from '@samudai/gateway-consumer-types/dist/types/payment/types';
 import { GnosisTypes } from '@samudai/web3-sdk';
 
 export interface providerResponse {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { changeProjectid } from 'store/features/common/slice';
 import { useTypedDispatch } from 'hooks/useStore';

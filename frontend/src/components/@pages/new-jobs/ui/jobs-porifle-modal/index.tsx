@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { useApplicants } from '../../libs/hooks';
 import { JobsSkills } from '../jobs-skills';
-import { OpportunityResponse, Applicant, JobsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { OpportunityResponse, Applicant, JobsEnums } from '@samudai/gateway-consumer-types';
 import { ProfileDaoItem } from 'components/@pages/new-profile';
 import Popup from 'components/@popups/components/Popup/Popup';
 import { deserialize } from 'components/editor';
@@ -32,20 +32,6 @@ export const JobsProfileModal: React.FC<JobsProfileModalProps> = ({
     const navigate = useNavigate();
 
     const member = data?.member_details;
-
-    const socials = useMemo(() => {
-        const obj: Record<string, string> = {};
-
-        if (!data?.member_details?.socials) return obj;
-
-        return data?.member_details?.socials.reduce((acc, item) => {
-            // if(item.url) {
-            //     acc[item.type] = item.url;
-            // }
-            acc[item.type] = item.url;
-            return acc;
-        }, obj);
-    }, [data]);
 
     const handleSelect = () => {
         setBtnLoading(true);

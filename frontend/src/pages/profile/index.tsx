@@ -46,7 +46,6 @@ const getProfileType = (type?: string) => {
 };
 
 const Profile = () => {
-    const progress = 2;
     const { type } = useParams<{ type?: string }>();
     const [fetchUserProfile, { isLoading }] = useGetMemberByIdMutation();
     const { isEditProfile } = useTypedSelector(selectPopups);
@@ -58,9 +57,8 @@ const Profile = () => {
     const sameMember = memberid === getMemberId();
     const streamId = useTypedSelector(selectStreamId);
     const navigate = useNavigate();
-    const profileNav = getProfileNav();
-    const activeDao = useTypedSelector(selectActiveDao);
-
+    getProfileNav();
+    useTypedSelector(selectActiveDao);
     useEffect(() => {
         if (type !== undefined && type !== 'profile' && type !== 'projects' && type !== 'clans') {
             navigate(`/${memberid}/profile`);

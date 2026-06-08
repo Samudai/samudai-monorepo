@@ -4,7 +4,7 @@ import { useScrollbar } from 'hooks/useScrollbar';
 import Popup from 'components/@popups/components/Popup/Popup';
 import CloseButton from 'ui/@buttons/Close/Close';
 import css from './assignees.module.scss';
-import { IMember, SubTaskResponse, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { IMember, SubTaskResponse, TaskResponse } from '@samudai/gateway-consumer-types';
 import {
     useLazyGetSubTaskDetailsQuery,
     useLazyGetTaskDetailsQuery,
@@ -21,7 +21,7 @@ interface AssigneesProps {
 export const Assignees: React.FC<AssigneesProps> = ({ subtaskData, taskData, onClose }) => {
     const [members, setMembers] = useState<IMember[]>([]);
     const [chat, setChat] = useState<IMember | null>(null);
-    const [pgpDecryptedKey, setPgpDecryptedKey] = useState<string>('');
+    const [_pgpDecryptedKey, _setPgpDecryptedKey] = useState<string>('');
     const { ref, isScrollbar } = useScrollbar<HTMLUListElement>();
 
     const [getTaskDetails] = useLazyGetTaskDetailsQuery();

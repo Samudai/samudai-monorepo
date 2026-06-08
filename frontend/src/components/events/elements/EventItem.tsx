@@ -12,7 +12,7 @@ interface EventItemProps {
 }
 
 const EventItem: React.FC<EventItemProps> = ({ item, showDetailEvent }) => {
-    const handleShowEvent = (e: React.MouseEvent<HTMLLIElement>) => {
+    const handleShowEvent = (_e: React.MouseEvent<HTMLLIElement>) => {
         showDetailEvent();
     };
     const httpRegex =

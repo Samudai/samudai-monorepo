@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const DiscordIcons = (props?: React.SVGProps<SVGSVGElement>) => (
+export const DiscordIcons = (_props?: React.SVGProps<SVGSVGElement>) => (
     <svg
         width="314"
         height="132"

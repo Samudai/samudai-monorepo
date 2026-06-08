@@ -5,7 +5,7 @@ import {
     IMember,
     Provider,
     ReviewResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { IWidget } from 'utils/types/DAO';
 
 export interface getDefaultProviderRequest {

@@ -6,7 +6,7 @@ import {
     SubTask,
     SubTaskResponse,
     TaskResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { useHorizontalScroll } from 'hooks/useHorizontalScroll';
 import { useScrollbar } from 'hooks/useScrollbar';

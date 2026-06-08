@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { DiscussionSliceState } from './state';
-import { DiscussionResponse, Message } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse, Message } from '@samudai/gateway-consumer-types';
 
 const reducers = {
     updateBookmarkCount: (state: DiscussionSliceState, { payload }: PayloadAction<number>) => {

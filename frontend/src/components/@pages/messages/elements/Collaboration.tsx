@@ -13,7 +13,7 @@ import {
 } from 'store/services/Dao/dao';
 import { useTypedSelector } from 'hooks/useStore';
 import { selectActiveDao } from 'store/features/common/slice';
-import { CollaborationResponse, DAOEnums } from '@samudai_xyz/gateway-consumer-types';
+import { CollaborationResponse, DAOEnums } from '@samudai/gateway-consumer-types';
 import { updateCollaborationRequest } from 'store/services/Dao/model';
 import { getMemberId } from 'utils/utils';
 import { toast } from 'utils/toast';

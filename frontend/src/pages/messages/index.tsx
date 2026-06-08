@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccess } from 'store/features/common/slice';
 import { setOpenMessagePopup } from 'store/features/messages/slice';
@@ -20,8 +20,7 @@ const Tabs = {
 
 const Messages: React.FC = () => {
     const { activeTab, navigate } = useTabs(Tabs);
-    const access = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
-
+    useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const dispatch = useTypedDispatch();
 
     return (

@@ -17,7 +17,7 @@ export const ContributorProgressBar: React.FC<ContributorProgressBarProps> = ({
     subdomainOnClick,
     nftOnClick,
 }) => {
-    const accountData = useTypedSelector(selectMember);
+    useTypedSelector(selectMember);
     const navigate = useNavigate();
     const memberSubdomainClaimed = useTypedSelector(selectMemberSubdomainClaimed);
 

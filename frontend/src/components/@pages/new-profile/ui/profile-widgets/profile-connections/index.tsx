@@ -1,6 +1,6 @@
 import { ProfileConnectionItem } from '../../profile-connection-item';
 import { ConnectionsSkeleton } from '../../profile-skeleton';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import usePopup from 'hooks/usePopup';
 import { JobsChat } from 'components/@pages/new-jobs';

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
-import { Provider } from '@samudai_xyz/gateway-consumer-types/dist/types/payment/types';
+import { MemberResponse } from '@samudai/gateway-consumer-types/dist/types';
+import { Provider } from '@samudai/gateway-consumer-types/dist/types/payment/types';
 import { IChainList } from 'store/services/payments/model';
 import { RootState } from 'store/store';
 import { GnosisTypes } from '@samudai/web3-sdk';

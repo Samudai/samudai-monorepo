@@ -130,7 +130,7 @@ const Discovery: React.FC = () => {
                 <div className="container">
                     <ul className={css.list}>
                         {role === 'dao' &&
-                            daoData?.map((item, id) => (
+                            daoData?.map((item, _id) => (
                                 <li className={css.list_item} key={item.dao_id}>
                                     <DiscoveryCard
                                         type="dao"
@@ -150,7 +150,7 @@ const Discovery: React.FC = () => {
                             ))}
 
                         {role === 'contributor' &&
-                            memberData.map((item, id) => (
+                            memberData.map((item, _id) => (
                                 <li className={css.list_item} key={item.member_id}>
                                     <DiscoveryCard
                                         type="contributor"

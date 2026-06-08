@@ -9,7 +9,7 @@ import useDelayedSearch from 'hooks/useDelayedSearch';
 import { useTypedSelector } from 'hooks/useStore';
 import { FormDataType } from 'pages/settings/dao/access-managment';
 import styles from './styles/SelectMembers.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 interface SelectMembersProps {
     roles: roles[];
@@ -23,7 +23,7 @@ interface SelectMembersProps {
 //   username: string;
 // }
 
-const SelectMembers: React.FC<SelectMembersProps> = ({ roles, setFormData, id, formData }) => {
+const SelectMembers: React.FC<SelectMembersProps> = ({ setFormData, id, formData }) => {
     const [defaultOptions, setDefaultOptions] = useState<IMember[]>([]);
     const [search, setSearch] = useState('');
     const activeDAO = useTypedSelector(selectActiveDao);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
-import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
+import { CreateSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
 
 export class PointTwitterMemberController {
     addTwitterMember = async (req: Request, res: Response, next: NextFunction) => {
@@ -30,7 +30,7 @@ export class PointTwitterMemberController {
 
     getTwitterMemberById = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_POINT}/twittermember/getbyid/${memberId}`);
             new FetchSuccess(res, 'Fetch Twitter Member', result);
         } catch (err: any) {

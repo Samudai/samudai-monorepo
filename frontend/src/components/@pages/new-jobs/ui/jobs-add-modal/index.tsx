@@ -7,7 +7,7 @@ import {
     BountyResponse,
     JobsEnums,
     OpportunityResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs, { Dayjs } from 'dayjs';
 import { Descendant } from 'slate';
@@ -89,9 +89,9 @@ export const JobsAddModal: React.FC<JobsAddModalProps> = ({
     isEdit,
     onClose,
 }) => {
-    const [tab, setTab] = useState('File');
+    const [_tab, _setTab] = useState('File');
     const [isPayout, setIsPayout] = useState(false);
-    const [confirmedPayout, setConfirmedPayout] = useState(false);
+    const [_confirmedPayout, setConfirmedPayout] = useState(false);
     const [state, setState] = useObjectState<Inputs>({
         title: '',
         reviewer: null,
@@ -112,7 +112,7 @@ export const JobsAddModal: React.FC<JobsAddModalProps> = ({
     });
     const [daoList, setDaoList] = useState<SelectOption[]>([]);
     const [projectList, setProjectList] = useState<SelectOption[]>([]);
-    const [taskList, setTaskList] = useState<SelectOption[]>([]);
+    const [_taskList, _setTaskList] = useState<SelectOption[]>([]);
     const [btnLoading, setBtnLoading] = useState<boolean>(false);
 
     const memberId = getMemberId();
@@ -123,12 +123,12 @@ export const JobsAddModal: React.FC<JobsAddModalProps> = ({
     const roles = useTypedSelector(selectRoles);
     const member_id = getMemberId();
     const [getProjects] = useGetProjectByMemberIdMutation();
-    const [getTasks] = useLazyGetTasksByProjectIdQuery();
+    const [_getTasks] = useLazyGetTasksByProjectIdQuery();
     const dispatch = useTypedDispatch();
     const { data: skillList } = useGetSkillListForJobQuery();
     const memberData = useTypedSelector(selectMemberData);
     const positions = getPositions();
-    const daoProgress = useTypedSelector(selectDaoProgress);
+    useTypedSelector(selectDaoProgress);
     const daoAccess = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
 
     useEffect(() => {

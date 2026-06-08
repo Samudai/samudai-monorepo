@@ -32,7 +32,7 @@ export const MonthlyPlan: React.FC = () => {
                 setComplete(completed);
                 doneData.value = completed;
                 doneData.duration = count;
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Work Plan fetching failed', '');
             }
         };

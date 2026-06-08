@@ -14,7 +14,7 @@ import {
     changeTutorialStep,
     tutorialStep,
 } from 'store/features/common/slice';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import LogoutIcon from 'ui/SVG/logout.icon';
 import { useNavigate } from 'react-router-dom';
 import { usePrivy, useLogout } from '@privy-io/react-auth';
@@ -31,7 +31,7 @@ interface ControlsBoxProps {
 }
 
 const ControlsBox: React.FC<ControlsBoxProps> = ({ noTutorial }) => {
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const dispatch = useTypedDispatch();
 
     return (

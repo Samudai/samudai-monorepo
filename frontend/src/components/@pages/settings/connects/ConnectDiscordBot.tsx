@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import { Visibility } from '@samudai_xyz/gateway-consumer-types';
+//import { Visibility } from '@samudai/gateway-consumer-types';
 import PopupTitle from 'components/@popups/components/PopupTitle/PopupTitle';
 import Button from 'ui/@buttons/Button/Button';
 import styles from './styles/ConnectSnapshot.module.scss';
@@ -95,7 +95,7 @@ const ConnectDiscordBot: React.FC<ConnectDiscordBotProps> = ({ onCloseModal, cal
                         minWidth: '350px',
                     }),
                 }}
-                formatOptionLabel={({ value, label }) => (
+                formatOptionLabel={({ label }) => (
                     <p style={{ color: 'white' }} className={styles.selectValue}>
                         {label}
                     </p>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityEnums, FeaturedProjects } from '@samudai_xyz/gateway-consumer-types';
+import { ActivityEnums, FeaturedProjects } from '@samudai/gateway-consumer-types';
 import { updateFeaturedProjectsRequest } from 'store/services/userProfile/model';
 import {
     useUpdateContributorProgressMutation,

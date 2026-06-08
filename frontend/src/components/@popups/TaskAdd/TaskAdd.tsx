@@ -11,7 +11,7 @@ import {
     ProjectResponse,
     Provider,
     TaskResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { Gnosis, GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import dayjs, { Dayjs } from 'dayjs';
 import { ethers } from 'ethers';
@@ -34,7 +34,7 @@ import { IPaymentCurrency } from 'utils/types/Payments';
 import { getMemberId } from 'utils/utils';
 import Bounty from './Bounty';
 import styles from './TaskAdd.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 
 const githubMock = [
     {
@@ -91,27 +91,27 @@ const TaskAdd: React.FC<TaskAddProps> = ({
     const { id } = useParams();
     const [createTask] = useCreateTaskMutation();
     const { daoid } = useParams();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const providerEth = useTypedSelector(selectProvider);
-    const { data: providerData, isSuccess } = useGetProviderQuery(daoid!);
+    const { data: providerData } = useGetProviderQuery(daoid!);
     const [getParcelBalance] = useGetParcelBalanceMutation();
     const [name, setName] = useInput('');
     const [deadline, setDeadline] = useState<Dayjs | null>(null);
     const [contributors, setContributors] = useState<IMember[]>([]);
     const [description, setDescription] = useInput<HTMLTextAreaElement>('');
-    const [bounty, setBounty, _, clearBounty] = useInput('');
-    const [walletAddress, setWalletAddress] = useState('');
-    const [options, setOptions] = useState<Provider[]>([] as Provider[]);
+    const [_bounty, _setBounty, _, _clearBounty] = useInput('');
+    const [_walletAddress, _setWalletAddress] = useState('');
+    const [_options, _setOptions] = useState<Provider[]>([] as Provider[]);
     const [activeProvider, setActiveProvider] = useState<Provider>({} as Provider);
-    const [balance, setBalance] = useState<string>('');
-    const [tokenType, setTokenType] = useState<string>('');
-    const [tokenAddress, setTokenAddress] = useState<string>('');
+    const [_balance, setBalance] = useState<string>('');
+    const [_tokenType, setTokenType] = useState<string>('');
+    const [_tokenAddress, setTokenAddress] = useState<string>('');
     const [getPrs] = useGetPRsMutation();
-    const [currency, setCurrency] = useState<IPaymentCurrency>({} as IPaymentCurrency);
+    const [_currency, setCurrency] = useState<IPaymentCurrency>({} as IPaymentCurrency);
     const [prs, setPrs] = useState<any[]>([]);
     const [selectedPr, setSelectedPr] = useState<any>({});
-    const [currencyList, setCurrencyList] = useState<IPaymentCurrency[]>([] as IPaymentCurrency[]);
-    const [sdkVale, setSdkValue] = useState<Gnosis | null>(null);
+    const [_currencyList, setCurrencyList] = useState<IPaymentCurrency[]>([] as IPaymentCurrency[]);
+    const [_sdkVale, setSdkValue] = useState<Gnosis | null>(null);
 
     const [providerList, setProviderList] = useState<
         {
@@ -206,7 +206,7 @@ const TaskAdd: React.FC<TaskAddProps> = ({
                     )) as GnosisTypes.SafeBalanceUsdResponse[];
                     console.log('here:', res);
                     if (res.length > 0) {
-                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, id: number) => {
+                        res.forEach((item: GnosisTypes.SafeBalanceUsdResponse, _id: number) => {
                             currencyVal.push({
                                 currency: item.token ? item.token.name : 'ETH',
                                 symbol: item.token ? item.token.symbol : 'ETH',
@@ -481,7 +481,7 @@ const TaskAdd: React.FC<TaskAddProps> = ({
                             }),
                         }}
                         className={styles.githubSelect}
-                        formatOptionLabel={({ value, label }) => (
+                        formatOptionLabel={({ label }) => (
                             <p className={styles.selectValue}>{label}</p>
                         )}
                         components={{

@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { MemberSliceState } from './state';
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MemberResponse } from '@samudai/gateway-consumer-types';
 
 const reducers = {
     addMember: (state: MemberSliceState, { payload }: PayloadAction<MemberResponse>) => {

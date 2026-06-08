@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { textLengthFormatter } from '../../../../../utils/utils';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import { useLazyGetDaoByDaoIdQuery } from 'store/services/Dao/dao';
 import usePopup from 'hooks/usePopup';

@@ -1,4 +1,4 @@
-import { MemberResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { MemberResponse } from '@samudai/gateway-consumer-types/dist/types';
 import axios from 'axios';
 import { Descendant, Node } from 'slate';
 import store from 'store/store';

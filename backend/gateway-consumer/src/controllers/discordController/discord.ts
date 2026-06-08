@@ -3,12 +3,12 @@ import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { getGuildsWithSteps } from '../../lib/guilds';
 import { DeleteSuccess, FetchSuccess } from '../../lib/helper/Responsehandler';
-import { MemberDiscord, MembersEnums } from '@samudai_xyz/gateway-consumer-types';
+import { MemberDiscord, MembersEnums } from '@samudai/gateway-consumer-types';
 
 export class DiscordController {
     getEventsByGuildId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const guildId: string = (req.params.guildId as string);
+            const guildId: string = req.params.guildId as string;
             const response = await axios.get(`${process.env.SERVICE_DISCORD}/event/byguildid/${guildId}`);
             new FetchSuccess(res, 'Events', response);
         } catch (err: any) {
@@ -18,7 +18,7 @@ export class DiscordController {
 
     getEventsByMemberId = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const memberResponse = await axios.post(`${process.env.SERVICE_MEMBER}/member/fetch`, {
                 type: MembersEnums.FetchMemberType.MEMBER_ID,
                 member_id: memberId,
@@ -40,7 +40,7 @@ export class DiscordController {
 
     getMemberGuildsForOnboarding = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
 
             const { guildsInfo, memberGuilds } = await getGuildsWithSteps(member_id);
 
@@ -52,7 +52,7 @@ export class DiscordController {
 
     disconnectDiscord = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const memberId: string = (req.params.memberId as string);
+            const memberId: string = req.params.memberId as string;
 
             const result = await axios.delete(`${process.env.SERVICE_DISCORD}/discord/disconnect/${memberId}`);
             axios.delete(`${process.env.SERVICE_MEMBER}/member/discord/${memberId}`);

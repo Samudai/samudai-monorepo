@@ -4,7 +4,7 @@ import { stripeController } from '../../controllers/stripeController/stripeContr
 export class StripeRouter {
     app: Express;
     private router: Router;
-    stripeController : stripeController
+    stripeController: stripeController;
 
     constructor(app: Express) {
         this.app = app;
@@ -14,8 +14,12 @@ export class StripeRouter {
     }
 
     stripeRouter = () => {
-        this.router.post('/api/stripe/webhook', express.raw({ type: "application/json" }), this.stripeController.webhook);
-        this.router.get('/api/stripe/managesubscription/:daoId',  this.stripeController.getPaymentLinkForDAO)
+        this.router.post(
+            '/api/stripe/webhook',
+            express.raw({ type: 'application/json' }),
+            this.stripeController.webhook,
+        );
+        this.router.get('/api/stripe/managesubscription/:daoId', this.stripeController.getPaymentLinkForDAO);
         this.router.post('/api/stripe/firsttime/checkout', this.stripeController.getFirstTimeCheckout);
         this.router.get('/api/stripe/usedlimits/:daoId', this.stripeController.getUsedLimitsForDao);
 

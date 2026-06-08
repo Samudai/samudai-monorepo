@@ -2,7 +2,7 @@ import {
     JobsEnums,
     OpportunityResponse,
     NotificationsEnums,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import { useCallback, useEffect, useState } from 'react';
 import {
     createApplicantRequest,
@@ -64,7 +64,7 @@ export const useJobs = (noFetch?: boolean) => {
     const updateOpportunity = async (data: createOpportunityRequest) => {
         await updateJob(data)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully updated', '')();
             })
             .catch(() => {
@@ -109,7 +109,7 @@ export const useJobs = (noFetch?: boolean) => {
         };
         await updateStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully archived', '')();
             })
             .catch(() => {
@@ -125,7 +125,7 @@ export const useJobs = (noFetch?: boolean) => {
         };
         await updateStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully unarchived', '')();
             })
             .catch(() => {
@@ -136,7 +136,7 @@ export const useJobs = (noFetch?: boolean) => {
     const removeOpportunity = async (jobId: string) => {
         await deleteOpportunity(jobId)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully deleted', '')();
             })
             .catch(() => {
@@ -148,7 +148,7 @@ export const useJobs = (noFetch?: boolean) => {
         const opportunity = opportunities.find((i) => i.job_id === data.applicant.job_id);
         await addApplicant(data)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Successfully applied', '')();
                 if (opportunity) {
                     sendNotification({

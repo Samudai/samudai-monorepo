@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { NfPerson } from '../elements/Components';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { selectActiveDao } from 'store/features/common/slice';
@@ -14,9 +14,9 @@ interface NfRequestProps {
     data: WebNotification;
 }
 
-const NfRequest: React.FC<NfRequestProps> = ({ type, data }) => {
+const NfRequest: React.FC<NfRequestProps> = ({ data }) => {
     const navigate = useNavigate();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     return (
         <NfCard component="ul" className={styles.root} style={{ justifyContent: 'space-between' }}>
             <li className={clsx(styles.col, styles.colPerson)}>

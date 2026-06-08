@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { WebNotification } from '@samudai_xyz/gateway-consumer-types';
+import { WebNotification } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { changePaymentsData, changeReviewsData } from 'store/features/common/slice';
 import { useLazyFetchNotificationsQuery } from 'store/services/Notifications/Notifications';
@@ -37,7 +37,7 @@ const Notifications = () => {
                 console.log('res', res);
                 console.log('payment:', paymentData);
                 console.log('reviews:', reviewsData);
-            } catch (err) {
+            } catch {
                 toast('Failure', 5000, 'Unable to fetch notifications', 'Please retry')();
             }
         };

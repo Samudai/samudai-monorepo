@@ -9,12 +9,12 @@ export const sendEmailVerificationMail = async (memberId: string, tomail: string
     try {
         const otp = generateOTPWithoutMemberID();
 
-        const result = await axios.post(`${process.env.SERVICE_POINT}/member/update/verificationcode`, {
+        await axios.post(`${process.env.SERVICE_POINT}/member/update/verificationcode`, {
             member_id: memberId,
             email_verification_code: otp,
         });
 
-        let transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.SAMUDAI_MAIL,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProjAccessResponse, AccessResponse, AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { ProjAccessResponse, AccessResponse, AccessEnums } from '@samudai/gateway-consumer-types';
 
 // export const mapRolesToUsers = async (discordGuilds: any) => {
 //   //const roles: Roles[]
@@ -46,7 +46,7 @@ export const getDAOAccessForRole = async (memberId: string, daoId: string): Prom
             dao_id: daoId,
         });
 
-        let data: AccessResponse = {
+        const data: AccessResponse = {
             access: {
                 manage_dao: false,
                 view: false,
@@ -117,7 +117,7 @@ export const getDAOAccessForRole = async (memberId: string, daoId: string): Prom
             }
             return data;
         }
-    } catch (err: any) {
+    } catch {
         const data: AccessResponse = {
             access: {
                 manage_dao: false,
@@ -136,7 +136,7 @@ export const getDAOAccessForRole = async (memberId: string, daoId: string): Prom
 export const getProjectAccess = async (
     memberId: string,
     projectId: string,
-    daoId: string
+    daoId: string,
 ): Promise<ProjAccessResponse> => {
     try {
         const roles = await getRolesForMember(memberId, daoId);
@@ -169,7 +169,7 @@ export const getProjectAccess = async (
             memberAccessLevel = highestAccessLevel;
         }
 
-        let data: ProjAccessResponse = {
+        const data: ProjAccessResponse = {
             access: {
                 manage_dao: false,
                 view: false,
@@ -212,7 +212,7 @@ export const getProjectAccess = async (
         } else {
             return data;
         }
-    } catch (err: any) {
+    } catch {
         const data: ProjAccessResponse = {
             access: {
                 manage_dao: false,
@@ -239,7 +239,7 @@ export const getRolesForMember = async (memberId: string, daoId: string) => {
         }
 
         return roles;
-    } catch (err) {
+    } catch {
         return [];
     }
 };
@@ -252,7 +252,7 @@ export const getMemberAccessForDAO = async (memberId: string, daoId: string) => 
         });
 
         return accessForMember.data;
-    } catch (err) {
+    } catch {
         return null;
     }
 };
@@ -271,7 +271,7 @@ export const getHighestAccess = (AccessLevel: AccessEnums.AccessType[]) => {
 
 export const getAccessLevel = (
     daoAccessLevel: keyof typeof AccessEnums.AccessLevels,
-    projectAccessLevel: keyof typeof AccessEnums.AccessLevels
+    projectAccessLevel: keyof typeof AccessEnums.AccessLevels,
 ) => {
     if (AccessEnums.AccessLevels[daoAccessLevel] > AccessEnums.AccessLevels[projectAccessLevel]) {
         return daoAccessLevel;
@@ -284,7 +284,7 @@ export const getVisibilityAccessLevel = (
     daoAccessLevel: AccessEnums.AccessType[],
     projectAccessLevel: keyof typeof AccessEnums.AccessLevels,
     projectVisibility: string,
-    projectType: string
+    projectType: string,
 ) => {
     if (projectVisibility === 'public' || projectType === 'internal') {
         if (

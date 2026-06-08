@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
 import { useTypedSelector } from 'hooks/useStore';
@@ -26,9 +26,7 @@ const SettingsLayout: React.FC<SettingsLayoutProps> = ({
     const location = useLocation();
     const router = routes(daoid, getMemberId());
     const activeDao = useTypedSelector(selectActiveDao);
-    const access = useTypedSelector(selectAccessList)?.[activeDao!]?.includes(
-        AccessEnums.AccessType.MANAGE_DAO
-    );
+    useTypedSelector(selectAccessList)?.[activeDao!]?.includes(AccessEnums.AccessType.MANAGE_DAO);
     const currentRoute = router.find((route) =>
         new RegExp(route.baseUrl, 'i').test(location.pathname)
     );

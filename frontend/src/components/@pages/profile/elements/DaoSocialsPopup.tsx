@@ -1,6 +1,6 @@
 import { Dispatch, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import * as Socials from 'ui/SVG/socials';
 import { selectAccess } from 'store/features/common/slice';
 import { useUpdateDaoSocialsMutation } from 'store/services/Dashboard/dashboard';
@@ -141,10 +141,10 @@ const DaoSocialsPopup: React.FC<PorfolioLinksProps> = ({
             //     return toast('Failure', 50000, 'Check the socials links', '')();
             //   }
             // });
-            const res = await updateSocial(payload).unwrap();
+            await updateSocial(payload).unwrap();
             toast('Success', 5000, 'Socials updated', '')();
             onClose?.();
-        } catch (err: any) {
+        } catch {
             toast('Failure', 5000, 'Save Failed', '')();
         }
     };

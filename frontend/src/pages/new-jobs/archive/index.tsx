@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import usePopup from 'hooks/usePopup';
 import css from 'pages/new-jobs/jobs.module.scss';
@@ -44,7 +44,7 @@ const Archive: React.FC<ArchiveProps> = () => {
         type: 'task' | 'bounty';
     }>();
 
-    let type = jobType?.toLowerCase();
+    const type = jobType?.toLowerCase();
     const title = type === 'tasks' ? 'Archived Tasks' : 'Archived Bounties';
 
     const getFilteredOpportunityList = useCallback(() => {

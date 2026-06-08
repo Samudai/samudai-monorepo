@@ -14,10 +14,9 @@ interface DiscordConnectButtonProps {
 
 const DiscordConnectButton: React.FC<DiscordConnectButtonProps> = ({ type = 'default' }) => {
     const dispatch = useTypedDispatch();
-    const navigate = useNavigate();
-    const memberType = localStorage.getItem('account_type');
-    const memberId = getMemberId();
-
+    useNavigate();
+    localStorage.getItem('account_type');
+    getMemberId();
     const handleClick = () => {
         mixpanel.track('connect_discord', {
             step: 'connect_apps',

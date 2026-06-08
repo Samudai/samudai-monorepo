@@ -6,7 +6,7 @@ import styles from '../styles/items/NfViewProfile.module.scss';
 
 interface NfViewProfileProps {}
 
-const NfViewProfile: React.FC<NfViewProfileProps> = (props) => {
+const NfViewProfile: React.FC<NfViewProfileProps> = (_props) => {
     return (
         <NfCard component="ul" className={styles.root}>
             <li className={clsx(styles.col, styles.colPerson)}>

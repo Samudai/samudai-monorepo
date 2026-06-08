@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types';
 import { folderRes } from 'store/services/projects/model';
 import { useCreateFolderMutation } from 'store/services/projects/totalProjects';
 import useInput from 'hooks/useInput';
@@ -69,7 +69,7 @@ const AddNewFolder: React.FC<AddNewFolderProps> = ({ onClose, setFolders, projec
             }
             toast('Success', 5000, ' Folder created', '')();
             onClose?.();
-        } catch (err) {
+        } catch {
             toast('Failure', 5000, 'Failed to create folder', '')();
         }
     };

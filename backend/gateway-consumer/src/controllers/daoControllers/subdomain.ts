@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 export class DAOSubdomainController {
     createSubdomain = async (req: Request, res: Response) => {
-        try{
+        try {
             const subdomain = req.body.subdomain;
 
             const result = await axios.post(`${process.env.SERVICE_DAO}/subdomain/add`, {
-                subdomain
+                subdomain,
             });
 
             return res.status(201).send({
@@ -23,12 +23,12 @@ export class DAOSubdomainController {
                 return res.status(500).send({ message: 'Internal server error', error: JSON.stringify(err) });
             }
         }
-    }
+    };
 
     getSubdomainForDao = async (req: Request, res: Response) => {
-        try{ 
-            const daoId = (req.params.dao_id as string);
-            const subdomain = (req.params.subdomain as string);
+        try {
+            const daoId = req.params.dao_id as string;
+            const subdomain = req.params.subdomain as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/subdomain/get/${daoId}/${subdomain}`);
 
@@ -48,8 +48,8 @@ export class DAOSubdomainController {
     };
 
     checkSubdomainCreateForDao = async (req: Request, res: Response) => {
-        try{ 
-            const daoId = (req.params.dao_id as string);
+        try {
+            const daoId = req.params.dao_id as string;
 
             const result = await axios.get(`${process.env.SERVICE_DAO}/subdomain/checksubdomaincreate/${daoId}`);
 
@@ -59,13 +59,13 @@ export class DAOSubdomainController {
             });
         } catch (err: any) {
             if (err.response) {
-                return res
-                    .status(err.response.status)
-                    .send({ message: 'Something went wrong while checking subdomain access', error: err.response.data });
+                return res.status(err.response.status).send({
+                    message: 'Something went wrong while checking subdomain access',
+                    error: err.response.data,
+                });
             } else {
                 return res.status(500).send({ message: 'Internal server error', error: JSON.stringify(err) });
             }
         }
-    }
-    
+    };
 }

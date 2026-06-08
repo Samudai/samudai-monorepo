@@ -6,7 +6,7 @@ import {
     BountyResponse,
     JobsEnums,
     OpportunityResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { createApplicantRequest, createSubmissionRequest } from 'store/services/jobs/model';

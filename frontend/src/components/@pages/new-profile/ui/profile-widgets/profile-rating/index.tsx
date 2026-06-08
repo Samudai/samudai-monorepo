@@ -19,7 +19,7 @@ export const ProfileRating = () => {
     const { reviewList, isMyProfile, isLoading } = useFetchReviews();
     const { userData } = useProfile();
     const navigate = useNavigate();
-    const activeDao = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const reviewAdd = usePopup();
     const reviewsModal = usePopup();
 

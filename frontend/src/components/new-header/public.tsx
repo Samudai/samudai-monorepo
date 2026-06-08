@@ -13,15 +13,14 @@ import NotificationIcon from 'ui/SVG/Notification';
 import { SignIn } from './ui/header-user/signin';
 
 const nav = getHeaderNav();
-const profileNav = getProfileNav();
-
+getProfileNav();
 const Header: React.FC = () => {
     const { daoid } = useParams();
 
     const activeDao = useTypedSelector(selectActiveDao);
     const accountData = useTypedSelector(selectMember);
     const location = useLocation();
-    const [activeLink, setActiveLink] = useState(
+    const [activeLink, _setActiveLink] = useState(
         getActiveNav(location.pathname, {
             daoId: activeDao,
             accountId: accountData?.data?.member_id,

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess } from '../../lib/helper/Responsehandler';
-import { DAOMemberRole } from '@samudai_xyz/gateway-consumer-types';
+import { DAOMemberRole } from '@samudai/gateway-consumer-types';
 
 export class MemberRoleController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -19,7 +19,7 @@ export class MemberRoleController {
 
     delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const member_role_id = (req.params.memberRoleId as string);
+            const member_role_id = req.params.memberRoleId as string;
             const result = await axios.delete(`${process.env.SERVICE_DAO}/memberrole/delete/${member_role_id}`);
             new DeleteSuccess(res, 'Member Role', result);
         } catch (err: any) {

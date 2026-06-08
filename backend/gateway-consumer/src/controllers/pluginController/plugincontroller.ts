@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
-import { mapMemberToUsername } from '../../lib/memberUtils';
-import { Plugin, PluginsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { Plugin, PluginsEnums } from '@samudai/gateway-consumer-types';
 
 export class PluginController {
-    getPluginListForDAO = async (req: Request, res: Response, next: NextFunction) => {
+    getPluginListForDAO = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const link_id = (req.params.linkId as string);
+            const link_id = req.params.linkId as string;
             const pluginList: Plugin[] = [];
 
             //notion
@@ -45,31 +44,35 @@ export class PluginController {
             }
 
             const daoResult = await axios.get(`${process.env.SERVICE_DAO}/dao/${link_id}`);
-            daoResult.data.dao.guild_id !== ''
-                ? pluginList.push({
-                      pluginType: PluginsEnums.PluginType.DISCORD,
-                      connected: true,
-                      value: daoResult.data.dao.name,
-                  })
-                : pluginList.push({
-                      pluginType: PluginsEnums.PluginType.DISCORD,
-                      connected: false,
-                  });
-            daoResult.data.dao.snapshot
-                ? pluginList.push({
-                      pluginType: PluginsEnums.PluginType.SNAPSHOT,
-                      connected: true,
-                      value: daoResult.data.dao.snapshot,
-                  })
-                : pluginList.push({
-                      pluginType: PluginsEnums.PluginType.SNAPSHOT,
-                      connected: false,
-                  });
+            if (daoResult.data.dao.guild_id !== '') {
+                pluginList.push({
+                    pluginType: PluginsEnums.PluginType.DISCORD,
+                    connected: true,
+                    value: daoResult.data.dao.name,
+                });
+            } else {
+                pluginList.push({
+                    pluginType: PluginsEnums.PluginType.DISCORD,
+                    connected: false,
+                });
+            }
+            if (daoResult.data.dao.snapshot) {
+                pluginList.push({
+                    pluginType: PluginsEnums.PluginType.SNAPSHOT,
+                    connected: true,
+                    value: daoResult.data.dao.snapshot,
+                });
+            } else {
+                pluginList.push({
+                    pluginType: PluginsEnums.PluginType.SNAPSHOT,
+                    connected: false,
+                });
+            }
 
             const daoProviders = await axios.get(`${process.env.SERVICE_DAO}/provider/list/${link_id}`);
             if (daoProviders.data.provider_list) {
                 const gnosisProvider = daoProviders.data.provider_list.find(
-                    (provider: any) => provider.provider_type === 'gnosis'
+                    (provider: any) => provider.provider_type === 'gnosis',
                 );
                 if (gnosisProvider) {
                     pluginList.push({
@@ -109,9 +112,9 @@ export class PluginController {
         }
     };
 
-    getPluginListForMember = async (req: Request, res: Response, next: NextFunction) => {
+    getPluginListForMember = async (req: Request, res: Response, _next: NextFunction) => {
         try {
-            const member_id = (req.params.memberId as string);
+            const member_id = req.params.memberId as string;
             const pluginList: Plugin[] = [];
 
             //notion

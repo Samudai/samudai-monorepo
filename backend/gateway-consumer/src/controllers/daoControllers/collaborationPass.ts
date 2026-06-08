@@ -2,7 +2,7 @@ import axios from 'axios';
 import { NextFunction, Request, Response } from 'express';
 import ErrorException from '../../errors/exceptionHandlerHelper';
 import { CreateSuccess, DeleteSuccess, FetchSuccess, UpdateSuccess } from '../../lib/helper/Responsehandler';
-import { CollaborationPass } from '@samudai_xyz/gateway-consumer-types';
+import { CollaborationPass } from '@samudai/gateway-consumer-types';
 
 export class DAOCollaborationPassController {
     create = async (req: Request, res: Response, next: NextFunction) => {
@@ -19,7 +19,7 @@ export class DAOCollaborationPassController {
 
     getForDAO = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_DAO}/collaborationpass/get/${daoId}`);
             new FetchSuccess(res, 'DAO Collaboration Pass', result);
         } catch (err: any) {
@@ -41,9 +41,9 @@ export class DAOCollaborationPassController {
 
     deleteCollaborationPass = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const collaborationPassId = (req.params.collaborationPassId as string);
+            const collaborationPassId = req.params.collaborationPassId as string;
             const result = await axios.delete(
-                `${process.env.SERVICE_DAO}/collaborationpass/delete/${collaborationPassId}`
+                `${process.env.SERVICE_DAO}/collaborationpass/delete/${collaborationPassId}`,
             );
             new DeleteSuccess(res, 'DAO Collaboration Pass', result);
         } catch (err: any) {

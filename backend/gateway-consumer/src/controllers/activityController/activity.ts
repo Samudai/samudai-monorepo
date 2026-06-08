@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import { Activity, CancellationFeedback, Feedback } from '@samudai_xyz/gateway-consumer-types';
+import { Activity, CancellationFeedback, Feedback } from '@samudai/gateway-consumer-types';
 
 export class ActivityController {
     createActivity = async (req: Request, res: Response) => {
@@ -24,7 +24,7 @@ export class ActivityController {
 
     getActivityByDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
+            const daoId = req.params.daoId as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/dao/${daoId}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -41,8 +41,8 @@ export class ActivityController {
 
     getActivitybyActionForDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
-            const action = (req.params.action as string);
+            const daoId = req.params.daoId as string;
+            const action = req.params.action as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/action/${daoId}/${action}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -59,8 +59,8 @@ export class ActivityController {
 
     getActivitybyMemberForDAO = async (req: Request, res: Response) => {
         try {
-            const daoId = (req.params.daoId as string);
-            const memberId = (req.params.memberId as string);
+            const daoId = req.params.daoId as string;
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/member/${daoId}/${memberId}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -77,10 +77,10 @@ export class ActivityController {
 
     getActivityByVisibility = async (req: Request, res: Response) => {
         try {
-            const visibility = (req.params.visibility as string);
-            const daoId = (req.params.daoId as string);
+            const visibility = req.params.visibility as string;
+            const daoId = req.params.daoId as string;
             const result = await axios.get(
-                `${process.env.SERVICE_ACTIVITY}/activity/visibility/${daoId}/${visibility}`
+                `${process.env.SERVICE_ACTIVITY}/activity/visibility/${daoId}/${visibility}`,
             );
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -97,7 +97,7 @@ export class ActivityController {
 
     getActivityByProject = async (req: Request, res: Response) => {
         try {
-            const projectId = (req.params.projectId as string);
+            const projectId = req.params.projectId as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/project/${projectId}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -114,7 +114,7 @@ export class ActivityController {
 
     getActivityByTask = async (req: Request, res: Response) => {
         try {
-            const taskId = (req.params.taskId as string);
+            const taskId = req.params.taskId as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/task/${taskId}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -131,7 +131,7 @@ export class ActivityController {
 
     getDiscussionActivity = async (req: Request, res: Response) => {
         try {
-            const discussionId = (req.params.discussionId as string);
+            const discussionId = req.params.discussionId as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/discussion/${discussionId}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {
@@ -148,7 +148,7 @@ export class ActivityController {
 
     getActivityForMember = async (req: Request, res: Response) => {
         try {
-            const memberId = (req.params.memberId as string);
+            const memberId = req.params.memberId as string;
             const result = await axios.get(`${process.env.SERVICE_ACTIVITY}/activity/get/member/${memberId}`);
             res.status(200).send({ message: 'Activity fetched successfully', data: result.data.data });
         } catch (err: any) {

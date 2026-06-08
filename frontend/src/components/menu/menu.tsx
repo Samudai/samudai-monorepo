@@ -8,7 +8,7 @@ import styles from './menu.module.scss';
 
 interface MenuProps {}
 
-const Menu: React.FC<MenuProps> = (props) => {
+const Menu: React.FC<MenuProps> = (_props) => {
     const menuActive = useTypedSelector(selectMenu);
     const dispatch = useTypedDispatch();
 

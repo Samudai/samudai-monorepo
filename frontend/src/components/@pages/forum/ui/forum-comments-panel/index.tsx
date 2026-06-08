@@ -3,7 +3,7 @@ import { useCreateMessage } from '../../lib/hooks';
 import FileInput from 'ui/@form/FileInput/FileInput';
 import SendIcon from 'ui/SVG/SendIcon';
 import css from './forum-comments-panel.module.scss';
-import { MessageResponse } from '@samudai_xyz/gateway-consumer-types';
+import { MessageResponse } from '@samudai/gateway-consumer-types';
 import { CloseIcon } from '../icons/close-icon';
 import { getMemberId } from 'utils/utils';
 import clsx from 'clsx';

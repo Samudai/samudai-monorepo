@@ -25,7 +25,7 @@ const AddDao: React.FC<AddDaoProps> = ({ onClose }) => {
 
     const member_type = localStorage.getItem('account_type');
     const [addDao] = useAddDaoForMemberMutation();
-    const [getDao] = useLazyGetDaoQuery();
+    const [_getDao] = useLazyGetDaoQuery();
     const dispatch = useDispatch();
 
     const { data: allTags } = useGetDaoTagsQuery();
@@ -46,7 +46,7 @@ const AddDao: React.FC<AddDaoProps> = ({ onClose }) => {
             return toast('Attention', 5000, 'Please select atlease one dao type.', '');
 
         addDao({ memberId: memberId, value: { dao_name: daoName, tags: tags } })
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'DAO Added', 'Successfully added Dao.')();
                 dispatch(changeAddedDao({ addedDao: true }));
                 onClose?.();

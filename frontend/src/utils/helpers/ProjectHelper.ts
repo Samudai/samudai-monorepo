@@ -1,4 +1,4 @@
-import { ProjectResponse, TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { ProjectResponse, TaskResponse } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { IProject, ITask, TaskStatus } from 'utils/types/Project';
 

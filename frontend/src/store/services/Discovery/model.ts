@@ -4,7 +4,7 @@ import {
     DAOView,
     MostActiveResponse,
     MostViewedResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 
 export interface DiscoveryDaoResp {
     message: string;

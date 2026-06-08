@@ -1,4 +1,4 @@
-import { ProjectResponse } from '@samudai_xyz/gateway-consumer-types/dist/types';
+import { ProjectResponse } from '@samudai/gateway-consumer-types/dist/types';
 import usePopup from 'hooks/usePopup';
 import ProjectInvite from 'components/@popups/ProjectInvite/ProjectInvite';
 import PopupBox from 'components/@popups/components/PopupBox/PopupBox';
@@ -8,7 +8,7 @@ interface ProjectInfoProps {
     project: ProjectResponse;
 }
 
-const ProjectInfo: React.FC<ProjectInfoProps> = ({ project }) => {
+const ProjectInfo: React.FC<ProjectInfoProps> = () => {
     const projectInvite = usePopup();
     // const contributors = ProjectHelper.getContributorsAll(project);
     // const { progress, hours, status } = ProjectHelper.getStatistics(project);

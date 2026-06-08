@@ -18,7 +18,7 @@ export interface DatePeriodProps {
 
 const weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
-const DatePeriod: React.FC<DatePeriodProps> = ({ period, onClose, onPeriodChange }) => {
+const DatePeriod: React.FC<DatePeriodProps> = ({ onClose, onPeriodChange }) => {
     const [periodValue, setPeriodValue] = useState<DatePeriodPeriod>({
         start: null,
         end: null,

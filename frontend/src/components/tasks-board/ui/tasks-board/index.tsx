@@ -9,7 +9,7 @@ import {
     ProjectColumn,
     ProjectResponse,
     TaskResponse,
-} from '@samudai_xyz/gateway-consumer-types';
+} from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { selectAccessList } from 'store/features/common/slice';
 import { createTaskRequest } from 'store/services/projects/model';
@@ -36,7 +36,7 @@ import { Creator } from '../creator';
 import { Head } from '../head';
 import { Task } from '../task';
 import css from './tasks-board.module.scss';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { IMember } from '@samudai/gateway-consumer-types';
 import { useBounty, useJobs } from 'components/@pages/new-jobs';
 
 interface TasksBoardProps {
@@ -301,7 +301,7 @@ function TasksBoardWrapper({
                                                 data={item.data}
                                                 className={css.board_board}
                                                 onChange={handleChange.bind(null, index)}
-                                                renderElement={(data, shaking) => (
+                                                renderElement={(data, _shaking) => (
                                                     <Task
                                                         data={data}
                                                         shaking={option}

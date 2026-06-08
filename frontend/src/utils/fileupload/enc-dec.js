@@ -58,7 +58,7 @@ export const decryptForView = (encryptedFile) => {
     const reader = new FileReader();
     reader.readAsText(encryptedFile);
 
-    return new Promise((res, rej) => {
+    return new Promise((res, _rej) => {
         reader.onload = () => {
             const key = import.meta.env.REACT_APP_ENC_KEY;
             const encryptedData = reader.result;

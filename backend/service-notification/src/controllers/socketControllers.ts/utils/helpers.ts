@@ -86,7 +86,7 @@ export const getMembersByWallets = async (wallets: string[], jwt?: string): Prom
           console.log(memberData.data.data.member.member_id);
 
           return memberData.data.data.member.member_id;
-        } catch (error) {
+        } catch {
           console.error(`Error fetching member data for wallet ${wallet}:`);
           return null;
         }
@@ -96,7 +96,7 @@ export const getMembersByWallets = async (wallets: string[], jwt?: string): Prom
     members = members.filter((member) => member !== null);
 
     return members;
-  } catch (err: any) {
+  } catch {
     return [];
   }
 };

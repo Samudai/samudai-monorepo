@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ProjectsFilePreview } from '../projects-file-preview';
-import { NotificationsEnums, TaskFile } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums, TaskFile } from '@samudai/gateway-consumer-types';
 import { useScrollbar } from 'hooks/useScrollbar';
 import FileInput from 'ui/@form/FileInput/FileInput';
 import UploadIcon from 'ui/SVG/UploadIcon';
@@ -27,7 +27,7 @@ export const ProjectsFiles: React.FC<ProjectsFilesProps> = ({
     updateDetails,
     access,
 }) => {
-    const { ref: listRef, isScrollbar } = useScrollbar<HTMLUListElement>();
+    const { ref: listRef } = useScrollbar<HTMLUListElement>();
     const { daoid, projectId } = useParams<{
         daoid: string;
         projectId: string;

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { AccessResponse } from '@samudai_xyz/gateway-consumer-types';
+import { AccessResponse } from '@samudai/gateway-consumer-types';
 import { NotAuthorisedError } from '../errors/authError';
 import { getDAOAccessForRole } from '../lib/accessHelpers';
 
@@ -48,7 +48,7 @@ declare global {
 
 //Should have access to certain roles only
 
-async function managerDAOWorker(req: Request, res: Response) {
+async function managerDAOWorker(req: Request, _res: Response) {
     let jwtToken = req.headers['x-auth-token'] || req.headers.authorization || req.body.jwt;
 
     const daoId = req.headers.daoid as string;
@@ -68,113 +68,113 @@ async function managerDAOWorker(req: Request, res: Response) {
 
 export const manageDAOAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.manage_dao) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const manageProjectAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.manage_project) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const managePaymentAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.manage_payment) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const manageJobAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.manage_job) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const manageForumAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.manage_forum) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const viewAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.view) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             res.locals.access = result.accessLevel;
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const hiddenAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const accessForMember = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result) {
             throw new NotAuthorisedError('Member does not have access for this action');
         } else {
             res.locals.access = result;
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };
 
 export const dashbhoardViewAccess = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        var result: AccessResponse = await managerDAOWorker(req, res);
+        const result: AccessResponse = await managerDAOWorker(req, res);
         if (!result.access.view) {
             //throw new NotAuthorisedError('Member does not have access for this action');
             res.locals.default = false;
@@ -183,7 +183,7 @@ export const dashbhoardViewAccess = async (req: Request, res: Response, next: Ne
             res.locals.default = true;
             next();
         }
-    } catch (err) {
+    } catch {
         return res.status(401).send({ message: 'Member does not have access for this action' });
     }
 };

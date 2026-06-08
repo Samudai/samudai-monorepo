@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TeamMemberResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TeamMemberResponse } from '@samudai/gateway-consumer-types';
 import clsx from 'clsx';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
@@ -37,12 +37,11 @@ const TeamInfo: React.FC<TeamInfoProps> = ({ user }) => {
         },
     };
     const { daoid } = useParams();
-    const [fetchMember, loading1] = useLazyGetDaoMemberInfoQuery();
+    const [fetchMember, _loading1] = useLazyGetDaoMemberInfoQuery();
     const [selectedMember, setSelectedMember] = useState({} as TeamMemberResponse);
     const roles = useTypedSelector(selectRoles);
     const activeDAO = useTypedSelector(selectActiveDao);
-    const dispatch = useTypedDispatch();
-
+    useTypedDispatch();
     const payload = {
         member_id: getMemberId(),
         daos: [
@@ -53,14 +52,14 @@ const TeamInfo: React.FC<TeamInfoProps> = ({ user }) => {
         ],
     };
 
-    const [getProjects, { data, isSuccess }] = useGetProjectByMemberIdMutation({
+    const [getProjects, { data }] = useGetProjectByMemberIdMutation({
         fixedCacheKey: activeDAO,
     });
 
     const fetchProjects = async () => {
         getProjects(payload)
             .unwrap()
-            .then((res) => {})
+            .then((_res) => {})
             .catch((err) => {
                 console.error(err);
             });

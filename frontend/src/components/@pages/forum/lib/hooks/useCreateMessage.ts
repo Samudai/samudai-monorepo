@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { DiscussionEnums, NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionEnums, NotificationsEnums } from '@samudai/gateway-consumer-types';
 import {
     useCreateMessageMutation,
     useDeleteMessageMutation,
@@ -22,7 +22,7 @@ export const useCreateMessage = (dicussionId: string) => {
     const [deleteMessage] = useDeleteMessageMutation();
     const { fetchComments } = useFetchDiscussion(dicussionId);
     const locaData = localStorage.getItem('signUp');
-    const [load, setLoad] = React.useState(false);
+    const [_load, setLoad] = React.useState(false);
     const [text, setText] = useState('');
     const member_id = locaData ? JSON.parse(locaData).member_id : '';
     const validExtensions = ['pdf', 'doc', 'csv', 'xlsx', 'docx', 'jpg', 'jpeg', 'png'];
@@ -32,7 +32,7 @@ export const useCreateMessage = (dicussionId: string) => {
         return discussionItems.filter((item) => item.discussion_id === dicussionId)[0];
     }, [dicussionId, discussionItems]);
 
-    const participants = useMemo(() => {
+    useMemo(() => {
         return discussionItems.find((d) => d.discussion_id === dicussionId)?.participants || [];
     }, [discussionItems, dicussionId]);
 

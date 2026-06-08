@@ -1,4 +1,4 @@
-import { TaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse } from '@samudai/gateway-consumer-types';
 import styles from '../styles/Task.module.scss';
 import { getColsWidth } from '../utils/getColsWidth';
 import { getHours } from '../utils/getHours';

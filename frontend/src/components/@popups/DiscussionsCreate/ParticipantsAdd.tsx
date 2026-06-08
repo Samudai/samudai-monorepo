@@ -13,7 +13,7 @@ interface ParticipantsAddProps {
     toggleParticipants: (user: IUser) => void;
 }
 
-const ParticipantsAdd: React.FC<ParticipantsAddProps> = ({ participants, toggleParticipants }) => {
+const ParticipantsAdd: React.FC<ParticipantsAddProps> = ({ toggleParticipants }) => {
     const [search, setSearch] = useState('');
     const [candidats, setCandidats] = useState<IUser[]>([]);
 

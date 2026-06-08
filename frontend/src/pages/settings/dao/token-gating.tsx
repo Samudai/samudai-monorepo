@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { getSettingsRoutes } from '../utils/settings-routes';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { ethers } from 'ethers';
 import SettingsLayout from 'root/layouts/settings/settings.layout';
 import { selectAccessList, selectActiveDao } from 'store/features/common/slice';
@@ -52,7 +52,7 @@ const TokenGating: React.FC<TokenGatingProps> = () => {
     const donePopup = usePopup();
     const deletePopup = usePopup();
     const [checkTokenGating] = useLazyGetTokenGatingQuery();
-    const [editable, setEditable] = useState(true);
+    const [_editable, setEditable] = useState(true);
     const [chain, setChain] = useState<string>('');
     const [contractAddress, setContractAddress] = useState<string>('');
     const [value, setValue] = useState<string>('');

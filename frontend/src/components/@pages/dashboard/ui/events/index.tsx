@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import {
     selectAccess,
@@ -24,11 +24,11 @@ import { EventsItem, EventsSkeleton } from './components';
 import './expected-events.scss';
 
 export const ExpectedEvents: React.FC = () => {
-    const eventPopup = usePopup();
+    usePopup();
     const { daoid } = useParams();
     const dispatch = useTypedDispatch();
     const [getDiscordEvents] = useLazyGetGuildEventsQuery();
-    const activeDAO = useTypedSelector(selectActiveDao);
+    useTypedSelector(selectActiveDao);
     const access = useTypedSelector(selectAccess);
     const navigate = useNavigate();
     const eventPopupBool = useTypedSelector(selectEventPopUp);
@@ -41,7 +41,7 @@ export const ExpectedEvents: React.FC = () => {
         const response = await getDiscordEvents(guildId!, true).unwrap();
         setData(response?.data || []);
     });
-    const [fetchGData, loading1] = useRequest(async function () {
+    const [fetchGData, _loading1] = useRequest(async function () {
         const data = await gcalGetEvents(
             daoid!,
             new Date(new Date().setDate(new Date().getDate() - 30)).toISOString(),

@@ -43,7 +43,7 @@ export const SurveyModal: React.FC<SurveyModalProps> = ({ type, onClose, callbac
         };
         await submitFeedback(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Feedback submitted!', '')();
                 navigate('/login');
                 callback?.();

@@ -26,7 +26,7 @@ export const PayoutBounty: React.FC<PayoutBountyProps> = ({
     daoId,
     onChange,
 }) => {
-    const [countWinners, setCountWinners] = useState(0);
+    const [_countWinners, setCountWinners] = useState(0);
     const [activePosition, setActivePosition] = useState(0);
 
     const correctPayout = (winnerCount: number) => {

@@ -21,7 +21,7 @@ import { useCreateUserMutation, useLazyGetUserQuery } from 'store/services/SendB
 import { useGetMemberByIdMutation } from 'store/services/userProfile/userProfile';
 import { groupImages } from 'components/@popups/MessageCreate/constants';
 import sendNotification from 'utils/notification/sendNotification';
-import { NotificationsEnums } from '@samudai_xyz/gateway-consumer-types';
+import { NotificationsEnums } from '@samudai/gateway-consumer-types';
 
 export interface ChatStatus {
     userId: string;
@@ -30,7 +30,7 @@ export interface ChatStatus {
 
 export const useSendBirdChat = (userId: string) => {
     // const [sb, setSb] = useState<any>();
-    const [users, setUsers] = useState<User[]>([]);
+    const [_users, setUsers] = useState<User[]>([]);
 
     const dispatch = useTypedDispatch();
     const memberData = useTypedSelector(selectMemberData);
@@ -42,16 +42,6 @@ export const useSendBirdChat = (userId: string) => {
     const [createUser] = useCreateUserMutation();
     const [fetchUser] = useLazyGetUserQuery();
     const [fetchMember] = useGetMemberByIdMutation();
-
-    const getAllApplicationUsers = async () => {
-        try {
-            const userQuery = sb.createApplicationUserListQuery();
-            const applicantionUsers: User[] = await userQuery.next();
-            setUsers(applicantionUsers);
-        } catch (error: any) {
-            console.log(error);
-        }
-    };
 
     const getUser = async (newUserId: string) => {
         return await fetchUser(newUserId)

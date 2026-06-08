@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getMemberByWallet, getMemberInfo } from '../../utils/helpers';
+import { getMemberInfo } from '../../utils/helpers';
 import { NotificationPartialData, WebNotification, NotificationContent } from '../../utils/types';
 import { generateJWT } from '../../../../lib/jwt';
 import {
@@ -8,7 +8,6 @@ import {
   NotificationFor,
   NotificationScope,
   NotificationStatus,
-  NotificationType,
 } from '../../utils/enums';
 import {
   JobApplicantNotificationMetaData,

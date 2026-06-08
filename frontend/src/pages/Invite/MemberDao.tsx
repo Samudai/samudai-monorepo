@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { changeUrl, selectUrl } from 'store/features/common/slice';
 import { useAddMemberToDaoMutation } from 'store/services/Dao/dao';
 import { useTypedDispatch, useTypedSelector } from 'hooks/useStore';
@@ -10,11 +10,10 @@ import styles from 'styles/pages/pipeline-form.module.scss';
 import mixpanel from 'utils/mixpanel/mixpanelInit';
 
 const MemberDao = () => {
-    const loadUrl = useTypedSelector(selectUrl);
+    useTypedSelector(selectUrl);
     const navigate = useNavigate();
     const [createMember] = useAddMemberToDaoMutation();
     const dispatch = useTypedDispatch();
-    const { inviteid } = useParams();
 
     useEffect(() => {
         const fun = async () => {

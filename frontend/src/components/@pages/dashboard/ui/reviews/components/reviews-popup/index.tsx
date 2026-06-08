@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types/';
+import { AccessEnums } from '@samudai/gateway-consumer-types/';
 import clsx from 'clsx';
 import { selectAccess } from 'store/features/common/slice';
 import { blogData } from 'store/services/Dashboard/model';
@@ -37,7 +37,7 @@ export const ReviewsPopup: React.FC<ReviewPopupProps> = ({
 }) => {
     const [page, setPage] = useState(0);
     const MAX_ELEMENTS_PER_PAGE = 10;
-    const [COUNT_SHOW_PAGES, SET_COUNT_SHOW_PAGES] = useState(
+    const [COUNT_SHOW_PAGES, _SET_COUNT_SHOW_PAGES] = useState(
         Math.ceil(reviews.length / MAX_ELEMENTS_PER_PAGE)
     );
 

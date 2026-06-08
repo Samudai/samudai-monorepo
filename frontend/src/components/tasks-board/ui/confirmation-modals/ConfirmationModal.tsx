@@ -1,6 +1,6 @@
 import Popup from 'components/@popups/components/Popup/Popup';
 import styles from './confirmationModal.module.scss';
-import { TaskResponse, SubTaskResponse } from '@samudai_xyz/gateway-consumer-types';
+import { TaskResponse, SubTaskResponse } from '@samudai/gateway-consumer-types';
 import { Task } from '../task';
 import Button from 'ui/@buttons/Button/Button';
 import { Subtask } from '../subtask';

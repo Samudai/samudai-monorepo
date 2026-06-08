@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import { GnosisFetch, GnosisTypes } from '@samudai/web3-sdk';
 import { selectAccessList } from 'store/features/common/slice';
 import { useLazyGetDefaultProviderQuery } from 'store/services/payments/payments';
@@ -11,7 +11,7 @@ import Button from 'ui/@buttons/Button/Button';
 import { BalanceSkeleton } from './components';
 import './balance.scss';
 
-export const Balance: React.FC = (props = {}) => {
+export const Balance: React.FC = (_props = {}) => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 

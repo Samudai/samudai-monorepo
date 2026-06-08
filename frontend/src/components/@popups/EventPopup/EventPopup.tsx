@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import EventCreate from '../EventCreate/EventCreate';
 import Popup from '../components/Popup/Popup';
-import { AccessEnums } from '@samudai_xyz/gateway-consumer-types';
+import { AccessEnums } from '@samudai/gateway-consumer-types';
 import dayjs from 'dayjs';
 import { createEventPopUp, selectAccess, selectCreateEvent } from 'store/features/common/slice';
 import usePopup from 'hooks/usePopup';
@@ -29,14 +29,14 @@ const EventPopup: React.FC<PopupShowProps> = ({
     fetchDData,
 }) => {
     const access = useTypedSelector(selectAccess)?.includes(AccessEnums.AccessType.MANAGE_DAO);
-    const eventCreate = usePopup();
+    usePopup();
     const [month, setMonth] = useState<dayjs.Dayjs>(dayjs);
     const [events, setEvents] = useState<any[]>([]);
     const createEvent = useTypedSelector(selectCreateEvent);
     const dispatch = useTypedDispatch();
     const [googleData, setGoogleData] = useState<any[]>([]);
     const [finalEvents, setFinalEvents] = useState<any>([]);
-    const [temp, setTemp] = useState<boolean>(true);
+    const [temp, _setTemp] = useState<boolean>(true);
     // console.log('calendar gdata', gData);
     // console.log('calendar ddata', dData);
 

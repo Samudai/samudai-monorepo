@@ -1,5 +1,5 @@
-import { OpportunityOpenTo } from '@samudai_xyz/gateway-consumer-types/dist/types/jobs/enums';
-import { IMember } from '@samudai_xyz/gateway-consumer-types';
+import { OpportunityOpenTo } from '@samudai/gateway-consumer-types/dist/types/jobs/enums';
+import { IMember } from '@samudai/gateway-consumer-types';
 import dayjs, { Dayjs } from 'dayjs';
 import { ISkill } from 'utils/types/User';
 

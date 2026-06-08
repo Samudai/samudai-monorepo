@@ -27,7 +27,7 @@ const MessagePanel: React.FC<MessagePanelProps> = ({
         inputRef.current?.focus();
     };
 
-    const onSubmit = (ev?: React.MouseEvent<HTMLButtonElement>) => {
+    const onSubmit = (_ev?: React.MouseEvent<HTMLButtonElement>) => {
         if (onSend) onSend(value);
         clearValue();
     };

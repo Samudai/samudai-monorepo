@@ -3,8 +3,8 @@ import {
     Member,
     MemberResponse,
     ProjectEnums,
-} from '@samudai_xyz/gateway-consumer-types';
-import { NewContributorItems } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
+} from '@samudai/gateway-consumer-types';
+import { NewContributorItems } from '@samudai/gateway-consumer-types/dist/types/activity/enums';
 import { discordData } from 'store/features/Onboarding/state';
 
 export interface getMemberByIdResponse {

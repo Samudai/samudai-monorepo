@@ -3,7 +3,7 @@ import {
     JobsEnums,
     NotificationsEnums,
     OpportunityResponse,
-} from '@samudai_xyz/gateway-consumer-types/dist/types';
+} from '@samudai/gateway-consumer-types/dist/types';
 import { JobsFilterInputs } from '../../ui/types';
 import { getMemberId, getQueryParam } from 'utils/utils';
 import {
@@ -110,7 +110,7 @@ export const usePaginatedJobs = (filter: JobsFilterInputs) => {
         });
         await updateJob(data)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully updated', '')();
                 setOpportunities(newData);
             })
@@ -124,7 +124,7 @@ export const usePaginatedJobs = (filter: JobsFilterInputs) => {
         const newData = oldData.filter((opportunity) => opportunity.job_id !== jobId);
         await deleteOpportunity(jobId)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully deleted', '')();
                 setOpportunities(newData);
             })
@@ -149,7 +149,7 @@ export const usePaginatedJobs = (filter: JobsFilterInputs) => {
         });
         await updateStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully archived', '')();
                 setOpportunities(newData);
             })
@@ -174,7 +174,7 @@ export const usePaginatedJobs = (filter: JobsFilterInputs) => {
         });
         await updateStatus(payload)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Job is successfully unarchived', '')();
                 setOpportunities(newData);
             })
@@ -187,7 +187,7 @@ export const usePaginatedJobs = (filter: JobsFilterInputs) => {
         const opportunity = opportunities.find((i) => i.job_id === data.applicant.job_id);
         await addApplicant(data)
             .unwrap()
-            .then((res) => {
+            .then((_res) => {
                 toast('Success', 5000, 'Successfully applied', '')();
                 if (opportunity) {
                     sendNotification({

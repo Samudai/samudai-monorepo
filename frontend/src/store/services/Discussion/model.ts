@@ -1,4 +1,4 @@
-import { DiscussionResponse, Message } from '@samudai_xyz/gateway-consumer-types';
+import { DiscussionResponse, Message } from '@samudai/gateway-consumer-types';
 
 export interface creatDiscussionRequest {
     discussion: {

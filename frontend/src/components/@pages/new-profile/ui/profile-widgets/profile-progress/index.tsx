@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import clsx from 'clsx';
 import Sprite from 'components/sprite';
 import css from './profile-progress.module.scss';
-import { ContributorItems } from '@samudai_xyz/gateway-consumer-types/dist/types/activity/enums';
+import { ContributorItems } from '@samudai/gateway-consumer-types/dist/types/activity/enums';
 import { useNavigate } from 'react-router-dom';
 import { getMemberId } from 'utils/utils';
 
