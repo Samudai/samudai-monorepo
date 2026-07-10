@@ -64,8 +64,9 @@ export const gcalGetEvents = async (member_id: string, start_date?: string, end_
             const events = await cachedAxios.get(
                 `https://www.googleapis.com/calendar/v3/calendars/${
                     result.data.data.email
-                }/events?key=${import.meta.env
-                    .REACT_APP_GOOGLE_API_KEY!}&timeMin=${start_date}&timeMax=${end_date}&singleEvents=true`,
+                }/events?key=${
+                    import.meta.env.REACT_APP_GOOGLE_API_KEY!
+                }&timeMin=${start_date}&timeMax=${end_date}&singleEvents=true`,
                 {
                     headers: {
                         Authorization: `Bearer ${request.data.access_token}`,

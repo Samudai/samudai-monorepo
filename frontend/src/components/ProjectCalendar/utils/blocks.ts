@@ -63,8 +63,6 @@ export function getBlocks(projects: ProjectResponse[], month: Dayjs, params?: Us
         const monthsDuration = projectEnd.diff(projectStart, 'M');
         let prevRange = false;
         let nextRange = false;
-        let realCols = 0;
-        let cols = 0;
 
         if (isBeforeDate || isAfterDate) {
             continue;
@@ -80,8 +78,8 @@ export function getBlocks(projects: ProjectResponse[], month: Dayjs, params?: Us
             nextRange = true;
         }
 
-        realCols = projectEnd.diff(projectStart, unit.diff);
-        cols = Math.max(realCols, settings.minCols);
+        const realCols = projectEnd.diff(projectStart, unit.diff);
+        const cols = Math.max(realCols, settings.minCols);
         blocks.push({
             projectStart,
             projectEnd,

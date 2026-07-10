@@ -85,8 +85,8 @@ const TaskAddColumn: React.FC<ColumnAddProps> = ({
         }
 
         const output = [];
-        let updatedTasks: any = [];
-        let updatedSubTasks: any = [];
+        let updatedTasks: any;
+        let updatedSubTasks: any;
 
         if (type === 'before') {
             output.push({

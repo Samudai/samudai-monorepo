@@ -65,7 +65,6 @@ const ConnectWalletComp: React.FC = () => {
         }
         // else if (path[1] === 'invite' && !!getMemberId()) {
         //   //http://localhost:3000/invite/project/b066a76ee
-
         //   const { data } = await axios.get(
         //     `${import.meta.env.REACT_APP_API_URL}/app/project/invite/${
         //       path[path.length - 1] || path[path.length - 2]
@@ -143,7 +142,7 @@ const ConnectWalletComp: React.FC = () => {
                             timestamp: new Date().toUTCString(),
                         });
 
-                        window.analytics.identify(`${res?.data?.member?.member_id}`, {
+                        window.analytics?.identify(`${res?.data?.member?.member_id}`, {
                             email: res?.data?.member?.email,
                             id: res?.data?.member?.member_id,
                             name: res?.data?.member?.name,

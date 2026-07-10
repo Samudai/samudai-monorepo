@@ -88,7 +88,6 @@ export const Head: React.FC<HeadProps> = ({ data, menu, project_id }) => {
         }
 
         const newColumns: ProjectColumn[] = [];
-        let updatedTasks: any = [];
         const columnId = column.column.column_id;
 
         data.forEach((i) => {
@@ -107,7 +106,7 @@ export const Head: React.FC<HeadProps> = ({ data, menu, project_id }) => {
 
         const allTasks = data.map((i) => i.items).flat();
 
-        updatedTasks = allTasks.map((i) => {
+        const updatedTasks = allTasks.map((i) => {
             return {
                 col: i.col < columnId ? i.col : i.col - 1,
                 task_id: i.task_id,

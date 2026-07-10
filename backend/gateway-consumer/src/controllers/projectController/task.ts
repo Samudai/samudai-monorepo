@@ -140,12 +140,10 @@ export class TaskController {
             if (result.data?.tasks?.length > 0) {
                 result.data.tasks = await Promise.all(
                     result.data.tasks.map(async (task: TaskResponse) => {
-                        let assigned_members: IMember[] = [];
                         let poc_member: IMember;
 
                         if (task.assignee_member && task.assignee_member.length > 0) {
-                            const members = await bulkMemberMap(task.assignee_member);
-                            assigned_members = members;
+                            const assigned_members = await bulkMemberMap(task.assignee_member);
                             task = { ...task, assignees: assigned_members };
                         }
 

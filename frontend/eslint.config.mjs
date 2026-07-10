@@ -22,7 +22,9 @@ export default defineConfig([
             sourceType: 'module',
             globals: { ...globals.browser, ...globals.node, ...globals.es2021 },
         },
-        settings: { react: { version: 'detect' } },
+        // explicit version, not 'detect': eslint-plugin-react's detection path calls
+        // context.getFilename(), which ESLint 10's flat-config rule context removed
+        settings: { react: { version: '19.2.7' } },
         rules: {
             // intentional React choices carried over from the prior config
             'react/react-in-jsx-scope': 'off',

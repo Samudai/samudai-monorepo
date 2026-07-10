@@ -25,6 +25,10 @@ const Prompt = () => {
     const daoInviteModal = usePopup();
     getMemberId();
     const { userData } = useProfile();
+    // pre-existing: the block that reads this (below the early `return` a few lines down)
+    // is currently unreachable dead code, unrelated to this dependency bump; left as-is
+    // rather than guessing at product intent
+    // eslint-disable-next-line no-useless-assignment
     const trial_dashboard = useTypedSelector(selectTrialDashboard);
     const [completeTrial] = useCompleteTrialDashboardMutation();
 

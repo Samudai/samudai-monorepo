@@ -104,7 +104,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
                                 );
                                 localStorage.setItem('daoId', `${res?.data?.discord_bot}`);
                                 console.log('member does not exist', res?.data?.member?.member_id);
-                                window.analytics.identify(`${res?.data?.member?.member_id}`, {
+                                window.analytics?.identify(`${res?.data?.member?.member_id}`, {
                                     email: res?.data?.member?.email,
                                     id: res?.data?.member?.member_id,
                                     name: res?.data?.member?.name,
@@ -160,7 +160,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ onNextModal, onNextModalS
                                 const isContributor = res?.data?.member_type === 'contributor';
                                 dispatch(changeJwt({ jwt: res?.data?.jwt || '' }));
                                 localStorage.setItem('jwt', `${res?.data?.jwt}`);
-                                window.analytics.identify(`${res?.data?.member?.member_id}`, {
+                                window.analytics?.identify(`${res?.data?.member?.member_id}`, {
                                     email: res?.data.member?.email,
                                     id: res?.data.member?.member_id,
                                     name: res?.data.member?.name,

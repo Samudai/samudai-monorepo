@@ -45,7 +45,7 @@ const wagmiConfig = getDefaultConfig({
             `https://eth-mainnet.g.alchemy.com/v2/${import.meta.env.REACT_APP_ALCHEMY_API_KEY!}`
         ),
     },
-    ssr: false,
+    ssr: true,
 });
 
 const queryClient = new QueryClient();

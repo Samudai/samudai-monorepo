@@ -115,7 +115,7 @@ export const createTaskFromNotion = async (params: CreateNotionTaskParam, pages:
         }
         return tasks;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 

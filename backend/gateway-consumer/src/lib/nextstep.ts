@@ -113,7 +113,6 @@ export const getNextStepForMember = async (member_id: string) => {
 
 export const getNextStepForDAO = async (dao_id: string) => {
     try {
-        let nextStep;
         const onboardingIntegration: { [key: string]: boolean }[] = [];
         const onboardingStep = await axios.get(`${process.env.SERVICE_ACTIVITY}/onboarding/get/${dao_id}`);
 
@@ -140,7 +139,7 @@ export const getNextStepForDAO = async (dao_id: string) => {
         // nextStep = DAOEnums.DAOOnboardingFlow[onboardingStepValue];
 
         return {
-            nextStep: nextStep,
+            nextStep: undefined,
             onboardingData: onboardingStep.data.data,
             onboardingIntegration: onboardingIntegration,
         };

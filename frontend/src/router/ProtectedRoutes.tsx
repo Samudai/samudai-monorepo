@@ -19,7 +19,7 @@ const handleRouteEnter = (route: IRoute, daoid: string) => {
     console.log(`Entered the ${route?.meta?.name} route, daoid: ${daoid}`);
     // Perform any necessary actions or function calls
 
-    window.analytics.page(`${route?.meta?.name}`, {
+    window.analytics?.page(`${route?.meta?.name}`, {
         dao_id: daoid,
     });
 };
