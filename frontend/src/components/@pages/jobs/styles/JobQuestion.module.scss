@@ -1,0 +1,31 @@
+.question {
+  + .question {
+    padding-top: 24px;
+    margin-top: 24px;
+    border-top: 1px solid $clr-gray-dark;
+  }
+}
+
+.question_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question_title {
+  font: $font16;
+  color: $clr-white;
+}
+
+.question_removeBtn {
+  svg [data-fill] {
+    fill: $clr-red;
+  }
+}
+
+.question_input {
+  margin-top: 16px;
+  [data-role='field'] {
+    background-color: $clr-black;
+  }
+}

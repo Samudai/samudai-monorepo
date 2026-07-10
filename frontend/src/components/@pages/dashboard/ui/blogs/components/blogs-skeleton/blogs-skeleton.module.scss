@@ -1,0 +1,26 @@
+.img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.title {
+    margin-top: 17px;
+    max-width: 98%;
+}
+
+.text,
+.subtext {
+    margin-top: 16px;
+}
+
+.text {
+    max-width: 90%;
+
+    + .text {
+        margin-top: 5px;
+        max-width: 60%;
+    }
+}

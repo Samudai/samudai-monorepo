@@ -1,0 +1,154 @@
+.root {
+  margin-top: 20px;
+  padding: 0 10px;
+  flex: 0 0 calc(100% / 3);
+  overflow: hidden;
+}
+.wrapper {
+  padding: 20px 21px;
+  background: $clr-black-main;
+  box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+  border-radius: 25px;
+}
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  &:hover .headBtn {
+    opacity: 1;
+  }
+}
+.user {
+  [data-role='ui-id'] {
+    margin-top: 1px;
+    font: $font16;
+  }
+}
+.headBtn {
+  // padding: 8px;
+  // min-width: 100px;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+
+  &:hover {
+    filter: none;
+  }
+}
+.headBtnHeart {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.body {
+  margin-top: 0;
+}
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  margin: 0 -5px;
+}
+.infoItem {
+  padding: 0 5px;
+}
+.infoTitle {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+  width: min-content;
+}
+.infoRow {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+}
+.infoIcon {
+  width: 20px;
+  flex-shrink: 0;
+  margin-right: 5px;
+
+  &[data-clr-orange] [data-stroke] {
+    stroke: $clr-orange;
+  }
+  &[data-clr-lavender] [data-stroke] {
+    stroke: $clr-lavender;
+  }
+  &[data-clr-green] {
+    [data-stroke] {
+      stroke: $clr-green;
+    }
+    [data-fill] {
+      fill: $clr-green;
+    }
+  }
+}
+.infoValue {
+  margin-left: 2px;
+  font: 900 24px/0.83 $lato;
+  color: $clr-white;
+}
+
+.infoSkills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.infoSkillsItem {
+  + .infoSkillsItem {
+    margin-top: 8px;
+  }
+}
+.controls {
+  display: none;
+}
+
+// Modificator
+.root {
+  &.profile {
+    .info {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .root {
+    flex-basis: 50%;
+    [data-class='content'] {
+      padding-left: 8px;
+    }
+  }
+}
+@media (max-width: $mobile_big) {
+  .root {
+    flex-basis: 100%;
+  }
+  .root[data-role='item'] {
+    .controls {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .controlsButton {
+        flex: 0 0 calc(50% - 12px);
+        background: $clr-black;
+        padding: 8px;
+
+        + .controlsButton {
+          margin-top: 0;
+        }
+
+        &:first-child span {
+          color: $clr-green;
+        }
+        &:last-child span {
+          color: $clr-orange;
+        }
+      }
+    }
+  }
+}

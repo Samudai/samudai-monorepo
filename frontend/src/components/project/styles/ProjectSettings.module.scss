@@ -1,0 +1,138 @@
+.root[data-role='popup'] {
+    padding: 27px 22px 42px 35px;
+    max-width: 1100px;
+    min-height: 100%;
+}
+.title {
+    font: $font24;
+    color: $clr-gray;
+}
+.container {
+    flex: 1 1 auto;
+    padding-top: 64px;
+    display: flex;
+}
+.left {
+    flex: 0 0 34.5%;
+    border-right: 1px solid #2b2e31;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+.right {
+    flex: 1 1 auto;
+    height: auto;
+    padding-inline: 35px 15px;
+    display: flex;
+    flex-direction: column;
+
+    [data-loader] {
+        max-width: 350px;
+        margin: auto;
+    }
+}
+.tabs {
+    max-width: 262px;
+}
+.tabsItem {
+    background: $clr-black-main;
+    padding: 19px 22px;
+    border-radius: 17px;
+    box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.5);
+
+    font: 600 18px/1.22 $lato;
+    color: $clr-white;
+    text-transform: capitalize;
+
+    &:not([data-active='true']) {
+        cursor: pointer;
+    }
+
+    &[data-active='true'] {
+        background-color: #fdc087;
+        color: $clr-black;
+    }
+
+    + .tabsItem {
+        margin-top: 16px;
+    }
+}
+
+.remove {
+    padding-top: 25px;
+    margin-top: auto;
+    max-width: 280px;
+
+    &_head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &_title {
+        font: 600 18px/1.15 $lato;
+        color: $clr-white;
+    }
+
+    &_btn {
+      padding: 8px 19.5px;
+    }
+
+    &_text {
+      margin-top: 16px;
+
+      font: $fontMedium;
+      color: $clr-gray-dark;
+    }
+}
+
+@media (max-width: $tablet) {
+    .root[data-role='popup'] {
+        padding-inline: 20px;
+    }
+    .container {
+        flex-direction: column;
+    }
+    .left,
+    .right {
+        flex: 0 0 auto;
+    }
+    .left {
+        border: none;
+    }
+    .right {
+        margin-top: 50px;
+        padding: 0;
+    }
+    .tabs {
+        display: flex;
+        max-width: 100%;
+        text-align: center;
+        background: $clr-black-main;
+        border-radius: 17px;
+    }
+    .tabsItem {
+        flex: 0 0 50%;
+        background: none;
+        box-shadow: none;
+
+        + .tabsItem {
+            margin: 0;
+        }
+    }
+}
+@media (max-width: $mobile) {
+    .tabs {
+        border-radius: 14px;
+    }
+    .tabsItem {
+        padding: 12px;
+        border-radius: 14px;
+        font-size: 14px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

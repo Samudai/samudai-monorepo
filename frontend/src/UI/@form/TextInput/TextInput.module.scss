@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.wrapper {
+  flex: 1 1 auto;
+  max-width: calc(100% - 32px);
+  position: relative;
+  cursor: text;
+}
+.placeholder {
+  max-width: 100%;
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.input {
+  max-width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
+.controls {
+  display: flex;
+  align-items: center;
+}
+.controls_btn {
+  + .controls_btn {
+    margin-left: 4px;
+  }
+  &_submit {
+    width: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 100%;
+      [data-stroke] {
+        stroke: $clr-green;
+      }
+    }
+  }
+  &_clear {
+    width: 10px;
+    min-width: 10px;
+    flex-shrink: 0;
+  }
+}

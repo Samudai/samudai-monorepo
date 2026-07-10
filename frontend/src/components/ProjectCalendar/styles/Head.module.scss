@@ -1,0 +1,45 @@
+
+
+
+.root {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.left,
+.right {
+  max-width: 50%;
+  width: 100%;
+}
+.left {
+  padding-right: 20px;
+}
+.right {
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.center {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tabList {
+  display: flex;
+  margin: 0 -12px;
+}
+.tabItem {
+  padding: 4px 6px;
+  margin: 0 6px;
+  font: 600 14px/1 $lato;
+  color: $clr-gray-dark;
+  user-select: none;
+  text-transform: capitalize;
+
+  &[data-active='true'] {
+    color: $clr-orange;
+  }
+
+  &:not([data-active='true']) {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,65 @@
+
+
+
+.root {
+}
+.subtitle {
+}
+.body {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.members {
+  
+}
+.select {
+  padding: 11px 0 20px;
+  min-width: 205px;
+  position: absolute;
+  border-radius: 25px;
+  z-index: 100;
+  top: 100%;
+  background: #1c1c1c;
+}
+.selectBefore {
+}
+.input {
+  [data-role='input'] {
+    color: $clr-green;
+  }
+}
+.selectItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 15px;
+  transition: 0.05s ease-in-out;
+  transition-property: background, box-shadow;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-black;
+    box-shadow: 0px 10px 25px rgba(25, 27, 29, 0.5);
+  }
+}
+.selectIcon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.selectName {
+  margin-left: 16px;
+  font: $font16;
+  color: $clr-gray-dark;
+
+  span {
+    color: $clr-white;
+  }
+}
+.addBtn {
+  margin: 8.5px 0;
+}

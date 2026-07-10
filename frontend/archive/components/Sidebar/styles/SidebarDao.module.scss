@@ -1,0 +1,217 @@
+
+
+
+.root {
+  position: relative;
+  z-index: 10;
+}
+.button {
+  padding: 6px 12px;
+  padding-right: 20px;
+  border-radius: 12px;
+  background: $clr-black;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.buttonIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $clr-lavender;
+
+  font: 500 16px/1 $lato;
+  color: $clr-black;
+}
+.buttonName {
+  margin-left: 16px;
+  font: 500 16px/1.5 $lato;
+  color: $clr-white;
+}
+.buttonArrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    transform: rotate(-90deg);
+    max-width: 8px;
+    width: 100%;
+    [data-stroke] {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+.select {
+  padding-top: 20px;
+  border-radius: 0 0 12px 12px;
+  background: $clr-black;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  top: calc(100% - 10px);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 90%;
+    height: 1px;
+    background: $clr-gray-dark;
+    position: absolute;
+    left: 50%;
+    top: 15px;
+    transform: translateX(-50%);
+  }
+}
+.selectItem {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+
+  &.active {
+    .buttonName {
+      color: $clr-orange;
+    }
+  }
+  &:not(.active) {
+    cursor: pointer;
+  }
+  &:nth-child(even) {
+    .buttonIcon {
+      background-color: $clr-green;
+    }
+  }
+}
+.arrowMobile {
+  display: none;
+}
+.addDaoBtn {
+  display: flex;
+  align-items: center;
+  padding-inline: 20px 12px;
+  padding-block: 14px;
+
+  &Icon {
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      max-width: 14px;
+      width: 100%;
+      [data-stroke] {
+        stroke: $clr-orange;
+      }
+    }
+  }
+
+  &Text {
+    margin-left: 8px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+
+// Active
+.root.active {
+  .buttonArrow {
+    transform: scaleY(-1);
+  }
+  .button {
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    z-index: 100;
+  }
+  .select {
+    z-index: 99;
+  }
+}
+
+// Mini
+.root.mini {
+  &:not(.active) {
+    .button {
+      &Icon {
+        background-color: $clr-black-main;
+        color: $clr-orange;
+      }
+    }
+  }
+  .button {
+    padding: 6px;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+  }
+  .buttonName {
+    display: none;
+  }
+  .buttonArrow {
+    margin: 0;
+    margin-top: 11px;
+  }
+  .select {
+    padding-left: 0;
+    padding-right: 0;
+    z-index: 3;
+    [data-role="list"] {
+      padding-right: 0;
+    }
+  }
+  .select {
+    top: calc(100% - 30px);
+  }
+  .selectItem {
+    padding: 12px 6px ;
+    justify-content: center;
+  }
+  .arrowMobile {
+    margin: 0 auto;
+    display: block;
+    width: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      max-width: 8px;
+      width: 100%;
+      transform: rotate(90deg);
+      [data-stroke] {
+        stroke: $clr-gray-dark;
+      }
+    }
+  }
+  .addDaoBtn {
+    padding-inline: 10px;
+    &Icon {
+      width: 36px;
+      height: 36px;
+      border: 2px dashed $clr-orange;
+    }
+    &Text {
+      display: none;
+    }
+  }
+  &.active {
+    .buttonArrow { opacity: 0; }
+    .arrowMobile { display: flex; }
+    .button { z-index: 99; }
+    .select { z-index: 100; }
+  }
+}

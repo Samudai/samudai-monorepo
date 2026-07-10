@@ -1,0 +1,30 @@
+
+
+
+.root {
+  position: relative;
+}
+.line {
+  position: absolute;
+  left: 14px;
+  top: 0;
+  z-index: 1;
+  width: 2px;
+  height: 100%;
+}
+.lineStroke {
+  strokeWidth: 2px;
+  stroke-dasharray: 5px;
+  stroke: $clr-gray-dark;
+}
+.list {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 150px;
+}
+
+@media (max-width: $tablet){
+  .line {
+    display: none;
+  }
+}

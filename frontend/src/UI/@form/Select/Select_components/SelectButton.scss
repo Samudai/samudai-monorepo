@@ -1,0 +1,38 @@
+
+
+
+.ui-select-button {
+  width: 100%;
+  border-radius: 15px;
+  padding: 16px 21px;
+  min-height: 53px;
+
+  display: flex;
+  align-items: center;
+
+  text-align: left;
+  background: $clr-black-main;
+}
+.ui-select-button__content {
+  flex-grow: 1;
+}
+.ui-select-button__arrow {
+  flex-shrink: 0;
+  width: 18px;
+  transition: transform .15s ease-in;
+
+  svg {
+    width: 100%;
+    .svg-stroke {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+
+.ui-select.active {
+  position: relative;
+  z-index: 200;
+  .ui-select-button__arrow {
+    transform: scaleY(-1);
+  }
+}

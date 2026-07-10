@@ -1,0 +1,22 @@
+.point:after {
+    background: #333333 !important;
+}
+
+.img {
+    min-width: 36px;
+    height: 36px;
+}
+
+.text,
+.time {
+    max-width: 180px;
+}
+
+.text {
+    margin-top: 3px;
+}
+
+.time {
+    margin-top: 5px;
+    max-width: 60px;
+}

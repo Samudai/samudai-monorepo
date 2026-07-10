@@ -1,0 +1,35 @@
+.proposals-popup[data-role='popup'] {
+    max-width: 995px;
+    padding: 21px 25px 69px 57px;
+}
+
+.proposals-popup__block.block {
+    margin: 28px 0 0;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+
+    .proposals-popup__content {
+        margin-top: 33px;
+    }
+
+    .proposals-item:last-child {
+        border-bottom: 1px solid $clr-black;
+    }
+
+    .proposals-item_title {
+        margin-bottom: 13px;
+
+        .proposals-item__col {
+            strong {
+                font: $fontSmall;
+                color: $clr-gray-dark;
+            }
+        }
+
+        .proposals-item__col-status {
+            padding-right: 0px;
+            justify-content: center;
+        }
+    }
+}

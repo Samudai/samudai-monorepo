@@ -1,0 +1,93 @@
+
+
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.members {
+  margin-top: 14px;
+}
+.subtitle {
+}
+.addBtn {
+}
+
+// Field
+.field {
+  margin-top: 14px;
+  padding: 23px 28px;
+  background: $clr-black-main;
+  border-radius: 25px;
+}
+.fieldInner {
+  position: relative;
+}
+.fieldInput {
+  [data-role='field'] {
+    background: #17191a;
+  }
+  [data-role='input'] {
+    color: $clr-green;
+  }
+}
+// Select
+.select {
+  position: relative;
+  left: auto;
+  top: auto;
+  padding: 0;
+  padding-top: 17px;
+  border-radius: 0;
+}
+.selectItem {
+  display: flex;
+  align-items: center;
+  padding: 8.5px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: .1s ease-in-out;
+  transition-property: box-shadow, background;
+
+  &:hover {
+    background: #2b2e31;
+    box-shadow: 0px 10px 25px rgba(25, 27, 29, 0.5);
+  }
+}
+.selectItemImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.selectItemName {
+  padding-left: 16px;
+  white-space: nowrap;
+  font: 500 16px/1.25 $lato;
+  color: $clr-gray-dark;
+
+  span {
+    color: $clr-white;
+  }
+}
+.selectCheckbox {
+  margin-left: auto;
+}
+
+// Candidats
+.candidats {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+
+  &_item {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  &_item + &_item {
+    margin-left: -10px;
+  }
+}

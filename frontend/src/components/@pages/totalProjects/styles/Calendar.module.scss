@@ -1,0 +1,38 @@
+.root {
+  margin-top: 35px;
+  padding: 60px 45px 25px;
+  border-radius: 35px;
+  background: $clr-black-main;
+}
+.title {
+  font: 600 24px/1.12 $lato;
+  color: $clr-white;
+}
+.calendar {
+  margin-top: -30px;
+}
+
+@media (max-width: $tablet) {
+  .root {
+    padding: 25px 20px;
+    border-radius: 25px;
+  }
+  .calendar {
+    margin-top: 30px;
+
+    [data-class="left"] {
+      display: none;
+    }
+
+    [data-class="center"] {
+      margin-inline: auto;
+    }
+
+    [data-class='nav'] {
+      // margin-top: -120px;
+      position: absolute;
+      right: 0;
+      top: -53px;
+    }
+  }
+}

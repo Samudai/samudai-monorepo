@@ -1,0 +1,57 @@
+.panel {
+    padding: 16px;
+    background: $clr-black-main;
+    border-radius: 15px;
+    cursor: text;
+
+    display: flex;
+    align-items: center;
+}
+.panel_input {
+    [data-role="field"] {
+        padding: 0;
+        border-radius: 0;
+        background: none;
+    }
+    [data-role="input"] {
+        padding: 0;
+        min-height: auto;
+    }
+}
+.panel_controls {
+    display: flex;
+    align-items: center;
+}
+.panel_smileBtn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        [data-fill] {
+            fill: $clr-gray-dark;
+        }
+    }
+}
+.panel_sendBtn {
+    margin-left: 14px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    svg {
+        width: 16px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-lavender;
+        }
+    }
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-lavender;
+    }
+}

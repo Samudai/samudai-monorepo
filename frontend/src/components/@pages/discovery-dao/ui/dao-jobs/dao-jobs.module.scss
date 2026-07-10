@@ -1,0 +1,70 @@
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head_title {
+    font: $font24;
+    color: $clr-white;
+}
+.head_link {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-gray-dark;
+    }
+}
+
+.content {
+    padding-top: 16px;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &_img {
+        width: 115px;
+        height: 115px;
+    }
+
+    &_text {
+        max-width: 200px;
+        margin-top: 12px;
+        font: 400 16px/1.5 $lato;
+        color: $clr-gray-dark;
+        text-align: center;
+    }
+
+    &_btn {
+        margin-top: 22px;
+        padding: 14px;
+        min-width: 164px;
+    }
+}
+
+.list {
+
+    &_item + &_item {
+        margin-top: 16px;
+    }
+}
+
+.popup_root {
+    padding: 45px 30px 30px;
+    max-width: 600px;
+}
+
+.popup_title {
+    margin-bottom: 20px;
+}
+
+.popup_list {
+    overflow: auto;
+    max-height: 500px;
+}

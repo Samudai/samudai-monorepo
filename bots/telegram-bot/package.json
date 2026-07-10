@@ -1,0 +1,58 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "author": "samudai",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/amqplib": "^0.10.8",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/lodash": "^4.17.24",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^22.20.1",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.5",
+    "tsx": "^4.23.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.63.0"
+  },
+  "dependencies": {
+    "amqplib": "^2.0.1",
+    "axios": "^1.18.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "elastic-apm-node": "^4.18.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "express-validator": "^7.3.2",
+    "express-winston": "^4.2.0",
+    "helmet": "^8.2.0",
+    "lodash": "^4.18.1",
+    "morgan": "^1.11.0",
+    "node-cache": "^5.1.2",
+    "telegraf": "^4.16.3",
+    "winston": "^3.19.0"
+  },
+  "overrides": {
+    "form-data": "^4.0.6"
+  }
+}

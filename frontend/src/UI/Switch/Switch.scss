@@ -1,0 +1,34 @@
+
+
+
+.switch {
+  font-size: 16px;
+}
+.switch__track {
+  padding: .21875em .3125em;
+  border-radius: 1.1875em;
+  background: $clr-black;
+  display: flex;
+}
+.switch__thumb {
+  display: block;
+  width: 1.3125em;
+  height: 1.3125em;
+  border-radius: 50%;
+  box-shadow: 0 .25em .5em #1F212F;
+  transition: $app-transition;
+  transition-property: background, transform;
+  flex-shrink: 0;
+  background: $clr-gray-dark;
+
+  &_hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.switch.active {
+  .switch__thumb {
+    transform: translateX(100%);
+    background-color: $clr-green;
+  }
+}

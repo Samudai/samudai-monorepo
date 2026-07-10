@@ -1,0 +1,25 @@
+.name {
+    max-width: 150px;
+}
+
+.id {
+    margin-top: 4px;
+    max-width: 95px;
+}
+
+.twitter {
+    flex-shrink: 0;
+    min-width: 25px;
+    height: 20px;
+}
+
+.text {
+    + .text {
+        margin-top: 5px;
+        max-width: 80%;
+    }
+}
+
+.info-item {
+    min-width: 40px;
+}

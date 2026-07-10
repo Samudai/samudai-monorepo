@@ -1,0 +1,103 @@
+
+
+
+.root {
+  margin-top: 40px;
+}
+.title {
+  display: flex;
+  align-items: center;
+}
+.titleIcon {
+  width: 30px;
+  flex-shrink: 0;
+  :global(.svg-fill) {
+    fill: $clr-blue;
+  }
+}
+.titleText {
+  transform: translateY(0.05em);
+  padding-left: 16px;
+  font: 700 24px/1.5 $lato;
+  color: $clr-gray;
+
+  span {
+    margin-left: 16px;
+    color: $clr-gray-dark;
+  }
+}
+.files {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+}
+.filesInner {
+  max-width: calc(100% - 70px);
+}
+.filesList {
+  display: flex;
+  flex-grow: 1;
+  margin: 0 -5px;
+}
+.filesField {
+  width: calc(100% / 5);
+}
+// Field
+.filesInput {
+}
+.filesInputContent {
+  padding-bottom: 71%;
+  position: relative;
+  border-radius: 15px;
+  border: 1px dashed $clr-orange;
+}
+.filesInputCross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+
+  &::before, &::after {
+    content: "";
+    display: block;
+    background: $clr-orange;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
+  }
+  &::before {
+    width: 100%;
+    height: 2px;
+  }
+  &::after {
+    width: 2px;
+    height: 100%;
+  }
+}
+.filesInputText {
+  margin-top: 8px;
+  font: $fontSmall;
+  color: $clr-orange;
+}
+// Slider
+.filesSlider {
+  width: calc(100% - (100% / 5));
+}
+.filesSwiper {
+  max-width: 100%;
+}
+.filesSwiperItem {
+  padding: 0 5px;
+}
+.filesSwiperFile {
+}
+.filesNext {
+  padding-left: 34px;
+}
+.filesNextBtn {
+  opacity: 1;
+}

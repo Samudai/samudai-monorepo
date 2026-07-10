@@ -1,0 +1,292 @@
+.root {
+  display: flex;
+  align-items: center;
+  padding: 26.5px 20px;
+
+  + .root {
+    margin-top: 24px;
+  }
+
+  [data-col]:not(:first-child) {
+    padding-left: 14px;
+  }
+
+  &:not(.placeholder) {
+    background: $clr-black-main;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  &.placeholder > * {
+    padding-block: 0;
+
+    &::before {
+      content: attr(data-col-title);
+      font: $fontSmall;
+      color: $clr-gray-dark;
+    }
+  }
+
+  &.placeholder {
+    padding-bottom: 38px;
+    border-bottom: 1px solid $clr-black;
+    margin-bottom: 39px;
+  }
+}
+
+// Cols
+.colTitle {
+  flex-grow: 1;
+}
+.colDepartment {
+  width: 13%;
+}
+.colPeople {
+  width: 12%;
+}
+.colTags {
+  width: 31%;
+}
+.colPayout {
+  width: 10.22%;
+}
+.colOpen {
+  width: 13.26%;
+
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.colСontrols {
+  width: 34px;
+  flex-shrink: 0;
+}
+
+// Elements
+.title {
+  font: $font16;
+  color: $clr-white;
+}
+.text {
+  font: $fontSmall;
+  color: $clr-white;
+}
+.saveBtn {
+  width: 20px;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+
+    [data-full] {
+      stroke: $clr-orange;
+    }
+  }
+
+  &.saveBtnActive [data-full] {
+    fill: $clr-orange;
+  }
+}
+.tags {
+  display: flex;
+  margin: 0 -4px;
+}
+.tagsItem {
+  margin: 0 4px;
+  padding: 8px 14px;
+  background: $clr-black;
+  border-radius: 20px;
+  font: 400 14px/1 $lato;
+  color: $clr-white;
+}
+.tagsMax {
+  margin-left: 12px;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border: 1px dashed $clr-orange;
+  border-radius: 50%;
+  padding: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font: 600 14px/1.43 $lato;
+  color: $clr-orange;
+}
+.colPlaceholder {
+  display: none;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}
+
+.root_card.root {
+  flex-wrap: wrap;
+  padding: 19px 16px;
+
+  [data-col]:not(:first-child) {
+    padding-left: 0;
+    margin-top: 16px;
+  }
+
+  &.placeholder {
+    display: none;
+  }
+  .colTitle {
+    flex: 0 0 calc(100% - 20px);
+    order: 1;
+  }
+
+  .colDepartment,
+  .colOpen {
+    display: flex;
+    align-items: center;
+
+    .colPlaceholder {
+      margin-right: 8px;
+    }
+  }
+
+  .colPeople,
+  .colPayout {
+    .colPlaceholder {
+      margin-bottom: 8px;
+    }
+  }
+
+  .colPlaceholder {
+    display: block;
+  }
+
+  .colDepartment,
+  .colTags {
+    width: 100%;
+  }
+
+  .colDepartment {
+    order: 4;
+  }
+
+  .colPeople {
+    width: 50%;
+    order: 6;
+  }
+
+  .colTags {
+    order: 3;
+  }
+
+  .colPayout {
+    width: 50%;
+    order: 7;
+  }
+
+  .colOpen {
+    width: 100%;
+    order: 5;
+
+    .text {
+      display: flex;
+      flex-direction: row;
+
+      span {
+        &:not(:last-child)::after {
+          content: ',';
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .colСontrols {
+    width: 20px;
+    order: 2;
+  }
+}
+
+@media (max-width: $tablet) {
+  .root {
+    flex-wrap: wrap;
+    padding: 19px 16px;
+
+    [data-col]:not(:first-child) {
+      padding-left: 0;
+      margin-top: 16px;
+    }
+
+    &.placeholder {
+      display: none;
+    }
+  }
+
+  .colTitle {
+    flex: 0 0 calc(100% - 20px);
+    order: 1;
+  }
+
+  .colDepartment,
+  .colOpen {
+    display: flex;
+    align-items: center;
+    .colPlaceholder {
+      margin-right: 8px;
+    }
+  }
+
+  .colPeople,
+  .colPayout {
+    .colPlaceholder {
+      margin-bottom: 8px;
+    }
+  }
+
+  .colPlaceholder {
+    display: block;
+  }
+
+  .colDepartment,
+  .colTags {
+    width: 100%;
+  }
+
+  .colDepartment {
+    order: 4;
+  }
+
+  .colPeople {
+    width: 50%;
+    order: 6;
+  }
+
+  .colTags {
+    order: 3;
+  }
+
+  .colPayout {
+    width: 50%;
+    order: 7;
+  }
+
+  .colOpen {
+    width: 100%;
+    order: 5;
+
+    .text {
+      display: flex;
+      flex-direction: row;
+
+      span {
+        &:not(:last-child)::after {
+          content: ',';
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+  .colСontrols {
+    width: 20px;
+    order: 2;
+  }
+}

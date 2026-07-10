@@ -1,0 +1,428 @@
+.payments-table {
+}
+.payments-table__row {
+  &_title .payments-table__row-content {
+    padding-bottom: 0 20px 36px;
+    border-bottom: 1px solid $clr-black;
+    .payments-table__col {
+      color: $clr-gray-dark;
+    }
+  }
+  &:not(.payments-table__row_title) .payments-table__row-content {
+    border-radius: 12px;
+    transition: 0.1s ease-in;
+    transition-property: box-shadow, background;
+
+    &:hover {
+      box-shadow: 0px 25px 50px rgba(13, 13, 14, 0.25);
+      background: $clr-black-main;
+    }
+  }
+}
+.payments-table__row-content {
+  display: flex;
+  padding: 19px 20px;
+}
+.payments-table__col {
+  font: $fontSmall;
+  color: $clr-white;
+
+  display: flex;
+  align-items: center;
+
+  // &_filter {
+  //   width: 11.6%;
+  // }
+  &_check {
+    width: 7%;
+  }
+  &_type {
+    flex-grow: 1;
+  }
+  &_date {
+    width: 10%;
+  }
+  &_amount {
+    width: 15%;
+  }
+  &_currency {
+    width: 17%;
+  }
+  &_safe {
+    width: 10%;
+    margin-right: 1rem;
+  }
+  &_request {
+    width: 10%;
+  }
+  &_approved {
+    width: 6%;
+    justify-content: center;
+  }
+  &_status {
+    width: 10%;
+    justify-content: center;
+  }
+  &_link {
+    width: 10%;
+  }
+}
+
+/* 
+  COLS
+*/
+
+// amount 
+.payment-table__amount {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  padding-right: 1rem;
+}
+
+// Initiated 
+.payment-table__initiated {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  justify-content: center;
+
+  &_name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font: 400 14px/1.14 $lato;
+  }
+
+  &_address {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font: 400 14px/1.14 $lato;
+    color: $clr-gray-dark;
+  }
+}
+
+// Check 
+.payments-table__check {
+  font: 400 14px/1.14 $lato;
+  color: $clr-gray-dark;
+
+  &_active {
+    color: $clr-orange;
+  }
+}
+
+.payments-table__history_status {
+  text-transform: lowercase;
+  color: $clr-orange;
+
+  &_REJECTION {
+    color: $clr-red;
+  }
+
+  &_RECEIVED {
+    color: $clr-green;
+  }
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+// Type
+.payments-table__type {
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+.payments-table__type-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: $clr-black;
+
+  img {
+    max-width: 50%;
+    max-height: 50%;
+  }
+}
+.payments-table__type-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.payments-table__type-name {
+  margin-left: 8px;
+  width: 100%;
+  text-transform: capitalize;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+// Date
+.payments-table__date {
+  display: flex;
+  flex-direction: column;
+}
+.payments-table__date-date {
+}
+.payments-table__date-time {
+  margin-top: 8px;
+  color: $clr-gray-dark;
+}
+// User
+.payments-table__user {
+  display: flex;
+  flex-direction: column;
+}
+.payments-table__user-id {
+  margin-top: 8px;
+  color: $clr-gray-dark;
+}
+// Status
+.payments-table__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payments-table__status-queue {
+  display: inline-flex;
+  padding: 8px 14px;
+  align-items: center;
+  gap: 4px;
+  border-radius: 20px;
+  font: 400 14px/1 $lato;
+  color: $clr-gray-dark;
+  width: 100%;
+  justify-content: center;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    filter: grayscale(0.1);
+    cursor: default;
+  }
+}
+.payments-table__status-complete {
+  color: $clr-green;
+  font: 400 14px/1 $lato;
+  gap: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+
+  svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+  
+      [data-stroke] {
+        stroke: $clr-green;
+      }
+    }
+}
+.payments-table__status-pending {
+  padding: 12px 14px;
+  min-width: 108px;
+  border-radius: 20px;
+  text-align: center;
+  color: $clr-green;
+  font: 600 14px/1 $lato;
+  text-transform: capitalize;
+  border: 1px solid $clr-green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+
+  &:disabled {
+    opacity: 0.5;
+    filter: grayscale(0.1);
+    cursor: default;
+  }
+
+  svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+  
+      [data-fill] {
+        fill: $clr-green;
+      }
+  
+      [data-stroke] {
+        stroke: $clr-green;
+      }
+    }
+}
+.payments-table__status {
+  width: 100%;
+  &.--delivered {
+    .payments-table__status-label {
+      color: $clr-green;
+    }
+  }
+  &.--pay {
+    .payments-table__status-label {
+      color: $clr-orange;
+      border: 1px solid $clr-orange;
+    }
+  }
+}
+.payments-table__approve {
+  font: $fontMedium;
+  color: $clr-white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+
+  strong {
+    color: $clr-orange;
+    margin-right: 4px;
+  }
+
+  svg {
+    margin-left: 6px;
+    width: 16px;
+    flex-shrink: 0;
+    [data-stroke] {
+      fill: $clr-green;
+      stroke: $clr-black;
+    }
+  }
+}
+// Dropdown
+.payments-table__settings {
+}
+.payments-table__settings-item {
+}
+
+// Item animation
+.table-item-enter {
+  opacity: 0;
+}
+.table-item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.table-item-exit {
+  opacity: 1;
+}
+.table-item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.claimBtn {
+  margin-top: 0x;
+  padding: 8px;
+  min-width: 20px;
+  background: $clr-black;
+  box-shadow: 0px 36px 20px rgba(19, 19, 20, 0.25);
+  border-radius: 15px;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-green;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    font: 600 14px/1.43 $lato;
+    color: $clr-green;
+  }
+}
+
+@media (max-width: $tablet) {
+  .payments-table__row_title {
+    display: none;
+  }
+  .payments-table__row-content {
+    background: $clr-black-main;
+    border-radius: 12px;
+    flex-wrap: wrap;
+  }
+  .payments-table__col {
+    &_type {
+      width: calc(100% - 144px);
+      order: 1;
+    }
+
+    &_date {
+      display: none;
+    }
+
+    &_amount {
+      width: 65px;
+      order: 2;
+      justify-content: flex-end;
+      padding-right: 4px;
+    }
+
+    &_currency {
+      width: 35px;
+      order: 3;
+    }
+
+    &_request {
+      width: auto;
+      flex-grow: 1;
+      margin-top: 16px;
+      order: 5;
+      width: 14.5%;
+    }
+
+    &_approved {
+      margin-top: 16px;
+      width: auto;
+      flex: 1 1 auto;
+      order: 6;
+      max-width: 100px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &_status {
+      margin-top: 16px;
+      width: 100px;
+      order: 7;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &_link {
+      padding-left: 8px;
+      width: 44px;
+      order: 4;
+    }
+  }
+  .payments-table__status {
+    width: auto;
+  }
+}

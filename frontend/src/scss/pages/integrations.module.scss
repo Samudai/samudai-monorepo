@@ -1,0 +1,12 @@
+.list {
+  max-width: 664px;
+  width: 100%;
+  padding-left: 85px;
+}
+
+@media (max-width: $tablet){
+  .list {
+    max-width: 100%;
+    padding-left: 0;
+  }
+}

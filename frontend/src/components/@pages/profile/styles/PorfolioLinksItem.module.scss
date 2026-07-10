@@ -1,0 +1,102 @@
+.listItem {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+
+  + .listItem {
+    margin-top: 27px;
+  }
+
+  &[data-social='twitter'] .icon {
+    background: #55acee;
+  }
+
+  &[data-social='behance'] .icon {
+    background: #1769ff;
+  }
+
+  &[data-social='dribbble'] .icon {
+    background: #f26798;
+  }
+
+  &[data-social='mirror'] .icon {
+    background: #007aff;
+  }
+
+  &[data-social='fiverr'] .icon {
+    background: #1cb96f;
+  }
+
+  &[data-social='linkedin'] .icon {
+    background: #007bb5;
+  }
+
+  &[data-social='github'] .icon {
+    svg {
+      max-width: 100%;
+    }
+  }
+
+  &.pd {
+    padding-right: 24px;
+  }
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 50%;
+    width: 100%;
+    max-height: 80%;
+
+    [data-fill] {
+      fill: $clr-white;
+    }
+  }
+}
+
+.input {
+  margin-left: 24px;
+
+  // [data-role='input'] {
+  //   &::placeholder {
+  //     text-transform: capitalize;
+  //   }
+  // }
+}
+.value {
+  max-width: calc(100% - 40px);
+  flex-grow: 1;
+  padding-left: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.valueLink {
+  font: $font16;
+  color: $clr-lavender;
+  white-space: nowrap;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+.valueEditBtn {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  [data-stroke] {
+    stroke: $clr-white;
+  }
+}

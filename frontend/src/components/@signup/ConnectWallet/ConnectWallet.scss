@@ -1,0 +1,29 @@
+.connect-wallet__subtitle {
+  margin-top: 34px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+.connect-wallet__connects {
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+.connect-wallet__connects-item {
+  padding: 18px 33px;
+  border-radius: 45px;
+  background: $clr-black-main;
+
+  &::before {
+    display: none;
+  }
+
+  + .connect-wallet__connects-item {
+    margin-top: 16px;
+  }
+
+  .connect-list-item__btn {
+    display: block;
+  }
+}
+.connect-wallet__controls {
+  margin-top: 14px;
+}

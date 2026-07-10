@@ -1,0 +1,35 @@
+.root[data-role="popup"] {
+  max-width: 1054px;
+  padding: 35px;
+  padding-bottom: 22px;
+}
+.title {
+  font: 600 24px/1.12 $lato;
+  color: #E0E0E0;
+}
+.main {
+  padding-top: 54px;
+  display: flex;
+  justify-content: space-between;
+}
+.input {
+  max-width: 302px;
+
+  [data-role="title"] {
+    color: $clr-white;
+  }
+}
+.extra {
+  margin-top: 52px;
+  display: flex;
+  justify-content: space-between;
+}
+.controls {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+}
+.saveBtn {
+  padding: 14px;
+  min-width: 129px;
+}

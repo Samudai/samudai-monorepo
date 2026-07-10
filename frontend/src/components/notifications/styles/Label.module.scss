@@ -1,0 +1,35 @@
+
+
+
+.root {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 10px;
+
+  font: $fontMedium;
+  color: $clr-black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.actions {
+    background: $clr-orange;
+  }
+  &.information {
+    background: $clr-green;
+  }
+  &.alert {
+    background: $clr-lavender;
+  }
+}
+
+
+@media (max-width: $mobile_big){
+  .root {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+  }
+}

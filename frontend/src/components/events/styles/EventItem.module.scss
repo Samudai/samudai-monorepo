@@ -1,0 +1,72 @@
+.root {
+  padding: 21px 22px;
+  border-radius: 25px;
+  background: $clr-black-main;
+  cursor: pointer;
+
+  + .root {
+    margin-top: 16px;
+  }
+}
+.wrapper {
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: $clr-green;
+  }
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.title {
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+.info {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.infoItem {
+  display: flex;
+  align-items: center;
+
+  &.infoItemMeeting {
+  }
+  &.infoItemStart {
+  }
+}
+.infoIcon {
+  width: 20px;
+  flex-shrink: 0;
+  margin-top: 3px;
+
+  svg {
+    width: 100%;
+    :global(.svg-stroke) {
+      stroke: $clr-gray-dark;
+    }
+  }
+}
+.infoName {
+  margin-left: 8px;
+  font: 400 14px/1 $lato;
+  color: $clr-white;
+
+  span {
+    color: $clr-gray-dark;
+  }
+}

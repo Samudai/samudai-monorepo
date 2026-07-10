@@ -1,0 +1,144 @@
+
+
+
+.title {
+  font: $font24;
+  color: $clr-white;
+}
+.main {
+  margin-top: 43px;
+  display: flex;
+  padding-bottom: 40px;
+  border-bottom: 1px solid $clr-black;
+}
+.left {
+  max-width: 125px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.right {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+.userImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.userName {
+  margin-top: 24px;
+  color: $clr-white;
+  font: $font16;
+}
+.userProff,
+.userLink {
+  margin-top: 8px;
+  font: $fontMedium;
+}
+.userProff {
+  color: $clr-lavender;
+}
+.userLink {
+  color: $clr-white;
+}
+.userRating {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+
+  strong {
+    margin-left: 10px;
+    font: $font16;
+  }
+
+  &.a strong {
+    color: $clr-green;
+  }
+  &.b strong {
+    color: $clr-lavender;
+  }
+  &.c strong {
+    color: $clr-orange;
+  }
+}
+.rate {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+.rateLabel {
+  padding: 2px 10px;
+  background: #3A3E42;
+  border-radius: 15px;
+
+  font: $fontMedium;
+  color: $clr-lavender;
+}
+.rateRating {
+  margin-left: 8px;
+  :global(.rating__star.filled) {
+    [data-fill] {
+      fill: $clr-lavender;
+    }
+  }
+}
+.info {
+  margin-top: 35px;
+}
+.infoItem {
+  display: flex;
+  align-items: center;
+
+  &:nth-child(2) {
+    .infoIcon [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+
+  + .infoItem {
+    margin-top: 16px;
+  }
+}
+.infoIcon {
+  width: 20px;
+  flex-shrink: 0;
+
+  :global(.svg-stroke),
+  [data-stroke] {
+    stroke: $clr-lavender;
+  }
+}
+.infoValue {
+  padding-left: 8px;
+  font: $fontSmall;
+  color: $clr-white;
+}
+.subtitle {
+  margin-top: 36px;
+  font: $font16;
+  color: $clr-white;
+
+  strong {
+    color: $clr-orange;
+    margin-left: 16px;
+  }
+}
+.skills {
+  margin-top: 24px;
+}
+.skillsList {
+  margin: -8px -4px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.skillsItem {
+  margin: 8px 4px 0px;
+}
+.text {
+  margin-top: 24px;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}

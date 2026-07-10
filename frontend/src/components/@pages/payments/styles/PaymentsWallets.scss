@@ -1,0 +1,16 @@
+
+
+
+.payments-desk_wallets {
+  .payments-desk__icon {
+    background: #35383C;
+
+    svg {
+      max-width: 80%;
+      max-height: 80%;
+    }
+  }
+  .payments-desk__name.--main {
+    color: $clr-orange;
+  }
+}

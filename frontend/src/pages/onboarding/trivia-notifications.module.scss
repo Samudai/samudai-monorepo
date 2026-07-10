@@ -1,0 +1,28 @@
+.list {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    z-index: 1000;
+
+    &_item + &_item {
+        margin-top: 16px;
+    }
+}
+
+.enter {
+    opacity: 0;
+}
+
+.enterActive {
+    opacity: 1;
+    transition: opacity .2s ease-out;
+}
+
+.exit {
+    opacity: 1;
+}
+
+.exitActive {
+    opacity: 0;
+    transition: opacity .2s ease-out;
+}

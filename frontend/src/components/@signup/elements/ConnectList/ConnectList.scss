@@ -1,0 +1,129 @@
+.connect-list {
+}
+.connect-list__list {
+  margin: -12px 0;
+}
+// List-Item
+.connect-list-item {
+  display: flex;
+  cursor: default;
+  padding: 12px 0;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: auto;
+    background: transparent;
+    margin-right: 10px;
+    transition: background $app-transition;
+  }
+}
+.connect-list-item__content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.connect-list-item__icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  position: relative;
+
+  > svg,
+  img {
+    width: 100%;
+  }
+
+  img {
+    width: 60%;
+    margin-left: 8px;
+  }
+}
+.connect-list-item__icon_dis {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: relative;
+  margin-left: 9px;
+
+  > svg,
+  img {
+    width: 100%;
+  }
+
+  img {
+    width: 60%;
+    margin-left: 8px;
+  }
+}
+.connect-list-item__icon1 {
+  width: 20px;
+  height: 25px;
+  flex-shrink: 0;
+  position: relative;
+  margin-top: 3px;
+  margin-left: 12px;
+
+  > svg,
+  img {
+    width: 100%;
+  }
+
+  img {
+    width: 80%;
+    height: 90%;
+  }
+}
+.connect-list-item__icon2 {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  position: relative;
+
+  > svg,
+  img {
+    width: 100%;
+  }
+}
+.connect-list-item__icon3 {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  position: relative;
+  margin-top: 12px;
+
+  > svg,
+  img {
+    width: 100%;
+  }
+
+  img {
+    width: 60%;
+    margin-left: 8px;
+  }
+}
+.connect-list-item__title {
+  padding-left: 16px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+.connect-list-item__btn {
+  margin-left: auto;
+  padding-left: 10px;
+  font: $fontMedium;
+  color: $clr-orange;
+  transition-property: color, transform;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.connect-list-item:hover {
+  &::before {
+    background-color: $clr-orange;
+  }
+  .connect-list-item__btn {
+    color: $clr-orange;
+  }
+}

@@ -1,0 +1,48 @@
+
+
+
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+
+  &.colPerson {
+    width: 26%;
+
+    display: flex;
+    align-items: center;
+  }
+  &.colRating {
+    width: 7%;
+  }
+  &.colMsg {
+    flex-grow: 1;
+    max-width: 31.5%;
+    padding-left: 24px;
+    padding-right: 16px;
+  }
+  &.colDate {
+    width: 12.5%;
+  }
+  &.colLink {
+    width: 14%;
+  }
+  &.colControl {
+    padding-left: 16px;
+  }
+}
+.rating {
+  text-align: center;
+  font: 500 16px/1.25 $lato;
+  color: $clr-orange;
+}
+.text {
+  font: $fontSmall;
+  color: $clr-white;
+}
+.viewBtn {
+  padding: 11px;
+  min-width: 95px;
+  color: $clr-green;
+}

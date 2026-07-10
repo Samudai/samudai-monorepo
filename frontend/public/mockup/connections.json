@@ -1,0 +1,125 @@
+{
+  "connected": [
+    {
+      "id": "alenawilliams01",
+      "name": "Alena Williams",
+      "avatar": "/mockup/img/user-1.png",
+      "skills": [
+        { "id": 1, "name": "Product Design", "icon": "/img/skills/product.svg" },
+        { "id": 2, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 10,
+      "bounty": 12
+    },
+    {
+      "id": "alexams1",
+      "name": "Alex Amers",
+      "avatar": "/mockup/img/user-2.png",
+      "skills": [
+        { "id": 1, "name": "Product Design", "icon": "/img/skills/product.svg" },
+        { "id": 2, "name": "Design systems", "icon": "/img/skills/systems.svg" },
+        { "id": 3, "name": "UI Design", "icon": "/img/skills/ui.svg" },
+        { "id": 4, "name": "User Flow", "icon": "/img/skills/user_flow.svg" },
+        { "id": 5, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 22,
+      "bounty": 36
+    },
+    {
+      "id": "phyllishall210",
+      "name": "Phyllis Hall",
+      "avatar": "/mockup/img/user-3.png",
+      "skills": [
+        { "id": 1, "name": "User Flow", "icon": "/img/skills/user_flow.svg" },
+        { "id": 2, "name": "Design systems", "icon": "/img/skills/systems.svg" }
+      ],
+      "projects": 5,
+      "bounty": 5
+    },
+    {
+      "id": "diamams",
+      "name": "Diana Lermis",
+      "avatar": "/mockup/img/user-4.png",
+      "skills": [
+        { "id": 1, "name": "Product Design", "icon": "/img/skills/product.svg" },
+        { "id": 2, "name": "Design systems", "icon": "/img/skills/systems.svg" },
+        { "id": 3, "name": "UI Design", "icon": "/img/skills/ui.svg" },
+        { "id": 4, "name": "User Flow", "icon": "/img/skills/user_flow.svg" },
+        { "id": 5, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 35,
+      "bounty": 76
+    },
+    {
+      "id": "elmsi022ren",
+      "name": "John Rolling",
+      "avatar": "/mockup/img/user-5.png",
+      "skills": [
+        { "id": 1, "name": "Design systems", "icon": "/img/skills/systems.svg" },
+        { "id": 2, "name": "UI Design", "icon": "/img/skills/ui.svg" }
+      ],
+      "projects": 34,
+      "bounty": 22
+    },
+    {
+      "id": "les_no154",
+      "name": "Ann Spane",
+      "avatar": "/mockup/img/user-2.png",
+      "skills": [
+        { "id": 1, "name": "Product Design", "icon": "/img/skills/product.svg" },
+        { "id": 2, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 11,
+      "bounty": 20
+    }
+  ],
+  "requests": [
+    {
+      "id": "alexams1",
+      "name": "Alex Amers",
+      "avatar": "/mockup/img/user-2.png",
+      "skills": [
+        { "id": 1, "name": "UI Design", "icon": "/img/skills/ui.svg" },
+        { "id": 2, "name": "User Flow", "icon": "/img/skills/user_flow.svg" }
+      ],
+      "projects": 22,
+      "bounty": 36
+    },
+    {
+      "id": "phyllishall210",
+      "name": "Phyllis Hall",
+      "avatar": "/mockup/img/user-3.png",
+      "skills": [
+        { "id": 1, "name": "Product Design", "icon": "/img/skills/product.svg" },
+        { "id": 2, "name": "Design systems", "icon": "/img/skills/systems.svg" },
+        { "id": 3, "name": "UI Design", "icon": "/img/skills/ui.svg" },
+        { "id": 4, "name": "User Flow", "icon": "/img/skills/user_flow.svg" },
+        { "id": 5, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 5,
+      "bounty": 5
+    },
+    {
+      "id": "elmsi022ren",
+      "name": "John Rolling",
+      "avatar": "/mockup/img/user-5.png",
+      "skills": [
+        { "id": 1, "name": "User Flow", "icon": "/img/skills/user_flow.svg" },
+        { "id": 2, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 34,
+      "bounty": 22
+    },
+    {
+      "id": "les_no154",
+      "name": "Ann Spane",
+      "avatar": "/mockup/img/user-2.png",
+      "skills": [
+        { "id": 1, "name": "Product Design", "icon": "/img/skills/product.svg" },
+        { "id": 2, "name": "User Research", "icon": "/img/skills/user_research.svg" }
+      ],
+      "projects": 11,
+      "bounty": 20
+    }
+  ]
+}

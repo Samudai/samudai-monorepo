@@ -1,0 +1,109 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+.col {
+  &:not(.colTask) {
+    padding-left: 14px;
+  }
+
+  &.colTask {
+    // width: 24.5%;
+    flex-grow: 1;
+  }
+  &.colProject {
+    width: 16%;
+  }
+  &.colStatus {
+    width: 13.5%;
+  }
+  &.colDepartment {
+    width: 12%;
+  }
+  &.colDate {
+    width: 12%;
+  }
+  &.colMembers {
+    width: 13.2%;
+  }
+  &.colControls {
+  }
+}
+.title {
+  font: $fontSmall;
+  color: $clr-gray-dark;
+}
+.taskName {
+  margin-top: 4px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.projectName {
+  margin-top: 4px;
+  font: $fontMedium;
+  color: $clr-green;
+}
+.department {
+  color: $clr-orange;
+}
+.status {
+  color: $clr-lavender;
+}
+.members {
+  [data-role='list'] {
+    font-size: 13.4px;
+  }
+}
+.controlBtn {
+  padding: 11px;
+  min-width: 95px;
+}
+
+@media (max-width: $tablet_small) {
+  .root {
+    flex-wrap: wrap;
+  }
+
+  .col {
+    &:not(.colTask) {
+      padding-left: 0;
+    }
+
+    &.colTask {
+      flex-grow: 0;
+      width: 65%;
+    }
+
+    &.colProject {
+      width: 35%;
+    }
+
+    &.colStatus  {
+      margin-top: 16px;
+      width: 65%;
+    }
+    &.colDepartment {
+      margin-top: 16px;
+      width: 35%;
+    }
+
+    &.colDate {
+      display: none;
+    }
+
+    &.colMembers {
+      margin-top: 16px;
+      width: 40%;
+    }
+
+    &.colControls {
+      width: 60%;
+      margin-top: 16px;
+      justify-content: flex-end;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

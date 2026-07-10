@@ -1,0 +1,19 @@
+.openJobs {
+  margin-top: 32px;
+
+  padding-inline: 16.5px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_title {
+    font: 600 14px/1.25 $lato;
+    color: $clr-green;
+  }
+
+  &_switch {
+    font-size: 11px;
+  }
+}

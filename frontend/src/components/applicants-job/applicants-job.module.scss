@@ -1,0 +1,91 @@
+.job {
+  display: flex;
+  align-items: center;
+  padding: 23px 20px;
+  background: $clr-black-main;
+  border-radius: 15px;
+  border: 1px solid $clr-black-main;
+
+  + & {
+    margin-top: 16px;
+  }
+}
+.job_col {
+  flex-shrink: 0;
+  font: $font16;
+  color: $clr-white;
+
+  span {
+    display: inline-block;
+  }
+
+  &Title {
+    @include textOverflowVertical(2);
+    flex: 1 1 auto;
+  }
+  &Department {
+    width: 14%;
+    padding-left: 14px;
+  }
+  &Type {
+    width: 17%;
+    padding-left: 14px;
+  }
+  &Exp {
+    width: 17%;
+    padding-left: 14px;
+  }
+  &CreatedAt {
+    width: 17%;
+    padding-left: 14px;
+  }
+  &Applicants {
+    width: 115px;
+  }
+}
+.job_title {
+  color: $clr-gray-dark;
+}
+.job_applicants {
+  color: $clr-green;
+}
+
+@media (max-width: $tablet) {
+  .job {
+    flex-wrap: wrap;
+  }
+  .job_col {
+    &Title {
+      width: calc(100% - 95px);
+      order: 1;
+    }
+    &Applicants {
+      order: 2;
+      width: 95px;
+    }
+    &Department {
+      order: 3;
+      width: 100%;
+      padding-left: 0;
+    }
+    &Type,
+    &Exp,
+    &CreatedAt {
+      margin-top: 16px;
+      width: calc(100% / 3);
+      padding-left: 0;
+    }
+
+    &Type {
+      order: 4;
+    }
+    &Exp {
+      order: 5;
+      padding-left: 16px;
+    }
+    &CreatedAt {
+      order: 6;
+      padding-left: 16px;
+    }
+  }
+}

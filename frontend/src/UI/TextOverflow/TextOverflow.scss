@@ -1,0 +1,25 @@
+
+
+
+.ui-text-overflow {
+  max-width: 100%;
+  position: relative;
+
+  &:hover .ui-text-overflow-full {
+    display: block;
+  }
+}
+.ui-text-overflow-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
+.ui-text-overflow-full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  display: none;
+  background: inherit;
+}

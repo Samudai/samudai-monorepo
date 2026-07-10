@@ -1,0 +1,103 @@
+.highlightBox {
+    border-radius: 40px;
+    position: absolute;
+    background-color: gray;
+    height: 40px;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.2s ease 0s;
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    pointer-events: auto;
+    inset: 0px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+    mix-blend-mode: hard-light;
+}
+
+.container {
+    position: absolute;
+    z-index: 1000;
+    /* Adjust the z-index as needed to ensure it appears above other elements */
+}
+
+.popup {
+    position: absolute;
+    background-color: #161819;
+    padding: 10px;
+    border: 1px solid #2B2E31;
+    border-radius: 8px;
+    z-index: 1001;
+
+    &_header {
+        display: flex;
+        width: 269px;
+        justify-content: space-between;
+        align-items: center;
+
+        &_1 {
+            color: #FFF;
+            font-family: $lato;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 20px;
+        }
+
+        &_2 {
+            color: $clr-gray-dark;
+            font-family: $lato;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+
+    &_body {
+        color: #FFF;
+        font-family: $lato;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 13px 0 19px 0;
+    }
+
+    &_footer {
+        display: flex;
+        width: 269px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &_button {
+        display: flex;
+        padding: 10px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 9.07px;
+        border-radius: 56px;
+
+        font-family: $lato;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px;
+
+        &_1 {
+            background: $clr-black;
+            color: $clr-white;
+        }
+
+        &_2 {
+            background: linear-gradient(90deg, #6CFFB1 -0.05%, #FFC266 99.99%);
+            color: #161819;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+
+
+
+.head {
+  margin-top: 23px;
+}
+.overall {
+  max-width: 96px;
+}
+.number {
+  max-width: 30px;
+  + .rating {
+    margin-left: 10px;
+  }
+}
+.rating {
+  max-width: 74px;
+}
+.user {
+  min-width: 44px;
+}
+.votes {
+  max-width: 63px;
+  margin-left: 10px;
+}
+.name {
+  max-width: 155px;
+  margin-top: 5px;
+
+  + .rating {
+    margin-top: 6px;
+  }
+}
+.message {
+  margin-top: 16px;
+  border-radius: 0 15px 15px 15px;
+  height: 77px;
+}

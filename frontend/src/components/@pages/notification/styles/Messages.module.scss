@@ -1,0 +1,17 @@
+.msg_title {
+  display: none;
+
+  +[data-role="nf-card"] {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: $tablet) {
+  .msg_title {
+    display: flex;
+
+    +[data-role="nf-card"] {
+      margin-top: 16px !important;
+    }
+  }
+}

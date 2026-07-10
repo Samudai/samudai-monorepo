@@ -1,0 +1,41 @@
+.visibility {
+  display: flex;
+}
+.visibilityItem {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+
+  &[data-active="true"] {
+    .visibilityCheckbox {
+      cursor: default;
+    }
+  }
+  &:not([data-active="true"]) {
+    cursor: pointer;
+  }
+}
+.visibilityCheckbox {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: $clr-black;
+}
+.visibilityName {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+  text-transform: capitalize;
+}
+.saveBtn {
+  margin-top: 45px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+
+@media (max-width: $tablet){
+  .saveBtn {
+    min-width: 100%;
+  }
+}

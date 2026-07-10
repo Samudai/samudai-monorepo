@@ -1,0 +1,45 @@
+
+
+
+.root {
+  margin-bottom: 145px;
+}
+.container {
+  padding-top: 45px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+.infoLeft {
+  max-width: 800px;
+  width: calc(100% - 365px);
+  padding-right: 25px;
+}
+.infoRight {
+  max-width: 365px;
+  width: 100%;
+}
+.projectsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.projectsTitle {
+  font: 600 24px/1.12 $lato;
+  color: $clr-white;
+  padding-right: 15px;
+}
+.projectsNew {
+}
+.projectsList {
+  margin-top: 35px;
+
+  :global(.project-list__list) {
+    padding-right: 18px;
+  }
+}
+.infoTitle {
+  font: 700 28px/1.29 $lato;
+  color: $clr-gray;
+}

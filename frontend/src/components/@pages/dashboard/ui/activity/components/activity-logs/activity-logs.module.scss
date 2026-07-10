@@ -1,0 +1,22 @@
+@use "sass:list";
+.root {
+    max-height: 700px;
+    overflow: hidden auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    $colors: $clr-green, $clr-lavender, $clr-orange;
+    $len: list.length($colors);
+
+    [data-role='item'] {
+        @for $i from 1 through $len {
+            &:nth-child(#{$len}n + #{$i}) {
+                [data-role='name'] {
+                    color: list.nth($colors, $i);
+                }
+            }
+        }
+    }
+}

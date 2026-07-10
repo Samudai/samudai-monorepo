@@ -1,0 +1,302 @@
+# Full local stack for the simplified monorepo.
+#
+#   cp .env.example .env
+#   docker compose up -d --build       # build + run everything
+#
+# Schema is applied automatically: the one-shot `migrate` service runs the
+# golang-migrate Postgres migrations (migrations/postgres/<module>) before
+# `service-go` starts. No manual migration step.
+#
+# Production (single VM) layers an override + Caddy on top:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --pull always
+#
+# Backends: `service-go` is the Go modular monolith (all former Go services,
+# mounted under per-service path prefixes), `gateway-external` is the standalone
+# external-integrations gateway, and `service-node` is the merged Node service
+# (activity/twitter/web3/x).
+
+services:
+  # ---------------------------------------------------------------- data stores
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-piyushhbhutoria}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_USER:-piyushhbhutoria}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./deploy/local/postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-piyushhbhutoria}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mongo:
+    image: mongo:8.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-mongoadmin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:8-alpine
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:-password}"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a ${REDIS_PASSWORD:-password} ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-rabbitmq}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-password}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  # ----------------------------------------------------------------- migrations
+  # One-shot golang-migrate run: applies each module's Postgres schema (up) into
+  # its own <module>_local database, then exits. service-go waits for this to
+  # complete. Idempotent — re-runs report "no change" via schema_migrations.
+  migrate:
+    image: migrate/migrate:v4.17.1
+    volumes:
+      - ./migrations:/migrations:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -e
+        for m in dao dashboard discovery discussion job member project point; do
+          echo "migrating $$m ..."
+          migrate -path "/migrations/postgres/$$m" \
+            -database "postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/$${m}_local?sslmode=disable" up
+        done
+        echo "all postgres migrations applied"
+    depends_on:
+      postgres: { condition: service_healthy }
+    restart: "no"
+
+  # ------------------------------------------------------------------- backends
+  service-go:
+    build:
+      context: ./backend/service-go
+    environment:
+      PORT: "8080"
+      GIN_MODE: ${GIN_MODE:-release}
+      # Per-module Postgres connections (each former service had its own DB).
+      DATABASE_URL_DAO: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/dao_local?sslmode=disable
+      DATABASE_URL_MEMBER: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/member_local?sslmode=disable
+      DATABASE_URL_POINT: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/point_local?sslmode=disable
+      DATABASE_URL_PROJECT: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/project_local?sslmode=disable
+      DATABASE_URL_DASHBOARD: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/dashboard_local?sslmode=disable
+      DATABASE_URL_DISCOVERY: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/discovery_local?sslmode=disable
+      DATABASE_URL_DISCUSSION: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/discussion_local?sslmode=disable
+      DATABASE_URL_JOB: postgresql://${POSTGRES_USER:-piyushhbhutoria}:${POSTGRES_PASSWORD:-password}@postgres:5432/job_local?sslmode=disable
+      # Shared Mongo (modules select their own DB by name) + Redis.
+      MONGO_URL: mongodb://${MONGO_USER:-mongoadmin}:${MONGO_PASSWORD:-password}@mongo:27017/?authSource=admin
+      REDIS_URL: redis://:${REDIS_PASSWORD:-password}@redis:6379/0
+      MQ_IP: rabbitmq
+      MQ_USERNAME: ${RABBITMQ_USER:-rabbitmq}
+      MQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
+      # Inter-module HTTP calls resolve to this same process via prefixes.
+      SERVICE_POINT: http://service-go:8080/point
+      SERVICE_MEMBER: http://service-go:8080/member
+      SERVICE_DAO: http://service-go:8080/dao
+      SERVICE_DISCORD: http://service-go:8080/discord
+      GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-githubsecret}
+      MORALIS_API_KEY: ${MORALIS_API_KEY:-}
+      DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID:-}
+      DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET:-}
+    ports:
+      - "${BACKEND_PORT:-8081}:8080"
+    depends_on:
+      postgres: { condition: service_healthy }
+      migrate: { condition: service_completed_successfully }
+      mongo: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+
+  service-node:
+    build:
+      context: ./backend/service-node
+    environment:
+      PORT: "8080"
+      MONGO_URL: mongodb://${MONGO_USER:-mongoadmin}:${MONGO_PASSWORD:-password}@mongo:27017/?authSource=admin
+      REDIS_URL: redis://:${REDIS_PASSWORD:-password}@redis:6379/0
+      MQ_IP: rabbitmq
+      MQ_USERNAME: ${RABBITMQ_USER:-rabbitmq}
+      MQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
+      SERVICE_POINT: http://service-go:8080/point
+      RAPID_API_KEY: ${RAPID_API_KEY:-}
+      TWITTER_CLIENT_ID: ${TWITTER_CLIENT_ID:-}
+      DECRYPTION_KEY: ${DECRYPTION_KEY:-}
+    ports:
+      - "${SERVICE_NODE_PORT:-8082}:8080"
+    depends_on:
+      mongo: { condition: service_healthy }
+      rabbitmq: { condition: service_healthy }
+
+  # Standalone external-integrations gateway (former monolith `external` module):
+  # third-party inbound webhooks (GitHub App, Snapshot, Telegram) + the Discord
+  # bot's server-side calls.
+  gateway-external:
+    build:
+      # Context is backend/ (not gateway-external/) so the sibling service-go
+      # module is available to the `replace` directive at build time.
+      context: ./backend
+      dockerfile: gateway-external/Dockerfile
+    environment:
+      PORT: "8080"
+      SERVICE_DAO: http://service-go:8080/dao
+      SERVICE_DISCORD: http://service-go:8080/discord
+      SERVICE_MEMBER: http://service-go:8080/member
+      SERVICE_POINT: http://service-go:8080/point
+      SERVICE_PROJECT: http://service-go:8080/project
+      SERVICE_PLUGIN: http://service-go:8080
+      GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-githubsecret}
+      TELEGRAM_BOT: ${TELEGRAM_BOT:-}
+      MQ_IP: rabbitmq
+      MQ_USERNAME: ${RABBITMQ_USER:-rabbitmq}
+      MQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
+    ports:
+      - "${GATEWAY_EXTERNAL_PORT:-8084}:8080"
+    depends_on:
+      rabbitmq: { condition: service_healthy }   # StartRMQ aborts if MQ is down
+      service-go: { condition: service_started }  # HTTP callees
+
+  gateway-consumer:
+    build:
+      context: ./backend/gateway-consumer
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    environment:
+      PORT: "8080"
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      JWT_KEY: ${JWT_KEY:-local-dev-jwt-key}
+      REDIS_URL: redis://:${REDIS_PASSWORD:-password}@redis:6379/0
+      # Consolidated backend reached via per-service prefixes.
+      SERVICE_DAO: http://service-go:8080/dao
+      SERVICE_MEMBER: http://service-go:8080/member
+      SERVICE_DISCORD: http://service-go:8080/discord
+      SERVICE_PROJECT: http://service-go:8080/project
+      SERVICE_POINT: http://service-go:8080/point
+      SERVICE_PLUGIN: http://service-go:8080
+      SERVICE_DASHBOARD: http://service-go:8080/dashboard
+      SERVICE_DISCOVERY: http://service-go:8080/discovery
+      SERVICE_DISCUSSION: http://service-go:8080/discussion
+      SERVICE_FORMS: http://service-go:8080/forms
+      SERVICE_JOB: http://service-go:8080/job
+      GATEWAY_EXTERNAL: http://gateway-external:8080
+      # Merged Node service reached via its prefixes.
+      SERVICE_ACTIVITY: http://service-node:8080/activity-svc
+      SERVICE_TWITTER: http://service-node:8080/twitter-svc
+      SERVICE_WEB3: http://service-node:8080/web3-svc
+      SAMUDAI_BOT: http://samudai-bot:8080
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SCERET_ACCESS_KEY: ${AWS_SCERET_ACCESS_KEY:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SIGNING_SECRET: ${STRIPE_WEBHOOK_SIGNING_SECRET:-}
+      STRIPE_MONTHLY_PRICE_ID: ${STRIPE_MONTHLY_PRICE_ID:-}
+      STRIPE_YEARLY_PRICE_ID: ${STRIPE_YEARLY_PRICE_ID:-}
+      STRIPE_PRODUCT_ID: ${STRIPE_PRODUCT_ID:-}
+      SAMUDAI_MAIL: ${SAMUDAI_MAIL:-}
+      SAMUDAI_MAIL_PASSWORD: ${SAMUDAI_MAIL_PASSWORD:-}
+      NEYNAR_API_KEY: ${NEYNAR_API_KEY:-}
+      TWITTER_CLIENT_ID: ${TWITTER_CLIENT_ID:-}
+      LIGHTHOUSE_TOKEN: ${LIGHTHOUSE_TOKEN:-}
+    ports:
+      - "${GATEWAY_PORT:-4000}:8080"
+    depends_on:
+      service-go: { condition: service_started }
+      service-node: { condition: service_started }
+      gateway-external: { condition: service_started }
+      redis: { condition: service_healthy }
+
+  # Real-time notifications: Socket.IO + Redis. The browser connects to this
+  # directly (public host notifications.samudai.xyz in prod), not via the gateway.
+  service-notification:
+    build:
+      context: ./backend/service-notification
+    environment:
+      PORT: "8080"
+      REDIS_URL: redis://:${REDIS_PASSWORD:-password}@redis:6379/0
+      JWT_KEY: ${JWT_KEY:-local-dev-jwt-key}
+      # Calls the consumer gateway's /api/* routes and the gateway-external service.
+      GATEWAY_URL: http://gateway-consumer:8080
+      GATEWAY_EXTERNAL_URL: http://gateway-external:8080
+    ports:
+      - "${SERVICE_NOTIFICATION_PORT:-8083}:8080"
+    depends_on:
+      redis: { condition: service_healthy }
+      gateway-external: { condition: service_started }
+      gateway-consumer: { condition: service_started }
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     args:
+  #       NODE_ENV: development
+  #   ports:
+  #     - "${FRONTEND_PORT:-3000}:80"
+  #   depends_on:
+  #     gateway-consumer: { condition: service_started }
+
+  samudai-bot:
+    build:
+      context: ./bots/samudai-bot
+    environment:
+      PORT: "8080"
+      GATEWAY_EXTERNAL: http://gateway-external:8080
+      GATEWAY_CONSUMER: http://gateway-consumer:8080
+      BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+      BOT_ID: ${DISCORD_APP_ID:-}
+    depends_on:
+      gateway-external: { condition: service_started }
+      gateway-consumer: { condition: service_started }
+
+  # telegram-bot:
+  #   build:
+  #     context: ./bots/telegram-bot
+  #   environment:
+  #     PORT: "8080"
+  #     GATEWAY_EXTERNAL: http://gateway-external:8080
+  #     GATEWAY_CONSUMER: http://gateway-consumer:8080
+  #     TELEGRAM_USERNAME: ${TELEGRAM_USERNAME:-samudai_bot}
+  #     BOT_ID: ${TELEGRAM_BOT_ID:-}
+  #     MQ_IP: rabbitmq
+  #     MQ_USERNAME: ${RABBITMQ_USER:-rabbitmq}
+  #     MQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
+  #   depends_on:
+  #     service-go: { condition: service_started }
+  #     gateway-consumer: { condition: service_started }
+  #     rabbitmq: { condition: service_healthy }
+
+volumes:
+  pgdata:
+  mongodata:
+  redisdata:
+  rabbitmqdata:

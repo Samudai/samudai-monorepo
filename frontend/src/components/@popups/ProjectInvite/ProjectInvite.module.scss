@@ -1,0 +1,41 @@
+.root {
+  padding: 40px 31.5px 35px;
+  min-height: 536px;
+}
+.title {
+  max-width: 230px;
+  text-align: center;
+  margin: 0 auto;
+}
+.inviteBox {
+  margin-top: 43px;
+  padding: 23px 28px;
+  border-radius: 25px;
+  background: $clr-black-main;
+  margin-bottom: 15px;
+}
+.addBtn {
+  margin-top: auto;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+  justify-content: center;
+}
+.selectItemImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.selectItemName {
+  padding-left: 16px;
+  white-space: nowrap;
+  font: 500 16px/1.25 $lato;
+  color: $clr-gray-dark;
+
+  span {
+    color: $clr-white;
+  }
+}
+.selectCheckbox {
+  margin-left: auto;
+}

@@ -1,0 +1,39 @@
+.root {
+  position: fixed;
+  padding: 4px;
+  background: $clr-black-main;
+  border-radius: 2px;
+  z-index: 30;
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  flex-grow: 1;
+  font: 400 10px/1.6 $lato;
+  color: $clr-gray;
+  text-transform: uppercase;
+}
+
+/* 
+  Animation
+*/
+:global(.mc-tooltip-enter) {
+  opacity: 0;
+}
+
+:global(.mc-tooltip-enter-active) {
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
+}
+
+:global(.mc-tooltip-exit) {
+  opacity: 1;
+}
+
+:global(.mc-tooltip-exit-active) {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}

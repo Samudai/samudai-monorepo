@@ -1,0 +1,97 @@
+.info {
+}
+.info_list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -11px -5.5px 0;
+}
+.list_block_full {
+    width: 100%;
+    flex: 0 0 100%;
+    padding: 11px 5.5px 0;
+    display: flex;
+    flex-direction: column;
+    font: 500 14px/1.2 $lato;
+    color: $clr-white;
+}
+.list_block {
+    width: 50%;
+    flex: 0 0 50%;
+    padding: 11px 5.5px 0;
+    display: flex;
+    flex-direction: column;
+}
+.list_block_box {
+    background: $clr-black-main;
+    box-shadow: 0px 36px 36px #0f1011;
+    border-radius: 25px;
+    padding: 24px;
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    &_full {
+        flex-direction: row !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.list_block_icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    [data-stroke],
+    [data-full] {
+        stroke: $clr-lavender;
+    }
+    [data-fill] {
+        fill: $clr-lavender;
+    }
+}
+.list_block_picture {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+}
+.list_block_value {
+    margin-top: 18px;
+    font: $font24;
+    color: $clr-white;
+    padding-bottom: 24px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &Small {
+        margin-top: 12px;
+        font: $font16;
+    }
+}
+.list_block_name {
+    margin-top: 18px;
+    font: $fontSmall;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: $clr-white;
+
+    padding-bottom: 24px;
+
+    strong {
+        color: $clr-gray-dark;
+    }
+}
+.list_block_description {
+    margin-top: auto;
+    font: $fontSmall;
+    color: $clr-gray-dark;
+}
+.list_block_radio {
+    font-size: 12px;
+}

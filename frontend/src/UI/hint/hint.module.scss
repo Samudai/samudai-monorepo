@@ -1,0 +1,68 @@
+.root {
+  position: relative;
+  display: inline-block;
+}
+.hint {
+  position: fixed;
+  z-index: 100;
+  padding: 15px;
+  background: $clr-black;
+  border-radius: 15px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-inline: 10px solid transparent;
+    border-bottom: 10px solid $clr-black;
+    position: absolute;
+  }
+
+  &.left::before {
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-block: 10px solid transparent;
+    border-left: 10px solid $clr-black;
+  }
+
+  &.right::before {
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    border-block: 10px solid transparent;
+    border-right: 10px solid $clr-black;
+  }
+
+  &.top::before {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scaleY(-1);
+  }
+
+  &.bottom::before {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.text {
+  font: $fontMedium;
+  color: $clr-white;
+}
+
+:global(.hint-app-enter) {
+  opacity: 0;
+}
+:global(.hint-app-enter-active) {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+:global(.hint-app-exit) {
+  opacity: 1;
+}
+:global(.hint-app-exit-active) {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}

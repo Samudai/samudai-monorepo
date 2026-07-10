@@ -1,0 +1,75 @@
+.view {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &Editable {
+    }
+    &Active {
+        .view_value {
+            cursor: default;
+            color: $clr-orange;
+        }
+    }
+    &:hover {
+        .view_controls_btn {
+            opacity: 1;
+        }
+    }
+}
+.view_value {
+    font: $fontSmall;
+    color: $clr-white;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.view_controls {
+    display: flex;
+    align-items: center;
+}
+.view_controls_btn {
+    width: 16px;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+
+    + .view_controls {
+        margin-left: 8px;
+    }
+
+    svg {
+        [data-stroke] {
+            stroke: $clr-gray-dark;
+        }
+        [data-fill] {
+            fill: $clr-gray-dark;
+        }
+    }
+
+    &Mark {
+        opacity: 1;
+        svg {
+            [data-fill] {
+                fill: $clr-green;
+            }
+        }
+    }
+
+    &:disabled {
+        opacity: 0.2;
+        pointer-events: none;
+    }
+}
+.view_input {
+    font: $fontSmall;
+    color: $clr-white;
+    background: transparent;
+    border: none;
+    max-width: 100%;
+    overflow: hidden;
+    caret-color: $clr-green;
+    border-bottom: 1px solid $clr-gray-dark;
+}

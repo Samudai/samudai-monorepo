@@ -1,0 +1,36 @@
+
+
+
+.root {
+  padding: 45px 30px 30px;
+}
+.form {
+  margin-top: 20px;
+}
+.margin,
+.subtitle {
+  margin-top: 36px;
+}
+.textarea {
+  margin-top: 14px;
+  padding: 16px 20px;
+  height: 103px;
+
+  background: $clr-black-main;
+  border-radius: 15px;
+}
+.submitBtn {
+  margin-top: 40px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+
+@media (max-width: $tablet_small){
+  .root {
+    padding-inline: 20px;
+  }
+  .submitBtn {
+    width: 100%;
+  }
+}

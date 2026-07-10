@@ -1,0 +1,30 @@
+.root {
+  padding: 45px 30px 30px;
+  width: 500px;
+}
+
+.title {
+  color: $clr-white;
+  font: 600 29px/1.25 $lato;
+  align-self: center;
+}
+
+.wrapper {
+  border: 1px solid $clr-gray-dark;
+  border-radius: 8px;
+  margin-top: 30px;
+  pointer-events: none;
+  cursor: default;
+}
+
+.button_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 50px 0;
+}
+
+.button {
+  font: 500 16px/1.2 $lato;
+  padding: 10px 20px;
+  width: 150px;
+}

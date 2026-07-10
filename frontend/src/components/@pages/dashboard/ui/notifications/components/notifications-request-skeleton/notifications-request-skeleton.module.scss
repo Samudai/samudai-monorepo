@@ -1,0 +1,35 @@
+.avatar {
+    height: 36px;
+}
+
+.title {
+    max-width: 205px;
+}
+
+.name {
+    margin-top: 2px;
+    max-width: 120px;
+}
+
+.time {
+    margin-top: 5px;
+    max-width: 90px;
+}
+
+.text {
+    margin-top: 16px;
+    max-width: 95%;
+
+    + .text {
+        margin-top: 5px;
+        max-width: 80%;
+    }
+}
+
+.btn {
+    border-radius: 12px;
+
+    + .btn {
+        margin-left: 16px;
+    }
+}

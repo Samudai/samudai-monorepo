@@ -1,0 +1,6 @@
+[
+  { "id": 0, "name": "Phyllis Hall", "img": "./mockup/img/user-1.png" },
+  { "id": 1, "name": "Phylp Mitchel", "img": "./mockup/img/user-2.png" },
+  { "id": 2, "name": "Alena Williams", "img": "./mockup/img/user-3.png" },
+  { "id": 3, "name": "Alex Florem", "img": "./mockup/img/user-4.png" }
+]
