@@ -19,14 +19,13 @@ export class ProjectHelper {
         const status = createStatuses();
         const tasksLength = project?.tasks?.length;
         let hours = dayjs().diff(project.start_date, 'h');
-        let progress = 0;
 
         for (const { status: s } of project.tasks) {
             status[s]++;
         }
 
         hours = hours > 0 ? hours : 0;
-        progress = +((status.Done / tasksLength) * 100).toFixed(0);
+        const progress = +((status.Done / tasksLength) * 100).toFixed(0);
 
         return { status, tasksLength, hours, progress };
     }

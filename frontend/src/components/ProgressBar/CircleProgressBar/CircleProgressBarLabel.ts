@@ -17,7 +17,7 @@ export class CircleProgressBarLabel {
             } else if (posX.includes('center')) {
                 x = this.config.width * 0.5;
             } else {
-                y = 0;
+                x = 0;
             }
         } else {
             x = posX;

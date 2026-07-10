@@ -44,6 +44,9 @@ export const ceramicInit = async (
 ): Promise<CeramicClient | null> => {
     try {
         const seed = await generateSignature(signer, isPrivy, signedTextRes);
+        if (!seed) {
+            throw new Error('Failed to generate Ceramic identity seed');
+        }
         const provider = new Ed25519Provider(seed);
         // @ts-ignore -- DID constructor provider/resolver types mismatch across dep versions
         const did = new DID({ provider, resolver: getResolver() });

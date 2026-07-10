@@ -61,7 +61,7 @@ export const sendTrackingAnalytics = async ({
     const { sessionId } = JSON.parse(localStorage.getItem('session') || '{}');
 
     console.log('sendTrackingAnalytics', action, type, data, extras);
-    window.analytics.track(type, {
+    window.analytics?.track(type, {
         action: action, // The specific action performed by the user (e.g., click, submit, view)
         page_id: data?.page_id || '', // ID of the page where action occurred
         parent_id: data?.parent_id || '', // ID of the parent element of the clicked/interacted element
@@ -120,7 +120,7 @@ export const sendEventAnalytics = async (data: EventAnalyticsPayload): Promise<v
     const memberId = getMemberId();
     const { sessionId } = JSON.parse(localStorage.getItem('session') || '{}');
 
-    window.analytics.track('User Events', {
+    window.analytics?.track('User Events', {
         dao_id: daoId,
         member_id: memberId,
         member_username: memberUsername,

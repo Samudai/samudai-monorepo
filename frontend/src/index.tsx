@@ -55,7 +55,9 @@ root.render(
                 accentColor: '#C0EFCA',
             },
             embeddedWallets: {
-                createOnLogin: 'users-without-wallets',
+                ethereum: {
+                    createOnLogin: 'users-without-wallets',
+                },
             },
         }}
     >

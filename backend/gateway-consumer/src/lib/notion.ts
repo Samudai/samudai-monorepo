@@ -14,7 +14,7 @@ export const auth = async (member_id: string, code: string, redirect_uri: string
         });
         return response.data;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 
@@ -25,7 +25,7 @@ export const getAllDatabase = async (member_id: string): Promise<NotionDatabase[
         });
         return response.data.databases;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 
@@ -37,7 +37,7 @@ export const getDatabaseProperties = async (member_id: string, database_id: stri
         });
         return response.data;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 
@@ -49,7 +49,7 @@ export const getDatabase = async (member_id: string, database_id: string) => {
         });
         return response.data;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 
@@ -61,7 +61,7 @@ export const getPages = async (member_id: string, database_id: string) => {
         });
         return response.data;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 
@@ -77,7 +77,7 @@ export const getMemberIDs = async (people: any) => {
         });
         return response.data;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };
 
@@ -86,6 +86,6 @@ export const getPageByID = async (pageId: string): Promise<PageObjectResponse> =
         const response = await axios.get(`${serviceNotion}/page/${pageId}`);
         return response.data.page;
     } catch (err: any) {
-        throw new Error(err);
+        throw new Error(err, { cause: err });
     }
 };

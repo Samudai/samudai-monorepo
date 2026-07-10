@@ -182,8 +182,7 @@ export const updateActivity: {
         };
     }): void;
 } = (data: any) => {
-    let payload = {} as Activity;
-    payload = data;
+    const payload = data as Activity;
     payload.action.message = getAction(data)!;
     console.log('activity', payload);
     sendActivityUpdate(payload);

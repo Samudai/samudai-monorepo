@@ -1,4 +1,4 @@
-FROM node:22-alpine AS BUILD_IMAGE
+FROM node:22-alpine AS build_image
 RUN apk update && apk add bash git && rm -rf /var/cache/apk/*
 
 WORKDIR /app
@@ -21,6 +21,6 @@ ENV PORT 8080
 EXPOSE 8080
 
 # copy from build image
-COPY --from=BUILD_IMAGE /app .
+COPY --from=build_image /app .
 
 CMD ["npm", "start"]

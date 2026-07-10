@@ -259,7 +259,7 @@ export class DAOProfileController {
             const onboarding = req.body.onboarding;
             const member_id = req.body.member_id;
             const memberOnboarded = req.body.memberOnboarded;
-            let adminOnboardingComplete: any;
+            const adminOnboardingComplete: any = undefined;
 
             // if (!memberOnboarded) {
             //     try {

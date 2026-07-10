@@ -126,12 +126,7 @@ export const ExpectedEvents: React.FC = () => {
                             .filter(
                                 (events: {
                                     scheduled_start_timestamp:
-                                        | string
-                                        | number
-                                        | Date
-                                        | dayjs.Dayjs
-                                        | null
-                                        | undefined;
+                                        string | number | Date | dayjs.Dayjs | null | undefined;
                                 }) =>
                                     dayjs(events.scheduled_start_timestamp).isSame(dayjs()) ||
                                     dayjs(events.scheduled_start_timestamp).isAfter(dayjs())

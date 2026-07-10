@@ -42,12 +42,10 @@ export const postSuccessLoggerMiddleware: Middleware = () => (next) => (action: 
         action.type.endsWith('/executeMutation/fulfilled') &&
         action.meta.requestStatus === 'fulfilled'
     ) {
-        if (
-            !(
-                action.meta.arg.endpointName === 'getMemberById' ||
-                action.meta.arg.endpointName === 'getProjectByMemberId'
-            )
-        ) {
+        if (!(
+            action.meta.arg.endpointName === 'getMemberById' ||
+            action.meta.arg.endpointName === 'getProjectByMemberId'
+        )) {
             analyticsPayload.type = 'POST';
             analyticsPayload.endpoint = action.meta.baseQueryMeta.url;
             analyticsPayload.endpointName = action.meta.arg.endpointName;

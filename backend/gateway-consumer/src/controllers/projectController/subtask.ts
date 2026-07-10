@@ -73,12 +73,10 @@ export class SubTaskController {
             if (result.data?.subtasks?.length > 0) {
                 result.data.subtasks = await Promise.all(
                     result.data.subtasks.map(async (subtask: SubTaskResponse) => {
-                        let assigned_members: IMember[] = [];
                         let poc_member: IMember;
 
                         if (subtask.assignee_member && subtask.assignee_member.length > 0) {
-                            const members = await bulkMemberMap(subtask.assignee_member);
-                            assigned_members = members;
+                            const assigned_members = await bulkMemberMap(subtask.assignee_member);
                             subtask = { ...subtask, assignees: assigned_members };
                         }
 
