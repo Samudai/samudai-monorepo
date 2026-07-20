@@ -1,0 +1,54 @@
+.root {
+    padding-left: 60px;
+}
+
+.wrapper {
+    max-width: 395px;
+}
+
+.title {
+    margin-bottom: 14px;
+    font: $font16;
+    color: $clr-white;
+}
+
+.item {
+    + .item {
+        margin-top: 60px;
+    }
+}
+
+.openFor {
+    display: flex;
+    align-items: center;
+
+    &_title {
+        font: 500 16px/1.2 $lato;
+        color: $clr-white;
+    }
+
+    &_switch {
+        margin-left: auto;
+        font-size: 10px;
+    }
+}
+
+.textarea {
+    border-radius: 15px;
+    min-height: 120px;
+    padding: 18px;
+    background: $clr-black-main;
+}
+
+.saveBtn {
+    padding: 14px;
+    min-width: 129px;
+    margin-top: 60px;
+    margin-left: auto;
+}
+
+.saveBtn_container {
+    display: flex;
+    justify-content: end;
+    margin-top: 60px;
+}

@@ -1,0 +1,36 @@
+.review {
+    display: flex;
+    width: 100%;
+}
+
+.img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.content {
+    padding-left: 16px;
+    flex-grow: 1;
+}
+
+.name {
+    font: $font16;
+    color: $clr-white;
+}
+
+.stars {
+    margin-top: 6px;
+}
+
+.text {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 0px 15px 15px 15px;
+
+    font: $fontMedium;
+    color: $clr-gray-dark;
+
+    background: $clr-black-main;
+}

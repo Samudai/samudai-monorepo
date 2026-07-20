@@ -1,0 +1,60 @@
+.root {
+  padding: 15px 23.5px;
+  background: $clr-black;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .1s ease-out;
+  display: flex;
+  align-items: center;
+
+  + .root {
+    margin-top: 12px;
+  }
+
+  &.rootActive {
+    background-color: #35393d;
+    pointer-events: none;
+
+    .name {
+      color: $clr-lavender;
+    }
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+.img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.content {
+  padding-left: 16px;
+}
+.name {
+  font: $font16;
+  color: #F0F0F0;
+  transition: color .1s ease-out;
+}
+.prof {
+  margin-top: 4px;
+  font: $fontSmall;
+  color: $clr-gray-dark;
+}
+.right {
+  padding-left: 10px;
+  flex-grow: 1;
+  text-align: right;
+}
+.task {
+  font: 600 18px/1.22 $lato;
+  color: #F0F0F0;
+}
+.subtitle {
+  margin-top: 4px;
+  font: $fontSmall;
+  color: $clr-gray-dark;
+}

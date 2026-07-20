@@ -1,0 +1,24 @@
+
+
+
+.root {
+  padding: 45px 30px 30px;
+}
+.input {
+  margin-top: 13px;
+  + .input {
+    margin-top: 36px;
+  }
+}
+.addBtn {
+  margin-top: 27px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}
+
+@media (max-width: $mobile){
+  .addBtn {
+    width: 100%;
+  }
+}

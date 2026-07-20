@@ -1,0 +1,7 @@
+.toolkit_link {
+  width: 12px;
+  flex-shrink: 0;
+  [data-fill] {
+    fill: $clr_black;
+  }
+}

@@ -1,0 +1,71 @@
+.files_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.files_count {
+    font: $fontMedium;
+    color: $clr-white;
+}
+.files_uploadBtn {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 20px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        margin-left: 4px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+    }
+}
+.files_list {
+    margin-top: 16px;
+}
+.files_item {
+
+    + .files_item {
+        margin-top: 6px;
+    }
+}
+.files_icon {
+    width: 20px;
+    flex-shrink: 0;
+}
+.files_name {
+    padding-left: 8px;
+    font: 400 12px/1 $lato;
+    color: $clr-white;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.files_size {
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+}
+.files_download {
+    margin-left: 20px;
+    width: 20px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+        stroke: $clr-white;
+    }
+}
+.files_removeBtn {
+    margin-left: 20px;
+    width: 20px;
+    flex-shrink: 0;
+
+    [data-fill] {
+        fill: $clr-gray-dark;
+    }
+}

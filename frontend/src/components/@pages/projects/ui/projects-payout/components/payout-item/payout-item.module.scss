@@ -1,0 +1,73 @@
+.item {
+    border-radius: 16px;
+    background: $clr-black-main;
+    padding-inline: 16px;
+
+    &Active {
+        .item_downIcon {
+            transform: scaleY(-1);
+        }
+    }
+}
+.item_button {
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.item_button_progress {
+    font: 600 12px/1 $lato;
+    color: $clr-green;
+}
+.item_content {
+    border-top: 1px solid $clr-black;
+    padding: 12px 0;
+}
+.item_checkbox {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: $clr-black;
+}
+.item_title {
+    // padding-left: 8px;
+    flex-grow: 1;
+    font: $fontMedium;
+    color: $clr-white;
+}
+.item_addPayoutBtn {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 12px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+    }
+}
+.item_downIcon {
+    margin-left: 26px;
+    width: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease-in-out;
+
+    [data-stroke] {
+        stroke: #cbcbcb;
+    }
+}
+.item_contributor_title {
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+    margin-bottom: 16px;
+}
+.item_payouts {
+    margin: 16px 0px;
+}

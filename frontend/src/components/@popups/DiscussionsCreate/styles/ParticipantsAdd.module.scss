@@ -1,0 +1,22 @@
+.root {
+  margin-top: 24px;
+}
+.user {
+  display: flex;
+  align-items: center;
+}
+.userImg {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.userName {
+  font: $font16;
+  color: $clr-gray-dark;
+  margin-left: 16px;
+
+  span {
+    color: $clr-white;
+  }
+}

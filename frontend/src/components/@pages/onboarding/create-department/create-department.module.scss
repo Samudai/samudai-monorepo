@@ -1,0 +1,61 @@
+.dep_field {
+  margin-top: 30px;
+  padding: 16px 18px;
+  background: $clr-black-main;
+  border-radius: 15px;
+  min-height: 131px;
+}
+.dep_list {
+  margin: -8px -4px 0;
+  display: flex;
+  flex-wrap: wrap;
+  cursor: text;
+}
+.dep_item {
+  padding: 8px 14px;
+  background: $clr-black;
+  border-radius: 20px;
+  margin: 8px 4px 0;
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+
+  &_name {
+    font: 400 14px/1 $lato;
+    color: $clr-white;
+  }
+  &_remove {
+    max-width: 10px;
+    margin-left: 6px;
+  }
+}
+.dep_input {
+  margin-top: 8px;
+  padding-inline: 8px;
+  min-width: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: $fontMedium;
+  color: $clr-white;
+  overflow: hidden;
+  flex: 1 1;
+}
+.dep_next {
+  margin-left: auto;
+  margin-top: 55px;
+  padding: 14px;
+  max-width: 129px;
+  width: 100%;
+}
+@media (max-width: $tablet){
+  .dep_next {
+    max-width: 100%;
+  }
+}
+@media (max-width: $mobile){
+  .dep_next {
+    margin-top: 40px;
+  }
+}

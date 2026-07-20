@@ -1,0 +1,49 @@
+.about-dao {
+    padding: 24px 31px 35px;
+    border-radius: 25px;
+
+    .block-scrollable {
+        overflow: visible;
+    }
+}
+
+.about-dao__content {
+    margin-top: 18px;
+}
+
+.about-dao__wrapper {
+    margin: -10px -5px 0;
+    padding: 5px;
+    border: 2px solid transparent;
+    transition: $app-transition;
+
+    &.editable {
+        border-radius: 10px;
+        border-color: rgb(55, 55, 55);
+    }
+}
+
+.about-dao__line {
+    margin-top: 16px;
+
+    height: 24px;
+    border-radius: 4px;
+
+    display: block;
+    background: $clr-black;
+}
+
+.about-dao__addBtn {
+    margin-top: 16px;
+    padding: 14px 30px;
+    border-radius: 20px;
+    
+    margin-inline: auto;
+}
+
+@media (max-width: $laptop_small) {
+    .about-dao {
+        border-radius: 20px;
+        padding: 20px 15px;
+    }
+}

@@ -1,0 +1,98 @@
+.progress {
+    width: 100%;
+    padding: 23px 16px;
+    background: #161819;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+
+    position: relative;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+.bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 7px;
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+
+    display: flex;
+}
+
+.bar_item {
+    height: 100%;
+    background: $clr-gray-dark;
+    flex: calc(25% - 3px);
+
+    + .bar_item {
+        margin-left: 3px;
+    }
+
+    &Active {
+        background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+    }
+}
+
+.title {
+    font: 600 18px/1.15 $lato;
+    color: $clr-white;
+
+    span {
+        background: linear-gradient(90deg, #e0ce75, #fdc267);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+}
+
+.text {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: #cbcbcb;
+}
+
+.controls {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.controls_btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 22px 8px 14px;
+    border-radius: 20px;
+
+    white-space: nowrap;
+
+    position: relative;
+
+    svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        stroke: #fff;
+    }
+
+    span {
+        padding-left: 8px;
+        font: 400 14px/1 $lato;
+        color: $clr-white;
+    }
+
+    + .controls_btn {
+        margin-left: 16px;
+    }
+
+    @include strokeGradient(
+        linear-gradient($clr-black-main, $clr-black-main),
+        linear-gradient(90deg, #ffa16c -0.05%, #ff6666 99.99%)
+    );
+
+    border-width: 1px;
+}

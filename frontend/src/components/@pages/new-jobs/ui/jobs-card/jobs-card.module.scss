@@ -1,0 +1,218 @@
+.card {
+    padding: 16px 24px;
+    border-radius: 15px;
+    background: $clr-black-main;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.card_main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.card_type {
+    font: $font16;
+    color: $clr-blue;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
+.card_title {
+    font: 600 18px/1.2 $lato;
+    color: $clr-white;
+    @include textOverflowLine;
+}
+.card_nameAndDao {
+    margin-top: 16px;
+    font: $font16;
+    color: $clr-gray-dark;
+
+    span + span {
+        &::before {
+            content: '|';
+            display: inline;
+            margin-inline: 4px;
+        }
+    }
+}
+
+.tags {
+    margin-top: 16px;
+}
+
+.info {
+    display: flex;
+    // align-items: center;
+    justify-content: space-around;
+    width: 33.3%;
+
+    &Expand {
+        width: 42%;
+    }
+
+    &Shrink {
+        // width: 25%;
+        justify-content: center;
+
+        // .info_item + .info_item {
+        //     margin-left: 75px;
+        // }
+    }
+}
+
+.info_item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.info_image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.info_text {
+    text-align: center;
+    font: $font24;
+    color: $clr-white;
+    height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.info_label {
+    padding-top: 8px;
+    margin-top: auto;
+    font: $font16;
+    color: $clr-gray-dark;
+}
+
+.info_tokens {
+    height: 44px;
+    display: flex;
+    align-items: center;
+
+    &_img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    &_img + &_img {
+        margin-left: -6px;
+    }
+    &_val {
+        font: $font24;
+        color: $clr-white;
+        margin-left: 7px;
+        transform: translateY(0.1em);
+    }
+}
+
+.big_button {
+    min-width: 152px;
+    padding: 15px 16px;
+
+    border: 1px solid $clr-green;
+    border-radius: 20px;
+
+    font: 600 14px/1 $lato;
+    color: $clr-green;
+    background: $clr-black;
+
+    text-align: center;
+}
+
+.settings {
+    margin-left: 50px;
+
+    [data-role='button'] {
+        width: 34px;
+        height: 34px;
+        border-radius: 7px;
+        background: $clr-black;
+        transform: rotate(-90deg);
+    }
+
+    [data-role='select-box'] {
+        // padding: 15px 17px 24px;
+        padding: 5px;
+        border: 0.6px solid $clr-black;
+        box-shadow: 0px 22.5px 22.5px rgba(15, 16, 17, 0.35);
+        border-radius: 15.5px;
+
+        background: #17191a;
+    }
+
+    &_option {
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+        span {
+            margin-left: 10px;
+        }
+    }
+
+    // &_option + &_option {
+    //     margin-top: 12px;
+    // }
+}
+
+.apply_status {
+    padding: 15px;
+    min-width: 152px;
+    background: $clr-black;
+
+    border: 1px solid #f9f9f9;
+    border-radius: 20px;
+
+    text-align: center;
+
+    font: 600 14px/1 $lato;
+    color: #f9f9f9;
+    text-transform: capitalize;
+    cursor: default;
+
+    &[data-status='applied'] {
+    }
+    &[data-status='accepted'] {
+        color: $clr-green;
+        border-color: $clr-green;
+    }
+    &[data-status='rejected'] {
+        color: $clr-red;
+        border-color: $clr-red;
+    }
+}
+.closed_label {
+    padding: 15px;
+    min-width: 152px;
+    border: 1px solid $clr-gray-dark;
+    border-radius: 20px;
+
+    text-align: center;
+
+    font: 600 14px/1 $lato;
+    color: $clr-gray-dark;
+    background: $clr-black;
+    text-transform: capitalize;
+}
+.set_btn {
+    margin-left: 50px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    svg {
+        width: 100%;
+        height: 100%;
+        [data-fill] {
+            fill: $clr-orange;
+        }
+    }
+}

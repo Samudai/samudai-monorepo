@@ -1,0 +1,52 @@
+.root {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &Readonly {
+        .input {
+            [data-role="field"] {
+                padding-inline: 0;
+                background: transparent;
+            }
+            [data-role="input"] {
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+.input {
+    max-width: 100%;
+
+    [data-role="field"] {
+        align-items: center;
+    }
+}
+
+.editBtn {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-white;
+    }
+}
+
+.doneBtn {
+    width: 24px;
+    height: 24px;
+
+    svg {
+        width: 100%;  
+        height: 100%;
+        stroke: $clr-green;
+    }
+
+    &:disabled svg {
+        color: $clr-gray-dark;
+    }
+}

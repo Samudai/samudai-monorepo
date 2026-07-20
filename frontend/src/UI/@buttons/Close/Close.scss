@@ -1,0 +1,22 @@
+.analytics-close-btn-wrapper {
+  margin-left: auto;
+}
+.close-button {
+  width: 14px;
+  flex-shrink: 0;
+  transition: transform $app-transition;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-button svg {
+  max-width: 100%;
+  width: 100%;
+  .svg-fill {
+    fill: $clr-gray-dark;
+  }
+}
+.close-button:hover {
+  transform: scale(1.1);
+}

@@ -1,0 +1,38 @@
+
+
+
+.nav-button {
+  font-size: 16px;
+  width: 2.25em;
+  height: 2.25em;
+  border: 0.0625em solid #52585e;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $app-transition;
+
+  &:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+.nav-button svg {
+  max-width: 28%;
+  width: 100%;
+  max-height: 65%;
+
+  .svg-stroke {
+    stroke: $clr-white;
+  }
+}
+.nav-button.next {
+  svg {
+    transform: scaleX(-1) translateX(-15%);
+  }
+}
+.nav-button:hover {
+  background: rgba($clr-black, 0.3);
+}

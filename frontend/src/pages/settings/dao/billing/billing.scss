@@ -1,0 +1,204 @@
+.pricing {
+    margin-left: 60px;
+
+    h1 {
+        font: 700 24px/28px $lato;
+        color: $clr-white;
+        margin-bottom: 24px;
+    }
+
+    h2 {
+        font: 400 14px/17.5px $lato;
+        color: $clr-white;
+        margin-bottom: 32px;
+    }
+
+    .status {
+        margin-bottom: 36px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        .item {
+            border: 1px solid $clr-gray-dark;
+            border-radius: 8px;
+            padding: 16px 40px 16px 16px;
+            background: $clr-black;
+
+            span {
+                font: 400 12px/14px $lato;
+                color: $clr-gray-dark;
+            }
+
+            .text {
+                font: 400 14px/17.5px $lato;
+                color: $clr-white;
+
+                strong {
+                    font: 500 16px/20px $lato;
+                    color: $clr-green;
+                }
+            }
+        }
+    }
+
+    .pricing-table {
+        background: $clr-black-main;
+        border-radius: 24px;
+        padding: 24px;
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+
+            .title {
+                font: 700 24px/28px $lato;
+                color: $clr-white;
+
+                strong {
+                    text-transform: capitalize;
+                }
+            }
+
+            .toggle {
+                display: flex;
+                align-items: center;
+
+                .button {
+                    height: 42px;
+                }
+            }
+
+            .radio-btn {
+                width: 20px;
+                height: 20px;
+            }
+
+            .radio {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                >span {
+                    font: 400 14px/17.5px $lato;
+                    color: $clr-white;
+                    margin-left: 8px;
+                }
+
+                +.radio {
+                    margin-left: 20px;
+                }
+
+            }
+        }
+
+        .table {
+            display: flex;
+
+            .tier {
+                flex: 1;
+                text-align: start;
+                padding: 0px 24px;
+                border-width: 0.5px;
+                border-style: solid;
+                border-image:
+                    linear-gradient(to bottom, $clr-black-main, $clr-white, $clr-black-main) 1 100%;
+
+                .title-0 {
+                    text-align: start;
+                    color: $clr-gray-dark;
+                }
+
+                .title-1 {
+                    font: 400 12px/14px $lato;
+                    text-align: center;
+                    color: $clr-orange;
+                }
+
+                .title-2 {
+                    font: 400 12px/14px $lato;
+                    text-align: center;
+                    color: $clr-green;
+                }
+
+                .title-3 {
+                    font: 400 12px/14px $lato;
+                    text-align: center;
+                    color: $clr-yellow;
+                }
+
+                &:first-child {
+                    border-left: none;
+                    padding-left: 0px;
+                }
+
+                &:last-child {
+                    border-right: none;
+                    padding-right: 0px;
+                }
+
+                h2 {
+                    font: 400 12px/14px $lato;
+                    margin-bottom: 2rem;
+                }
+
+                p {
+                    color: $clr-white;
+                    font: 400 14px/17.5px $lato;
+                    margin-bottom: 2rem;
+                }
+
+                .price {
+                    display: flex;
+                    flex-direction: column;
+                    height: 160px;
+                    margin-top: 48px;
+                    align-items: center;
+
+                    .text1 {
+                        color: $clr-white;
+                        font: 700 24px/28px $lato;
+
+                        strong {
+                            color: $clr-gray-dark;
+                        }
+                    }
+
+                    .text2 {
+                        color: $clr-white;
+                        font: 400 14px/17.5px $lato;
+                    }
+
+                    .btn {
+                        margin-top: 24px;
+                        height: 42px;
+                        font: 600 14px/14px $lato;
+                        width: 100%;
+
+                        // &:disabled {
+                        //     border: none;
+                        //     background: $clr-black;
+                        //     opacity: 1;
+                        // }
+                    }
+
+                    .btn-cancel {
+                        font: 600 14px/14px $lato;
+                        color: $clr-gray-dark;
+                        padding-top: 1rem;
+                    }
+                }
+            }
+        }
+
+        .border {
+            width: 100%;
+            height: 0.5px;
+            background: linear-gradient(to right, $clr-black-main, $clr-white, $clr-black-main);
+            position: relative;
+            top: -184px;
+        }
+    }
+}

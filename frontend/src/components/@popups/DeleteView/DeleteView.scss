@@ -1,0 +1,38 @@
+
+
+
+.delete-view__popup {
+  .popup-box__scrollable {
+    align-items: center;
+  }
+}
+.delete-view {
+  max-width: 390px;
+  padding: 25px 30px 35px;
+
+  .popup-title__title strong {
+    color: $clr-orange;
+  }
+}
+.delete-view__nav {
+  display: flex;
+  justify-content: space-between;
+}
+.delete-view__btn {
+  margin-top: 20px;
+  padding: 14px;
+  max-width: 155px;
+  width: 100%;
+  justify-content: center;
+}
+.delete-view__btn_cancel {
+  &:nth-child(n) {
+    background: transparent;
+    border: 1px solid $clr-orange;
+    span {
+      color: $clr-orange;
+    }
+  }
+}
+.delete-view__btn_delete {
+}

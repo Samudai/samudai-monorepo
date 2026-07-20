@@ -1,0 +1,100 @@
+.root {
+  margin-top: 30px;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: -30px -12px 0;
+}
+// Item
+.item {
+  cursor: 'pointer';
+  padding: 20px;
+  padding-left: 26px;
+  border-radius: 25px;
+  width: calc(25% - 24px);
+  min-height: 101px;
+  height: auto;
+  background: $clr-black-main;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 36px 36px #0f1011;
+
+  + .item {
+    margin-left: 63px;
+  }
+  margin: 30px 12px 0;
+}
+.itemWrapper {
+  flex-grow: 1;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+}
+.itemContent {
+  display: flex;
+  align-items: center;
+}
+.itemIcon {
+  max-width: 24px;
+  width: 100%;
+  transform: translateY(-2px);
+  flex-shrink: 0;
+}
+.itemInfo {
+  margin-left: 16px;
+  padding-left: 3px;
+  display: flex;
+  align-items: center;
+
+  strong {
+    font: 900 24px/0.83 $lato;
+    color: $clr-white;
+  }
+  span {
+    margin-left: 8px;
+    font: 500 16px/1.25 $lato;
+    color: $clr-gray;
+  }
+}
+
+// Mod
+.item {
+  $colors: $clr-orange, $clr-lavender, $clr-orange, $clr-green;
+  $len: length($colors);
+
+  @for $i from 1 through $len {
+    $color: nth($colors, $i);
+    &:nth-child(#{$len}n + #{$i}) {
+      .itemIcon :global(.svg-stroke) {
+        stroke: $color;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet_big) {
+  .item {
+    width: calc(50% - 24px);
+  }
+}
+
+@media (max-width: $mobile) {
+  .itemContent {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .itemInfo {
+    margin-left: 0;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: $mobile_small){
+  .item {
+    width: calc(100% - 24px);;
+  }
+}

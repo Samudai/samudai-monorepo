@@ -1,0 +1,121 @@
+.chat {
+    margin-top: 32px;
+}
+
+.chat_head {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $clr-black;
+    display: flex;
+    align-items: center;
+}
+
+.chat_user {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding-right: 10px;
+
+    &_img {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        border-radius: 50%;
+    }
+
+    &_content {
+        padding-left: 16px;
+    }
+
+    &_name {
+        font: $font16;
+        color: $clr-white;
+    }
+
+    &_position {
+        font: $fontSmall;
+        color: $clr-gray-dark;
+    }
+}
+
+.chat_content {
+    margin-top: 16px;
+    height: 400px;
+    background: #111212;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.chat_messagesWrapper {
+    padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat_messagesList {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    &Scrollbar {
+        padding-right: 8px;
+    }
+}
+
+.chat_message {
+    display: flex;
+    &Me {
+        justify-content: flex-end;
+        .chat_message_content {
+            order: -1;
+            padding-left: 0;
+            padding-right: 10px;
+            align-items: flex-end;
+        }
+        .chat_message_text {
+            border-radius: 12px 0px 12px 12px;
+        }
+        .chat_message_date {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+
+    + .chat_message {
+        margin-top: 16px;
+    }
+}
+
+.chat_message_img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+.chat_message_content {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.chat_message_name {
+    font: $font16;
+    color: $clr-white;
+}
+.chat_message_text {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border-radius: 0px 12px 12px 12px;
+    background: #35383c;
+    font: $fontMedium;
+    color: $clr-white;
+}
+.chat_message_date {
+    margin-top: 6px;
+    font: 400 12px/1 $lato;
+    color: $clr-gray-dark;
+    margin-left: auto;
+}

@@ -1,0 +1,27 @@
+.root {
+    padding: 45px 30px 30px;
+}
+
+.subtitle {
+    margin-top: 48px;
+}
+
+.input {
+    margin-top: 14px;
+}
+
+.tags {
+    margin-top: 30px;
+    min-height: 104px;
+}
+
+.confirmBtn {
+    margin: 16px auto 0;
+    padding: 17px 28px;
+    background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+    border-radius: 12px;
+
+    font: 700 16px/1.2 $lato;
+    color: #161819;
+    width: 118px;
+}

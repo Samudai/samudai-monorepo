@@ -1,0 +1,31 @@
+
+
+
+.title {
+  padding-top: 5px;
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+}
+.personImg {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.personContent {
+  padding-left: 16px;
+}
+.personName {
+  font: 500 16px/1.25 $lato;
+  color: $clr-white;
+}
+.personText {
+  margin-top: 4px;
+  font: 400 12px/1.33 $lato;
+  color: $clr-gray-dark;
+}

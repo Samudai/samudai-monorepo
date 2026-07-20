@@ -1,0 +1,282 @@
+.clans {
+  padding-block: 70px;
+}
+.clans_head {
+  display: flex;
+  align-items: center;
+
+  &_title {
+    font: $font24;
+    color: #dedede;
+  }
+  &_input {
+    margin-left: 29px;
+    max-width: 380px;
+
+    [data-role='field'] {
+      border-radius: 25px;
+      padding-inline: 23px;
+    }
+    padding-inline: 23px;
+    [data-role='input'] {
+      min-height: 43px;
+      padding-left: 18px;
+    }
+    &_magnifier {
+      width: 20px;
+      flex-shrink: 0;
+      [data-stroke] {
+        stroke: $clr-gray-dark;
+      }
+    }
+  }
+}
+.clans_list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 35px -8px 0;
+  &_item {
+    margin: 16px 8px 0;
+    flex: 0 0 calc(20% - 16px);
+    padding: 18px;
+    background: $clr-black-main;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  &_img {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  &_name {
+    padding-left: 16px;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: $font16;
+    color: $clr-white;
+  }
+}
+.clans_hat {
+  margin-top: 59px;
+  overflow: visible;
+  [data-role='inner'] {
+    padding: 19px 16px;
+    max-width: 100%;
+    overflow: visible;
+  }
+  &_info {
+    [data-class='info-content'] {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-top: 0;
+        margin-left: 39px;
+      }
+    }
+  }
+  &_right {
+    display: flex;
+    align-items: center;
+  }
+  &_chat {
+    margin-right: 25px;
+  }
+}
+/* Head */
+.clans_projects {
+  margin-top: 60px;
+  &_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &_title {
+    font: $font16;
+    color: $clr-gray;
+  }
+  &_link {
+    width: 24px;
+    flex-shrink: 0;
+    svg {
+      width: 100%;
+      [data-stroke] {
+        stroke: $clr-gray-dark;
+      }
+    }
+  }
+  &_tabs {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    &_item {
+      font: $fontMedium;
+      color: $clr-gray-dark;
+      text-transform: capitalize;
+
+      + .clans_projects_tabs_item {
+        margin-left: 24px;
+      }
+
+      &[data-active='true'] {
+        color: $clr-white;
+      }
+    }
+  }
+  &_list {
+    margin-top: 20px;
+  }
+}
+/* Info */
+.clans_info {
+  margin-top: 57px;
+  display: flex;
+  &_left {
+    max-width: 368px;
+    padding-right: 60px;
+    width: 100%;
+  }
+  &_right {
+    flex-grow: 1;
+  }
+}
+.clans_row {
+  display: flex;
+
+  &_bounty {
+    max-width: 382px;
+    padding-right: 60px;
+    width: 100%;
+  }
+  &_badges {
+    flex-grow: 1;
+    max-width: 390px;
+  }
+}
+.clans_skills,
+.clans_applications {
+  margin-top: 60px;
+}
+
+@media (max-width: $laptop) {
+  .clans_list_item {
+    flex-basis: calc(25% - 16px);
+  }
+}
+@media (max-width: $tablet_big) {
+  .clans_list_item {
+    flex-basis: calc(100% / 3 - 16px);
+  }
+}
+@media (max-width: $tablet) {
+  .clans {
+    padding-top: 48px;
+  }
+  .clans_head {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &_input {
+      margin-left: 0;
+      margin-top: 24px;
+      padding-inline: 0;
+    }
+  }
+  .clans_list {
+    margin-top: 28px;
+    flex-wrap: nowrap;
+    overflow: auto;
+    &_item {
+      flex-basis: 235px;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .clans_hat {
+    margin-top: 24px;
+  }
+  .clans_hat {
+    &_info {
+      [data-class='info-content'] {
+        align-items: flex-start;
+        flex-direction: column;
+
+        h3 {
+          font-size: 16px;
+        }
+
+        p {
+          margin-top: 4px;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+@media (max-width: $tablet_big) {
+  .clans_info {
+    &_left {
+      padding-right: 30px;
+    }
+  }
+  .clans_row {
+    display: flex;
+    flex-direction: column;
+
+    &_bounty {
+      max-width: 100%;
+      padding-right: 0;
+    }
+
+    &_badges {
+      margin-top: 36px;
+      flex: 0 0 auto;
+      max-width: 100%;
+    }
+  }
+}
+@media (max-width: $tablet) {
+  .clans_info {
+    margin-top: 48px;
+    flex-direction: column;
+
+    &_left {
+      max-width: 100%;
+      margin-top: 36px;
+      padding-right: 0;
+    }
+
+    &_right {
+      order: -1;
+      flex-grow: 0 0 auto;
+    }
+  }
+}
+@media (max-width: $mobile) {
+  .clans_hat {
+    &_chat {
+      margin-right: 8px;
+      flex-direction: column;
+
+      > div {
+        margin-right: 0;
+      }
+      span {
+        margin-top: 8px;
+      }
+    }
+  }
+}
+@media (max-width: $mobile_small) {
+  .clans_hat_chat {
+    span {
+      display: none;
+    }
+  }
+}

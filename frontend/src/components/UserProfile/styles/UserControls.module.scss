@@ -1,0 +1,114 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 183px;
+  border-radius: 15px;
+  padding: 15px;
+  transition: filter $app-transition;
+
+  svg {
+    width: 16px;
+    flex-shrink: 0;
+  }
+  span {
+    margin-left: 8px;
+    white-space: nowrap;
+    font: 600 14px/1.43 $lato;
+  }
+
+  + .btn {
+    margin-top: 18px;
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+.btnCall {
+  background: $clr-green;
+  svg {
+    width: 20px;
+    [data-stroke] {
+      stroke: #242635;
+    }
+  }
+  span {
+    color: #242635;
+  }
+}
+.btnFeed {
+  background: $clr-black;
+  svg [data-stroke] {
+    stroke: $clr-green;
+  }
+  span {
+    color: $clr-white;
+  }
+}
+
+.claimBtn {
+  margin-top: 19px;
+  padding: 14px;
+  min-width: 183px;
+  background: $clr-black;
+  box-shadow: 0px 36px 20px rgba(19, 19, 20, 0.25);
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-green;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    font: 600 14px/1.43 $lato;
+    color: $clr-green;
+  }
+}
+
+@media (max-width: $laptop_small) {
+  .root {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .btn {
+    + .btn {
+      margin-top: 0;
+    }
+  }
+  .claimBtn {
+    margin: 0;
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: $mobile){
+  .root {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+
+    + .btn {
+      margin-top: 16px;
+    }
+  }
+  .claimBtn {
+    margin-left: 0;
+  }
+}

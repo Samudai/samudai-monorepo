@@ -1,0 +1,63 @@
+.rate {
+    margin-top: 22px;
+    padding: 22px;
+    border-radius: 16px;
+    width: 100%;
+    background: $clr-black;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    &_text {
+        font: $fontMedium;
+        color: $clr-gray;
+    }
+
+    &_value {
+        font: $font16;
+        color: $clr-gray;
+    }
+
+    &_display {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &_button {
+        border-top: 1px solid $clr-gray-dark;
+        margin-top: 22px;
+        padding-top: 22px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        stroke: $clr-orange;
+    }
+
+    span {
+        margin-left: 8px;
+        font: 600 14px/1 $lato;
+        color: $clr-orange;
+        transform: translateY(0.1em);
+    }
+}
+
+.rate_dash {
+  font: $font16;
+  color: $clr-gray;
+}

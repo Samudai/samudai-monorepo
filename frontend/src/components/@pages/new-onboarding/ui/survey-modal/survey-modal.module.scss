@@ -1,0 +1,68 @@
+.root {
+    padding: 30px;
+    min-height: 525px;
+}
+
+.wrapper {
+    margin: auto;
+    max-width: 305px;
+    width: 100%;
+}
+
+.text {
+    margin: 16px auto 0;
+    max-width: 190px;
+    width: 100%;
+    font: $font16;
+    line-height: 1.5;
+    color: $clr-white;
+    text-align: center;
+}
+
+.controls {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+
+    &_backBtn,
+    &_submitBtn {
+        padding: 14px 28px;
+        border-radius: 12px;
+        font: 700 16px/1.5 $satoshi;
+    }
+
+    &_backBtn {
+        color: #161819;
+        background: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+    }
+    &_submitBtn {
+        background: $clr-black-main;
+        color: $clr-white;
+        margin-left: 24px;
+    }
+}
+
+.select {
+    margin-top: 24px;
+
+    &_button,
+    &_item {
+        font: $fontMedium;
+        color: $clr-white;
+    }
+
+    &_button {}
+
+    &_list {
+        padding-top: 16px;
+    }
+
+    &_item {
+        cursor: pointer;
+        padding: 16px 20px;
+
+        &:hover {
+            background: $clr-black;
+        }
+    }
+}

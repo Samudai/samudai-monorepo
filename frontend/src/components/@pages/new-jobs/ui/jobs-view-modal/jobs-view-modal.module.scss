@@ -1,0 +1,157 @@
+.view {
+    padding: 35px 40px 40px;
+}
+.view_item {
+    margin-top: 48px;
+}
+.view_row {
+    display: flex;
+
+    &[data-size="205"] {
+        justify-content: space-between;
+        .view_col {
+            max-width: 205px;
+            width: 100%;
+        }
+    }
+}
+.view_col {}
+
+.view_payout {
+    display: flex;
+    justify-content: space-between;
+    color: $clr-white;
+    padding: 20px 0;
+    border-bottom: 1px solid $clr-black;
+}
+.task_row {
+    margin-top: 20px;
+}
+.view_subtitle {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+    margin-bottom: 8px;
+}
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head_title {
+    font: $font24;
+    color: $clr-white;
+    padding-right: 10px;
+}
+
+.lastupdated {
+    margin-top: 16px;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 8px;
+        background: $clr-orange;
+    }
+
+    font: $fontSmall;
+    color: $clr-gray-dark;
+
+    strong {
+        color: $clr-white;
+    }
+}
+
+.reviewer {
+    margin-top: 32px;
+}
+
+.dao {
+    display: flex;
+    align-items: center;
+}
+
+.dao_image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dao_name {
+    padding-left: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.project {
+    margin-top: 19px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.editor {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.editor_field {
+    padding: 0;
+}
+
+.deadline {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+
+    strong {
+        color: $clr-white;
+    }
+}
+
+.foot {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.foot_row {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.description {
+    min-height: 127px;
+}
+
+.project_link {
+    [data-role="field"] {
+        background: $clr-black;
+    }
+}
+
+.foot_label {
+    margin-left: 8px;
+    font: $fontMedium;
+    color: $clr-green;
+    max-width: 98px;
+    margin-right: 10px;
+}
+
+.foot_applyBtn {
+    margin-left: auto;
+    padding: 14px;
+    max-width: 127px;
+    width: 100%;
+}
+
+.total_title {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+    margin-top: 32px;
+}

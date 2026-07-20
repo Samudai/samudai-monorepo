@@ -1,0 +1,15 @@
+.root {
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px -4px 0;
+}
+.item {
+  margin: 8px 4px 0;
+}
+.noSkills{
+  margin-top: 14px;
+  font: $fontMedium;
+  color: $clr-gray-dark;
+}

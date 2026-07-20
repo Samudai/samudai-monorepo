@@ -1,0 +1,41 @@
+.notifications-transcation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+
+    + .notifications-transcation {
+        margin-top: 2px;
+    }
+}
+
+.notifications-transcation__transaction {
+    flex-grow: 1;
+}
+
+.notifications-transcation__name,
+.notifications-transcation__amount {
+    font: $fontMedium;
+    color: $clr-white;
+}
+
+.notifications-transcation__name {
+}
+
+.notifications-transcation__id {
+    margin-top: 4px;
+    font: $fontSmall;
+    color: $clr-gray-dark;
+}
+
+.notifications-transcation__sum {
+    padding-left: 10px;
+}
+
+.notifications-transcation__amount {
+    font: $fontMedium;
+
+    strong {
+        color: $clr-gray-dark;
+    }
+}

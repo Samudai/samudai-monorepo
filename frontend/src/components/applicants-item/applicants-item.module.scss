@@ -1,0 +1,179 @@
+.item {
+  padding: 21px 20px;
+  background: $clr-black-main;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  + .item {
+    margin-top: 16px;
+  }
+}
+.item_col {
+  font: $fontMedium;
+  color: $clr-white;
+  &User {
+    flex: 1 1;
+  }
+  &Rating {
+    width: 11%;
+    text-align: center;
+  }
+  &Offer {
+    width: 26.5%;
+    padding-left: 14px;
+  }
+  &Date {
+    width: 11.72%;
+    padding-left: 14px;
+  }
+  &Contact {
+    width: 17.4%;
+    padding-left: 14px;
+  }
+  &Controls {
+    width: 95px;
+  }
+}
+.item_user {
+  display: flex;
+  align-items: center;
+  &_img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+  &_content {
+    padding-left: 24px;
+  }
+  &_title {
+    font: $font16;
+    color: $clr-white;
+  }
+  &_location {
+    margin-top: 4px;
+    font: 400 12px/1.25 $lato;
+    color: $clr-gray-dark;
+  }
+}
+.item_rating {
+  font: $font16;
+
+  &[data-rating='A'] {
+    color: $clr-green;
+  }
+  &[data-rating='B'] {
+    color: $clr-lavender;
+  }
+  &[data-rating='C'] {
+    color: $clr-orange;
+  }
+}
+.item_viewBtn {
+  padding: 8px;
+  max-width: 100%;
+  width: 100%;
+  color: $clr-green;
+  background: $clr-black;
+  transition: 0.15s ease-in-out;
+  transition-property: color, background-color;
+}
+// Placeholder
+.itemPlaceholder {
+  background: transparent;
+  padding-block: 0 20px;
+  border-bottom: 1px solid $clr-black-main;
+  margin-bottom: 28px;
+
+  .item_col {
+    &::after {
+      content: attr(data-title);
+      display: block;
+      font: $fontMedium;
+      color: $clr-gray-dark;
+    }
+
+    &User {
+      padding-left: 60px;
+    }
+  }
+}
+
+// Hover
+.item:hover {
+  .item_viewBtn {
+    color: $clr-black;
+    background-color: $clr-green;
+  }
+}
+
+@media (max-width: $tablet) {
+  .itemPlaceholder {
+    display: none;
+  }
+  .item {
+    flex-wrap: wrap;
+
+    + .item {
+      margin-top: 52px;
+    }
+  }
+  .item_col {
+    font: $fontMedium;
+    color: $clr-white;
+
+    &User {
+      flex: 0 0 auto;
+      width: calc(100% - 38px);
+      order: 1;
+    }
+
+    &Rating {
+      order: 2;
+      width: 38px;
+    }
+
+    &Offer {
+      margin-top: 21px;
+      width: 100%;
+      padding-left: 0;
+      order: 3;
+    }
+
+    &Date {
+      width: 100%;
+      text-align: right;
+      padding-left: 0;
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 16px);
+      color: $clr-gray-dark;
+    }
+
+    &Contact {
+      margin-top: 16px;
+      width: calc(100% - 95px);
+      padding-left: 0;
+      order: 4;
+    }
+
+    &Controls {
+      margin-top: 16px;
+      width: 95px;
+      order: 5;
+    }
+  }
+}
+@media (max-width: $mobile){
+  .item_user {
+    &_name {
+      font-size: 12px;
+    }
+    &_content {
+      padding-left: 8px;
+    }
+  }
+}

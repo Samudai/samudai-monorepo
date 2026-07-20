@@ -1,0 +1,66 @@
+.notf {
+  width: 100%;
+}
+.notf_item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.notf_pers {
+  display: flex;
+
+  &_img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+  &_user {
+    padding-left: 16px;
+  }
+  &_name {
+    font: $font16;
+    color: $clr-green;
+  }
+  &_date {
+    margin-top: 8px;
+    font: $fontMedium;
+    color: $clr-gray-dark;
+  }
+}
+.notf_action {
+  margin-top: 24px;
+  font: $font16;
+  color: $clr-white;
+
+  [data-orange] {
+    color: $clr-orange;
+  }
+}
+.notf_links {
+  margin-top: 24px;
+
+  &_item {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 20px;
+      flex-shrink: 0;
+      [data-fill] {
+        fill: $clr-lavender;
+      }
+    }
+    span {
+      margin-left: 16px;
+      font: $fontMedium;
+      color: $clr-white;
+    }
+
+    + .notf_links_item {
+      margin-top: 8px;
+    }
+  }
+}
+.notf_product {
+  margin-top: 27px;
+}

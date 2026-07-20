@@ -1,0 +1,128 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 95px;
+    z-index: 50;
+}
+.sidebar_box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 25px 20px;
+    background: $clr-black-main;
+    border-right: 1px solid $clr-black;
+    transition: width 0.4s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+}
+.sidebar_head {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.sidebar_logoBtn {
+    max-width: 54px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+.sidebar_menuCloseBtn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease-in-out;
+    transition-property: opacity, visibility;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+}
+.sidebar_menuBtn {
+    margin: 20px 0 0 13px;
+    padding: 7px 2.5px;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    transition: 0.4s ease-in-out;
+    transition-property: opacity, visibility;
+}
+.sidebar_menuBtn_inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    span {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        &,
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            display: block;
+            width: 100%;
+            height: 1.5px;
+            border-radius: 1.5px;
+            background: $clr-white;
+            position: absolute;
+        }
+
+        content: none;
+
+        &::before {
+            top: -7px;
+            transform: translateY(50%);
+        }
+
+        &::after {
+            top: 7px;
+            transform: translateY(-50%);
+        }
+    }
+}
+.sidebar_daos {
+    margin-top: 15px;
+}
+
+// Modifier
+.sidebarExpanded {
+    .sidebar_box {
+        width: 274px;
+    }
+    .sidebar_menuBtn {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .sidebar_menuCloseBtn {
+        opacity: 1;
+        visibility: visible;
+    }
+}

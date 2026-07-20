@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  + .root {
+    margin-top: 36px;
+  }
+}
+.title {
+  font: 600 18px/1.22 $lato;
+  color: $clr-white;
+  min-width: 125px;
+}
+.content {
+  padding-left: 80px;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (max-width: $tablet_big){
+  .root {
+    flex-direction: column;
+  }
+  .title {
+    min-width: auto;
+  }
+  .content {
+    width: 100%;
+    flex: 0 0 auto;
+    padding-left: 0;
+    margin-top: 24px;
+  }
+}
+@media (max-width: $tablet){
+  .root + .root {
+    margin-top: 36px;
+  }
+}

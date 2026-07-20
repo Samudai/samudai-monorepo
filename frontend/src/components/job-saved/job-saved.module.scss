@@ -1,0 +1,71 @@
+.job {
+  padding: 16px 0 33px;
+  border-bottom: 1px solid $clr-black;
+}
+.job_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.job_title {
+  font: $font16;
+  color: $clr-white;
+}
+.job_saveBtn {
+  width: 20px;
+  flex-shrink: 0;
+  svg {
+    width: 100%;
+
+    [data-full] {
+      stroke: $clr-orange;
+    }
+  }
+
+  &_saved [data-full] {
+    fill: $clr-orange;
+  }
+}
+.job_skills {
+  margin-top: 16px;
+}
+.job_foot {
+  margin-top: 26px;
+  display: flex;
+}
+.job_info {
+  &_title,
+  &_val {
+    display: inline;
+    font: $fontMedium;
+    color: $clr-white;
+  }
+
+  &_title {
+    color: $clr-gray-dark;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      flex-shrink: 0;
+      [data-fill] {
+        fill: $clr-gray-dark;
+      }
+
+      [data-stroke] {
+        stroke: $clr-gray-dark;
+      }
+    }
+  }
+  &_val {
+  }
+
+  + .job_info {
+    margin-left: 29px;
+  }
+
+  &:last-child {
+    margin-left: auto;
+  }
+}

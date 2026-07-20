@@ -1,0 +1,22 @@
+.paginate {
+  margin-top: 25px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.paginatePage {
+  font: $fontMedium;
+  color: $clr-gray-dark;
+  padding: 2px 4px;
+  margin: 0 2px;
+
+  &:not(.paginatePageActive) {
+    cursor: pointer;
+  }
+}
+
+.paginatePageActive {
+  color: $clr-orange;
+}

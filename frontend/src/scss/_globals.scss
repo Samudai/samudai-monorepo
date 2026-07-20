@@ -1,0 +1,6 @@
+// Aggregates the global SCSS API (variables + mixins/functions) so a single
+// `@use "src/scss/globals" as *;` exposes everything. Injected into every
+// stylesheet via vite.config.ts `additionalData`, replacing the legacy
+// `@import` of vars.scss/mixins.scss (deprecated in Dart Sass, removed in 3.0).
+@forward 'vars';
+@forward 'mixins';

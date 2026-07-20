@@ -1,0 +1,81 @@
+.root {
+  max-width: 582px;
+  padding-left: 47px;
+  padding-bottom: 84px;
+}
+.gatting {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.gattingName {
+  font: $fontMedium;
+  color: $clr-white;
+}
+.gattingSwitch {
+  margin-left: 50px;
+  font-size: 11.7px;
+}
+// Select
+.select {
+}
+.selectBtn {
+  &[data-choosed='false'] {
+    .selectItemContent {
+      color: $clr-gray-dark;
+    }
+  }
+}
+.selectList {
+  top: calc(100% + 16px);
+  padding: 11px 16px;
+  border-radius: 25px;
+}
+.selectItem {
+  padding: 17px 21px;
+  border-radius: 15px;
+  transition: background 0.1s ease-out;
+  user-select: none;
+
+  &[data-active='true'] {
+    .selectItemContent {
+      color: $clr-gray-dark;
+    }
+  }
+
+  &:not([data-active='true']):hover {
+    cursor: pointer;
+    background: $clr-black;
+
+    .selectItemContent {
+      color: $clr-green;
+    }
+  }
+}
+.selectItemContent {
+  font: $fontMedium;
+  color: $clr-white;
+  transition: color 0.1s ease-out;
+}
+.input {
+  margin-top: 36px;
+}
+.controls {
+  margin-top: 36px;
+  display: flex;
+  justify-content: flex-end;
+}
+button.submitBtn {
+  padding: 14px;
+  min-width: 129px;
+}
+@media (max-width: $tablet) {
+  .root {
+    max-width: 100%;
+    padding-inline: 0;
+    padding-bottom: 20px;
+  }
+  button.submitBtn {
+    width: 100%;
+  }
+}

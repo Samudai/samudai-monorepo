@@ -1,0 +1,44 @@
+.task {
+
+  + .task {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid $clr-gray-dark;
+  }
+}
+.task_head {
+  position: relative;
+}
+.task_remove {
+  position: absolute;
+  right: 0;
+  top: 2px;
+
+  svg [data-fill] {
+    fill: $clr-red;
+  }
+}
+.title {
+  margin-top: 36px;
+  font: $font16;
+  color: $clr-white;
+}
+.task_title {
+  [data-role='title'] {
+    color: $clr-white;
+  }
+  [data-role='field'] {
+    background-color: $clr-black;
+  }
+}
+.task_desc {
+  margin-top: 14px;
+  background: $clr-black;
+  border-radius: 15px;
+  min-height: 131px;
+  max-height: 131px;
+  padding: 18px 20px;
+}
+.task_skills {
+  margin-top: 14px;
+}

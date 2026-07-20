@@ -1,0 +1,50 @@
+.root {
+    padding: 35px 30px 30px;
+}
+.rateSubtitle {
+    margin-top: 28px;
+    font: $fontSmall;
+}
+.rating {
+    margin-top: 14px;
+}
+.reviewSubtitle {
+    margin-top: 36px;
+    font: $fontSmall;
+}
+.textArea {
+    margin-top: 14px;
+    padding: 16px 20px;
+
+    background: $clr-black-main;
+    border-radius: 15px;
+    min-height: 103px;
+    max-height: 103px;
+}
+.postBtn {
+    margin-top: 48px;
+    margin-left: auto;
+    padding: 14px;
+    min-width: 129px;
+
+    &:disabled {
+        opacity: 1;
+        background-color: #35383c;
+        color: $clr-black-main;
+    }
+}
+.empty {
+    margin-top: 24px;
+    max-width: 342px;
+
+    font: $font16;
+    color: $clr-gray-dark;
+}
+.textarea {
+    max-height: 105px;
+    margin-top: 14px;
+    padding: 16px 20px;
+    border-radius: 15px;
+    height: 1em;
+    background: $clr-black-main;
+}

@@ -1,0 +1,36 @@
+
+
+
+.modal-control-btn {
+  padding: 14px;
+  min-width: 129px;
+  text-align: center;
+  border-radius: 20px;
+  transition: $app-transition;
+  transition-duration: opacity, filter;
+  span {
+    font: 600 14px/1 $lato;
+    color: $clr-black-main;
+  }
+  &.--filled {
+    background: $clr-orange;
+    &.--green {
+      background: $clr-green;
+    }
+  }
+  &.--outline {
+    border: 1px solid $clr-orange;
+    span {
+      color: $clr-orange;
+    }
+  }
+  &:hover {
+    filter: brightness(0.75);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    filter: grayscale(1);
+    opacity: 0.3;
+  }
+}

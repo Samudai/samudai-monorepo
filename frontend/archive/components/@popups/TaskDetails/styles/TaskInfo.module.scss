@@ -1,0 +1,55 @@
+.info {
+  margin-top: 36px;
+}
+.infoRow {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+
+  + .infoRow {
+    margin-top: 17px;
+  }
+}
+.infoCol {
+  display: flex;
+  align-items: center;
+
+  &:first-child {
+    padding-right: 20px;
+  }
+}
+.infoIcon {
+  width: 20px;
+  flex-shrink: 0;
+  :global(.svg-stroke) {
+    stroke: $clr-lavender;
+  }
+  &[data-clr-orange] {
+    :global(.svg-stroke) {
+      stroke: $clr-orange;
+    }
+  }
+}
+.infoName {
+  margin-left: 8px;
+  font: $font16;
+  color: $clr-gray-dark;
+}
+.infoValue {
+  font: $fontSmall;
+  color: $clr-white;
+
+  &[data-task='status'] {
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+  }
+  &[data-task='createdBy'] {
+    color: $clr-orange;
+    cursor: pointer;
+  }
+}

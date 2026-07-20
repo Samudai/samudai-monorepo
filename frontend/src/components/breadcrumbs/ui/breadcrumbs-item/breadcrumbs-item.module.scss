@@ -1,0 +1,21 @@
+.breadcrumbs_link {
+    font: $fontSmall;
+    color: $clr-gray-dark;
+
+    &Disabled {
+        pointer-events: none;
+    }
+
+    &Active {
+        color: $clr-white;
+    }
+}
+.breadcrumbs_arrow {
+    margin-inline: 9px;
+    width: 7px;
+    flex-shrink: 0;
+    transform: scaleX(-1) translateY(-1.5px);
+    [data-stroke] {
+        stroke: $clr-gray-dark;
+    }
+}

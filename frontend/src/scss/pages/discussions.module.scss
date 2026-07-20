@@ -1,0 +1,118 @@
+.root {
+  padding-bottom: 85px;
+}
+.container {
+  margin-top: 32px;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+
+  &_title {
+    font: $font24;
+    color: $clr-white;
+  }
+
+  &_left,
+  &_right {
+    display: flex;
+    align-items: center;
+  }
+}
+.headBtn {
+}
+.headPosts {
+  margin-left: 66px;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  padding: 4px 8.5px;
+  background: $clr-black-main;
+  border-radius: 15px;
+
+  svg {
+    width: 16px;
+    flex-shrink: 0;
+    [data-stroke] {
+      stroke: $clr-green;
+    }
+  }
+
+  span {
+    margin-left: 4px;
+    font: $fontMedium;
+    color: $clr-green;
+  }
+}
+.filter {
+  margin-right: 8px;
+  padding: 8px;
+
+  [data-role='select'] {
+    top: calc(100% + 15px);
+    left: 0;
+    right: auto;
+  }
+
+  [data-role='select-box'] {
+    border: none;
+    padding: 16px 24px;
+  }
+}
+.filterBtn {
+  display: flex;
+  align-items: center;
+  color: $clr-orange;
+
+  svg {
+    width: 16px;
+    flex-shrink: 0;
+    margin-right: 8px;
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+}
+.filterItem {
+  padding: 8px 0;
+  cursor: pointer;
+  &.filterItemActive {
+  }
+}
+.filterCheckbox {
+  width: 20px;
+  height: 20px;
+}
+.filterName {
+  margin-left: 8px;
+  font: $fontMedium;
+  color: $clr-white;
+}
+.content {
+  padding-top: 50px;
+}
+
+@media (max-width: $tablet_small){
+  .head {
+    &_left,
+    &_right {
+      flex-direction: column;
+    }
+
+    &Posts {
+      margin-top: 24px;
+      margin-left: 0;
+    }
+
+    &_right {
+      align-items: flex-end;
+
+      :global(.button) {
+        margin-top: 12px;
+      }
+    }
+  }
+  .filter {
+    margin-right: 0;
+  }
+}

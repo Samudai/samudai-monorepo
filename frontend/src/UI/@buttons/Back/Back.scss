@@ -1,0 +1,31 @@
+
+
+
+.ui-back-button {
+  display: flex;
+  align-items: center;
+}
+.ui-back-button__icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid $clr-orange;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    max-width: 50%;
+    max-height: 50%;
+    .svg-stroke {
+      strokeWidth: 3px;
+      stroke: $clr-orange;
+    }
+  }
+}
+.ui-back-button__title {
+  margin-left: 4px;
+  font: 600 14px/1 $lato;
+  color: $clr-orange;
+}

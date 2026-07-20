@@ -1,0 +1,171 @@
+.controls {
+    padding-top: 20px;
+    margin-top: auto;
+
+    &Extended {
+        .controls_btn {
+            > svg {
+                transform: translateX(0px);
+            }
+            > span {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(16px, -50%);
+            }
+            > strong {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        &.controlsHelpActive {
+            .controls_btnHelp {
+                background: $clr-black;
+                padding-inline: 14px;
+                border-radius: 14px 14px 0 0;
+
+                span {
+                    transform: translate(30px, -50%);
+                    transition: transform 0.2s ease-in-out;
+                }
+
+                strong {
+                    transform: translate(-14px, -50%) scaleY(-1);
+                    transition: transform 0.2s ease-in-out;
+                }
+            }
+        }
+    }
+
+    &:not(.controlsExtended) {
+        .controls_help_standard {
+            display: block;
+        }
+        .controls_help_box {
+            border-radius: 14px;
+            padding-block: 3px;
+        }
+        &.controlsHelpActive {
+            .controls_help_standard {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+.controls_box {
+    border-top: 0.5px solid $clr-gray-dark;
+    padding-top: 35px;
+}
+.controls_wrap_btn {
+    position: relative;
+}
+.controls_btn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding-block: 10px;
+    transition: padding 0.2s ease-in-out;
+
+    > svg {
+        width: 24px;
+        flex-shrink: 0;
+        transition: transform 0.2s ease-in-out;
+        transform: translateX(15px);
+        [data-stroke] {
+            stroke: #fff;
+        }
+    }
+
+    > span {
+        font: $font16;
+        color: $clr-white;
+        white-space: nowrap;
+        position: absolute;
+        top: 50%;
+        left: 24px;
+        transform: translate(0, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.2s ease-in-out;
+        transition-property: opacity, visibility, transform;
+    }
+
+    > strong {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.2s ease-in-out;
+        transition-property: opacity, visibility, transform;
+
+        > svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+            transform: rotate(-90deg) translateX(-1px);
+            [data-stroke] {
+                stroke: $clr-white;
+            }
+        }
+    }
+}
+
+.controls_wrap_btn + .controls_btn,
+.controls_btn + .controls_btn,
+.controls_btn + .controls_wrap_btn {
+    margin-top: 12px;
+}
+.controls_help_standard {
+    display: none;
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 200px;
+}
+.controls_help {
+    overflow: hidden;
+    transition: height 0.2s ease-in-out;
+}
+.controls_help_box {
+    border-radius: 0 0 14px 14px;
+    background: $clr-black;
+    padding: 7px 14px 3px;
+}
+.controls_help_item {
+    padding: 7px 6px;
+
+    font: $fontSmall;
+    color: $clr-white;
+    transition: color 0.15s ease-in-out;
+
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $clr-gray-dark;
+        margin-right: 24px;
+        transition: background 0.15s ease-in-out;
+    }
+
+    + .controls_help_item {
+        margin-top: 7px;
+    }
+
+    &:hover {
+        color: $clr-green;
+        &::before {
+            background-color: $clr-green;
+        }
+    }
+}

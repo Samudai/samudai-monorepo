@@ -1,0 +1,39 @@
+#!/bin/sh
+# Pre-commit hook: run ESLint on staged TS/JS files in each Node project.
+# Activate once per clone: git config core.hooksPath .githooks
+
+ROOT="$(git rev-parse --show-toplevel)"
+PROJECTS="backend/gateway-consumer backend/service-node backend/service-notification bots/samudai-bot bots/telegram-bot frontend"
+FAILED=0
+
+for PROJECT in $PROJECTS; do
+  PROJECT_PATH="$ROOT/$PROJECT"
+
+  # Skip projects where ESLint is not yet installed
+  if [ ! -f "$PROJECT_PATH/node_modules/.bin/eslint" ]; then
+    continue
+  fi
+
+  # Collect staged TS/JS files that belong to this project
+  STAGED=$(git diff --cached --name-only --diff-filter=ACM \
+    | grep "^$PROJECT/.*\.\(ts\|tsx\|js\|jsx\)$" \
+    | sed "s|^$PROJECT/||" \
+    || true)
+
+  [ -z "$STAGED" ] && continue
+
+  echo "► Linting $PROJECT..."
+  cd "$PROJECT_PATH"
+  # shellcheck disable=SC2086
+  if ! ./node_modules/.bin/eslint $STAGED; then
+    echo "✗ $PROJECT lint failed"
+    FAILED=1
+  fi
+  cd "$ROOT"
+done
+
+if [ "$FAILED" -ne 0 ]; then
+  echo ""
+  echo "Commit aborted: fix ESLint errors above, or run 'npm run lint:fix' in the affected project."
+  exit 1
+fi

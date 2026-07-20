@@ -1,0 +1,41 @@
+.progress {
+    margin-top: -35px;
+    padding-top: 35px;
+    display: flex;
+    // overflow: hidden visible;
+    overflow: hidden;
+    padding-right: 50px;
+    cursor: default;
+
+    &_item {
+        border-top: 1px solid $clr-black;
+        background: #161819;
+        cursor: default;
+    }
+
+    &_item + &_item {
+        padding-left: 3px;
+    }
+
+    &_itemActive &_line {
+        background-image: linear-gradient(90deg, #6cffb1 -0.05%, #ffc266 99.99%);
+    }
+
+    &_line {
+        display: block;
+        height: 13px;
+        background: $clr-black-main;
+    }
+
+    &_content {
+        color: $clr-white;
+        background: #161819;
+        height: 100%;
+        width: 100%;
+        transform: translateX(50%);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

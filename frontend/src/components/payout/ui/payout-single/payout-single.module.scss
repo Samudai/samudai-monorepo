@@ -1,0 +1,40 @@
+.single_item + .single_item {
+    margin-top: 8px;
+}
+.single_accordeon {
+    background: $clr-black;
+    border-radius: 12px;
+    padding-inline: 16px;
+}
+.single_btn {
+    width: 100%;
+    padding: 14px 0;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &Active svg {
+        transform: scaleY(-1);
+    }
+
+    span {
+        font: 400 12px/1 $lato;
+        color: $clr-white;
+        white-space: nowrap;
+    }
+
+    svg {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-white;
+        }
+    }
+}
+.single_content {
+    padding: 8px 0;
+    border-top: 1px solid #34383C;
+}

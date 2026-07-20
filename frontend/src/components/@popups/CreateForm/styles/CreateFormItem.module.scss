@@ -1,0 +1,247 @@
+.root {
+  + .root {
+    margin-top: 48px;
+  }
+}
+/* Head */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &_btn {
+    display: flex;
+    color: $clr-orange;
+    font: 600 14px/1 $lato;
+    align-items: center;
+    gap: 8px;
+
+    &__disabled {
+      color: $clr-gray-dark;
+      cursor: default;
+    
+      svg {
+        [data-stroke] {
+          stroke: $clr-gray-dark !important;
+        }
+      }
+    }
+
+    svg {
+      width: 12px;
+      flex-shrink: 0;
+  
+      [data-stroke] {
+        stroke: $clr-orange;
+      }
+    }
+  }
+
+  &_btn2 {
+    svg {
+      width: 18px;
+      flex-shrink: 0;
+  
+      [data-stroke] {
+        stroke: $clr-orange;
+      }
+    }
+  }
+
+  span {
+    font: $font16;
+    color: $clr-gray-dark;
+  }
+}
+.headRemoveBtn {
+  margin-left: 4px;
+  width: 10px;
+  svg {
+    [data-fill] {
+      fill: $clr-orange;
+    }
+  }
+}
+.headAddItem {
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  svg {
+    width: 14px;
+    flex-shrink: 0;
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+  span {
+    margin-left: 8px;
+    font: 600 14px/1 'Lato', sans-serif;
+    color: $clr-orange;
+  }
+}
+/* Question */
+.question {
+  margin-top: 14px;
+}
+
+.questionIndex {
+  font: $font16;
+  color: $clr-light-gray;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Answers */
+.selectTypeSubtitle {
+  margin-top: 24px;
+  font: $font16;
+  color: $clr-gray-dark;
+}
+.type {
+  margin-top: 14px;
+}
+.typeName {
+  font: $fontMedium;
+  color: $clr-white;
+  text-transform: capitalize;
+}
+.inputText {
+  margin-top: 16px;
+}
+.select {
+  margin-top: 24px;
+}
+.selectOption {
+  display: flex;
+  align-items: center;
+
+  + .selectOption {
+    margin-top: 16px;
+  }
+}
+.selectRadio {
+}
+.selectCheckbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.selectName {
+  margin-left: 8px;
+  max-width: calc(100% - 46px);
+
+  [data-class="text-wrapper"] {
+    max-width: 100%;
+  }
+
+  [data-role='input'] {
+    border-bottom: 1px solid $clr-green;
+    caret-color: $clr-green;
+  }
+}
+.selectNameAll {
+  font: $fontMedium;
+  color: $clr-white;
+}
+.selectRemoveBtn {
+  width: 10px;
+  margin-left: 8px;
+}
+.addOptionsBtn {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    width: 14px;
+    flex-shrink: 0;
+
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+
+  span {
+    margin-left: 8px;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+  }
+}
+.attachment {
+  margin-top: 24px;
+}
+.attachmentBtn {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 18px;
+    flex-shrink: 0;
+
+    [data-fill] {
+      fill: $clr-orange;
+    }
+    [data-stroke] {
+      stroke: $clr-orange;
+    }
+  }
+
+  span {
+    margin-left: 6px;
+    font: $font16;
+    color: $clr-orange;
+  }
+}
+
+.description {
+  margin-top: 14px;
+  padding: 16px 20px;
+  border-radius: 15px;
+  background: $clr-black-main;
+  max-height: 125px;
+  height: 125px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+
+  &_radio {
+    font-size: 8px;
+  }
+
+  &_right {
+    display: flex;
+    font: 600 14px/1 $lato;
+    color: $clr-orange;
+    align-items: center;
+    gap: 6px;
+  }
+
+  // span {
+  //   font: 600 14px/1 $lato;
+  //   color: $clr-orange;
+  // }
+
+  svg {
+    width: 24px;
+    flex-shrink: 0;
+    cursor: pointer;
+    
+    [data-stroke] {
+      stroke: $clr-gray-dark;
+    }
+  }
+}

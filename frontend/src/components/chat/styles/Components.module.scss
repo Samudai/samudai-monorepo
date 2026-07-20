@@ -1,0 +1,73 @@
+
+
+
+.title {
+  font: 600 24px/1.12 $lato;
+  color: $clr-gray;
+}
+.avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+// Button
+.button {
+  display: flex;
+  align-items: center;
+}
+.buttonIcon {
+  margin-right: 8px;
+  width: 20px;
+  flex-shrink: 0;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+
+    :global(.svg-fill) {
+      fill: $clr-green;
+    }
+    :global(.svg-stroke) {
+      stroke: $clr-green;
+    }
+  }
+}
+.buttonText {
+  font: 400 14px/1 $lato;
+  color: $clr-green;
+}
+
+// Info
+.info {
+  display: flex;
+  align-items: center;
+}
+.infoContent {
+  padding-left: 20px;
+}
+.infoMembers {
+  margin-top: 8px;
+  font: $fontSmall;
+  color: #52585D;
+}
+
+@media (max-width: $tablet){
+  .title {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: $mobile){
+  .button {
+    flex-direction: column;
+  }
+  .buttonIcon {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}

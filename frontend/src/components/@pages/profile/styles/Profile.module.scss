@@ -1,0 +1,66 @@
+.table {
+  max-width: 960px;
+  width: 100%;
+  padding-top: 46px;
+  display: flex;
+  justify-content: space-between;
+}
+.tableLeft {
+  width: 40%;
+}
+.tableRight {
+  width: 51.5%;
+}
+.tableLeft,
+.tableRight {
+  :global(.block + .block) {
+    margin-top: 48px;
+  }
+}
+
+// Widgets
+.profileReviews {
+  // background: transparent;
+  border-radius: none;
+  padding: 0;
+
+  :global(.reviews__content) {
+    margin-top: 24px;
+    background: $clr-black-main;
+    border-radius: 25px;
+    padding: 23px;
+  }
+  :global(.reviews-info__info-average) {
+    color: $clr-orange;
+  }
+  :global(.reviews-item:nth-child(n) .reviews-item__rating svg.filled .svg-fill),
+  :global(.reviews-info__info-rating .rating__star.filled .svg-fill) {
+    fill: $clr-orange;
+  }
+}
+
+@media (max-width: $laptop) {
+  .tableLeft {
+    width: 45%;
+  }
+
+  .tableRight {
+    width: 52%;
+  }
+  .tableLeft,
+  .tableRight {
+    :global(.block + .block) {
+      margin-top: 28px;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .table {
+    flex-direction: column;
+  }
+  .tableLeft,
+  .tableRight {
+    width: 100%;
+  }
+}

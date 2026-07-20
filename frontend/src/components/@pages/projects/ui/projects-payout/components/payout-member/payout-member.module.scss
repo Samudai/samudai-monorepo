@@ -1,0 +1,82 @@
+.item {
+    padding-inline: 16px;
+    border-radius: 12px;
+    background: $clr-black;
+
+    &Active {
+        .item_downIcon {
+            transform: scaleY(-1);
+        }
+    }
+    
+    +.item {
+        margin-top: 16px;
+    }
+}
+.item_button {
+    display: flex;
+    align-items: center;
+    padding-block: 8px;
+    cursor: pointer;
+}
+.item_content {
+    padding-block: 8px;
+    border-top: 1px solid #34383C;
+}
+.item_user {
+    &_img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 50%;
+    }
+
+    &_name {
+        padding-left: 16px;
+        font: 400 12px/1 $lato;
+        color: $clr-white;
+        flex-grow: 1;
+    }
+}
+.item_downIcon {
+    margin-left: 26px;
+    width: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease-in-out;
+
+    [data-stroke] {
+        stroke: #cbcbcb;
+    }
+}
+.item_addTransaction {
+    width: 100%;
+    background: #34383c;
+    border-radius: 12px;
+    padding: 13px 14px;
+    display: flex;
+    align-items: center;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 12px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-orange;
+        }
+    }
+
+    span {
+        padding-left: 8px;
+        font: 400 12px/1.1 $lato;
+        color: $clr-orange;
+    }
+}
+.item_progress {
+    font: 600 12px/1 $lato;
+    color: $clr-green;
+}
+.item_list + .item_addTransaction {
+    margin-top: 8px;
+}

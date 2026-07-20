@@ -1,0 +1,41 @@
+.icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ffe400;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 55%;
+    flex-shrink: 0;
+    [data-fill] {
+      fill: $clr-black-main;
+    }
+  }
+}
+.input {
+  margin-top: 48px;
+  [data-role='title'] {
+    padding-left: 4px;
+    color: $clr-white;
+  }
+}
+.textArea {
+  margin-top: 14px;
+  padding: 16px 20px;
+
+  background: $clr-black-main;
+  border-radius: 15px;
+  min-height: 103px;
+  max-height: 103px;
+}
+button.doneBtn {
+  margin-top: 48px;
+  margin-left: auto;
+  padding: 14px;
+  min-width: 129px;
+}

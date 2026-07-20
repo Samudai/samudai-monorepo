@@ -1,0 +1,119 @@
+.projects {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.projects_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.projects_center {
+    padding-inline: 15px;
+    display: flex;
+    align-items: center;
+}
+.point {
+    margin-left: auto;
+    margin-right: 10px;
+}
+.projects_center_rate {
+    font: $fontMedium;
+    color: $clr-gray-dark;
+    transform: translateY(2px);
+
+    strong {
+        margin-left: 4px;
+        font: 600 18px/1.2 $lato;
+        color: $clr-white;
+        vertical-align: middle;
+    }
+}
+.projects_center_label {
+    padding: 4px 8px;
+    background: $clr-black;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 16px;
+        flex-shrink: 0;
+        [data-stroke] {
+            stroke: $clr-green;
+        }
+    }
+    span {
+        font: $fontMedium;
+        color: $clr-green;
+        margin-left: 4px;
+        transform: translateY(0.15em);
+    }
+}
+.projects_center_rate + .projects_center_label {
+    margin-left: 18px;
+}
+.projects_controls {
+    display: flex;
+    align-items: center;
+}
+.projects_controls_btn {
+    svg {
+        min-width: 20px;
+        [data-stroke] {
+            stroke: $clr-black;
+        }
+    }
+    + .projects_controls_btn {
+        margin-left: 16px;
+    }
+}
+
+.projects_content {
+    padding-block: 38px 48px
+}
+.projects_list {
+    margin: -10px -10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.projects_item {
+    padding: 10px;
+    flex-shrink: 0;
+    width: calc(100% / 3);
+}
+.projects_projects {
+    margin-top: 38px;
+}
+
+// Empty
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px;
+    border-radius: 35px;
+    background: $clr-black-main;
+
+    &_img {
+        width: 100px;
+    }
+    
+    &_text {
+        margin-top: 12px;
+
+        font: 400 16px/1.5 $lato;
+        color: $clr-gray-dark;
+
+        text-align: center;
+
+        span {
+            display: block;
+        }
+    }
+    &_createBtn {
+        margin-top: 22px;
+        padding: 14px 32px;
+    }
+}

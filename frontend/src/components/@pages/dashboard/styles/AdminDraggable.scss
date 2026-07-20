@@ -1,0 +1,27 @@
+@use "sass:color";
+
+
+
+
+.admin-draggable {
+  position: relative;
+
+  + .admin-draggable {
+    margin-top: 35px;
+    @media (max-width: $laptop){
+      margin-top: 25px;
+    }
+  }
+
+  & > .block.over {
+    background-color: color.adjust($clr-black-main, $lightness: 10%, $space: hsl);
+  }
+  &.draggable > .block {
+    outline: 2px dashed $clr-lavender;
+    cursor: grab;
+
+    &::after {
+      display: block;
+    }
+  }
+}

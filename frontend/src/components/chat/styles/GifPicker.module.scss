@@ -1,0 +1,51 @@
+.root {
+  padding: 45px 30px 30px;
+
+  :global(.popup-title__title) strong {
+    color: $clr-green;
+  }
+}
+
+.mainTitle {
+  text-align: center;
+}
+
+.inputTitle {
+  margin: 20px 0;
+}
+
+.gifPickerContainer {
+  display: flex;
+  overflow-y: auto;
+  margin-top: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2;
+  flex-grow: initial;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(55, 55, 56);
+    border-radius: 10px;
+    opacity: 0.5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ca599b;
+    border-radius: 10px;
+  }
+}
+
+.gifPicker {
+  flex: 1;
+  cursor: pointer;
+  justify-content: end;
+  max-width: 45%;
+  padding: 5px;
+  height: 50%;
+  object-fit: cover;
+}

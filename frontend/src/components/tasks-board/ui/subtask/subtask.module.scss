@@ -1,0 +1,72 @@
+.card {
+    padding: 16px;
+    background: $clr-black-main;
+    border-radius: 16px;
+    cursor: pointer;
+}
+.card_title {
+    font: $font16;
+    color: $clr-white;
+}
+.card_row {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+}
+.card_contributor {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+.card_contributor_img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+.card_contributor_name {
+    padding-left: 8px;
+    white-space: nowrap;
+    font: 400 12px/1 $lato;
+    color: $clr-white;
+
+    @include textOverflowLine;
+}
+.card_commentsBtn {
+    margin-left: 10px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    background: #34383c;
+    border-radius: 8px;
+
+    svg {
+        width: 15px;
+        flex-shrink: 0;
+
+        [data-full] {
+            stroke: $clr-gray-dark;
+        }
+    }
+
+    span {
+        margin-left: 4px;
+        font: 500 12px/1 $lato;
+        color: $clr-white;
+    }
+}
+.card_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card_removeBtn {
+    width: 24px;
+    height: 24px;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        stroke: $clr-gray-dark;
+    }
+}

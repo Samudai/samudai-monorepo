@@ -1,0 +1,38 @@
+.block {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1.5px solid $clr-black;
+}
+.block_title {
+    font: $font16;
+    color: $clr-white;
+}
+.list {
+    margin-top: 24px;
+}
+.list_item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    + .list_item {
+        margin-top: 12px;
+    }
+}
+.list_checkbox {
+    background: #2b2e31;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+.list_span {
+    padding-left: 8px;
+    font: $fontMedium;
+    color: $clr-white;
+}
+.list_showBtn {
+    font: $fontMedium;
+    color: $clr-green;
+    text-decoration-line: underline;
+}

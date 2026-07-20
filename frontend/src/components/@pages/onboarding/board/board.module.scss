@@ -1,0 +1,41 @@
+.board {
+  margin: auto;
+  padding: 35px 30px 50px;
+  background: #17191a;
+  max-width: 500px;
+  width: 100%;
+
+  border: 1px solid #2b2e31;
+  box-shadow: 0px 36px 36px rgba(15, 16, 17, 0.35);
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.board_wrapper {
+  width: 100%;
+}
+
+@media (max-width: $tablet) {
+  .board:not(.boardModal) {
+    max-width: 100%;
+    min-height: 100vh;
+    border: none;
+    border-radius: 0;
+  }
+  .board_wrapper {
+    margin: auto;
+    padding-bottom: 50px;
+  }
+  .board_backBtn {
+    position: absolute;
+    left: 20px;
+    top: 33px;
+  }
+}
+@media (max-width: $mobile){
+  .board {
+    padding-inline: 20px;
+  }
+}
