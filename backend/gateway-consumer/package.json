@@ -22,7 +22,7 @@
     "@samudai/gateway-consumer-types": "1.0.0",
     "@samudai/web3-sdk": "0.1.0",
     "aws-sdk": "^2.1693.0",
-    "axios": "^1.18.1",
+    "axios": "^1.19.0",
     "bs58": "^6.0.0",
     "connect-timeout": "^1.9.1",
     "cookie-parser": "^1.4.7",
